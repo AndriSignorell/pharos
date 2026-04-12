@@ -86,7 +86,6 @@
 #' @param \dots further arguments to be passed to or from methods.
 #' @return \code{style()} returns an object of class \code{Style}\cr
 #' \code{styles()} returns a list of styles
-#' @author Andri Signorell <andri@@signorell.net>
 #' @seealso \code{\link{fm}()}
 #' @keywords IO
 #' @examples
@@ -225,7 +224,7 @@ style <- function( x, digits = NULL, ldigits = NULL, sci = NULL
   }
   
   if(!is.null(label))
-    Label(res) <- label
+    label(res) <- label
   
   class(res) <- "Style"
   return(res)
@@ -250,7 +249,7 @@ print.Style <- function(x, ...){
   
   cat(gettextf("Format name:    %s%s\n", attr(x, "fmt_name"), 
                ifelse(identical(attr(x, "default"), TRUE), " (default)", "")),  
-      gettextf("Description:   %s\n", Label(x)),
+      gettextf("Description:   %s\n", label(x)),
       gettextf("Definition:    %s\n", CollapseList(x)),
       gettextf("Example:       %s\n", fm(pi * 1e5, fmt=x)),
       sep = ""

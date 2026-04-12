@@ -19,7 +19,6 @@
 #' 
 #' @return the converted value 
 #' 
-#' @author Andri Signorell <andri@@signorell.net> 
 #' @seealso \code{\link{rgbToCol}} 
 #' @examples
 #' 

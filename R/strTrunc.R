@@ -17,13 +17,11 @@
 #' \code{FALSE}.
 #' @return The string(s) passed as \samp{x} now with a maximum length of
 #' \samp{maxlen} + 3 (for the ellipsis).
-#' @author Andri Signorell, \cr once following an idea of Jim Lemon in
-#' \code{\link[prettyR]{truncString}()}
-#' @seealso String functions: \code{\link{nchar}}, \code{\link{match}},
-#' \code{\link{grep}}, \code{\link{regexpr}}, \code{\link{substr}},
-#' \code{\link{sub}}, \code{\link{gsub}}, \code{\link{strTrim}},
-#' \code{\link{strDist}}
-#' @keywords character utilities
+#' 
+#' @family string utilities
+#' @concept string splitting
+#' @concept character data
+#' 
 #' @examples
 #' 
 #' x <- c("this is short", "and this is a longer text", 
@@ -76,43 +74,3 @@ strTrunc <- function(x, maxlen = 20, ellipsis = "...", wbound = FALSE) {
   res
 }
 
-
-
-# strTrunc <- function (x, maxlen = 20, ellipsis="...", wbound=FALSE) {
-#   
-#   # replace NAs with blanks, and store the indices
-#   x[!(valid <- !is.na(x))] <- ""
-#   
-#   # recycle max length
-#   maxlen <- rep(maxlen, length.out = length(x))
-#   
-#   # correct for word boundaries
-#   if (wbound) {
-#     for(i in seq_along(x)){
-#       
-#       # only change maxlen for overlong strings
-#       if(nchar(x[i]) > maxlen[i]){
-#         # get all word boundaries
-#         ll <- gregexpr("\\b\\W+\\b", x[i], perl = TRUE)[[1]]
-#         j <- ll <= maxlen[i]
-#         
-#         # use minimum of original maxlen and closest smaller maxlen respecting word boundaries 
-#         maxlen[i] <- 
-#           if(all(!j)) {
-#             # length of first word is > maxlen, so return maxlen 
-#             maxlen[i]     
-#           } else {
-#             max(ll[ll <= maxlen[i]])
-#           }
-#       }
-#     }
-#   }
-#   
-#   res <- paste0(substr(x, 0L, maxlen), ifelse(nchar(x) > maxlen, ellipsis, ""))
-#   
-#   # restore NAs
-#   res[!valid] <- NA_character_
-#   return(res)
-#   
-# }
-# 

@@ -28,7 +28,4 @@ degToRad(c(90,180,270))
 radToDeg( c(0.5,1,2) * pi)
 
 }
-\author{
-Andri Signorell \href{mailto:andri@signorell.net}{andri@signorell.net}
-}
 \keyword{arith}

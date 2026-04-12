@@ -26,7 +26,6 @@
 #' \code{1, ..., N-1}, i.e., \code{0} is mapped to \code{1} and \code{N} to
 #' \code{N-1}.
 #' 
-#' @author Andri Signorell <andri@@signorell.net>
 #' @seealso \code{\link{findInterval}}
 #' @keywords color dplot
 #' @examples

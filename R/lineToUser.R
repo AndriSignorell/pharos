@@ -11,7 +11,6 @@
 #' @param side the side of the plot 
 #' @return the user coordinates for the given lines 
 #' 
-#' @author Andri Signorell <andri@@signorell.net> 
 #' @seealso \code{\link{mtext}} 
 #' @keywords aplot
 #' @examples

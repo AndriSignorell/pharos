@@ -41,7 +41,4 @@ stamp()
 \seealso{
 \code{\link{text}}
 }
-\author{
-Andri Signorell \href{mailto:andri@signorell.net}{andri@signorell.net}
-}
 \keyword{aplot}

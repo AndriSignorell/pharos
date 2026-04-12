@@ -19,7 +19,6 @@
 #' @param args.band list of arguments for the confidence band, such as color or
 #' border (see \code{\link{drawBand}}). 
 #' @param \dots further arguments are passed to the smoother \code{SmoothSpline()}). 
-#' @author Andri Signorell <andri@@signorell.net> 
 #' @seealso \code{\link{loess}}, \code{\link{scatter.smooth}}
 #' @keywords math aplot
 #' @examples

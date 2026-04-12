@@ -47,7 +47,7 @@
 #' @return Invisibly returns \code{NULL}. The function is called for its
 #'   side effect of producing a plot.
 #'
-#' @seealso \code{\link[DescToolsX]{binomCI}}
+#' @seealso \code{\link[lumen]{binomCI}}
 #'
 #' @examples
 #' # Example Desc.logical object

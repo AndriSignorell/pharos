@@ -17,7 +17,6 @@
 #' can be used to change font and similar arguments.
 #' 
 #' @return nothing is returned
-#' @author Andri Signorell <andri@@signorell.net>
 #' @seealso \code{\link{title}}
 #' @keywords aplot
 #' @examples

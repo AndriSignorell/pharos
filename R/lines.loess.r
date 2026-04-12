@@ -19,8 +19,6 @@
 #' border (see \code{\link{drawBand}}). 
 #' @param \dots further arguments are passed to the \code{loess()} smoother 
 #' @note Loess can result in heavy computational load if there are many points!
-
-#' @author Andri Signorell <andri@@signorell.net> 
 #' @seealso \code{\link{loess}}, \code{\link{scatter.smooth}},
 #' \code{\link{smooth.spline}}   %%, \code{\link{smoothSpline}} 
 #' @keywords math aplot
@@ -49,6 +47,7 @@
 #' 
 
 
+#' @method lines loess
 #' @export
 lines.loess <- function(x, col = Pal()[1], lwd = 2, lty = "solid", type = "l",  n = 100
                         , conf.level = 0.95, args.band = NULL, ...){

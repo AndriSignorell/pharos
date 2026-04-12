@@ -69,8 +69,7 @@ is \code{par("cex")}.}
 \item{bg.pch}{the background color of the plotting characters (if pch is set
 to 21:25). Default is \code{par("bg")}.}
 
-\item{\dots}{the dots are passed to the \code{\link{arrows}} function. \%\%
-~~Describe \code{\dots} here~~}
+\item{\dots}{the dots are passed to the \code{\link{arrows}} function.}
 }
 \description{
 Add error bars to an existing plot.
@@ -103,8 +102,5 @@ par(op)
 }
 \seealso{
 \code{\link{arrows}}, \code{\link{lines.loess}}
-}
-\author{
-Andri Signorell \href{mailto:andri@signorell.net}{andri@signorell.net}
 }
 \keyword{aplot}

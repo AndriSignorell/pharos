@@ -32,14 +32,14 @@ autocorrelation
 plotTimeSeries plots a combination of the time series and its autocorrelation and
 partial autocorrelation.
 }
+\note{
+Rewritten based on ideas of M.Huerzeler
+}
 \examples{
 
 plotTimeSeries(AirPassengers)
 }
 \seealso{
 \code{\link{ts}}
-}
-\author{
-Andri Signorell \href{mailto:andri@signorell.net}{andri@signorell.net}, rewritten based on ideas of M.Huerzeler
 }
 \keyword{hplot}

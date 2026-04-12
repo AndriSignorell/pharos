@@ -226,7 +226,4 @@ fm(1200, digits=2, big.mark = ".", outdec=",")
 \code{\link[DescToolsX]{month}},
 \code{\link[DescToolsX]{setDescToolsXOption}}, \code{\link{style}}, \code{\link{styles}}
 }
-\author{
-Andri Signorell \href{mailto:andri@signorell.net}{andri@signorell.net}
-}
 \keyword{IO}

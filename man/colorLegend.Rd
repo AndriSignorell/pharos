@@ -127,7 +127,4 @@ text(x = c(8,0.5,2.5,4.5,0.5,0.5,0.5)+.2, y=c(14,9,9,9,2,14,12), LETTERS[1:7], c
 \seealso{
 \code{\link{legend}}, \code{\link{findColor}}
 }
-\author{
-Andri Signorell \href{mailto:andri@signorell.net}{andri@signorell.net}
-}
 \keyword{aplot}

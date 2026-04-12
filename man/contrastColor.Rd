@@ -44,6 +44,9 @@ Sonego calculates
 \code{L <- c(0.2, 0.6, 0) \%*\% col2rgb(color)/255} and returns
 "black" if L >= 0.2 and "white" else.
 }
+\note{
+Based on code of Earl F. Glynn, Stowers Institute for Medical Research, 2004
+}
 \examples{
 op <- par(no.readonly = TRUE)
 
@@ -70,9 +73,5 @@ text( x=2, y=1:12-0.5, lbl,
 
 par(op)
 
-}
-\author{
-Andri Signorell \href{mailto:andri@signorell.net}{andri@signorell.net} based on code of Earl F.
-Glynn, Stowers Institute for Medical Research, 2004
 }
 \keyword{color}

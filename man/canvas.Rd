@@ -36,7 +36,4 @@ canvas(7)
 text(0, 0, "Hello world!", cex=5)
 
 }
-\author{
-Andri Signorell \href{mailto:andri@signorell.net}{andri@signorell.net}
-}
 \keyword{hplot}

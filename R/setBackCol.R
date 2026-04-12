@@ -12,8 +12,6 @@
 #' @param border color for rectangle border(s). Default is \code{NA} for no
 #' borders. 
 #' 
-#' @author Andri Signorell <andri@@signorell.net>
-#' 
 #' @seealso \code{\link{rect}} 
 #' @examples
 #' 
@@ -26,24 +24,7 @@
 
 #' @export
 setBackCol <- function(col="grey", region=c("plot", "figure"), border=NA) {
-  
-  .setBackCol <- function(col="grey", region="plot", border=NA) {
-    
-    if(region=="plot")
-      rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4], 
-           col = col, border=border)
-    
-    else if(region == "figure"){
-      ds <- dev.size("in")
-      # xy coordinates of device corners in user coordinates
-      x <- grconvertX(c(0, ds[1]), from="in", to="user")
-      y <- grconvertY(c(0, ds[2]), from="in", to="user")
-      
-      rect(x[1], y[2], x[2], y[1], 
-           col = col, border=border, xpd=NA)
-    }
-  }
-  
+
   if(length(col)==1){
     region <- match.arg(region)
     .setBackCol(col=col, region=region, border=border)
@@ -55,7 +36,28 @@ setBackCol <- function(col="grey", region=c("plot", "figure"), border=NA) {
     }
     
   }
-  
-  
+
 }
+
+
+# == internal helper functions ==========================================
+
+
+.setBackCol <- function(col="grey", region="plot", border=NA) {
+  
+  if(region=="plot")
+    rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4], 
+         col = col, border=border)
+  
+  else if(region == "figure"){
+    ds <- dev.size("in")
+    # xy coordinates of device corners in user coordinates
+    x <- grconvertX(c(0, ds[1]), from="in", to="user")
+    y <- grconvertY(c(0, ds[2]), from="in", to="user")
+    
+    rect(x[1], y[2], x[2], y[1], 
+         col = col, border=border, xpd=NA)
+  }
+}
+
 

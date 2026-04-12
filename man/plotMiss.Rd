@@ -38,6 +38,9 @@ can be clustered and be displayed together.
 A graphical display of the position of the missings can be help to detect
 dependencies or patterns within the missings.
 }
+\note{
+Following an idea of Henk Harmsen \href{mailto:henk@carbonmetrics.com}{henk@carbonmetrics.com}
+}
 \examples{
 
 plotMiss(airquality, main="Missing data (in orignal order)")
@@ -46,9 +49,5 @@ plotMiss(airquality, main="Missing data (clustered)", clust=TRUE)
 }
 \seealso{
 \code{\link{hclust}}, \code{\link[bedrock]{countCompCases}}
-}
-\author{
-Andri Signorell \href{mailto:andri@signorell.net}{andri@signorell.net}, following an idea of Henk
-Harmsen \href{mailto:henk@carbonmetrics.com}{henk@carbonmetrics.com}
 }
 \keyword{hplot}

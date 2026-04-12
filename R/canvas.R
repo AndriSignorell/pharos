@@ -17,7 +17,6 @@
 #' @return a list of all the previous values of the parameters changed
 #' (returned invisibly)
 #' 
-#' @author Andri Signorell <andri@@signorell.net> 
 #' @keywords hplot
 #' @examples
 #' 

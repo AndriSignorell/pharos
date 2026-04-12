@@ -48,7 +48,4 @@ par(op)
 \code{\link{polygon}}, \code{\link{drawRegPolygon}},
 \code{\link{drawEllipse}}, \code{\link{drawArc}}
 }
-\author{
-Andri Signorell \href{mailto:andri@signorell.net}{andri@signorell.net}
-}
 \keyword{aplot}

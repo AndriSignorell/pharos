@@ -66,7 +66,4 @@ drawArc(x = pi/2, y = 0, rx = 1, theta.1 = pi/4, theta.2 = 3*pi/4, col="red")
 \seealso{
 \code{\link{drawCircle}}, \code{\link{polygon}}
 }
-\author{
-Andri Signorell \href{mailto:andri@signorell.net}{andri@signorell.net}
-}
 \keyword{aplot}

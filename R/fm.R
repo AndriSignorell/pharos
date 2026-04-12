@@ -140,7 +140,6 @@
 #' @return the formatted values as characters. \cr If \code{x} was a
 #' \code{matrix}, then a the result will also be a \code{matrix}. (Hope this
 #' will not surprise you...)
-#' @author Andri Signorell <andri@@signorell.net>
 #' @seealso \code{\link{format}}, \code{\link{formatC}},
 #' \code{\link{prettyNum}}, \code{\link{sprintf}}, \code{\link{symnum}},\cr
 #' \code{\link{Sys.setlocale}},\cr \code{\link[DescToolsX]{weekday}}, 

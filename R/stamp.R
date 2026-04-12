@@ -22,7 +22,6 @@
 #' \code{par("cex")} yields the final character size. Defaults to 0.6.
 #' @param col the text color
 #' 
-#' @author Andri Signorell <andri@@signorell.net>
 #' @seealso \code{\link{text}}
 #' @keywords aplot
 #' @examples

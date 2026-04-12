@@ -44,13 +44,20 @@ strTrim(" ..Hello ... world! ", pattern=" \\\\.")
 
 }
 \seealso{
-String functions: \code{trimws}, \code{\link{nchar}},
-\code{\link{match}}, \code{\link{grep}}, \code{\link{regexpr}},
-\code{\link{substr}}, \code{\link{sub}}, \code{\link{gsub}},
-\code{\link{strTrunc}}, \code{\link{strDist}}
+Other string utilities: 
+\code{\link{strAbbr}()},
+\code{\link{strAlign}()},
+\code{\link{strCap}()},
+\code{\link{strCountW}()},
+\code{\link{strExtract}()},
+\code{\link{strExtractBetween}()},
+\code{\link{strPad}()},
+\code{\link{strRev}()},
+\code{\link{strSpell}()},
+\code{\link{strSplit}()},
+\code{\link{strTrunc}()},
+\code{\link{strVal}()}
 }
-\author{
-Andri Signorell \href{mailto:andri@signorell.net}{andri@signorell.net}
-}
-\keyword{character}
-\keyword{manip}
+\concept{string manipulation}
+\concept{string utilities}
+\concept{text processing}

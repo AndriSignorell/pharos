@@ -42,6 +42,9 @@ Angles are in radians, not degrees (i.e., a right angle is pi/2). Use
 \code{\link{degToRad}} to convert, if you don't wanna do it by yourself.\cr
 All parameters are recycled if necessary.
 }
+\note{
+Based on code by Christian W. Hoffmann
+}
 \examples{
 
 cartToPol(x=1, y=1)
@@ -56,10 +59,6 @@ polToCart(r=c(1,2,3), theta=pi/2)
 
 cartToSph(x=1, y=2, z=3)   # r=3.741657, theta=0.930274, phi=1.107149
 
-}
-\author{
-Andri Signorell \href{mailto:andri@signorell.net}{andri@signorell.net}, Christian W. Hoffmann
-\href{mailto:christian@echoffmann.ch}{christian@echoffmann.ch}
 }
 \keyword{arith}
 \keyword{dplot}

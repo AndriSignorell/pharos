@@ -37,8 +37,5 @@ barplot(c(1, 1.2, 1.3), col=cols, panel.first=abline(h=0.4, lwd=10, col="grey35"
 \code{\link{colToHex}}, \code{\link[bedrock]{decToHex}},
 \code{\link{rgbToHex}}
 }
-\author{
-Andri Signorell \href{mailto:andri@signorell.net}{andri@signorell.net}
-}
 \keyword{color}
 \keyword{dplot}

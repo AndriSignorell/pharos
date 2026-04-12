@@ -19,7 +19,6 @@
 #' 
 #' @return nothing returned %% ~Describe the value returned %% If it is a LIST,
 #' use %% \item{comp1 }{Description of 'comp1'} 
-#' @author Andri Signorell <andri@@signorell.net> 
 #' @seealso \code{\link{text}}, \code{\link{boxedText}} 
 #' @examples
 #' 

@@ -52,7 +52,4 @@ shade(dt(x, df=5), breaks=c(-6, qt(0.025, df=5), qt(0.975, df=5), 6),
 \seealso{
 \code{\link{polygon}}, \code{\link{curve}}
 }
-\author{
-Andri Signorell \href{mailto:andri@signorell.net}{andri@signorell.net}
-}
 \keyword{aplot}

@@ -61,11 +61,6 @@
 }
 
 
-.onAttach <- function(...) {
-  packageStartupMessage("Part of the DescTools ecosystem. Use DescToolsX for full functionality.")
-}
-
-
 
 #' @useDynLib aurora, .registration = TRUE
 
@@ -93,8 +88,8 @@
 #' @importFrom stringi stri_sub stri_length stri_pad stri_trim_both
 #'             stri_extract_first_regex
 #' 
-#' @importFrom bedrock abind `%)(%` `%nin%` Coalesce moveAvg  
-#'             binaryTree combPairs decToHex doCall isZero 
+#' @importFrom bedrock abind `%)(%` `%nin%` `%(]%` Coalesce moveAvg  
+#'             binaryTree combPairs decToHex isZero 
 #'             mergeArgs nDec naIf naReplace setNamesX recycle
-#'             Label `Label<-` 
+#'             label `label<-` inDots
 NULL

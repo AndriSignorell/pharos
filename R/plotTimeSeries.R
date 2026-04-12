@@ -16,7 +16,7 @@
 #' @param ylab a title for the y axis: see \code{\link{title}}. 
 #' @param \dots the dots are passed to the plot command. 
 #' 
-#' @author Andri Signorell <andri@@signorell.net>, rewritten based on ideas of M.Huerzeler
+#' @note Rewritten based on ideas of M.Huerzeler
 #' @seealso \code{\link{ts}}
 #' @keywords hplot
 #' @examples

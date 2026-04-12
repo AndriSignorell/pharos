@@ -54,8 +54,5 @@ with(beaver1, {
 \seealso{
 \code{\link{axTicks}}, \code{\link{axis.POSIXct}}
 }
-\author{
-Andri Signorell \href{mailto:andri@signorell.net}{andri@signorell.net} simply copying R-Core code
-}
 \keyword{aplot}
 \keyword{chron}

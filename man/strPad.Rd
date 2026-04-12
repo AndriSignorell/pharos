@@ -37,8 +37,21 @@ strPad("My string", 25, "XoX", "center")
  # [1] "XoXXoXXoMy stringXXoXXoXX"
 
 }
-\author{
-Christian W. Hoffmann \href{mailto:c-w.hoffmann@sunrise.ch}{c-w.hoffmann@sunrise.ch}\cr some extensions
-Andri Signorell \href{mailto:andri@signorell.net}{andri@signorell.net}
+\seealso{
+Other string utilities: 
+\code{\link{strAbbr}()},
+\code{\link{strAlign}()},
+\code{\link{strCap}()},
+\code{\link{strCountW}()},
+\code{\link{strExtract}()},
+\code{\link{strExtractBetween}()},
+\code{\link{strRev}()},
+\code{\link{strSpell}()},
+\code{\link{strSplit}()},
+\code{\link{strTrim}()},
+\code{\link{strTrunc}()},
+\code{\link{strVal}()}
 }
-\keyword{character}
+\concept{character data}
+\concept{string splitting}
+\concept{string utilities}

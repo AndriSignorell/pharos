@@ -27,7 +27,6 @@
 #' @return \code{DrawArc} invisibly returns a list of the calculated
 #' coordinates for all shapes.
 #' 
-#' @author Andri Signorell <andri@@signorell.net>
 #' @seealso \code{\link{drawCircle}}, \code{\link{polygon}} 
 #' @keywords aplot
 #' @examples

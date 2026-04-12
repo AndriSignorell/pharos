@@ -30,7 +30,6 @@
 #' 
 #' @return a vector of colors 
 #' 
-#' @author Andri Signorell <andri@@signorell.net> 
 #' @seealso \code{\link{colorRampPalette}}
 #' @keywords color
 #' @examples

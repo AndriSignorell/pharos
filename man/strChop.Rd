@@ -49,7 +49,4 @@ strChop(x=x, pos=c(5, 10))
 \code{\link{strLeft}},
 \code{\link{substr}}
 }
-\author{
-Andri Signorell \href{mailto:andri@signorell.net}{andri@signorell.net}
-}
 \keyword{character}

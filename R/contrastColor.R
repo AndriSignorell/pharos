@@ -26,8 +26,7 @@
 #' \code{"glynn"} or \code{"sonego"}. See details. 
 #' 
 #' @return a vector containing the contrast color (either black or white)
-#' @author Andri Signorell <andri@@signorell.net> based on code of Earl F.
-#' Glynn, Stowers Institute for Medical Research, 2004
+#' @note Based on code of Earl F. Glynn, Stowers Institute for Medical Research, 2004
 #' 
 #' @keywords color
 #' 

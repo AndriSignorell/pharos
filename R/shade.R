@@ -26,7 +26,6 @@
 #' 
 #' @return A list with components \code{x} and \code{y} of the points that were
 #' drawn is returned invisibly. 
-#' @author Andri Signorell <andri@@signorell.net> 
 #' @seealso \code{\link{polygon}}, \code{\link{curve}} 
 #' 
 #' @keywords aplot

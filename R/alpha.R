@@ -19,7 +19,6 @@
 #' @return Vector with the same length as \code{col}, giving the rgb-values
 #' extended by the alpha channel as hex-number (#rrggbbaa).
 #' 
-#' @author Andri Signorell <andri@@signorell.net>
 #' @seealso \code{\link{colToHex}}, \code{\link{col2rgb}},
 #' \code{\link{adjustcolor}}, \code{\link{colToOpaque}}
 #' @keywords color
@@ -52,7 +51,7 @@ alpha <- function(col, alpha=0.5) {
 #' @rdname alpha
 #' @export
 fade <- function(col, ...){
-  ColToOpaque(alpha(col, ...))
+  colToOpaque(alpha(col, ...))
 }
 
 

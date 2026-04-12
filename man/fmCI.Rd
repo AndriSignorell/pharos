@@ -40,6 +40,3 @@ tapply(warpbreaks$breaks, warpbreaks$wool,
 \seealso{
 \code{\link{fm}}
 }
-\author{
-Andri Signorell \href{mailto:andri@signorell.net}{andri@signorell.net}
-}

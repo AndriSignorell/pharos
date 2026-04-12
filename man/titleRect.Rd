@@ -48,7 +48,4 @@ titleRect("pressure")
 \seealso{
 \code{\link{title}}
 }
-\author{
-Andri Signorell \href{mailto:andri@signorell.net}{andri@signorell.net}
-}
 \keyword{aplot}

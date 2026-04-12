@@ -23,8 +23,7 @@
 #' \code{\link{strSplit}} while providing consistent and Unicode-aware
 #' behavior.
 #'
-#' @seealso \code{\link{strSplit}},
-#' \code{\link[stringi]{stri_split_fixed}},
+#' @seealso \code{\link[stringi]{stri_split_fixed}},
 #' \code{\link[stringi]{stri_split_regex}}
 #'
 #' @examples

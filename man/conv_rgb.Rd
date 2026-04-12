@@ -7,7 +7,9 @@
 \alias{colToRgb}
 \alias{rgbToLong}
 \alias{longToRgb}
-\title{Find the Nearest Named R-Color to a Given RGB-Color}
+\alias{colToGrey}
+\alias{colToGray}
+\title{Different Color Conversions}
 \usage{
 hexToCol(hex, method = "rgb", metric = "euclidean")
 
@@ -18,6 +20,10 @@ colToRgb(col, alpha = FALSE)
 rgbToLong(col)
 
 longToRgb(col)
+
+colToGrey(col)
+
+colToGray(col)
 }
 \arguments{
 \item{hex}{a color or a vector of colors specified as
@@ -60,6 +66,14 @@ It may not be clear from the start which method, rgb or hsv, yield the more
 natural results. Trying and comparing is a recommended strategy. Moreover
 the shortest numerical distance will not always be the best choice, when
 comparing the colours visually.
+
+\code{colToGrey()} converts colors to grey/grayscale
+using the formula grey = 0.3\emph{red + 0.59}green + 0.11*blue.  This allows
+you to see how your color plot will approximately
+look when printed on a non-color printer or photocopied.
+}
+\note{
+Converting to greyscales is based on code by Greg Snow.
 }
 \examples{
 
@@ -72,11 +86,22 @@ colToRgb(c(blu = "royalblue", reddish = "tomato")) # names kept
 
 colToRgb(1:8)
 
+op <- par(no.readonly = TRUE)
+par(mfcol=c(2,2))
+
+tmp <- 1:3
+names(tmp) <- c('red','green','blue')
+
+barplot(tmp, col=c('red','green','blue'))
+barplot(tmp, col=colToGrey(c('red','green','blue')))
+
+barplot(tmp, col=c('red','#008100','#3636ff'))
+barplot(tmp, col=colToGrey(c('red','#008100','#3636ff')))
+
+par(op)
+
 }
 \seealso{
 \code{\link{colToRgb}} and the other conversion functions
-}
-\author{
-Andri Signorell \href{mailto:andri@signorell.net}{andri@signorell.net}
 }
 \keyword{color}

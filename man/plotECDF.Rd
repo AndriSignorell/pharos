@@ -66,7 +66,4 @@ plotECDF(x, breaks=1000)
 \seealso{
 \code{\link{plot.ecdf}}, \code{\link{plotFdist}}
 }
-\author{
-Andri Signorell \href{mailto:andri@signorell.net}{andri@signorell.net}
-}
 \keyword{hplot}

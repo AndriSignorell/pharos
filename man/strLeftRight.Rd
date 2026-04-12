@@ -46,8 +46,5 @@ strRight(c("Lorem", "ipsum", "dolor","sit","amet"), n=c(2,3))
 \seealso{
 \code{\link{substr}}, \code{\link{strTrim}}
 }
-\author{
-Andri Signorell \href{mailto:andri@signorell.net}{andri@signorell.net}
-}
 \keyword{character}
 \keyword{manip}

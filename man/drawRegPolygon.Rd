@@ -110,7 +110,4 @@ polygon(x = unlist(lapply(pts, "[", "x")),
 \code{\link{polygon}}, \code{\link{drawCircle}},
 \code{\link{drawArc}}
 }
-\author{
-Andri Signorell \href{mailto:andri@signorell.net}{andri@signorell.net}
-}
 \keyword{aplot}

@@ -38,7 +38,6 @@
 #' @param \dots dots are passed to plot. 
 #' @return A list of x and y coordinates, giving the coordinates of all the
 #' points drawn, useful for adding other elements to the plot.
-#' @author Andri Signorell <andri@@signorell.net>
 #' @seealso \code{\link{plotCor}}
 #' @keywords hplot multivariate
 #' @examples

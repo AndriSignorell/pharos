@@ -28,8 +28,8 @@
 #' @note This function is based on \code{plotrix::spreadOut()} and has been
 #' integrated here with some minor changes.
 #' 
-#' @author Jim Lemon <jim@@bitwrit.com.au>\cr some extensions Andri Signorell
-#' <andri@@signorell.net>
+#' @note Based on code by Jim Lemon <jim@@bitwrit.com.au>
+#' 
 #' @seealso \code{\link{strheight}()}
 #' @keywords misc
 #' @examples

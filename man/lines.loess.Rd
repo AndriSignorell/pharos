@@ -73,8 +73,5 @@ par(op)
 \code{\link{loess}}, \code{\link{scatter.smooth}},
 \code{\link{smooth.spline}}   \%\%, \code{\link{smoothSpline}}
 }
-\author{
-Andri Signorell \href{mailto:andri@signorell.net}{andri@signorell.net}
-}
 \keyword{aplot}
 \keyword{math}

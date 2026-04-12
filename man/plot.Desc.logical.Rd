@@ -85,5 +85,5 @@ plot(x, main = NA)  # suppress title
  
 }
 \seealso{
-\code{\link[DescToolsX]{binomCI}}
+\code{\link[lumen]{binomCI}}
 }

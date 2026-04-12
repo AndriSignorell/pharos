@@ -47,7 +47,4 @@ abline(lm(y~x), col="brown")
 \seealso{
 \code{\link{polygon}}
 }
-\author{
-Andri Signorell \href{mailto:andri@signorell.net}{andri@signorell.net}
-}
 \keyword{aplot}

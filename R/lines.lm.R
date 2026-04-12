@@ -34,7 +34,6 @@
 #' where the line and especially the confidence intervals should be plotted.
 #' @param \dots further arguments are not used specifically. 
 #' @return nothing 
-#' @author Andri Signorell <andri@@signorell.net> 
 #' @seealso \code{\link{lines}}, \code{\link{lines.loess}}, \code{\link{lm}} 
 #' @keywords aplot math
 #' @examples
@@ -64,6 +63,7 @@
 #' 
 
 #' @rdname linesLm
+#' @method lines lm
 #' @export
 lines.lm <- function (x, col = Pal()[1], lwd = 2, lty = "solid",
                       type = "l", n = 100, conf.level = 0.95, args.cband = NULL,
@@ -76,6 +76,7 @@ lines.lm <- function (x, col = Pal()[1], lwd = 2, lty = "solid",
 
 
 #' @rdname linesLm
+#' @method lines lmlog
 #' @export
 lines.lmlog <- function (x, col = Pal()[1], lwd = 2, lty = "solid",
                          type = "l", n = 100, conf.level = 0.95, args.cband = NULL,
@@ -95,7 +96,8 @@ lines.lmlog <- function (x, col = Pal()[1], lwd = 2, lty = "solid",
 
 # == internal helper functions ================================================
 
-.calcTrendline <- function (x, n = 100, conf.level = 0.95, pred.level = 0.95, xpred=NULL, ...) {
+.calcTrendline <- function (x, n = 100, conf.level = 0.95, 
+                            pred.level = 0.95, xpred=NULL, ...) {
   
   # this takes the model x and calculates a set of n points
   # including the function, confidence band for E[X] and for the prediction

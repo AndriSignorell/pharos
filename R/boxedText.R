@@ -68,8 +68,6 @@
 #' @param subset An optional vector specifying a subset of observations
 #'   to be used in the analysis.
 #'
-
-#' @author Andri Signorell <andri@@signorell.net> 
 #' 
 #' @seealso \code{\link{spreadOut}}, similar function in package \pkg{plotrix}
 #' \code{\link[plotrix]{boxed.labels}} (lacking rotation option) 

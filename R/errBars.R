@@ -37,9 +37,7 @@
 #' \code{par("fg")}.
 #' @param bg.pch the background color of the plotting characters (if pch is set
 #' to 21:25). Default is \code{par("bg")}.
-#' @param \dots the dots are passed to the \code{\link{arrows}} function. %%
-#' ~~Describe \code{\dots} here~~
-#' @author Andri Signorell <andri@@signorell.net> 
+#' @param \dots the dots are passed to the \code{\link{arrows}} function. 
 #' @seealso \code{\link{arrows}}, \code{\link{lines.loess}} 
 #' @keywords aplot
 #' @examples

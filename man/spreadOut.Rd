@@ -41,6 +41,8 @@ labels where they may be close together.
 \note{
 This function is based on \code{plotrix::spreadOut()} and has been
 integrated here with some minor changes.
+
+Based on code by Jim Lemon \href{mailto:jim@bitwrit.com.au}{jim@bitwrit.com.au}
 }
 \examples{
 
@@ -54,9 +56,5 @@ spreadOut(rnorm(10), 0.5)
 }
 \seealso{
 \code{\link{strheight}()}
-}
-\author{
-Jim Lemon \href{mailto:jim@bitwrit.com.au}{jim@bitwrit.com.au}\cr some extensions Andri Signorell
-\href{mailto:andri@signorell.net}{andri@signorell.net}
 }
 \keyword{misc}

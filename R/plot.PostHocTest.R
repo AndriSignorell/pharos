@@ -7,7 +7,7 @@
 #'
 #'
 #' @param x An object of class \code{"PostHocTest"}, typically returned by
-#'   \code{\link[lumen]{PostHocTest}}.
+#'   \code{\link[lumen]{postHocTest}}.
 #' @param ... Additional graphical parameters passed to
 #'   \code{\link{plotDot}} and base plotting functions.
 #'
@@ -20,11 +20,11 @@
 #' Invisibly returns \code{NULL}.
 #'
 #' @seealso
-#' \code{\link[lumen]{PostHocTest}},
+#' \code{\link[lumen]{postHocTest}},
 #' \code{\link{plotDot}}
 #'
 #' @examples
-#' # see lumen::PostHocTest()
+#' # see lumen::postHocTest()
 
 
 #' @method plot PostHocTest

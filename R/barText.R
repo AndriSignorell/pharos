@@ -14,7 +14,7 @@
 #' \code{\link{barplot}()} result, if they are to be centered at the top of
 #' each bar. \code{barText()} calculates the rest.
 #' 
-#' \figure{barText.pngPositions for the text}
+#' \figure{barText.png}{Positions for the text}
 #' 
 #' Notice that when the labels are placed on top of the bars, they may be
 #' clipped. This can be avoided by setting \code{xpd=TRUE}.
@@ -45,7 +45,6 @@
 #' @param \dots the dots are passed to the \code{\link{boxedText}}. 
 #' 
 #' @return returns the geometry of the labels invisibly
-#' @author Andri Signorell <andri@@signorell.net>
 #' 
 #' @seealso \code{\link{boxedText}} 
 #' @keywords aplot

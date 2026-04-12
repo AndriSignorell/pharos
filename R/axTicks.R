@@ -20,7 +20,6 @@
 #' @return numeric vector of coordinate values at which axis tickmarks can be
 #' drawn. 
 #' 
-#' @author Andri Signorell <andri@@signorell.net> simply copying R-Core code 
 #' @seealso \code{\link{axTicks}}, \code{\link{axis.POSIXct}} 
 #' @keywords aplot chron
 #' @examples

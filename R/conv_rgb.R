@@ -1,5 +1,5 @@
 
-#' Find the Nearest Named R-Color to a Given RGB-Color
+#' Different Color Conversions 
 #' 
 #' R color to RGB (red/green/blue) conversion is straight on. The specific 
 #' function is merely a wrapper to \code{\link{col2rgb}()}, defined in order to
@@ -17,8 +17,14 @@
 #' the shortest numerical distance will not always be the best choice, when
 #' comparing the colours visually.
 #' 
+#' \code{colToGrey()} converts colors to grey/grayscale 
+#' using the formula grey = 0.3*red + 0.59*green + 0.11*blue.  This allows 
+#' you to see how your color plot will approximately
+#' look when printed on a non-color printer or photocopied.
+
+#' 
 #' @name conv_rgb
-#' @aliases hexToCol rgbToCol colToRgb rgbToLong longToRgb 
+#' @aliases hexToCol rgbToCol colToRgb rgbToLong longToRgb colToGrey colToGray  
 #'
 #' @param hex a color or a vector of colors specified as 
 #'        hexadecimal string of the form "#RRGGBB" or "#RRGGBBAA"
@@ -37,7 +43,9 @@
 #' should be returned.
 #' 
 #' @return the name of the nearest found R color.
-#' @author Andri Signorell <andri@@signorell.net>
+#' 
+#' @note Converting to greyscales is based on code by Greg Snow.
+#' 
 #' @seealso \code{\link{colToRgb}} and the other conversion functions
 #' @keywords color
 #' @examples
@@ -51,7 +59,20 @@
 #' 
 #' colToRgb(1:8)
 #' 
-
+#' op <- par(no.readonly = TRUE)
+#' par(mfcol=c(2,2))
+#' 
+#' tmp <- 1:3
+#' names(tmp) <- c('red','green','blue')
+#' 
+#' barplot(tmp, col=c('red','green','blue'))
+#' barplot(tmp, col=colToGrey(c('red','green','blue')))
+#' 
+#' barplot(tmp, col=c('red','#008100','#3636ff'))
+#' barplot(tmp, col=colToGrey(c('red','#008100','#3636ff')))
+#' 
+#' par(op)
+#' 
 
 
 #' @rdname conv_rgb
@@ -152,6 +173,20 @@ longToRgb <- function(col)
 # G = (Col \ 256) Mod 256
 # B = (Col \ 256 \ 256) Mod 256
 
+
+
+#' @rdname conv_rgb
+#' @export
+colToGrey <- function(col){
+  rgb <- col2rgb(col)
+  g <- rbind( c(0.3, 0.59, 0.11) ) %*% rgb
+  rgb(g, g, g, maxColorValue=255)
+}
+
+
+#' @rdname conv_rgb
+#' @export
+colToGray <- colToGrey
 
 
 

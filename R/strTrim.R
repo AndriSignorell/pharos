@@ -19,12 +19,11 @@
 #' @param method one out of \code{"both"} (default), \code{"left"},
 #' \code{"right"}. Determines on which side the string should be trimmed.
 #' @return the string x without whitespaces
-#' @author Andri Signorell <andri@@signorell.net>
-#' @seealso String functions: \code{trimws}, \code{\link{nchar}},
-#' \code{\link{match}}, \code{\link{grep}}, \code{\link{regexpr}},
-#' \code{\link{substr}}, \code{\link{sub}}, \code{\link{gsub}},
-#' \code{\link{strTrunc}}, \code{\link{strDist}}
-#' @keywords manip character
+#' 
+#' @family string utilities
+#' @concept string manipulation
+#' @concept text processing
+#' 
 #' @examples
 #' 
 #' strTrim("  Hello world! ")

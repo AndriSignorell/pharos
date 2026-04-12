@@ -85,7 +85,6 @@
 #' 
 #' 
 #' 
-#' @author Andri Signorell <andri@@signorell.net> 
 #' @seealso \code{\link{hist}}, \code{\link{boxplot}}, \code{\link{ecdf}},
 #' \code{\link{density}}, \code{\link{rug}}, \code{\link{layout}} 
 #' @keywords hplot
@@ -302,7 +301,7 @@ plotFdist <- function (x, main = deparse(substitute(x)), xlab = ""
     }
     
     
-    x.hist <- doCall("hist", c(args.hist1[names(args.hist1) %in%
+    x.hist <- do.call("hist", c(args.hist1[names(args.hist1) %in%
                                             c("x", "breaks", "include.lowest", "right", "nclass")], plot = FALSE))
     x.hist$xname <- deparse(substitute(x))
     if (is.null(xlim))    args.hist1$xlim <- range(pretty(x.hist$breaks))
@@ -329,7 +328,7 @@ plotFdist <- function (x, main = deparse(substitute(x)), xlab = ""
         # # overwrite the ylim if there's a larger density-curve
         # args.histplot[["ylim"]] <- range(pretty(c(0, max(c(x.dens$y, x.hist$density)))))
         
-        x.dens <- try( doCall("density", 
+        x.dens <- try( do.call("density", 
                               args.dens1[-match(c("col", "lwd", "lty"), names(args.dens1))])
                        , silent=TRUE)
         
@@ -349,7 +348,7 @@ plotFdist <- function (x, main = deparse(substitute(x)), xlab = ""
       }
       
       # plot histogram
-      doCall("plot", append(list(x.hist), args.histplot))
+      do.call("plot", append(list(x.hist), args.histplot))
       
       # draw axis
       ticks <- axTicks(2)
@@ -404,7 +403,7 @@ plotFdist <- function (x, main = deparse(substitute(x)), xlab = ""
         if (!is.null(args.rug)) {
           args.rug1[names(args.rug)] <- args.rug
         }
-        doCall("rug", args.rug1)
+        do.call("rug", args.rug1)
       }
       
       
@@ -424,7 +423,7 @@ plotFdist <- function (x, main = deparse(substitute(x)), xlab = ""
           args.hist1$col.pch <- args.hist1$col
       }
       
-      doCall(.plotMass, args.hist1)
+      do.call(.plotMass, args.hist1)
       
       
       # plot(prop.table(table(x)), type = "h", xlab = "", ylab = "",
@@ -456,7 +455,7 @@ plotFdist <- function (x, main = deparse(substitute(x)), xlab = ""
         ci <- mean(x)
       }
       args.boxplot1$add = TRUE
-      doCall("boxplot", args.boxplot1)
+      do.call("boxplot", args.boxplot1)
       points(x=ci[1], y=1, cex=1.5, col="grey65", pch=args.boxplot1$pch.mean, bg="white")
       
     }
@@ -490,7 +489,7 @@ plotFdist <- function (x, main = deparse(substitute(x)), xlab = ""
         args.ecdf1[names(args.ecdf)] <- args.ecdf
       }
       
-      doCall("plotECDF", args.ecdf1)
+      do.call("plotECDF", args.ecdf1)
       
       # plot special distribution ecdf curve
       if (add.pcurve) {

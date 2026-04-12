@@ -98,8 +98,5 @@ par(op)
 \seealso{
 \code{\link{loess}}, \code{\link{scatter.smooth}}
 }
-\author{
-Andri Signorell \href{mailto:andri@signorell.net}{andri@signorell.net}
-}
 \keyword{aplot}
 \keyword{math}

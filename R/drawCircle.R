@@ -25,7 +25,6 @@
 #' you want to combine several geometric structures to a polygon. 
 #' @return The function invisibly returns a list of the calculated coordinates
 #' for all shapes. 
-#' @author Andri Signorell <andri@@signorell.net> 
 #' @seealso \code{\link{polygon}}, \code{\link{drawRegPolygon}},
 #' \code{\link{drawEllipse}}, \code{\link{drawArc}} 
 #' @keywords aplot

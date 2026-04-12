@@ -46,7 +46,6 @@
 #' \code{\link{par}("adj")}.
 #' @param \dots further arguments are passed to the function \code{text}.
 #' 
-#' @author Andri Signorell <andri@@signorell.net>
 #' @seealso \code{\link{legend}}, \code{\link{findColor}}
 #' @keywords aplot
 #' @examples

@@ -53,7 +53,4 @@ par(op)
 \code{\link{colToHex}}, \code{\link{col2rgb}},
 \code{\link{adjustcolor}}, \code{\link{colToOpaque}}
 }
-\author{
-Andri Signorell \href{mailto:andri@signorell.net}{andri@signorell.net}
-}
 \keyword{color}

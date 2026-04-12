@@ -14,7 +14,6 @@
 #' @param col the color of the band. 
 #' @param border the border color of the band. 
 #' 
-#' @author Andri Signorell <andri@@signorell.net> 
 #' @seealso \code{\link{polygon}} 
 #' @keywords aplot
 #' 

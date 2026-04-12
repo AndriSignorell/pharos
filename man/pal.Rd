@@ -89,7 +89,4 @@ par(op)
 \seealso{
 \code{\link{colorRampPalette}}
 }
-\author{
-Andri Signorell \href{mailto:andri@signorell.net}{andri@signorell.net}
-}
 \keyword{color}

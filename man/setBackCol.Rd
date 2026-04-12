@@ -31,6 +31,3 @@ plot(x = rnorm(100), col="blue", cex=1.2, pch=16,
 \seealso{
 \code{\link{rect}}
 }
-\author{
-Andri Signorell \href{mailto:andri@signorell.net}{andri@signorell.net}
-}

@@ -29,7 +29,6 @@
 #' 
 #' @return list with the midpoints of the rectangles 
 #' 
-#' @author Andri Signorell <andri@@signorell.net> 
 #' @seealso \code{\link{mosaicplot}} 
 #' 
 #' @references Friendly, M. (1994) Mosaic displays for multi-way contingency

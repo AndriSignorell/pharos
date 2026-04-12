@@ -10,7 +10,6 @@
 #' @return degToRad returns a vector of the same length as \code{deg} with the
 #' angles in radians.\cr radToDeg returns a vector of the same length as
 #' \code{rad} with the angles in degrees. 
-#' @author Andri Signorell <andri@@signorell.net> 
 #' 
 #' @keywords arith
 #' @examples

@@ -85,8 +85,5 @@ text(x=x, y = 0.3, labels = names(findColor(x, cols=cols,
 \seealso{
 \code{\link{findInterval}}
 }
-\author{
-Andri Signorell \href{mailto:andri@signorell.net}{andri@signorell.net}
-}
 \keyword{color}
 \keyword{dplot}

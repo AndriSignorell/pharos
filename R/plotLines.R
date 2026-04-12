@@ -104,7 +104,7 @@ plotLines <- function(x, y, col=1:5, xlab = NULL,
     last <- sort(setNames(as.vector(last), nm=rownames(last)))
     
 
-    if(!.inDots(..., arg = "add", default=FALSE)){
+    if(!inDots(..., arg = "add", default=FALSE)){
       # do not draw axes, labels and grid when only lines have to be added
       matplot(x, y, type="n", las=1, xlim=xlim, ylim=ylim, xaxt="n", 
               yaxt=yaxt, main=main, xlab=xlab, ylab=ylab, cex = cex, ...)
@@ -205,19 +205,6 @@ plotLines <- function(x, y, col=1:5, xlab = NULL,
   
 }
 
-
-
-.inDots <- function(..., arg, default){
-  
-  # was arg in the dots-args? parse dots.arguments
-  arg <- unlist(match.call(expand.dots=FALSE)$...[arg])
-  
-  # if arg was not in ... then return default
-  if(is.null(arg)) arg <- default
-  
-  return(arg)
-  
-}
 
 
 

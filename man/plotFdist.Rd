@@ -178,7 +178,4 @@ par(op)
 \code{\link{hist}}, \code{\link{boxplot}}, \code{\link{ecdf}},
 \code{\link{density}}, \code{\link{rug}}, \code{\link{layout}}
 }
-\author{
-Andri Signorell \href{mailto:andri@signorell.net}{andri@signorell.net}
-}
 \keyword{hplot}

@@ -51,8 +51,8 @@
 #' based on an algorithm published in the package
 #' \code{BoutrosLab.plotting.general}.
 #' 
-#' @author Andri Signorell <andri@@signorell.net>, Ying Wu
-#' <Ying.Wu@@stevens.edu> 
+#' @note Based on code by Ying Wu
+#' 
 #' @seealso \code{\link{qqnorm}}, \code{\link{qqline}}, \code{\link{qqplot}} 
 #' @references Teetor, P. (2011) \emph{R Cookbook}. O'Reilly, pp. 254-255.
 #' @keywords univar hplot

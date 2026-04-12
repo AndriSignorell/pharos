@@ -72,7 +72,7 @@ The x coordinates of the labels can be found by using
 \code{\link{barplot}()} result, if they are to be centered at the top of
 each bar. \code{barText()} calculates the rest.
 
-\figure{barText.pngPositions for the text}
+\figure{barText.png}{Positions for the text}
 
 Notice that when the labels are placed on top of the bars, they may be
 clipped. This can be avoided by setting \code{xpd=TRUE}.
@@ -104,8 +104,5 @@ barText(VADeaths, b=b, horiz = TRUE, col="red", cex=1.5)
 }
 \seealso{
 \code{\link{boxedText}}
-}
-\author{
-Andri Signorell \href{mailto:andri@signorell.net}{andri@signorell.net}
 }
 \keyword{aplot}

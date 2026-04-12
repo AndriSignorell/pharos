@@ -21,8 +21,7 @@
 #' \code{cartToPol()} returns a list of r for the radius and theta for the angles of the
 #' given points.
 #' 
-#' @author Andri Signorell <andri@@signorell.net>, Christian W. Hoffmann
-#' <christian@@echoffmann.ch> 
+#' @note Based on code by Christian W. Hoffmann
 #' @keywords arith dplot
 #' @examples
 #' 

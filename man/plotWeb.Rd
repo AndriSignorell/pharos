@@ -111,8 +111,5 @@ par(op)
 \seealso{
 \code{\link{plotCor}}
 }
-\author{
-Andri Signorell \href{mailto:andri@signorell.net}{andri@signorell.net}
-}
 \keyword{hplot}
 \keyword{multivariate}

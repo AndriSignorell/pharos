@@ -18,7 +18,6 @@
 #' 
 #' @return An named vector with the hexcodes of the opaque colors. 
 #' 
-#' @author Andri Signorell <andri@@signorell.net> 
 #' @seealso \code{\link{colToHex}}, \code{\link[bedrock]{decToHex}},
 #' \code{\link{rgbToHex}} 
 #' @keywords dplot color

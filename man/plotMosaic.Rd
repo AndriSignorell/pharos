@@ -71,7 +71,4 @@ tables. \emph{Journal of the American Statistical Association}, \bold{89},
 \seealso{
 \code{\link{mosaicplot}}
 }
-\author{
-Andri Signorell \href{mailto:andri@signorell.net}{andri@signorell.net}
-}
 \keyword{hplot}

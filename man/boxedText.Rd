@@ -134,8 +134,5 @@ boxedText(mpg ~ hp, data=mtcars,
 \code{\link{spreadOut}}, similar function in package \pkg{plotrix}
 \code{\link[plotrix]{boxed.labels}} (lacking rotation option)
 }
-\author{
-Andri Signorell \href{mailto:andri@signorell.net}{andri@signorell.net}
-}
 \keyword{aplot}
 \keyword{misc}

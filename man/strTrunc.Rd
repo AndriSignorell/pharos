@@ -50,14 +50,20 @@ for(i in 0:20)
 
 }
 \seealso{
-String functions: \code{\link{nchar}}, \code{\link{match}},
-\code{\link{grep}}, \code{\link{regexpr}}, \code{\link{substr}},
-\code{\link{sub}}, \code{\link{gsub}}, \code{\link{strTrim}},
-\code{\link{strDist}}
+Other string utilities: 
+\code{\link{strAbbr}()},
+\code{\link{strAlign}()},
+\code{\link{strCap}()},
+\code{\link{strCountW}()},
+\code{\link{strExtract}()},
+\code{\link{strExtractBetween}()},
+\code{\link{strPad}()},
+\code{\link{strRev}()},
+\code{\link{strSpell}()},
+\code{\link{strSplit}()},
+\code{\link{strTrim}()},
+\code{\link{strVal}()}
 }
-\author{
-Andri Signorell, \cr once following an idea of Jim Lemon in
-\code{\link[prettyR]{truncString}()}
-}
-\keyword{character}
-\keyword{utilities}
+\concept{character data}
+\concept{string splitting}
+\concept{string utilities}

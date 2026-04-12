@@ -69,6 +69,3 @@ boxedText(x=xy$xy$x, y=xy$xy$y, xpad = 1, ypad = 1,
 \seealso{
 \code{\link{text}}, \code{\link{boxedText}}
 }
-\author{
-Andri Signorell \href{mailto:andri@signorell.net}{andri@signorell.net}
-}

@@ -8,7 +8,7 @@
 }
 \arguments{
 \item{x}{An object of class \code{"PostHocTest"}, typically returned by
-\code{\link[lumen]{PostHocTest}}.}
+\code{\link[lumen]{postHocTest}}.}
 
 \item{...}{Additional graphical parameters passed to
 \code{\link{plotDot}} and base plotting functions.}
@@ -27,9 +27,9 @@ differences in means and their confidence intervals. The confidence level
 is taken from the \code{"conf.level"} attribute of \code{x}.
 }
 \examples{
-# see lumen::PostHocTest()
+# see lumen::postHocTest()
 }
 \seealso{
-\code{\link[lumen]{PostHocTest}},
+\code{\link[lumen]{postHocTest}},
 \code{\link{plotDot}}
 }

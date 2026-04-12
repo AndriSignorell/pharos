@@ -11,7 +11,6 @@
 #' is \verb{\code{"\%s [\%s, \%s]"}} for \verb{<est> [<lci>, <uci>]}.
 #' @param \dots the dots are passed on to the \code{\link{fm}()} function.
 #' @return a formatted string
-#' @author Andri Signorell <andri@@signorell.net>
 #' @seealso \code{\link{fm}}
 #' @examples
 #' 

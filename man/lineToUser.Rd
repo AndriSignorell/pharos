@@ -31,7 +31,4 @@ lineToUser(line=2, side=4)
 \seealso{
 \code{\link{mtext}}
 }
-\author{
-Andri Signorell \href{mailto:andri@signorell.net}{andri@signorell.net}
-}
 \keyword{aplot}

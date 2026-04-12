@@ -16,7 +16,6 @@
 #' with \code{strLeft} and from the right with \code{strRight}. \cr n will be
 #' recycled. 
 #' @return the left (right) n characters of x 
-#' @author Andri Signorell <andri@@signorell.net> 
 #' @seealso \code{\link{substr}}, \code{\link{strTrim}} 
 #' @keywords manip character
 #' @examples

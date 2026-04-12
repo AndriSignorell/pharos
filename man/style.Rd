@@ -161,7 +161,4 @@ fm(Sys.Date(), fmt=dat.sty)
 \seealso{
 \code{\link{fm}()}
 }
-\author{
-Andri Signorell \href{mailto:andri@signorell.net}{andri@signorell.net}
-}
 \keyword{IO}

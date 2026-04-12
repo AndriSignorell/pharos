@@ -66,9 +66,12 @@ Other string utilities:
 \code{\link{strCountW}()},
 \code{\link{strExtract}()},
 \code{\link{strExtractBetween}()},
+\code{\link{strPad}()},
 \code{\link{strRev}()},
 \code{\link{strSpell}()},
 \code{\link{strSplit}()},
+\code{\link{strTrim}()},
+\code{\link{strTrunc}()},
 \code{\link{strVal}()}
 }
 \concept{string alignment}

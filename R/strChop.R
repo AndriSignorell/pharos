@@ -20,7 +20,6 @@
 #' @param pos a vector of cutting positions. Will be ignored when \code{len}
 #' has been defined.
 #' @return a vector with the parts of the string.
-#' @author Andri Signorell <andri@@signorell.net>
 #' @seealso \code{\link{strLeft}},
 #' \code{\link{substr}}
 #' @keywords character

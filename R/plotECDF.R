@@ -30,7 +30,6 @@
 #' @return no value returned, use \code{\link{plot.ecdf}} if any results are
 #' required. 
 #' 
-#' @author Andri Signorell <andri@@signorell.net> 
 #' @seealso \code{\link{plot.ecdf}}, \code{\link{plotFdist}} 
 #' @keywords hplot
 #' @examples

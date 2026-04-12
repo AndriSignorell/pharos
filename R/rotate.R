@@ -17,7 +17,6 @@
 #' @return The function invisibly returns a list of the coordinates for the
 #' rotated shape(s). 
 #' 
-#' @author Andri Signorell <andri@@signorell.net>
 #' @seealso \code{\link{polygon}}, \code{\link{drawRegPolygon}},
 #' \code{\link{drawEllipse}}, \code{\link{drawArc}} 
 #' @keywords aplot

@@ -43,7 +43,6 @@ strSplit("a1b2c3", "\\\\d")
 
 }
 \seealso{
-\code{\link{strSplit}},
 \code{\link[stringi]{stri_split_fixed}},
 \code{\link[stringi]{stri_split_regex}}
 
@@ -54,8 +53,11 @@ Other string utilities:
 \code{\link{strCountW}()},
 \code{\link{strExtract}()},
 \code{\link{strExtractBetween}()},
+\code{\link{strPad}()},
 \code{\link{strRev}()},
 \code{\link{strSpell}()},
+\code{\link{strTrim}()},
+\code{\link{strTrunc}()},
 \code{\link{strVal}()}
 }
 \concept{character data}
