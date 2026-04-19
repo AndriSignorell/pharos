@@ -27,7 +27,7 @@ isNA <- function(x) length(x) == 1 && is.na(x)
     return(invisible(NULL))
   
   if (isTRUE(arg))
-    args <- defaults
+    args <- defaults %||% list()
   
   else if (is.list(arg)) {
     

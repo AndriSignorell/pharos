@@ -10,6 +10,20 @@ Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
+// bagplot_compute
+List bagplot_compute(NumericMatrix xy, double factor, double eps, bool dither);
+RcppExport SEXP _aurora_bagplot_compute(SEXP xySEXP, SEXP factorSEXP, SEXP epsSEXP, SEXP ditherSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericMatrix >::type xy(xySEXP);
+    Rcpp::traits::input_parameter< double >::type factor(factorSEXP);
+    Rcpp::traits::input_parameter< double >::type eps(epsSEXP);
+    Rcpp::traits::input_parameter< bool >::type dither(ditherSEXP);
+    rcpp_result_gen = Rcpp::wrap(bagplot_compute(xy, factor, eps, dither));
+    return rcpp_result_gen;
+END_RCPP
+}
 // formatDateTime
 CharacterVector formatDateTime(SEXP x, std::string fmt, bool strict, std::string locale);
 RcppExport SEXP _aurora_formatDateTime(SEXP xSEXP, SEXP fmtSEXP, SEXP strictSEXP, SEXP localeSEXP) {
@@ -80,6 +94,7 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_aurora_bagplot_compute", (DL_FUNC) &_aurora_bagplot_compute, 4},
     {"_aurora_formatDateTime", (DL_FUNC) &_aurora_formatDateTime, 4},
     {"_aurora_formatNum", (DL_FUNC) &_aurora_formatNum, 7},
     {"_aurora_pSmirnov2x", (DL_FUNC) &_aurora_pSmirnov2x, 3},

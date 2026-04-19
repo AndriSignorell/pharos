@@ -38,7 +38,9 @@
           group.cex = par("cex.axis") * 1.05,
           
           bar.col = "grey80",
-          bar.border = "grey70"
+          bar.border = "grey70",
+          
+          las=1
       ),
     
     abs.sty   = structure(list(digits = 0, big.mark = "",
@@ -72,7 +74,7 @@
 #'             strheight strwidth clip  image grconvertX grconvertY
 #'             segments barplot box matplot layout.show arrows 
 #'             plot.new plot.window close.screen screen split.screen
-#'             rug curve contour persp
+#'             rug curve contour persp boxplot
 #'             
 #' @importFrom grDevices rgb col2rgb rgb2hsv colors colorRampPalette 
 #'             xy.coords heat.colors dev.size gray.colors
@@ -84,6 +86,7 @@
 #'             relevel setNames is.ts time prop.test predict qnorm formula var
 #'             model.frame model.response model.weights terms na.omit
 #'             acf plot.ts pacf complete.cases dnorm quantile uniroot
+#'             density as.formula
 #'             
 #' @importFrom stringi stri_sub stri_length stri_pad stri_trim_both
 #'             stri_extract_first_regex
@@ -91,5 +94,5 @@
 #' @importFrom bedrock abind `%)(%` `%nin%` `%(]%` Coalesce moveAvg  
 #'             binaryTree combPairs decToHex isZero 
 #'             mergeArgs nDec naIf naReplace setNamesX recycle
-#'             label `label<-` inDots
+#'             label `label<-` inDots sortX
 NULL
