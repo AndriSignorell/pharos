@@ -211,14 +211,8 @@ plotViolin.default <- function(
     
     # --- grid ---------------------------------------------------
     
-    .callIf(
-      graphics::grid, grid,
-      defaults = list(
-        col = th$grid$col,
-        lty = th$grid$lty,
-        lwd = th$grid$lwd
-      )
-    )
+    .callIf(graphics::grid, grid,
+            defaults = th$grid[!startsWith(names(th$grid), "group.")])  
     
     # --- violins ------------------------------------------------
     

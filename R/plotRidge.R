@@ -31,7 +31,6 @@
 #'
 #' @param main,xlab,ylab Plot labels.
 #' @param xlim,ylim Axis limits.
-#' @param stamp Optional stamp function.
 #'
 #' @return Invisibly returns \code{NULL}.
 #'
@@ -44,7 +43,7 @@
 #'
 #' plotRidge(value ~ group, data = df)
 #'
-#' @seealso \code{\link{plotDensity}}
+#' @seealso \code{\link{plotDens}}
 #'
 #' @name plotRidge
 NULL
@@ -86,10 +85,8 @@ plotRidge.default <- function(
   
   # AXES
   xlim = NULL,
-  ylim = NULL,
+  ylim = NULL
   
-  # FRAMEWORK
-  stamp = NULL
 ) {
   
   dots <- list(...)
@@ -162,7 +159,8 @@ plotRidge.default <- function(
     }
     
     # grid
-    .callIf(graphics::grid, grid, defaults = th$grid)
+    .callIf(graphics::grid, grid,
+            defaults = th$grid[!startsWith(names(th$grid), "group.")])  
     
     # ridges
     for (i in seq_len(n)) {
@@ -195,8 +193,10 @@ plotRidge.default <- function(
          labels = names(groups),
          las = 1)
     
-  }, stamp = stamp)
+  })
 }
+
+
 
 
 #' @rdname plotRidge
@@ -233,10 +233,8 @@ plotRidge.formula <- function(
   
   # AXES
   xlim = NULL,
-  ylim = NULL,
+  ylim = NULL
   
-  # FRAMEWORK
-  stamp = NULL
 ) {
   
   # --- model.frame (your safe pattern) -------------------------
@@ -281,7 +279,6 @@ plotRidge.formula <- function(
     ylab = ylab,
     xlim = xlim,
     ylim = ylim,
-    stamp = stamp,
     ...
   )
 }

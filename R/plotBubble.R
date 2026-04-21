@@ -159,12 +159,9 @@ plotBubble.default <- function(
     }
     
     # --- grid --------------------------------------------------
-    
-    .callIf(
-      graphics::grid,
-      grid,
-      defaults = th$grid
-    )
+
+    .callIf(graphics::grid, grid,
+            defaults = th$grid[!startsWith(names(th$grid), "group.")])  
     
     # --- aspect correction -------------------------------------
     

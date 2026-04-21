@@ -55,6 +55,7 @@ isNA <- function(x) length(x) == 1 && is.na(x)
   }
   
   do.call(fun, args)
+  
 }
 
 

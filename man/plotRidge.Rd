@@ -23,8 +23,7 @@
   xlab = "",
   ylab = "",
   xlim = NULL,
-  ylim = NULL,
-  stamp = NULL
+  ylim = NULL
 )
 
 \method{plotRidge}{formula}(
@@ -47,8 +46,7 @@
   xlab = "",
   ylab = "",
   xlim = NULL,
-  ylim = NULL,
-  stamp = NULL
+  ylim = NULL
 )
 }
 \arguments{
@@ -79,8 +77,6 @@
 \item{main, xlab, ylab}{Plot labels.}
 
 \item{xlim, ylim}{Axis limits.}
-
-\item{stamp}{Optional stamp function.}
 
 \item{formula}{A formula of the form \code{y ~ group}.}
 
@@ -113,5 +109,5 @@ plotRidge(value ~ group, data = df)
 
 }
 \seealso{
-\code{\link{plotDensity}}
+\code{\link{plotDens}}
 }
