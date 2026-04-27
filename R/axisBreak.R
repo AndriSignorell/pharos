@@ -21,7 +21,12 @@
 #' The \samp{gap} style that clearly separates the two sections of the plot is
 #' probably best for avoiding this.
 #' @author Jim Lemon and Ben Bolker
-#' @keywords aplot
+#' 
+#' @family topic.graphics
+#' @concept base-graphics
+#' @concept axis
+#' @concept plot-annotation
+#' 
 #' @examples
 #' 
 #' plot(3:10, main="Axis break test")

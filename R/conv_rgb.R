@@ -47,7 +47,10 @@
 #' @note Converting to greyscales is based on code by Greg Snow.
 #' 
 #' @seealso \code{\link{colToRgb}} and the other conversion functions
-#' @keywords color
+
+#' @family topic.colors
+#' @concept color-conversion
+
 #' @examples
 #' 
 #' rgbToCol(matrix(c(162,42,42), nrow=3))

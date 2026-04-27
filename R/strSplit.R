@@ -34,9 +34,8 @@
 #' # regex splitting
 #' strSplit("a1b2c3", "\\d")
 #'
-#' @family string utilities
-#' @concept string splitting
-#' @concept character data
+#' @family topic.text
+#' @concept string-processing
 #'
 
 #' @export

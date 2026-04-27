@@ -12,7 +12,12 @@
 #' @return the user coordinates for the given lines 
 #' 
 #' @seealso \code{\link{mtext}} 
-#' @keywords aplot
+
+#' @family topic.coordinates
+#' @concept coordinates
+#' @concept transformations
+
+
 #' @examples
 #' 
 #' plot(1:10)

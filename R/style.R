@@ -194,7 +194,7 @@ style <- function( x, digits = NULL, ldigits = NULL, sci = NULL
   a <- methods::formalArgs(style)
   
   # remove dots name from the list
-  a <- a[a %nin% c("x","label","...")]
+  a <- a[a %notin% c("x","label","...")]
   
   # get the values of all the arguments
   v <- sapply(a, dynGet)

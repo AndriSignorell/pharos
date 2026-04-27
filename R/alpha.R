@@ -21,7 +21,12 @@
 #' 
 #' @seealso \code{\link{colToHex}}, \code{\link{col2rgb}},
 #' \code{\link{adjustcolor}}, \code{\link{colToOpaque}}
-#' @keywords color
+
+#' @family topic.colors
+#' @concept color-manipulation
+#' @concept transparency
+
+
 #' @examples
 #' 
 #' op <- par(no.readonly = TRUE)

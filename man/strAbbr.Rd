@@ -53,13 +53,18 @@ strAbbr(x, method = "fix")
 \code{\link[stringi]{stri_sub}},
 \code{\link[stringi]{stri_length}}
 
-Other string utilities: 
+Other topic.text: 
 \code{\link{strAlign}()},
 \code{\link{strCap}()},
+\code{\link{strChop}()},
 \code{\link{strCountW}()},
+\code{\link{strDist}()},
 \code{\link{strExtract}()},
 \code{\link{strExtractBetween}()},
+\code{\link{strIsNumeric}()},
+\code{\link{strLeftRight}},
 \code{\link{strPad}()},
+\code{\link{strPos}()},
 \code{\link{strRev}()},
 \code{\link{strSpell}()},
 \code{\link{strSplit}()},
@@ -67,6 +72,6 @@ Other string utilities:
 \code{\link{strTrunc}()},
 \code{\link{strVal}()}
 }
-\concept{string abbreviation}
-\concept{string utilities}
-\concept{text processing}
+\concept{formatting}
+\concept{string-processing}
+\concept{topic.text}

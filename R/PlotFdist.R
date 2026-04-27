@@ -87,7 +87,11 @@
 #' 
 #' @seealso \code{\link{hist}}, \code{\link{boxplot}}, \code{\link{ecdf}},
 #' \code{\link{density}}, \code{\link{rug}}, \code{\link{layout}} 
-#' @keywords hplot
+#' 
+#' @family topic.graphics
+#' @concept base-graphics
+#' @concept plotting
+#' 
 #' 
 #' @examples
 #' op <- par(no.readonly=TRUE)
@@ -523,7 +527,7 @@ plotFdist <- function (x, main = deparse(substitute(x)), xlab = ""
     }
 
 
-  })  # close .withGraphicsState
+  }, stamp=FALSE, reset_layout=TRUE)  # close .withGraphicsState
   
 }
 

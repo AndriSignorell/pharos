@@ -17,7 +17,11 @@
 #' @return if clust is set to TRUE, the new order will be returned invisibly.
 #' @note Following an idea of Henk Harmsen <henk@@carbonmetrics.com> 
 #' @seealso \code{\link{hclust}}, \code{\link[bedrock]{countCompCases}} 
-#' @keywords hplot
+#' 
+#' @family topic.graphics
+#' @concept base-graphics
+#' @concept plotting
+#' 
 #' @examples
 #' 
 #' plotMiss(airquality, main="Missing data (in orignal order)")

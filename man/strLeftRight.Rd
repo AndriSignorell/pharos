@@ -45,6 +45,26 @@ strRight(c("Lorem", "ipsum", "dolor","sit","amet"), n=c(2,3))
 }
 \seealso{
 \code{\link{substr}}, \code{\link{strTrim}}
+
+Other topic.text: 
+\code{\link{strAbbr}()},
+\code{\link{strAlign}()},
+\code{\link{strCap}()},
+\code{\link{strChop}()},
+\code{\link{strCountW}()},
+\code{\link{strDist}()},
+\code{\link{strExtract}()},
+\code{\link{strExtractBetween}()},
+\code{\link{strIsNumeric}()},
+\code{\link{strPad}()},
+\code{\link{strPos}()},
+\code{\link{strRev}()},
+\code{\link{strSpell}()},
+\code{\link{strSplit}()},
+\code{\link{strTrim}()},
+\code{\link{strTrunc}()},
+\code{\link{strVal}()}
 }
-\keyword{character}
-\keyword{manip}
+\concept{formatting}
+\concept{string-processing}
+\concept{topic.text}

@@ -41,6 +41,11 @@
 #' @param na.action Function to handle missing values.
 #'
 #' @return Invisibly returns \code{NULL}.
+#' 
+#' @family topic.graphics
+#' @concept base-graphics
+#' @concept plotting
+#' 
 #'
 #' @examples
 #' set.seed(1)

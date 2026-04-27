@@ -28,11 +28,13 @@
 #' strIsNumeric(x, scientific = TRUE)
 #'
 #' @seealso \code{\link{as.numeric}}
+#' @family topic.text
+#' @concept string-processing
+#' 
 #'
+
+
 #' @importFrom stringi stri_detect_regex
-#'
-
-
 #' @export
 strIsNumeric <- function(x, scientific = FALSE) {
   if(scientific){

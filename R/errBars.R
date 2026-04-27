@@ -39,7 +39,13 @@
 #' to 21:25). Default is \code{par("bg")}.
 #' @param \dots the dots are passed to the \code{\link{arrows}} function. 
 #' @seealso \code{\link{arrows}}, \code{\link{lines.loess}} 
-#' @keywords aplot
+
+
+#' @family topic.graphics
+#' @concept base-graphics
+#' @concept plot-annotation
+
+
 #' @examples
 #' 
 #' 

@@ -22,7 +22,14 @@
 #' given points.
 #' 
 #' @note Based on code by Christian W. Hoffmann
-#' @keywords arith dplot
+
+#' @family topic.coordinates
+#' @concept coordinates
+#' @concept transformations
+#' @concept polar
+#' @concept cartesian
+
+
 #' @examples
 #' 
 #' cartToPol(x=1, y=1)

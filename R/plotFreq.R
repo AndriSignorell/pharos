@@ -46,6 +46,11 @@
 #'   side effect of producing a plot.
 #'
 #' @seealso \code{\link[DescTools]{Freq}}, \code{\link[DescTools]{Desc.factor}}
+#' 
+#' @family topic.graphics
+#' @concept base-graphics
+#' @concept plotting
+#' 
 #'
 #' @examples
 #' # Example Desc.factor object

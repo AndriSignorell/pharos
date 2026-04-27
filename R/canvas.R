@@ -17,7 +17,10 @@
 #' @return a list of all the previous values of the parameters changed
 #' (returned invisibly)
 #' 
-#' @keywords hplot
+#' @family topic.graphics
+#' @concept base-graphics
+#' @concept layout
+#' 
 #' @examples
 #' 
 #' canvas(7)

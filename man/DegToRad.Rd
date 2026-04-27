@@ -28,4 +28,9 @@ degToRad(c(90,180,270))
 radToDeg( c(0.5,1,2) * pi)
 
 }
-\keyword{arith}
+\seealso{
+Other topic.conversion: 
+\code{\link{convUnit}()}
+}
+\concept{angle-conversion}
+\concept{topic.conversion}

@@ -52,7 +52,11 @@
 #' 
 #' Harold C. Doran (2010) \emph{MiscPsycho. An R Package for Miscellaneous
 #' Psychometric Analyses}
-#' @keywords math character utilities
+
+#' @family topic.text
+#' @concept string-processing
+
+
 #' @examples
 #' 
 #' x <- "GACGGATTATG"

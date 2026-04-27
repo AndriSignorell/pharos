@@ -41,9 +41,8 @@
 #' # without uppercase prefix
 #' strSpell("ABC", upr = NA)
 #'
-#' @family string utilities
-#' @concept phonetic encoding
-#' @concept text transformation
+#' @family topic.text
+#' @concept string-processing
 #'
 
 

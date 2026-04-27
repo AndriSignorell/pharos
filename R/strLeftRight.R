@@ -17,7 +17,13 @@
 #' recycled. 
 #' @return the left (right) n characters of x 
 #' @seealso \code{\link{substr}}, \code{\link{strTrim}} 
-#' @keywords manip character
+#' 
+#' @family topic.text
+#' @concept string-processing
+#' @concept formatting
+#' 
+
+
 #' @examples
 #' 
 #' strLeft("Hello world!", n=5)

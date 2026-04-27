@@ -88,5 +88,15 @@ par(op)
 }
 \seealso{
 \code{\link{colorRampPalette}}
+
+Other topic.colors: 
+\code{\link{alpha}()},
+\code{\link{colToOpaque}()},
+\code{\link{contrastColor}()},
+\code{\link{conv_cols}},
+\code{\link{conv_rgb}},
+\code{\link{findColor}()}
 }
-\keyword{color}
+\concept{color-manipulation}
+\concept{palette}
+\concept{topic.colors}

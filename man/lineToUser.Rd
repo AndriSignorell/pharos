@@ -30,5 +30,13 @@ lineToUser(line=2, side=4)
 }
 \seealso{
 \code{\link{mtext}}
+
+Other topic.coordinates: 
+\code{\link{abcCoords}()},
+\code{\link{conv_coord}},
+\code{\link{rotate}()},
+\code{\link{transformXY}()}
 }
-\keyword{aplot}
+\concept{coordinates}
+\concept{topic.coordinates}
+\concept{transformations}

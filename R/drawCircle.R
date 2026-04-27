@@ -27,7 +27,12 @@
 #' for all shapes. 
 #' @seealso \code{\link{polygon}}, \code{\link{drawRegPolygon}},
 #' \code{\link{drawEllipse}}, \code{\link{drawArc}} 
-#' @keywords aplot
+
+#' @family topic.geometry
+#' @concept geometric-shapes
+#' @concept primitives
+
+
 #' @examples
 #' 
 #' canvas(xlim = c(-5,5), xpd=TRUE)

@@ -47,7 +47,13 @@
 #' @param \dots further arguments are passed to the function \code{text}.
 #' 
 #' @seealso \code{\link{legend}}, \code{\link{findColor}}
-#' @keywords aplot
+
+#' @family topic.graphics
+#' @concept base-graphics
+#' @concept legend
+#' @concept color-manipulation
+
+#' 
 #' @examples
 #' 
 #' plot(1:15,, xlim=c(0,10), type="n", xlab="", ylab="", main="Colorstrips")

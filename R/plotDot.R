@@ -50,6 +50,11 @@
 #'   \item \code{sep_y} positions of group separator lines.
 #' }
 #'
+#' 
+#' @family topic.graphics
+#' @concept base-graphics
+#' @concept plotting
+#' 
 #' @examples
 #' # simple dot plot
 #' plotDot(c(12, 18, 28, 40, 65), items = LETTERS[1:5])

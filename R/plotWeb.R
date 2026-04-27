@@ -39,7 +39,11 @@
 #' @return A list of x and y coordinates, giving the coordinates of all the
 #' points drawn, useful for adding other elements to the plot.
 #' @seealso \code{\link{plotCor}}
-#' @keywords hplot multivariate
+#' 
+#' @family topic.graphics
+#' @concept base-graphics
+#' @concept plotting
+#' 
 #' @examples
 #' op <- par(no.readonly = TRUE)
 #' 

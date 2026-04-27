@@ -89,6 +89,11 @@
 #'   \code{\link[graphics]{barplot}}.
 #'
 #' @seealso \code{\link[graphics]{barplot}}, \code{\link{barText}}
+#' 
+#' @family topic.graphics
+#' @concept base-graphics
+#' @concept plotting
+#' 
 #'
 #' @examples
 #' # Simple barplot

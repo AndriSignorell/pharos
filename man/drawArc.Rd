@@ -65,5 +65,14 @@ drawArc(x = pi/2, y = 0, rx = 1, theta.1 = pi/4, theta.2 = 3*pi/4, col="red")
 }
 \seealso{
 \code{\link{drawCircle}}, \code{\link{polygon}}
+
+Other topic.geometry: 
+\code{\link{drawBand}()},
+\code{\link{drawBezier}()},
+\code{\link{drawCircle}()},
+\code{\link{drawEllipse}()},
+\code{\link{drawRegPolygon}()}
 }
-\keyword{aplot}
+\concept{geometric-shapes}
+\concept{primitives}
+\concept{topic.geometry}

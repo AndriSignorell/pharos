@@ -306,7 +306,7 @@ fm.default <- function(x, digits = NULL, ldigits = NULL, sci = NULL
         a <- methods::formalArgs("fm")
         # do for all function arguments, besides x, ..., and fmt
         # (as it has the class "style" when landing here!)
-        for( z in a[a %nin% c("x", "fmt", "...")]){
+        for( z in a[a %notin% c("x", "fmt", "...")]){
           # get the provided value for the argument
           value <- dynGet(z)
           # overwrite the style argument with the new value

@@ -28,7 +28,14 @@
 #' coordinates for all shapes.
 #' 
 #' @seealso \code{\link{drawCircle}}, \code{\link{polygon}} 
-#' @keywords aplot
+
+
+#' @family topic.geometry
+#' @concept geometric-shapes
+#' @concept primitives
+
+
+
 #' @examples
 #' 
 #' curve(sin(x), 0, pi, col="blue", asp=1)

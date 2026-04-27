@@ -79,6 +79,11 @@
 #' @return Invisibly returns the (possibly reordered) matrix used for plotting.
 #'
 #' @seealso \code{\link[graphics]{image}}, \code{\link[stats]{cor}}
+#' 
+#' @family topic.graphics
+#' @concept base-graphics
+#' @concept plotting
+#' 
 #'
 #' @examples
 #' m <- cor(swiss)

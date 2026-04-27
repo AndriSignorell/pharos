@@ -31,7 +31,12 @@
 #' @return a vector of colors 
 #' 
 #' @seealso \code{\link{colorRampPalette}}
-#' @keywords color
+
+#' @family topic.colors
+#' @concept color-manipulation
+#' @concept palette
+
+
 #' @examples
 #' op <- par(no.readonly = TRUE)
 #' canvas(c(0,1))

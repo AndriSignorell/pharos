@@ -48,9 +48,8 @@
 #' # different decimal separator
 #' strVal("value = 3,14", dec = ",", as.numeric = TRUE)
 #'
-#' @family string utilities
-#' @concept numeric extraction
-#' @concept string parsing
+#' @family topic.text
+#' @concept string-processing
 #'
 #'
 

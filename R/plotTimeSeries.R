@@ -18,7 +18,11 @@
 #' 
 #' @note Rewritten based on ideas of M.Huerzeler
 #' @seealso \code{\link{ts}}
-#' @keywords hplot
+#' 
+#' @family topic.graphics
+#' @concept base-graphics
+#' @concept plotting
+#' 
 #' @examples
 #' 
 #' plotTimeSeries(AirPassengers)

@@ -74,4 +74,15 @@ text( x=2, y=1:12-0.5, lbl,
 par(op)
 
 }
-\keyword{color}
+\seealso{
+Other topic.colors: 
+\code{\link{Pal}()},
+\code{\link{alpha}()},
+\code{\link{colToOpaque}()},
+\code{\link{conv_cols}},
+\code{\link{conv_rgb}},
+\code{\link{findColor}()}
+}
+\concept{color-manipulation}
+\concept{contrast}
+\concept{topic.colors}

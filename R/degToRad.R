@@ -11,7 +11,10 @@
 #' angles in radians.\cr radToDeg returns a vector of the same length as
 #' \code{rad} with the angles in degrees. 
 #' 
-#' @keywords arith
+
+#' @family topic.conversion
+#' @concept angle-conversion
+
 #' @examples
 #' 
 #' degToRad(c(90,180,270))

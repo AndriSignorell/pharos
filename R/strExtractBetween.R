@@ -39,8 +39,8 @@
 #' # greedy
 #' strExtractBetween("a[1]b[2]c", "\\[", "\\]", greedy = TRUE)
 #'
-#' @family string utilities
-#' @concept substring extraction
+#' @family topic.text
+#' @concept string-processing
 #' @concept regular expressions
 #'
 

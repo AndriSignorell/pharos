@@ -71,7 +71,12 @@
 #' 
 #' @seealso \code{\link{spreadOut}}, similar function in package \pkg{plotrix}
 #' \code{\link[plotrix]{boxed.labels}} (lacking rotation option) 
-#' @keywords aplot misc
+#' 
+#' @family topic.graphics
+#' @concept base-graphics
+#' @concept plot-annotation
+#' @concept text-annotation
+#' 
 #' @examples
 #' 
 #' canvas(xpd=TRUE)

@@ -27,7 +27,12 @@
 #' \code{N-1}.
 #' 
 #' @seealso \code{\link{findInterval}}
-#' @keywords color dplot
+
+#' @family topic.colors
+#' @concept color-manipulation
+#' @concept color-conversion
+
+
 #' @examples
 #' 
 #' 

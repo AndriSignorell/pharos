@@ -20,6 +20,10 @@
 #' @return the converted value 
 #' 
 #' @seealso \code{\link{rgbToCol}} 
+
+#' @family topic.colors
+#' @concept color-conversion
+
 #' @examples
 #' 
 #' cmykToRgb(0.42, 45.23, 85.14, maxColorValue=100)

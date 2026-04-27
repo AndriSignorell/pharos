@@ -20,7 +20,12 @@
 #' 
 #' @seealso \code{\link{colToHex}}, \code{\link[bedrock]{decToHex}},
 #' \code{\link{rgbToHex}} 
-#' @keywords dplot color
+
+#' @family topic.colors
+#' @concept color-manipulation
+#' @concept color-conversion
+
+
 #' @examples
 #' 
 #' cols <- c(alpha("limegreen", 0.4), colToOpaque(colToHex("limegreen"), 0.4), "limegreen")

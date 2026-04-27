@@ -41,13 +41,18 @@ strExtract("hello world", "\\\\w+")
 \code{\link[stringi]{stri_extract_first_regex}},
 \code{\link{strExtractBetween}}
 
-Other string utilities: 
+Other topic.text: 
 \code{\link{strAbbr}()},
 \code{\link{strAlign}()},
 \code{\link{strCap}()},
+\code{\link{strChop}()},
 \code{\link{strCountW}()},
+\code{\link{strDist}()},
 \code{\link{strExtractBetween}()},
+\code{\link{strIsNumeric}()},
+\code{\link{strLeftRight}},
 \code{\link{strPad}()},
+\code{\link{strPos}()},
 \code{\link{strRev}()},
 \code{\link{strSpell}()},
 \code{\link{strSplit}()},
@@ -56,5 +61,5 @@ Other string utilities:
 \code{\link{strVal}()}
 }
 \concept{regular expressions}
-\concept{string utilities}
-\concept{substring extraction}
+\concept{string-processing}
+\concept{topic.text}

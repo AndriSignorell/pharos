@@ -117,3 +117,43 @@ ypos <- plotDot(c(12,18,28,40,65), # groups="",
 points(c(12,18,28,40,65) + runif(n = 5)*15, y=unlist(ypos$ypos), 
        cex=1.5, pch=15)
 }
+\seealso{
+Other topic.graphics: 
+\code{\link{axisBreak}()},
+\code{\link{barText}()},
+\code{\link{boxedText}()},
+\code{\link{canvas}()},
+\code{\link{colorLegend}()},
+\code{\link{errBars}()},
+\code{\link{plot.Desc.factor}()},
+\code{\link{plot.Desc.logical}()},
+\code{\link{plot.Desc.table}()},
+\code{\link{plot.Desc.ts}()},
+\code{\link{plot.Lc}()},
+\code{\link{plot.PostHocTest}()},
+\code{\link{plotArea}()},
+\code{\link{plotBag}()},
+\code{\link{plotBar}()},
+\code{\link{plotBubble}()},
+\code{\link{plotCirc}()},
+\code{\link{plotCor}()},
+\code{\link{plotDens}()},
+\code{\link{plotDens2D}()},
+\code{\link{plotECDF}()},
+\code{\link{plotFdist}()},
+\code{\link{plotFun}()},
+\code{\link{plotLines}()},
+\code{\link{plotMiss}()},
+\code{\link{plotMosaic}()},
+\code{\link{plotProbDist}()},
+\code{\link{plotQQ}()},
+\code{\link{plotRidge}()},
+\code{\link{plotTernary}()},
+\code{\link{plotTimeSeries}()},
+\code{\link{plotTreemap}()},
+\code{\link{plotViolin}()},
+\code{\link{plotWeb}()}
+}
+\concept{base-graphics}
+\concept{plotting}
+\concept{topic.graphics}

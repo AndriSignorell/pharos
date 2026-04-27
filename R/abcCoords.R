@@ -20,6 +20,12 @@
 #' @return nothing returned %% ~Describe the value returned %% If it is a LIST,
 #' use %% \item{comp1 }{Description of 'comp1'} 
 #' @seealso \code{\link{text}}, \code{\link{boxedText}} 
+
+#' @family topic.coordinates
+#' @concept coordinates
+#' @concept positioning
+#' @concept plot-annotation
+
 #' @examples
 #' 
 #' plot(x = rnorm(10), type="n", xlab="", ylab="")

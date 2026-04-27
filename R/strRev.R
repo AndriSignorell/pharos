@@ -21,9 +21,8 @@
 #' # Unicode-safe
 #' strRev("äöü")
 #'
-#' @family string utilities
-#' @concept string manipulation
-#' @concept text processing
+#' @family topic.text
+#' @concept string-processing
 #'
 
 #' @export

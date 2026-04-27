@@ -84,6 +84,15 @@ text(x=x, y = 0.3, labels = names(findColor(x, cols=cols,
 }
 \seealso{
 \code{\link{findInterval}}
+
+Other topic.colors: 
+\code{\link{Pal}()},
+\code{\link{alpha}()},
+\code{\link{colToOpaque}()},
+\code{\link{contrastColor}()},
+\code{\link{conv_cols}},
+\code{\link{conv_rgb}}
 }
-\keyword{color}
-\keyword{dplot}
+\concept{color-conversion}
+\concept{color-manipulation}
+\concept{topic.colors}

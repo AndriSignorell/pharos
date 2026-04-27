@@ -46,5 +46,14 @@ abline(lm(y~x), col="brown")
 }
 \seealso{
 \code{\link{polygon}}
+
+Other topic.geometry: 
+\code{\link{drawArc}()},
+\code{\link{drawBezier}()},
+\code{\link{drawCircle}()},
+\code{\link{drawEllipse}()},
+\code{\link{drawRegPolygon}()}
 }
-\keyword{aplot}
+\concept{geometric-shapes}
+\concept{primitives}
+\concept{topic.geometry}

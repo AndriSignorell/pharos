@@ -60,13 +60,18 @@ strAlign(z, ".")
 \code{\link[stringi]{stri_sub}},
 \code{\link[stringi]{stri_trim_right}}
 
-Other string utilities: 
+Other topic.text: 
 \code{\link{strAbbr}()},
 \code{\link{strCap}()},
+\code{\link{strChop}()},
 \code{\link{strCountW}()},
+\code{\link{strDist}()},
 \code{\link{strExtract}()},
 \code{\link{strExtractBetween}()},
+\code{\link{strIsNumeric}()},
+\code{\link{strLeftRight}},
 \code{\link{strPad}()},
+\code{\link{strPos}()},
 \code{\link{strRev}()},
 \code{\link{strSpell}()},
 \code{\link{strSplit}()},
@@ -74,6 +79,6 @@ Other string utilities:
 \code{\link{strTrunc}()},
 \code{\link{strVal}()}
 }
-\concept{string alignment}
-\concept{string utilities}
-\concept{text formatting}
+\concept{string-processing}
+\concept{text-alignment}
+\concept{topic.text}

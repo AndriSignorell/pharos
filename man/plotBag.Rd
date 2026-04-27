@@ -12,7 +12,7 @@ plotBag(
   xlim = NULL,
   ylim = NULL,
   factor = 3,
-  eps = 1e-08,
+  eps = 0.00000001,
   dither = TRUE,
   points = TRUE,
   bag = TRUE,
@@ -150,3 +150,43 @@ P. J. Rousseeuw, I. Ruts, J. W. Tukey (1999):
 The bagplot: a bivariate boxplot, \emph{The American
 Statistician}, vol. 53, no. 4, 382--387
 }
+\seealso{
+Other topic.graphics: 
+\code{\link{axisBreak}()},
+\code{\link{barText}()},
+\code{\link{boxedText}()},
+\code{\link{canvas}()},
+\code{\link{colorLegend}()},
+\code{\link{errBars}()},
+\code{\link{plot.Desc.factor}()},
+\code{\link{plot.Desc.logical}()},
+\code{\link{plot.Desc.table}()},
+\code{\link{plot.Desc.ts}()},
+\code{\link{plot.Lc}()},
+\code{\link{plot.PostHocTest}()},
+\code{\link{plotArea}()},
+\code{\link{plotBar}()},
+\code{\link{plotBubble}()},
+\code{\link{plotCirc}()},
+\code{\link{plotCor}()},
+\code{\link{plotDens}()},
+\code{\link{plotDens2D}()},
+\code{\link{plotDot}()},
+\code{\link{plotECDF}()},
+\code{\link{plotFdist}()},
+\code{\link{plotFun}()},
+\code{\link{plotLines}()},
+\code{\link{plotMiss}()},
+\code{\link{plotMosaic}()},
+\code{\link{plotProbDist}()},
+\code{\link{plotQQ}()},
+\code{\link{plotRidge}()},
+\code{\link{plotTernary}()},
+\code{\link{plotTimeSeries}()},
+\code{\link{plotTreemap}()},
+\code{\link{plotViolin}()},
+\code{\link{plotWeb}()}
+}
+\concept{base-graphics}
+\concept{plotting}
+\concept{topic.graphics}

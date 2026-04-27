@@ -41,10 +41,9 @@
 #' # fixed length abbreviations
 #' strAbbr(x, method = "fix")
 #'
-#' @family string utilities
-#' @concept string abbreviation
-#' @concept text processing
-#'
+#' @family topic.text
+#' @concept string-processing
+#' @concept formatting
 
 
 #' @export

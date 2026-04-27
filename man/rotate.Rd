@@ -47,5 +47,13 @@ par(op)
 \seealso{
 \code{\link{polygon}}, \code{\link{drawRegPolygon}},
 \code{\link{drawEllipse}}, \code{\link{drawArc}}
+
+Other topic.coordinates: 
+\code{\link{abcCoords}()},
+\code{\link{conv_coord}},
+\code{\link{lineToUser}()},
+\code{\link{transformXY}()}
 }
-\keyword{aplot}
+\concept{coordinates}
+\concept{topic.coordinates}
+\concept{transformations}

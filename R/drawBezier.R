@@ -32,7 +32,13 @@
 #' \code{\link{drawCircle}}, \code{\link{drawArc}}
 #' @references G. Farin (1993) \emph{Curves and surfaces for computer aided
 #' geometric design. A practical guide}, Acad. Press
-#' @keywords aplot
+
+
+#' @family topic.geometry
+#' @concept geometric-shapes
+#' @concept parametric-curves
+
+
 #' @examples
 #' 
 #' canvas(xlim=c(0,1))

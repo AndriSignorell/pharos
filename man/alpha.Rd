@@ -52,5 +52,15 @@ par(op)
 \seealso{
 \code{\link{colToHex}}, \code{\link{col2rgb}},
 \code{\link{adjustcolor}}, \code{\link{colToOpaque}}
+
+Other topic.colors: 
+\code{\link{Pal}()},
+\code{\link{colToOpaque}()},
+\code{\link{contrastColor}()},
+\code{\link{conv_cols}},
+\code{\link{conv_rgb}},
+\code{\link{findColor}()}
 }
-\keyword{color}
+\concept{color-manipulation}
+\concept{topic.colors}
+\concept{transparency}

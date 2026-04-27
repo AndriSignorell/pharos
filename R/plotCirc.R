@@ -54,6 +54,11 @@
 #'   \item{y}{y-coordinates of labels}
 #' }
 #'
+#' 
+#' @family topic.graphics
+#' @concept base-graphics
+#' @concept plotting
+#' 
 #' @examples
 #' set.seed(1)
 #' x <- matrix(sample(1:10, 36, replace = TRUE), nrow = 6)

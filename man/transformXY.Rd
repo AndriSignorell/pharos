@@ -65,4 +65,13 @@ transformXY(m, scale = 0.5, theta = pi/6)
 }
 \seealso{
 \code{\link{rotate}}
+
+Other topic.coordinates: 
+\code{\link{abcCoords}()},
+\code{\link{conv_coord}},
+\code{\link{lineToUser}()},
+\code{\link{rotate}()}
 }
+\concept{coordinates}
+\concept{topic.coordinates}
+\concept{transformations}

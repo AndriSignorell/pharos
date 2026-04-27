@@ -26,6 +26,9 @@
 #' @return nothing returned 
 #' 
 #' @seealso \code{\link{shade}}, \code{\link{curve}}, \code{\link{polygon}} 
+#' @family topic.graphics
+#' @concept base-graphics
+#' @concept plotting
 #' 
 #' @examples
 #' # plot t-distribution

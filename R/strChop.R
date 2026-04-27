@@ -22,7 +22,11 @@
 #' @return a vector with the parts of the string.
 #' @seealso \code{\link{strLeft}},
 #' \code{\link{substr}}
-#' @keywords character
+
+#' @family topic.text
+#' @concept string-processing
+#' 
+#' 
 #' @examples
 #' 
 #' x <- paste(letters, collapse="")

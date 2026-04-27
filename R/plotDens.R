@@ -57,6 +57,11 @@
 #' plotDens(y ~ x | g)
 #'
 #' @seealso \code{\link[stats]{density}}, \code{\link[graphics]{cdplot}}
+#' 
+#' @family topic.graphics
+#' @concept base-graphics
+#' @concept plotting
+#' 
 #' @name plotDens
 NULL
 

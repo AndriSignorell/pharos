@@ -31,20 +31,24 @@ strRev("äöü")
 \seealso{
 \code{\link[stringi]{stri_reverse}}
 
-Other string utilities: 
+Other topic.text: 
 \code{\link{strAbbr}()},
 \code{\link{strAlign}()},
 \code{\link{strCap}()},
+\code{\link{strChop}()},
 \code{\link{strCountW}()},
+\code{\link{strDist}()},
 \code{\link{strExtract}()},
 \code{\link{strExtractBetween}()},
+\code{\link{strIsNumeric}()},
+\code{\link{strLeftRight}},
 \code{\link{strPad}()},
+\code{\link{strPos}()},
 \code{\link{strSpell}()},
 \code{\link{strSplit}()},
 \code{\link{strTrim}()},
 \code{\link{strTrunc}()},
 \code{\link{strVal}()}
 }
-\concept{string manipulation}
-\concept{string utilities}
-\concept{text processing}
+\concept{string-processing}
+\concept{topic.text}

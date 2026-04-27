@@ -29,8 +29,8 @@
 #' # extract words
 #' strExtract("hello world", "\\w+")
 #'
-#' @family string utilities
-#' @concept substring extraction
+#' @family topic.text
+#' @concept string-processing
 #' @concept regular expressions
 #'
 

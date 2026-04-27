@@ -15,7 +15,11 @@
 #' @param border the border color of the band. 
 #' 
 #' @seealso \code{\link{polygon}} 
-#' @keywords aplot
+
+#' @family topic.geometry
+#' @concept geometric-shapes
+#' @concept primitives
+
 #' 
 #' @examples
 #' 

@@ -86,13 +86,13 @@
 #'             relevel setNames is.ts time prop.test predict qnorm formula var
 #'             model.frame model.response model.weights terms na.omit
 #'             acf plot.ts pacf complete.cases dnorm quantile uniroot
-#'             density as.formula 
+#'             density as.formula chisq.test
 #'             
 #' @importFrom stringi stri_sub stri_length stri_pad stri_trim_both
 #'             stri_extract_first_regex
 #' 
-#' @importFrom bedrock abind `%)(%` `%nin%` `%(]%` Coalesce moveAvg  
+#' @importFrom bedrock abind `%)(%` `%(]%` Coalesce moveAvg  
 #'             binaryTree combPairs decToHex isZero 
 #'             mergeArgs nDec naIf naReplace setNamesX recycle
-#'             label `label<-` inDots sortX revX
+#'             label `label<-` inDots sortX revX resolveFormula
 NULL

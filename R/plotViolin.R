@@ -81,7 +81,10 @@
 #' plotViolin(value ~ group, data = df)
 #'
 #' @seealso \code{\link{boxplot}}, \code{\link{density}}
-#'
+#' 
+#' @family topic.graphics
+#' @concept base-graphics
+#' @concept plotting
 
 
 #' @export

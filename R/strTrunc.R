@@ -18,9 +18,9 @@
 #' @return The string(s) passed as \samp{x} now with a maximum length of
 #' \samp{maxlen} + 3 (for the ellipsis).
 #' 
-#' @family string utilities
-#' @concept string splitting
-#' @concept character data
+#' @family topic.text
+#' @concept string-processing
+#' @concept formatting
 #' 
 #' @examples
 #' 

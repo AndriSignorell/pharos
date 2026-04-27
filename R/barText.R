@@ -47,7 +47,12 @@
 #' @return returns the geometry of the labels invisibly
 #' 
 #' @seealso \code{\link{boxedText}} 
-#' @keywords aplot
+#' 
+#' @family topic.graphics
+#' @concept base-graphics
+#' @concept plot-annotation
+#' @concept text-annotation
+#' 
 #' @examples
 #' 
 #' # simple vector

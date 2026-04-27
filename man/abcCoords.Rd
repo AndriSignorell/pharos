@@ -68,4 +68,14 @@ boxedText(x=xy$xy$x, y=xy$xy$y, xpad = 1, ypad = 1,
 }
 \seealso{
 \code{\link{text}}, \code{\link{boxedText}}
+
+Other topic.coordinates: 
+\code{\link{conv_coord}},
+\code{\link{lineToUser}()},
+\code{\link{rotate}()},
+\code{\link{transformXY}()}
 }
+\concept{coordinates}
+\concept{plot-annotation}
+\concept{positioning}
+\concept{topic.coordinates}

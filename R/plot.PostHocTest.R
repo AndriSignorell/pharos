@@ -22,6 +22,11 @@
 #' @seealso
 #' \code{\link[lumen]{postHocTest}},
 #' \code{\link{plotDot}}
+#' 
+#' @family topic.graphics
+#' @concept base-graphics
+#' @concept plotting
+#' 
 #'
 #' @examples
 #' # see lumen::postHocTest()

@@ -50,20 +50,25 @@ for(i in 0:20)
 
 }
 \seealso{
-Other string utilities: 
+Other topic.text: 
 \code{\link{strAbbr}()},
 \code{\link{strAlign}()},
 \code{\link{strCap}()},
+\code{\link{strChop}()},
 \code{\link{strCountW}()},
+\code{\link{strDist}()},
 \code{\link{strExtract}()},
 \code{\link{strExtractBetween}()},
+\code{\link{strIsNumeric}()},
+\code{\link{strLeftRight}},
 \code{\link{strPad}()},
+\code{\link{strPos}()},
 \code{\link{strRev}()},
 \code{\link{strSpell}()},
 \code{\link{strSplit}()},
 \code{\link{strTrim}()},
 \code{\link{strVal}()}
 }
-\concept{character data}
-\concept{string splitting}
-\concept{string utilities}
+\concept{formatting}
+\concept{string-processing}
+\concept{topic.text}

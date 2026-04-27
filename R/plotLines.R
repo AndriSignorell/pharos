@@ -49,6 +49,11 @@
 #' \item \code{legend} the legend specification if drawn.
 #' }
 #'
+#' 
+#' @family topic.graphics
+#' @concept base-graphics
+#' @concept plotting
+#' 
 #' @examples
 #' m <- matrix(c(3,4,5,1,5,4,2,6,2), nrow = 3,
 #'             dimnames = list(

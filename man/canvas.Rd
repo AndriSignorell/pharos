@@ -36,4 +36,43 @@ canvas(7)
 text(0, 0, "Hello world!", cex=5)
 
 }
-\keyword{hplot}
+\seealso{
+Other topic.graphics: 
+\code{\link{axisBreak}()},
+\code{\link{barText}()},
+\code{\link{boxedText}()},
+\code{\link{colorLegend}()},
+\code{\link{errBars}()},
+\code{\link{plot.Desc.factor}()},
+\code{\link{plot.Desc.logical}()},
+\code{\link{plot.Desc.table}()},
+\code{\link{plot.Desc.ts}()},
+\code{\link{plot.Lc}()},
+\code{\link{plot.PostHocTest}()},
+\code{\link{plotArea}()},
+\code{\link{plotBag}()},
+\code{\link{plotBar}()},
+\code{\link{plotBubble}()},
+\code{\link{plotCirc}()},
+\code{\link{plotCor}()},
+\code{\link{plotDens}()},
+\code{\link{plotDens2D}()},
+\code{\link{plotDot}()},
+\code{\link{plotECDF}()},
+\code{\link{plotFdist}()},
+\code{\link{plotFun}()},
+\code{\link{plotLines}()},
+\code{\link{plotMiss}()},
+\code{\link{plotMosaic}()},
+\code{\link{plotProbDist}()},
+\code{\link{plotQQ}()},
+\code{\link{plotRidge}()},
+\code{\link{plotTernary}()},
+\code{\link{plotTimeSeries}()},
+\code{\link{plotTreemap}()},
+\code{\link{plotViolin}()},
+\code{\link{plotWeb}()}
+}
+\concept{base-graphics}
+\concept{layout}
+\concept{topic.graphics}

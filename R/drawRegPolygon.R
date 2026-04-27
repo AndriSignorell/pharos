@@ -30,7 +30,12 @@
 #' 
 #' @seealso \code{\link{polygon}}, \code{\link{drawCircle}},
 #' \code{\link{drawArc}} 
-#' @keywords aplot
+
+#' @family topic.geometry
+#' @concept geometric-shapes
+#' @concept primitives
+
+
 #' @examples
 #' 
 #' # Draw 4 triangles (nv = 3) with different rotation angles

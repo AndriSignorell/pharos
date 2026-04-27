@@ -44,6 +44,10 @@
 #'
 #' @seealso \code{\link{rotate}}
 #'
+#' @family topic.coordinates
+#' @concept coordinates
+#' @concept transformations
+
 
 
 #' @export

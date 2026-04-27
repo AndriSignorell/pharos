@@ -30,13 +30,15 @@
 #' @return list with the midpoints of the rectangles 
 #' 
 #' @seealso \code{\link{mosaicplot}} 
+#' @family topic.graphics
+#' @concept base-graphics
+#' @concept plotting
 #' 
 #' @references Friendly, M. (1994) Mosaic displays for multi-way contingency
 #' tables. \emph{Journal of the American Statistical Association}, \bold{89},
 #' 190-200.
 #' 
 #' 
-#' @keywords hplot
 #' @examples
 #' 
 #' plotMosaic(HairEyeColor[,,1])

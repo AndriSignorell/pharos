@@ -31,7 +31,11 @@
 #' required. 
 #' 
 #' @seealso \code{\link{plot.ecdf}}, \code{\link{plotFdist}} 
-#' @keywords hplot
+#' 
+#' @family topic.graphics
+#' @concept base-graphics
+#' @concept plotting
+#' 
 #' @examples
 #' 
 #' plotECDF(faithful$eruptions)
@@ -74,13 +78,13 @@ plotECDF <- function(x, breaks=NULL, col=Pal()[1],
   # ... nice try, but far too many non valid args:  
   # validargs <- names(subset(validargs <- c(as.list(args(axis)), 
   #                                          par(no.readonly = TRUE)), 
-  #                           subset = names(validargs) %nin% c("...","")))      # omit ... and empty
+  #                           subset = names(validargs) %notin% c("...","")))      # omit ... and empty
   
   validargs <- subset(validargs <- c(names(as.list(args(axis))),
                                      c("cex", "cex.axis", "col.axis", "family", 
                                        "fg", "font", "font.axis", "las", "mgp", 
                                        "srt", "tck", "tcl", "yaxp", "yaxs", "yaxt")),
-                      subset = validargs %nin% c("...","","col"))      # omit ... and empty
+                      subset = validargs %notin% c("...","","col"))      # omit ... and empty
 
   # the defaults
   axargs1 <- list(side = 2, at = seq(0, 1, 0.25),

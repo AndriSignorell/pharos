@@ -38,11 +38,11 @@
 #' # title case
 #' strCap(x, "title")
 #'
-#' @family string utilities
-#' @concept text transformation
-#' @concept capitalization
-#'
-
+#' @family topic.text
+#' @concept string-processing
+#' @concept formatting
+#' 
+#' 
 
 #' @export
 strCap <- function(x, method = c("first", "word", "title")) {
@@ -62,7 +62,7 @@ strCap <- function(x, method = c("first", "word", "title")) {
     words <- stringi::stri_split_boundaries(tolower(x), type = "word")
     
     res <- sapply(words, function(w) {
-      w[w %nin% low] <- stringi::stri_trans_totitle(w[w %nin% low])
+      w[w %notin% low] <- stringi::stri_trans_totitle(w[w %notin% low])
       paste(w, collapse = "")
     })
   }

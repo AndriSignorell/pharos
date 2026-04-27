@@ -18,7 +18,10 @@
 #' @return a vector of the first position of pattern in x 
 #' 
 #' @seealso \code{\link{strChop}}, \code{\link{regexpr}} 
-#' @keywords character utilities
+#' 
+#' @family topic.text
+#' @concept string-processing
+#' 
 #' @examples
 #' 
 #' strPos(x=rownames(mtcars), pattern="y")

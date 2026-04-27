@@ -28,7 +28,13 @@
 #' 
 #' @seealso \code{\link{polygon}}, \code{\link{drawRegPolygon}},
 #' \code{\link{drawCircle}}, \code{\link{drawArc}} 
-#' @keywords aplot
+#' 
+
+#' @family topic.geometry
+#' @concept geometric-shapes
+#' @concept primitives
+
+#' 
 #' @examples
 #' 
 #' op <- par(no.readonly = TRUE)

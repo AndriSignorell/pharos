@@ -133,6 +133,44 @@ boxedText(mpg ~ hp, data=mtcars,
 \seealso{
 \code{\link{spreadOut}}, similar function in package \pkg{plotrix}
 \code{\link[plotrix]{boxed.labels}} (lacking rotation option)
+
+Other topic.graphics: 
+\code{\link{axisBreak}()},
+\code{\link{barText}()},
+\code{\link{canvas}()},
+\code{\link{colorLegend}()},
+\code{\link{errBars}()},
+\code{\link{plot.Desc.factor}()},
+\code{\link{plot.Desc.logical}()},
+\code{\link{plot.Desc.table}()},
+\code{\link{plot.Desc.ts}()},
+\code{\link{plot.Lc}()},
+\code{\link{plot.PostHocTest}()},
+\code{\link{plotArea}()},
+\code{\link{plotBag}()},
+\code{\link{plotBar}()},
+\code{\link{plotBubble}()},
+\code{\link{plotCirc}()},
+\code{\link{plotCor}()},
+\code{\link{plotDens}()},
+\code{\link{plotDens2D}()},
+\code{\link{plotDot}()},
+\code{\link{plotECDF}()},
+\code{\link{plotFdist}()},
+\code{\link{plotFun}()},
+\code{\link{plotLines}()},
+\code{\link{plotMiss}()},
+\code{\link{plotMosaic}()},
+\code{\link{plotProbDist}()},
+\code{\link{plotQQ}()},
+\code{\link{plotRidge}()},
+\code{\link{plotTernary}()},
+\code{\link{plotTimeSeries}()},
+\code{\link{plotTreemap}()},
+\code{\link{plotViolin}()},
+\code{\link{plotWeb}()}
 }
-\keyword{aplot}
-\keyword{misc}
+\concept{base-graphics}
+\concept{plot-annotation}
+\concept{text-annotation}
+\concept{topic.graphics}

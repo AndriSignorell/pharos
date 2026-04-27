@@ -81,6 +81,11 @@
 #'     The bagplot: a bivariate boxplot, \emph{The American
 #'       Statistician}, vol. 53, no. 4, 382--387 
 #' 
+#' @family topic.graphics
+#' @concept base-graphics
+#' @concept plotting
+#' 
+#' 
 #' @examples
 #' set.seed(1)
 #' x <- cbind(rnorm(200), rnorm(200))

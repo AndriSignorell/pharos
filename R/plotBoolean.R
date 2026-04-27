@@ -48,6 +48,11 @@
 #'   side effect of producing a plot.
 #'
 #' @seealso \code{\link[lumen]{binomCI}}
+#' 
+#' @family topic.graphics
+#' @concept base-graphics
+#' @concept plotting
+#' 
 #'
 #' @examples
 #' # Example Desc.logical object

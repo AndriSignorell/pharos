@@ -19,9 +19,8 @@
 #'
 #' strCountW(c("One word", "Two words here", NA))
 #'
-#' @family string utilities
-#' @concept text analysis
-#' @concept word counting
+#' @family topic.text
+#' @concept string-processing
 #'
 
 

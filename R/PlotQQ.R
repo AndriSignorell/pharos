@@ -55,7 +55,9 @@
 #' 
 #' @seealso \code{\link{qqnorm}}, \code{\link{qqline}}, \code{\link{qqplot}} 
 #' @references Teetor, P. (2011) \emph{R Cookbook}. O'Reilly, pp. 254-255.
-#' @keywords univar hplot
+#' @family topic.graphics
+#' @concept base-graphics
+#' @concept plotting
 #' @examples
 #' 
 #' y <- rexp(100, 1/10)

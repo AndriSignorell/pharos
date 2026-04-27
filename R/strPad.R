@@ -18,9 +18,9 @@
 #' right side.
 #' @return the string
 #' 
-#' @family string utilities
-#' @concept string splitting
-#' @concept character data
+#' @family topic.text
+#' @concept string-processing
+#' @concept formatting
 #' 
 #' @examples
 #' 

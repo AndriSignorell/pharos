@@ -23,9 +23,12 @@
 #'
 #' @return Invisibly returns the input object.
 #'
-#' @family Inequality
+#' @family topic.graphics
+#' @concept base-graphics
+#' @concept plotting
 #' @concept Inequality
 #' @concept Lorenz Curve
+#' 
 #'
 
 

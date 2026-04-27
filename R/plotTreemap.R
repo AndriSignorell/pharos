@@ -42,6 +42,10 @@
 #' @seealso \code{\link[DescTools]{PlotCirc}}, \code{\link{mosaicplot}},
 #' \code{\link{barplot}}
 #' 
+#' @family topic.graphics
+#' @concept base-graphics
+#' @concept plotting
+#' 
 #' @examples
 #' 
 #' set.seed(1789)

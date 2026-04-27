@@ -12,7 +12,10 @@
 #'   \code{cex}, \code{las}, \code{mar}, or \code{oma}.
 #'
 #'
-
+#' @family topic.graphics
+#' @concept base-graphics
+#' @concept plotting
+#' 
 
 #'@export
 plot.Desc.table <- function(x, ...){

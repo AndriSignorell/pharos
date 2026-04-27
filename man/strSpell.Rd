@@ -54,20 +54,24 @@ strSpell("ABC", upr = NA)
 \code{\link{strTrim}},
 \code{\link[stringi]{stri_split_boundaries}}
 
-Other string utilities: 
+Other topic.text: 
 \code{\link{strAbbr}()},
 \code{\link{strAlign}()},
 \code{\link{strCap}()},
+\code{\link{strChop}()},
 \code{\link{strCountW}()},
+\code{\link{strDist}()},
 \code{\link{strExtract}()},
 \code{\link{strExtractBetween}()},
+\code{\link{strIsNumeric}()},
+\code{\link{strLeftRight}},
 \code{\link{strPad}()},
+\code{\link{strPos}()},
 \code{\link{strRev}()},
 \code{\link{strSplit}()},
 \code{\link{strTrim}()},
 \code{\link{strTrunc}()},
 \code{\link{strVal}()}
 }
-\concept{phonetic encoding}
-\concept{string utilities}
-\concept{text transformation}
+\concept{string-processing}
+\concept{topic.text}

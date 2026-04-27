@@ -45,6 +45,11 @@
 #' For polar and parametric plots, limits are derived from the data.
 #'
 #' @return Invisibly returns a list with components \code{x} and \code{y}.
+#' 
+#' @family topic.graphics
+#' @concept base-graphics
+#' @concept plotting
+#' 
 #'
 #' @examples
 #' par(mfrow = c(3,4))
@@ -342,3 +347,6 @@ plotFun <- function(
   
   invisible(list(x = x, y = y))
 }
+
+
+

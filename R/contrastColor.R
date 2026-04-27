@@ -28,7 +28,11 @@
 #' @return a vector containing the contrast color (either black or white)
 #' @note Based on code of Earl F. Glynn, Stowers Institute for Medical Research, 2004
 #' 
-#' @keywords color
+
+#' @family topic.colors
+#' @concept color-manipulation
+#' @concept contrast
+
 #' 
 #' @examples
 #' op <- par(no.readonly = TRUE)

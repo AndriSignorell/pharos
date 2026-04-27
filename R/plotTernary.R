@@ -50,6 +50,9 @@
 #' plotTernary(M, lbl = c("A", "B", "C"))
 #'
 #' @seealso \code{\link{plotDens}}, \code{\link{plotRidge}}
+#' @family topic.graphics
+#' @concept base-graphics
+#' @concept plotting
 #'
 
 

@@ -80,5 +80,14 @@ par(op)
 \seealso{
 \code{\link{polygon}}, \code{\link{drawRegPolygon}},
 \code{\link{drawCircle}}, \code{\link{drawArc}}
+
+Other topic.geometry: 
+\code{\link{drawArc}()},
+\code{\link{drawBand}()},
+\code{\link{drawBezier}()},
+\code{\link{drawCircle}()},
+\code{\link{drawRegPolygon}()}
 }
-\keyword{aplot}
+\concept{geometric-shapes}
+\concept{primitives}
+\concept{topic.geometry}

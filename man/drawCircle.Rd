@@ -112,5 +112,14 @@ sapply( (0:11) * pi/6, function(theta) {
 \seealso{
 \code{\link{polygon}}, \code{\link{drawRegPolygon}},
 \code{\link{drawEllipse}}, \code{\link{drawArc}}
+
+Other topic.geometry: 
+\code{\link{drawArc}()},
+\code{\link{drawBand}()},
+\code{\link{drawBezier}()},
+\code{\link{drawEllipse}()},
+\code{\link{drawRegPolygon}()}
 }
-\keyword{aplot}
+\concept{geometric-shapes}
+\concept{primitives}
+\concept{topic.geometry}

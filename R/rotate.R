@@ -19,7 +19,11 @@
 #' 
 #' @seealso \code{\link{polygon}}, \code{\link{drawRegPolygon}},
 #' \code{\link{drawEllipse}}, \code{\link{drawArc}} 
-#' @keywords aplot
+
+#' @family topic.coordinates
+#' @concept coordinates
+#' @concept transformations
+
 #' @examples
 #' op <- par(no.readonly = TRUE)
 #' # let's have a triangle

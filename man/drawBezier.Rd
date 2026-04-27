@@ -64,8 +64,17 @@ geometric design. A practical guide}, Acad. Press
 \seealso{
 \code{\link{polygon}}, \code{\link{drawRegPolygon}},
 \code{\link{drawCircle}}, \code{\link{drawArc}}
+
+Other topic.geometry: 
+\code{\link{drawArc}()},
+\code{\link{drawBand}()},
+\code{\link{drawCircle}()},
+\code{\link{drawEllipse}()},
+\code{\link{drawRegPolygon}()}
 }
 \author{
 Frank E Harrell Jr \href{mailto:f.harrell@vanderbilt.edu}{f.harrell@vanderbilt.edu}
 }
-\keyword{aplot}
+\concept{geometric-shapes}
+\concept{parametric-curves}
+\concept{topic.geometry}

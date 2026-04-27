@@ -20,9 +20,9 @@
 #' \code{"right"}. Determines on which side the string should be trimmed.
 #' @return the string x without whitespaces
 #' 
-#' @family string utilities
-#' @concept string manipulation
-#' @concept text processing
+#' @family topic.text
+#' @concept string-processing
+#' @concept formatting
 #' 
 #' @examples
 #' 
