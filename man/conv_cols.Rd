@@ -63,7 +63,6 @@ cmykToRgb(0.42, 45.23, 85.14, maxColorValue=100)
 \code{\link{rgbToCol}}
 
 Other topic.colors: 
-\code{\link{Pal}()},
 \code{\link{alpha}()},
 \code{\link{colToOpaque}()},
 \code{\link{contrastColor}()},

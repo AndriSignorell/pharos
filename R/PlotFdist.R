@@ -500,7 +500,7 @@ plotFdist <- function (x, main = deparse(substitute(x)), xlab = ""
         # preset default values
         args.curve.ecdf1 <- list(expr = parse(text = gettextf("pnorm(x, %s, %s)", mean(x), sd(x))),
                                  add = TRUE,
-                                 n = 500, col = Pal()[3], lwd = 2, lty = "solid")
+                                 n = 500, col = pal()[3], lwd = 2, lty = "solid")
         if (!is.null(args.curve.ecdf)) {
           args.curve.ecdf1[names(args.curve.ecdf)] <- args.curve.ecdf
         }

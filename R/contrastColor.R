@@ -1,102 +1,110 @@
 
-#' Choose Textcolor Depending on Background Color 
-#' 
-#' Text of a certain color when viewed against certain backgrounds can be hard
-#' to see. \code{contrastColor} returns either black or white depending on
-#' which has the better contrast. 
-#' 
-#' A simple heuristic in defining a text color for a given background color, is
-#' to pick the one that is "farthest" away from "black" or "white". The way
-#' Glynn chooses to do this is to compute the color intensity, defined as the
-#' mean of the RGB triple, and pick "black" (intensity 0) for text color if the
-#' background intensity is greater than 127, or "white" (intensity 255) when
-#' the background intensity is less than or equal to 127. 
-#' Sonego calculates 
-#' \code{L <- c(0.2, 0.6, 0) \%*\% col2rgb(color)/255} and returns 
-#' "black" if L >= 0.2 and "white" else. 
-#' 
-#' @param col vector of any of the three kind of R colors, i.e., either a color
-#' name (an element of \code{colors()}), a hexadecimal string of the form
-#' \code{"#rrggbb"} or \code{"#rrggbbaa"} (see \code{\link{rgb}}), or an
-#' integer i meaning \verb{\code{palette()[i]}}.  Non-string values 
-#' are coerced to integer. 
-#' @param white the color for the dark backgrounds, default is \code{"white"}.
-#' @param black the color for the bright backgrounds, default is \code{"black"}
-#' @param method defines the algorithm to be used. Can be one out of
-#' \code{"glynn"} or \code{"sonego"}. See details. 
-#' 
-#' @return a vector containing the contrast color (either black or white)
-#' @note Based on code of Earl F. Glynn, Stowers Institute for Medical Research, 2004
-#' 
-
+#' Choose Optimal Text Color Based on WCAG Contrast
+#'
+#' Computes the optimal text color (default: black or white) for a given
+#' background color based on the WCAG contrast ratio.
+#'
+#' This function implements the official relative luminance definition for
+#' sRGB colors (including gamma correction) and selects the text color that
+#' maximizes the contrast ratio according to the Web Content Accessibility
+#' Guidelines (WCAG 2.1).
+#'
+#' Compared to simple heuristics (e.g., mean RGB), this approach is
+#' perceptually more accurate and suitable for accessibility-critical
+#' applications.
+#'
+#' @param col Vector of colors. Can be any valid R color specification:
+#'   color names, hexadecimal strings (e.g. `"#RRGGBB"` or `"#RRGGBBAA"`),
+#'   or palette indices.
+#' @param light Color used for dark backgrounds (default: `"white"`).
+#' @param dark Color used for light backgrounds (default: `"black"`).
+#'
+#' @return A character vector of the same length as `col`, containing either
+#'   `light` or `dark`, depending on which yields the higher contrast ratio.
+#'
+#' @details
+#' The relative luminance is computed as:
+#'
+#' \deqn{L = 0.2126 R + 0.7152 G + 0.0722 B}
+#'
+#' where \eqn{R, G, B} are linearized sRGB components:
+#'
+#' \deqn{
+#' c_{lin} =
+#' \begin{cases}
+#' \frac{c}{12.92} & c \le 0.04045 \\
+#' \left(\frac{c + 0.055}{1.055}\right)^{2.4} & c > 0.04045
+#' \end{cases}
+#' }
+#'
+#' The contrast ratio between two luminance values \eqn{L1} and \eqn{L2} is:
+#'
+#' \deqn{
+#' \frac{\max(L1, L2) + 0.05}{\min(L1, L2) + 0.05}
+#' }
+#'
+#' The function compares contrast ratios against `light` and `dark` and
+#' returns the better option.
+#'
+#' @examples
+#' cols <- c("black", "white", "red", "blue", "yellow", "#777777")
+#' contrastColor(cols)
+#'
+#' # custom text colors
+#' contrastColor(cols, light = "#FFFFFF", dark = "#222222")
+#'
 #' @family topic.colors
 #' @concept color-manipulation
 #' @concept contrast
+#'
 
-#' 
-#' @examples
-#' op <- par(no.readonly = TRUE)
-#' 
-#' # define some labels
-#' lbl <- c("Butcher","Carpenter","Carter","Farmer","Hunter","Miller","Taylor")
-#' 
-#' # works fine for grays
-#' plotArea( y=matrix(rep(1, times=3, each=8), ncol=8), x=1:3,
-#'   col=gray(1:8 / 8), ylab="", xlab="", axes=FALSE )
-#' text( x=2, y=1:8-0.5, lbl,
-#'   col=contrastColor(gray(1:8 / 8)))
-#' 
-#' # and not so fine, but still ok, for colors
-#' par(mfrow=c(1,2))
-#' plotArea( y=matrix(rep(1, times=3, each=12), ncol=12), x=1:3,
-#'   col=rainbow(12), ylab="", xlab="", axes=FALSE, main="method = Glynn" )
-#' text( x=2, y=1:12-0.5, lbl,
-#'   col=contrastColor(rainbow(12)))
-#' 
-#' plotArea( y=matrix(rep(1, times=3, each=12), ncol=12), x=1:3,
-#'   col=rainbow(12), ylab="", xlab="", axes=FALSE, main="method = Sonego" )
-#' text( x=2, y=1:12-0.5, lbl,
-#'   col=contrastColor(rainbow(12), method="sonego"))
-#' 
-#' par(op)
-#' 
-
-
+  
 #' @export
-contrastColor <- function(col, white="white", black="black", 
-                          method=c("glynn","sonego")) {
+contrastColor <- function(col,
+                          light = "white",
+                          dark = "black") {
   
-  switch( match.arg( arg=method, choices=c("glynn","sonego") )
-          , "glynn" = {
-            # efg, Stowers Institute for Medical Research
-            # efg's Research Notes:
-            #   http://research.stowers-institute.org/efg/R/Color/Chart
-            #
-            # 6 July 2004.  Modified 23 May 2005.
-            
-            # For a given col, define a text col that will have good contrast.
-            #   Examples:
-            #     > GetTextContrastcol("white")
-            #      "black"
-            #     > GetTextContrastcol("black")
-            #      "white"
-            #     > GetTextContrastcol("red")
-            #      "white"
-            #     > GetTextContrastcol("yellow")
-            #      "black"
-            vx <- rep(white, length(col))
-            vx[ apply(col2rgb(col), 2, mean) > 127 ] <- black
-            
-          }
-          , "sonego" = {
-            # another idea from Paolo Sonego in OneRTipaDay:
-            L <- c(0.2, 0.6, 0) %*% col2rgb(col) / 255
-            vx <- ifelse(L >= 0.2, black, white)
-          }
-  )
+  ## --- convert colors to RGB (0-255) ---
+  rgb <- col2rgb(col) / 255
   
-  return(vx)
+  ## --- sRGB -> linear RGB (gamma correction) ---
+  to_linear <- function(c) {
+    ifelse(c <= 0.04045,
+           c / 12.92,
+           ((c + 0.055) / 1.055)^2.4)
+  }
   
+  R <- to_linear(rgb[1, ])
+  G <- to_linear(rgb[2, ])
+  B <- to_linear(rgb[3, ])
+  
+  ## --- relative luminance ---
+  L_bg <- 0.2126 * R + 0.7152 * G + 0.0722 * B
+  
+  ## --- luminance of candidate text colors ---
+  lum <- function(color) {
+    rgb <- col2rgb(color) / 255
+    R <- to_linear(rgb[1, ])
+    G <- to_linear(rgb[2, ])
+    B <- to_linear(rgb[3, ])
+    0.2126 * R + 0.7152 * G + 0.0722 * B
+  }
+  
+  L_light <- lum(light)
+  L_dark  <- lum(dark)
+  
+  ## --- contrast ratio function ---
+  contrast_ratio <- function(L1, L2) {
+    (pmax(L1, L2) + 0.05) / (pmin(L1, L2) + 0.05)
+  }
+  
+  ## --- compute contrast ---
+  CR_light <- contrast_ratio(L_bg, L_light)
+  CR_dark  <- contrast_ratio(L_bg, L_dark)
+  
+  ## --- choose better contrast ---
+  out <- ifelse(CR_light > CR_dark, light, dark)
+  
+  return(out)
 }
-
 

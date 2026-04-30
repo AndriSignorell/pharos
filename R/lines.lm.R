@@ -14,7 +14,7 @@
 #' 
 #' @param x linear model object as result from lm(y~x).
 #' @param col linecolor of the line. Default is the color returned by
-#' \code{Pal()[1]}. 
+#' \code{pal()[1]}. 
 #' @param lwd line width of the line. %% ~~Describe \code{lwd} here~~
 #' @param lty line type of the line. %% ~~Describe \code{lwd} here~~
 #' @param type character indicating the type of plotting; actually any of the
@@ -65,7 +65,7 @@
 #' @rdname linesLm
 #' @method lines lm
 #' @export
-lines.lm <- function (x, col = Pal()[1], lwd = 2, lty = "solid",
+lines.lm <- function (x, col = pal()[1], lwd = 2, lty = "solid",
                       type = "l", n = 100, conf.level = 0.95, args.cband = NULL,
                       pred.level = NA, args.pband = NULL, xpred=NULL, ...) {
   
@@ -78,7 +78,7 @@ lines.lm <- function (x, col = Pal()[1], lwd = 2, lty = "solid",
 #' @rdname linesLm
 #' @method lines lmlog
 #' @export
-lines.lmlog <- function (x, col = Pal()[1], lwd = 2, lty = "solid",
+lines.lmlog <- function (x, col = pal()[1], lwd = 2, lty = "solid",
                          type = "l", n = 100, conf.level = 0.95, args.cband = NULL,
                          pred.level = NA, args.pband = NULL, ...) {
   
@@ -160,7 +160,7 @@ lines.lmlog <- function (x, col = Pal()[1], lwd = 2, lty = "solid",
 }
 
 
-.drawTrendLine <- function(z, col = Pal()[1], lwd = 2, lty = "solid", type = "l", 
+.drawTrendLine <- function(z, col = pal()[1], lwd = 2, lty = "solid", type = "l", 
                            args.cband = NULL,  args.pband = NULL) {
   
   # this draws a trendline in an existing plot

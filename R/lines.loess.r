@@ -8,7 +8,7 @@
 #' 
 #' @aliases lines.loess 
 #' @param x the loess object to be plotted.
-#' @param col linecolor of the smoother. Default is DescTools's \code{col1}. 
+#' @param col linecolor of the smoother. Default is DescToolsX's \code{col1}. 
 #' @param lwd line width of the smoother.
 #' @param lty line type of the smoother. 
 #' @param type type of plot, defaults to \code{"l"}. 
@@ -49,7 +49,7 @@
 
 #' @method lines loess
 #' @export
-lines.loess <- function(x, col = Pal()[1], lwd = 2, lty = "solid", type = "l",  n = 100
+lines.loess <- function(x, col = pal()[1], lwd = 2, lty = "solid", type = "l",  n = 100
                         , conf.level = 0.95, args.band = NULL, ...){
   
   newx <- seq(from = min(x$x, na.rm=TRUE), to = max(x$x, na.rm=TRUE), length = n)

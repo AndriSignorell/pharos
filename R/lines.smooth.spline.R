@@ -10,7 +10,7 @@
 #' @inheritParams Formulas
 #' @param weights optional vector of weights of the same length as x; defaults to all 1.
 #' @param x the smooth.spline object to be plotted.
-#' @param col linecolor of the smoother. Default is DescTools's \code{col1}. 
+#' @param col linecolor of the smoother. Default is DescToolsX's \code{col1}. 
 #' @param lwd line width of the smoother.
 #' @param lty line type of the smoother. 
 #' @param type type of plot, defaults to \code{"l"}. 
@@ -88,7 +88,7 @@ smoothSpline.formula <- function(formula,
 
 #' @rdname splineCI
 #' @export
-lines.SmoothSpline <- function (x, col = Pal()[1], lwd = 2, lty = "solid",
+lines.SmoothSpline <- function (x, col = pal()[1], lwd = 2, lty = "solid",
                                 type = "l", conf.level = 0.95, args.band = NULL,
                                 ...) {
   # just pass on to lines
@@ -99,7 +99,7 @@ lines.SmoothSpline <- function (x, col = Pal()[1], lwd = 2, lty = "solid",
 
 #' @rdname splineCI
 #' @export
-lines.smooth.spline <- function (x, col = Pal()[1], lwd = 2, lty = "solid",
+lines.smooth.spline <- function (x, col = pal()[1], lwd = 2, lty = "solid",
                                  type = "l", conf.level = 0.95, args.band = NULL,
                                  ...) {
   

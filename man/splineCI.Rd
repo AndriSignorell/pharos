@@ -17,7 +17,7 @@ smoothSpline(x, ...)
 
 \method{lines}{SmoothSpline}(
   x,
-  col = Pal()[1],
+  col = pal()[1],
   lwd = 2,
   lty = "solid",
   type = "l",
@@ -28,7 +28,7 @@ smoothSpline(x, ...)
 
 \method{lines}{smooth.spline}(
   x,
-  col = Pal()[1],
+  col = pal()[1],
   lwd = 2,
   lty = "solid",
   type = "l",

@@ -112,7 +112,7 @@
 #'          args.colorLegend=NA)
 #' 
 #' m <- cor(mtcars)
-#' plotCor(m, col=Pal("RedWhiteBlue1", 100), border="grey",
+#' plotCor(m, col=pal("RedWhiteBlue1", 100), border="grey",
 #'          args.colorLegend=list(labels=format(seq(-1,1,.25), digits=2), frame="grey"))
 #' 
 #' # display only correlation with a value > 0.7
@@ -176,7 +176,7 @@ plotCor <- function(
     diag = TRUE, 
     
     # STYLE
-    col = colorRampPalette(c(Pal()[2], "white", Pal()[1]), space="rgb")(20),
+    col = colorRampPalette(c(pal()[2], "white", pal()[1]), space="rgb")(20),
     grid = TRUE,
     box = TRUE,
     
@@ -329,7 +329,7 @@ plotCor <- function(
 
 
 
-#' plotCor <- function(x, cols = colorRampPalette(c(Pal()[2], "white", Pal()[1]), space = "rgb")(20)
+#' plotCor <- function(x, cols = colorRampPalette(c(pal()[2], "white", Pal()[1]), space = "rgb")(20)
 #'                      , breaks = seq(-1, 1, length = length(cols)+1), border="grey", lwd=1
 #'                      , args.colorLegend = NULL, xaxt = par("xaxt"), yaxt = par("yaxt"), cex.axis = 0.8, las = 2
 #'                      , mar = c(3,8,8,8), mincor=0, main="", clust=FALSE, ...){

@@ -151,7 +151,7 @@ further respected.\cr \tab\cr
 \code{x}, but only with powers that are a multiple of 3. \cr
 \code{engabb}\verb{ } \tab engineering abbr.\verb{ } \tab same as
 \code{eng}, but replaces the exponential representation by codes, \cr
-\tab\tab e.g. \code{M} for mega (1e6). See \code{\link[DescTools]{d.prefix}}.\cr
+\tab\tab e.g. \code{M} for mega (1e6). \cr
 
 \code{\%} \tab percent \tab will divide the given number by 100 and append
 the \\%-sign (without a separator).\cr \tab\cr \code{p} \tab p-value \tab

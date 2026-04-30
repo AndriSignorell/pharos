@@ -80,7 +80,7 @@ N <- 20
 area <- rlnorm(N)
 
 plotTreemap(x=sort(area, decreasing=TRUE), labels=letters[1:20], 
-            col=Pal("RedToBlack", 20))
+            col=pal("RedToBlack", 20))
 
 
 grp <- sample(x=1:3, size=20, replace=TRUE, prob=c(0.2,0.3,0.5))
@@ -109,7 +109,7 @@ boxedText(x=mid$grp.x, y=mid$grp.y, labels=LETTERS[1:3],
 
 }
 \seealso{
-\code{\link[DescTools]{PlotCirc}}, \code{\link{mosaicplot}},
+\code{\link{plotCirc}}, \code{\link{mosaicplot}},
 \code{\link{barplot}}
 
 Other topic.graphics: 
@@ -119,12 +119,7 @@ Other topic.graphics:
 \code{\link{canvas}()},
 \code{\link{colorLegend}()},
 \code{\link{errBars}()},
-\code{\link{plot.Desc.factor}()},
-\code{\link{plot.Desc.logical}()},
-\code{\link{plot.Desc.table}()},
-\code{\link{plot.Desc.ts}()},
 \code{\link{plot.Lc}()},
-\code{\link{plot.PostHocTest}()},
 \code{\link{plotArea}()},
 \code{\link{plotBag}()},
 \code{\link{plotBar}()},

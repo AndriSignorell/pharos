@@ -6,19 +6,20 @@
 isNA <- function(x) length(x) == 1 && is.na(x)
 
 
-.callIf.0 <- function(fun, arg) {
-  
-  if (isFALSE(arg) || is.null(arg) || isNA(arg))
-    return(invisible(NULL))
-  
-  if (isTRUE(arg))
-    return(fun())
-  
-  if (is.list(arg))
-    return(do.call(fun, arg))
-  
-  stop("Argument must be TRUE, FALSE, NA/NULL or a list.")
-}
+# old:
+# .callIf.0 <- function(fun, arg) {
+#   
+#   if (isFALSE(arg) || is.null(arg) || isNA(arg))
+#     return(invisible(NULL))
+#   
+#   if (isTRUE(arg))
+#     return(fun())
+#   
+#   if (is.list(arg))
+#     return(do.call(fun, arg))
+#   
+#   stop("Argument must be TRUE, FALSE, NA/NULL or a list.")
+# }
 
 
 .callIf <- function(fun, arg, defaults = NULL, forbidden = NULL, warn = TRUE) {

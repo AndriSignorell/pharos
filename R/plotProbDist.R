@@ -68,7 +68,7 @@ plotProbDist <- function(breaks, FUN, blab=NULL, main="", xlim=NULL,
   
   
   if(is.null(col))
-    col <- Pal("Helsana")[1:length(breaks)]
+    col <- pal("Helsana")[1:length(breaks)]
   
   curve(FUN, xlim=xlim,
         main=main,

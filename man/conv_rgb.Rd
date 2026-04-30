@@ -105,7 +105,6 @@ par(op)
 \code{\link{colToRgb}} and the other conversion functions
 
 Other topic.colors: 
-\code{\link{Pal}()},
 \code{\link{alpha}()},
 \code{\link{colToOpaque}()},
 \code{\link{contrastColor}()},

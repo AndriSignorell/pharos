@@ -127,7 +127,7 @@ plotDens2D <- function( x, y,
            image = {
              image(kde, 
                    xlab=xlab %||% "", ylab=ylab  %||% "", 
-                   col=rev(Pal(1, 100)),
+                   col=rev(pal(1, 100)),
                    main = main,
                    xlim=xlim %||% range(x), ylim=ylim  %||% range(y)) }
            )        

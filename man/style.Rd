@@ -127,7 +127,7 @@ we use the default \code{options()} approach: \code{options(num.sty =
 style(digits=1, big.mark=" "))} Defined styles in the options can be passed
 on to \code{fm()} simply by their name.
 
-Many report functions (e.g. \code{\link[DescTools]{TOne}()}) in \bold{DescTools} use
+Many report functions (e.g. \code{\link[DescToolsX]{tOne}()}) in \bold{DescToolsX} use
 three default formats for counts (named \code{"abs.sty"}), numeric values
 (\code{"num.sty"}) and percentages (\code{"per.sty"}).
 }

@@ -86,8 +86,8 @@ plotMosaic <- function (x, main = deparse(substitute(x)),
   
   canvas(xlim = c(0, 1), ylim = c(0, 1), asp = NA, mar = mar)
   
-  col1 <- Pal()[1]
-  col2 <- Pal()[2]
+  col1 <- pal()[1]
+  col2 <- pal()[2]
   
   oldpar <- par(xpd = TRUE)
   on.exit(par(oldpar))

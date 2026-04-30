@@ -86,7 +86,6 @@ text(x=x, y = 0.3, labels = names(findColor(x, cols=cols,
 \code{\link{findInterval}}
 
 Other topic.colors: 
-\code{\link{Pal}()},
 \code{\link{alpha}()},
 \code{\link{colToOpaque}()},
 \code{\link{contrastColor}()},

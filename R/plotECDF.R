@@ -48,7 +48,7 @@
 
 
 #' @export
-plotECDF <- function(x, breaks=NULL, col=Pal()[1],
+plotECDF <- function(x, breaks=NULL, col=pal()[1],
                      ylab="", lwd = 2, xlab = NULL, ...){
   
   if(is.null(breaks)){

@@ -1,6 +1,6 @@
 
 
-# internal getOption wrapper for DescTools options
+# internal getOption wrapper for DescToolsX options
 .getOption <- function(name, default = NULL) {
   getOption(paste0("DescToolsX.", name), default)
 }

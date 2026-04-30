@@ -21,10 +21,6 @@
 #' use %% \item{comp1 }{Description of 'comp1'} 
 #' @seealso \code{\link{text}}, \code{\link{boxedText}} 
 
-#' @family topic.coordinates
-#' @concept coordinates
-#' @concept positioning
-#' @concept plot-annotation
 
 #' @examples
 #' 
@@ -60,6 +56,11 @@
 #' 
 
 
+#' @family plot.utils
+#' @concept graphics
+#' @concept geometry
+#'
+#'
 #' @export
 abcCoords <- function(x="topleft", region="figure", 
                       cex=NULL, linset=0, ...) {

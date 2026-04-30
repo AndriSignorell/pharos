@@ -1,205 +1,263 @@
 
-#' Association Plot for Categorical Data
+#' Association Plot for Contingency Tables
 #'
-#' Visualizes the association between two categorical variables based on a
-#' contingency table. Cell-wise deviations from independence are represented
-#' by rectangles whose size and color reflect the magnitude and direction of
-#' Pearson residuals from a chi-squared test.
+#' Plots an association plot (Cohen-Friendly plot) for a two-dimensional
+#' contingency table. Cells are drawn with widths proportional to the square
+#' root of expected frequencies and heights proportional to Pearson residuals.
+#' Color encodes both the direction and strength of the association using a
+#' diverging palette.
 #'
-#' @param x a contingency table, matrix, or a pair of categorical vectors
-#'   coercible via \code{\link{table}}.
-#'
-#' @param main main title of the plot.
-#' @param xlab label for the x-axis.
-#' @param ylab label for the y-axis.
-#'
-#' @param xlim,ylim numeric vectors of length 2 specifying axis limits.
-#'
-#' @param margin character, either \code{"row"} or \code{"col"}.
-#'   Currently reserved for future extensions.
-#'
-#' @param reorder logical; if \code{TRUE}, rows and columns are reordered by
-#'   marginal frequencies (largest first) to improve visual structure.
-#'
-#' @param cutoff numeric; minimum absolute Pearson residual required for a
-#'   cell to be displayed. Cells with \code{|residual| < cutoff} are omitted.
-#'   A value of \code{2} corresponds approximately to statistical significance.
-#'
-#' @param col optional matrix of colors for the cells. If \code{NULL},
-#'   a diverging palette (blue–white–red) is used based on standardized
-#'   residuals.
-#'
-#' @param border color of rectangle borders. Defaults to \code{NA}.
-#'
-#' @param grid logical; if \code{TRUE}, a grid is added to the plot.
-#' @param box logical; if \code{TRUE}, a box is drawn around the plot.
-#'
-#' @param legend logical; if not \code{FALSE}, a simple legend is added.
-#'
-#' @param stamp optional annotation passed to the plotting framework.
-#'
-#' @param ... further graphical parameters passed to
-#'   \code{\link[graphics]{par}} via the internal framework.
+#' @param x a two-dimensional contingency table (\code{table} or \code{matrix}).
+#' @param col character vector of colors for the diverging palette. Default
+#'   uses \code{pal("RedWhiteBlue3", n = 100)} from the DescToolsX theme.
+#'   Negative residuals map to the first color, zero to the middle, positive
+#'   to the last.
+#' @param border the color of the border
+#' @param space numeric, fraction of average cell width/height used as gap
+#'   between cells. Default \code{0.3}.
+#' @param reorder logical. If \code{TRUE} (default), rows and columns are
+#'   reordered by the strength of the strongest association
+#'   (\code{max(|residual|)}) in descending order.
+#' @param labels logical or character. If \code{TRUE}, Pearson residuals are
+#'   printed inside each cell. If \code{FALSE} (default), no labels are shown.
+#'   A character format string (e.g. \code{"\%.1f"}) can also be passed for
+#'   custom formatting.
+#' @param cex.labels numeric, character expansion for cell labels.
+#'   Default \code{0.7}.
+#' @param main character, plot title.
+#' @param xlab character, x-axis label. Defaults to the first dimension name.
+#' @param ylab character, y-axis label. Defaults to the second dimension name.
+#' @param \dots further arguments passed to \code{\link[graphics]{rect}}.
 #'
 #' @details
-#' The plot is based on Pearson residuals from a chi-squared test of
-#' independence. For each cell:
+#' The plot is based on the association plot described in Cohen (1980) and
+#' Friendly (1992). Each cell \eqn{(i,j)} is represented by a rectangle:
 #' \itemize{
-#'   \item Rectangle \strong{area} is proportional to the magnitude of the residual.
-#'   \item Rectangle \strong{color} indicates direction (negative vs positive)
-#'   and strength of deviation.
+#'   \item \strong{width} proportional to \eqn{\sqrt{e_{ij}}}
+#'     (square root of expected frequency)
+#'   \item \strong{height} proportional to the Pearson residual
+#'     \eqn{d_{ij} = (f_{ij} - e_{ij}) / \sqrt{e_{ij}}}
 #' }
+#' A horizontal baseline at zero represents independence. Cells above the
+#' baseline indicate positive association, cells below negative association.
 #'
-#' This function provides a flexible alternative to
-#' \code{\link[graphics]{assocplot}}, with full control over styling and layout.
+#' Color encodes both direction and magnitude: the diverging palette runs from
+#' the negative color (strong negative residual) through white (no association)
+#' to the positive color (strong positive residual).
 #'
-#' @return Invisibly returns the matrix of Pearson residuals.
+#' @references
+#'   Cohen, A. (1980). On the graphical display of the significant components
+#'   of a two-way contingency table. \emph{Communications in Statistics —
+#'   Theory and Methods}, 9, 1025--1041.
 #'
-#' @seealso \code{\link[stats]{chisq.test}}, \code{\link[graphics]{assocplot}}
+#'   Friendly, M. (1992). Graphical methods for categorical data.
+#'   \emph{SAS User Group International Conference Proceedings}, 17, 190--200.
+#'
+#' @seealso \code{\link[graphics]{mosaicplot}}, \code{\link{plotMosaic}},
+#'   \code{\link[DescToolsX]{conf}}
+#'
+#' @family plot
+#' @concept contingency table association residuals categorical
 #'
 #' @examples
-#' \dontrun{
-#' tab <- table(UCBAdmissions)
+#' tab <- table(bedrock::d.pizza$driver, bedrock::d.pizza$area)
 #'
+#' # default
+#' plotAssoc(tab)
+#'
+#' # custom palette
+#' plotAssoc(tab, col = pal("RedWhiteGreen", n = 100))
+#'
+#' # with residual labels
+#' plotAssoc(tab, labels = TRUE)
+#'
+#' # no reordering
+#' plotAssoc(tab, reorder = FALSE)
+#' 
+#'  
 #' plotAssoc(tab,
-#'           main = "Association plot",
-#'           cutoff = 2,
-#'           reorder = TRUE)
-#' }
-#'
+#'           main = "Association Hair ~ Eye",
+#'           cutoff = 1,
+#'           xlab="Hair Color", ylab="Eye Color")
+#' 
+#' cols <- pal()[c(12, 8)]
+#' plotAssoc(tab,
+#'           main = "Association Hair ~ Eye",
+#'           cutoff = 1, 
+#'           col = fade(cols, 0.7), border = cols,
+#'           reorder = TRUE, cex.axis = 0.9, 
+#'           xlab = list(labels = "Hair Color ", 
+#'                     col = "#5B2A45", cex = 1.1), 
+#'           ylab = NA, labels = TRUE)
+#' 
 
 
 #' @export
-plotAssoc <- function(
-    
-  # DATA
-  x,
+plotAssoc <- function(x,
+                      col        = pal("RedWhiteBlue3", n = 100L),
+                      border     = NA,
+                      space      = 0.3,
+                      reorder    = TRUE,
+                      labels     = FALSE,
+                      cex.labels = 0.7,
+                      main       = NULL,
+                      xlab       = TRUE,
+                      ylab       = TRUE,
+                      ...) {
   
-  # LABELS
-  main = "",
-  xlab = "",
-  ylab = "",
-  
-  # AXES
-  xlim = NULL,
-  ylim = NULL,
-  
-  # STRUCTURE
-  margin = c("row", "col"),
-  reorder = FALSE,
-  cutoff = 0,
-  
-  # STYLE
-  col = NULL,
-  border = NA,
-  grid = FALSE,
-  box = TRUE,
-  
-  # FEATURES
-  legend = NA,
-  
-  # FRAMEWORK
-  stamp = NULL,
-  
-  ...
-) {
+  x <- revX(t(x), 2)
   
   .withGraphicsState({
     
     .applyParFromDots(...)
     
-    # --- Input --------------------------------------------------------------
-    if (!is.matrix(x) && !is.table(x))
-      x <- table(x)
+    # ── Layout / Margins ─────────────────────────────────────────
+    par(mar = c(1, 5.5, 7.5, 2))
     
-    tab <- as.matrix(x)
     
-    if (any(tab < 0))
-      stop("table must contain non-negative counts")
+    # ── Input checks ─────────────────────────────────────────────
+    if (length(dim(x)) != 2L)
+      stop("'x' must be a 2-dimensional contingency table")
     
-    margin <- match.arg(margin)
+    if (any(x < 0, na.rm = TRUE) || anyNA(x))
+      stop("all entries of 'x' must be nonnegative and finite")
     
-    # --- Reordering ---------------------------------------------------------
-    if (isTRUE(reorder)) {
+    if ((n <- sum(x)) == 0L)
+      stop("at least one entry of 'x' must be positive")
+    
+    x <- as.table(x)
+    
+    # ── Residuals ────────────────────────────────────────────────
+    f <- x
+    
+    e <- outer(rowSums(f), colSums(f)) / n
+    d <- (f - e) / sqrt(e)
+    s <- sqrt(e)
+    
+    # ── Reorder ──────────────────────────────────────────────────
+    if (reorder) {
+      row_ord <- order(apply(abs(d), 1L, max), decreasing = TRUE)
+      col_ord <- order(apply(abs(d), 2L, max), decreasing = FALSE)
       
-      # reorder rows by total frequency
-      r_ord <- order(rowSums(tab), decreasing = TRUE)
-      c_ord <- order(colSums(tab), decreasing = TRUE)
-      
-      tab <- tab[r_ord, c_ord, drop = FALSE]
+      f <- f[row_ord, col_ord, drop = FALSE]
+      e <- e[row_ord, col_ord, drop = FALSE]
+      d <- d[row_ord, col_ord, drop = FALSE]
+      s <- s[row_ord, col_ord, drop = FALSE]
     }
     
-    # --- Residuals ----------------------------------------------------------
-    rs <- suppressWarnings(chisq.test(tab)$residuals)
+    # ── Layout geometry ──────────────────────────────────────────
+    x.w     <- apply(s, 1L, max)
+    y.h     <- apply(d, 2L, max) - apply(d, 2L, min)
+    x.delta <- mean(x.w) * space
+    y.delta <- mean(y.h) * space
     
-    # --- Coordinates --------------------------------------------------------
-    nr <- nrow(tab)
-    nc <- ncol(tab)
+    xlim <- c(0, sum(x.w) + length(x.w) * x.delta)
+    ylim <- c(0, sum(y.h) + length(y.h) * y.delta)
     
-    xpos <- seq_len(nc)
-    ypos <- seq_len(nr)
+    # ── Colors ───────────────────────────────────────────────────
+    d_abs_max <- max(abs(d), na.rm = TRUE)
+    if (d_abs_max == 0) d_abs_max <- 1
     
-    plot(NA,
-         xlim = c(0.5, nc + 0.5),
-         ylim = c(0.5, nr + 0.5),
-         xaxt = "n",
-         yaxt = "n",
-         xlab = xlab,
-         ylab = ylab,
-         main = main)
+    npal <- length(col)
+    mid  <- (npal + 1L) / 2
     
-    # --- Colors -------------------------------------------------------------
-    if (is.null(col)) {
-      pal <- colorRampPalette(c("#2C7BB6", "#F7F7F7", "#D7191C"))
-      z   <- rs / max(abs(rs), na.rm = TRUE)
-      cols <- pal(100)[ceiling((z + 1) / 2 * 100)]
-      cols <- matrix(cols, nrow = nr)
-    } else {
-      cols <- col
+    .cellCol <- function(resid) {
+      idx <- round(mid + resid / d_abs_max * (mid - 1))
+      idx <- pmax(1L, pmin(npal, idx))
+      col[idx]
     }
+
+    border <-  rep(border, 2)
+    .bordCol <- function(resid) {
+      if(resid < 0) 
+        border[1]
+      else 
+        border[2]
+    }
+        
+    # ── Plot ─────────────────────────────────────────────────────
+    plot.new()
+    plot.window(xlim, ylim)
     
-    # --- Draw rectangles ----------------------------------------------------
-    max_size <- max(sqrt(abs(rs)), na.rm = TRUE)
+    x.r <- cumsum(x.w + x.delta)
+    x.m <- (c(0, head(x.r, -1)) + x.r) / 2
     
-    for (i in seq_len(nr)) {
-      for (j in seq_len(nc)) {
+    y.u <- cumsum(y.h + y.delta)
+    y.m <- y.u - apply(pmax(d, 0), 2L, max) - y.delta / 2
+    
+    # ── Draw rectangles ──────────────────────────────────────────
+    for (i in seq_len(nrow(f))) {
+      for (j in seq_len(ncol(f))) {
         
-        val <- rs[i, j]
+        rect(
+          x.m[i] - s[i, j] / 2,
+          y.m[j],
+          x.m[i] + s[i, j] / 2,
+          y.m[j] + d[i, j],
+          col    = .cellCol(d[i, j]),
+          border = .bordCol(d[i, j])
+        )
         
-        # --- Cutoff (NEW) ---------------------------------------------------
-        if (abs(val) < cutoff)
-          next
-        
-        size <- sqrt(abs(val)) / max_size
-        
-        w <- 0.4 * size
-        h <- 0.4 * size
-        
-        rect(j - w, i - h,
-             j + w, i + h,
-             col = cols[i, j],
-             border = border)
+        if (!identical(labels, FALSE)) {
+          fmt <- if (is.character(labels)) labels else "%.1f"
+          
+          text(
+            x.m[i],
+            y.m[j] + d[i, j] / 2,
+            labels = sprintf(fmt, d[i, j]),
+            cex    = cex.labels,
+            col    = if (abs(d[i, j]) > d_abs_max * 0.6) "white" else "black"
+          )
+        }
       }
     }
     
-    # --- Axes ---------------------------------------------------------------
-    axis(1, at = xpos, labels = colnames(tab))
-    axis(2, at = ypos, labels = rownames(tab), las = 1)
+    # ── Axes (table-style) ───────────────────────────────────────
+    axis(3, at = x.m, labels = rownames(f), tick = FALSE, line = -0.5)
+    axis(2, at = y.m, labels = colnames(f), tick = FALSE, las = 1)
     
-    # --- Grid / Box ---------------------------------------------------------
-    .callIf(graphics::grid, grid)
-    if (isTRUE(box)) box()
+    abline(h = c(par("usr")[4], y.m), lty = 2, col = "grey60")
+
+    # ── Labels (table style) ─────────────────────────────────────
+    ndn <- function(x, i=1) names(dimnames(x))[i]
+     
+    # Title
+    title(main = main, line = 5)
     
-    # --- Legend (placeholder) ----------------------------------------------
-    if (!identical(legend, FALSE)) {
-      pal <- colorRampPalette(c("#2C7BB6", "#F7F7F7", "#D7191C"))
-      legend("topright",
-             legend = c("negative", "zero", "positive"),
-             fill = pal(3),
-             border = NA,
-             bty = "n")
+    # Column label (top-left)
+    if (is.character(xlab)){
+      names(dimnames(x))[1] <- xlab
+      xlab <- TRUE
     }
-    
-  }, stamp = stamp)
+    .callIf(text, arg=xlab,
+            defaults=list(
+              x = par("usr")[1],
+              y = max(y.m) + diff(range(y.m)) * 0.2,
+              labels = gettextf("%s ", ndn(x ) %||% "rows"),
+              col="brown",
+              adj = 1,   # aligned to the right!
+              font = 2, cex=1.2, xpd=NA
+            ))
+
+    # Row label (top-left)
+    if (is.character(ylab)){
+      names(dimnames(x))[2] <- ylab
+      ylab <- TRUE
+    }
+    .callIf(text, arg=ylab,
+            defaults=list(
+              x = par("usr")[1],
+              y = par("usr")[4] + 4*strheight("Mg", units = "user"),
+              labels = ndn(x, 2) %||% "columns",
+              col="brown",
+              adj = 0,   # aligned to the left!
+              font = 2, cex=1.2, xpd=NA
+            ))
+
+  })
+  
+  invisible(list(x=x.m, 
+                 y=y.m))
 }
+
 

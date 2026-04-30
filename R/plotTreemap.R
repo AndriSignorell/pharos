@@ -39,7 +39,7 @@
 #' @note
 #' Parts of the code contributed by Jeff Enos.
 #' 
-#' @seealso \code{\link[DescTools]{PlotCirc}}, \code{\link{mosaicplot}},
+#' @seealso \code{\link{plotCirc}}, \code{\link{mosaicplot}},
 #' \code{\link{barplot}}
 #' 
 #' @family topic.graphics
@@ -53,7 +53,7 @@
 #' area <- rlnorm(N)
 #' 
 #' plotTreemap(x=sort(area, decreasing=TRUE), labels=letters[1:20], 
-#'             col=Pal("RedToBlack", 20))
+#'             col=pal("RedToBlack", 20))
 #' 
 #' 
 #' grp <- sample(x=1:3, size=20, replace=TRUE, prob=c(0.2,0.3,0.5))

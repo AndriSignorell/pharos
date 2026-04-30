@@ -2,98 +2,121 @@
 % Please edit documentation in R/plotAssoc.R
 \name{plotAssoc}
 \alias{plotAssoc}
-\title{Association Plot for Categorical Data}
+\title{Association Plot for Contingency Tables}
 \usage{
 plotAssoc(
   x,
-  main = "",
-  xlab = "",
-  ylab = "",
-  xlim = NULL,
-  ylim = NULL,
-  margin = c("row", "col"),
-  reorder = FALSE,
-  cutoff = 0,
-  col = NULL,
+  col = pal("RedWhiteBlue3", n = 100L),
   border = NA,
-  grid = FALSE,
-  box = TRUE,
-  legend = NA,
-  stamp = NULL,
+  space = 0.3,
+  reorder = TRUE,
+  labels = FALSE,
+  cex.labels = 0.7,
+  main = NULL,
+  xlab = TRUE,
+  ylab = TRUE,
   ...
 )
 }
 \arguments{
-\item{x}{a contingency table, matrix, or a pair of categorical vectors
-coercible via \code{\link{table}}.}
+\item{x}{a two-dimensional contingency table (\code{table} or \code{matrix}).}
 
-\item{main}{main title of the plot.}
+\item{col}{character vector of colors for the diverging palette. Default
+uses \code{pal("RedWhiteBlue3", n = 100)} from the DescToolsX theme.
+Negative residuals map to the first color, zero to the middle, positive
+to the last.}
 
-\item{xlab}{label for the x-axis.}
+\item{border}{the color of the border}
 
-\item{ylab}{label for the y-axis.}
+\item{space}{numeric, fraction of average cell width/height used as gap
+between cells. Default \code{0.3}.}
 
-\item{xlim, ylim}{numeric vectors of length 2 specifying axis limits.}
+\item{reorder}{logical. If \code{TRUE} (default), rows and columns are
+reordered by the strength of the strongest association
+(\code{max(|residual|)}) in descending order.}
 
-\item{margin}{character, either \code{"row"} or \code{"col"}.
-Currently reserved for future extensions.}
+\item{labels}{logical or character. If \code{TRUE}, Pearson residuals are
+printed inside each cell. If \code{FALSE} (default), no labels are shown.
+A character format string (e.g. \code{"\%.1f"}) can also be passed for
+custom formatting.}
 
-\item{reorder}{logical; if \code{TRUE}, rows and columns are reordered by
-marginal frequencies (largest first) to improve visual structure.}
+\item{cex.labels}{numeric, character expansion for cell labels.
+Default \code{0.7}.}
 
-\item{cutoff}{numeric; minimum absolute Pearson residual required for a
-cell to be displayed. Cells with \code{|residual| < cutoff} are omitted.
-A value of \code{2} corresponds approximately to statistical significance.}
+\item{main}{character, plot title.}
 
-\item{col}{optional matrix of colors for the cells. If \code{NULL},
-a diverging palette (blue–white–red) is used based on standardized
-residuals.}
+\item{xlab}{character, x-axis label. Defaults to the first dimension name.}
 
-\item{border}{color of rectangle borders. Defaults to \code{NA}.}
+\item{ylab}{character, y-axis label. Defaults to the second dimension name.}
 
-\item{grid}{logical; if \code{TRUE}, a grid is added to the plot.}
-
-\item{box}{logical; if \code{TRUE}, a box is drawn around the plot.}
-
-\item{legend}{logical; if not \code{FALSE}, a simple legend is added.}
-
-\item{stamp}{optional annotation passed to the plotting framework.}
-
-\item{...}{further graphical parameters passed to
-\code{\link[graphics]{par}} via the internal framework.}
-}
-\value{
-Invisibly returns the matrix of Pearson residuals.
+\item{\dots}{further arguments passed to \code{\link[graphics]{rect}}.}
 }
 \description{
-Visualizes the association between two categorical variables based on a
-contingency table. Cell-wise deviations from independence are represented
-by rectangles whose size and color reflect the magnitude and direction of
-Pearson residuals from a chi-squared test.
+Plots an association plot (Cohen-Friendly plot) for a two-dimensional
+contingency table. Cells are drawn with widths proportional to the square
+root of expected frequencies and heights proportional to Pearson residuals.
+Color encodes both the direction and strength of the association using a
+diverging palette.
 }
 \details{
-The plot is based on Pearson residuals from a chi-squared test of
-independence. For each cell:
+The plot is based on the association plot described in Cohen (1980) and
+Friendly (1992). Each cell \eqn{(i,j)} is represented by a rectangle:
 \itemize{
-\item Rectangle \strong{area} is proportional to the magnitude of the residual.
-\item Rectangle \strong{color} indicates direction (negative vs positive)
-and strength of deviation.
+\item \strong{width} proportional to \eqn{\sqrt{e_{ij}}}
+(square root of expected frequency)
+\item \strong{height} proportional to the Pearson residual
+\eqn{d_{ij} = (f_{ij} - e_{ij}) / \sqrt{e_{ij}}}
 }
+A horizontal baseline at zero represents independence. Cells above the
+baseline indicate positive association, cells below negative association.
 
-This function provides a flexible alternative to
-\code{\link[graphics]{assocplot}}, with full control over styling and layout.
+Color encodes both direction and magnitude: the diverging palette runs from
+the negative color (strong negative residual) through white (no association)
+to the positive color (strong positive residual).
 }
 \examples{
-\dontrun{
-tab <- table(UCBAdmissions)
+tab <- table(bedrock::d.pizza$driver, bedrock::d.pizza$area)
 
+# default
+plotAssoc(tab)
+
+# custom palette
+plotAssoc(tab, col = pal("RedWhiteGreen", n = 100))
+
+# with residual labels
+plotAssoc(tab, labels = TRUE)
+
+# no reordering
+plotAssoc(tab, reorder = FALSE)
+
+ 
 plotAssoc(tab,
-          main = "Association plot",
-          cutoff = 2,
-          reorder = TRUE)
-}
+          main = "Association Hair ~ Eye",
+          cutoff = 1,
+          xlab="Hair Color", ylab="Eye Color")
 
+cols <- pal()[c(12, 8)]
+plotAssoc(tab,
+          main = "Association Hair ~ Eye",
+          cutoff = 1, 
+          col = fade(cols, 0.7), border = cols,
+          reorder = TRUE, cex.axis = 0.9, 
+          xlab = list(labels = "Hair Color ", 
+                    col = "#5B2A45", cex = 1.1), 
+          ylab = NA, labels = TRUE)
+
+}
+\references{
+Cohen, A. (1980). On the graphical display of the significant components
+of a two-way contingency table. \emph{Communications in Statistics —
+Theory and Methods}, 9, 1025--1041.
+
+Friendly, M. (1992). Graphical methods for categorical data.
+\emph{SAS User Group International Conference Proceedings}, 17, 190--200.
 }
 \seealso{
-\code{\link[stats]{chisq.test}}, \code{\link[graphics]{assocplot}}
+\code{\link[graphics]{mosaicplot}}, \code{\link{plotMosaic}},
+\code{\link[DescToolsX]{conf}}
 }
+\concept{contingency table association residuals categorical}
+\concept{plot}

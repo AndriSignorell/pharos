@@ -15,7 +15,7 @@ plotCor(
   mincor = 0,
   triangle = c("full", "upper", "lower"),
   diag = TRUE,
-  col = colorRampPalette(c(Pal()[2], "white", Pal()[1]), space = "rgb")(20),
+  col = colorRampPalette(c(pal()[2], "white", pal()[1]), space = "rgb")(20),
   grid = TRUE,
   box = TRUE,
   legend = TRUE,
@@ -131,7 +131,7 @@ plotCor(m, cols=colorRampPalette(c("red", "black", "green"), space = "rgb")(20),
          args.colorLegend=NA)
 
 m <- cor(mtcars)
-plotCor(m, col=Pal("RedWhiteBlue1", 100), border="grey",
+plotCor(m, col=pal("RedWhiteBlue1", 100), border="grey",
          args.colorLegend=list(labels=format(seq(-1,1,.25), digits=2), frame="grey"))
 
 # display only correlation with a value > 0.7
@@ -184,12 +184,7 @@ Other topic.graphics:
 \code{\link{canvas}()},
 \code{\link{colorLegend}()},
 \code{\link{errBars}()},
-\code{\link{plot.Desc.factor}()},
-\code{\link{plot.Desc.logical}()},
-\code{\link{plot.Desc.table}()},
-\code{\link{plot.Desc.ts}()},
 \code{\link{plot.Lc}()},
-\code{\link{plot.PostHocTest}()},
 \code{\link{plotArea}()},
 \code{\link{plotBag}()},
 \code{\link{plotBar}()},

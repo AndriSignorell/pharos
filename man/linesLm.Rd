@@ -7,7 +7,7 @@
 \usage{
 \method{lines}{lm}(
   x,
-  col = Pal()[1],
+  col = pal()[1],
   lwd = 2,
   lty = "solid",
   type = "l",
@@ -22,7 +22,7 @@
 
 \method{lines}{lmlog}(
   x,
-  col = Pal()[1],
+  col = pal()[1],
   lwd = 2,
   lty = "solid",
   type = "l",
@@ -38,7 +38,7 @@
 \item{x}{linear model object as result from lm(y~x).}
 
 \item{col}{linecolor of the line. Default is the color returned by
-\code{Pal()[1]}.}
+\code{pal()[1]}.}
 
 \item{lwd}{line width of the line. \%\% ~~Describe \code{lwd} here~~}
 

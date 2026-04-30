@@ -2,81 +2,70 @@
 % Please edit documentation in R/contrastColor.R
 \name{contrastColor}
 \alias{contrastColor}
-\title{Choose Textcolor Depending on Background Color}
+\title{Choose Optimal Text Color Based on WCAG Contrast}
 \usage{
-contrastColor(
-  col,
-  white = "white",
-  black = "black",
-  method = c("glynn", "sonego")
-)
+contrastColor(col, light = "white", dark = "black")
 }
 \arguments{
-\item{col}{vector of any of the three kind of R colors, i.e., either a color
-name (an element of \code{colors()}), a hexadecimal string of the form
-\code{"#rrggbb"} or \code{"#rrggbbaa"} (see \code{\link{rgb}}), or an
-integer i meaning \verb{\code{palette()[i]}}.  Non-string values
-are coerced to integer.}
+\item{col}{Vector of colors. Can be any valid R color specification:
+color names, hexadecimal strings (e.g. \code{"#RRGGBB"} or \code{"#RRGGBBAA"}),
+or palette indices.}
 
-\item{white}{the color for the dark backgrounds, default is \code{"white"}.}
+\item{light}{Color used for dark backgrounds (default: \code{"white"}).}
 
-\item{black}{the color for the bright backgrounds, default is \code{"black"}}
-
-\item{method}{defines the algorithm to be used. Can be one out of
-\code{"glynn"} or \code{"sonego"}. See details.}
+\item{dark}{Color used for light backgrounds (default: \code{"black"}).}
 }
 \value{
-a vector containing the contrast color (either black or white)
+A character vector of the same length as \code{col}, containing either
+\code{light} or \code{dark}, depending on which yields the higher contrast ratio.
 }
 \description{
-Text of a certain color when viewed against certain backgrounds can be hard
-to see. \code{contrastColor} returns either black or white depending on
-which has the better contrast.
+Computes the optimal text color (default: black or white) for a given
+background color based on the WCAG contrast ratio.
 }
 \details{
-A simple heuristic in defining a text color for a given background color, is
-to pick the one that is "farthest" away from "black" or "white". The way
-Glynn chooses to do this is to compute the color intensity, defined as the
-mean of the RGB triple, and pick "black" (intensity 0) for text color if the
-background intensity is greater than 127, or "white" (intensity 255) when
-the background intensity is less than or equal to 127.
-Sonego calculates
-\code{L <- c(0.2, 0.6, 0) \%*\% col2rgb(color)/255} and returns
-"black" if L >= 0.2 and "white" else.
+This function implements the official relative luminance definition for
+sRGB colors (including gamma correction) and selects the text color that
+maximizes the contrast ratio according to the Web Content Accessibility
+Guidelines (WCAG 2.1).
+
+Compared to simple heuristics (e.g., mean RGB), this approach is
+perceptually more accurate and suitable for accessibility-critical
+applications.
+
+The relative luminance is computed as:
+
+\deqn{L = 0.2126 R + 0.7152 G + 0.0722 B}
+
+where \eqn{R, G, B} are linearized sRGB components:
+
+\deqn{
+c_{lin} =
+\begin{cases}
+\frac{c}{12.92} & c \le 0.04045 \\
+\left(\frac{c + 0.055}{1.055}\right)^{2.4} & c > 0.04045
+\end{cases}
 }
-\note{
-Based on code of Earl F. Glynn, Stowers Institute for Medical Research, 2004
+
+The contrast ratio between two luminance values \eqn{L1} and \eqn{L2} is:
+
+\deqn{
+\frac{\max(L1, L2) + 0.05}{\min(L1, L2) + 0.05}
+}
+
+The function compares contrast ratios against \code{light} and \code{dark} and
+returns the better option.
 }
 \examples{
-op <- par(no.readonly = TRUE)
+cols <- c("black", "white", "red", "blue", "yellow", "#777777")
+contrastColor(cols)
 
-# define some labels
-lbl <- c("Butcher","Carpenter","Carter","Farmer","Hunter","Miller","Taylor")
-
-# works fine for grays
-plotArea( y=matrix(rep(1, times=3, each=8), ncol=8), x=1:3,
-  col=gray(1:8 / 8), ylab="", xlab="", axes=FALSE )
-text( x=2, y=1:8-0.5, lbl,
-  col=contrastColor(gray(1:8 / 8)))
-
-# and not so fine, but still ok, for colors
-par(mfrow=c(1,2))
-plotArea( y=matrix(rep(1, times=3, each=12), ncol=12), x=1:3,
-  col=rainbow(12), ylab="", xlab="", axes=FALSE, main="method = Glynn" )
-text( x=2, y=1:12-0.5, lbl,
-  col=contrastColor(rainbow(12)))
-
-plotArea( y=matrix(rep(1, times=3, each=12), ncol=12), x=1:3,
-  col=rainbow(12), ylab="", xlab="", axes=FALSE, main="method = Sonego" )
-text( x=2, y=1:12-0.5, lbl,
-  col=contrastColor(rainbow(12), method="sonego"))
-
-par(op)
+# custom text colors
+contrastColor(cols, light = "#FFFFFF", dark = "#222222")
 
 }
 \seealso{
 Other topic.colors: 
-\code{\link{Pal}()},
 \code{\link{alpha}()},
 \code{\link{colToOpaque}()},
 \code{\link{conv_cols}},
