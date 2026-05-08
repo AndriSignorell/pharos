@@ -55,10 +55,6 @@
 #' }
 #'
 #' 
-#' @family topic.graphics
-#' @concept base-graphics
-#' @concept plotting
-#' 
 #' @examples
 #' set.seed(1)
 #' x <- matrix(sample(1:10, 36, replace = TRUE), nrow = 6)
@@ -82,6 +78,11 @@
 #'
 
 
+#' @family plot.special
+#' @concept graphics
+#' @concept association-measures
+#'
+#'
 #' @export
 plotCirc <- function(
     
@@ -206,7 +207,7 @@ plotCirc <- function(
     idx <- seq(1, (nr + nc)*2, by = 2)
     pos <- polToCart(r = r.out + .2, theta = mid[idx])
     
-    .callIf(
+    bedrock::callIf(
       .drawLabels, 
       labels, 
       defaults=list(pos=pos, labels=rev(LETTERS[1:(nr + nc)]),

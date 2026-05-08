@@ -22,11 +22,6 @@
 #' probably best for avoiding this.
 #' @author Jim Lemon and Ben Bolker
 #' 
-#' @family topic.graphics
-#' @concept base-graphics
-#' @concept axis
-#' @concept plot-annotation
-#' 
 #' @examples
 #' 
 #' plot(3:10, main="Axis break test")
@@ -37,6 +32,10 @@
 #' 
 
 
+#' @family plot.annotation
+#' @concept graphics
+#'
+#'
 #' @export
 axisBreak <- function (axis = 1, breakpos = NULL, pos = NA, bgcol = "white",
                        breakcol = "black", style = "slash", brw = 0.02) {

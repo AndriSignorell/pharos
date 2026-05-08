@@ -118,37 +118,13 @@ points(c(12,18,28,40,65) + runif(n = 5)*15, y=unlist(ypos$ypos),
        cex=1.5, pch=15)
 }
 \seealso{
-Other topic.graphics: 
-\code{\link{axisBreak}()},
-\code{\link{barText}()},
-\code{\link{boxedText}()},
-\code{\link{canvas}()},
-\code{\link{colorLegend}()},
-\code{\link{errBars}()},
-\code{\link{plot.Lc}()},
-\code{\link{plotArea}()},
-\code{\link{plotBag}()},
+Other plot.univariate: 
 \code{\link{plotBar}()},
-\code{\link{plotBubble}()},
-\code{\link{plotCirc}()},
-\code{\link{plotCor}()},
-\code{\link{plotDens}()},
-\code{\link{plotDens2D}()},
-\code{\link{plotECDF}()},
-\code{\link{plotFdist}()},
-\code{\link{plotFun}()},
-\code{\link{plotLines}()},
-\code{\link{plotMiss}()},
-\code{\link{plotMosaic}()},
-\code{\link{plotProbDist}()},
-\code{\link{plotQQ}()},
-\code{\link{plotRidge}()},
-\code{\link{plotTernary}()},
-\code{\link{plotTimeSeries}()},
-\code{\link{plotTreemap}()},
-\code{\link{plotViolin}()},
-\code{\link{plotWeb}()}
+\code{\link{plotDensBox}()},
+\code{\link{plotPropCI}()},
+\code{\link{plotViolin}()}
 }
-\concept{base-graphics}
-\concept{plotting}
-\concept{topic.graphics}
+\concept{confidence-intervals}
+\concept{descriptive-statistics}
+\concept{graphics}
+\concept{plot.univariate}

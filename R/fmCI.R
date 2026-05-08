@@ -28,6 +28,11 @@
 #' 
 
 
+#' @family string.format
+#' @concept string-formatting
+#' @concept confidence-intervals
+#'
+#'
 #' @export  
 fmCI <- function(x, template=NULL, ...){
   

@@ -26,8 +26,14 @@ palNames("discrete")
 \seealso{
 \code{\link{pal}}
 
-Other color: 
-\code{\link{pal}()}
+Other topic.colors: 
+\code{\link{alpha}()},
+\code{\link{colToOpaque}()},
+\code{\link{contrastColor}()},
+\code{\link{conv_cols}},
+\code{\link{conv_rgb}},
+\code{\link{findColor}()}
 }
-\concept{color}
-\concept{color palette names}
+\concept{color-manipulation}
+\concept{graphics}
+\concept{topic.colors}

@@ -12,7 +12,7 @@ test_that("linScale rescales to [0,1] by default", {
 
 test_that("linScale works with custom range", {
   x <- matrix(1:10, ncol = 2)
-  res <- linScale(x, new_low = -1, new_high = 1)
+  res <- linScale(x, newLow = -1, newHigh = 1)
   
   expect_equal(apply(res, 2, min), c(-1, -1))
   expect_equal(apply(res, 2, max), c(1, 1))
@@ -55,9 +55,9 @@ test_that("linScale returns correct dimensions", {
   expect_equal(dim(res), dim(x))
 })
 
-test_that("linScale recycles new_low/new_high", {
+test_that("linScale recycles newLow/newHigh", {
   x <- matrix(1:10, ncol = 2)
-  res <- linScale(x, new_low = c(0, -1), new_high = c(1, 1))
+  res <- linScale(x, newLow = c(0, -1), newHigh = c(1, 1))
   
   expect_equal(apply(res, 2, min), c(0, -1))
   expect_equal(apply(res, 2, max), c(1, 1))

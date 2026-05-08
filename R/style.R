@@ -61,15 +61,15 @@
 #' @param na.form character, string specifying how \code{NA}s should be
 #' specially formatted.  If set to \code{NULL} (default) no special action will
 #' be taken.
-#' @param zero.form character, string specifying how zeros should be specially
+#' @param zeroForm character, string specifying how zeros should be specially
 #' formatted. Useful for pretty printing 'sparse' objects.  If set to
 #' \code{NULL} (default) no special action will be taken.
 #' @param fmt either a format string, allowing to flexibly define special
 #' formats or an object of class \code{style}, consisting of a list of
 #' \code{fdm} arguments. See Details.
-#' @param p_eps a numerical tolerance used mainly for formatting p values,
-#' those less than p_eps are formatted as "\verb{\code{< [p_eps]}}" (where '\verb{[p_eps]}'
-#' stands for \code{format(p_eps, digits))}.  Default is \code{0.001}.
+#' @param pThreshold a numerical tolerance used mainly for formatting p values,
+#' those less than pThreshold are formatted as "\verb{\code{< [pThreshold]}}" (where '\verb{[pThreshold]}'
+#' stands for \code{format(pThreshold, digits))}.  Default is \code{0.001}.
 #' @param width integer, the defined fixed width of the strings.
 #' @param align the character on whose position the strings will be aligned.
 #' Left alignment can be requested by setting \code{sep = "\\l"}, right
@@ -116,6 +116,11 @@
 #' 
 
 #' @rdname style
+#' @family string.format
+#' @concept string-formatting
+#' @concept graphics
+#'
+#'
 #' @export
 styles <- function(){
   
@@ -168,7 +173,7 @@ styles <- function(){
 #                 Style(fmt="%", digits=1))
 # pval.sty <- Coalesce(
 #                 Styles("pval"),
-#                 Style(fmt="pval", p_eps=3))
+#                 Style(fmt="pval", pThreshold=3))
 
 
 
@@ -176,8 +181,8 @@ styles <- function(){
 #' @export
 style <- function( x, digits = NULL, ldigits = NULL, sci = NULL
                    , big.mark=NULL, outdec = NULL
-                   , na.form = NULL, zero.form = NULL
-                   , fmt = NULL, p_eps = NULL
+                   , na.form = NULL, zeroForm = NULL
+                   , fmt = NULL, pThreshold = NULL
                    , width = NULL, align = NULL
                    , lang = NULL
                    , label = NULL

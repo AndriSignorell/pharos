@@ -101,40 +101,19 @@ abline(v=1983+1/12, lty=3)
 \code{\link{barplot}}, \code{\link{polygon}},
 \code{\link[areaplot]{areaplot}}
 
-Other topic.graphics: 
-\code{\link{axisBreak}()},
-\code{\link{barText}()},
-\code{\link{boxedText}()},
-\code{\link{canvas}()},
-\code{\link{colorLegend}()},
-\code{\link{errBars}()},
-\code{\link{plot.Lc}()},
-\code{\link{plotBag}()},
-\code{\link{plotBar}()},
-\code{\link{plotBubble}()},
+Other plot.special: 
+\code{\link{plotBinaryTree}()},
 \code{\link{plotCirc}()},
-\code{\link{plotCor}()},
-\code{\link{plotDens}()},
-\code{\link{plotDens2D}()},
-\code{\link{plotDot}()},
-\code{\link{plotECDF}()},
-\code{\link{plotFdist}()},
 \code{\link{plotFun}()},
-\code{\link{plotLines}()},
 \code{\link{plotMiss}()},
-\code{\link{plotMosaic}()},
-\code{\link{plotProbDist}()},
-\code{\link{plotQQ}()},
-\code{\link{plotRidge}()},
+\code{\link{plotPolar}()},
 \code{\link{plotTernary}()},
-\code{\link{plotTimeSeries}()},
 \code{\link{plotTreemap}()},
-\code{\link{plotViolin}()},
 \code{\link{plotWeb}()}
 }
 \author{
 Arni Magnusson \href{mailto:thisisarni@gmail.com}{thisisarni@gmail.com}
 }
-\concept{base-graphics}
-\concept{plotting}
-\concept{topic.graphics}
+\concept{frequency-analysis}
+\concept{graphics}
+\concept{plot.special}

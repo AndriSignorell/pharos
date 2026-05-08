@@ -61,6 +61,12 @@
 #'
 
 
+#' @family plot.bivariate
+#' @concept graphics
+#' @concept descriptive-statistics
+#' @concept table-manipulation
+#'
+#'
 #' @export
 plotHeatmap <- function(
     

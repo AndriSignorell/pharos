@@ -14,7 +14,7 @@
 #' visually accurate circles.
 #'
 #' Graphical elements such as grids are controlled via the unified plot
-#' design system using \code{.callIf()} and \code{.theme()}.
+#' design system using \code{bedrock::callIf()} and \code{.theme()}.
 #'
 #' @param x Numeric vector of x positions.
 #' @param y Numeric vector of y positions.
@@ -165,7 +165,7 @@ plotBubble.default <- function(
     
     # --- grid --------------------------------------------------
 
-    .callIf(graphics::grid, grid,
+    bedrock::callIf(graphics::grid, grid,
             defaults = th$grid[!startsWith(names(th$grid), "group.")])  
     
     # --- aspect correction -------------------------------------

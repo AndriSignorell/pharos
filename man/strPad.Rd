@@ -38,25 +38,15 @@ strPad("My string", 25, "XoX", "center")
 
 }
 \seealso{
-Other topic.text: 
+Other string.format: 
+\code{\link{fm}()},
+\code{\link{fmCI}()},
+\code{\link{lineSep}()},
 \code{\link{strAbbr}()},
 \code{\link{strAlign}()},
-\code{\link{strCap}()},
-\code{\link{strChop}()},
-\code{\link{strCountW}()},
-\code{\link{strDist}()},
-\code{\link{strExtract}()},
-\code{\link{strExtractBetween}()},
-\code{\link{strIsNumeric}()},
-\code{\link{strLeftRight}},
-\code{\link{strPos}()},
-\code{\link{strRev}()},
-\code{\link{strSpell}()},
-\code{\link{strSplit}()},
-\code{\link{strTrim}()},
 \code{\link{strTrunc}()},
-\code{\link{strVal}()}
+\code{\link{style}()}
 }
-\concept{formatting}
-\concept{string-processing}
-\concept{topic.text}
+\concept{string-formatting}
+\concept{string-manipulation}
+\concept{string.format}

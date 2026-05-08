@@ -162,7 +162,7 @@ plotRidge.default <- function(
     }
     
     # grid
-    .callIf(graphics::grid, grid,
+    bedrock::callIf(graphics::grid, grid,
             defaults = th$grid[!startsWith(names(th$grid), "group.")])  
     
     # ridges

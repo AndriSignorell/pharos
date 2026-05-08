@@ -31,9 +31,6 @@
 #' @seealso \code{\link{polygon}}, \code{\link{drawCircle}},
 #' \code{\link{drawArc}} 
 
-#' @family topic.geometry
-#' @concept geometric-shapes
-#' @concept primitives
 
 
 #' @examples
@@ -85,6 +82,11 @@
 
 
 
+#' @family plot.geometry
+#' @concept graphics
+#' @concept geometry
+#'
+#'
 #' @export
 drawRegPolygon <- function( x = 0, y = x, radius.x = 1, radius.y = radius.x, rot = 0, 
                             nv = 3,

@@ -60,25 +60,15 @@ strAlign(z, ".")
 \code{\link[stringi]{stri_sub}},
 \code{\link[stringi]{stri_trim_right}}
 
-Other topic.text: 
+Other string.format: 
+\code{\link{fm}()},
+\code{\link{fmCI}()},
+\code{\link{lineSep}()},
 \code{\link{strAbbr}()},
-\code{\link{strCap}()},
-\code{\link{strChop}()},
-\code{\link{strCountW}()},
-\code{\link{strDist}()},
-\code{\link{strExtract}()},
-\code{\link{strExtractBetween}()},
-\code{\link{strIsNumeric}()},
-\code{\link{strLeftRight}},
 \code{\link{strPad}()},
-\code{\link{strPos}()},
-\code{\link{strRev}()},
-\code{\link{strSpell}()},
-\code{\link{strSplit}()},
-\code{\link{strTrim}()},
 \code{\link{strTrunc}()},
-\code{\link{strVal}()}
+\code{\link{style}()}
 }
-\concept{string-processing}
-\concept{text-alignment}
-\concept{topic.text}
+\concept{graphics}
+\concept{string-formatting}
+\concept{string.format}

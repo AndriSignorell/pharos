@@ -34,9 +34,6 @@
 #' geometric design. A practical guide}, Acad. Press
 
 
-#' @family topic.geometry
-#' @concept geometric-shapes
-#' @concept parametric-curves
 
 
 #' @examples
@@ -49,6 +46,11 @@
 
 
 
+#' @family plot.geometry
+#' @concept graphics
+#' @concept geometry
+#'
+#'
 #' @export
 drawBezier <- function (x = 0, y = x, nv = 100,  col = par("col"), lty = par("lty")
                         , lwd = par("lwd"), plot = TRUE ) {

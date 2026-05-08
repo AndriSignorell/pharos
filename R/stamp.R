@@ -31,6 +31,11 @@
 
 
 
+#' @family plot.annotation
+#' @concept graphics
+#' @concept date-handling
+#'
+#'
 #' @export
 stamp <- function(txt = NULL, las = NULL, cex = 0.6, col="grey40") {
   

@@ -48,10 +48,6 @@
 #' 
 #' @seealso \code{\link{legend}}, \code{\link{findColor}}
 
-#' @family topic.graphics
-#' @concept base-graphics
-#' @concept legend
-#' @concept color-manipulation
 
 #' 
 #' @examples
@@ -89,6 +85,11 @@
 #' 
 
 
+#' @family plot.annotation
+#' @concept graphics
+#' @concept color-manipulation
+#'
+#'
 #' @export
 colorLegend <- function( x, y=NULL, cols=rev(heat.colors(100)), labels=NULL
                          , width=NULL, height=NULL, horiz=FALSE

@@ -60,6 +60,11 @@
 #'
 
 
+#' @family plot.geometry
+#' @concept graphics
+#' @concept geometry
+#'
+#'
 #' @export
 polarGrid <- function(nr = NULL, ntheta = NULL, 
                       col = "lightgray",

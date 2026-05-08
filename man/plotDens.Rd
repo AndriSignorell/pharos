@@ -84,7 +84,7 @@ If \code{type = NULL}, the function attempts to infer the appropriate mode:
 }
 
 Graphical elements such as grids are controlled via the unified plot
-design system using \code{.callIf()} and \code{.theme()}.
+design system using \code{bedrock::callIf()} and \code{.theme()}.
 }
 \examples{
 set.seed(1)
@@ -103,35 +103,10 @@ plotDens(y ~ x | g)
 \code{\link[stats]{density}}, \code{\link[graphics]{cdplot}}
 
 Other topic.graphics: 
-\code{\link{axisBreak}()},
-\code{\link{barText}()},
-\code{\link{boxedText}()},
-\code{\link{canvas}()},
-\code{\link{colorLegend}()},
-\code{\link{errBars}()},
-\code{\link{plot.Lc}()},
-\code{\link{plotArea}()},
-\code{\link{plotBag}()},
 \code{\link{plotBar}()},
 \code{\link{plotBubble}()},
-\code{\link{plotCirc}()},
-\code{\link{plotCor}()},
 \code{\link{plotDens2D}()},
-\code{\link{plotDot}()},
-\code{\link{plotECDF}()},
-\code{\link{plotFdist}()},
-\code{\link{plotFun}()},
-\code{\link{plotLines}()},
-\code{\link{plotMiss}()},
-\code{\link{plotMosaic}()},
-\code{\link{plotProbDist}()},
-\code{\link{plotQQ}()},
-\code{\link{plotRidge}()},
-\code{\link{plotTernary}()},
-\code{\link{plotTimeSeries}()},
-\code{\link{plotTreemap}()},
-\code{\link{plotViolin}()},
-\code{\link{plotWeb}()}
+\code{\link{plotRidge}()}
 }
 \concept{base-graphics}
 \concept{plotting}

@@ -48,11 +48,6 @@
 #' 
 #' @seealso \code{\link{boxedText}} 
 #' 
-#' @family topic.graphics
-#' @concept base-graphics
-#' @concept plot-annotation
-#' @concept text-annotation
-#' 
 #' @examples
 #' 
 #' # simple vector
@@ -78,6 +73,11 @@
 #' 
 #' 
 
+#' @family plot.annotation
+#' @concept graphics
+#' @concept string-formatting
+#'
+#'
 #' @export
 barText <- function(height, b, labels = height, beside = FALSE, horiz = FALSE,
                     cex = par("cex"),

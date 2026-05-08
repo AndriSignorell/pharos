@@ -15,9 +15,9 @@ fm(
   big.mark = NULL,
   outdec = NULL,
   na.form = NULL,
-  zero.form = NULL,
+  zeroForm = NULL,
   fmt = NULL,
-  p_eps = NULL,
+  pThreshold = NULL,
   width = NULL,
   align = NULL,
   lang = NULL,
@@ -56,7 +56,7 @@ provided, the default set as \code{OutDec} option is used.}
 specially formatted.  If set to \code{NULL} (default) no special action will
 be taken.}
 
-\item{zero.form}{character, string specifying how zeros should be specially
+\item{zeroForm}{character, string specifying how zeros should be specially
 formatted. Useful for pretty printing 'sparse' objects.  If set to
 \code{NULL} (default) no special action will be taken.}
 
@@ -64,9 +64,9 @@ formatted. Useful for pretty printing 'sparse' objects.  If set to
 formats or an object of class \code{style}, consisting of a list of
 \code{fm} arguments. See Details.}
 
-\item{p_eps}{a numerical tolerance used mainly for formatting p values,
-those less than p_eps are formatted as "\verb{\code{< [p_eps]}}" (where '\verb{[p_eps]}'
-stands for \code{format(p_eps, digits))}.  Default is \code{0.001}.}
+\item{pThreshold}{a numerical tolerance used mainly for formatting p values,
+those less than pThreshold are formatted as "\verb{\code{< [pThreshold]}}" (where '\verb{[pThreshold]}'
+stands for \code{format(pThreshold, digits))}.  Default is \code{0.001}.}
 
 \item{width}{integer, the defined fixed width of the strings.}
 
@@ -156,7 +156,7 @@ further respected.\cr \tab\cr
 \code{\%} \tab percent \tab will divide the given number by 100 and append
 the \\%-sign (without a separator).\cr \tab\cr \code{p} \tab p-value \tab
 will wrap the function \code{\link{format.pval}} and return a p-value
-format. \cr \tab \tab Use \code{p_eps} to define the threshold to e.g.
+format. \cr \tab \tab Use \code{pThreshold} to define the threshold to e.g.
 switch to a \code{ <0.001 } representation.\cr \tab\cr \code{frac} \tab
 fractions \tab will (try to) convert numbers to fractions. So 0.1 will be
 displayed as 1/10. \cr \tab\tab See \code{\link[MASS]{fractions}()}.\cr
@@ -225,5 +225,17 @@ fm(1200, digits=2, big.mark = ".", outdec=",")
 \code{\link{Sys.setlocale}},\cr \code{\link[DescToolsX]{weekday}},
 \code{\link[DescToolsX]{month}},
 \code{\link[DescToolsX]{setDescToolsXOption}}, \code{\link{style}}, \code{\link{styles}}
+
+Other string.format: 
+\code{\link{fmCI}()},
+\code{\link{lineSep}()},
+\code{\link{strAbbr}()},
+\code{\link{strAlign}()},
+\code{\link{strPad}()},
+\code{\link{strTrunc}()},
+\code{\link{style}()}
 }
+\concept{data-manipulation}
+\concept{string-formatting}
+\concept{string.format}
 \keyword{IO}

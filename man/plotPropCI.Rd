@@ -25,6 +25,8 @@ plotPropCI(
 
 \item{labels}{optional character vector of group labels}
 
+\item{glabels}{group labels, if more than 1 group}
+
 \item{main}{plot title}
 
 \item{xlab}{x-axis label}
@@ -61,3 +63,14 @@ plotPropCI(c(0.3, 0.6, 0.8),
            main = "Proportions only")
 
 }
+\seealso{
+Other plot.univariate: 
+\code{\link{plotBar}()},
+\code{\link{plotDensBox}()},
+\code{\link{plotDot}()},
+\code{\link{plotViolin}()}
+}
+\concept{confidence-intervals}
+\concept{descriptive-statistics}
+\concept{graphics}
+\concept{plot.univariate}

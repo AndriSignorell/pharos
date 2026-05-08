@@ -24,6 +24,11 @@
 #'
 
 
+#' @family string.format
+#' @concept string-formatting
+#' @concept graphics
+#'
+#'
 #' @export
 lineSep <- function(sep = .getOption("linesep")) {
   

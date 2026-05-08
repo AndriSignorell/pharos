@@ -51,10 +51,6 @@
 #' }
 #'
 #' 
-#' @family topic.graphics
-#' @concept base-graphics
-#' @concept plotting
-#' 
 #' @examples
 #' # simple dot plot
 #' plotDot(c(12, 18, 28, 40, 65), items = LETTERS[1:5])
@@ -89,6 +85,12 @@
 #'        cex=1.5, pch=15)
 
 
+#' @family plot.univariate
+#' @concept graphics
+#' @concept descriptive-statistics
+#' @concept confidence-intervals
+#'
+#'
 #' @export
 plotDot <- function(x, 
                     items = NULL,
@@ -198,7 +200,7 @@ plotDot <- function(x,
     # Grid
     # --------------------------------
 
-    .callIf(
+    bedrock::callIf(
       .drawDotGrid,
       grid,
       defaults = list(
@@ -254,7 +256,7 @@ plotDot <- function(x,
     }
     
     # draw box if box != FALSE || NA
-    .callIf(graphics::box, 
+    bedrock::callIf(graphics::box, 
             box,
             defaults=list(which="plot"))
     
@@ -313,7 +315,7 @@ plotDot <- function(x,
     )
     
     # points
-    .callIf(
+    bedrock::callIf(
       graphics::points,
       pch,
       defaults = list(

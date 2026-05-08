@@ -21,10 +21,12 @@
 #' # Unicode-safe
 #' strRev("äöü")
 #'
-#' @family topic.text
-#' @concept string-processing
-#'
 
+#' @family string.manipulation
+#' @concept string-manipulation
+#' @concept data-manipulation
+#'
+#'
 #' @export
 strRev <- function(x) {
   stringi::stri_reverse(x)

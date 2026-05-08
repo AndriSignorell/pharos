@@ -17,10 +17,6 @@
 #' @return a list of all the previous values of the parameters changed
 #' (returned invisibly)
 #' 
-#' @family topic.graphics
-#' @concept base-graphics
-#' @concept layout
-#' 
 #' @examples
 #' 
 #' canvas(7)
@@ -28,6 +24,11 @@
 #' 
  
 
+#' @family plot.geometry
+#' @concept graphics
+#' @concept geometry
+#'
+#'
 #' @export
 canvas <- function(xlim=NULL, ylim=xlim, main=NULL, 
                    asp=1, usrbg="white", ...){

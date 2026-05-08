@@ -39,6 +39,10 @@
 #'
 
 
+#' @family plot.utils
+#' @concept graphics
+#'
+#'
 #' @export
 mar <- function(bottom = NULL, left = NULL, top = NULL, right = NULL,
                 outer = FALSE) {

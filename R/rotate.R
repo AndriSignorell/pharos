@@ -20,9 +20,6 @@
 #' @seealso \code{\link{polygon}}, \code{\link{drawRegPolygon}},
 #' \code{\link{drawEllipse}}, \code{\link{drawArc}} 
 
-#' @family topic.coordinates
-#' @concept coordinates
-#' @concept transformations
 
 #' @examples
 #' op <- par(no.readonly = TRUE)
@@ -42,6 +39,11 @@
 #' 
 
 
+#' @family coordinate.transform
+#' @concept geometry
+#' @concept mathematics
+#'
+#'
 #' @export
 rotate <- function( x, y=NULL, mx = NULL, my = NULL, theta=pi/3, asp=1 ) {
   

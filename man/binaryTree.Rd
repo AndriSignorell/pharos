@@ -75,3 +75,17 @@ plotBinaryTree(round(cprob[bedrock::binaryTree(length(cprob))],2), horiz=TRUE, c
 text(c("sex","age","survived"), y=0, x=c(1,2,3)+1)
 
 }
+\seealso{
+Other plot.special: 
+\code{\link{plotArea}()},
+\code{\link{plotCirc}()},
+\code{\link{plotFun}()},
+\code{\link{plotMiss}()},
+\code{\link{plotPolar}()},
+\code{\link{plotTernary}()},
+\code{\link{plotTreemap}()},
+\code{\link{plotWeb}()}
+}
+\concept{data-structures}
+\concept{graphics}
+\concept{plot.special}

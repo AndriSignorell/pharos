@@ -1,64 +1,64 @@
 
-# internal utils
-
-# isNA <- function(x) identical(x, NA)
-# better, also for NA_real_, NA_integer_ etc.
-isNA <- function(x) length(x) == 1 && is.na(x)
-
-
-# old:
-# .callIf.0 <- function(fun, arg) {
+# # internal utils
+# 
+# # isNA <- function(x) identical(x, NA)
+# # better, also for NA_real_, NA_integer_ etc.
+# isNA <- function(x) length(x) == 1 && is.na(x)
+# 
+# 
+# # old:
+# # .callIf.0 <- function(fun, arg) {
+# #   
+# #   if (isFALSE(arg) || is.null(arg) || isNA(arg))
+# #     return(invisible(NULL))
+# #   
+# #   if (isTRUE(arg))
+# #     return(fun())
+# #   
+# #   if (is.list(arg))
+# #     return(do.call(fun, arg))
+# #   
+# #   stop("Argument must be TRUE, FALSE, NA/NULL or a list.")
+# # }
+# 
+# 
+# .callIf <- function(fun, arg, defaults = NULL, forbidden = NULL, warn = TRUE) {
 #   
 #   if (isFALSE(arg) || is.null(arg) || isNA(arg))
 #     return(invisible(NULL))
 #   
 #   if (isTRUE(arg))
-#     return(fun())
+#     args <- defaults %||% list()
 #   
-#   if (is.list(arg))
-#     return(do.call(fun, arg))
+#   else if (is.list(arg)) {
+#     
+#     if (!is.null(forbidden)) {
+#       
+#       bad <- intersect(names(arg), forbidden)
+#       
+#       if (length(bad)) {
+#         
+#         msg <- sprintf(
+#           "Ignoring forbidden argument(s): %s",
+#           paste(bad, collapse = ", ")
+#         )
+#         
+#         if (warn) warning(msg)
+#         
+#         arg[bad] <- NULL
+#       }
+#     }
+#     
+#     args <- if (is.null(defaults)) arg else modifyList(defaults, arg)
+#     
+#   } else {
+#     stop("Argument must be TRUE, FALSE, NA/NULL or a list.")
+#   }
 #   
-#   stop("Argument must be TRUE, FALSE, NA/NULL or a list.")
+#   do.call(fun, args)
+#   
 # }
-
-
-.callIf <- function(fun, arg, defaults = NULL, forbidden = NULL, warn = TRUE) {
-  
-  if (isFALSE(arg) || is.null(arg) || isNA(arg))
-    return(invisible(NULL))
-  
-  if (isTRUE(arg))
-    args <- defaults %||% list()
-  
-  else if (is.list(arg)) {
-    
-    if (!is.null(forbidden)) {
-      
-      bad <- intersect(names(arg), forbidden)
-      
-      if (length(bad)) {
-        
-        msg <- sprintf(
-          "Ignoring forbidden argument(s): %s",
-          paste(bad, collapse = ", ")
-        )
-        
-        if (warn) warning(msg)
-        
-        arg[bad] <- NULL
-      }
-    }
-    
-    args <- if (is.null(defaults)) arg else modifyList(defaults, arg)
-    
-  } else {
-    stop("Argument must be TRUE, FALSE, NA/NULL or a list.")
-  }
-  
-  do.call(fun, args)
-  
-}
-
+# 
 
 
 .fm_num <- function(x, digits){

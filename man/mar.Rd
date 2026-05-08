@@ -46,3 +46,15 @@ mar(bottom = 2, left = 2)
 mar(top = 1, outer = TRUE)
 
 }
+\seealso{
+Other plot.utils: 
+\code{\link{abcCoords}()},
+\code{\link{axTicks}()},
+\code{\link{lineToUser}()},
+\code{\link{lines.lm}()},
+\code{\link{setBackCol}()},
+\code{\link{splineCI}},
+\code{\link{spreadOut}()}
+}
+\concept{graphics}
+\concept{plot.utils}

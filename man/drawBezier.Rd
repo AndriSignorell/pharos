@@ -65,16 +65,17 @@ geometric design. A practical guide}, Acad. Press
 \code{\link{polygon}}, \code{\link{drawRegPolygon}},
 \code{\link{drawCircle}}, \code{\link{drawArc}}
 
-Other topic.geometry: 
+Other plot.geometry: 
+\code{\link{canvas}()},
 \code{\link{drawArc}()},
-\code{\link{drawBand}()},
 \code{\link{drawCircle}()},
 \code{\link{drawEllipse}()},
-\code{\link{drawRegPolygon}()}
+\code{\link{drawRegPolygon}()},
+\code{\link{polarGrid}()}
 }
 \author{
 Frank E Harrell Jr \href{mailto:f.harrell@vanderbilt.edu}{f.harrell@vanderbilt.edu}
 }
-\concept{geometric-shapes}
-\concept{parametric-curves}
-\concept{topic.geometry}
+\concept{geometry}
+\concept{graphics}
+\concept{plot.geometry}

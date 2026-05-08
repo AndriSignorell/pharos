@@ -39,6 +39,12 @@
 #'       col=c("deeppink4", "skyblue3"), density=c(20, 7))
 #' 
 
+#' @family plot.annotation
+#' @concept graphics
+#' @concept distributions
+#' @concept descriptive-statistics
+#'
+#'
 #' @export
 shade <- function(expr, col=par("fg"), breaks, density=10, n=101, xname = "x", ...) {
   

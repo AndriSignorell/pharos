@@ -88,11 +88,6 @@
 #' @seealso \code{\link{hist}}, \code{\link{boxplot}}, \code{\link{ecdf}},
 #' \code{\link{density}}, \code{\link{rug}}, \code{\link{layout}} 
 #' 
-#' @family topic.graphics
-#' @concept base-graphics
-#' @concept plotting
-#' 
-#' 
 #' @examples
 #' op <- par(no.readonly=TRUE)
 #' 
@@ -155,6 +150,12 @@
 
 
 
+#' @family plot.distribution
+#' @concept graphics
+#' @concept descriptive-statistics
+#' @concept frequency-analysis
+#'
+#'
 #' @export
 plotFdist <- function (x, main = deparse(substitute(x)), xlab = ""
                        , xlim = NULL
@@ -527,7 +528,7 @@ plotFdist <- function (x, main = deparse(substitute(x)), xlab = ""
     }
 
 
-  }, stamp=FALSE, reset_layout=TRUE)  # close .withGraphicsState
+  }, stamp=FALSE, resetLayout=TRUE)  # close .withGraphicsState
   
 }
 

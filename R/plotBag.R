@@ -9,7 +9,7 @@
 #' All graphical elements are controlled via an object-oriented interface:
 #' each element can be specified as \code{TRUE}, \code{FALSE}, or a
 #' \code{list(...)} of graphical parameters. Internally, this is handled
-#' via \code{.callIf()}.
+#' via \code{bedrock::callIf()}.
 #'
 #' @section Details:
 #' The halfspace (Tukey) depth is computed using a direct port of the
@@ -81,11 +81,6 @@
 #'     The bagplot: a bivariate boxplot, \emph{The American
 #'       Statistician}, vol. 53, no. 4, 382--387 
 #' 
-#' @family topic.graphics
-#' @concept base-graphics
-#' @concept plotting
-#' 
-#' 
 #' @examples
 #' set.seed(1)
 #' x <- cbind(rnorm(200), rnorm(200))
@@ -123,6 +118,12 @@
 #' plotBag(x, points = FALSE, median = FALSE)
 #'
 
+#' @family plot.bivariate
+#' @concept graphics
+#' @concept descriptive-statistics
+#' @concept robust-statistics
+#'
+#'
 #' @export
 plotBag <- function(
     
@@ -188,10 +189,10 @@ plotBag <- function(
          ylab = ylab)
     
     # --- grid ----------------------------------------------------
-    .callIf(graphics::grid, grid)
+    bedrock::callIf(graphics::grid, grid)
     
     # --- points --------------------------------------------------
-    .callIf(graphics::points, points,
+    bedrock::callIf(graphics::points, points,
             defaults = list(
               x = x[,1],
               y = x[,2],
@@ -202,7 +203,7 @@ plotBag <- function(
     
     # --- bag -----------------------------------------------------
     if (nrow(res$bag) >= 3) {
-      .callIf(graphics::polygon, bag,
+      bedrock::callIf(graphics::polygon, bag,
               defaults = list(
                 x = res$bag[,1],
                 y = res$bag[,2],
@@ -215,7 +216,7 @@ plotBag <- function(
     
     # --- loop ----------------------------------------------------
     if (nrow(res$loop) >= 3) {
-      .callIf(graphics::polygon, loop,
+      bedrock::callIf(graphics::polygon, loop,
               defaults = list(
                 x = res$loop[,1],
                 y = res$loop[,2],
@@ -229,7 +230,7 @@ plotBag <- function(
     
     # --- outliers ------------------------------------------------
     if (nrow(res$outliers) > 0) {
-      .callIf(graphics::points, out,
+      bedrock::callIf(graphics::points, out,
               defaults = list(
                 x = res$outliers[,1],
                 y = res$outliers[,2],
@@ -240,7 +241,7 @@ plotBag <- function(
     }
     
     # --- median --------------------------------------------------
-    .callIf(graphics::points, median,
+    bedrock::callIf(graphics::points, median,
             defaults = list(
               x = res$center[1],
               y = res$center[2],
@@ -252,7 +253,7 @@ plotBag <- function(
     )
     
     # --- box -----------------------------------------------------
-    .callIf(graphics::box, box)
+    bedrock::callIf(graphics::box, box)
     
   }, stamp = stamp)
   

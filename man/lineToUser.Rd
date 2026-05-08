@@ -31,12 +31,15 @@ lineToUser(line=2, side=4)
 \seealso{
 \code{\link{mtext}}
 
-Other topic.coordinates: 
+Other plot.utils: 
 \code{\link{abcCoords}()},
-\code{\link{conv_coord}},
-\code{\link{rotate}()},
-\code{\link{transformXY}()}
+\code{\link{axTicks}()},
+\code{\link{lines.lm}()},
+\code{\link{mar}()},
+\code{\link{setBackCol}()},
+\code{\link{splineCI}},
+\code{\link{spreadOut}()}
 }
-\concept{coordinates}
-\concept{topic.coordinates}
-\concept{transformations}
+\concept{geometry}
+\concept{graphics}
+\concept{plot.utils}

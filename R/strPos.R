@@ -19,9 +19,6 @@
 #' 
 #' @seealso \code{\link{strChop}}, \code{\link{regexpr}} 
 #' 
-#' @family topic.text
-#' @concept string-processing
-#' 
 #' @examples
 #' 
 #' strPos(x=rownames(mtcars), pattern="y")
@@ -32,6 +29,11 @@
 #' 
 
 
+#' @family string.manipulation
+#' @concept string-manipulation
+#' @concept data-inspection
+#'
+#'
 #' @export
 strPos <- function(x, pattern, pos = 1) {
   

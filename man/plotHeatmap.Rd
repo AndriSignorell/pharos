@@ -86,4 +86,16 @@ plotHeatmap(tab,
 }
 \seealso{
 \code{\link{plotAssoc}}, \code{\link[graphics]{image}}
+
+Other plot.bivariate: 
+\code{\link{plotAssoc}()},
+\code{\link{plotBag}()},
+\code{\link{plotCor}()},
+\code{\link{plotDens2D}()},
+\code{\link{plotHexbin}()},
+\code{\link{plotMosaic}()}
 }
+\concept{descriptive-statistics}
+\concept{graphics}
+\concept{plot.bivariate}
+\concept{table-manipulation}

@@ -112,6 +112,18 @@ par(op)
 }
 \seealso{
 \code{\link{lines}}, \code{\link{lines.loess}}, \code{\link{lm}}
+
+Other plot.utils: 
+\code{\link{abcCoords}()},
+\code{\link{axTicks}()},
+\code{\link{lineToUser}()},
+\code{\link{mar}()},
+\code{\link{setBackCol}()},
+\code{\link{splineCI}},
+\code{\link{spreadOut}()}
 }
+\concept{graphics}
+\concept{plot.utils}
+\concept{regression}
 \keyword{aplot}
 \keyword{math}

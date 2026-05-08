@@ -53,8 +53,6 @@
 #' Harold C. Doran (2010) \emph{MiscPsycho. An R Package for Miscellaneous
 #' Psychometric Analyses}
 
-#' @family topic.text
-#' @concept string-processing
 
 
 #' @examples
@@ -73,6 +71,11 @@
 
 
 
+#' @family string.manipulation
+#' @concept string-manipulation
+#' @concept mathematics
+#'
+#'
 #' @export
 strDist <- function (x, y, method = "levenshtein", mismatch = 1, gap = 1, ignore.case = FALSE){
   

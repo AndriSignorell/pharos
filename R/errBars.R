@@ -41,9 +41,6 @@
 #' @seealso \code{\link{arrows}}, \code{\link{lines.loess}} 
 
 
-#' @family topic.graphics
-#' @concept base-graphics
-#' @concept plot-annotation
 
 
 #' @examples
@@ -71,6 +68,12 @@
 
 
 
+#' @family plot.annotation
+#' @concept graphics
+#' @concept descriptive-statistics
+#' @concept confidence-intervals
+#'
+#'
 #' @export
 errBars <- function(from, to = NULL, pos = NULL, mid = NULL, horiz = FALSE, col = par("fg"), lty = par("lty"),
                     lwd = par("lwd"), code = 3, length=0.05,

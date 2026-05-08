@@ -12,7 +12,7 @@
 #' normalized with a warning.
 #'
 #' Graphical elements such as grids are controlled via the unified plot
-#' design system using \code{.callIf()} and \code{.theme()}.
+#' design system using \code{bedrock::callIf()} and \code{.theme()}.
 #'
 #' @param x A numeric vector, matrix, or data frame. If \code{y} and \code{z}
 #'   are provided, \code{x}, \code{y}, and \code{z} are combined into a matrix.
@@ -50,12 +50,13 @@
 #' plotTernary(M, lbl = c("A", "B", "C"))
 #'
 #' @seealso \code{\link{plotDens}}, \code{\link{plotRidge}}
-#' @family topic.graphics
-#' @concept base-graphics
-#' @concept plotting
+
+
+#' @family plot.special
+#' @concept graphics
+#' @concept geometry
 #'
-
-
+#'
 #' @export
 plotTernary <- function(
     
@@ -152,7 +153,7 @@ plotTernary <- function(
     
     # --- grid --------------------------------------------------
     
-    .callIf(function(col, lty, nx) {
+    bedrock::callIf(function(col, lty, nx) {
       
       d <- seq(0, 2 * sq3, length.out = nx + 1)
       x0 <- -sq3 + d

@@ -74,3 +74,14 @@ x2 <- factor(sample(letters, 200, TRUE))
 plotCatDist(x2, maxcats = 10)
 
 }
+\seealso{
+Other plot.distribution: 
+\code{\link{plotECDF}()},
+\code{\link{plotFdist}()},
+\code{\link{plotProbDist}()},
+\code{\link{plotQQ}()}
+}
+\concept{descriptive-statistics}
+\concept{factor-handling}
+\concept{graphics}
+\concept{plot.distribution}

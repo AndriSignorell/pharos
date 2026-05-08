@@ -19,15 +19,17 @@
 #' @note Rewritten based on ideas of M.Huerzeler
 #' @seealso \code{\link{ts}}
 #' 
-#' @family topic.graphics
-#' @concept base-graphics
-#' @concept plotting
-#' 
 #' @examples
 #' 
 #' plotTimeSeries(AirPassengers)
  
 
+#' @family plot.timeseries
+#' @concept graphics
+#' @concept time-series
+#' @concept descriptive-statistics
+#'
+#'
 #' @export
 plotTimeSeries <- function (x, lag.max = 10 * log10(length(x)), 
                             ylab = NULL,

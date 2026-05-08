@@ -13,9 +13,6 @@
 #' 
 #' @seealso \code{\link{mtext}} 
 
-#' @family topic.coordinates
-#' @concept coordinates
-#' @concept transformations
 
 
 #' @examples
@@ -25,6 +22,11 @@
 #' 
 
  
+#' @family plot.utils
+#' @concept graphics
+#' @concept geometry
+#'
+#'
 #' @export 
 lineToUser <- function(line, side) {
   

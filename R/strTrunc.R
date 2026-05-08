@@ -18,10 +18,6 @@
 #' @return The string(s) passed as \samp{x} now with a maximum length of
 #' \samp{maxlen} + 3 (for the ellipsis).
 #' 
-#' @family topic.text
-#' @concept string-processing
-#' @concept formatting
-#' 
 #' @examples
 #' 
 #' x <- c("this is short", "and this is a longer text", 
@@ -44,6 +40,11 @@
 
 
 
+#' @family string.format
+#' @concept string-formatting
+#' @concept string-manipulation
+#'
+#'
 #' @export
 strTrunc <- function(x, maxlen = 20, ellipsis = "...", wbound = FALSE) {
   

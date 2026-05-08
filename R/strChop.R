@@ -23,10 +23,6 @@
 #' @seealso \code{\link{strLeft}},
 #' \code{\link{substr}}
 
-#' @family topic.text
-#' @concept string-processing
-#' 
-#' 
 #' @examples
 #' 
 #' x <- paste(letters, collapse="")
@@ -40,6 +36,11 @@
 #' 
 
 
+#' @family string.manipulation
+#' @concept string-manipulation
+#' @concept data-manipulation
+#'
+#'
 #' @export
 strChop <- function(x, len = NULL, pos = NULL) {
   

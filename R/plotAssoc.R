@@ -56,9 +56,6 @@
 #' @seealso \code{\link[graphics]{mosaicplot}}, \code{\link{plotMosaic}},
 #'   \code{\link[DescToolsX]{conf}}
 #'
-#' @family plot
-#' @concept contingency table association residuals categorical
-#'
 #' @examples
 #' tab <- table(bedrock::d.pizza$driver, bedrock::d.pizza$area)
 #'
@@ -92,6 +89,12 @@
 #' 
 
 
+#' @family plot.bivariate
+#' @concept graphics
+#' @concept association-measures
+#' @concept table-manipulation
+#'
+#'
 #' @export
 plotAssoc <- function(x,
                       col        = pal("RedWhiteBlue3", n = 100L),
@@ -229,7 +232,7 @@ plotAssoc <- function(x,
       names(dimnames(x))[1] <- xlab
       xlab <- TRUE
     }
-    .callIf(text, arg=xlab,
+    bedrock::callIf(text, arg=xlab,
             defaults=list(
               x = par("usr")[1],
               y = max(y.m) + diff(range(y.m)) * 0.2,
@@ -244,7 +247,7 @@ plotAssoc <- function(x,
       names(dimnames(x))[2] <- ylab
       ylab <- TRUE
     }
-    .callIf(text, arg=ylab,
+    bedrock::callIf(text, arg=ylab,
             defaults=list(
               x = par("usr")[1],
               y = par("usr")[4] + 4*strheight("Mg", units = "user"),

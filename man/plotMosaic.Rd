@@ -71,37 +71,15 @@ tables. \emph{Journal of the American Statistical Association}, \bold{89},
 \seealso{
 \code{\link{mosaicplot}}
 
-Other topic.graphics: 
-\code{\link{axisBreak}()},
-\code{\link{barText}()},
-\code{\link{boxedText}()},
-\code{\link{canvas}()},
-\code{\link{colorLegend}()},
-\code{\link{errBars}()},
-\code{\link{plot.Lc}()},
-\code{\link{plotArea}()},
+Other plot.bivariate: 
+\code{\link{plotAssoc}()},
 \code{\link{plotBag}()},
-\code{\link{plotBar}()},
-\code{\link{plotBubble}()},
-\code{\link{plotCirc}()},
 \code{\link{plotCor}()},
-\code{\link{plotDens}()},
 \code{\link{plotDens2D}()},
-\code{\link{plotDot}()},
-\code{\link{plotECDF}()},
-\code{\link{plotFdist}()},
-\code{\link{plotFun}()},
-\code{\link{plotLines}()},
-\code{\link{plotMiss}()},
-\code{\link{plotProbDist}()},
-\code{\link{plotQQ}()},
-\code{\link{plotRidge}()},
-\code{\link{plotTernary}()},
-\code{\link{plotTimeSeries}()},
-\code{\link{plotTreemap}()},
-\code{\link{plotViolin}()},
-\code{\link{plotWeb}()}
+\code{\link{plotHeatmap}()},
+\code{\link{plotHexbin}()}
 }
-\concept{base-graphics}
-\concept{plotting}
-\concept{topic.graphics}
+\concept{association-measures}
+\concept{graphics}
+\concept{plot.bivariate}
+\concept{table-manipulation}

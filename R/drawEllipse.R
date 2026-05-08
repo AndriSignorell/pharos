@@ -30,9 +30,6 @@
 #' \code{\link{drawCircle}}, \code{\link{drawArc}} 
 #' 
 
-#' @family topic.geometry
-#' @concept geometric-shapes
-#' @concept primitives
 
 #' 
 #' @examples
@@ -58,6 +55,11 @@
 #' 
 
 
+#' @family plot.geometry
+#' @concept graphics
+#' @concept geometry
+#'
+#'
 #' @export
 drawEllipse <- function( x = 0, y = x, radius.x = 1, radius.y = 0.5, rot = 0, 
                          nv = 100, border = par("fg"), col = par("bg")

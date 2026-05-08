@@ -30,9 +30,6 @@
 #' @seealso \code{\link{drawCircle}}, \code{\link{polygon}} 
 
 
-#' @family topic.geometry
-#' @concept geometric-shapes
-#' @concept primitives
 
 
 
@@ -42,6 +39,11 @@
 #' drawArc(x = pi/2, y = 0, rx = 1, theta.1 = pi/4, theta.2 = 3*pi/4, col="red")
 #' 
 
+#' @family plot.geometry
+#' @concept graphics
+#' @concept geometry
+#'
+#'
 #' @export
 drawArc <- function (x = 0, y = x, rx = 1, ry = rx, theta.1 = 0,
                      theta.2 = 2*pi, nv = 100, col = par("col"), lty = par("lty"),

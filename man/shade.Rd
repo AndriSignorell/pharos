@@ -51,5 +51,19 @@ shade(dt(x, df=5), breaks=c(-6, qt(0.025, df=5), qt(0.975, df=5), 6),
 }
 \seealso{
 \code{\link{polygon}}, \code{\link{curve}}
+
+Other plot.annotation: 
+\code{\link{axisBreak}()},
+\code{\link{barText}()},
+\code{\link{boxedText}()},
+\code{\link{colorLegend}()},
+\code{\link{drawBand}()},
+\code{\link{errBars}()},
+\code{\link{stamp}()},
+\code{\link{titleRect}()}
 }
+\concept{descriptive-statistics}
+\concept{distributions}
+\concept{graphics}
+\concept{plot.annotation}
 \keyword{aplot}

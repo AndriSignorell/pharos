@@ -66,12 +66,13 @@ transformXY(m, scale = 0.5, theta = pi/6)
 \seealso{
 \code{\link{rotate}}
 
-Other topic.coordinates: 
-\code{\link{abcCoords}()},
+Other coordinate.transform: 
 \code{\link{conv_coord}},
-\code{\link{lineToUser}()},
+\code{\link{degToRad}()},
+\code{\link{linScale}()},
 \code{\link{rotate}()}
 }
-\concept{coordinates}
-\concept{topic.coordinates}
-\concept{transformations}
+\concept{coordinate.transform}
+\concept{data-manipulation}
+\concept{geometry}
+\concept{mathematics}

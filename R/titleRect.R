@@ -25,6 +25,11 @@
 #' titleRect("pressure")
 #' 
 
+#' @family plot.annotation
+#' @concept graphics
+#' @concept string-formatting
+#'
+#'
 #' @export
 titleRect <- function(label, bg = "grey", border=1, 
                       col="black", xjust=0.5, line=2, ...){

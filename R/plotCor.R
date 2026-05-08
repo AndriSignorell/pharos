@@ -80,11 +80,6 @@
 #'
 #' @seealso \code{\link[graphics]{image}}, \code{\link[stats]{cor}}
 #' 
-#' @family topic.graphics
-#' @concept base-graphics
-#' @concept plotting
-#' 
-#'
 #' @examples
 #' m <- cor(swiss)
 #'
@@ -156,6 +151,12 @@
 #' 
 
 
+#' @family plot.bivariate
+#' @concept graphics
+#' @concept correlation
+#' @concept descriptive-statistics
+#'
+#'
 #' @export
 plotCor <- function(
     x,
@@ -254,7 +255,7 @@ plotCor <- function(
         cex    = 0.8
       )
       
-      .callIf(.drawCorrText, text, defaults)
+      bedrock::callIf(.drawCorrText, text, defaults)
     }
     
     if(!isFALSE(xax))

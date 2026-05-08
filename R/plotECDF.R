@@ -32,10 +32,6 @@
 #' 
 #' @seealso \code{\link{plot.ecdf}}, \code{\link{plotFdist}} 
 #' 
-#' @family topic.graphics
-#' @concept base-graphics
-#' @concept plotting
-#' 
 #' @examples
 #' 
 #' plotECDF(faithful$eruptions)
@@ -47,6 +43,12 @@
 #' plotECDF(x, breaks=1000)
 
 
+#' @family plot.distribution
+#' @concept graphics
+#' @concept descriptive-statistics
+#' @concept nonparametric
+#'
+#'
 #' @export
 plotECDF <- function(x, breaks=NULL, col=pal()[1],
                      ylab="", lwd = 2, xlab = NULL, ...){

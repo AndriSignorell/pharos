@@ -70,8 +70,10 @@ Other topic.colors:
 \code{\link{colToOpaque}()},
 \code{\link{conv_cols}},
 \code{\link{conv_rgb}},
-\code{\link{findColor}()}
+\code{\link{findColor}()},
+\code{\link{palNames}()}
 }
 \concept{color-manipulation}
-\concept{contrast}
+\concept{graphics}
+\concept{string-formatting}
 \concept{topic.colors}

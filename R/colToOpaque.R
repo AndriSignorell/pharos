@@ -21,9 +21,6 @@
 #' @seealso \code{\link{colToHex}}, \code{\link[bedrock]{decToHex}},
 #' \code{\link{rgbToHex}} 
 
-#' @family topic.colors
-#' @concept color-manipulation
-#' @concept color-conversion
 
 
 #' @examples
@@ -32,6 +29,11 @@
 #' barplot(c(1, 1.2, 1.3), col=cols, panel.first=abline(h=0.4, lwd=10, col="grey35"))
 
 
+#' @family topic.colors
+#' @concept color-manipulation
+#' @concept graphics
+#'
+#'
 #' @export
 colToOpaque <- function(col, alpha=NULL, bg=NULL){
   

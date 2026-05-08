@@ -39,6 +39,11 @@
 
 
 #' @rdname splineCI
+#' @family plot.utils
+#' @concept graphics
+#' @concept regression
+#'
+#'
 #' @export
 smoothSpline <- function(x, ...) {
   UseMethod("smoothSpline")

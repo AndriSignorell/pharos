@@ -66,9 +66,6 @@ convUnit(1, "ml", "l")
 }
 \seealso{
 \code{\link{unit}}
-
-Other topic.conversion: 
-\code{\link{degToRad}()}
 }
 \concept{symbolic-units}
 \concept{topic.conversion}

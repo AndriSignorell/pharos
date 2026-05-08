@@ -38,6 +38,11 @@
 #'
 
 
+#' @family plot.bivariate
+#' @concept graphics
+#' @concept descriptive-statistics
+#'
+#'
 #' @export
 plotHexbin <- function(x, y, bins = 30, ...) {
   

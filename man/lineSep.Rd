@@ -31,3 +31,16 @@ lineSep("-")
 lineSep(cli::col_red("="))
 
 }
+\seealso{
+Other string.format: 
+\code{\link{fm}()},
+\code{\link{fmCI}()},
+\code{\link{strAbbr}()},
+\code{\link{strAlign}()},
+\code{\link{strPad}()},
+\code{\link{strTrunc}()},
+\code{\link{style}()}
+}
+\concept{graphics}
+\concept{string-formatting}
+\concept{string.format}

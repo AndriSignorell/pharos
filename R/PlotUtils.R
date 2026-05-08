@@ -10,7 +10,7 @@
 
 
 .withGraphicsState <- function(expr, stamp = .getOption("stamp", NULL), 
-                               reset_layout = FALSE) {
+                               resetLayout = FALSE) {
   
   # nur "sichere" par-Parameter speichern
   keep <- c(
@@ -30,7 +30,7 @@
   on.exit({
     if (ok && !is.null(stamp))
       tryCatch(stamp(), error = function(e) NULL)
-    if (ok && reset_layout)
+    if (ok && resetLayout)
       tryCatch(layout(matrix(1)), error = function(e) NULL)
   }, add = TRUE)
   

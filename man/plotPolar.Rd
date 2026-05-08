@@ -66,3 +66,17 @@ theta <- seq(0, 2*pi, length.out = 10)
 plotPolar(r[1,], theta = theta, type = "h")
 
 }
+\seealso{
+Other plot.special: 
+\code{\link{plotArea}()},
+\code{\link{plotBinaryTree}()},
+\code{\link{plotCirc}()},
+\code{\link{plotFun}()},
+\code{\link{plotMiss}()},
+\code{\link{plotTernary}()},
+\code{\link{plotTreemap}()},
+\code{\link{plotWeb}()}
+}
+\concept{geometry}
+\concept{graphics}
+\concept{plot.special}

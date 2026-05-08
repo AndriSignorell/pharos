@@ -41,11 +41,12 @@
 #' # without uppercase prefix
 #' strSpell("ABC", upr = NA)
 #'
-#' @family topic.text
-#' @concept string-processing
+
+
+#' @family string.manipulation
+#' @concept string-manipulation
 #'
-
-
+#'
 #' @export
 strSpell <- function(x, upr = "CAP", type = c("NATO", "Morse")) {
   

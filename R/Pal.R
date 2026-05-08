@@ -107,15 +107,17 @@
 #' @return a character vector of palette names.
 #'
 #' @seealso \code{\link{pal}}
-#' @family color
-#' @concept color palette names
-#'
 #' @examples
 #' palNames()
 #' palNames("continuous")
 #' palNames("discrete")
 #'
 
+#' @family topic.colors
+#' @concept color-manipulation
+#' @concept graphics
+#'
+#'
 #' @export
 palNames <- function(type = c("all", "continuous", "discrete")) {
   type <- match.arg(type)

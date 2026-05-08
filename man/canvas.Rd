@@ -37,37 +37,14 @@ text(0, 0, "Hello world!", cex=5)
 
 }
 \seealso{
-Other topic.graphics: 
-\code{\link{axisBreak}()},
-\code{\link{barText}()},
-\code{\link{boxedText}()},
-\code{\link{colorLegend}()},
-\code{\link{errBars}()},
-\code{\link{plot.Lc}()},
-\code{\link{plotArea}()},
-\code{\link{plotBag}()},
-\code{\link{plotBar}()},
-\code{\link{plotBubble}()},
-\code{\link{plotCirc}()},
-\code{\link{plotCor}()},
-\code{\link{plotDens}()},
-\code{\link{plotDens2D}()},
-\code{\link{plotDot}()},
-\code{\link{plotECDF}()},
-\code{\link{plotFdist}()},
-\code{\link{plotFun}()},
-\code{\link{plotLines}()},
-\code{\link{plotMiss}()},
-\code{\link{plotMosaic}()},
-\code{\link{plotProbDist}()},
-\code{\link{plotQQ}()},
-\code{\link{plotRidge}()},
-\code{\link{plotTernary}()},
-\code{\link{plotTimeSeries}()},
-\code{\link{plotTreemap}()},
-\code{\link{plotViolin}()},
-\code{\link{plotWeb}()}
+Other plot.geometry: 
+\code{\link{drawArc}()},
+\code{\link{drawBezier}()},
+\code{\link{drawCircle}()},
+\code{\link{drawEllipse}()},
+\code{\link{drawRegPolygon}()},
+\code{\link{polarGrid}()}
 }
-\concept{base-graphics}
-\concept{layout}
-\concept{topic.graphics}
+\concept{geometry}
+\concept{graphics}
+\concept{plot.geometry}

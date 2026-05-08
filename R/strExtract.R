@@ -29,13 +29,14 @@
 #' # extract words
 #' strExtract("hello world", "\\w+")
 #'
-#' @family topic.text
-#' @concept string-processing
-#' @concept regular expressions
+
+
+
+#' @family string.manipulation
+#' @concept string-manipulation
+#' @concept data-manipulation
 #'
-
-
-
+#'
 #' @export
 strExtract <- function(x, pattern, ...) {
   

@@ -50,10 +50,6 @@
 #' }
 #'
 #' 
-#' @family topic.graphics
-#' @concept base-graphics
-#' @concept plotting
-#' 
 #' @examples
 #' m <- matrix(c(3,4,5,1,5,4,2,6,2), nrow = 3,
 #'             dimnames = list(
@@ -72,6 +68,11 @@
 #'
 
 
+#' @family plot.timeseries
+#' @concept graphics
+#' @concept time-series
+#'
+#'
 #' @export
 plotLines <- function(x, y, col=1:5, xlab = NULL,
                       ylab = NULL, xlim = NULL, ylim = NULL, 
@@ -109,7 +110,8 @@ plotLines <- function(x, y, col=1:5, xlab = NULL,
     last <- sort(setNames(as.vector(last), nm=rownames(last)))
     
 
-    if(!inDots(..., arg = "add", default=FALSE)){
+    add <- bedrock::getDotsArg(list(...), "add", FALSE)
+    if(!add){
       # do not draw axes, labels and grid when only lines have to be added
       matplot(x, y, type="n", las=1, xlim=xlim, ylim=ylim, xaxt="n", 
               yaxt=yaxt, main=main, xlab=xlab, ylab=ylab, cex = cex, ...)
@@ -120,7 +122,7 @@ plotLines <- function(x, y, col=1:5, xlab = NULL,
       else
         axis(side=1)
 
-      .callIf(graphics::grid, grid, 
+      bedrock::callIf(graphics::grid, grid, 
               defaults = list(
                 col   = "grey85",
                 lty   = 1,
@@ -155,7 +157,7 @@ plotLines <- function(x, y, col=1:5, xlab = NULL,
       pch.args$y <- y
     }
     
-    .callIf(matplot, pch, defaults = pch.args)
+    bedrock::callIf(matplot, pch, defaults = pch.args)
     
 
     
@@ -169,7 +171,7 @@ plotLines <- function(x, y, col=1:5, xlab = NULL,
       lty <- rep(lty, length.out=ncol(z))
       col <- rep(col, length.out=ncol(z))
 
-      .callIf(.legend, 
+      bedrock::callIf(.legend, 
               legend,
               defaults=list(
                   line   = c(1, 1) ,   

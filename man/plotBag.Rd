@@ -65,7 +65,7 @@ flagged as outliers.
 All graphical elements are controlled via an object-oriented interface:
 each element can be specified as \code{TRUE}, \code{FALSE}, or a
 \code{list(...)} of graphical parameters. Internally, this is handled
-via \code{.callIf()}.
+via \code{bedrock::callIf()}.
 }
 \section{Details}{
 
@@ -151,37 +151,15 @@ The bagplot: a bivariate boxplot, \emph{The American
 Statistician}, vol. 53, no. 4, 382--387
 }
 \seealso{
-Other topic.graphics: 
-\code{\link{axisBreak}()},
-\code{\link{barText}()},
-\code{\link{boxedText}()},
-\code{\link{canvas}()},
-\code{\link{colorLegend}()},
-\code{\link{errBars}()},
-\code{\link{plot.Lc}()},
-\code{\link{plotArea}()},
-\code{\link{plotBar}()},
-\code{\link{plotBubble}()},
-\code{\link{plotCirc}()},
+Other plot.bivariate: 
+\code{\link{plotAssoc}()},
 \code{\link{plotCor}()},
-\code{\link{plotDens}()},
 \code{\link{plotDens2D}()},
-\code{\link{plotDot}()},
-\code{\link{plotECDF}()},
-\code{\link{plotFdist}()},
-\code{\link{plotFun}()},
-\code{\link{plotLines}()},
-\code{\link{plotMiss}()},
-\code{\link{plotMosaic}()},
-\code{\link{plotProbDist}()},
-\code{\link{plotQQ}()},
-\code{\link{plotRidge}()},
-\code{\link{plotTernary}()},
-\code{\link{plotTimeSeries}()},
-\code{\link{plotTreemap}()},
-\code{\link{plotViolin}()},
-\code{\link{plotWeb}()}
+\code{\link{plotHeatmap}()},
+\code{\link{plotHexbin}()},
+\code{\link{plotMosaic}()}
 }
-\concept{base-graphics}
-\concept{plotting}
-\concept{topic.graphics}
+\concept{descriptive-statistics}
+\concept{graphics}
+\concept{plot.bivariate}
+\concept{robust-statistics}

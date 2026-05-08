@@ -16,9 +16,9 @@ style(
   big.mark = NULL,
   outdec = NULL,
   na.form = NULL,
-  zero.form = NULL,
+  zeroForm = NULL,
   fmt = NULL,
-  p_eps = NULL,
+  pThreshold = NULL,
   width = NULL,
   align = NULL,
   lang = NULL,
@@ -60,7 +60,7 @@ provided, the default set as \code{OutDec} option is used.}
 specially formatted.  If set to \code{NULL} (default) no special action will
 be taken.}
 
-\item{zero.form}{character, string specifying how zeros should be specially
+\item{zeroForm}{character, string specifying how zeros should be specially
 formatted. Useful for pretty printing 'sparse' objects.  If set to
 \code{NULL} (default) no special action will be taken.}
 
@@ -68,9 +68,9 @@ formatted. Useful for pretty printing 'sparse' objects.  If set to
 formats or an object of class \code{style}, consisting of a list of
 \code{fdm} arguments. See Details.}
 
-\item{p_eps}{a numerical tolerance used mainly for formatting p values,
-those less than p_eps are formatted as "\verb{\code{< [p_eps]}}" (where '\verb{[p_eps]}'
-stands for \code{format(p_eps, digits))}.  Default is \code{0.001}.}
+\item{pThreshold}{a numerical tolerance used mainly for formatting p values,
+those less than pThreshold are formatted as "\verb{\code{< [pThreshold]}}" (where '\verb{[pThreshold]}'
+stands for \code{format(pThreshold, digits))}.  Default is \code{0.001}.}
 
 \item{width}{integer, the defined fixed width of the strings.}
 
@@ -160,5 +160,17 @@ fm(Sys.Date(), fmt=dat.sty)
 }
 \seealso{
 \code{\link{fm}()}
+
+Other string.format: 
+\code{\link{fm}()},
+\code{\link{fmCI}()},
+\code{\link{lineSep}()},
+\code{\link{strAbbr}()},
+\code{\link{strAlign}()},
+\code{\link{strPad}()},
+\code{\link{strTrunc}()}
 }
+\concept{graphics}
+\concept{string-formatting}
+\concept{string.format}
 \keyword{IO}

@@ -40,10 +40,6 @@
 #' points drawn, useful for adding other elements to the plot.
 #' @seealso \code{\link{plotCor}}
 #' 
-#' @family topic.graphics
-#' @concept base-graphics
-#' @concept plotting
-#' 
 #' @examples
 #' op <- par(no.readonly = TRUE)
 #' 
@@ -76,6 +72,11 @@
 #' 
 
 
+#' @family plot.special
+#' @concept graphics
+#' @concept association-measures
+#'
+#'
 #' @export
 plotWeb <- function(m, col=NULL, lty=NULL, 
                     lwd = NULL, args.legend=NULL, pch=21, pt.cex=2,

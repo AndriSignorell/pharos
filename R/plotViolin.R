@@ -11,7 +11,7 @@
 #'
 #' Graphical elements such as the boxplot overlay and grid are controlled
 #' via a flexible interface using \code{TRUE}, \code{FALSE}, \code{NA}, or
-#' \code{list(...)} and are evaluated using \code{.callIf()}.
+#' \code{list(...)} and are evaluated using \code{bedrock::callIf()}.
 #'
 #' @section Data Handling:
 #' The function accepts:
@@ -82,11 +82,13 @@
 #'
 #' @seealso \code{\link{boxplot}}, \code{\link{density}}
 #' 
-#' @family topic.graphics
-#' @concept base-graphics
-#' @concept plotting
 
 
+#' @family plot.univariate
+#' @concept graphics
+#' @concept descriptive-statistics
+#'
+#'
 #' @export
 plotViolin <- function(x, ...) {
   UseMethod("plotViolin")
@@ -214,7 +216,7 @@ plotViolin.default <- function(
     
     # --- grid ---------------------------------------------------
     
-    .callIf(graphics::grid, grid,
+    bedrock::callIf(graphics::grid, grid,
             defaults = th$grid[!startsWith(names(th$grid), "group.")])  
     
     # --- violins ------------------------------------------------
@@ -264,7 +266,7 @@ plotViolin.default <- function(
     
     # --- box overlay --------------------------------------------
     
-    .callIf(
+    bedrock::callIf(
       fun = boxplot,
       arg = box,
       defaults = list(

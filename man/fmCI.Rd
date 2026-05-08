@@ -39,4 +39,16 @@ tapply(warpbreaks$breaks, warpbreaks$wool,
 }
 \seealso{
 \code{\link{fm}}
+
+Other string.format: 
+\code{\link{fm}()},
+\code{\link{lineSep}()},
+\code{\link{strAbbr}()},
+\code{\link{strAlign}()},
+\code{\link{strPad}()},
+\code{\link{strTrunc}()},
+\code{\link{style}()}
 }
+\concept{confidence-intervals}
+\concept{string-formatting}
+\concept{string.format}

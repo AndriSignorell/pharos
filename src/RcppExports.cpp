@@ -39,19 +39,19 @@ BEGIN_RCPP
 END_RCPP
 }
 // formatNum
-CharacterVector formatNum(NumericVector x, Nullable<IntegerVector> digits, Nullable<IntegerVector> ldigits, Nullable<CharacterVector> big_mark, Nullable<CharacterVector> decimal_mark, int sci_big, int sci_small);
-RcppExport SEXP _aurora_formatNum(SEXP xSEXP, SEXP digitsSEXP, SEXP ldigitsSEXP, SEXP big_markSEXP, SEXP decimal_markSEXP, SEXP sci_bigSEXP, SEXP sci_smallSEXP) {
+CharacterVector formatNum(NumericVector x, Nullable<IntegerVector> digits, Nullable<IntegerVector> ldigits, Nullable<CharacterVector> bigMark, Nullable<CharacterVector> decimalMark, int sciBig, int sciSmall);
+RcppExport SEXP _aurora_formatNum(SEXP xSEXP, SEXP digitsSEXP, SEXP ldigitsSEXP, SEXP bigMarkSEXP, SEXP decimalMarkSEXP, SEXP sciBigSEXP, SEXP sciSmallSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
     Rcpp::traits::input_parameter< Nullable<IntegerVector> >::type digits(digitsSEXP);
     Rcpp::traits::input_parameter< Nullable<IntegerVector> >::type ldigits(ldigitsSEXP);
-    Rcpp::traits::input_parameter< Nullable<CharacterVector> >::type big_mark(big_markSEXP);
-    Rcpp::traits::input_parameter< Nullable<CharacterVector> >::type decimal_mark(decimal_markSEXP);
-    Rcpp::traits::input_parameter< int >::type sci_big(sci_bigSEXP);
-    Rcpp::traits::input_parameter< int >::type sci_small(sci_smallSEXP);
-    rcpp_result_gen = Rcpp::wrap(formatNum(x, digits, ldigits, big_mark, decimal_mark, sci_big, sci_small));
+    Rcpp::traits::input_parameter< Nullable<CharacterVector> >::type bigMark(bigMarkSEXP);
+    Rcpp::traits::input_parameter< Nullable<CharacterVector> >::type decimalMark(decimalMarkSEXP);
+    Rcpp::traits::input_parameter< int >::type sciBig(sciBigSEXP);
+    Rcpp::traits::input_parameter< int >::type sciSmall(sciSmallSEXP);
+    rcpp_result_gen = Rcpp::wrap(formatNum(x, digits, ldigits, bigMark, decimalMark, sciBig, sciSmall));
     return rcpp_result_gen;
 END_RCPP
 }

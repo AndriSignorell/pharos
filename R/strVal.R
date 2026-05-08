@@ -48,11 +48,12 @@
 #' # different decimal separator
 #' strVal("value = 3,14", dec = ",", as.numeric = TRUE)
 #'
-#' @family topic.text
-#' @concept string-processing
-#'
-#'
 
+#' @family string.manipulation
+#' @concept string-manipulation
+#' @concept data-manipulation
+#'
+#'
 #' @export
 strVal <- function(x, paste = FALSE, as.numeric = FALSE, dec = getOption("OutDec")) {
   

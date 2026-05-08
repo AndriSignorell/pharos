@@ -19,12 +19,14 @@
 #'
 #' strCountW(c("One word", "Two words here", NA))
 #'
-#' @family topic.text
-#' @concept string-processing
+
+
+
+#' @family string.manipulation
+#' @concept string-manipulation
+#' @concept data-inspection
 #'
-
-
-
+#'
 #' @export
 strCountW <- function(x) {
   stringi::stri_count_words(x)

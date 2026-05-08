@@ -47,5 +47,18 @@ titleRect("pressure")
 }
 \seealso{
 \code{\link{title}}
+
+Other plot.annotation: 
+\code{\link{axisBreak}()},
+\code{\link{barText}()},
+\code{\link{boxedText}()},
+\code{\link{colorLegend}()},
+\code{\link{drawBand}()},
+\code{\link{errBars}()},
+\code{\link{shade}()},
+\code{\link{stamp}()}
 }
+\concept{graphics}
+\concept{plot.annotation}
+\concept{string-formatting}
 \keyword{aplot}

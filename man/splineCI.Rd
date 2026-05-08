@@ -60,7 +60,7 @@ the data contain \code{NA}s. Defaults to
 
 \item{weights}{optional vector of weights of the same length as x; defaults to all 1.}
 
-\item{col}{linecolor of the smoother. Default is DescTools's \code{col1}.}
+\item{col}{linecolor of the smoother. Default is DescToolsX's \code{col1}.}
 
 \item{lwd}{line width of the smoother.}
 
@@ -97,6 +97,18 @@ par(op)
 }
 \seealso{
 \code{\link{loess}}, \code{\link{scatter.smooth}}
+
+Other plot.utils: 
+\code{\link{abcCoords}()},
+\code{\link{axTicks}()},
+\code{\link{lineToUser}()},
+\code{\link{lines.lm}()},
+\code{\link{mar}()},
+\code{\link{setBackCol}()},
+\code{\link{spreadOut}()}
 }
+\concept{graphics}
+\concept{plot.utils}
+\concept{regression}
 \keyword{aplot}
 \keyword{math}

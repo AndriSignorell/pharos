@@ -16,9 +16,6 @@
 #' 
 #' @seealso \code{\link{polygon}} 
 
-#' @family topic.geometry
-#' @concept geometric-shapes
-#' @concept primitives
 
 #' 
 #' @examples
@@ -43,6 +40,11 @@
 #' 
 
  
+#' @family plot.annotation
+#' @concept graphics
+#' @concept confidence-intervals
+#'
+#'
 #' @export
 drawBand <- function(x, y, col = alpha("grey", 0.5), border = NA) {
   

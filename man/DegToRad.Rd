@@ -29,8 +29,12 @@ radToDeg( c(0.5,1,2) * pi)
 
 }
 \seealso{
-Other topic.conversion: 
-\code{\link{convUnit}()}
+Other coordinate.transform: 
+\code{\link{conv_coord}},
+\code{\link{linScale}()},
+\code{\link{rotate}()},
+\code{\link{transformXY}()}
 }
-\concept{angle-conversion}
-\concept{topic.conversion}
+\concept{coordinate.transform}
+\concept{geometry}
+\concept{mathematics}

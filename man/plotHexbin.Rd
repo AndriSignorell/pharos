@@ -48,4 +48,15 @@ plotHexbin(x, y, bins = 40,
 }
 \seealso{
 \code{\link[hexbin]{hexbin}}, \code{\link[graphics]{polygon}}
+
+Other plot.bivariate: 
+\code{\link{plotAssoc}()},
+\code{\link{plotBag}()},
+\code{\link{plotCor}()},
+\code{\link{plotDens2D}()},
+\code{\link{plotHeatmap}()},
+\code{\link{plotMosaic}()}
 }
+\concept{descriptive-statistics}
+\concept{graphics}
+\concept{plot.bivariate}

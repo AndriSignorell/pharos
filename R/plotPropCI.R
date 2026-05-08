@@ -40,6 +40,12 @@
 #' 
 
 
+#' @family plot.univariate
+#' @concept graphics
+#' @concept confidence-intervals
+#' @concept descriptive-statistics
+#'
+#'
 #' @export
 plotPropCI <- function(
     x,
@@ -169,7 +175,7 @@ plotPropCI <- function(
     }    
     
     # ── Legend unterhalb ────────────────────────────────────────
-    .callIf(function(...) {
+    bedrock::callIf(function(...) {
       
       usr <- par("usr")
       

@@ -20,10 +20,6 @@
 #' \code{"right"}. Determines on which side the string should be trimmed.
 #' @return the string x without whitespaces
 #' 
-#' @family topic.text
-#' @concept string-processing
-#' @concept formatting
-#' 
 #' @examples
 #' 
 #' strTrim("  Hello world! ")
@@ -36,6 +32,11 @@
 #' 
 
  
+#' @family string.manipulation
+#' @concept string-manipulation
+#' @concept data-manipulation
+#'
+#'
 #' @export
 strTrim <- function(x, pattern = " \t\n", method = "both") {
   

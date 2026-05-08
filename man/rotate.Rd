@@ -48,12 +48,12 @@ par(op)
 \code{\link{polygon}}, \code{\link{drawRegPolygon}},
 \code{\link{drawEllipse}}, \code{\link{drawArc}}
 
-Other topic.coordinates: 
-\code{\link{abcCoords}()},
+Other coordinate.transform: 
 \code{\link{conv_coord}},
-\code{\link{lineToUser}()},
+\code{\link{degToRad}()},
+\code{\link{linScale}()},
 \code{\link{transformXY}()}
 }
-\concept{coordinates}
-\concept{topic.coordinates}
-\concept{transformations}
+\concept{coordinate.transform}
+\concept{geometry}
+\concept{mathematics}

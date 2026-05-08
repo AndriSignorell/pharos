@@ -90,3 +90,15 @@ polarGrid(nr = 4, ntheta = 8, col = "gray")
 polarGrid(rlabels = NA, alabels = NA)
 
 }
+\seealso{
+Other plot.geometry: 
+\code{\link{canvas}()},
+\code{\link{drawArc}()},
+\code{\link{drawBezier}()},
+\code{\link{drawCircle}()},
+\code{\link{drawEllipse}()},
+\code{\link{drawRegPolygon}()}
+}
+\concept{geometry}
+\concept{graphics}
+\concept{plot.geometry}

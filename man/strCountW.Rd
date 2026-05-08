@@ -30,9 +30,7 @@ strCountW(c("One word", "Two words here", NA))
 \seealso{
 \code{\link[stringi]{stri_count_words}}
 
-Other topic.text: 
-\code{\link{strAbbr}()},
-\code{\link{strAlign}()},
+Other string.manipulation: 
 \code{\link{strCap}()},
 \code{\link{strChop}()},
 \code{\link{strDist}()},
@@ -40,14 +38,13 @@ Other topic.text:
 \code{\link{strExtractBetween}()},
 \code{\link{strIsNumeric}()},
 \code{\link{strLeftRight}},
-\code{\link{strPad}()},
 \code{\link{strPos}()},
 \code{\link{strRev}()},
 \code{\link{strSpell}()},
 \code{\link{strSplit}()},
 \code{\link{strTrim}()},
-\code{\link{strTrunc}()},
 \code{\link{strVal}()}
 }
-\concept{string-processing}
-\concept{topic.text}
+\concept{data-inspection}
+\concept{string-manipulation}
+\concept{string.manipulation}

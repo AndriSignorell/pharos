@@ -53,12 +53,14 @@
 #' # custom text colors
 #' contrastColor(cols, light = "#FFFFFF", dark = "#222222")
 #'
-#' @family topic.colors
-#' @concept color-manipulation
-#' @concept contrast
-#'
 
   
+#' @family topic.colors
+#' @concept color-manipulation
+#' @concept graphics
+#' @concept string-formatting
+#'
+#'
 #' @export
 contrastColor <- function(col,
                           light = "white",

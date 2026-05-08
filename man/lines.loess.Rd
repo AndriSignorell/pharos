@@ -19,7 +19,7 @@
 \arguments{
 \item{x}{the loess object to be plotted.}
 
-\item{col}{linecolor of the smoother. Default is DescTools's \code{col1}.}
+\item{col}{linecolor of the smoother. Default is DescToolsX's \code{col1}.}
 
 \item{lwd}{line width of the smoother.}
 

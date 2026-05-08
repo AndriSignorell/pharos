@@ -161,6 +161,12 @@
 # .apply pars describe!!*********
 
 
+#' @family plot.univariate
+#' @concept graphics
+#' @concept descriptive-statistics
+#' @concept frequency-analysis
+#'
+#'
 #' @export
 plotBar <- function(height,
                     
@@ -324,7 +330,7 @@ plotBar <- function(height,
     }
     
     # --- Text Layer ---
-    .callIf(barText,
+    bedrock::callIf(barText,
             text,
             defaults = list(
                 height = height,
@@ -352,7 +358,7 @@ plotBar <- function(height,
 
         
     # draw box if box != FALSE || NA
-    .callIf(graphics::box, 
+    bedrock::callIf(graphics::box, 
             box,
             defaults=list(which="plot"))
     

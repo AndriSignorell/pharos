@@ -69,13 +69,15 @@ boxedText(x=xy$xy$x, y=xy$xy$y, xpad = 1, ypad = 1,
 \seealso{
 \code{\link{text}}, \code{\link{boxedText}}
 
-Other topic.coordinates: 
-\code{\link{conv_coord}},
+Other plot.utils: 
+\code{\link{axTicks}()},
 \code{\link{lineToUser}()},
-\code{\link{rotate}()},
-\code{\link{transformXY}()}
+\code{\link{lines.lm}()},
+\code{\link{mar}()},
+\code{\link{setBackCol}()},
+\code{\link{splineCI}},
+\code{\link{spreadOut}()}
 }
-\concept{coordinates}
-\concept{plot-annotation}
-\concept{positioning}
-\concept{topic.coordinates}
+\concept{geometry}
+\concept{graphics}
+\concept{plot.utils}

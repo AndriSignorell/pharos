@@ -42,6 +42,11 @@
 #' plotPolar(r[1,], theta = theta, type = "h")
 #'
 
+#' @family plot.special
+#' @concept graphics
+#' @concept geometry
+#'
+#'
 #' @export
 plotPolar <- function(r, theta = NULL
                       

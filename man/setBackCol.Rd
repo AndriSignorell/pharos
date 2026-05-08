@@ -30,4 +30,16 @@ plot(x = rnorm(100), col="blue", cex=1.2, pch=16,
 }
 \seealso{
 \code{\link{rect}}
+
+Other plot.utils: 
+\code{\link{abcCoords}()},
+\code{\link{axTicks}()},
+\code{\link{lineToUser}()},
+\code{\link{lines.lm}()},
+\code{\link{mar}()},
+\code{\link{splineCI}},
+\code{\link{spreadOut}()}
 }
+\concept{color-manipulation}
+\concept{graphics}
+\concept{plot.utils}

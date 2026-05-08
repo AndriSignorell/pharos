@@ -56,5 +56,17 @@ spreadOut(rnorm(10), 0.5)
 }
 \seealso{
 \code{\link{strheight}()}
+
+Other plot.utils: 
+\code{\link{abcCoords}()},
+\code{\link{axTicks}()},
+\code{\link{lineToUser}()},
+\code{\link{lines.lm}()},
+\code{\link{mar}()},
+\code{\link{setBackCol}()},
+\code{\link{splineCI}}
 }
+\concept{graphics}
+\concept{plot.utils}
+\concept{vector-manipulation}
 \keyword{misc}

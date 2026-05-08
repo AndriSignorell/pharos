@@ -50,37 +50,16 @@ plotMiss(airquality, main="Missing data (clustered)", clust=TRUE)
 \seealso{
 \code{\link{hclust}}, \code{\link[bedrock]{countCompCases}}
 
-Other topic.graphics: 
-\code{\link{axisBreak}()},
-\code{\link{barText}()},
-\code{\link{boxedText}()},
-\code{\link{canvas}()},
-\code{\link{colorLegend}()},
-\code{\link{errBars}()},
-\code{\link{plot.Lc}()},
+Other plot.special: 
 \code{\link{plotArea}()},
-\code{\link{plotBag}()},
-\code{\link{plotBar}()},
-\code{\link{plotBubble}()},
+\code{\link{plotBinaryTree}()},
 \code{\link{plotCirc}()},
-\code{\link{plotCor}()},
-\code{\link{plotDens}()},
-\code{\link{plotDens2D}()},
-\code{\link{plotDot}()},
-\code{\link{plotECDF}()},
-\code{\link{plotFdist}()},
 \code{\link{plotFun}()},
-\code{\link{plotLines}()},
-\code{\link{plotMosaic}()},
-\code{\link{plotProbDist}()},
-\code{\link{plotQQ}()},
-\code{\link{plotRidge}()},
+\code{\link{plotPolar}()},
 \code{\link{plotTernary}()},
-\code{\link{plotTimeSeries}()},
 \code{\link{plotTreemap}()},
-\code{\link{plotViolin}()},
 \code{\link{plotWeb}()}
 }
-\concept{base-graphics}
-\concept{plotting}
-\concept{topic.graphics}
+\concept{graphics}
+\concept{missing-data}
+\concept{plot.special}

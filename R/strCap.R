@@ -38,12 +38,12 @@
 #' # title case
 #' strCap(x, "title")
 #'
-#' @family topic.text
-#' @concept string-processing
-#' @concept formatting
-#' 
-#' 
 
+#' @family string.manipulation
+#' @concept string-manipulation
+#' @concept string-formatting
+#'
+#'
 #' @export
 strCap <- function(x, method = c("first", "word", "title")) {
   

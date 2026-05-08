@@ -47,13 +47,16 @@ abline(lm(y~x), col="brown")
 \seealso{
 \code{\link{polygon}}
 
-Other topic.geometry: 
-\code{\link{drawArc}()},
-\code{\link{drawBezier}()},
-\code{\link{drawCircle}()},
-\code{\link{drawEllipse}()},
-\code{\link{drawRegPolygon}()}
+Other plot.annotation: 
+\code{\link{axisBreak}()},
+\code{\link{barText}()},
+\code{\link{boxedText}()},
+\code{\link{colorLegend}()},
+\code{\link{errBars}()},
+\code{\link{shade}()},
+\code{\link{stamp}()},
+\code{\link{titleRect}()}
 }
-\concept{geometric-shapes}
-\concept{primitives}
-\concept{topic.geometry}
+\concept{confidence-intervals}
+\concept{graphics}
+\concept{plot.annotation}

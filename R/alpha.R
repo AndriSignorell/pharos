@@ -22,9 +22,6 @@
 #' @seealso \code{\link{colToHex}}, \code{\link{col2rgb}},
 #' \code{\link{adjustcolor}}, \code{\link{colToOpaque}}
 
-#' @family topic.colors
-#' @concept color-manipulation
-#' @concept transparency
 
 
 #' @examples
@@ -47,6 +44,11 @@
 
 
 #' @rdname alpha
+#' @family topic.colors
+#' @concept color-manipulation
+#' @concept graphics
+#'
+#'
 #' @export
 alpha <- function(col, alpha=0.5) {
   Vectorize(grDevices::adjustcolor)(col= col, alpha.f = alpha)

@@ -37,10 +37,6 @@
 #' @seealso \code{\link{barplot}}, \code{\link{polygon}},
 #' \code{\link[areaplot]{areaplot}} 
 #' 
-#' @family topic.graphics
-#' @concept base-graphics
-#' @concept plotting
-#' 
 #' @examples
 #' plotArea(VADeaths, xaxt="n")
 #' axis(1, at=1:5, labels=rownames(VADeaths))
@@ -71,6 +67,11 @@
 
 
 #' @rdname plotArea  
+#' @family plot.special
+#' @concept graphics
+#' @concept frequency-analysis
+#'
+#'
 #' @export
 plotArea <- function(x, ...) {
   # plotArea - mehrere Flaechen uebereinander

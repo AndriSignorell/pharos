@@ -4,7 +4,7 @@
 \alias{linScale}
 \title{Linearly Rescale Numeric Data}
 \usage{
-linScale(x, low = NULL, high = NULL, new_low = 0, new_high = 1)
+linScale(x, low = NULL, high = NULL, newLow = 0, newHigh = 1)
 }
 \arguments{
 \item{x}{A numeric vector, matrix or data frame.}
@@ -13,12 +13,12 @@ linScale(x, low = NULL, high = NULL, new_low = 0, new_high = 1)
 bounds of the original scale. If \code{NULL}, the column-wise minima
 and maxima of \code{x} are used.}
 
-\item{new_low, new_high}{Numeric vectors specifying the target range.
+\item{newLow, newHigh}{Numeric vectors specifying the target range.
 Defaults to \code{0} and \code{1}.}
 }
 \value{
 A numeric matrix with the same dimensions as \code{x}, where each
-column is linearly rescaled to the interval \code{[new_low, new_high]}.
+column is linearly rescaled to the interval \code{[newLow, newHigh]}.
 }
 \description{
 Performs a linear transformation of numeric data to a specified range.
@@ -30,7 +30,7 @@ The transformation is defined as:
 x_{scaled} = \frac{x - low}{high - low} \cdot (new\_high - new\_low) + new\_low
 }
 
-Constant columns (where \code{high == low}) are mapped to \code{new_low}.
+Constant columns (where \code{high == low}) are mapped to \code{newLow}.
 }
 \examples{
 x <- matrix(1:10, ncol = 2)
@@ -39,7 +39,7 @@ x <- matrix(1:10, ncol = 2)
 linScale(x)
 
 # custom range
-linScale(x, new_low = -1, new_high = 1)
+linScale(x, newLow = -1, newHigh = 1)
 
 # using predefined bounds
 linScale(x, low = 1, high = 10)
@@ -47,4 +47,14 @@ linScale(x, low = 1, high = 10)
 }
 \seealso{
 \code{\link{scale}}
+
+Other coordinate.transform: 
+\code{\link{conv_coord}},
+\code{\link{degToRad}()},
+\code{\link{rotate}()},
+\code{\link{transformXY}()}
 }
+\concept{coordinate.transform}
+\concept{data-manipulation}
+\concept{geometry}
+\concept{mathematics}

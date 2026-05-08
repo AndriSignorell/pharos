@@ -18,10 +18,6 @@
 #' @note Following an idea of Henk Harmsen <henk@@carbonmetrics.com> 
 #' @seealso \code{\link{hclust}}, \code{\link[bedrock]{countCompCases}} 
 #' 
-#' @family topic.graphics
-#' @concept base-graphics
-#' @concept plotting
-#' 
 #' @examples
 #' 
 #' plotMiss(airquality, main="Missing data (in orignal order)")
@@ -29,6 +25,11 @@
 #'
 
 
+#' @family plot.special
+#' @concept graphics
+#' @concept missing-data
+#'
+#'
 #' @export 
 plotMiss <- function(x, col = "deeppink4", bg=fade("navajowhite3", 0.3), clust=FALSE,
                      main = NULL, ...){

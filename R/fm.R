@@ -65,7 +65,7 @@
 #' \code{\%} \tab percent \tab will divide the given number by 100 and append
 #' the \%-sign (without a separator).\cr \tab\cr \code{p} \tab p-value \tab
 #' will wrap the function \code{\link{format.pval}} and return a p-value
-#' format. \cr \tab \tab Use \code{p_eps} to define the threshold to e.g.
+#' format. \cr \tab \tab Use \code{pThreshold} to define the threshold to e.g.
 #' switch to a \code{ <0.001 } representation.\cr \tab\cr \code{frac} \tab
 #' fractions \tab will (try to) convert numbers to fractions. So 0.1 will be
 #' displayed as 1/10. \cr \tab\tab See \code{\link[MASS]{fractions}()}.\cr
@@ -115,15 +115,15 @@
 #' @param na.form character, string specifying how \code{NA}s should be
 #' specially formatted.  If set to \code{NULL} (default) no special action will
 #' be taken.
-#' @param zero.form character, string specifying how zeros should be specially
+#' @param zeroForm character, string specifying how zeros should be specially
 #' formatted. Useful for pretty printing 'sparse' objects.  If set to
 #' \code{NULL} (default) no special action will be taken.
 #' @param fmt either a format string, allowing to flexibly define special
 #' formats or an object of class \code{style}, consisting of a list of
 #' \code{fm} arguments. See Details.
-#' @param p_eps a numerical tolerance used mainly for formatting p values,
-#' those less than p_eps are formatted as "\verb{\code{< [p_eps]}}" (where '\verb{[p_eps]}'
-#' stands for \code{format(p_eps, digits))}.  Default is \code{0.001}.
+#' @param pThreshold a numerical tolerance used mainly for formatting p values,
+#' those less than pThreshold are formatted as "\verb{\code{< [pThreshold]}}" (where '\verb{[pThreshold]}'
+#' stands for \code{format(pThreshold, digits))}.  Default is \code{0.001}.
 #' @param width integer, the defined fixed width of the strings.
 #' @param align the character on whose position the strings will be aligned.
 #' Left alignment can be requested by setting \code{sep = "\\l"}, right
@@ -186,12 +186,17 @@
 
 
 
+#' @family string.format
+#' @concept string-formatting
+#' @concept data-manipulation
+#'
+#'
 #' @export  
 fm <- function(x
                , digits = NULL, ldigits = NULL, sci = NULL
                , big.mark=NULL, outdec = NULL
-               , na.form = NULL, zero.form = NULL
-               , fmt = NULL, p_eps = NULL
+               , na.form = NULL, zeroForm = NULL
+               , fmt = NULL, pThreshold = NULL
                , width = NULL, align = NULL
                , lang = NULL
                , ...){
@@ -203,8 +208,8 @@ fm <- function(x
 #' @export
 fm.default <- function(x, digits = NULL, ldigits = NULL, sci = NULL
                        , big.mark=NULL, outdec = NULL
-                       , na.form = NULL, zero.form = NULL
-                       , fmt = NULL, p_eps = NULL
+                       , na.form = NULL, zeroForm = NULL
+                       , fmt = NULL, pThreshold = NULL
                        , width = NULL, align = NULL
                        , lang = NULL, ...){
 
@@ -329,31 +334,31 @@ fm.default <- function(x, digits = NULL, ldigits = NULL, sci = NULL
           
         } else if(fmt=="p"){
           # better use 0.001 than .Machine$double.eps as eps
-          r <- .format.pval(x, Coalesce(p_eps, 1e-3), 
+          r <- .format.pval(x, Coalesce(pThreshold, 1e-3), 
                             Coalesce(digits, 3), Coalesce(ldigits, 1))
           
         } else if(fmt=="p*"){
-          r <- .format.pstars(x, Coalesce(p_eps, 1e-3), 
+          r <- .format.pstars(x, Coalesce(pThreshold, 1e-3), 
                               Coalesce(digits, 3), Coalesce(ldigits, 1))
           
         } else if(fmt=="eng"){
           r <- .format.eng(x, digits=digits, ldigits=ldigits, 
-                           zero.form=zero.form, na.form=na.form)
+                           zeroForm=zeroForm, na.form=na.form)
           
         } else if(fmt=="engabb"){
           r <- .format.engabb(x, digits=digits, ldigits=ldigits, 
-                              zero.form=zero.form, na.form=na.form)
+                              zeroForm=zeroForm, na.form=na.form)
           
         } else if(fmt=="e"){
           # r <- formatC(x, digits = digits, width = width, format = "e",
-          #              big.mark=big.mark, zero.print = zero.form)
-          r <- formatNum(x, digits = digits, sci_big = 0, sci_small = 0)
+          #              big.mark=big.mark, zero.print = zeroForm)
+          r <- formatNum(x, digits = digits, sciBig = 0, sciSmall = 0)
           
         } else if(fmt=="%"){
           # we use 1 digit as default here
           if(is.null(digits)) digits <- 1
           r <- paste(formatNum(x * 100, digits = digits,
-                               big_mark = big.mark),
+                               bigMark = big.mark),
                      "%", sep="")
           
         } else if(fmt=="frac"){
@@ -393,7 +398,7 @@ fm.default <- function(x, digits = NULL, ldigits = NULL, sci = NULL
       # if sci is not set at all, the default will be 0, which leads to all numbers being
       # presented as scientific - this is definitely nonsense...
       if(is.null(sci))       sci <- Coalesce(naIf(getOption("scipen"), 0), 7) # default
-      if(is.null(p_eps))     p_eps <- 1e-3
+      if(is.null(pThreshold))     pThreshold <- 1e-3
       if(is.null(big.mark))  big.mark <- Coalesce(getOption("big.mark"), "")
       if(is.null(ldigits))   ldigits <- 1
       if(is.null(digits))    digits <- max(CountDecimals(x))
@@ -408,13 +413,13 @@ fm.default <- function(x, digits = NULL, ldigits = NULL, sci = NULL
 
       r <- formatNum(x,
                      digits = digits, ldigits=ldigits, # width = width, 
-                     big_mark=big.mark, sci_big = sci, sci_small = -sci)
+                     bigMark=big.mark, sciBig = sci, sciSmall = -sci)
 
     }
     
-    # replace zeros with required zero.form
-    if(!is.null(zero.form) & has.zero)
-      r[iz] <- zero.form
+    # replace zeros with required zeroForm
+    if(!is.null(zeroForm) & has.zero)
+      r[iz] <- zeroForm
     
   }
 
@@ -458,8 +463,8 @@ print.Fm <- function (x, quote=FALSE, ...) {
 fm.data.frame <- function(x,
                           digits = NULL, ldigits = NULL, sci = NULL,
                           big.mark = NULL, outdec = NULL,
-                          na.form = NULL, zero.form = NULL,
-                          fmt = NULL, p_eps = NULL,
+                          na.form = NULL, zeroForm = NULL,
+                          fmt = NULL, pThreshold = NULL,
                           width = NULL, align = NULL,
                           lang = NULL, ...) {
   
@@ -473,9 +478,9 @@ fm.data.frame <- function(x,
     big.mark  = big.mark,
     outdec    = outdec,
     na.form   = na.form,
-    zero.form = zero.form,
+    zeroForm = zeroForm,
     fmt        = fmt,
-    p_eps      = p_eps,
+    pThreshold      = pThreshold,
     width      = width,
     align      = align,
     lang       = lang
@@ -510,15 +515,15 @@ fm.data.frame <- function(x,
 #' @export
 fm.matrix <- function(x, digits = NULL, ldigits = NULL, sci = NULL
                       , big.mark=NULL, outdec = NULL
-                      , na.form = NULL, zero.form = NULL
-                      , fmt = NULL, p_eps = NULL
+                      , na.form = NULL, zeroForm = NULL
+                      , fmt = NULL, pThreshold = NULL
                       , width = NULL, align = NULL
                       , lang = NULL, ...){
   
   x[,] <- fm.default(x=x, digits=digits, sci=sci, big.mark=big.mark,
-                         ldigits=ldigits, zero.form=zero.form, na.form=na.form,
+                         ldigits=ldigits, zeroForm=zeroForm, na.form=na.form,
                          fmt=fmt, align=align, width=width, lang=lang, 
-                         p_eps=p_eps, outdec=outdec, ...)
+                         pThreshold=pThreshold, outdec=outdec, ...)
   
   class(x) <- c("Fm", class(x))
   return(x)
@@ -528,14 +533,14 @@ fm.matrix <- function(x, digits = NULL, ldigits = NULL, sci = NULL
 #' @export
 fm.table <- function(x, digits = NULL, ldigits = NULL, sci = NULL
                      , big.mark=NULL, outdec = NULL
-                     , na.form = NULL, zero.form = NULL
-                     , fmt = NULL, p_eps = NULL
+                     , na.form = NULL, zeroForm = NULL
+                     , fmt = NULL, pThreshold = NULL
                      , width = NULL, align = NULL
                      , lang = NULL, ...){
   
   x[] <- fm.default(x=x, digits=digits, sci=sci, big.mark=big.mark,
-                        ldigits=ldigits, zero.form=zero.form, na.form=na.form,
-                        fmt=fmt, align=align, width=width, lang=lang, p_eps=p_eps, 
+                        ldigits=ldigits, zeroForm=zeroForm, na.form=na.form,
+                        fmt=fmt, align=align, width=width, lang=lang, pThreshold=pThreshold, 
                         outdec=outdec,...)
   
   class(x) <- c("Fm", class(x))
@@ -547,17 +552,17 @@ fm.table <- function(x, digits = NULL, ldigits = NULL, sci = NULL
 #' @export
 fm.ftable <- function(x, digits = NULL, ldigits = NULL, sci = NULL
                       , big.mark=NULL, outdec = NULL
-                      , na.form = NULL, zero.form = NULL
-                      , fmt = NULL, p_eps = NULL
+                      , na.form = NULL, zeroForm = NULL
+                      , fmt = NULL, pThreshold = NULL
                       , width = NULL, align = NULL
                       , lang = NULL, ...){
   
   # convert ftable first to matrix, then to data.frame in order to 
   # apply recycled arguments columnwise, which is a common need
   res <- fm(as.data.frame(as.matrix(x)), digits = digits, sci = sci, big.mark = big.mark,
-                ldigits = ldigits, zero.form = zero.form, na.form = na.form,
+                ldigits = ldigits, zeroForm = zeroForm, na.form = na.form,
                 fmt = fmt, align = align, width = width, lang = lang, 
-                p_eps = p_eps, outdec=outdec, ...)
+                pThreshold = pThreshold, outdec=outdec, ...)
   
   x[] <- as.matrix(res)
   
@@ -636,13 +641,13 @@ fm.ftable <- function(x, digits = NULL, ldigits = NULL, sci = NULL
 }
 
 
-.format.pstars <- function(x, p_eps, digits, ldigits)
+.format.pstars <- function(x, pThreshold, digits, ldigits)
   # format p-val AND stars
-  paste(.format.pval(x, p_eps, digits, ldigits), .format.stars(x))
+  paste(.format.pval(x, pThreshold, digits, ldigits), .format.stars(x))
 
 
 
-.format.pval <- function(x, p_eps=0.001, digits=3, ldigits=1){
+.format.pval <- function(x, pThreshold=0.001, digits=3, ldigits=1){
   
   # format p-values  
   # this is based on original code from format.pval
@@ -657,7 +662,7 @@ fm.ftable <- function(x, digits = NULL, ldigits = NULL, sci = NULL
   # do not accept p-values outside [0,1]
   isna <- x %)(% c(0,1)
   
-  r <- character(length(is0 <- x < p_eps))
+  r <- character(length(is0 <- x < pThreshold))
   if (any(!is0)) {
     rr <- x <- x[!is0]
     expo <- floor(log10(ifelse(x > 0, x, 1e-50)))
@@ -672,12 +677,12 @@ fm.ftable <- function(x, digits = NULL, ldigits = NULL, sci = NULL
     r[!is0] <- rr
   }
   if (any(is0)) {
-    if(log10(p_eps) >= -3)
-      p_eps <- fm(p_eps, digits=digits, ldigits=ldigits)
+    if(log10(pThreshold) >= -3)
+      pThreshold <- fm(pThreshold, digits=digits, ldigits=ldigits)
     else
-      p_eps <- fm(p_eps, digits=1, fmt="e")
+      pThreshold <- fm(pThreshold, digits=1, fmt="e")
     
-    r[is0] <- gettextf("< %s", p_eps)
+    r[is0] <- gettextf("< %s", pThreshold)
   }
   
   r[is1] <- 1
@@ -690,7 +695,7 @@ fm.ftable <- function(x, digits = NULL, ldigits = NULL, sci = NULL
 
 
 .format.eng <- function(x, digits = NULL, ldigits = 1
-                        , zero.form = NULL, na.form = NULL){
+                        , zeroForm = NULL, na.form = NULL){
   
   # engineering format, snap to powers of 10^3
   
@@ -699,7 +704,7 @@ fm.ftable <- function(x, digits = NULL, ldigits = NULL, sci = NULL
   pwr <- unlist(lapply(s, "[", 2))
   
   return(paste(fm(y * 10^(pwr %% 3), digits=digits, ldigits=ldigits,
-                  zero.form = zero.form, na.form=na.form)
+                  zeroForm = zeroForm, na.form=na.form)
                , "e"
                , c("-","+")[(pwr >= 0) + 1]
                , fm(abs((pwr - (pwr %% 3))), ldigits = 2, digits=0)
@@ -710,7 +715,7 @@ fm.ftable <- function(x, digits = NULL, ldigits = NULL, sci = NULL
 
 
 .format.engabb <- function(x, digits = NULL, ldigits = 1
-                           , zero.form = NULL, na.form = NULL){
+                           , zeroForm = NULL, na.form = NULL){
   
   s <- lapply(strsplit(format(x, scientific=TRUE), "e"), as.numeric)
   y <- unlist(lapply(s, "[[", 1))
@@ -726,7 +731,7 @@ fm.ftable <- function(x, digits = NULL, ldigits = NULL, sci = NULL
   a[a == "1e+00"] <- ""
   
   return(paste(fm(y * 10^(pwr %% 3), digits=digits, ldigits=ldigits,
-                  zero.form = zero.form, na.form=na.form)
+                  zeroForm = zeroForm, na.form=na.form)
                , " " , a
                , sep="")
   )

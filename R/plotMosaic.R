@@ -30,10 +30,6 @@
 #' @return list with the midpoints of the rectangles 
 #' 
 #' @seealso \code{\link{mosaicplot}} 
-#' @family topic.graphics
-#' @concept base-graphics
-#' @concept plotting
-#' 
 #' @references Friendly, M. (1994) Mosaic displays for multi-way contingency
 #' tables. \emph{Journal of the American Statistical Association}, \bold{89},
 #' 190-200.
@@ -45,6 +41,12 @@
 #' 
 
 
+#' @family plot.bivariate
+#' @concept graphics
+#' @concept association-measures
+#' @concept table-manipulation
+#'
+#'
 #' @export
 plotMosaic <- function (x, main = deparse(substitute(x)), 
                         horiz = TRUE, cols = NULL,

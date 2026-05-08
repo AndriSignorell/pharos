@@ -28,9 +28,6 @@
 #' @seealso \code{\link{polygon}}, \code{\link{drawRegPolygon}},
 #' \code{\link{drawEllipse}}, \code{\link{drawArc}} 
 
-#' @family topic.geometry
-#' @concept geometric-shapes
-#' @concept primitives
 
 
 #' @examples
@@ -85,6 +82,11 @@
 
 
 
+#' @family plot.geometry
+#' @concept graphics
+#' @concept geometry
+#'
+#'
 #' @export
 drawCircle <- function (x = 0, y = x, r.out = 1, r.in = 0, theta.1 = 0,
                         theta.2 = 2 * pi, border = par("fg"), col = NA, 

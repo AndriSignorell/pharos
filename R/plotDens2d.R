@@ -77,6 +77,11 @@
 
 
 
+#' @family plot.bivariate
+#' @concept graphics
+#' @concept descriptive-statistics
+#'
+#'
 #' @export
 plotDens2D <- function( x, y, 
                       
@@ -133,7 +138,7 @@ plotDens2D <- function( x, y,
            )        
 
     
-    .callIf(
+    bedrock::callIf(
       graphics::grid,
       .theme( grid = grid )$grid[c("col","lty","lwd")]
       # , defaults = list(
@@ -145,7 +150,7 @@ plotDens2D <- function( x, y,
     
     
     # draw box if box != FALSE || NA
-    .callIf(graphics::box, 
+    bedrock::callIf(graphics::box, 
             box,
             defaults=list(which="plot"))
 

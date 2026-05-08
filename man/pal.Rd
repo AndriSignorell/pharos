@@ -65,9 +65,6 @@ palNames()
 \seealso{
 \code{\link{palNames}}, \code{\link[grDevices]{colorRampPalette}},
 \code{\link[grDevices]{adjustcolor}}
-
-Other color: 
-\code{\link{palNames}()}
 }
 \concept{color}
 \concept{color palette ramp discrete continuous}

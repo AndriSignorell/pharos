@@ -9,54 +9,54 @@
   
   op <- options()
   pkg.op <- list(
-    
+
     DescToolsX.palette   = c("#8296C4", "#9A0941", "#F08100", "#FED037",
-                             "#CAB790", "#B3BA12", "#D35186", "#8FAE8C",  
+                             "#CAB790", "#B3BA12", "#D35186", "#8FAE8C",
                              "#5F6F9A", "#E6E2D3", "#6E5A3C", "#5B2A45"),
     DescToolsX.plotit    = TRUE,
     DescToolsX.stamp     = expression(gettextf("%s / %s", Sys.getenv("USERNAME"),
                                                format(Sys.Date(), "%Y-%m-%d"))),
-    
+
     DescToolsX.theme     = list(
-      
+
           grid.col = "grey",
           grid.lty = 3,
           grid.lwd = 1,
           grid.group.col = "darkgrey",
           grid.group.lty = 2,
           grid.group.lwd = 1,
-          
+
           pch.pch  = 21,
           pch.col = "black",
           pch.bg  = "white",
           pch.cex = 1.2,
-          
+
           line.col = "black",
           line.lwd = 1,
           line.lty = 1,
 
           group.cex = par("cex.axis") * 1.05,
-          
+
           bar.col = "grey80",
           bar.border = "grey70",
-          
+
           las=1
       ),
-    
+
     abs.sty   = structure(list(digits = 0, big.mark = "",
-                               label = "Number format for counts"), 
+                               label = "Number format for counts"),
                           class = "Style"),
     per.sty   = structure(list(digits = 1, fmt = "%",
                                name = "per", label = "Percentage number format"),
                           class = "Style"),
     num.sty   = structure(list(digits = 3, big.mark = "",
-                               label = "Number format for numeric values"), 
+                               label = "Number format for numeric values"),
                           class = "Style"),
     pval.sty   = structure(list(fmt="p", eps=1e-3,
                                 label = "Number format for p-values"),
                            class = "Style")
   )
-  
+
   toset <- !(names(pkg.op) %in% names(op))
   if (any(toset)) options(pkg.op[toset])
   
@@ -94,5 +94,6 @@
 #' @importFrom bedrock abind `%)(%` `%(]%` Coalesce moveAvg  
 #'             binaryTree combPairs decToHex isZero 
 #'             mergeArgs nDec naIf naReplace setNamesX recycle
-#'             label `label<-` inDots sortX revX resolveFormula
+#'             label `label<-` sortX revX resolveFormula
+#'             isNA callIf midx getDotsArg
 NULL

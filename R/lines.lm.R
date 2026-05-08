@@ -64,6 +64,11 @@
 
 #' @rdname linesLm
 #' @method lines lm
+#' @family plot.utils
+#' @concept graphics
+#' @concept regression
+#'
+#'
 #' @export
 lines.lm <- function (x, col = pal()[1], lwd = 2, lty = "solid",
                       type = "l", n = 100, conf.level = 0.95, args.cband = NULL,

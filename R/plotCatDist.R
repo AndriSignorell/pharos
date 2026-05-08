@@ -55,6 +55,12 @@
 #'
 
 
+#' @family plot.distribution
+#' @concept graphics
+#' @concept descriptive-statistics
+#' @concept factor-handling
+#'
+#'
 #' @export
 plotCatDist <- function(
     x,
@@ -155,7 +161,7 @@ plotCatDist <- function(
     }
     
     # ── Title ────────────────────────────────────────────────────
-    .callIf(
+    bedrock::callIf(
       title,
       if (!is.null(main)) list(main = main, outer = TRUE)
     )

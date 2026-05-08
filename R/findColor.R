@@ -28,9 +28,6 @@
 #' 
 #' @seealso \code{\link{findInterval}}
 
-#' @family topic.colors
-#' @concept color-manipulation
-#' @concept color-conversion
 
 
 #' @examples
@@ -72,6 +69,11 @@
 #'    min.x = 0, max.x = 1, all.inside = FALSE)), adj = c(0.5,0.5))
 
 
+#' @family topic.colors
+#' @concept color-manipulation
+#' @concept graphics
+#'
+#'
 #' @export
 findColor <- function(x, cols=rev(heat.colors(100)), min.x=NULL, max.x=NULL,
                       all.inside = FALSE){

@@ -12,8 +12,6 @@
 #' \code{rad} with the angles in degrees. 
 #' 
 
-#' @family topic.conversion
-#' @concept angle-conversion
 
 #' @examples
 #' 
@@ -24,6 +22,11 @@
 
 
 #' @rdname degToRad
+#' @family coordinate.transform
+#' @concept geometry
+#' @concept mathematics
+#'
+#'
 #' @export
 degToRad <- function(deg) deg * pi /180
 

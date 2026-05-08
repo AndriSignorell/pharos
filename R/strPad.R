@@ -18,10 +18,6 @@
 #' right side.
 #' @return the string
 #' 
-#' @family topic.text
-#' @concept string-processing
-#' @concept formatting
-#' 
 #' @examples
 #' 
 #' strPad("My string", 25, "XoX", "center")
@@ -29,6 +25,11 @@
 #' 
 
 
+#' @family string.format
+#' @concept string-formatting
+#' @concept string-manipulation
+#'
+#'
 #' @export
 strPad <- function(x, width = NULL, pad = " ", adj = "left") {
   

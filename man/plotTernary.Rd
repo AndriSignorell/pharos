@@ -62,7 +62,7 @@ barycentric transformation. If rows do not sum to 1, they are automatically
 normalized with a warning.
 
 Graphical elements such as grids are controlled via the unified plot
-design system using \code{.callIf()} and \code{.theme()}.
+design system using \code{bedrock::callIf()} and \code{.theme()}.
 }
 \examples{
 set.seed(1)
@@ -80,37 +80,16 @@ plotTernary(M, lbl = c("A", "B", "C"))
 \seealso{
 \code{\link{plotDens}}, \code{\link{plotRidge}}
 
-Other topic.graphics: 
-\code{\link{axisBreak}()},
-\code{\link{barText}()},
-\code{\link{boxedText}()},
-\code{\link{canvas}()},
-\code{\link{colorLegend}()},
-\code{\link{errBars}()},
-\code{\link{plot.Lc}()},
+Other plot.special: 
 \code{\link{plotArea}()},
-\code{\link{plotBag}()},
-\code{\link{plotBar}()},
-\code{\link{plotBubble}()},
+\code{\link{plotBinaryTree}()},
 \code{\link{plotCirc}()},
-\code{\link{plotCor}()},
-\code{\link{plotDens}()},
-\code{\link{plotDens2D}()},
-\code{\link{plotDot}()},
-\code{\link{plotECDF}()},
-\code{\link{plotFdist}()},
 \code{\link{plotFun}()},
-\code{\link{plotLines}()},
 \code{\link{plotMiss}()},
-\code{\link{plotMosaic}()},
-\code{\link{plotProbDist}()},
-\code{\link{plotQQ}()},
-\code{\link{plotRidge}()},
-\code{\link{plotTimeSeries}()},
+\code{\link{plotPolar}()},
 \code{\link{plotTreemap}()},
-\code{\link{plotViolin}()},
 \code{\link{plotWeb}()}
 }
-\concept{base-graphics}
-\concept{plotting}
-\concept{topic.graphics}
+\concept{geometry}
+\concept{graphics}
+\concept{plot.special}

@@ -19,7 +19,7 @@
 #' }
 #'
 #' Graphical elements such as grids are controlled via the unified plot
-#' design system using \code{.callIf()} and \code{.theme()}.
+#' design system using \code{bedrock::callIf()} and \code{.theme()}.
 #'
 #' @param ... Additional graphical parameters passed to \code{par()}.
 #'
@@ -144,7 +144,7 @@ plotDens.default <- function(
            type = "n")
     }
     
-    .callIf(graphics::grid, grid,
+    bedrock::callIf(graphics::grid, grid,
             defaults = th$grid[!startsWith(names(th$grid), "group.")])
     
     for (i in seq_len(n)) {
@@ -392,7 +392,7 @@ plotDens.formula <- function(
     }
     
     # grid
-    .callIf(graphics::grid, grid,
+    bedrock::callIf(graphics::grid, grid,
             defaults = th$grid[!startsWith(names(th$grid), "group.")])
     
     # curves

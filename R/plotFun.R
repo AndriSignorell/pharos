@@ -46,11 +46,6 @@
 #'
 #' @return Invisibly returns a list with components \code{x} and \code{y}.
 #' 
-#' @family topic.graphics
-#' @concept base-graphics
-#' @concept plotting
-#' 
-#'
 #' @examples
 #' par(mfrow = c(3,4))
 #'
@@ -161,6 +156,11 @@
 #'
 
 
+#' @family plot.special
+#' @concept graphics
+#' @concept mathematics
+#'
+#'
 #' @export
 plotFun <- function(
     
@@ -337,7 +337,7 @@ plotFun <- function(
       
       # --- grid -----------------------------------------------
       
-      .callIf(graphics::grid, grid,
+      bedrock::callIf(graphics::grid, grid,
               defaults = th$grid[!startsWith(names(th$grid), "group.")])
     }
     

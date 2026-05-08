@@ -43,6 +43,11 @@
 #' 
 
 
+#' @family plot.utils
+#' @concept graphics
+#' @concept vector-manipulation
+#'
+#'
 #' @export
 spreadOut <- function(x, mindist = NULL, cex = 1.0) {
   

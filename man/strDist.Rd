@@ -94,9 +94,7 @@ Psychometric Analyses}
 \seealso{
 \code{\link[utils]{adist}}, \code{\link[stats]{dist}}
 
-Other topic.text: 
-\code{\link{strAbbr}()},
-\code{\link{strAlign}()},
+Other string.manipulation: 
 \code{\link{strCap}()},
 \code{\link{strChop}()},
 \code{\link{strCountW}()},
@@ -104,17 +102,16 @@ Other topic.text:
 \code{\link{strExtractBetween}()},
 \code{\link{strIsNumeric}()},
 \code{\link{strLeftRight}},
-\code{\link{strPad}()},
 \code{\link{strPos}()},
 \code{\link{strRev}()},
 \code{\link{strSpell}()},
 \code{\link{strSplit}()},
 \code{\link{strTrim}()},
-\code{\link{strTrunc}()},
 \code{\link{strVal}()}
 }
 \author{
 Matthias Kohl \href{mailto:Matthias.Kohl@stamats.de}{Matthias.Kohl@stamats.de}
 }
-\concept{string-processing}
-\concept{topic.text}
+\concept{mathematics}
+\concept{string-manipulation}
+\concept{string.manipulation}

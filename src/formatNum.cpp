@@ -15,10 +15,10 @@ double round_to_power(double value, int power) {
 CharacterVector formatNum(NumericVector x,
                           Nullable<IntegerVector> digits = R_NilValue,
                           Nullable<IntegerVector> ldigits = R_NilValue,
-                          Nullable<CharacterVector> big_mark = R_NilValue,
-                          Nullable<CharacterVector> decimal_mark = R_NilValue,
-                          int sci_big = 9999,
-                          int sci_small = -9999) {
+                          Nullable<CharacterVector> bigMark = R_NilValue,
+                          Nullable<CharacterVector> decimalMark = R_NilValue,
+                          int sciBig = 9999,
+                          int sciSmall = -9999) {
   
   int n = x.size();
   
@@ -44,13 +44,13 @@ CharacterVector formatNum(NumericVector x,
   // ldigits: default = 0
   IntegerVector ldig = ldigits.isNotNull() ? IntegerVector(ldigits) : IntegerVector::create(0);
   
-  // big_mark: default = ""
-  CharacterVector bmark = big_mark.isNotNull() ? CharacterVector(big_mark) : CharacterVector::create("");
+  // bigMark: default = ""
+  CharacterVector bmark = bigMark.isNotNull() ? CharacterVector(bigMark) : CharacterVector::create("");
   
-  // decimal_mark: default = getOption("OutDec")
+  // decimalMark: default = getOption("OutDec")
   CharacterVector dmark;
-  if (decimal_mark.isNotNull()) {
-    dmark = CharacterVector(decimal_mark);
+  if (decimalMark.isNotNull()) {
+    dmark = CharacterVector(decimalMark);
   } else {
     Environment base("package:base");
     Function getOption = base["getOption"];
@@ -82,7 +82,7 @@ CharacterVector formatNum(NumericVector x,
     bool use_sci = false;
     if (abs_val > 0) {
       double log10val = std::log10(abs_val);
-      use_sci = (log10val >= sci_big) || (log10val < sci_small);
+      use_sci = (log10val >= sciBig) || (log10val < sciSmall);
     }
     
     if (use_sci) {

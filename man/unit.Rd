@@ -47,3 +47,6 @@ unit(y) <- "kg"
 unit(y) <- NULL
 
 }
+\concept{data-manipulation}
+\concept{unit.utils}
+\concept{units}

@@ -60,7 +60,11 @@
 #' plotDensBox(x ~ g)
 #' }
 #'
-#' @keywords hplot
+#' @family plot.univariate
+#' @concept graphics
+#' @concept descriptive-statistics
+#'
+#'
 #' @export
 plotDensBox <- function(x, ...) {
   UseMethod("plotDensBox")
@@ -190,7 +194,7 @@ plotDensBox.default <- function(
     if (nzchar(main))
       title(main = main, outer = TRUE)
     
-  }, stamp = stamp, reset_layout = TRUE)
+  }, stamp = stamp, resetLayout = TRUE)
   
   invisible(NULL)
 }

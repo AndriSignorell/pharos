@@ -174,36 +174,21 @@ plotBar(VADeaths/1e3,  box=FALSE, bg="lightyellow", main="VADeaths",
 \code{\link[graphics]{barplot}}, \code{\link{barText}}
 
 Other topic.graphics: 
-\code{\link{axisBreak}()},
-\code{\link{barText}()},
-\code{\link{boxedText}()},
-\code{\link{canvas}()},
-\code{\link{colorLegend}()},
-\code{\link{errBars}()},
-\code{\link{plot.Lc}()},
-\code{\link{plotArea}()},
-\code{\link{plotBag}()},
 \code{\link{plotBubble}()},
-\code{\link{plotCirc}()},
-\code{\link{plotCor}()},
 \code{\link{plotDens}()},
 \code{\link{plotDens2D}()},
+\code{\link{plotRidge}()}
+
+Other plot.univariate: 
+\code{\link{plotDensBox}()},
 \code{\link{plotDot}()},
-\code{\link{plotECDF}()},
-\code{\link{plotFdist}()},
-\code{\link{plotFun}()},
-\code{\link{plotLines}()},
-\code{\link{plotMiss}()},
-\code{\link{plotMosaic}()},
-\code{\link{plotProbDist}()},
-\code{\link{plotQQ}()},
-\code{\link{plotRidge}()},
-\code{\link{plotTernary}()},
-\code{\link{plotTimeSeries}()},
-\code{\link{plotTreemap}()},
-\code{\link{plotViolin}()},
-\code{\link{plotWeb}()}
+\code{\link{plotPropCI}()},
+\code{\link{plotViolin}()}
 }
 \concept{base-graphics}
+\concept{descriptive-statistics}
+\concept{frequency-analysis}
+\concept{graphics}
+\concept{plot.univariate}
 \concept{plotting}
 \concept{topic.graphics}

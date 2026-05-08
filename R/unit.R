@@ -35,6 +35,11 @@
 #' unit(y) <- NULL
 #'
 #' @name unit
+#' @family unit.utils
+#' @concept units
+#' @concept data-manipulation
+#'
+#'
 #' @export
 unit <- function(x) {
   attr(x, "unit", exact = TRUE)

@@ -39,12 +39,13 @@
 #' # greedy
 #' strExtractBetween("a[1]b[2]c", "\\[", "\\]", greedy = TRUE)
 #'
-#' @family topic.text
-#' @concept string-processing
-#' @concept regular expressions
+
+
+#' @family string.manipulation
+#' @concept string-manipulation
+#' @concept data-manipulation
 #'
-
-
+#'
 #' @export
 strExtractBetween <- function(x, left, right, greedy = FALSE) {
   

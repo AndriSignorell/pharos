@@ -40,5 +40,18 @@ stamp()
 }
 \seealso{
 \code{\link{text}}
+
+Other plot.annotation: 
+\code{\link{axisBreak}()},
+\code{\link{barText}()},
+\code{\link{boxedText}()},
+\code{\link{colorLegend}()},
+\code{\link{drawBand}()},
+\code{\link{errBars}()},
+\code{\link{shade}()},
+\code{\link{titleRect}()}
 }
+\concept{date-handling}
+\concept{graphics}
+\concept{plot.annotation}
 \keyword{aplot}

@@ -53,6 +53,18 @@ with(beaver1, {
 }
 \seealso{
 \code{\link{axTicks}}, \code{\link{axis.POSIXct}}
+
+Other plot.utils: 
+\code{\link{abcCoords}()},
+\code{\link{lineToUser}()},
+\code{\link{lines.lm}()},
+\code{\link{mar}()},
+\code{\link{setBackCol}()},
+\code{\link{splineCI}},
+\code{\link{spreadOut}()}
 }
+\concept{date-handling}
+\concept{graphics}
+\concept{plot.utils}
 \keyword{aplot}
 \keyword{chron}

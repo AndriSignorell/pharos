@@ -39,6 +39,11 @@
 #' 
 
 #' @rdname axTicks
+#' @family plot.utils
+#' @concept graphics
+#' @concept date-handling
+#'
+#'
 #' @export
 axTicks.POSIXct <- function (side, x, at, format, labels = TRUE, ...) {
   

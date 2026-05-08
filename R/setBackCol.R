@@ -22,6 +22,11 @@
 #' 
 
 
+#' @family plot.utils
+#' @concept graphics
+#' @concept color-manipulation
+#'
+#'
 #' @export
 setBackCol <- function(col="grey", region=c("plot", "figure"), border=NA) {
 

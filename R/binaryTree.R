@@ -56,6 +56,11 @@
 
 
 #' @rdname binaryTree
+#' @family plot.special
+#' @concept graphics
+#' @concept data-structures
+#'
+#'
 #' @export
 plotBinaryTree <- function(x, main = "Binary tree", horiz = FALSE,
                         text=TRUE, line=TRUE, ...) {
@@ -156,7 +161,7 @@ plotBinaryTree <- function(x, main = "Binary tree", horiz = FALSE,
     
 
     # --- Text Layer ---
-    .callIf(boxedText,
+    bedrock::callIf(boxedText,
             text,
             defaults = list(
               x = df$xpos, y = df$ypos, 
@@ -181,7 +186,7 @@ plotBinaryTree <- function(x, main = "Binary tree", horiz = FALSE,
 
 .drawSegments <- function(x0, y0, x1, y1, line){
   
-  .callIf(segments,
+  bedrock::callIf(segments,
           line,
           defaults = list(
             x0=x0, y0=y0, x1=x1, y1=y1,

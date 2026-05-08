@@ -34,10 +34,12 @@
 #' # regex splitting
 #' strSplit("a1b2c3", "\\d")
 #'
-#' @family topic.text
-#' @concept string-processing
-#'
 
+#' @family string.manipulation
+#' @concept string-manipulation
+#' @concept data-manipulation
+#'
+#'
 #' @export
 strSplit <- function(x, split = "", fixed = FALSE) {
   

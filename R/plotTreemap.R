@@ -42,10 +42,6 @@
 #' @seealso \code{\link{plotCirc}}, \code{\link{mosaicplot}},
 #' \code{\link{barplot}}
 #' 
-#' @family topic.graphics
-#' @concept base-graphics
-#' @concept plotting
-#' 
 #' @examples
 #' 
 #' set.seed(1789)
@@ -62,7 +58,7 @@
 #'            decreasing=c(FALSE,TRUE))
 #' z$col <- alpha(c("steelblue","green","yellow")[z$grp],
 #'                   unlist(lapply(split(z$area, z$grp),
-#'                   function(...) linScale(..., new_low=0.1, new_high=0.6))))
+#'                   function(...) linScale(..., newLow=0.1, newHigh=0.6))))
 #' 
 #' plotTreemap(x=z$area, grp=z$grp, labels=letters[1:20], col=z$col)
 #' 
@@ -82,6 +78,11 @@
 #' 
 
 
+#' @family plot.special
+#' @concept graphics
+#' @concept frequency-analysis
+#'
+#'
 #' @export
 plotTreemap <- function(x, grp=NULL, labels=NULL,  
                         text.col="black", col=rainbow(length(x)),

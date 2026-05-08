@@ -117,6 +117,16 @@ Friendly, M. (1992). Graphical methods for categorical data.
 \seealso{
 \code{\link[graphics]{mosaicplot}}, \code{\link{plotMosaic}},
 \code{\link[DescToolsX]{conf}}
+
+Other plot.bivariate: 
+\code{\link{plotBag}()},
+\code{\link{plotCor}()},
+\code{\link{plotDens2D}()},
+\code{\link{plotHeatmap}()},
+\code{\link{plotHexbin}()},
+\code{\link{plotMosaic}()}
 }
-\concept{contingency table association residuals categorical}
-\concept{plot}
+\concept{association-measures}
+\concept{graphics}
+\concept{plot.bivariate}
+\concept{table-manipulation}

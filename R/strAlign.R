@@ -50,11 +50,13 @@
 #' z <- c("6.0", "45.12", "784")
 #' strAlign(z, ".")
 #'
-#' @family topic.text
-#' @concept string-processing
-#' @concept text-alignment
 
 
+#' @family string.format
+#' @concept string-formatting
+#' @concept graphics
+#'
+#'
 #' @export
 strAlign <- function(x, sep = "\\r") {
   

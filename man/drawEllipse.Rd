@@ -81,13 +81,14 @@ par(op)
 \code{\link{polygon}}, \code{\link{drawRegPolygon}},
 \code{\link{drawCircle}}, \code{\link{drawArc}}
 
-Other topic.geometry: 
+Other plot.geometry: 
+\code{\link{canvas}()},
 \code{\link{drawArc}()},
-\code{\link{drawBand}()},
 \code{\link{drawBezier}()},
 \code{\link{drawCircle}()},
-\code{\link{drawRegPolygon}()}
+\code{\link{drawRegPolygon}()},
+\code{\link{polarGrid}()}
 }
-\concept{geometric-shapes}
-\concept{primitives}
-\concept{topic.geometry}
+\concept{geometry}
+\concept{graphics}
+\concept{plot.geometry}

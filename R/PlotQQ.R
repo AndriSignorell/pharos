@@ -55,9 +55,6 @@
 #' 
 #' @seealso \code{\link{qqnorm}}, \code{\link{qqline}}, \code{\link{qqplot}} 
 #' @references Teetor, P. (2011) \emph{R Cookbook}. O'Reilly, pp. 254-255.
-#' @family topic.graphics
-#' @concept base-graphics
-#' @concept plotting
 #' @examples
 #' 
 #' y <- rexp(100, 1/10)
@@ -82,6 +79,12 @@
 
 
 
+#' @family plot.distribution
+#' @concept graphics
+#' @concept normality-testing
+#' @concept distributions
+#'
+#'
 #' @export
 plotQQ <- function(x, qdist=stats::qnorm, 
                    main=NULL, xlab=NULL, ylab=NULL, 
@@ -129,7 +132,7 @@ plotQQ <- function(x, qdist=stats::qnorm,
     
     if(!add){
       plot(x=x, y, main=main, xlab=xlab, ylab=ylab, type="n", ...)
-      .callIf(graphics::grid, grid, 
+      bedrock::callIf(graphics::grid, grid, 
               defaults = list(
                 col = th$grid$col,
                 lty = th$grid$lty,
@@ -139,7 +142,7 @@ plotQQ <- function(x, qdist=stats::qnorm,
 
     
     # add confidence band if desired
-    .callIf(.drawConfBandQQ,
+    bedrock::callIf(.drawConfBandQQ,
             cband,
             defaults = list(
               col    = alpha(.getOption("palette", 

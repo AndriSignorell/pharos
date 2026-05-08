@@ -26,10 +26,6 @@
 #' @return nothing returned 
 #' 
 #' @seealso \code{\link{shade}}, \code{\link{curve}}, \code{\link{polygon}} 
-#' @family topic.graphics
-#' @concept base-graphics
-#' @concept plotting
-#' 
 #' @examples
 #' # plot t-distribution
 #' plotProbDist(breaks=c(-6, -2.3, 1.5, 6), 
@@ -56,6 +52,12 @@
 #' 
 #' 
 
+#' @family plot.distribution
+#' @concept graphics
+#' @concept distributions
+#' @concept descriptive-statistics
+#'
+#'
 #' @export
 plotProbDist <- function(breaks, FUN, blab=NULL, main="", xlim=NULL, 
                          col=NULL, density=7, 

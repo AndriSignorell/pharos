@@ -42,8 +42,9 @@ Other topic.colors:
 \code{\link{contrastColor}()},
 \code{\link{conv_cols}},
 \code{\link{conv_rgb}},
-\code{\link{findColor}()}
+\code{\link{findColor}()},
+\code{\link{palNames}()}
 }
-\concept{color-conversion}
 \concept{color-manipulation}
+\concept{graphics}
 \concept{topic.colors}

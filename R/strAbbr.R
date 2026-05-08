@@ -41,11 +41,13 @@
 #' # fixed length abbreviations
 #' strAbbr(x, method = "fix")
 #'
-#' @family topic.text
-#' @concept string-processing
-#' @concept formatting
 
 
+#' @family string.format
+#' @concept string-formatting
+#' @concept string-manipulation
+#'
+#'
 #' @export
 strAbbr <- function(x, minchar = 1, method = c("left", "fix")) {
   

@@ -105,38 +105,16 @@ barText(VADeaths, b=b, horiz = TRUE, col="red", cex=1.5)
 \seealso{
 \code{\link{boxedText}}
 
-Other topic.graphics: 
+Other plot.annotation: 
 \code{\link{axisBreak}()},
 \code{\link{boxedText}()},
-\code{\link{canvas}()},
 \code{\link{colorLegend}()},
+\code{\link{drawBand}()},
 \code{\link{errBars}()},
-\code{\link{plot.Lc}()},
-\code{\link{plotArea}()},
-\code{\link{plotBag}()},
-\code{\link{plotBar}()},
-\code{\link{plotBubble}()},
-\code{\link{plotCirc}()},
-\code{\link{plotCor}()},
-\code{\link{plotDens}()},
-\code{\link{plotDens2D}()},
-\code{\link{plotDot}()},
-\code{\link{plotECDF}()},
-\code{\link{plotFdist}()},
-\code{\link{plotFun}()},
-\code{\link{plotLines}()},
-\code{\link{plotMiss}()},
-\code{\link{plotMosaic}()},
-\code{\link{plotProbDist}()},
-\code{\link{plotQQ}()},
-\code{\link{plotRidge}()},
-\code{\link{plotTernary}()},
-\code{\link{plotTimeSeries}()},
-\code{\link{plotTreemap}()},
-\code{\link{plotViolin}()},
-\code{\link{plotWeb}()}
+\code{\link{shade}()},
+\code{\link{stamp}()},
+\code{\link{titleRect}()}
 }
-\concept{base-graphics}
-\concept{plot-annotation}
-\concept{text-annotation}
-\concept{topic.graphics}
+\concept{graphics}
+\concept{plot.annotation}
+\concept{string-formatting}

@@ -44,12 +44,15 @@
 #'
 #' @seealso \code{\link{rotate}}
 #'
-#' @family topic.coordinates
-#' @concept coordinates
-#' @concept transformations
 
 
 
+#' @family coordinate.transform
+#' @concept geometry
+#' @concept mathematics
+#' @concept data-manipulation
+#'
+#'
 #' @export
 transformXY <- function(x, y = NULL,
                         translate = c(0, 0),
