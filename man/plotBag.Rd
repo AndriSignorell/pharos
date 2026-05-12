@@ -151,13 +151,13 @@ The bagplot: a bivariate boxplot, \emph{The American
 Statistician}, vol. 53, no. 4, 382--387
 }
 \seealso{
-Other plot.bivariate: 
-\code{\link{plotAssoc}()},
-\code{\link{plotCor}()},
-\code{\link{plotDens2D}()},
-\code{\link{plotHeatmap}()},
-\code{\link{plotHexbin}()},
-\code{\link{plotMosaic}()}
+Other plot.bivariate:
+\code{\link[=plotAssoc]{plotAssoc()}},
+\code{\link[=plotCor]{plotCor()}},
+\code{\link[=plotDens2D]{plotDens2D()}},
+\code{\link[=plotHeatmap]{plotHeatmap()}},
+\code{\link[=plotHexbin]{plotHexbin()}},
+\code{\link[=plotMosaic]{plotMosaic()}}
 }
 \concept{descriptive-statistics}
 \concept{graphics}

@@ -112,11 +112,11 @@ Teetor, P. (2011) \emph{R Cookbook}. O'Reilly, pp. 254-255.
 \seealso{
 \code{\link{qqnorm}}, \code{\link{qqline}}, \code{\link{qqplot}}
 
-Other plot.distribution: 
-\code{\link{plotCatDist}()},
-\code{\link{plotECDF}()},
-\code{\link{plotFdist}()},
-\code{\link{plotProbDist}()}
+Other plot.distribution:
+\code{\link[=plotCatDist]{plotCatDist()}},
+\code{\link[=plotECDF]{plotECDF()}},
+\code{\link[=plotFdist]{plotFdist()}},
+\code{\link[=plotProbDist]{plotProbDist()}}
 }
 \concept{distributions}
 \concept{graphics}

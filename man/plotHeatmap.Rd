@@ -87,13 +87,13 @@ plotHeatmap(tab,
 \seealso{
 \code{\link{plotAssoc}}, \code{\link[graphics]{image}}
 
-Other plot.bivariate: 
-\code{\link{plotAssoc}()},
-\code{\link{plotBag}()},
-\code{\link{plotCor}()},
-\code{\link{plotDens2D}()},
-\code{\link{plotHexbin}()},
-\code{\link{plotMosaic}()}
+Other plot.bivariate:
+\code{\link[=plotAssoc]{plotAssoc()}},
+\code{\link[=plotBag]{plotBag()}},
+\code{\link[=plotCor]{plotCor()}},
+\code{\link[=plotDens2D]{plotDens2D()}},
+\code{\link[=plotHexbin]{plotHexbin()}},
+\code{\link[=plotMosaic]{plotMosaic()}}
 }
 \concept{descriptive-statistics}
 \concept{graphics}

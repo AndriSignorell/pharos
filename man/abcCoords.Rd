@@ -69,14 +69,14 @@ boxedText(x=xy$xy$x, y=xy$xy$y, xpad = 1, ypad = 1,
 \seealso{
 \code{\link{text}}, \code{\link{boxedText}}
 
-Other plot.utils: 
-\code{\link{axTicks}()},
-\code{\link{lineToUser}()},
-\code{\link{lines.lm}()},
-\code{\link{mar}()},
-\code{\link{setBackCol}()},
+Other plot.utils:
+\code{\link{axTicks}},
+\code{\link[=lineToUser]{lineToUser()}},
+\code{\link[=lines.lm]{lines.lm()}},
+\code{\link[=mar]{mar()}},
+\code{\link[=setBackCol]{setBackCol()}},
 \code{\link{splineCI}},
-\code{\link{spreadOut}()}
+\code{\link[=spreadOut]{spreadOut()}}
 }
 \concept{geometry}
 \concept{graphics}

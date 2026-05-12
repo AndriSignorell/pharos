@@ -112,11 +112,11 @@ plotDensBox(x ~ g)
 \seealso{
 \code{\link[stats]{density}}, \code{\link[graphics]{boxplot}}
 
-Other plot.univariate: 
-\code{\link{plotBar}()},
-\code{\link{plotDot}()},
-\code{\link{plotPropCI}()},
-\code{\link{plotViolin}()}
+Other plot.univariate:
+\code{\link[=plotBar]{plotBar()}},
+\code{\link[=plotDot]{plotDot()}},
+\code{\link[=plotPropCI]{plotPropCI()}},
+\code{\link[=plotViolin]{plotViolin()}}
 }
 \concept{descriptive-statistics}
 \concept{graphics}

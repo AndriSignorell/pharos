@@ -75,11 +75,11 @@ plotCatDist(x2, maxcats = 10)
 
 }
 \seealso{
-Other plot.distribution: 
-\code{\link{plotECDF}()},
-\code{\link{plotFdist}()},
-\code{\link{plotProbDist}()},
-\code{\link{plotQQ}()}
+Other plot.distribution:
+\code{\link[=plotECDF]{plotECDF()}},
+\code{\link[=plotFdist]{plotFdist()}},
+\code{\link[=plotProbDist]{plotProbDist()}},
+\code{\link[=plotQQ]{plotQQ()}}
 }
 \concept{descriptive-statistics}
 \concept{factor-handling}

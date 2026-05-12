@@ -91,13 +91,13 @@ polarGrid(rlabels = NA, alabels = NA)
 
 }
 \seealso{
-Other plot.geometry: 
-\code{\link{canvas}()},
-\code{\link{drawArc}()},
-\code{\link{drawBezier}()},
-\code{\link{drawCircle}()},
-\code{\link{drawEllipse}()},
-\code{\link{drawRegPolygon}()}
+Other plot.geometry:
+\code{\link[=canvas]{canvas()}},
+\code{\link[=drawArc]{drawArc()}},
+\code{\link[=drawBezier]{drawBezier()}},
+\code{\link[=drawCircle]{drawCircle()}},
+\code{\link[=drawEllipse]{drawEllipse()}},
+\code{\link[=drawRegPolygon]{drawRegPolygon()}}
 }
 \concept{geometry}
 \concept{graphics}

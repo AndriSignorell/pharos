@@ -111,15 +111,15 @@ par(op)
 \seealso{
 \code{\link{plotCor}}
 
-Other plot.special: 
-\code{\link{plotArea}()},
-\code{\link{plotBinaryTree}()},
-\code{\link{plotCirc}()},
-\code{\link{plotFun}()},
-\code{\link{plotMiss}()},
-\code{\link{plotPolar}()},
-\code{\link{plotTernary}()},
-\code{\link{plotTreemap}()}
+Other plot.special:
+\code{\link[=plotArea]{plotArea()}},
+\code{\link[=plotBinaryTree]{plotBinaryTree()}},
+\code{\link[=plotCirc]{plotCirc()}},
+\code{\link[=plotFun]{plotFun()}},
+\code{\link[=plotMiss]{plotMiss()}},
+\code{\link[=plotPolar]{plotPolar()}},
+\code{\link[=plotTernary]{plotTernary()}},
+\code{\link[=plotTreemap]{plotTreemap()}}
 }
 \concept{association-measures}
 \concept{graphics}

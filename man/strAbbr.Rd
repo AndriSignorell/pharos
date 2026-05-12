@@ -53,14 +53,14 @@ strAbbr(x, method = "fix")
 \code{\link[stringi]{stri_sub}},
 \code{\link[stringi]{stri_length}}
 
-Other string.format: 
-\code{\link{fm}()},
-\code{\link{fmCI}()},
-\code{\link{lineSep}()},
-\code{\link{strAlign}()},
-\code{\link{strPad}()},
-\code{\link{strTrunc}()},
-\code{\link{style}()}
+Other string.format:
+\code{\link[=fm]{fm()}},
+\code{\link[=fmCI]{fmCI()}},
+\code{\link[=lineSep]{lineSep()}},
+\code{\link[=strAlign]{strAlign()}},
+\code{\link[=strPad]{strPad()}},
+\code{\link[=strTrunc]{strTrunc()}},
+\code{\link[=style]{style()}}
 }
 \concept{string-formatting}
 \concept{string-manipulation}

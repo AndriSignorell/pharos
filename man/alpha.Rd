@@ -53,13 +53,13 @@ par(op)
 \code{\link{colToHex}}, \code{\link{col2rgb}},
 \code{\link{adjustcolor}}, \code{\link{colToOpaque}}
 
-Other topic.colors: 
-\code{\link{colToOpaque}()},
-\code{\link{contrastColor}()},
+Other topic.colors:
+\code{\link[=colToOpaque]{colToOpaque()}},
+\code{\link[=contrastColor]{contrastColor()}},
 \code{\link{conv_cols}},
 \code{\link{conv_rgb}},
-\code{\link{findColor}()},
-\code{\link{palNames}()}
+\code{\link[=findColor]{findColor()}},
+\code{\link[=palNames]{palNames()}}
 }
 \concept{color-manipulation}
 \concept{graphics}

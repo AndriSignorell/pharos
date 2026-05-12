@@ -80,15 +80,15 @@ plotTernary(M, lbl = c("A", "B", "C"))
 \seealso{
 \code{\link{plotDens}}, \code{\link{plotRidge}}
 
-Other plot.special: 
-\code{\link{plotArea}()},
-\code{\link{plotBinaryTree}()},
-\code{\link{plotCirc}()},
-\code{\link{plotFun}()},
-\code{\link{plotMiss}()},
-\code{\link{plotPolar}()},
-\code{\link{plotTreemap}()},
-\code{\link{plotWeb}()}
+Other plot.special:
+\code{\link[=plotArea]{plotArea()}},
+\code{\link[=plotBinaryTree]{plotBinaryTree()}},
+\code{\link[=plotCirc]{plotCirc()}},
+\code{\link[=plotFun]{plotFun()}},
+\code{\link[=plotMiss]{plotMiss()}},
+\code{\link[=plotPolar]{plotPolar()}},
+\code{\link[=plotTreemap]{plotTreemap()}},
+\code{\link[=plotWeb]{plotWeb()}}
 }
 \concept{geometry}
 \concept{graphics}

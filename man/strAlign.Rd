@@ -60,14 +60,14 @@ strAlign(z, ".")
 \code{\link[stringi]{stri_sub}},
 \code{\link[stringi]{stri_trim_right}}
 
-Other string.format: 
-\code{\link{fm}()},
-\code{\link{fmCI}()},
-\code{\link{lineSep}()},
-\code{\link{strAbbr}()},
-\code{\link{strPad}()},
-\code{\link{strTrunc}()},
-\code{\link{style}()}
+Other string.format:
+\code{\link[=fm]{fm()}},
+\code{\link[=fmCI]{fmCI()}},
+\code{\link[=lineSep]{lineSep()}},
+\code{\link[=strAbbr]{strAbbr()}},
+\code{\link[=strPad]{strPad()}},
+\code{\link[=strTrunc]{strTrunc()}},
+\code{\link[=style]{style()}}
 }
 \concept{graphics}
 \concept{string-formatting}

@@ -65,13 +65,13 @@ contrastColor(cols, light = "#FFFFFF", dark = "#222222")
 
 }
 \seealso{
-Other topic.colors: 
-\code{\link{alpha}()},
-\code{\link{colToOpaque}()},
+Other topic.colors:
+\code{\link[=alpha]{alpha()}},
+\code{\link[=colToOpaque]{colToOpaque()}},
 \code{\link{conv_cols}},
 \code{\link{conv_rgb}},
-\code{\link{findColor}()},
-\code{\link{palNames}()}
+\code{\link[=findColor]{findColor()}},
+\code{\link[=palNames]{palNames()}}
 }
 \concept{color-manipulation}
 \concept{graphics}

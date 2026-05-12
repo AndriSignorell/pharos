@@ -57,13 +57,13 @@ spreadOut(rnorm(10), 0.5)
 \seealso{
 \code{\link{strheight}()}
 
-Other plot.utils: 
-\code{\link{abcCoords}()},
-\code{\link{axTicks}()},
-\code{\link{lineToUser}()},
-\code{\link{lines.lm}()},
-\code{\link{mar}()},
-\code{\link{setBackCol}()},
+Other plot.utils:
+\code{\link[=abcCoords]{abcCoords()}},
+\code{\link{axTicks}},
+\code{\link[=lineToUser]{lineToUser()}},
+\code{\link[=lines.lm]{lines.lm()}},
+\code{\link[=mar]{mar()}},
+\code{\link[=setBackCol]{setBackCol()}},
 \code{\link{splineCI}}
 }
 \concept{graphics}

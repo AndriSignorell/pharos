@@ -40,20 +40,20 @@ strPos(x=rownames(mtcars), pattern="t", pos=4)
 \seealso{
 \code{\link{strChop}}, \code{\link{regexpr}}
 
-Other string.manipulation: 
-\code{\link{strCap}()},
-\code{\link{strChop}()},
-\code{\link{strCountW}()},
-\code{\link{strDist}()},
-\code{\link{strExtract}()},
-\code{\link{strExtractBetween}()},
-\code{\link{strIsNumeric}()},
+Other string.manipulation:
+\code{\link[=strCap]{strCap()}},
+\code{\link[=strChop]{strChop()}},
+\code{\link[=strCountW]{strCountW()}},
+\code{\link[=strDist]{strDist()}},
+\code{\link[=strExtract]{strExtract()}},
+\code{\link[=strExtractBetween]{strExtractBetween()}},
+\code{\link[=strIsNumeric]{strIsNumeric()}},
 \code{\link{strLeftRight}},
-\code{\link{strRev}()},
-\code{\link{strSpell}()},
-\code{\link{strSplit}()},
-\code{\link{strTrim}()},
-\code{\link{strVal}()}
+\code{\link[=strRev]{strRev()}},
+\code{\link[=strSpell]{strSpell()}},
+\code{\link[=strSplit]{strSplit()}},
+\code{\link[=strTrim]{strTrim()}},
+\code{\link[=strVal]{strVal()}}
 }
 \concept{data-inspection}
 \concept{string-manipulation}

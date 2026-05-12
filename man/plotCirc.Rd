@@ -93,15 +93,15 @@ plotCirc(
 
 }
 \seealso{
-Other plot.special: 
-\code{\link{plotArea}()},
-\code{\link{plotBinaryTree}()},
-\code{\link{plotFun}()},
-\code{\link{plotMiss}()},
-\code{\link{plotPolar}()},
-\code{\link{plotTernary}()},
-\code{\link{plotTreemap}()},
-\code{\link{plotWeb}()}
+Other plot.special:
+\code{\link[=plotArea]{plotArea()}},
+\code{\link[=plotBinaryTree]{plotBinaryTree()}},
+\code{\link[=plotFun]{plotFun()}},
+\code{\link[=plotMiss]{plotMiss()}},
+\code{\link[=plotPolar]{plotPolar()}},
+\code{\link[=plotTernary]{plotTernary()}},
+\code{\link[=plotTreemap]{plotTreemap()}},
+\code{\link[=plotWeb]{plotWeb()}}
 }
 \concept{association-measures}
 \concept{graphics}

@@ -48,11 +48,10 @@ par(op)
 \code{\link{polygon}}, \code{\link{drawRegPolygon}},
 \code{\link{drawEllipse}}, \code{\link{drawArc}}
 
-Other coordinate.transform: 
+Other coordinate.transform:
 \code{\link{conv_coord}},
-\code{\link{degToRad}()},
-\code{\link{linScale}()},
-\code{\link{transformXY}()}
+\code{\link[=degToRad]{degToRad()}},
+\code{\link[=transformXY]{transformXY()}}
 }
 \concept{coordinate.transform}
 \concept{geometry}

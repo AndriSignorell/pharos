@@ -71,13 +71,13 @@ tables. \emph{Journal of the American Statistical Association}, \bold{89},
 \seealso{
 \code{\link{mosaicplot}}
 
-Other plot.bivariate: 
-\code{\link{plotAssoc}()},
-\code{\link{plotBag}()},
-\code{\link{plotCor}()},
-\code{\link{plotDens2D}()},
-\code{\link{plotHeatmap}()},
-\code{\link{plotHexbin}()}
+Other plot.bivariate:
+\code{\link[=plotAssoc]{plotAssoc()}},
+\code{\link[=plotBag]{plotBag()}},
+\code{\link[=plotCor]{plotCor()}},
+\code{\link[=plotDens2D]{plotDens2D()}},
+\code{\link[=plotHeatmap]{plotHeatmap()}},
+\code{\link[=plotHexbin]{plotHexbin()}}
 }
 \concept{association-measures}
 \concept{graphics}

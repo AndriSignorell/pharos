@@ -82,19 +82,19 @@ plotDens2D(x, y, type = "image")
 
 }
 \seealso{
-Other topic.graphics: 
-\code{\link{plotBar}()},
-\code{\link{plotBubble}()},
-\code{\link{plotDens}()},
-\code{\link{plotRidge}()}
+Other topic.graphics:
+\code{\link[=plotBar]{plotBar()}},
+\code{\link[=plotBubble]{plotBubble()}},
+\code{\link[=plotDens]{plotDens()}},
+\code{\link[=plotRidge]{plotRidge()}}
 
-Other plot.bivariate: 
-\code{\link{plotAssoc}()},
-\code{\link{plotBag}()},
-\code{\link{plotCor}()},
-\code{\link{plotHeatmap}()},
-\code{\link{plotHexbin}()},
-\code{\link{plotMosaic}()}
+Other plot.bivariate:
+\code{\link[=plotAssoc]{plotAssoc()}},
+\code{\link[=plotBag]{plotBag()}},
+\code{\link[=plotCor]{plotCor()}},
+\code{\link[=plotHeatmap]{plotHeatmap()}},
+\code{\link[=plotHexbin]{plotHexbin()}},
+\code{\link[=plotMosaic]{plotMosaic()}}
 }
 \concept{base-graphics}
 \concept{bivariate}

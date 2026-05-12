@@ -178,11 +178,11 @@ par(op)
 \code{\link{hist}}, \code{\link{boxplot}}, \code{\link{ecdf}},
 \code{\link{density}}, \code{\link{rug}}, \code{\link{layout}}
 
-Other plot.distribution: 
-\code{\link{plotCatDist}()},
-\code{\link{plotECDF}()},
-\code{\link{plotProbDist}()},
-\code{\link{plotQQ}()}
+Other plot.distribution:
+\code{\link[=plotCatDist]{plotCatDist()}},
+\code{\link[=plotECDF]{plotECDF()}},
+\code{\link[=plotProbDist]{plotProbDist()}},
+\code{\link[=plotQQ]{plotQQ()}}
 }
 \concept{descriptive-statistics}
 \concept{frequency-analysis}

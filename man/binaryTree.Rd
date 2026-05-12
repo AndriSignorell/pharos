@@ -76,15 +76,15 @@ text(c("sex","age","survived"), y=0, x=c(1,2,3)+1)
 
 }
 \seealso{
-Other plot.special: 
-\code{\link{plotArea}()},
-\code{\link{plotCirc}()},
-\code{\link{plotFun}()},
-\code{\link{plotMiss}()},
-\code{\link{plotPolar}()},
-\code{\link{plotTernary}()},
-\code{\link{plotTreemap}()},
-\code{\link{plotWeb}()}
+Other plot.special:
+\code{\link[=plotArea]{plotArea()}},
+\code{\link[=plotCirc]{plotCirc()}},
+\code{\link[=plotFun]{plotFun()}},
+\code{\link[=plotMiss]{plotMiss()}},
+\code{\link[=plotPolar]{plotPolar()}},
+\code{\link[=plotTernary]{plotTernary()}},
+\code{\link[=plotTreemap]{plotTreemap()}},
+\code{\link[=plotWeb]{plotWeb()}}
 }
 \concept{data-structures}
 \concept{graphics}

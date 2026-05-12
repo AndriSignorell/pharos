@@ -108,11 +108,11 @@ plotBubble(y ~ x | a, data = df)
 \seealso{
 \code{\link{symbols}}
 
-Other topic.graphics: 
-\code{\link{plotBar}()},
-\code{\link{plotDens}()},
-\code{\link{plotDens2D}()},
-\code{\link{plotRidge}()}
+Other topic.graphics:
+\code{\link[=plotBar]{plotBar()}},
+\code{\link[=plotDens]{plotDens()}},
+\code{\link[=plotDens2D]{plotDens2D()}},
+\code{\link[=plotRidge]{plotRidge()}}
 }
 \concept{base-graphics}
 \concept{plotting}

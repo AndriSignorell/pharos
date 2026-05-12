@@ -50,15 +50,15 @@ plotMiss(airquality, main="Missing data (clustered)", clust=TRUE)
 \seealso{
 \code{\link{hclust}}, \code{\link[bedrock]{countCompCases}}
 
-Other plot.special: 
-\code{\link{plotArea}()},
-\code{\link{plotBinaryTree}()},
-\code{\link{plotCirc}()},
-\code{\link{plotFun}()},
-\code{\link{plotPolar}()},
-\code{\link{plotTernary}()},
-\code{\link{plotTreemap}()},
-\code{\link{plotWeb}()}
+Other plot.special:
+\code{\link[=plotArea]{plotArea()}},
+\code{\link[=plotBinaryTree]{plotBinaryTree()}},
+\code{\link[=plotCirc]{plotCirc()}},
+\code{\link[=plotFun]{plotFun()}},
+\code{\link[=plotPolar]{plotPolar()}},
+\code{\link[=plotTernary]{plotTernary()}},
+\code{\link[=plotTreemap]{plotTreemap()}},
+\code{\link[=plotWeb]{plotWeb()}}
 }
 \concept{graphics}
 \concept{missing-data}

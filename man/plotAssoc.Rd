@@ -118,13 +118,13 @@ Friendly, M. (1992). Graphical methods for categorical data.
 \code{\link[graphics]{mosaicplot}}, \code{\link{plotMosaic}},
 \code{\link[DescToolsX]{conf}}
 
-Other plot.bivariate: 
-\code{\link{plotBag}()},
-\code{\link{plotCor}()},
-\code{\link{plotDens2D}()},
-\code{\link{plotHeatmap}()},
-\code{\link{plotHexbin}()},
-\code{\link{plotMosaic}()}
+Other plot.bivariate:
+\code{\link[=plotBag]{plotBag()}},
+\code{\link[=plotCor]{plotCor()}},
+\code{\link[=plotDens2D]{plotDens2D()}},
+\code{\link[=plotHeatmap]{plotHeatmap()}},
+\code{\link[=plotHexbin]{plotHexbin()}},
+\code{\link[=plotMosaic]{plotMosaic()}}
 }
 \concept{association-measures}
 \concept{graphics}

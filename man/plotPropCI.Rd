@@ -64,11 +64,11 @@ plotPropCI(c(0.3, 0.6, 0.8),
 
 }
 \seealso{
-Other plot.univariate: 
-\code{\link{plotBar}()},
-\code{\link{plotDensBox}()},
-\code{\link{plotDot}()},
-\code{\link{plotViolin}()}
+Other plot.univariate:
+\code{\link[=plotBar]{plotBar()}},
+\code{\link[=plotDensBox]{plotDensBox()}},
+\code{\link[=plotDot]{plotDot()}},
+\code{\link[=plotViolin]{plotViolin()}}
 }
 \concept{confidence-intervals}
 \concept{descriptive-statistics}

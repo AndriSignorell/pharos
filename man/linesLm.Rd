@@ -113,14 +113,14 @@ par(op)
 \seealso{
 \code{\link{lines}}, \code{\link{lines.loess}}, \code{\link{lm}}
 
-Other plot.utils: 
-\code{\link{abcCoords}()},
-\code{\link{axTicks}()},
-\code{\link{lineToUser}()},
-\code{\link{mar}()},
-\code{\link{setBackCol}()},
+Other plot.utils:
+\code{\link[=abcCoords]{abcCoords()}},
+\code{\link{axTicks}},
+\code{\link[=lineToUser]{lineToUser()}},
+\code{\link[=mar]{mar()}},
+\code{\link[=setBackCol]{setBackCol()}},
 \code{\link{splineCI}},
-\code{\link{spreadOut}()}
+\code{\link[=spreadOut]{spreadOut()}}
 }
 \concept{graphics}
 \concept{plot.utils}

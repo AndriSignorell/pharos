@@ -26,13 +26,13 @@ palNames("discrete")
 \seealso{
 \code{\link{pal}}
 
-Other topic.colors: 
-\code{\link{alpha}()},
-\code{\link{colToOpaque}()},
-\code{\link{contrastColor}()},
+Other topic.colors:
+\code{\link[=alpha]{alpha()}},
+\code{\link[=colToOpaque]{colToOpaque()}},
+\code{\link[=contrastColor]{contrastColor()}},
 \code{\link{conv_cols}},
 \code{\link{conv_rgb}},
-\code{\link{findColor}()}
+\code{\link[=findColor]{findColor()}}
 }
 \concept{color-manipulation}
 \concept{graphics}

@@ -36,6 +36,10 @@
 #' @export  
 fmCI <- function(x, template=NULL, ...){
   
+  if(is.matrix(x) || is.data.frame(x)) {
+    return(apply(x, 1, fmCI, template = template, ...))
+  }
+  
   x <- fm(x, ...)
   n <- length(x)
   

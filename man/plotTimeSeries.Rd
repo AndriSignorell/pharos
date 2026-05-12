@@ -42,8 +42,8 @@ plotTimeSeries(AirPassengers)
 \seealso{
 \code{\link{ts}}
 
-Other plot.timeseries: 
-\code{\link{plotLines}()}
+Other plot.timeseries:
+\code{\link[=plotLines]{plotLines()}}
 }
 \concept{descriptive-statistics}
 \concept{graphics}

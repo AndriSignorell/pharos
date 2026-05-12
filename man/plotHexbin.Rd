@@ -49,13 +49,13 @@ plotHexbin(x, y, bins = 40,
 \seealso{
 \code{\link[hexbin]{hexbin}}, \code{\link[graphics]{polygon}}
 
-Other plot.bivariate: 
-\code{\link{plotAssoc}()},
-\code{\link{plotBag}()},
-\code{\link{plotCor}()},
-\code{\link{plotDens2D}()},
-\code{\link{plotHeatmap}()},
-\code{\link{plotMosaic}()}
+Other plot.bivariate:
+\code{\link[=plotAssoc]{plotAssoc()}},
+\code{\link[=plotBag]{plotBag()}},
+\code{\link[=plotCor]{plotCor()}},
+\code{\link[=plotDens2D]{plotDens2D()}},
+\code{\link[=plotHeatmap]{plotHeatmap()}},
+\code{\link[=plotMosaic]{plotMosaic()}}
 }
 \concept{descriptive-statistics}
 \concept{graphics}

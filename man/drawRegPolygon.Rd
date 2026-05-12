@@ -110,13 +110,13 @@ polygon(x = unlist(lapply(pts, "[", "x")),
 \code{\link{polygon}}, \code{\link{drawCircle}},
 \code{\link{drawArc}}
 
-Other plot.geometry: 
-\code{\link{canvas}()},
-\code{\link{drawArc}()},
-\code{\link{drawBezier}()},
-\code{\link{drawCircle}()},
-\code{\link{drawEllipse}()},
-\code{\link{polarGrid}()}
+Other plot.geometry:
+\code{\link[=canvas]{canvas()}},
+\code{\link[=drawArc]{drawArc()}},
+\code{\link[=drawBezier]{drawBezier()}},
+\code{\link[=drawCircle]{drawCircle()}},
+\code{\link[=drawEllipse]{drawEllipse()}},
+\code{\link[=polarGrid]{polarGrid()}}
 }
 \concept{geometry}
 \concept{graphics}

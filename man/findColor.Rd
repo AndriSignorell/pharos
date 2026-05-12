@@ -85,13 +85,13 @@ text(x=x, y = 0.3, labels = names(findColor(x, cols=cols,
 \seealso{
 \code{\link{findInterval}}
 
-Other topic.colors: 
-\code{\link{alpha}()},
-\code{\link{colToOpaque}()},
-\code{\link{contrastColor}()},
+Other topic.colors:
+\code{\link[=alpha]{alpha()}},
+\code{\link[=colToOpaque]{colToOpaque()}},
+\code{\link[=contrastColor]{contrastColor()}},
 \code{\link{conv_cols}},
 \code{\link{conv_rgb}},
-\code{\link{palNames}()}
+\code{\link[=palNames]{palNames()}}
 }
 \concept{color-manipulation}
 \concept{graphics}

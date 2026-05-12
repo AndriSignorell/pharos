@@ -102,11 +102,11 @@ plotDens(y ~ x | g)
 \seealso{
 \code{\link[stats]{density}}, \code{\link[graphics]{cdplot}}
 
-Other topic.graphics: 
-\code{\link{plotBar}()},
-\code{\link{plotBubble}()},
-\code{\link{plotDens2D}()},
-\code{\link{plotRidge}()}
+Other topic.graphics:
+\code{\link[=plotBar]{plotBar()}},
+\code{\link[=plotBubble]{plotBubble()}},
+\code{\link[=plotDens2D]{plotDens2D()}},
+\code{\link[=plotRidge]{plotRidge()}}
 }
 \concept{base-graphics}
 \concept{plotting}

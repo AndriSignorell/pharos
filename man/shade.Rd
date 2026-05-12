@@ -52,15 +52,15 @@ shade(dt(x, df=5), breaks=c(-6, qt(0.025, df=5), qt(0.975, df=5), 6),
 \seealso{
 \code{\link{polygon}}, \code{\link{curve}}
 
-Other plot.annotation: 
-\code{\link{axisBreak}()},
-\code{\link{barText}()},
-\code{\link{boxedText}()},
-\code{\link{colorLegend}()},
-\code{\link{drawBand}()},
-\code{\link{errBars}()},
-\code{\link{stamp}()},
-\code{\link{titleRect}()}
+Other plot.annotation:
+\code{\link[=axisBreak]{axisBreak()}},
+\code{\link[=barText]{barText()}},
+\code{\link[=boxedText]{boxedText()}},
+\code{\link[=colorLegend]{colorLegend()}},
+\code{\link[=drawBand]{drawBand()}},
+\code{\link[=errBars]{errBars()}},
+\code{\link[=stamp]{stamp()}},
+\code{\link[=titleRect]{titleRect()}}
 }
 \concept{descriptive-statistics}
 \concept{distributions}

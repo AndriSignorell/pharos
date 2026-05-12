@@ -134,15 +134,15 @@ boxedText(mpg ~ hp, data=mtcars,
 \code{\link{spreadOut}}, similar function in package \pkg{plotrix}
 \code{\link[plotrix]{boxed.labels}} (lacking rotation option)
 
-Other plot.annotation: 
-\code{\link{axisBreak}()},
-\code{\link{barText}()},
-\code{\link{colorLegend}()},
-\code{\link{drawBand}()},
-\code{\link{errBars}()},
-\code{\link{shade}()},
-\code{\link{stamp}()},
-\code{\link{titleRect}()}
+Other plot.annotation:
+\code{\link[=axisBreak]{axisBreak()}},
+\code{\link[=barText]{barText()}},
+\code{\link[=colorLegend]{colorLegend()}},
+\code{\link[=drawBand]{drawBand()}},
+\code{\link[=errBars]{errBars()}},
+\code{\link[=shade]{shade()}},
+\code{\link[=stamp]{stamp()}},
+\code{\link[=titleRect]{titleRect()}}
 }
 \concept{graphics}
 \concept{plot.annotation}

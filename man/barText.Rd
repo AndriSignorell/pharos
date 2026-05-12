@@ -105,15 +105,15 @@ barText(VADeaths, b=b, horiz = TRUE, col="red", cex=1.5)
 \seealso{
 \code{\link{boxedText}}
 
-Other plot.annotation: 
-\code{\link{axisBreak}()},
-\code{\link{boxedText}()},
-\code{\link{colorLegend}()},
-\code{\link{drawBand}()},
-\code{\link{errBars}()},
-\code{\link{shade}()},
-\code{\link{stamp}()},
-\code{\link{titleRect}()}
+Other plot.annotation:
+\code{\link[=axisBreak]{axisBreak()}},
+\code{\link[=boxedText]{boxedText()}},
+\code{\link[=colorLegend]{colorLegend()}},
+\code{\link[=drawBand]{drawBand()}},
+\code{\link[=errBars]{errBars()}},
+\code{\link[=shade]{shade()}},
+\code{\link[=stamp]{stamp()}},
+\code{\link[=titleRect]{titleRect()}}
 }
 \concept{graphics}
 \concept{plot.annotation}

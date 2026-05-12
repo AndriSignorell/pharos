@@ -161,14 +161,14 @@ fm(Sys.Date(), fmt=dat.sty)
 \seealso{
 \code{\link{fm}()}
 
-Other string.format: 
-\code{\link{fm}()},
-\code{\link{fmCI}()},
-\code{\link{lineSep}()},
-\code{\link{strAbbr}()},
-\code{\link{strAlign}()},
-\code{\link{strPad}()},
-\code{\link{strTrunc}()}
+Other string.format:
+\code{\link[=fm]{fm()}},
+\code{\link[=fmCI]{fmCI()}},
+\code{\link[=lineSep]{lineSep()}},
+\code{\link[=strAbbr]{strAbbr()}},
+\code{\link[=strAlign]{strAlign()}},
+\code{\link[=strPad]{strPad()}},
+\code{\link[=strTrunc]{strTrunc()}}
 }
 \concept{graphics}
 \concept{string-formatting}

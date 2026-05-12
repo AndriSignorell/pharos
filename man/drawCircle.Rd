@@ -113,13 +113,13 @@ sapply( (0:11) * pi/6, function(theta) {
 \code{\link{polygon}}, \code{\link{drawRegPolygon}},
 \code{\link{drawEllipse}}, \code{\link{drawArc}}
 
-Other plot.geometry: 
-\code{\link{canvas}()},
-\code{\link{drawArc}()},
-\code{\link{drawBezier}()},
-\code{\link{drawEllipse}()},
-\code{\link{drawRegPolygon}()},
-\code{\link{polarGrid}()}
+Other plot.geometry:
+\code{\link[=canvas]{canvas()}},
+\code{\link[=drawArc]{drawArc()}},
+\code{\link[=drawBezier]{drawBezier()}},
+\code{\link[=drawEllipse]{drawEllipse()}},
+\code{\link[=drawRegPolygon]{drawRegPolygon()}},
+\code{\link[=polarGrid]{polarGrid()}}
 }
 \concept{geometry}
 \concept{graphics}

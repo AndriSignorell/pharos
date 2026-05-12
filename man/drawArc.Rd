@@ -66,13 +66,13 @@ drawArc(x = pi/2, y = 0, rx = 1, theta.1 = pi/4, theta.2 = 3*pi/4, col="red")
 \seealso{
 \code{\link{drawCircle}}, \code{\link{polygon}}
 
-Other plot.geometry: 
-\code{\link{canvas}()},
-\code{\link{drawBezier}()},
-\code{\link{drawCircle}()},
-\code{\link{drawEllipse}()},
-\code{\link{drawRegPolygon}()},
-\code{\link{polarGrid}()}
+Other plot.geometry:
+\code{\link[=canvas]{canvas()}},
+\code{\link[=drawBezier]{drawBezier()}},
+\code{\link[=drawCircle]{drawCircle()}},
+\code{\link[=drawEllipse]{drawEllipse()}},
+\code{\link[=drawRegPolygon]{drawRegPolygon()}},
+\code{\link[=polarGrid]{polarGrid()}}
 }
 \concept{geometry}
 \concept{graphics}

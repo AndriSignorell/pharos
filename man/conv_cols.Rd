@@ -62,13 +62,13 @@ cmykToRgb(0.42, 45.23, 85.14, maxColorValue=100)
 \seealso{
 \code{\link{rgbToCol}}
 
-Other topic.colors: 
-\code{\link{alpha}()},
-\code{\link{colToOpaque}()},
-\code{\link{contrastColor}()},
+Other topic.colors:
+\code{\link[=alpha]{alpha()}},
+\code{\link[=colToOpaque]{colToOpaque()}},
+\code{\link[=contrastColor]{contrastColor()}},
 \code{\link{conv_rgb}},
-\code{\link{findColor}()},
-\code{\link{palNames}()}
+\code{\link[=findColor]{findColor()}},
+\code{\link[=palNames]{palNames()}}
 }
 \concept{color-manipulation}
 \concept{string-manipulation}

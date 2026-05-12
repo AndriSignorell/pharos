@@ -101,15 +101,15 @@ abline(v=1983+1/12, lty=3)
 \code{\link{barplot}}, \code{\link{polygon}},
 \code{\link[areaplot]{areaplot}}
 
-Other plot.special: 
-\code{\link{plotBinaryTree}()},
-\code{\link{plotCirc}()},
-\code{\link{plotFun}()},
-\code{\link{plotMiss}()},
-\code{\link{plotPolar}()},
-\code{\link{plotTernary}()},
-\code{\link{plotTreemap}()},
-\code{\link{plotWeb}()}
+Other plot.special:
+\code{\link[=plotBinaryTree]{plotBinaryTree()}},
+\code{\link[=plotCirc]{plotCirc()}},
+\code{\link[=plotFun]{plotFun()}},
+\code{\link[=plotMiss]{plotMiss()}},
+\code{\link[=plotPolar]{plotPolar()}},
+\code{\link[=plotTernary]{plotTernary()}},
+\code{\link[=plotTreemap]{plotTreemap()}},
+\code{\link[=plotWeb]{plotWeb()}}
 }
 \author{
 Arni Magnusson \href{mailto:thisisarni@gmail.com}{thisisarni@gmail.com}

@@ -44,20 +44,20 @@ strTrim(" ..Hello ... world! ", pattern=" \\\\.")
 
 }
 \seealso{
-Other string.manipulation: 
-\code{\link{strCap}()},
-\code{\link{strChop}()},
-\code{\link{strCountW}()},
-\code{\link{strDist}()},
-\code{\link{strExtract}()},
-\code{\link{strExtractBetween}()},
-\code{\link{strIsNumeric}()},
+Other string.manipulation:
+\code{\link[=strCap]{strCap()}},
+\code{\link[=strChop]{strChop()}},
+\code{\link[=strCountW]{strCountW()}},
+\code{\link[=strDist]{strDist()}},
+\code{\link[=strExtract]{strExtract()}},
+\code{\link[=strExtractBetween]{strExtractBetween()}},
+\code{\link[=strIsNumeric]{strIsNumeric()}},
 \code{\link{strLeftRight}},
-\code{\link{strPos}()},
-\code{\link{strRev}()},
-\code{\link{strSpell}()},
-\code{\link{strSplit}()},
-\code{\link{strVal}()}
+\code{\link[=strPos]{strPos()}},
+\code{\link[=strRev]{strRev()}},
+\code{\link[=strSpell]{strSpell()}},
+\code{\link[=strSplit]{strSplit()}},
+\code{\link[=strVal]{strVal()}}
 }
 \concept{data-manipulation}
 \concept{string-manipulation}

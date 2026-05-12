@@ -29,11 +29,10 @@ radToDeg( c(0.5,1,2) * pi)
 
 }
 \seealso{
-Other coordinate.transform: 
+Other coordinate.transform:
 \code{\link{conv_coord}},
-\code{\link{linScale}()},
-\code{\link{rotate}()},
-\code{\link{transformXY}()}
+\code{\link[=rotate]{rotate()}},
+\code{\link[=transformXY]{transformXY()}}
 }
 \concept{coordinate.transform}
 \concept{geometry}

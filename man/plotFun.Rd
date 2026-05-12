@@ -189,15 +189,15 @@ plotFun(r ~ 1 + 0.1*sin(10*phi),
 
 }
 \seealso{
-Other plot.special: 
-\code{\link{plotArea}()},
-\code{\link{plotBinaryTree}()},
-\code{\link{plotCirc}()},
-\code{\link{plotMiss}()},
-\code{\link{plotPolar}()},
-\code{\link{plotTernary}()},
-\code{\link{plotTreemap}()},
-\code{\link{plotWeb}()}
+Other plot.special:
+\code{\link[=plotArea]{plotArea()}},
+\code{\link[=plotBinaryTree]{plotBinaryTree()}},
+\code{\link[=plotCirc]{plotCirc()}},
+\code{\link[=plotMiss]{plotMiss()}},
+\code{\link[=plotPolar]{plotPolar()}},
+\code{\link[=plotTernary]{plotTernary()}},
+\code{\link[=plotTreemap]{plotTreemap()}},
+\code{\link[=plotWeb]{plotWeb()}}
 }
 \concept{graphics}
 \concept{mathematics}

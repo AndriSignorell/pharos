@@ -50,14 +50,14 @@ for(i in 0:20)
 
 }
 \seealso{
-Other string.format: 
-\code{\link{fm}()},
-\code{\link{fmCI}()},
-\code{\link{lineSep}()},
-\code{\link{strAbbr}()},
-\code{\link{strAlign}()},
-\code{\link{strPad}()},
-\code{\link{style}()}
+Other string.format:
+\code{\link[=fm]{fm()}},
+\code{\link[=fmCI]{fmCI()}},
+\code{\link[=lineSep]{lineSep()}},
+\code{\link[=strAbbr]{strAbbr()}},
+\code{\link[=strAlign]{strAlign()}},
+\code{\link[=strPad]{strPad()}},
+\code{\link[=style]{style()}}
 }
 \concept{string-formatting}
 \concept{string-manipulation}

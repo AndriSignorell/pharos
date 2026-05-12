@@ -104,13 +104,13 @@ par(op)
 \seealso{
 \code{\link{colToRgb}} and the other conversion functions
 
-Other topic.colors: 
-\code{\link{alpha}()},
-\code{\link{colToOpaque}()},
-\code{\link{contrastColor}()},
+Other topic.colors:
+\code{\link[=alpha]{alpha()}},
+\code{\link[=colToOpaque]{colToOpaque()}},
+\code{\link[=contrastColor]{contrastColor()}},
 \code{\link{conv_cols}},
-\code{\link{findColor}()},
-\code{\link{palNames}()}
+\code{\link[=findColor]{findColor()}},
+\code{\link[=palNames]{palNames()}}
 }
 \concept{color-manipulation}
 \concept{string-manipulation}

@@ -28,7 +28,7 @@ plotDot(
 upper),
 \item a 3D array of dimension
 \code{items × (est, low, high) × groups}.
-  }}
+}}
 
 \item{items}{Optional labels for the items (rows).
 Defaults to \code{dimnames(x)[[1]]} if available.}
@@ -118,11 +118,11 @@ points(c(12,18,28,40,65) + runif(n = 5)*15, y=unlist(ypos$ypos),
        cex=1.5, pch=15)
 }
 \seealso{
-Other plot.univariate: 
-\code{\link{plotBar}()},
-\code{\link{plotDensBox}()},
-\code{\link{plotPropCI}()},
-\code{\link{plotViolin}()}
+Other plot.univariate:
+\code{\link[=plotBar]{plotBar()}},
+\code{\link[=plotDensBox]{plotDensBox()}},
+\code{\link[=plotPropCI]{plotPropCI()}},
+\code{\link[=plotViolin]{plotViolin()}}
 }
 \concept{confidence-intervals}
 \concept{descriptive-statistics}

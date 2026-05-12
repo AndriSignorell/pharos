@@ -37,13 +37,13 @@ barplot(c(1, 1.2, 1.3), col=cols, panel.first=abline(h=0.4, lwd=10, col="grey35"
 \code{\link{colToHex}}, \code{\link[bedrock]{decToHex}},
 \code{\link{rgbToHex}}
 
-Other topic.colors: 
-\code{\link{alpha}()},
-\code{\link{contrastColor}()},
+Other topic.colors:
+\code{\link[=alpha]{alpha()}},
+\code{\link[=contrastColor]{contrastColor()}},
 \code{\link{conv_cols}},
 \code{\link{conv_rgb}},
-\code{\link{findColor}()},
-\code{\link{palNames}()}
+\code{\link[=findColor]{findColor()}},
+\code{\link[=palNames]{palNames()}}
 }
 \concept{color-manipulation}
 \concept{graphics}

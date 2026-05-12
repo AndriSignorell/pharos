@@ -55,15 +55,15 @@ axisBreak(2, 2.9, style="zigzag")
 
 }
 \seealso{
-Other plot.annotation: 
-\code{\link{barText}()},
-\code{\link{boxedText}()},
-\code{\link{colorLegend}()},
-\code{\link{drawBand}()},
-\code{\link{errBars}()},
-\code{\link{shade}()},
-\code{\link{stamp}()},
-\code{\link{titleRect}()}
+Other plot.annotation:
+\code{\link[=barText]{barText()}},
+\code{\link[=boxedText]{boxedText()}},
+\code{\link[=colorLegend]{colorLegend()}},
+\code{\link[=drawBand]{drawBand()}},
+\code{\link[=errBars]{errBars()}},
+\code{\link[=shade]{shade()}},
+\code{\link[=stamp]{stamp()}},
+\code{\link[=titleRect]{titleRect()}}
 }
 \author{
 Jim Lemon and Ben Bolker

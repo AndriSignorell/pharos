@@ -112,15 +112,15 @@ boxedText(x=mid$grp.x, y=mid$grp.y, labels=LETTERS[1:3],
 \code{\link{plotCirc}}, \code{\link{mosaicplot}},
 \code{\link{barplot}}
 
-Other plot.special: 
-\code{\link{plotArea}()},
-\code{\link{plotBinaryTree}()},
-\code{\link{plotCirc}()},
-\code{\link{plotFun}()},
-\code{\link{plotMiss}()},
-\code{\link{plotPolar}()},
-\code{\link{plotTernary}()},
-\code{\link{plotWeb}()}
+Other plot.special:
+\code{\link[=plotArea]{plotArea()}},
+\code{\link[=plotBinaryTree]{plotBinaryTree()}},
+\code{\link[=plotCirc]{plotCirc()}},
+\code{\link[=plotFun]{plotFun()}},
+\code{\link[=plotMiss]{plotMiss()}},
+\code{\link[=plotPolar]{plotPolar()}},
+\code{\link[=plotTernary]{plotTernary()}},
+\code{\link[=plotWeb]{plotWeb()}}
 }
 \concept{frequency-analysis}
 \concept{graphics}

@@ -38,14 +38,14 @@ strPad("My string", 25, "XoX", "center")
 
 }
 \seealso{
-Other string.format: 
-\code{\link{fm}()},
-\code{\link{fmCI}()},
-\code{\link{lineSep}()},
-\code{\link{strAbbr}()},
-\code{\link{strAlign}()},
-\code{\link{strTrunc}()},
-\code{\link{style}()}
+Other string.format:
+\code{\link[=fm]{fm()}},
+\code{\link[=fmCI]{fmCI()}},
+\code{\link[=lineSep]{lineSep()}},
+\code{\link[=strAbbr]{strAbbr()}},
+\code{\link[=strAlign]{strAlign()}},
+\code{\link[=strTrunc]{strTrunc()}},
+\code{\link[=style]{style()}}
 }
 \concept{string-formatting}
 \concept{string-manipulation}

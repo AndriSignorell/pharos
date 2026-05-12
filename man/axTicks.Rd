@@ -54,14 +54,14 @@ with(beaver1, {
 \seealso{
 \code{\link{axTicks}}, \code{\link{axis.POSIXct}}
 
-Other plot.utils: 
-\code{\link{abcCoords}()},
-\code{\link{lineToUser}()},
-\code{\link{lines.lm}()},
-\code{\link{mar}()},
-\code{\link{setBackCol}()},
+Other plot.utils:
+\code{\link[=abcCoords]{abcCoords()}},
+\code{\link[=lineToUser]{lineToUser()}},
+\code{\link[=lines.lm]{lines.lm()}},
+\code{\link[=mar]{mar()}},
+\code{\link[=setBackCol]{setBackCol()}},
 \code{\link{splineCI}},
-\code{\link{spreadOut}()}
+\code{\link[=spreadOut]{spreadOut()}}
 }
 \concept{date-handling}
 \concept{graphics}

@@ -47,15 +47,15 @@ abline(lm(y~x), col="brown")
 \seealso{
 \code{\link{polygon}}
 
-Other plot.annotation: 
-\code{\link{axisBreak}()},
-\code{\link{barText}()},
-\code{\link{boxedText}()},
-\code{\link{colorLegend}()},
-\code{\link{errBars}()},
-\code{\link{shade}()},
-\code{\link{stamp}()},
-\code{\link{titleRect}()}
+Other plot.annotation:
+\code{\link[=axisBreak]{axisBreak()}},
+\code{\link[=barText]{barText()}},
+\code{\link[=boxedText]{boxedText()}},
+\code{\link[=colorLegend]{colorLegend()}},
+\code{\link[=errBars]{errBars()}},
+\code{\link[=shade]{shade()}},
+\code{\link[=stamp]{stamp()}},
+\code{\link[=titleRect]{titleRect()}}
 }
 \concept{confidence-intervals}
 \concept{graphics}

@@ -1,6 +1,6 @@
 Package: aurora
 Title: Descriptive Statistics Graphics and Utilities
-Version: 0.0.0.910
+Version: 0.0.0.911
 Authors@R: 
     person("Andri", "Signorell", , "andri@signorell.net", role = c("aut", "cre"))
 Description: Provides plots and graphic routines used in DescToolsX.
@@ -9,7 +9,6 @@ License: GPL (>= 2)
 Encoding: UTF-8
 LinkingTo: Rcpp
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3
 Imports: graphics, Rcpp, bedrock, MASS, cli, withr, stringi, methods
 Suggests:
     testthat (>= 3.0.0), R.rsp, hexbin
@@ -18,3 +17,4 @@ VignetteBuilder: R.rsp
 URL: https://andrisignorell.github.io/aurora/,
             https://github.com/AndriSignorell/aurora/
 BugReports: https://github.com/AndriSignorell/aurora/issues
+Config/roxygen2/version: 8.0.0

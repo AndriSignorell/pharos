@@ -87,11 +87,11 @@ plotProbDist(breaks=c(0, 15, 35),
 \seealso{
 \code{\link{shade}}, \code{\link{curve}}, \code{\link{polygon}}
 
-Other plot.distribution: 
-\code{\link{plotCatDist}()},
-\code{\link{plotECDF}()},
-\code{\link{plotFdist}()},
-\code{\link{plotQQ}()}
+Other plot.distribution:
+\code{\link[=plotCatDist]{plotCatDist()}},
+\code{\link[=plotECDF]{plotECDF()}},
+\code{\link[=plotFdist]{plotFdist()}},
+\code{\link[=plotQQ]{plotQQ()}}
 }
 \concept{descriptive-statistics}
 \concept{distributions}

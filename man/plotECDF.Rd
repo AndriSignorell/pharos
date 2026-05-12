@@ -66,11 +66,11 @@ plotECDF(x, breaks=1000)
 \seealso{
 \code{\link{plot.ecdf}}, \code{\link{plotFdist}}
 
-Other plot.distribution: 
-\code{\link{plotCatDist}()},
-\code{\link{plotFdist}()},
-\code{\link{plotProbDist}()},
-\code{\link{plotQQ}()}
+Other plot.distribution:
+\code{\link[=plotCatDist]{plotCatDist()}},
+\code{\link[=plotFdist]{plotFdist()}},
+\code{\link[=plotProbDist]{plotProbDist()}},
+\code{\link[=plotQQ]{plotQQ()}}
 }
 \concept{descriptive-statistics}
 \concept{graphics}

@@ -65,13 +65,13 @@ geometric design. A practical guide}, Acad. Press
 \code{\link{polygon}}, \code{\link{drawRegPolygon}},
 \code{\link{drawCircle}}, \code{\link{drawArc}}
 
-Other plot.geometry: 
-\code{\link{canvas}()},
-\code{\link{drawArc}()},
-\code{\link{drawCircle}()},
-\code{\link{drawEllipse}()},
-\code{\link{drawRegPolygon}()},
-\code{\link{polarGrid}()}
+Other plot.geometry:
+\code{\link[=canvas]{canvas()}},
+\code{\link[=drawArc]{drawArc()}},
+\code{\link[=drawCircle]{drawCircle()}},
+\code{\link[=drawEllipse]{drawEllipse()}},
+\code{\link[=drawRegPolygon]{drawRegPolygon()}},
+\code{\link[=polarGrid]{polarGrid()}}
 }
 \author{
 Frank E Harrell Jr \href{mailto:f.harrell@vanderbilt.edu}{f.harrell@vanderbilt.edu}

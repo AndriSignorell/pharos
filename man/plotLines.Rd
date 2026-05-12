@@ -111,8 +111,8 @@ plotLines(m, legend = list(cex = 0.8))
 
 }
 \seealso{
-Other plot.timeseries: 
-\code{\link{plotTimeSeries}()}
+Other plot.timeseries:
+\code{\link[=plotTimeSeries]{plotTimeSeries()}}
 }
 \concept{graphics}
 \concept{plot.timeseries}

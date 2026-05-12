@@ -31,14 +31,14 @@ lineToUser(line=2, side=4)
 \seealso{
 \code{\link{mtext}}
 
-Other plot.utils: 
-\code{\link{abcCoords}()},
-\code{\link{axTicks}()},
-\code{\link{lines.lm}()},
-\code{\link{mar}()},
-\code{\link{setBackCol}()},
+Other plot.utils:
+\code{\link[=abcCoords]{abcCoords()}},
+\code{\link{axTicks}},
+\code{\link[=lines.lm]{lines.lm()}},
+\code{\link[=mar]{mar()}},
+\code{\link[=setBackCol]{setBackCol()}},
 \code{\link{splineCI}},
-\code{\link{spreadOut}()}
+\code{\link[=spreadOut]{spreadOut()}}
 }
 \concept{geometry}
 \concept{graphics}

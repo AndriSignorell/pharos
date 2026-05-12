@@ -155,11 +155,11 @@ plotViolin(value ~ group, data = df)
 \seealso{
 \code{\link{boxplot}}, \code{\link{density}}
 
-Other plot.univariate: 
-\code{\link{plotBar}()},
-\code{\link{plotDensBox}()},
-\code{\link{plotDot}()},
-\code{\link{plotPropCI}()}
+Other plot.univariate:
+\code{\link[=plotBar]{plotBar()}},
+\code{\link[=plotDensBox]{plotDensBox()}},
+\code{\link[=plotDot]{plotDot()}},
+\code{\link[=plotPropCI]{plotPropCI()}}
 }
 \concept{descriptive-statistics}
 \concept{graphics}

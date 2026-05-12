@@ -177,13 +177,13 @@ mtext(text = rev(rownames(m)), side = 4, at=1:ncol(m), las=1, line = -5, cex=0.8
 \seealso{
 \code{\link[graphics]{image}}, \code{\link[stats]{cor}}
 
-Other plot.bivariate: 
-\code{\link{plotAssoc}()},
-\code{\link{plotBag}()},
-\code{\link{plotDens2D}()},
-\code{\link{plotHeatmap}()},
-\code{\link{plotHexbin}()},
-\code{\link{plotMosaic}()}
+Other plot.bivariate:
+\code{\link[=plotAssoc]{plotAssoc()}},
+\code{\link[=plotBag]{plotBag()}},
+\code{\link[=plotDens2D]{plotDens2D()}},
+\code{\link[=plotHeatmap]{plotHeatmap()}},
+\code{\link[=plotHexbin]{plotHexbin()}},
+\code{\link[=plotMosaic]{plotMosaic()}}
 }
 \concept{correlation}
 \concept{descriptive-statistics}

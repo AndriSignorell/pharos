@@ -173,17 +173,17 @@ plotBar(VADeaths/1e3,  box=FALSE, bg="lightyellow", main="VADeaths",
 \seealso{
 \code{\link[graphics]{barplot}}, \code{\link{barText}}
 
-Other topic.graphics: 
-\code{\link{plotBubble}()},
-\code{\link{plotDens}()},
-\code{\link{plotDens2D}()},
-\code{\link{plotRidge}()}
+Other topic.graphics:
+\code{\link[=plotBubble]{plotBubble()}},
+\code{\link[=plotDens]{plotDens()}},
+\code{\link[=plotDens2D]{plotDens2D()}},
+\code{\link[=plotRidge]{plotRidge()}}
 
-Other plot.univariate: 
-\code{\link{plotDensBox}()},
-\code{\link{plotDot}()},
-\code{\link{plotPropCI}()},
-\code{\link{plotViolin}()}
+Other plot.univariate:
+\code{\link[=plotDensBox]{plotDensBox()}},
+\code{\link[=plotDot]{plotDot()}},
+\code{\link[=plotPropCI]{plotPropCI()}},
+\code{\link[=plotViolin]{plotViolin()}}
 }
 \concept{base-graphics}
 \concept{descriptive-statistics}

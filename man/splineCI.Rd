@@ -98,14 +98,14 @@ par(op)
 \seealso{
 \code{\link{loess}}, \code{\link{scatter.smooth}}
 
-Other plot.utils: 
-\code{\link{abcCoords}()},
-\code{\link{axTicks}()},
-\code{\link{lineToUser}()},
-\code{\link{lines.lm}()},
-\code{\link{mar}()},
-\code{\link{setBackCol}()},
-\code{\link{spreadOut}()}
+Other plot.utils:
+\code{\link[=abcCoords]{abcCoords()}},
+\code{\link{axTicks}},
+\code{\link[=lineToUser]{lineToUser()}},
+\code{\link[=lines.lm]{lines.lm()}},
+\code{\link[=mar]{mar()}},
+\code{\link[=setBackCol]{setBackCol()}},
+\code{\link[=spreadOut]{spreadOut()}}
 }
 \concept{graphics}
 \concept{plot.utils}

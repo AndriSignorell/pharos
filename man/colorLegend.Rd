@@ -127,15 +127,15 @@ text(x = c(8,0.5,2.5,4.5,0.5,0.5,0.5)+.2, y=c(14,9,9,9,2,14,12), LETTERS[1:7], c
 \seealso{
 \code{\link{legend}}, \code{\link{findColor}}
 
-Other plot.annotation: 
-\code{\link{axisBreak}()},
-\code{\link{barText}()},
-\code{\link{boxedText}()},
-\code{\link{drawBand}()},
-\code{\link{errBars}()},
-\code{\link{shade}()},
-\code{\link{stamp}()},
-\code{\link{titleRect}()}
+Other plot.annotation:
+\code{\link[=axisBreak]{axisBreak()}},
+\code{\link[=barText]{barText()}},
+\code{\link[=boxedText]{boxedText()}},
+\code{\link[=drawBand]{drawBand()}},
+\code{\link[=errBars]{errBars()}},
+\code{\link[=shade]{shade()}},
+\code{\link[=stamp]{stamp()}},
+\code{\link[=titleRect]{titleRect()}}
 }
 \concept{color-manipulation}
 \concept{graphics}
