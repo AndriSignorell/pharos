@@ -167,7 +167,7 @@ plotBinaryTree <- function(x, main = "Binary tree", horiz = FALSE,
               x = df$xpos, y = df$ypos, 
               labels = df$x,
               xpad = 0.5, ypad = 0.5,
-              border = FALSE, bg=alpha("white", 0.9)
+              border = FALSE, bg=addAlpha("white", 0.9)
             ),
             forbidden = c("x","y","labels"),
             warn = TRUE

@@ -94,7 +94,7 @@ lines(lm(hp ~ wt, mtcars), col="steelblue")
 # add the prediction intervals in different color
 plot(hp ~ wt, mtcars)
 r.lm <- lm(hp ~ wt, mtcars)
-lines(r.lm, col="red", pred.level=0.95, args.pband=list(col=alpha("grey",0.3)) )
+lines(r.lm, col="red", pred.level=0.95, args.pband=list(col=addAlpha("grey",0.3)) )
 
 # works with transformations too
 plot(dist ~ sqrt(speed), cars)

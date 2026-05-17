@@ -37,7 +37,7 @@
 #' 
 #' plot(dist ~ speed, data=cars)
 #' lines(loess(dist ~ speed, data=cars), conf.level = 0.99,
-#'             args.band = list(col=alpha("red", 0.4), border="black") )
+#'             args.band = list(col=addAlpha("red", 0.4), border="black") )
 #' 
 #' # the default values from scatter.smooth
 #' lines(loess(dist ~ speed, data=cars,
@@ -58,7 +58,7 @@ lines.loess <- function(x, col = pal()[1], lwd = 2, lty = "solid", type = "l",  
   if (!is.na(conf.level)) {
     
     # define default arguments for ci.band
-    args.band1 <- list(col = alpha(col, 0.30), border = NA)
+    args.band1 <- list(col = addAlpha(col, 0.30), border = NA)
     # override default arguments with user defined ones
     if (!is.null(args.band)) args.band1[names(args.band)] <- args.band
     

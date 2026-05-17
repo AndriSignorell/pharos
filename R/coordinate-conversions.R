@@ -8,7 +8,7 @@
 #' \code{\link{degToRad}} to convert, if you don't wanna do it by yourself.\cr
 #' All parameters are recycled if necessary. 
 #' 
-#' @name conv_coord
+#' @name coordinate-conversions
 #' @aliases cartToPol polToCart cartToSph sphToCart
 #' @param x,y,z vectors with the xy-coordianates to be transformed. 
 #' @param r a vector with the radius of the points. 
@@ -46,11 +46,11 @@
 #'
 #'
 #' @export
-#' @rdname conv_coord
+#' @rdname coordinate-conversions
 polToCart <- function(r, theta) list(x=r*cos(theta), y=r*sin(theta))
 
 #' @export
-#' @rdname conv_coord
+#' @rdname coordinate-conversions
 cartToPol <- function(x, y) {
   theta <- atan(y/x)
   theta[x<0] <- theta[x<0] + pi    # atan can't find the correct square (quadrant)
@@ -59,7 +59,7 @@ cartToPol <- function(x, y) {
 
 
 #' @export
-#' @rdname conv_coord
+#' @rdname coordinate-conversions
 cartToSph <- function (x, y, z, up = TRUE ) {
   
   vphi <- cartToPol(x, y)          # x, y -> c( w, phi )
@@ -76,7 +76,7 @@ cartToSph <- function (x, y, z, up = TRUE ) {
 
 
 #' @export
-#' @rdname conv_coord
+#' @rdname coordinate-conversions
 sphToCart <- function (r, theta, phi, up = TRUE) {
   
   if (up) theta <- pi/2 - theta

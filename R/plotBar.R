@@ -130,7 +130,7 @@
 #'         box=FALSE, 
 #'         col=gray.colors(nrow(VADeaths)),
 #'         beside=TRUE, 
-#'         text = list(col="red", bg=alpha("white", 0.7), border=NA))
+#'         text = list(col="red", bg=addAlpha("white", 0.7), border=NA))
 #' 
 #' plotBar(VADeaths, connlines = list(lwd=1, col="blue"), 
 #'         box=FALSE, las=1, main="Connecting Lines")

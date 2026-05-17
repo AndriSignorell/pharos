@@ -30,18 +30,17 @@ need to get the equivalent opaque color for the transparent color.
 }
 \examples{
 
-cols <- c(alpha("limegreen", 0.4), colToOpaque(colToHex("limegreen"), 0.4), "limegreen")
+cols <- c(addAlpha("limegreen", 0.4), 
+          colToOpaque(colToHex("limegreen"), 0.4), 
+          "limegreen")
 barplot(c(1, 1.2, 1.3), col=cols, panel.first=abline(h=0.4, lwd=10, col="grey35"))
+
 }
 \seealso{
-\code{\link{colToHex}}, \code{\link[bedrock]{decToHex}},
-\code{\link{rgbToHex}}
+\code{\link[bedrock]{decToHex}},
 
 Other topic.colors:
-\code{\link[=alpha]{alpha()}},
 \code{\link[=contrastColor]{contrastColor()}},
-\code{\link{conv_cols}},
-\code{\link{conv_rgb}},
 \code{\link[=findColor]{findColor()}},
 \code{\link[=palNames]{palNames()}}
 }

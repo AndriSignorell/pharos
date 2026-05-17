@@ -74,7 +74,7 @@ creation.
 
 ### 🔹 Colors & Transparency
 
--   `alpha()` -- alpha transparency
+-   `addAlpha()` -- alpha transparency
 -   `colToOpaque()`
 -   `contrastColor()` -- WCAG-aware contrast colors
 -   `findColor()`
@@ -88,7 +88,7 @@ Includes RGB, HSV, CMYK, and grayscale conversion utilities.
 
 -   `boxedText()`
 -   `barText()`
--   `colorLegend()`
+-   `colLegend()`
 -   `errBars()`
 -   `shade()`
 -   `stamp()`
@@ -139,11 +139,11 @@ Includes numerous text-processing helpers:
 library(aurora)
 
 # transparency
-alpha("steelblue", 0.4)
+addAlpha("steelblue", 0.4)
 
 # geometric canvas
 canvas()
-drawCircle(r.out = 1, col = alpha("red", 0.4))
+drawCircle(r.out = 1, col = addAlpha("red", 0.4))
 
 # violin plot
 plotViolin(mpg ~ cyl, data = mtcars)

@@ -30,11 +30,11 @@
 #' 
 #' plot(y ~ x)
 #' drawBand(y = c(pred.w.plim[,2], rev(pred.w.plim[,3])),
-#'   x=c(new, rev(new)), col= alpha("grey90", 0.5))
+#'   x=c(new, rev(new)), col= addAlpha("grey90", 0.5))
 #' 
 #' # passing y as matrix interface allows more intuitive arguments
 #' drawBand(y = pred.w.clim[, 2:3],
-#'          x = new, col= alpha("grey80", 0.5))
+#'          x = new, col= addAlpha("grey80", 0.5))
 #' 
 #' abline(lm(y~x), col="brown")
 #' 
@@ -46,7 +46,7 @@
 #'
 #'
 #' @export
-drawBand <- function(x, y, col = alpha("grey", 0.5), border = NA) {
+drawBand <- function(x, y, col = addAlpha("grey", 0.5), border = NA) {
   
   # accept matrices but then only n x y
   if(!identical(dim(y), dim(x))){

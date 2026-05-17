@@ -46,7 +46,7 @@
 #' # add the prediction intervals in different color
 #' plot(hp ~ wt, mtcars)
 #' r.lm <- lm(hp ~ wt, mtcars)
-#' lines(r.lm, col="red", pred.level=0.95, args.pband=list(col=alpha("grey",0.3)) )
+#' lines(r.lm, col="red", pred.level=0.95, args.pband=list(col=addAlpha("grey",0.3)) )
 #' 
 #' # works with transformations too
 #' plot(dist ~ sqrt(speed), cars)
@@ -75,7 +75,8 @@ lines.lm <- function (x, col = pal()[1], lwd = 2, lty = "solid",
                       pred.level = NA, args.pband = NULL, xpred=NULL, ...) {
   
   z <- .calcTrendline(x, n=n, conf.level=conf.level, pred.level=pred.level, xpred=xpred)  
-  .drawTrendLine(z, col=col, lwd=lwd, lty=lty, args.cband=args.cband, args.pband=args.pband)
+  .drawTrendLine(z, col=col, lwd=lwd, lty=lty, 
+                 args.cband=args.cband, args.pband=args.pband)
   
 }
 
@@ -94,7 +95,8 @@ lines.lmlog <- function (x, col = pal()[1], lwd = 2, lty = "solid",
   i <- which(!sapply(z[2:4], is.null)) + 1
   z[i] <- lapply(z[i], exp)
   
-  .drawTrendLine(z, col=col, lwd=lwd, lty=lty, args.cband=args.cband, args.pband=args.pband)
+  .drawTrendLine(z, col=col, lwd=lwd, lty=lty, 
+                 args.cband=args.cband, args.pband=args.pband)
   
 }
 
@@ -170,7 +172,7 @@ lines.lmlog <- function (x, col = pal()[1], lwd = 2, lty = "solid",
   
   # this draws a trendline in an existing plot
   
-  args.pband1 <- list(col = alpha(col, 0.12), border = NA)
+  args.pband1 <- list(col = addAlpha(col, 0.12), border = NA)
   if (!identical(args.pband, NA) && !is.null(z$pci)) {
     if (!is.null(args.pband))
       args.pband1[names(args.pband)] <- args.pband
@@ -178,7 +180,7 @@ lines.lmlog <- function (x, col = pal()[1], lwd = 2, lty = "solid",
                           list(y = c(z$pci[, 1], rev(z$pci[, 2])))))
   }
   
-  args.cband1 <- list(col = alpha(col, 0.12), border = NA)
+  args.cband1 <- list(col = addAlpha(col, 0.12), border = NA)
   if (!identical(args.cband, NA) && !is.null(z$ci)) {
     if (!is.null(args.cband))
       args.cband1[names(args.cband)] <- args.cband

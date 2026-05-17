@@ -104,11 +104,11 @@
 #'
 #' plotCor(m, cols=colorRampPalette(c("red", "black", "green"), space = "rgb")(20))
 #' plotCor(m, cols=colorRampPalette(c("red", "black", "green"), space = "rgb")(20),
-#'          args.colorLegend=NA)
+#'          args.colLegend=NA)
 #' 
 #' m <- cor(mtcars)
 #' plotCor(m, col=pal("RedWhiteBlue1", 100), border="grey",
-#'          args.colorLegend=list(labels=format(seq(-1,1,.25), digits=2), frame="grey"))
+#'          args.colLegend=list(labels=format(seq(-1,1,.25), digits=2), frame="grey"))
 #' 
 #' # display only correlation with a value > 0.7
 #' plotCor(m, mincor = 0.7)
@@ -144,7 +144,7 @@
 #' m[p > 0.05] <- NA
 #' 
 #' plotCor(m, mar=c(8,8,8,8), yaxt="n",
-#'          args.colorLegend = list(x="bottom", inset=-.15, horiz=TRUE, 
+#'          args.colLegend = list(x="bottom", inset=-.15, horiz=TRUE, 
 #'                                  height=abs(lineToUser(line = 2.5, side = 1)), 
 #'                                  width=ncol(m)))
 #' mtext(text = rev(rownames(m)), side = 4, at=1:ncol(m), las=1, line = -5, cex=0.8)
@@ -289,7 +289,7 @@ plotCor <- function(
       
       digits <- round(1 - log10(diff(range(breaks))))
       
-      colorLegend(
+      colLegend(
         labels=sprintf("%.*f", digits,
                        breaks[seq(1,length(breaks),2)]),
         x=nrow(x)+0.5+nrow(x)/20,
@@ -332,14 +332,14 @@ plotCor <- function(
 
 #' plotCor <- function(x, cols = colorRampPalette(c(pal()[2], "white", Pal()[1]), space = "rgb")(20)
 #'                      , breaks = seq(-1, 1, length = length(cols)+1), border="grey", lwd=1
-#'                      , args.colorLegend = NULL, xaxt = par("xaxt"), yaxt = par("yaxt"), cex.axis = 0.8, las = 2
+#'                      , args.colLegend = NULL, xaxt = par("xaxt"), yaxt = par("yaxt"), cex.axis = 0.8, las = 2
 #'                      , mar = c(3,8,8,8), mincor=0, main="", clust=FALSE, ...){
 #'   
 #'   # example:
 #'   # m <- cor(d.pizza[,WhichNumerics(d.pizza)][,1:5], use="pairwise.complete.obs")
 #'   # plotCor(m)
-#'   # plotCor(m, args.colorLegend="n", las=1)
-#'   # plotCor(m, cols=colorRampPalette(c("red", "white", "blue"), space = "rgb")(4), args.colorLegend=list(xlab=sprintf("%.1f", seq(1,-1, length=5))) )
+#'   # plotCor(m, args.colLegend="n", las=1)
+#'   # plotCor(m, cols=colorRampPalette(c("red", "white", "blue"), space = "rgb")(4), args.colLegend=list(xlab=sprintf("%.1f", seq(1,-1, length=5))) )
 #'   # plotCor(m, cols=colorRampPalette(c("red", "black", "green"), space = "rgb")(10))
 #'   
 #'   # plotCor(round(CramerV(d.pizza[,c("driver","operator","city", "quality")]),3))
@@ -368,18 +368,18 @@ plotCor <- function(
 #'   if(xaxt!="n") axis(side=3, at=1:nrow(x), labels=rownames(x), cex.axis=cex.axis, las=las, lwd=-1)
 #'   if(yaxt!="n") axis(side=2, at=1:ncol(x), labels=colnames(x), cex.axis=cex.axis, las=las, lwd=-1)
 #'   
-#'   if((is.list(args.colorLegend) || is.null(args.colorLegend))){
+#'   if((is.list(args.colLegend) || is.null(args.colLegend))){
 #'     
 #'     # bugfix dmurdoch 7.2.2022
 #'     digits <- round(1 - log10(diff(range(breaks))))
-#'     args.colorLegend1 <- list( labels=sprintf("%.*f", digits,
+#'     args.colLegend1 <- list( labels=sprintf("%.*f", digits,
 #'                                               breaks[seq(1,length(breaks), by = 2)])
-#'                                # args.colorLegend1 <- list( labels=sprintf("%.1f", seq(-1,1, length=length(cols)/2+1))
+#'                                # args.colLegend1 <- list( labels=sprintf("%.1f", seq(-1,1, length=length(cols)/2+1))
 #'                                , x=nrow(x)+0.5 + nrow(x)/20, y=ncol(x)+0.5
 #'                                , width=nrow(x)/20, height=ncol(x), cols=cols, cex=0.8 )
-#'     if ( !is.null(args.colorLegend) ) { args.colorLegend1[names(args.colorLegend)] <- args.colorLegend }
+#'     if ( !is.null(args.colLegend) ) { args.colLegend1[names(args.colLegend)] <- args.colLegend }
 #'     
-#'     do.call("colorLegend", args.colorLegend1)
+#'     do.call("colLegend", args.colLegend1)
 #'   }
 #'   
 #'   if(!is.na(border)) {

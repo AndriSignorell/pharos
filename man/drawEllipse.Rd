@@ -61,7 +61,7 @@ op <- par(no.readonly = TRUE)
 par(mfrow=c(1,2))
 
 canvas()
-drawEllipse(rot = c(1:3) * pi/3, col=alpha(c("blue","red","green"), 0.5) )
+drawEllipse(rot = c(1:3) * pi/3, col=addAlpha(c("blue","red","green"), 0.5) )
 
 
 plot(cars)

@@ -30,7 +30,7 @@ radToDeg( c(0.5,1,2) * pi)
 }
 \seealso{
 Other coordinate.transform:
-\code{\link{conv_coord}},
+\code{\link{coordinate-conversions}},
 \code{\link[=rotate]{rotate()}},
 \code{\link[=transformXY]{transformXY()}}
 }

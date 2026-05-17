@@ -60,7 +60,7 @@ lines(loess(dist ~ speed, data=cars))
 
 plot(dist ~ speed, data=cars)
 lines(loess(dist ~ speed, data=cars), conf.level = 0.99,
-            args.band = list(col=alpha("red", 0.4), border="black") )
+            args.band = list(col=addAlpha("red", 0.4), border="black") )
 
 # the default values from scatter.smooth
 lines(loess(dist ~ speed, data=cars,

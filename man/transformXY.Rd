@@ -67,7 +67,7 @@ transformXY(m, scale = 0.5, theta = pi/6)
 \code{\link{rotate}}
 
 Other coordinate.transform:
-\code{\link{conv_coord}},
+\code{\link{coordinate-conversions}},
 \code{\link[=degToRad]{degToRad()}},
 \code{\link[=rotate]{rotate()}}
 }

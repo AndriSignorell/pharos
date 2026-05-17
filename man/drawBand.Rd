@@ -4,7 +4,7 @@
 \alias{drawBand}
 \title{Draw Confidence Band}
 \usage{
-drawBand(x, y, col = alpha("grey", 0.5), border = NA)
+drawBand(x, y, col = addAlpha("grey", 0.5), border = NA)
 }
 \arguments{
 \item{x}{a vector or a matrix with x coordinates for the band. If x is given
@@ -35,11 +35,11 @@ pred.w.clim <- predict(lm(y ~ x), newdata=data.frame(x=new), interval="confidenc
 
 plot(y ~ x)
 drawBand(y = c(pred.w.plim[,2], rev(pred.w.plim[,3])),
-  x=c(new, rev(new)), col= alpha("grey90", 0.5))
+  x=c(new, rev(new)), col= addAlpha("grey90", 0.5))
 
 # passing y as matrix interface allows more intuitive arguments
 drawBand(y = pred.w.clim[, 2:3],
-         x = new, col= alpha("grey80", 0.5))
+         x = new, col= addAlpha("grey80", 0.5))
 
 abline(lm(y~x), col="brown")
 
@@ -51,7 +51,7 @@ Other plot.annotation:
 \code{\link[=axisBreak]{axisBreak()}},
 \code{\link[=barText]{barText()}},
 \code{\link[=boxedText]{boxedText()}},
-\code{\link[=colorLegend]{colorLegend()}},
+\code{\link[=colLegend]{colLegend()}},
 \code{\link[=errBars]{errBars()}},
 \code{\link[=shade]{shade()}},
 \code{\link[=stamp]{stamp()}},

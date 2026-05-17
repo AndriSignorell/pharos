@@ -66,7 +66,7 @@ cols <- pal("Helsana")[1:5]
 
 # Draw ring
 drawCircle (r.in = 1, r.out = 5, border="darkgrey", 
-            col=alpha("yellow", 0.2), lwd=2)
+            col=addAlpha("yellow", 0.2), lwd=2)
 
 # Draw circle
 drawCircle (r.in = 6, border="green", lwd=3)
@@ -78,7 +78,7 @@ geom <- rbind(c(-pi, 0, .25, .5), c(0, pi, 1, 2),
 
 drawCircle (r.in = geom[,3], r.out = geom[,4],
            theta.1 = geom[,1], theta.2 = geom[,2],
-           col = alpha(cols, 0.6),
+           col = addAlpha(cols, 0.6),
            border = cols, lwd=1)
 
 
@@ -106,7 +106,7 @@ canvas(xlim=c(-5,5), bg="black")
 
 sapply( (0:11) * pi/6, function(theta) {
   xy <- rotate(x, y=y, theta=theta)
-  drawCircle (x=xy$x, y=xy$y, r.in=2.4, border=alpha("white", 0.2))
+  drawCircle (x=xy$x, y=xy$y, r.in=2.4, border=addAlpha("white", 0.2))
 } )
 }
 \seealso{

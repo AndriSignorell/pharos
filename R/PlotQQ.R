@@ -145,7 +145,7 @@ plotQQ <- function(x, qdist=stats::qnorm,
     bedrock::callIf(.drawConfBandQQ,
             cband,
             defaults = list(
-              col    = alpha(.getOption("palette", 
+              col    = addAlpha(.getOption("palette", 
                                         default = c("#8296C4", "#9A0941"))[1], 0.25), 
               border = NA,
               ci     = .create.qqplot.fit.confidence.interval(
@@ -162,7 +162,7 @@ plotQQ <- function(x, qdist=stats::qnorm,
       defaults = list(
         x=x, y=y,
         pch = 21,
-        bg = alpha("white", 0.8)
+        bg = addAlpha("white", 0.8)
       ),
       user = list(...)
       # forbidden = c("height","b","horiz","width"),
@@ -222,7 +222,7 @@ plotQQ <- function(x, qdist=stats::qnorm,
 # == internal helper functions ========================================================
 
 
-.drawConfBandQQ <- function(col = alpha("grey", alpha = 0.5), border=NA, 
+.drawConfBandQQ <- function(col = addAlpha("grey", alpha = 0.5), border=NA, 
                             ci ){
   
   drawBand(x = c(ci$z, rev(ci$z)),

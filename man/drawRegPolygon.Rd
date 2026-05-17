@@ -64,13 +64,13 @@ All geometric arguments will be recycled.
 # Draw 4 triangles (nv = 3) with different rotation angles
 plot(c(0,1),c(0,1), asp=1, type="n", xaxt="n", yaxt="n", xlab="", ylab="")
 drawRegPolygon(x = 0.5, y = 0.5, rot = (1:4)*pi/6, radius.x = 0.5, nv = 3,
-  col = alpha("yellow",0.5))
+  col = addAlpha("yellow",0.5))
 
 
 # Draw several polygons
 plot(c(0,1),c(0,1), asp=1, type="n", xaxt="n", yaxt="n", xlab="", ylab="")
 drawRegPolygon(x = 0.5, y = 0.5, radius.x=seq(50, 5, -10) * 1 /100,
-  rot=0, nv = c(50, 10, 7, 4, 3), col=alpha("blue",seq(0.2,0.7,0.1)))
+  rot=0, nv = c(50, 10, 7, 4, 3), col=addAlpha("blue",seq(0.2,0.7,0.1)))
 
 
 # Combine several polygons by sorting the coordinates

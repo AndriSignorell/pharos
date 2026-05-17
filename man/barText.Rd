@@ -108,7 +108,7 @@ barText(VADeaths, b=b, horiz = TRUE, col="red", cex=1.5)
 Other plot.annotation:
 \code{\link[=axisBreak]{axisBreak()}},
 \code{\link[=boxedText]{boxedText()}},
-\code{\link[=colorLegend]{colorLegend()}},
+\code{\link[=colLegend]{colLegend()}},
 \code{\link[=drawBand]{drawBand()}},
 \code{\link[=errBars]{errBars()}},
 \code{\link[=shade]{shade()}},

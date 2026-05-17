@@ -114,7 +114,7 @@ lines.smooth.spline <- function (x, col = pal()[1], lwd = 2, lty = "solid",
   fit <- predict(x, newdata = newx)
   
   if (!is.na(conf.level)) {
-    args.band1 <- list(col = alpha(col, 0.3), border = NA)
+    args.band1 <- list(col = addAlpha(col, 0.3), border = NA)
     if (!is.null(args.band))
       args.band1[names(args.band)] <- args.band
     

@@ -36,7 +36,7 @@ x <- drawRegPolygon(nv=3)[[1]]
 # and rotate
 sapply( (0:3) * pi/6, function(theta) {
   xy <- rotate( x=x, theta=theta )
-  polygon(xy, col=alpha("blue", 0.2))
+  polygon(xy, col=addAlpha("blue", 0.2))
 } )
 
 abline(v=0, h=0)
@@ -49,7 +49,7 @@ par(op)
 \code{\link{drawEllipse}}, \code{\link{drawArc}}
 
 Other coordinate.transform:
-\code{\link{conv_coord}},
+\code{\link{coordinate-conversions}},
 \code{\link[=degToRad]{degToRad()}},
 \code{\link[=transformXY]{transformXY()}}
 }

@@ -128,11 +128,11 @@ plotCor(m, grid = FALSE)
 
 plotCor(m, cols=colorRampPalette(c("red", "black", "green"), space = "rgb")(20))
 plotCor(m, cols=colorRampPalette(c("red", "black", "green"), space = "rgb")(20),
-         args.colorLegend=NA)
+         args.colLegend=NA)
 
 m <- cor(mtcars)
 plotCor(m, col=pal("RedWhiteBlue1", 100), border="grey",
-         args.colorLegend=list(labels=format(seq(-1,1,.25), digits=2), frame="grey"))
+         args.colLegend=list(labels=format(seq(-1,1,.25), digits=2), frame="grey"))
 
 # display only correlation with a value > 0.7
 plotCor(m, mincor = 0.7)
@@ -168,7 +168,7 @@ dimnames(p) <- list(vars, vars)
 m[p > 0.05] <- NA
 
 plotCor(m, mar=c(8,8,8,8), yaxt="n",
-         args.colorLegend = list(x="bottom", inset=-.15, horiz=TRUE, 
+         args.colLegend = list(x="bottom", inset=-.15, horiz=TRUE, 
                                  height=abs(lineToUser(line = 2.5, side = 1)), 
                                  width=ncol(m)))
 mtext(text = rev(rownames(m)), side = 4, at=1:ncol(m), las=1, line = -5, cex=0.8)

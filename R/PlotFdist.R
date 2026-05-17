@@ -120,7 +120,8 @@
 #'   args.rug=TRUE, heights=c(3, 2.5), pdist=2.5, main="Delivery time")
 #' 
 #' # alpha channel on rug is cool, but takes its time for being drawn...
-#' plotFdist(x=faithful$eruptions, args.rug=list(col=alpha("black", 0.1)), na.rm=TRUE)
+#' plotFdist(x=faithful$eruptions, args.rug=list(col=addAlpha("black", 0.1)), 
+#'           na.rm=TRUE)
 #' 
 #' # plot a normal density curve, but no boxplot nor ecdf
 #' x <- rnorm(1000)

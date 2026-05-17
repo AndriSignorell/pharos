@@ -2,72 +2,87 @@
 % Please edit documentation in R/abcCoords.R
 \name{abcCoords}
 \alias{abcCoords}
-\title{Coordinates for "bottomright", etc.}
+\title{Coordinates for Named Plot Positions}
 \usage{
-abcCoords(x = "topleft", region = "figure", cex = NULL, linset = 0, ...)
+abcCoords(
+  x = "topleft",
+  region = c("figure", "plot", "device"),
+  cex = NULL,
+  inset = 0
+)
 }
 \arguments{
-\item{x}{one out of \code{"bottomright"}, \code{"bottom"},
-\code{"bottomleft"}, \code{"left"}, \code{"topleft"}, \code{"top"},
-\code{"topright"}, \code{"right"}, \code{"center"}}
+\item{x}{A character string specifying the anchor position.  One
+of \code{"bottomright"}, \code{"bottom"}, \code{"bottomleft"},
+\code{"left"}, \code{"topleft"}, \code{"top"}, \code{"topright"},
+\code{"right"}, or \code{"center"}.  Partial matching is supported.}
 
-\item{region}{one out of \code{plot} or \code{figure}}
+\item{region}{One of \code{"figure"} (default), \code{"plot"}, or
+\code{"device"}.  Determines the coordinate region used.}
 
-\item{cex}{the character extension for the text.}
+\item{cex}{Character expansion factor. If \code{NULL} (default),
+the current \code{par("cex")} is used.}
 
-\item{linset}{line inset in lines of text.}
-
-\item{\dots}{the dots are passed to the \code{strwidth()} and
-\code{strheight()} functions in case there where more specific text formats.}
+\item{inset}{Inset distance from the boundary, specified in lines of
+text (character heights/widths).  May be a scalar (applied to both
+x and y) or a length-2 vector (x inset, y inset).  Default \code{0}.}
 }
 \value{
-nothing returned \%\% ~Describe the value returned \%\% If it is a LIST,
-use \%\% \item{comp1 }{Description of 'comp1'}
+A list with two components:
+\describe{
+\item{\code{xy}}{A list with elements \code{x} and \code{y} giving
+the anchor coordinates in user space.}
+\item{\code{adj}}{A numeric vector of length 2, suitable for the
+\code{adj} argument of \code{\link{text}}.}
+}
 }
 \description{
-Return the xy.coordinates for the literal positions "bottomright", etc. as
-used to place legends.
+Returns the xy-coordinates and text-adjustment values for named anchor
+positions such as \code{"topleft"}, \code{"center"}, etc., as used by
+\code{\link{legend}}.  Useful for placing text or other annotations at
+consistent, region-aware positions.
 }
 \details{
-The same logic as for the legend can be useful for placing texts, too. This
-function returns the coordinates for the text, which can be used in the
-specific text functions.
+The inset is computed in character units via \code{\link{strwidth}} and
+\code{\link{strheight}}, making it robust to device resizing, font
+changes, and plot-range scaling.
+
+Three regions are supported:
+\describe{
+\item{\code{"plot"}}{The inner plot area (\code{par("usr")}).}
+\item{\code{"figure"}}{The figure region within the device, accounting
+for \code{par("fig")}.}
+\item{\code{"device"}}{The full device area.}
+}
+}
+\note{
+The positioning logic is adapted from \code{\link{legend}}.
 }
 \examples{
+plot(x = rnorm(10), type = "n", xlab = "", ylab = "")
 
-plot(x = rnorm(10), type="n", xlab="", ylab="")
-# note that plot.new() has to be called before we can grab the geometry
+# coordinates only
 abcCoords("bottomleft")
 
-lapply(c("bottomleft", "left"), abcCoords)
+# place text at a named position
+xy <- abcCoords("bottomleft", region = "plot")
+text(x = xy$xy$x, y = xy$xy$y, labels = "My Label",
+     adj = xy$adj, xpd = NA)
 
-plot(x = rnorm(10), type="n", xlab="", ylab="")
-text(x=(xy <- abcCoords("bottomleft", region = "plot"))$xy, 
-     labels = "My Maybe Long Text", adj = xy$adj, xpd=NA)
-
-text(x=(xy <- abcCoords("topleft", region = "figure"))$xy, 
-     labels = "My Maybe Long Text", adj = xy$adj, xpd=NA)
-
-plot(x = rnorm(10), type="n", xlab="", ylab="")
-sapply(c("topleft", "top", "topright", "left", "center", 
-         "right", "bottomleft", "bottom", "bottomright"), 
-       function(x) 
-         text(x=(xy <- abcCoords(x, region = "plot", linset=1))$xy, 
-              labels = "MyMarginText", adj = xy$adj, xpd=NA)
-)
-
-
-plot(x = rnorm(100), type="n", xlab="", ylab="",
-     panel.first={setBackCol(c("red", "lightyellow"))
-             grid()})
-xy <- abcCoords("topleft", region = "plot")
-par(xpd=NA)
-boxedText(x=xy$xy$x, y=xy$xy$y, xpad = 1, ypad = 1,
-          labels = "My Maybe Long Text", adj = xy$adj, col=alpha("green", 0.8))
+# all nine positions with inset
+sapply(c("topleft", "top", "topright",
+         "left",    "center", "right",
+         "bottomleft", "bottom", "bottomright"),
+  function(p) {
+    xy <- abcCoords(p, region = "plot", inset = 1)
+    text(x = xy$xy$x, y = xy$xy$y,
+         labels = p, adj = xy$adj, xpd = NA)
+  })
 
 }
 \seealso{
-\code{\link{text}}, \code{\link{boxedText}}
+\code{\link{text}}, \code{\link{legend}},
+\code{\link{boxedText}}
 
 Other plot.utils:
 \code{\link{axTicks}},

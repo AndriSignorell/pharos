@@ -87,9 +87,10 @@ grp <- sample(x=1:3, size=20, replace=TRUE, prob=c(0.2,0.3,0.5))
 
 z <- bedrock::sortX(data.frame(area=area, grp=grp), c("grp","area"), 
            decreasing=c(FALSE,TRUE))
-z$col <- alpha(c("steelblue","green","yellow")[z$grp],
+z$col <- addAlpha(c("steelblue","green","yellow")[z$grp],
                   unlist(lapply(split(z$area, z$grp),
-                  function(...) linScale(..., newLow=0.1, newHigh=0.6))))
+                  function(...) bedrock::linScale(..., 
+                      newLow=0.1, newHigh=0.6))))
 
 plotTreemap(x=z$area, grp=z$grp, labels=letters[1:20], col=z$col)
 
@@ -104,7 +105,7 @@ mid <- do.call(rbind, lapply(lapply(b, "[", 1), data.frame))
 # and draw some visible text
 boxedText(x=mid$grp.x, y=mid$grp.y, labels=LETTERS[1:3], 
           cex=3, border=NA,
-          col=alpha("white",0.7) )
+          col=addAlpha("white",0.7) )
 
 
 }

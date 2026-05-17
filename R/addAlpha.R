@@ -1,0 +1,38 @@
+
+#' Add an Alpha Channel to Colors
+#'
+#' Add transparency to colors.
+#'
+#' @param col Vector of valid R colors.
+#' @param alpha Alpha transparency values between 0 and 1.
+#'
+#' @return Character vector of hexadecimal colors with alpha channel.
+#'
+#' @family color.manipulation
+#' @concept color-manipulation
+#'
+#' @seealso \code{\link{adjustcolor}}, \code{\link{colToOpaque}}
+#' 
+#' @examples
+#' 
+#' op <- par(no.readonly = TRUE)
+#' 
+#' addAlpha("yellow", 0.2)
+#' addAlpha(2, 0.5)   # red
+#' 
+#' canvas(3)
+#' drawCircle(x=c(-1,0,1), y=c(1,-1,1), r.out=2, col=addAlpha(2:4, 0.4))
+#' 
+#' x <- rnorm(15000)
+#' par(mfrow=c(1,2))
+#' plot(x, type="p", col="blue" )
+#' plot(x, type="p", col=addAlpha("blue", .2), main="Better insight with alpha channel" )
+#' 
+#' par(op)
+#' 
+ 
+#' @export
+addAlpha <- function(col, alpha = 0.5) {
+  Vectorize(grDevices::adjustcolor)(col = col, alpha.f = alpha)
+}
+
