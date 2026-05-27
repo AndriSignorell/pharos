@@ -170,7 +170,7 @@ plotBinaryTree <- function(x, main = "Binary tree", horiz = FALSE,
               border = FALSE, bg=addAlpha("white", 0.9)
             ),
             forbidden = c("x","y","labels"),
-            warn = TRUE
+            showWarnings = TRUE
     )
 
   })
@@ -195,7 +195,7 @@ plotBinaryTree <- function(x, main = "Binary tree", horiz = FALSE,
             lty=1
           ),
           forbidden = c("x0", "y0", "x1", "y1"),
-          warn = TRUE
+          showWarnings = TRUE
   )
   
 }

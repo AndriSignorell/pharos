@@ -153,7 +153,7 @@ plotQQ <- function(x, qdist=stats::qnorm,
                            conf=conf.level, conf.method = "pointwise")
             ),
             forbidden = c("ci"),
-            warn = TRUE
+            showWarnings = TRUE
     )
     
 
@@ -166,7 +166,7 @@ plotQQ <- function(x, qdist=stats::qnorm,
       ),
       user = list(...)
       # forbidden = c("height","b","horiz","width"),
-      # warn = TRUE
+      # showWarnings = TRUE
     ))
     
     
