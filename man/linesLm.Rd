@@ -114,7 +114,6 @@ par(op)
 \code{\link{lines}}, \code{\link{lines.loess}}, \code{\link{lm}}
 
 Other plot.utils:
-\code{\link[=abcCoords]{abcCoords()}},
 \code{\link{axTicks}},
 \code{\link[=lineToUser]{lineToUser()}},
 \code{\link[=mar]{mar()}},

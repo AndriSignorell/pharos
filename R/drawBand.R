@@ -40,10 +40,11 @@
 #' 
 
  
-#' @family plot.annotation
+#' @family plot.augmentation
 #' @concept graphics
-#' @concept confidence-intervals
-#'
+#' @concept plot-augmentation
+#' @concept statistical-graphics
+#' 
 #'
 #' @export
 drawBand <- function(x, y, col = addAlpha("grey", 0.5), border = NA) {

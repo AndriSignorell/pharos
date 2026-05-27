@@ -66,10 +66,11 @@
 #'          labels = p, adj = xy$adj, xpd = NA)
 #'   })
 #'
-#' @family plot.utils
+#' @family plot.geometry
 #' @concept graphics
 #' @concept geometry
-#'
+#' @concept plot-positioning
+#' 
 
 
 #' @export

@@ -92,6 +92,7 @@ polarGrid(rlabels = NA, alabels = NA)
 }
 \seealso{
 Other plot.geometry:
+\code{\link[=abcCoords]{abcCoords()}},
 \code{\link[=canvas]{canvas()}},
 \code{\link[=drawArc]{drawArc()}},
 \code{\link[=drawBezier]{drawBezier()}},

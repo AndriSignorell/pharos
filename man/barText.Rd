@@ -109,8 +109,6 @@ Other plot.annotation:
 \code{\link[=axisBreak]{axisBreak()}},
 \code{\link[=boxedText]{boxedText()}},
 \code{\link[=colLegend]{colLegend()}},
-\code{\link[=drawBand]{drawBand()}},
-\code{\link[=errBars]{errBars()}},
 \code{\link[=shade]{shade()}},
 \code{\link[=stamp]{stamp()}},
 \code{\link[=titleRect]{titleRect()}}

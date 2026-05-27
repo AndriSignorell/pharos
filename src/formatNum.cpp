@@ -14,7 +14,7 @@ double round_to_power(double value, int power) {
 // [[Rcpp::export]]
 CharacterVector formatNum(NumericVector x,
                           Nullable<IntegerVector> digits = R_NilValue,
-                          Nullable<IntegerVector> ldigits = R_NilValue,
+                          Nullable<IntegerVector> leadDigits = R_NilValue,
                           Nullable<CharacterVector> bigMark = R_NilValue,
                           Nullable<CharacterVector> decimalMark = R_NilValue,
                           int sciBig = 9999,
@@ -41,8 +41,8 @@ CharacterVector formatNum(NumericVector x,
     }
   }
   
-  // ldigits: default = 0
-  IntegerVector ldig = ldigits.isNotNull() ? IntegerVector(ldigits) : IntegerVector::create(0);
+  // leadDigits: default = 0
+  IntegerVector ldig = leadDigits.isNotNull() ? IntegerVector(leadDigits) : IntegerVector::create(0);
   
   // bigMark: default = ""
   CharacterVector bmark = bigMark.isNotNull() ? CharacterVector(bigMark) : CharacterVector::create("");
@@ -139,7 +139,7 @@ CharacterVector formatNum(NumericVector x,
     }
     
     if (l == 0) {
-      // erase leading digits if ldigits == 0
+      // erase leading digits if leadDigits == 0
       if (full.rfind("0" + dm, 0) == 0) {
         full.erase(0, 1);            // "0.23" -> ".23"
       }

@@ -150,12 +150,10 @@ Other plot.annotation:
 \code{\link[=axisBreak]{axisBreak()}},
 \code{\link[=barText]{barText()}},
 \code{\link[=boxedText]{boxedText()}},
-\code{\link[=drawBand]{drawBand()}},
-\code{\link[=errBars]{errBars()}},
 \code{\link[=shade]{shade()}},
 \code{\link[=stamp]{stamp()}},
 \code{\link[=titleRect]{titleRect()}}
 }
-\concept{color-manipulation}
 \concept{graphics}
+\concept{plot-annotation}
 \concept{plot.annotation}

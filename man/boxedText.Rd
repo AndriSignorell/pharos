@@ -138,12 +138,10 @@ Other plot.annotation:
 \code{\link[=axisBreak]{axisBreak()}},
 \code{\link[=barText]{barText()}},
 \code{\link[=colLegend]{colLegend()}},
-\code{\link[=drawBand]{drawBand()}},
-\code{\link[=errBars]{errBars()}},
 \code{\link[=shade]{shade()}},
 \code{\link[=stamp]{stamp()}},
 \code{\link[=titleRect]{titleRect()}}
 }
 \concept{graphics}
+\concept{plot-annotation}
 \concept{plot.annotation}
-\concept{string-formatting}

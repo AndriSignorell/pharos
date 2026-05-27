@@ -59,6 +59,11 @@ strChop <- function(x, len = NULL, pos = NULL) {
     starts <- c(1, cuts + 1)
     ends <- c(cuts, stringi::stri_length(xi))
     
+    keep <- starts <= ends
+    
+    starts <- starts[keep]
+    ends   <- ends[keep]
+    
     stringi::stri_sub(xi, starts, ends)
   }
   
@@ -68,34 +73,3 @@ strChop <- function(x, len = NULL, pos = NULL) {
 }
 
 
-
-# old:
-# strChop <- function(x, len, pos) {
-#   
-#   .chop <- function(x, len, pos) {
-#     # Splits a string into a number of pieces of fixed length
-#     # example: strChop(x=paste(letters, collapse=""), len = c(3,5,0))
-#     if(!missing(len)){
-#       if(!missing(pos))
-#         stop("too many arguments")
-#     } else {
-#       len <- c(pos[1], diff(pos), nchar(x))
-#     }
-#     
-#     xsplit <- character(0)
-#     for(i in 1:length(len)){
-#       xsplit <- append(xsplit, substr(x, 1, len[i]))
-#       x <- substr(x, len[i]+1, nchar(x))
-#     }
-#     return(xsplit)
-#   }
-#   
-#   res <- lapply(x, .chop, len=len, pos=pos)
-#   
-#   if(length(x)==1)
-#     res <- res[[1]]
-#   
-#   return(res)
-#   
-# }
-# 

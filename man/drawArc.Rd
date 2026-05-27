@@ -46,7 +46,7 @@ radius.x.}
 you want to combine several geometric structures to a single polygon.}
 }
 \value{
-\code{DrawArc} invisibly returns a list of the calculated
+\code{drawArc} invisibly returns a list of the calculated
 coordinates for all shapes.
 }
 \description{
@@ -64,9 +64,10 @@ drawArc(x = pi/2, y = 0, rx = 1, theta.1 = pi/4, theta.2 = 3*pi/4, col="red")
 
 }
 \seealso{
-\code{\link{drawCircle}}, \code{\link{polygon}}
+\code{\link{polygon}}
 
 Other plot.geometry:
+\code{\link[=abcCoords]{abcCoords()}},
 \code{\link[=canvas]{canvas()}},
 \code{\link[=drawBezier]{drawBezier()}},
 \code{\link[=drawCircle]{drawCircle()}},

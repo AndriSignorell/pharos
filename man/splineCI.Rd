@@ -99,7 +99,6 @@ par(op)
 \code{\link{loess}}, \code{\link{scatter.smooth}}
 
 Other plot.utils:
-\code{\link[=abcCoords]{abcCoords()}},
 \code{\link{axTicks}},
 \code{\link[=lineToUser]{lineToUser()}},
 \code{\link[=lines.lm]{lines.lm()}},

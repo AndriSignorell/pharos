@@ -45,3 +45,4 @@ Other color.manipulation:
 }
 \concept{color-manipulation}
 \concept{color.manipulation}
+\concept{graphics}

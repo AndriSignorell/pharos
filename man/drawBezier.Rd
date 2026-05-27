@@ -2,70 +2,84 @@
 % Please edit documentation in R/drawBezier.R
 \name{drawBezier}
 \alias{drawBezier}
-\title{Draw a Bezier Curve}
+\title{Draw a Bézier Curve}
 \usage{
 drawBezier(
-  x = 0,
-  y = x,
+  x,
+  y = NULL,
   nv = 100,
   col = par("col"),
   lty = par("lty"),
   lwd = par("lwd"),
-  plot = TRUE
+  draw = TRUE
 )
 }
 \arguments{
-\item{x, y}{a vector of xy-coordinates to define the Bezier curve. Should at
-least contain 3 points.}
+\item{x, y}{Numeric vectors of control points.
+Alternatively, \code{x} may be a list with components
+\code{x} and \code{y}.}
 
-\item{nv}{number of vertices to draw the curve.}
+\item{nv}{Number of vertices used to approximate the curve.}
 
-\item{col}{color(s) for the curve. Default is \code{par("fg")}.}
+\item{col}{Color for the curve. Defaults to \code{par(\"col\")}.}
 
-\item{lty}{line type for borders and shading; defaults to \code{"solid"}.}
+\item{lty}{Line type.}
 
-\item{lwd}{line width for borders and shading.}
+\item{lwd}{Line width.}
 
-\item{plot}{logical. If \code{TRUE} the structure will be plotted. If
-\code{FALSE} only the xy-points are calculated and returned.  Use this if
-you want to combine several geometric structures to a single polygon.}
+\item{draw}{Logical; if \code{TRUE} (default), the curve is drawn.
+Otherwise only the coordinates are computed and returned.}
 }
 \value{
-\code{drawBezier} invisibly returns a list of the calculated
-coordinates for all shapes.
+Invisibly returns a list with components:
+\describe{
+\item{x}{x-coordinates of the curve}
+\item{y}{y-coordinates of the curve}
+}
 }
 \description{
-Draw a Bezier curve.
+Draw a Bézier curve defined by a set of control points.
 }
 \details{
-Bezier curves appear in such areas as mechanical computer aided design
-(CAD).  They are named after P. Bezier, who used a closely related
-representation in Renault's UNISURF CAD system in the early 1960s (similar,
-unpublished, work was done by P. de Casteljau at Citroen in the late 1950s
-and early 1960s). The 1970s and 1980s saw a flowering of interest in Bezier
-curves, with many CAD systems using them, and many important developments in
-their theory.  The usefulness of Bezier curves resides in their many
-geometric and analytical properties.  There are elegant and efficient
-algorithms for evaluation, differentiation, subdivision of the curves, and
-conversion to other useful representations. (See: Farin, 1993)
+Bézier curves are widely used in computer-aided geometric design
+(CAD) due to their favorable geometric and numerical properties.
 }
 \examples{
-
-canvas(xlim=c(0,1))
+canvas(xlim = c(0, 1))
 grid()
-drawBezier( x=c(0,0.5,1), y=c(0,0.5,0), col="blue", lwd=2)
-drawBezier( x=c(0,0.5,1), y=c(0,1,0), col="red", lwd=2)
-drawBezier( x=c(0,0.25,0.5,0.75,1), y=c(0,1,1,1,0), col="darkgreen", lwd=2)
+
+drawBezier(
+  x = c(0, 0.5, 1),
+  y = c(0, 0.5, 0),
+  col = "blue",
+  lwd = 2
+)
+
+drawBezier(
+  x = c(0, 0.5, 1),
+  y = c(0, 1, 0),
+  col = "red",
+  lwd = 2
+)
+
+drawBezier(
+  x = c(0, 0.25, 0.5, 0.75, 1),
+  y = c(0, 1, 1, 1, 0),
+  col = "darkgreen",
+  lwd = 2
+)
+
 }
 \references{
-G. Farin (1993) \emph{Curves and surfaces for computer aided
-geometric design. A practical guide}, Acad. Press
+Farin, G. (1993).
+\emph{Curves and Surfaces for Computer Aided Geometric Design}.
+Academic Press.
 }
 \seealso{
-\code{\link{polygon}}, \code{\link{drawRegPolygon}},
-\code{\link{drawCircle}}, \code{\link{drawArc}}
+\code{\link{polygon}}
 
 Other plot.geometry:
+\code{\link[=abcCoords]{abcCoords()}},
 \code{\link[=canvas]{canvas()}},
 \code{\link[=drawArc]{drawArc()}},
 \code{\link[=drawCircle]{drawCircle()}},
@@ -73,9 +87,6 @@ Other plot.geometry:
 \code{\link[=drawRegPolygon]{drawRegPolygon()}},
 \code{\link[=polarGrid]{polarGrid()}}
 }
-\author{
-Frank E Harrell Jr \href{mailto:f.harrell@vanderbilt.edu}{f.harrell@vanderbilt.edu}
-}
-\concept{geometry}
 \concept{graphics}
+\concept{plot-geometry}
 \concept{plot.geometry}

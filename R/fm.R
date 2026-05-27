@@ -97,9 +97,9 @@
 #' decimal point. Unlike \code{\link{formatC}} you will always get this number
 #' of digits even if the last digit is 0.  Negative numbers of digits round to
 #' a power of ten (\code{digits=-2} would round to the nearest hundred).
-#' @param ldigits number of leading zeros. \code{ldigits=3} would make sure
+#' @param leadDigits number of leading zeros. \code{leadDigits=3} would make sure
 #' that at least 3 digits on the left side will be printed, say \code{3.4} will
-#' be printed as \code{003.4}. Setting \code{ldigits} to \code{0} will yield
+#' be printed as \code{003.4}. Setting \code{leadDigits} to \code{0} will yield
 #' results like \code{.452} for \code{0.452}. The default \code{NULL} will
 #' leave the numbers as they are (meaning at least one 0 digit).
 #' @param sci integer. The power of 10 to be set when deciding to print numeric
@@ -108,11 +108,11 @@
 #' for the left border 10^(-scipen) as well as for the right one (10^scipen). A
 #' negative and a positive value can also be set independently. Default is
 #' \code{getOption("scipen")}, whereas \code{scipen=0} is overridden.
-#' @param big.mark character; if not empty used as mark between every 3
+#' @param bigMark character; if not empty used as mark between every 3
 #' decimals before the decimal point. Default is "" (none).
-#' @param outdec character, specifying the decimal mark to be used. If not
-#' provided, the default set as \code{OutDec} option is used.
-#' @param na.form character, string specifying how \code{NA}s should be
+#' @param decMark character, specifying the decimal mark to be used. If not
+#' provided, the default set as \code{decMark} option is used.
+#' @param naForm character, string specifying how \code{NA}s should be
 #' specially formatted.  If set to \code{NULL} (default) no special action will
 #' be taken.
 #' @param zeroForm character, string specifying how zeros should be specially
@@ -161,7 +161,7 @@
 #' x <- pi * 10^(-10:10)
 #' 
 #' fm(x, digits=3, fmt="%")
-#' fm(x, digits=4, sci=4, ldigits=0, width=9, align=".")
+#' fm(x, digits=4, sci=4, leadDigits=0, width=9, align=".")
 #' 
 #' 
 #' # format a matrix
@@ -172,16 +172,16 @@
 #' 
 #' # engineering format
 #' fm(x, fmt="eng",  digits=2)
-#' fm(x, fmt="engabb", ldigits=2, digits=2)
+#' fm(x, fmt="engabb", leadDigits=2, digits=2)
 #' # combine with grams [g]
-#' paste(fm(x, fmt="engabb", ldigits=2, digits=2), "g", sep="")
+#' paste(fm(x, fmt="engabb", leadDigits=2, digits=2), "g", sep="")
 #' 
 #' # example form symnum
 #' pval <- rev(sort(c(outer(1:6, 10^-(1:3)))))
 #' noquote(cbind(fm(pval, fmt="p"), fm(pval, fmt="*")))
 #' 
 #' # change the character to be used as the decimal point
-#' fm(1200, digits=2, big.mark = ".", outdec=",")
+#' fm(1200, digits=2, bigMark = ".", decMark=",")
 #' 
 
 
@@ -193,9 +193,9 @@
 #'
 #' @export  
 fm <- function(x
-               , digits = NULL, ldigits = NULL, sci = NULL
-               , big.mark=NULL, outdec = NULL
-               , na.form = NULL, zeroForm = NULL
+               , digits = NULL, leadDigits = NULL, sci = NULL
+               , bigMark=NULL, decMark = NULL
+               , naForm = NULL, zeroForm = NULL
                , fmt = NULL, pThreshold = NULL
                , width = NULL, align = NULL
                , lang = NULL
@@ -206,9 +206,9 @@ fm <- function(x
 
 
 #' @export
-fm.default <- function(x, digits = NULL, ldigits = NULL, sci = NULL
-                       , big.mark=NULL, outdec = NULL
-                       , na.form = NULL, zeroForm = NULL
+fm.default <- function(x, digits = NULL, leadDigits = NULL, sci = NULL
+                       , bigMark=NULL, decMark = NULL
+                       , naForm = NULL, zeroForm = NULL
                        , fmt = NULL, pThreshold = NULL
                        , width = NULL, align = NULL
                        , lang = NULL, ...){
@@ -227,7 +227,7 @@ fm.default <- function(x, digits = NULL, ldigits = NULL, sci = NULL
   if ((has.na <- any(ina <- is.na(x))))
     x <- x[!ina]
 
-  if(is.null(na.form)) na.form <- NA_real_
+  if(is.null(naForm)) naForm <- NA_real_
   
   # Dispatch on class of x **************
   
@@ -266,7 +266,7 @@ fm.default <- function(x, digits = NULL, ldigits = NULL, sci = NULL
     
     r <- format(x)
     # handle NAs
-    if (has.na) r[ina] <- na.form
+    if (has.na) r[ina] <- naForm
     return(r)
 
   } else { 
@@ -335,30 +335,31 @@ fm.default <- function(x, digits = NULL, ldigits = NULL, sci = NULL
         } else if(fmt=="p"){
           # better use 0.001 than .Machine$double.eps as eps
           r <- .format.pval(x, Coalesce(pThreshold, 1e-3), 
-                            Coalesce(digits, 3), Coalesce(ldigits, 1))
+                            Coalesce(digits, 3), Coalesce(leadDigits, 1))
           
         } else if(fmt=="p*"){
           r <- .format.pstars(x, Coalesce(pThreshold, 1e-3), 
-                              Coalesce(digits, 3), Coalesce(ldigits, 1))
+                              Coalesce(digits, 3), Coalesce(leadDigits, 1))
           
         } else if(fmt=="eng"){
-          r <- .format.eng(x, digits=digits, ldigits=ldigits, 
-                           zeroForm=zeroForm, na.form=na.form)
+          r <- .format.eng(x, digits=digits, leadDigits=leadDigits, 
+                           zeroForm=zeroForm, naForm=naForm)
           
         } else if(fmt=="engabb"){
-          r <- .format.engabb(x, digits=digits, ldigits=ldigits, 
-                              zeroForm=zeroForm, na.form=na.form)
+          r <- .format.engabb(x, digits=digits, leadDigits=leadDigits, 
+                              zeroForm=zeroForm, naForm=naForm)
           
         } else if(fmt=="e"){
           # r <- formatC(x, digits = digits, width = width, format = "e",
-          #              big.mark=big.mark, zero.print = zeroForm)
+          #              bigMark=bigMark, zero.print = zeroForm)
           r <- formatNum(x, digits = digits, sciBig = 0, sciSmall = 0)
           
         } else if(fmt=="%"){
           # we use 1 digit as default here
           if(is.null(digits)) digits <- 1
           r <- paste(formatNum(x * 100, digits = digits,
-                               bigMark = big.mark),
+                               bigMark = bigMark,
+                               leadDigits = leadDigits %||% 1L),
                      "%", sep="")
           
         } else if(fmt=="frac"){
@@ -383,10 +384,10 @@ fm.default <- function(x, digits = NULL, ldigits = NULL, sci = NULL
       # set the format defaults, if not provided ...
 
       CountDecimals <- function(x, digits = getOption("digits")) {
-        outdec <- getOption("OutDec", ".")
+        decMark <- getOption("OutDec", ".")
         s <- formatC(x, digits = digits, format = "g")
         
-        pos <- regexpr(outdec, s, fixed = TRUE)
+        pos <- regexpr(decMark, s, fixed = TRUE)
         
         ifelse(
           pos > 0,
@@ -399,12 +400,14 @@ fm.default <- function(x, digits = NULL, ldigits = NULL, sci = NULL
       # presented as scientific - this is definitely nonsense...
       if(is.null(sci))       sci <- Coalesce(naIf(getOption("scipen"), 0), 7) # default
       if(is.null(pThreshold))     pThreshold <- 1e-3
-      if(is.null(big.mark))  big.mark <- Coalesce(getOption("big.mark"), "")
-      if(is.null(ldigits))   ldigits <- 1
+      if(is.null(bigMark))  bigMark <- getOption("bigMark", "")
+      if(is.null(leadDigits))   leadDigits <- 1
       if(is.null(digits))    digits <- max(CountDecimals(x))
 
-      if(!is.null(outdec)) { opt <- options(OutDec = outdec)
-                             on.exit(options(opt)) }
+      if(!is.null(decMark)) { 
+        opt <- options(OutDec = decMark)
+        on.exit(options(opt), add=TRUE) 
+      }
 
       # this is for sci big and sci small, this does not line up well with recyling rule!
       # ***** reconsider!! *****
@@ -412,8 +415,8 @@ fm.default <- function(x, digits = NULL, ldigits = NULL, sci = NULL
       # maybe better sci.big and sci.small (?)
 
       r <- formatNum(x,
-                     digits = digits, ldigits=ldigits, # width = width, 
-                     bigMark=big.mark, sciBig = sci, sciSmall = -sci)
+                     digits = digits, leadDigits=leadDigits, # width = width, 
+                     bigMark=bigMark, sciBig = sci, sciSmall = -sci)
 
     }
     
@@ -429,7 +432,7 @@ fm.default <- function(x, digits = NULL, ldigits = NULL, sci = NULL
     rok <- r
     r <- character(length(ina))
     r[!ina] <- rok
-    r[ina] <- na.form
+    r[ina] <- naForm
   }
   
   # Do the alignment
@@ -461,9 +464,9 @@ print.Fm <- function (x, quote=FALSE, ...) {
 
 #' @export
 fm.data.frame <- function(x,
-                          digits = NULL, ldigits = NULL, sci = NULL,
-                          big.mark = NULL, outdec = NULL,
-                          na.form = NULL, zeroForm = NULL,
+                          digits = NULL, leadDigits = NULL, sci = NULL,
+                          bigMark = NULL, decMark = NULL,
+                          naForm = NULL, zeroForm = NULL,
                           fmt = NULL, pThreshold = NULL,
                           width = NULL, align = NULL,
                           lang = NULL, ...) {
@@ -473,11 +476,11 @@ fm.data.frame <- function(x,
   ## --- collect optional formatting arguments ----------------------
   args <- list(
     digits     = digits,
-    ldigits   = ldigits,
+    leadDigits   = leadDigits,
     sci        = sci,
-    big.mark  = big.mark,
-    outdec    = outdec,
-    na.form   = na.form,
+    bigMark  = bigMark,
+    decMark    = decMark,
+    naForm   = naForm,
     zeroForm = zeroForm,
     fmt        = fmt,
     pThreshold      = pThreshold,
@@ -513,17 +516,17 @@ fm.data.frame <- function(x,
 
 
 #' @export
-fm.matrix <- function(x, digits = NULL, ldigits = NULL, sci = NULL
-                      , big.mark=NULL, outdec = NULL
-                      , na.form = NULL, zeroForm = NULL
+fm.matrix <- function(x, digits = NULL, leadDigits = NULL, sci = NULL
+                      , bigMark=NULL, decMark = NULL
+                      , naForm = NULL, zeroForm = NULL
                       , fmt = NULL, pThreshold = NULL
                       , width = NULL, align = NULL
                       , lang = NULL, ...){
   
-  x[,] <- fm.default(x=x, digits=digits, sci=sci, big.mark=big.mark,
-                         ldigits=ldigits, zeroForm=zeroForm, na.form=na.form,
+  x[,] <- fm.default(x=x, digits=digits, sci=sci, bigMark=bigMark,
+                         leadDigits=leadDigits, zeroForm=zeroForm, naForm=naForm,
                          fmt=fmt, align=align, width=width, lang=lang, 
-                         pThreshold=pThreshold, outdec=outdec, ...)
+                         pThreshold=pThreshold, decMark=decMark, ...)
   
   class(x) <- c("Fm", class(x))
   return(x)
@@ -531,17 +534,17 @@ fm.matrix <- function(x, digits = NULL, ldigits = NULL, sci = NULL
 
 
 #' @export
-fm.table <- function(x, digits = NULL, ldigits = NULL, sci = NULL
-                     , big.mark=NULL, outdec = NULL
-                     , na.form = NULL, zeroForm = NULL
+fm.table <- function(x, digits = NULL, leadDigits = NULL, sci = NULL
+                     , bigMark=NULL, decMark = NULL
+                     , naForm = NULL, zeroForm = NULL
                      , fmt = NULL, pThreshold = NULL
                      , width = NULL, align = NULL
                      , lang = NULL, ...){
   
-  x[] <- fm.default(x=x, digits=digits, sci=sci, big.mark=big.mark,
-                        ldigits=ldigits, zeroForm=zeroForm, na.form=na.form,
+  x[] <- fm.default(x=x, digits=digits, sci=sci, bigMark=bigMark,
+                        leadDigits=leadDigits, zeroForm=zeroForm, naForm=naForm,
                         fmt=fmt, align=align, width=width, lang=lang, pThreshold=pThreshold, 
-                        outdec=outdec,...)
+                        decMark=decMark,...)
   
   class(x) <- c("Fm", class(x))
   return(x)
@@ -550,19 +553,19 @@ fm.table <- function(x, digits = NULL, ldigits = NULL, sci = NULL
 
 
 #' @export
-fm.ftable <- function(x, digits = NULL, ldigits = NULL, sci = NULL
-                      , big.mark=NULL, outdec = NULL
-                      , na.form = NULL, zeroForm = NULL
+fm.ftable <- function(x, digits = NULL, leadDigits = NULL, sci = NULL
+                      , bigMark=NULL, decMark = NULL
+                      , naForm = NULL, zeroForm = NULL
                       , fmt = NULL, pThreshold = NULL
                       , width = NULL, align = NULL
                       , lang = NULL, ...){
   
   # convert ftable first to matrix, then to data.frame in order to 
   # apply recycled arguments columnwise, which is a common need
-  res <- fm(as.data.frame(as.matrix(x)), digits = digits, sci = sci, big.mark = big.mark,
-                ldigits = ldigits, zeroForm = zeroForm, na.form = na.form,
+  res <- fm(as.data.frame(as.matrix(x)), digits = digits, sci = sci, bigMark = bigMark,
+                leadDigits = leadDigits, zeroForm = zeroForm, naForm = naForm,
                 fmt = fmt, align = align, width = width, lang = lang, 
-                pThreshold = pThreshold, outdec=outdec, ...)
+                pThreshold = pThreshold, decMark=decMark, ...)
   
   x[] <- as.matrix(res)
   
@@ -641,13 +644,13 @@ fm.ftable <- function(x, digits = NULL, ldigits = NULL, sci = NULL
 }
 
 
-.format.pstars <- function(x, pThreshold, digits, ldigits)
+.format.pstars <- function(x, pThreshold, digits, leadDigits)
   # format p-val AND stars
-  paste(.format.pval(x, pThreshold, digits, ldigits), .format.stars(x))
+  paste(.format.pval(x, pThreshold, digits, leadDigits), .format.stars(x))
 
 
 
-.format.pval <- function(x, pThreshold=0.001, digits=3, ldigits=1){
+.format.pval <- function(x, pThreshold=0.001, digits=3, leadDigits=1){
   
   # format p-values  
   # this is based on original code from format.pval
@@ -669,7 +672,7 @@ fm.ftable <- function(x, digits = NULL, ldigits = NULL, sci = NULL
     fixp <- (expo >= -3)
     
     if (any(fixp))
-      rr[fixp] <- fm(x[fixp], digits=Coalesce(digits, 4), ldigits=ldigits)
+      rr[fixp] <- fm(x[fixp], digits=Coalesce(digits, 4), leadDigits=leadDigits)
     
     if (any(!fixp))
       rr[!fixp] <- format(x[!fixp], digits=Coalesce(digits, 3), scientific=TRUE)
@@ -678,7 +681,7 @@ fm.ftable <- function(x, digits = NULL, ldigits = NULL, sci = NULL
   }
   if (any(is0)) {
     if(log10(pThreshold) >= -3)
-      pThreshold <- fm(pThreshold, digits=digits, ldigits=ldigits)
+      pThreshold <- fm(pThreshold, digits=digits, leadDigits=leadDigits)
     else
       pThreshold <- fm(pThreshold, digits=1, fmt="e")
     
@@ -694,8 +697,8 @@ fm.ftable <- function(x, digits = NULL, ldigits = NULL, sci = NULL
 
 
 
-.format.eng <- function(x, digits = NULL, ldigits = 1
-                        , zeroForm = NULL, na.form = NULL){
+.format.eng <- function(x, digits = NULL, leadDigits = 1
+                        , zeroForm = NULL, naForm = NULL){
   
   # engineering format, snap to powers of 10^3
   
@@ -703,19 +706,19 @@ fm.ftable <- function(x, digits = NULL, ldigits = NULL, sci = NULL
   y <- unlist(lapply(s, "[[", 1))
   pwr <- unlist(lapply(s, "[", 2))
   
-  return(paste(fm(y * 10^(pwr %% 3), digits=digits, ldigits=ldigits,
-                  zeroForm = zeroForm, na.form=na.form)
+  return(paste(fm(y * 10^(pwr %% 3), digits=digits, leadDigits=leadDigits,
+                  zeroForm = zeroForm, naForm=naForm)
                , "e"
                , c("-","+")[(pwr >= 0) + 1]
-               , fm(abs((pwr - (pwr %% 3))), ldigits = 2, digits=0)
+               , fm(abs((pwr - (pwr %% 3))), leadDigits = 2, digits=0)
                , sep="")
   )
   
 }
 
 
-.format.engabb <- function(x, digits = NULL, ldigits = 1
-                           , zeroForm = NULL, na.form = NULL){
+.format.engabb <- function(x, digits = NULL, leadDigits = 1
+                           , zeroForm = NULL, naForm = NULL){
   
   s <- lapply(strsplit(format(x, scientific=TRUE), "e"), as.numeric)
   y <- unlist(lapply(s, "[[", 1))
@@ -723,15 +726,15 @@ fm.ftable <- function(x, digits = NULL, ldigits = NULL, sci = NULL
   
   a <- paste("1e"
              , c("-","+")[(pwr >= 0) + 1]
-             , fm(abs((pwr - (pwr %% 3))), ldigits=2, digits=0)
+             , fm(abs((pwr - (pwr %% 3))), leadDigits=2, digits=0)
              , sep="")
   am <- d.prefix$abbr[match(as.numeric(a), d.prefix$mult)]
   
   a[!is.na(am)] <- am[!is.na(am)]
   a[a == "1e+00"] <- ""
   
-  return(paste(fm(y * 10^(pwr %% 3), digits=digits, ldigits=ldigits,
-                  zeroForm = zeroForm, na.form=na.form)
+  return(paste(fm(y * 10^(pwr %% 3), digits=digits, leadDigits=leadDigits,
+                  zeroForm = zeroForm, naForm=naForm)
                , " " , a
                , sep="")
   )

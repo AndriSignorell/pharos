@@ -48,29 +48,48 @@
 #' @concept string-manipulation
 #'
 #'
+
+
 #' @export
-strAbbr <- function(x, minchar = 1, method = c("left", "fix")) {
+strAbbr <- function(x,
+                    minchar = 1,
+                    method = c("left", "fix")) {
   
   method <- match.arg(method)
+  
   nlen <- stringi::stri_length(x)
   
   if (method == "left") {
-    idx <- rep(minchar, length(x)) - 1
     
-    for (i in minchar:max(nlen, na.rm = TRUE)) {
-      adup <- duplicated(stringi::stri_sub(x, 1, i))
-      idx[adup] <- i
+    idx <- rep(minchar, length(x))
+    maxlen <- max(nlen, na.rm = TRUE)
+    
+    repeat {
+      abbr <- stringi::stri_sub(x, 1, idx)
+      dup <- duplicated(abbr) | duplicated(abbr, fromLast = TRUE)
+      if (!any(dup))
+        break
+      
+      idx[dup] <- pmin(idx[dup] + 1L, nlen[dup])
+      
+      # stop if no further refinement possible
+      if (all(idx >= nlen))
+        break
     }
     
-    res <- stringi::stri_sub(x, 1, idx + 1)
+    res <- stringi::stri_sub(x, 1, idx)
     
   } else {
-    i <- 1
+    
+    i <- minchar
     while (sum(duplicated(stringi::stri_sub(x, 1, i))) > 0) {
       i <- i + 1
     }
+    
     res <- stringi::stri_sub(x, 1, pmax(minchar, i))
   }
   
   res
+  
 }
+

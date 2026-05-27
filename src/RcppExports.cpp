@@ -39,19 +39,19 @@ BEGIN_RCPP
 END_RCPP
 }
 // formatNum
-CharacterVector formatNum(NumericVector x, Nullable<IntegerVector> digits, Nullable<IntegerVector> ldigits, Nullable<CharacterVector> bigMark, Nullable<CharacterVector> decimalMark, int sciBig, int sciSmall);
-RcppExport SEXP _aurora_formatNum(SEXP xSEXP, SEXP digitsSEXP, SEXP ldigitsSEXP, SEXP bigMarkSEXP, SEXP decimalMarkSEXP, SEXP sciBigSEXP, SEXP sciSmallSEXP) {
+CharacterVector formatNum(NumericVector x, Nullable<IntegerVector> digits, Nullable<IntegerVector> leadDigits, Nullable<CharacterVector> bigMark, Nullable<CharacterVector> decimalMark, int sciBig, int sciSmall);
+RcppExport SEXP _aurora_formatNum(SEXP xSEXP, SEXP digitsSEXP, SEXP leadDigitsSEXP, SEXP bigMarkSEXP, SEXP decimalMarkSEXP, SEXP sciBigSEXP, SEXP sciSmallSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
     Rcpp::traits::input_parameter< Nullable<IntegerVector> >::type digits(digitsSEXP);
-    Rcpp::traits::input_parameter< Nullable<IntegerVector> >::type ldigits(ldigitsSEXP);
+    Rcpp::traits::input_parameter< Nullable<IntegerVector> >::type leadDigits(leadDigitsSEXP);
     Rcpp::traits::input_parameter< Nullable<CharacterVector> >::type bigMark(bigMarkSEXP);
     Rcpp::traits::input_parameter< Nullable<CharacterVector> >::type decimalMark(decimalMarkSEXP);
     Rcpp::traits::input_parameter< int >::type sciBig(sciBigSEXP);
     Rcpp::traits::input_parameter< int >::type sciSmall(sciSmallSEXP);
-    rcpp_result_gen = Rcpp::wrap(formatNum(x, digits, ldigits, bigMark, decimalMark, sciBig, sciSmall));
+    rcpp_result_gen = Rcpp::wrap(formatNum(x, digits, leadDigits, bigMark, decimalMark, sciBig, sciSmall));
     return rcpp_result_gen;
 END_RCPP
 }

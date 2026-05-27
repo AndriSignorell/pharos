@@ -26,9 +26,6 @@ Colors are mixed linearly with black in RGB space:
 }
 }
 \seealso{
-\code{\link{lighten}},
-\code{\link{mixColors}}
-
 Other color.manipulation:
 \code{\link[=addAlpha]{addAlpha()}},
 \code{\link[=fade]{fade()}},

@@ -46,32 +46,46 @@
 #'
 #'
 #' @export
-strTrunc <- function(x, maxlen = 20, ellipsis = "...", wbound = FALSE) {
+strTrunc <- function(x,
+                     maxlen = 20,
+                     ellipsis = "...",
+                     wbound = FALSE) {
   
   if (any(maxlen < 0, na.rm = TRUE)) {
     stop("'maxlen' must be >= 0")
   }
   
   valid <- !is.na(x)
+  
   x2 <- x
   x2[!valid] <- ""
   
   maxlen <- rep(maxlen, length.out = length(x2))
   
   if (wbound) {
+    
     x2 <- stringi::stri_extract_first_regex(
       x2,
       paste0("^.{0,", maxlen, "}(?=\\b)")
     )
+    
+    # remove trailing whitespace before adding ellipsis
+    x2 <- stringi::stri_trim_right(x2)
+    
   } else {
+    
     x2 <- stringi::stri_sub(x2, 1, maxlen)
   }
   
-  res <- ifelse(stringi::stri_length(x) > maxlen,
-                paste0(x2, ellipsis),
-                x2)
+  res <- ifelse(
+    stringi::stri_length(x) > maxlen,
+    paste0(x2, ellipsis),
+    x2
+  )
   
   res[!valid] <- NA_character_
+  
   res
 }
+
 

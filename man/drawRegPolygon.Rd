@@ -111,6 +111,7 @@ polygon(x = unlist(lapply(pts, "[", "x")),
 \code{\link{drawArc}}
 
 Other plot.geometry:
+\code{\link[=abcCoords]{abcCoords()}},
 \code{\link[=canvas]{canvas()}},
 \code{\link[=drawArc]{drawArc()}},
 \code{\link[=drawBezier]{drawBezier()}},

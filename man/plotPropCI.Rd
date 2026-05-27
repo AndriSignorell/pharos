@@ -2,65 +2,73 @@
 % Please edit documentation in R/plotPropCI.R
 \name{plotPropCI}
 \alias{plotPropCI}
-\title{Proportion Plot with Confidence Intervals}
+\title{Plot Proportions with Confidence Intervals}
 \usage{
 plotPropCI(
   x,
-  n = NULL,
   labels = NULL,
-  glabels = NULL,
   main = NULL,
   xlab = "",
   col = NULL,
+  ci.col = addAlpha("grey80", 0.12),
   xlim = c(0, 1),
-  conf.levels = c(0.99, 0.95, 0.9),
   legend = TRUE,
   ...
 )
 }
 \arguments{
-\item{x}{numeric vector of successes or proportions}
+\item{x}{A two-column integer matrix where each row represents a group and
+the two columns contain counts for the two categories. A numeric vector
+of length 2 is also accepted and will be coerced to a one-row matrix.}
 
-\item{n}{optional total counts (same length as x). If NULL, x is treated as proportion.}
+\item{labels}{Character vector of length 2 with labels for the two
+categories, displayed at the top of the plot. Default is \code{c("", "")}.}
 
-\item{labels}{optional character vector of group labels}
+\item{main}{Character string giving the plot title. Default is \code{""}.}
 
-\item{glabels}{group labels, if more than 1 group}
+\item{xlab}{Label for the x-axis. Default is \code{""}.}
 
-\item{main}{plot title}
+\item{col}{Character vector of length 2 specifying fill colours for the
+stacked bar. Defaults to \code{c(hblue, hred)} from \pkg{DescToolsX}.}
 
-\item{xlab}{x-axis label}
+\item{ci.col}{Colour for the confidence interval bands. Default is a
+semi-transparent grey (\code{adjustcolor("grey50", alpha.f = 0.5)}). With
+20 overlapping bands the accumulated opacity creates a density gradient.}
 
-\item{col}{colors: c(success, failure, CI...)}
+\item{xlim}{Numeric vector of length 2 for the x-axis limits.
+Default is \code{c(0, 1)}.}
 
-\item{xlim}{x-axis limits (default 0–1)}
+\item{legend}{Logical; if \code{TRUE} a legend is drawn. Default is \code{TRUE}.}
 
-\item{conf.levels}{numeric vector of confidence levels.
-Use \code{NA} to suppress confidence intervals.}
-
-\item{legend}{logical or list; show legend}
-
-\item{...}{passed to \code{par()}}
+\item{...}{Further arguments passed to \code{\link[graphics]{barplot}}.}
+}
+\value{
+Invisibly returns \code{NULL}. Called for its side effect of producing
+a plot.
 }
 \description{
-Visualizes proportions (e.g., success rates) with optional confidence intervals.
+Displays a horizontal bar with nested confidence interval bands from 80\%
+to 99\% (in 1\% steps) to visualise the uncertainty of a proportion. Bands
+are drawn in a semi-transparent grey so that the accumulated overlap
+creates a natural density gradient — darker in the centre, lighter at the
+edges.
+}
+\details{
+Each row of \code{x} is displayed as a horizontal stacked bar showing the
+proportion of the first category. Confidence intervals are calculated
+using \code{prop.test()} and drawn as 20 nested bands from
+80\% to 99\% in 1\% steps, all in the same semi-transparent colour. The
+repeated overdraw naturally darkens the centre of the interval where all
+bands overlap. A vertical segment marks the observed proportion.
 }
 \examples{
-plotPropCI(30, n = 100,
-           labels = "Success",
-           main = "Single proportion")
-           
-# multiple groups 
-plotPropCI(c(30, 55, 80),
-           n = c(100, 120, 150),
-           labels = c("A", "B", "C"),
-           main = "Group comparison")
-           
-# no confidence intervals
-plotPropCI(c(0.3, 0.6, 0.8),
-           labels = c("A", "B", "C"),
-           conf.levels = NA,
-           main = "Proportions only")
+m <- matrix(c(22, 111, 33, 120, 80, 100), nrow = 3, byrow = TRUE)
+hblue <- "steelblue"
+hred  <- "firebrick"
+plotPropCI(m, labels = c("yes", "no"), main = "Response by Group")
+
+# single row — vector input is accepted
+plotPropCI(m[1, ], labels = c("yes", "no"))
 
 }
 \seealso{

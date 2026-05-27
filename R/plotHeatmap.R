@@ -26,7 +26,7 @@
 #'   blue palette is used.
 #'
 #' @param border color of tile borders. Defaults to \code{NA}.
-#' @param na.color color used for missing values.
+#' @param naCol color used for missing values.
 #'
 #' @param text logical; if \code{TRUE}, cell values are printed on top of
 #'   the tiles using \code{fm()} formatting.
@@ -88,7 +88,7 @@ plotHeatmap <- function(
   # STYLE
   col = NULL,
   border = NA,
-  na.color = "gray90",
+  naCol = "gray90",
   
   # FEATURES
   text = FALSE,
@@ -148,7 +148,7 @@ plotHeatmap <- function(
     idx[idx > ncol_pal] <- ncol_pal
     
     cols <- matrix(cols_all[idx], nrow = nrow(z))
-    cols[is.na(z)] <- na.color
+    cols[is.na(z)] <- naCol
     
     # --- Coordinates --------------------------------------------------------
     nr <- nrow(z)

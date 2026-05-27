@@ -48,7 +48,6 @@ mar(top = 1, outer = TRUE)
 }
 \seealso{
 Other plot.utils:
-\code{\link[=abcCoords]{abcCoords()}},
 \code{\link{axTicks}},
 \code{\link[=lineToUser]{lineToUser()}},
 \code{\link[=lines.lm]{lines.lm()}},

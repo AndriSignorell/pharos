@@ -4,116 +4,137 @@
 \alias{errBars}
 \title{Add Error Bars to an Existing Plot}
 \usage{
-errBars(
-  from,
-  to = NULL,
-  pos = NULL,
-  mid = NULL,
-  horiz = FALSE,
-  col = par("fg"),
-  lty = par("lty"),
-  lwd = par("lwd"),
-  code = 3,
-  length = 0.05,
-  pch = NA,
-  cex.pch = par("cex"),
-  col.pch = par("fg"),
-  bg.pch = par("bg"),
-  ...
-)
+errBars(from, to = NULL, pos = NULL, horiz = TRUE, points = NULL, ...)
 }
 \arguments{
-\item{from}{coordinates of points \bold{from} which to draw (the lower end
-of the error bars). If \code{to} is left to \code{NULL} and \code{from} is a
-\eqn{k \times 2 }{k x 2} dimensional matrix, the first column will be
-interpreted as \code{from} and the second as \code{to}.}
+\item{from}{Coordinates of the lower end of the error bars.
 
-\item{to}{coordinates of points \bold{to} which to draw (the upper end of
-the error bars).}
+If \code{to = NULL} and \code{from} is a matrix:
+\itemize{
+\item a 2-column matrix is interpreted as
+\code{cbind(from, to)}
+\item a 3-column matrix is interpreted as
+\code{cbind(point, from, to)}
+}}
 
-\item{pos}{numeric, position of the error bars. This will either be the
-x-coordinate in case of vertical error bars and the y-coordinate in case of
-horizontal error bars.}
+\item{to}{Coordinates of the upper end of the error bars.}
 
-\item{mid}{numeric, position of midpoints. Defaults to the mean of
-\code{from} and \code{to}.}
+\item{pos}{Position of the error bars.
 
-\item{horiz}{logical, determining whether horizontal error bars are needed
-(default is FALSE).}
+For vertical bars this corresponds to x-positions;
+for horizontal bars to y-positions.}
 
-\item{col}{the line color.}
+\item{horiz}{Logical; if \code{TRUE}, horizontal error bars
+are drawn.}
 
-\item{lty}{the line type.}
+\item{points}{Optional point specification.}
 
-\item{lwd}{line width.}
-
-\item{code}{integer code, determining where end lines are to be drawn.
-\code{code = 0} will draw no end lines, \code{code = 1} will draw an end
-line on the left (lower) side at (\code{x0[i]}, \code{y0[i]}), \code{code =
-2} on the right (upper) side (\code{x1[i]}, \code{y1[i]}) and \code{code =
-3} (default) will draw end lines at both ends.}
-
-\item{length}{the length of the end lines.}
-
-\item{pch}{plotting character for the midpoints. The position of the points
-is given by \code{mid}. If \code{mid} is left to \code{NULL} the points will
-be plotted in the middle of \code{from} and \code{to}. No points will be
-plotted if this is set to \code{NA}, which is the default.}
-
-\item{cex.pch}{the character extension for the plotting characters. Default
-is \code{par("cex")}.}
-
-\item{col.pch}{the color of the plotting characters. Default is
-\code{par("fg")}.}
-
-\item{bg.pch}{the background color of the plotting characters (if pch is set
-to 21:25). Default is \code{par("bg")}.}
-
-\item{\dots}{the dots are passed to the \code{\link{arrows}} function.}
+\item{...}{Additional graphical arguments passed to
+\code{\link{arrows}}.}
+}
+\value{
+Invisibly returns a list with components:
+\describe{
+\item{from}{Lower endpoints}
+\item{to}{Upper endpoints}
+\item{pos}{Positions of the error bars}
+\item{points}{Point coordinates}
+}
 }
 \description{
-Add error bars to an existing plot.
+Add vertical or horizontal error bars to an existing plot.
 }
 \details{
-A short wrapper for plotting error bars by means of \code{\link{arrows}}.
+This is a lightweight wrapper around \code{\link{arrows}} with
+optional point symbols added via \code{\link{points}}.
+
+Additional graphical arguments in \code{...} are passed to
+\code{\link{arrows}} and may be used to control the appearance
+of the error bars.
+
+Common examples include:
+\itemize{
+\item \code{col}: line color
+\item \code{lwd}: line width
+\item \code{lty}: line type
+\item \code{code}: which end caps to draw
+\item \code{length}: length of the end caps
+}
+
+Point symbols may optionally be added:
+\itemize{
+\item \code{points = TRUE}: draw default points halfway between
+\code{from} and \code{to}
+\item \code{points = numeric}: use these values as point coordinates
+\item \code{points = list(...)}: fully specify point coordinates
+and graphical parameters
+}
+
+Example:
+\preformatted{
+points = list(
+  val = estimate,
+  pch = 21,
+  bg  = "gold",
+  col = "black",
+  cex = 1.2
+)
+}
+
+The default orientation is horizontal (\code{horiz = TRUE}), which
+suits the typical use case of adding confidence intervals to a
+\code{\link{dotchart}}.  Set \code{horiz = FALSE} for vertical bars
+on barplots or similar.
 }
 \examples{
-
-
 op <- par(no.readonly = TRUE)
-par(mfrow=c(2,2))
+par(mfrow = c(2, 2))
 
-b <- barplot(1:5, ylim=c(0,6))
-errBars(from=1:5-rep(0.5,5), to=1:5+rep(0.5,5), pos=b, length=0.2)
+b <- barplot(1:5, ylim = c(0, 6))
 
-# just on one side
-b <- barplot(1:5, ylim=c(0,6))
-errBars(from=1:5, to=1:5+rep(0.5,5), pos=b, length=0.2, col="red", code=2, lwd=2)
+errBars(
+  from = 1:5 - 0.5,
+  to = 1:5 + 0.5,
+  pos = b,
+  length = 0.15
+)
 
-b <- barplot(1:5, xlim=c(0,6), horiz=TRUE)
-errBars(from=1:5, to=1:5+rep(0.2,5), pos=b, horiz=TRUE,  length=0.2, col="red", code=2, lwd=2)
+# midpoint symbols
+b <- barplot(1:5, ylim = c(0, 6))
 
-par(xpd=FALSE)
-dotchart(1:5, xlim=c(0,6))
-errBars(from=1:5-rep(0.2,5), to=1:5+rep(0.2,5), horiz=TRUE, length=0.1)
+errBars(
+  from = 1:5 - 0.5,
+  to = 1:5 + 0.5,
+  pos = b,
+  points = TRUE
+)
+
+# custom points
+dotchart(1:5, xlim = c(0, 6))
+
+errBars(
+  from = 1:5 - 0.2,
+  to = 1:5 + 0.2,
+  horiz = TRUE,
+  points = list(
+    val = 1:5,
+    pch = 21,
+    bg = "gold",
+    col = "black",
+    cex = 1.2
+  )
+)
 
 par(op)
 
 }
 \seealso{
-\code{\link{arrows}}, \code{\link{lines.loess}}
+\code{\link{arrows}},
+\code{\link{points}}
 
-Other plot.annotation:
-\code{\link[=axisBreak]{axisBreak()}},
-\code{\link[=barText]{barText()}},
-\code{\link[=boxedText]{boxedText()}},
-\code{\link[=colLegend]{colLegend()}},
-\code{\link[=drawBand]{drawBand()}},
-\code{\link[=shade]{shade()}},
-\code{\link[=stamp]{stamp()}},
-\code{\link[=titleRect]{titleRect()}}
+Other plot.augmentation:
+\code{\link[=drawBand]{drawBand()}}
 }
-\concept{confidence-intervals}
-\concept{descriptive-statistics}
 \concept{graphics}
-\concept{plot.annotation}
+\concept{plot-augmentation}
+\concept{plot.augmentation}

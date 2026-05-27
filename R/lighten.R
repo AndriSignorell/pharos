@@ -16,10 +16,6 @@
 #'   x_{new} = x + amount \cdot (255 - x)
 #' }
 #'
-#' @seealso
-#' \code{\link{darken}},
-#' \code{\link{mixColors}}
-#'
 #' @family color.manipulation
 #' @concept color-manipulation
 #'

@@ -78,10 +78,10 @@ par(op)
 
 }
 \seealso{
-\code{\link{polygon}}, \code{\link{drawRegPolygon}},
-\code{\link{drawCircle}}, \code{\link{drawArc}}
+\code{\link{polygon}}
 
 Other plot.geometry:
+\code{\link[=abcCoords]{abcCoords()}},
 \code{\link[=canvas]{canvas()}},
 \code{\link[=drawArc]{drawArc()}},
 \code{\link[=drawBezier]{drawBezier()}},

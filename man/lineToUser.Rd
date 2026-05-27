@@ -32,7 +32,6 @@ lineToUser(line=2, side=4)
 \code{\link{mtext}}
 
 Other plot.utils:
-\code{\link[=abcCoords]{abcCoords()}},
 \code{\link{axTicks}},
 \code{\link[=lines.lm]{lines.lm()}},
 \code{\link[=mar]{mar()}},

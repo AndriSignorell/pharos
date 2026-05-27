@@ -28,8 +28,8 @@
 #' par(op)
 #'
 #' @family color.manipulation
+#' @concept graphics
 #' @concept color-manipulation
-#'
 
 
 #' @export

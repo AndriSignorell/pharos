@@ -271,7 +271,7 @@ plotCirc <- function(
   bez2 <- drawBezier(
     x = c(xy4$x, 0, xy3$x),
     y = c(xy4$y, 0, xy3$y),
-    plot = FALSE
+    draw = FALSE
   )
   
   bez3 <- drawArc(
@@ -284,7 +284,7 @@ plotCirc <- function(
   bez4 <- drawBezier(
     x = c(xy1$x, 0, xy2$x),
     y = c(xy1$y, 0, xy2$y),
-    plot = FALSE
+    draw = FALSE
   )
   
   polygon(

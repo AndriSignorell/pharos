@@ -26,5 +26,6 @@ Other color.conversion:
 \code{\link[=hexToCol]{hexToCol()}},
 \code{\link[=longToRGB]{longToRGB()}}
 }
-\concept{color-manipulation}
+\concept{color-conversion}
 \concept{color.conversion}
+\concept{graphics}

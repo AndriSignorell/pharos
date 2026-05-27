@@ -16,10 +16,6 @@
 #'   x_{new} = x \\cdot (1 - amount)
 #' }
 #'
-#' @seealso
-#' \code{\link{lighten}},
-#' \code{\link{mixColors}}
-#'
 #' @family color.manipulation
 #' @concept color-manipulation
 #'

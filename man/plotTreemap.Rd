@@ -6,7 +6,7 @@
 \usage{
 plotTreemap(
   x,
-  grp = NULL,
+  groups = NULL,
   labels = NULL,
   text.col = "black",
   col = rainbow(length(x)),
@@ -23,7 +23,7 @@ plotTreemap(
 \item{x}{a vector storing the values to be used to calculate the areas of
 rectangles.}
 
-\item{grp}{a vector specifying the group (i.e. country, sector, etc.) to
+\item{groups}{a vector specifying the group (i.e. country, sector, etc.) to
 which each element belongs.}
 
 \item{labels}{a vector specifying the labels.}
@@ -92,10 +92,10 @@ z$col <- addAlpha(c("steelblue","green","yellow")[z$grp],
                   function(...) bedrock::linScale(..., 
                       newLow=0.1, newHigh=0.6))))
 
-plotTreemap(x=z$area, grp=z$grp, labels=letters[1:20], col=z$col)
+plotTreemap(x=z$area, groups=z$grp, labels=letters[1:20], col=z$col)
 
 
-b <- plotTreemap(x=z$area, grp=z$grp, labels=letters[1:20], labels.grp=NA,
+b <- plotTreemap(x=z$area, groups=z$grp, labels=letters[1:20], labels.grp=NA,
                  col=z$col, main="Treemap")
 
 # the function returns the midpoints of the areas

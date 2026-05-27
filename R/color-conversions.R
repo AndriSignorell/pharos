@@ -32,8 +32,8 @@
 
 #'
 #' @family color.conversion
-#' @concept color-manipulation
-#'
+#' @concept graphics
+#' @concept color-conversion
 
 #' @export
 colToRGB <- function(col, alpha = FALSE)
@@ -49,7 +49,8 @@ colToRGB <- function(col, alpha = FALSE)
 #' @return Integer matrix with RGB rows.
 #'
 #' @family color.conversion
-#' @concept color-manipulation
+#' @concept graphics
+#' @concept color-conversion
 #'
 #' @export
 hexToRGB <- function(hex) {
@@ -93,7 +94,8 @@ hexToRGB <- function(hex) {
 #' @return Character vector of hexadecimal colors.
 #'
 #' @family color.conversion
-#' @concept color-manipulation
+#' @concept graphics
+#' @concept color-conversion
 #'
 #' @export
 RGBToHex <- function(col) {
@@ -111,7 +113,8 @@ RGBToHex <- function(col) {
 #' @return Character vector of hexadecimal colors.
 #'
 #' @family color.conversion
-#' @concept color-manipulation
+#' @concept graphics
+#' @concept color-conversion
 #'
 #' @export
 colToHex <- function(col, alpha = 1) {
@@ -143,7 +146,8 @@ colToHex <- function(col, alpha = 1) {
 #' @return Character vector of named R colors.
 #'
 #' @family color.conversion
-#' @concept color-manipulation
+#' @concept graphics
+#' @concept color-conversion
 #'
 #' @export
 RGBToCol <- function(col,
@@ -198,7 +202,8 @@ RGBToCol <- function(col,
 #' @return Character vector of named R colors.
 #'
 #' @family color.conversion
-#' @concept color-manipulation
+#' @concept graphics
+#' @concept color-conversion
 #'
 #' @export
 hexToCol <- function(hex,
@@ -220,7 +225,8 @@ hexToCol <- function(hex,
 #' @return Numeric HSV matrix.
 #'
 #' @family color.conversion
-#' @concept color-manipulation
+#' @concept graphics
+#' @concept color-conversion
 #'
 #' @export
 colToHSV <- function(col, alpha = FALSE)
@@ -236,7 +242,8 @@ colToHSV <- function(col, alpha = FALSE)
 #' @return Integer vector.
 #'
 #' @family color.conversion
-#' @concept color-manipulation
+#' @concept graphics
+#' @concept color-conversion
 #'
 #' @export
 RGBToLong <- function(col)
@@ -281,8 +288,10 @@ longToRGB <- function(col)
 #' @return Numeric CMY matrix.
 #'
 #' @family color.space
-#' @concept color-manipulation
-#'
+#' @concept graphics
+#' @concept color-space
+#' @concept color-conversion
+#' 
 #' @export
 RGBToCMY <- function(col, maxColorValue = 1) {
   
@@ -316,7 +325,9 @@ RGBToCMY <- function(col, maxColorValue = 1) {
 #' @return Numeric CMYK matrix.
 #'
 #' @family color.space
-#' @concept color-manipulation
+#' @concept graphics
+#' @concept color-space
+#' @concept color-conversion
 #'
 #' @export
 CMYToCMYK <- function(col) {
@@ -346,7 +357,9 @@ CMYToCMYK <- function(col) {
 #' @return Numeric CMY matrix.
 #'
 #' @family color.space
-#' @concept color-manipulation
+#' @concept graphics
+#' @concept color-space
+#' @concept color-conversion
 #'
 #' @export
 CMYKToCMY <- function(col) {
@@ -375,7 +388,9 @@ CMYKToCMY <- function(col) {
 #' @return Hexadecimal RGB colors.
 #'
 #' @family color.space
-#' @concept color-manipulation
+#' @concept graphics
+#' @concept color-space
+#' @concept color-conversion
 #'
 #' @export
 CMYKToRGB <- function(cyan,

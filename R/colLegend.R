@@ -102,8 +102,8 @@
 #'
 #' @family plot.annotation
 #' @concept graphics
-#' @concept color-manipulation
-#'
+#' @concept plot-annotation
+#' 
 #' @export
 colLegend <- function(
     x,

@@ -58,7 +58,6 @@ spreadOut(rnorm(10), 0.5)
 \code{\link{strheight}()}
 
 Other plot.utils:
-\code{\link[=abcCoords]{abcCoords()}},
 \code{\link{axTicks}},
 \code{\link[=lineToUser]{lineToUser()}},
 \code{\link[=lines.lm]{lines.lm()}},

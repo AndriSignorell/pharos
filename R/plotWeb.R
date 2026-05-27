@@ -136,7 +136,7 @@ plotWeb <- function(m, col=NULL, lty=NULL,
                       from.y=xy[[2]][i[,2]], to.y=xy[[2]][i[,1]])
     
     if(is.null(lwd))
-      d.m$d.sc <- .linScale(abs(d.m$d), newlow=a, newhigh=b )
+      d.m$d.sc <- linScale(abs(d.m$d), newLow=a, newHigh=b )
     else
       d.m$d.sc <- lwd
     

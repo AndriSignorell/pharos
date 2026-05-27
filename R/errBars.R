@@ -1,110 +1,321 @@
 
-#' Add Error Bars to an Existing Plot 
+#' Add Error Bars to an Existing Plot
+#'
+#' Add vertical or horizontal error bars to an existing plot.
+#'
+#' This is a lightweight wrapper around \code{\link{arrows}} with
+#' optional point symbols added via \code{\link{points}}.
+#'
+#' @details
+#' Additional graphical arguments in \code{...} are passed to
+#' \code{\link{arrows}} and may be used to control the appearance
+#' of the error bars.
+#'
+#' Common examples include:
+#' \itemize{
+#'   \item \code{col}: line color
+#'   \item \code{lwd}: line width
+#'   \item \code{lty}: line type
+#'   \item \code{code}: which end caps to draw
+#'   \item \code{length}: length of the end caps
+#' }
+#'
+#' Point symbols may optionally be added:
+#' \itemize{
+#'   \item \code{points = TRUE}: draw default points halfway between
+#'     \code{from} and \code{to}
+#'   \item \code{points = numeric}: use these values as point coordinates
+#'   \item \code{points = list(...)}: fully specify point coordinates
+#'     and graphical parameters
+#' }
+#'
+#' Example:
+#' \preformatted{
+#' points = list(
+#'   val = estimate,
+#'   pch = 21,
+#'   bg  = "gold",
+#'   col = "black",
+#'   cex = 1.2
+#' )
+#' }
 #' 
-#' Add error bars to an existing plot. 
-#' 
-#' A short wrapper for plotting error bars by means of \code{\link{arrows}}. 
-#' 
-#' @param from coordinates of points \bold{from} which to draw (the lower end
-#' of the error bars). If \code{to} is left to \code{NULL} and \code{from} is a
-#' \eqn{k \times 2 }{k x 2} dimensional matrix, the first column will be
-#' interpreted as \code{from} and the second as \code{to}. 
-#' @param to coordinates of points \bold{to} which to draw (the upper end of
-#' the error bars). 
-#' @param pos numeric, position of the error bars. This will either be the
-#' x-coordinate in case of vertical error bars and the y-coordinate in case of
-#' horizontal error bars. 
-#' @param mid numeric, position of midpoints. Defaults to the mean of
-#' \code{from} and \code{to}. 
-#' @param horiz logical, determining whether horizontal error bars are needed
-#' (default is FALSE). 
-#' @param col the line color. 
-#' @param lty the line type. 
-#' @param lwd line width. 
-#' @param code integer code, determining where end lines are to be drawn.
-#' \code{code = 0} will draw no end lines, \code{code = 1} will draw an end
-#' line on the left (lower) side at (\code{x0[i]}, \code{y0[i]}), \code{code =
-#' 2} on the right (upper) side (\code{x1[i]}, \code{y1[i]}) and \code{code =
-#' 3} (default) will draw end lines at both ends. 
-#' @param length the length of the end lines. 
-#' @param pch plotting character for the midpoints. The position of the points
-#' is given by \code{mid}. If \code{mid} is left to \code{NULL} the points will
-#' be plotted in the middle of \code{from} and \code{to}. No points will be
-#' plotted if this is set to \code{NA}, which is the default.
-#' @param cex.pch the character extension for the plotting characters. Default
-#' is \code{par("cex")}.
-#' @param col.pch the color of the plotting characters. Default is
-#' \code{par("fg")}.
-#' @param bg.pch the background color of the plotting characters (if pch is set
-#' to 21:25). Default is \code{par("bg")}.
-#' @param \dots the dots are passed to the \code{\link{arrows}} function. 
-#' @seealso \code{\link{arrows}}, \code{\link{lines.loess}} 
-
-
-
-
+#' The default orientation is horizontal (\code{horiz = TRUE}), which
+#' suits the typical use case of adding confidence intervals to a
+#' \code{\link{dotchart}}.  Set \code{horiz = FALSE} for vertical bars
+#' on barplots or similar.
+#'
+#' @param from Coordinates of the lower end of the error bars.
+#'
+#'   If \code{to = NULL} and \code{from} is a matrix:
+#'   \itemize{
+#'     \item a 2-column matrix is interpreted as
+#'       \code{cbind(from, to)}
+#'     \item a 3-column matrix is interpreted as
+#'       \code{cbind(point, from, to)}
+#'   }
+#'
+#' @param to Coordinates of the upper end of the error bars.
+#'
+#' @param pos Position of the error bars.
+#'
+#'   For vertical bars this corresponds to x-positions;
+#'   for horizontal bars to y-positions.
+#'
+#' @param horiz Logical; if \code{TRUE}, horizontal error bars
+#'   are drawn.
+#'
+#' @param points Optional point specification.
+#'
+#' @param ... Additional graphical arguments passed to
+#'   \code{\link{arrows}}.
+#'
+#' @return
+#' Invisibly returns a list with components:
+#' \describe{
+#'   \item{from}{Lower endpoints}
+#'   \item{to}{Upper endpoints}
+#'   \item{pos}{Positions of the error bars}
+#'   \item{points}{Point coordinates}
+#' }
+#'
+#' @seealso
+#' \code{\link{arrows}},
+#' \code{\link{points}}
+#'
 #' @examples
-#' 
-#' 
 #' op <- par(no.readonly = TRUE)
-#' par(mfrow=c(2,2))
-#' 
-#' b <- barplot(1:5, ylim=c(0,6))
-#' errBars(from=1:5-rep(0.5,5), to=1:5+rep(0.5,5), pos=b, length=0.2)
-#' 
-#' # just on one side
-#' b <- barplot(1:5, ylim=c(0,6))
-#' errBars(from=1:5, to=1:5+rep(0.5,5), pos=b, length=0.2, col="red", code=2, lwd=2)
-#' 
-#' b <- barplot(1:5, xlim=c(0,6), horiz=TRUE)
-#' errBars(from=1:5, to=1:5+rep(0.2,5), pos=b, horiz=TRUE,  length=0.2, col="red", code=2, lwd=2)
-#' 
-#' par(xpd=FALSE)
-#' dotchart(1:5, xlim=c(0,6))
-#' errBars(from=1:5-rep(0.2,5), to=1:5+rep(0.2,5), horiz=TRUE, length=0.1)
-#' 
+#' par(mfrow = c(2, 2))
+#'
+#' b <- barplot(1:5, ylim = c(0, 6))
+#'
+#' errBars(
+#'   from = 1:5 - 0.5,
+#'   to = 1:5 + 0.5,
+#'   pos = b,
+#'   length = 0.15
+#' )
+#'
+#' # midpoint symbols
+#' b <- barplot(1:5, ylim = c(0, 6))
+#'
+#' errBars(
+#'   from = 1:5 - 0.5,
+#'   to = 1:5 + 0.5,
+#'   pos = b,
+#'   points = TRUE
+#' )
+#'
+#' # custom points
+#' dotchart(1:5, xlim = c(0, 6))
+#'
+#' errBars(
+#'   from = 1:5 - 0.2,
+#'   to = 1:5 + 0.2,
+#'   horiz = TRUE,
+#'   points = list(
+#'     val = 1:5,
+#'     pch = 21,
+#'     bg = "gold",
+#'     col = "black",
+#'     cex = 1.2
+#'   )
+#' )
+#'
 #' par(op)
-#' 
-
-
-
-#' @family plot.annotation
+#'
+#' @family plot.augmentation
 #' @concept graphics
-#' @concept descriptive-statistics
-#' @concept confidence-intervals
+#' @concept plot-augmentation
 #'
-#'
+
 #' @export
-errBars <- function(from, to = NULL, pos = NULL, mid = NULL, horiz = FALSE, col = par("fg"), lty = par("lty"),
-                    lwd = par("lwd"), code = 3, length=0.05,
-                    pch = NA, cex.pch = par("cex"), col.pch = par("fg"), bg.pch = par("bg"), ... ) {
+errBars <- function(
+    from,
+    to = NULL,
+    pos = NULL,
+    horiz = TRUE,
+    points = NULL,
+    ...
+) {
   
-  if(is.null(to)) {
-    if(!dim(from)[2] %in% c(2,3)) stop("'from' must be a kx2 or a kx3 matrix, when 'to' is not provided.")
-    if(dim(from)[2] == 2) {
-      to <- from[,2]
-      from <- from[,1]
-    } else {
-      mid <- from[,1]
-      to <- from[,3]
-      from <- from[,2]
+  # --- matrix interface ----------------------------------------------
+  
+  if (is.null(to)) {
+    
+    if (!is.matrix(from) || !(ncol(from) %in% c(2L, 3L))) {
+      
+      stop(
+        "'from' must be a 2- or 3-column matrix ",
+        "when 'to' is NULL."
+      )
+      
     }
     
-  }
-  if(is.null(pos)) pos <- 1:length(from)
-  if(horiz){
-    arrows( x0=from, x1=to, y0=pos, col=col, lty=lty, lwd=lwd, angle=90, code=code, length=length, ... )
-  } else {
-    arrows( x0=pos, y0=from, y1=to, col=col, lty=lty, lwd=lwd, angle=90, code=code, length=length, ... )
-  }
-  if(!is.na(pch) && !is.na(col.pch)){
-    if(is.null(mid)) mid <- (from + to)/2
-    # plot points
-    if(horiz){
-      points(x=mid, y=pos, pch = pch, cex = cex.pch, col = col.pch, bg=bg.pch)
+    if (ncol(from) == 2L) {
+      
+      to   <- from[, 2L]
+      from <- from[, 1L]
+      
     } else {
-      points(x=pos, y=mid, pch = pch, cex = cex.pch, col = col.pch, bg=bg.pch)
+      
+      pointVal <- from[, 1L]
+      to       <- from[, 3L]
+      from     <- from[, 2L]
+      
+      # no points argument supplied
+      if (is.null(points)) {
+        
+        points <- list(
+          val = pointVal,
+          pch = 1
+        )
+        
+        # points = TRUE
+      } else if (isTRUE(points)) {
+        
+        points <- list(
+          val = pointVal,
+          pch = 1
+        )
+        
+        # points = numeric vector
+      } else if (is.atomic(points)) {
+        
+        stop(
+          "Point coordinates supplied twice: ",
+          "via 3-column matrix and via 'points'."
+        )
+        
+        # points = list(...)
+      } else if (is.list(points)) {
+        
+        if (!is.null(points$val)) {
+          
+          stop(
+            "Point coordinates supplied twice: ",
+            "via 3-column matrix and via 'points$val'."
+          )
+          
+        }
+        
+        points$val <- pointVal
+        
+      }
     }
   }
+  
+  # --- defaults ------------------------------------------------------
+  
+  if (is.null(pos))
+    pos <- seq_along(from)
+  
+  # --- checks --------------------------------------------------------
+  
+  if (length(from) != length(to))
+    stop("'from' and 'to' must have equal length.")
+  
+  if (length(pos) != length(from))
+    stop("'pos' must have the same length as 'from'.")
+  
+  # --- arrows --------------------------------------------------------
+  
+  tmp <- bedrock::extractArgs(
+    dots = list(...),
+    defaults = list(
+      angle  = 90,
+      code   = 3,
+      length = 0.05
+    ),
+    return_rest = TRUE
+  )
+  
+  arrArgs <- tmp$args
+  dots    <- tmp$rest
+  
+  if (horiz) {
+    
+    do.call(
+      arrows,
+      c(
+        list(
+          x0 = from,
+          x1 = to,
+          y0 = pos
+        ),
+        arrArgs,
+        dots
+      )
+    )
+    
+  } else {
+    
+    do.call(
+      arrows,
+      c(
+        list(
+          x0 = pos,
+          y0 = from,
+          y1 = to
+        ),
+        arrArgs,
+        dots
+      )
+    )
+    
+  }
+  
+
+  # --- points --------------------------------------------------------
+  
+  if (!is.null(points)) {
+    
+    # points = TRUE
+    if (isTRUE(points)) {
+      
+      points <- list(
+        val = (from + to) / 2,
+        pch = 1
+      )
+      
+      # points = numeric vector
+    } else if (is.atomic(points)) {
+      
+      points <- list(
+        val = points,
+        pch = 1
+      )
+      
+    }
+    
+    # defaults
+    if (is.null(points$val))
+      points$val <- (from + to) / 2
+    
+    if (is.null(points$pch))
+      points$pch <- 1
+    
+    val <- points$val
+    
+    # remove non-graphical helper field
+    points$val <- NULL
+    
+    callIf(
+      graphics::points,
+      points,
+      defaults = list(
+        x = if (horiz) val else pos,
+        y = if (horiz) pos else val
+      )
+    )
+  }
+  
+  
+  invisible(list(
+    from = from,
+    to = to,
+    pos = pos,
+    points = points
+  ))
 }
 

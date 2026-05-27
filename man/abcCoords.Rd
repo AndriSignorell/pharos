@@ -84,15 +84,16 @@ sapply(c("topleft", "top", "topright",
 \code{\link{text}}, \code{\link{legend}},
 \code{\link{boxedText}}
 
-Other plot.utils:
-\code{\link{axTicks}},
-\code{\link[=lineToUser]{lineToUser()}},
-\code{\link[=lines.lm]{lines.lm()}},
-\code{\link[=mar]{mar()}},
-\code{\link[=setBackCol]{setBackCol()}},
-\code{\link{splineCI}},
-\code{\link[=spreadOut]{spreadOut()}}
+Other plot.geometry:
+\code{\link[=canvas]{canvas()}},
+\code{\link[=drawArc]{drawArc()}},
+\code{\link[=drawBezier]{drawBezier()}},
+\code{\link[=drawCircle]{drawCircle()}},
+\code{\link[=drawEllipse]{drawEllipse()}},
+\code{\link[=drawRegPolygon]{drawRegPolygon()}},
+\code{\link[=polarGrid]{polarGrid()}}
 }
 \concept{geometry}
 \concept{graphics}
-\concept{plot.utils}
+\concept{plot-positioning}
+\concept{plot.geometry}

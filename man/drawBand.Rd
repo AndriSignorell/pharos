@@ -47,16 +47,10 @@ abline(lm(y~x), col="brown")
 \seealso{
 \code{\link{polygon}}
 
-Other plot.annotation:
-\code{\link[=axisBreak]{axisBreak()}},
-\code{\link[=barText]{barText()}},
-\code{\link[=boxedText]{boxedText()}},
-\code{\link[=colLegend]{colLegend()}},
-\code{\link[=errBars]{errBars()}},
-\code{\link[=shade]{shade()}},
-\code{\link[=stamp]{stamp()}},
-\code{\link[=titleRect]{titleRect()}}
+Other plot.augmentation:
+\code{\link[=errBars]{errBars()}}
 }
-\concept{confidence-intervals}
 \concept{graphics}
-\concept{plot.annotation}
+\concept{plot-augmentation}
+\concept{plot.augmentation}
+\concept{statistical-graphics}

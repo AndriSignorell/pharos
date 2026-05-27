@@ -21,5 +21,7 @@ Other color.space:
 \code{\link[=CMYToCMYK]{CMYToCMYK()}},
 \code{\link[=RGBToCMY]{RGBToCMY()}}
 }
-\concept{color-manipulation}
+\concept{color-conversion}
+\concept{color-space}
 \concept{color.space}
+\concept{graphics}

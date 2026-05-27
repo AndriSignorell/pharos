@@ -114,6 +114,7 @@ sapply( (0:11) * pi/6, function(theta) {
 \code{\link{drawEllipse}}, \code{\link{drawArc}}
 
 Other plot.geometry:
+\code{\link[=abcCoords]{abcCoords()}},
 \code{\link[=canvas]{canvas()}},
 \code{\link[=drawArc]{drawArc()}},
 \code{\link[=drawBezier]{drawBezier()}},

@@ -9,8 +9,8 @@ formatDateTime <- function(x, fmt, strict = TRUE, locale = "current") {
     .Call(`_aurora_formatDateTime`, x, fmt, strict, locale)
 }
 
-formatNum <- function(x, digits = NULL, ldigits = NULL, bigMark = NULL, decimalMark = NULL, sciBig = 9999L, sciSmall = -9999L) {
-    .Call(`_aurora_formatNum`, x, digits, ldigits, bigMark, decimalMark, sciBig, sciSmall)
+formatNum <- function(x, digits = NULL, leadDigits = NULL, bigMark = NULL, decimalMark = NULL, sciBig = 9999L, sciSmall = -9999L) {
+    .Call(`_aurora_formatNum`, x, digits, leadDigits, bigMark, decimalMark, sciBig, sciSmall)
 }
 
 pSmirnov2x <- function(statistic, nx, ny) {

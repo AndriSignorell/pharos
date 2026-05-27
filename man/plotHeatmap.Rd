@@ -14,7 +14,7 @@ plotHeatmap(
   scale = c("count", "prop", "row", "col"),
   col = NULL,
   border = NA,
-  na.color = "gray90",
+  naCol = "gray90",
   text = FALSE,
   zlim = NULL,
   stamp = NULL,
@@ -46,7 +46,7 @@ blue palette is used.}
 
 \item{border}{color of tile borders. Defaults to \code{NA}.}
 
-\item{na.color}{color used for missing values.}
+\item{naCol}{color used for missing values.}
 
 \item{text}{logical; if \code{TRUE}, cell values are printed on top of
 the tiles using \code{fm()} formatting.}

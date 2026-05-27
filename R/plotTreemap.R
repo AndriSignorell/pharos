@@ -17,7 +17,7 @@
 #' 
 #' @param x a vector storing the values to be used to calculate the areas of
 #' rectangles. 
-#' @param grp a vector specifying the group (i.e. country, sector, etc.) to
+#' @param groups a vector specifying the group (i.e. country, sector, etc.) to
 #' which each element belongs. 
 #' @param labels a vector specifying the labels. 
 #' @param cex the character extension for the area labels. Default is 1. 
@@ -61,10 +61,10 @@
 #'                   function(...) bedrock::linScale(..., 
 #'                       newLow=0.1, newHigh=0.6))))
 #' 
-#' plotTreemap(x=z$area, grp=z$grp, labels=letters[1:20], col=z$col)
+#' plotTreemap(x=z$area, groups=z$grp, labels=letters[1:20], col=z$col)
 #' 
 #' 
-#' b <- plotTreemap(x=z$area, grp=z$grp, labels=letters[1:20], labels.grp=NA,
+#' b <- plotTreemap(x=z$area, groups=z$grp, labels=letters[1:20], labels.grp=NA,
 #'                  col=z$col, main="Treemap")
 #' 
 #' # the function returns the midpoints of the areas
@@ -85,9 +85,12 @@
 #'
 #'
 #' @export
-plotTreemap <- function(x, grp=NULL, labels=NULL,  
-                        text.col="black", col=rainbow(length(x)),
-                        labels.grp=NULL, cex.grp=3, text.col.grp="black", 
+plotTreemap <- function(x, groups = NULL, 
+                        labels = NULL,  
+                        text.col="black", 
+                        col=rainbow(length(x)),
+                        labels.grp=NULL, cex.grp=3, 
+                        text.col.grp="black", 
                         border.grp="grey50",
                         lwd.grp=5, main="", ...) {
   
@@ -100,19 +103,19 @@ plotTreemap <- function(x, grp=NULL, labels=NULL,
     # par() aus ...
     .applyParFromDots(...)
 
-    if(is.null(grp)) grp <- rep(1, length(x))
+    if(is.null(groups)) groups <- rep(1, length(x))
     if(is.null(labels)) labels <- names(x)
     
     # we need to sort the stuff
-    ord <- order(grp, -x)
+    ord <- order(groups, -x)
     x <- x[ord]
-    grp <- grp[ord]
+    groups <- groups[ord]
     labels <- labels[ord]
     col <- col[ord]
     
     
     # get the groups rects first
-    zg <- .sqMap(sort(tapply(x, grp, sum), decreasing=TRUE))
+    zg <- .sqMap(sort(tapply(x, groups, sum), decreasing=TRUE))
     
     # the transformation information: x0 translation, xs stretching
     tm <- cbind(zg[,1:2], xs=zg$x1 - zg$x0, ys=zg$y1 - zg$y0)
@@ -133,7 +136,7 @@ plotTreemap <- function(x, grp=NULL, labels=NULL,
     for( i in 1:nrow(zg)){
       
       # get the group index
-      idx <- grp == rownames(zg)[i]
+      idx <- groups == rownames(zg)[i]
       xg.rect <- .sqMap(sort(x[idx], decreasing=TRUE))
       
       # transform
@@ -142,7 +145,7 @@ plotTreemap <- function(x, grp=NULL, labels=NULL,
       
       .plotSqMap(xg.rect, col=col[idx], add=TRUE)
       
-      res[[i]] <- list(grp=gmidpt[i,],
+      res[[i]] <- list(groups=gmidpt[i,],
                        child= cbind(x=apply(xg.rect[,c("x0","x1")], 1, mean),
                                     y=apply(xg.rect[,c("y0","y1")], 1, mean)))
       
@@ -200,8 +203,6 @@ plotTreemap <- function(x, grp=NULL, labels=NULL,
     lst
     
   }
-  
-  # z <- data.frame(idx=seq_along(z), area=z)
   
   if(is.null(names(x))) names(x) <- seq_along(x)
   x <- data.frame(idx=names(x), area=x)

@@ -26,8 +26,7 @@
 #' @return The function invisibly returns a list of the calculated coordinates
 #' for all shapes. 
 #' 
-#' @seealso \code{\link{polygon}}, \code{\link{drawRegPolygon}},
-#' \code{\link{drawCircle}}, \code{\link{drawArc}} 
+#' @seealso \code{\link{polygon}} 
 #' 
 
 

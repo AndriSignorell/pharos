@@ -10,11 +10,11 @@
 fm(
   x,
   digits = NULL,
-  ldigits = NULL,
+  leadDigits = NULL,
   sci = NULL,
-  big.mark = NULL,
-  outdec = NULL,
-  na.form = NULL,
+  bigMark = NULL,
+  decMark = NULL,
+  naForm = NULL,
   zeroForm = NULL,
   fmt = NULL,
   pThreshold = NULL,
@@ -33,9 +33,9 @@ decimal point. Unlike \code{\link{formatC}} you will always get this number
 of digits even if the last digit is 0.  Negative numbers of digits round to
 a power of ten (\code{digits=-2} would round to the nearest hundred).}
 
-\item{ldigits}{number of leading zeros. \code{ldigits=3} would make sure
+\item{leadDigits}{number of leading zeros. \code{leadDigits=3} would make sure
 that at least 3 digits on the left side will be printed, say \code{3.4} will
-be printed as \code{003.4}. Setting \code{ldigits} to \code{0} will yield
+be printed as \code{003.4}. Setting \code{leadDigits} to \code{0} will yield
 results like \code{.452} for \code{0.452}. The default \code{NULL} will
 leave the numbers as they are (meaning at least one 0 digit).}
 
@@ -46,13 +46,13 @@ for the left border 10^(-scipen) as well as for the right one (10^scipen). A
 negative and a positive value can also be set independently. Default is
 \code{getOption("scipen")}, whereas \code{scipen=0} is overridden.}
 
-\item{big.mark}{character; if not empty used as mark between every 3
+\item{bigMark}{character; if not empty used as mark between every 3
 decimals before the decimal point. Default is "" (none).}
 
-\item{outdec}{character, specifying the decimal mark to be used. If not
-provided, the default set as \code{OutDec} option is used.}
+\item{decMark}{character, specifying the decimal mark to be used. If not
+provided, the default set as \code{decMark} option is used.}
 
-\item{na.form}{character, string specifying how \code{NA}s should be
+\item{naForm}{character, string specifying how \code{NA}s should be
 specially formatted.  If set to \code{NULL} (default) no special action will
 be taken.}
 
@@ -196,7 +196,7 @@ gettextf("Report generated on \%s",
 x <- pi * 10^(-10:10)
 
 fm(x, digits=3, fmt="\%")
-fm(x, digits=4, sci=4, ldigits=0, width=9, align=".")
+fm(x, digits=4, sci=4, leadDigits=0, width=9, align=".")
 
 
 # format a matrix
@@ -207,16 +207,16 @@ fm(m, digits=1)
 
 # engineering format
 fm(x, fmt="eng",  digits=2)
-fm(x, fmt="engabb", ldigits=2, digits=2)
+fm(x, fmt="engabb", leadDigits=2, digits=2)
 # combine with grams [g]
-paste(fm(x, fmt="engabb", ldigits=2, digits=2), "g", sep="")
+paste(fm(x, fmt="engabb", leadDigits=2, digits=2), "g", sep="")
 
 # example form symnum
 pval <- rev(sort(c(outer(1:6, 10^-(1:3)))))
 noquote(cbind(fm(pval, fmt="p"), fm(pval, fmt="*")))
 
 # change the character to be used as the decimal point
-fm(1200, digits=2, big.mark = ".", outdec=",")
+fm(1200, digits=2, bigMark = ".", decMark=",")
 
 }
 \seealso{

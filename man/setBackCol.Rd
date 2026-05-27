@@ -32,7 +32,6 @@ plot(x = rnorm(100), col="blue", cex=1.2, pch=16,
 \code{\link{rect}}
 
 Other plot.utils:
-\code{\link[=abcCoords]{abcCoords()}},
 \code{\link{axTicks}},
 \code{\link[=lineToUser]{lineToUser()}},
 \code{\link[=lines.lm]{lines.lm()}},

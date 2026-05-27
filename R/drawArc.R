@@ -24,13 +24,10 @@
 #' \code{FALSE} only the xy-points are calculated and returned.  Use this if
 #' you want to combine several geometric structures to a single polygon.
 #' 
-#' @return \code{DrawArc} invisibly returns a list of the calculated
+#' @return \code{drawArc} invisibly returns a list of the calculated
 #' coordinates for all shapes.
 #' 
-#' @seealso \code{\link{drawCircle}}, \code{\link{polygon}} 
-
-
-
+#' @seealso \code{\link{polygon}} 
 
 
 #' @examples

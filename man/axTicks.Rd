@@ -55,7 +55,6 @@ with(beaver1, {
 \code{\link{axTicks}}, \code{\link{axis.POSIXct}}
 
 Other plot.utils:
-\code{\link[=abcCoords]{abcCoords()}},
 \code{\link[=lineToUser]{lineToUser()}},
 \code{\link[=lines.lm]{lines.lm()}},
 \code{\link[=mar]{mar()}},
