@@ -62,33 +62,57 @@ smoothSpline.default <- function(x, ...) {
 smoothSpline.formula <- function(formula,
                                  data,
                                  subset,
-                                 na.action,
+                                 na.action = na.omit,
                                  weights,
                                  ...) {
   
   if (!inherits(formula, "formula"))
-    stop("'formula' must be a formula.")
+    stop("'formula' must be a formula")
   
   if (length(attr(terms(formula), "term.labels")) != 1)
-    stop("Formula must be of the form y ~ x.")
+    stop("Formula must be of the form y ~ x")
   
-  # match.call Trick wie in lm()
-  mf <- match.call(expand.dots = FALSE)
-  mf[[1]] <- quote(stats::model.frame)
+  args <- list(
+    formula   = formula,
+    na.action = na.action,
+    allowed   = c(
+      "two-sample-independent",
+      "n-sample-independent"
+    )
+  )
   
-  if (missing(weights))
-    mf$weights <- NULL
+  if (!missing(data))
+    args$data <- data
   
-  mf$... <- NULL
+  if (!missing(subset))
+    args$subset <- substitute(subset)
   
-  mf <- eval(mf, parent.frame())
+  d <- do.call(bedrock::resolveFormula, args)
   
-  y <- model.response(mf)
+  mf <- d$mf
+  
+  y <- mf[[1]]
   x <- mf[[2]]
-  w <- model.weights(mf)
   
-  stats::smooth.spline(x = x, y = y, w = w, ...)
+  w <- NULL
+  
+  if (!missing(weights)) {
+    
+    w <- eval(
+      substitute(weights),
+      envir = mf,
+      enclos = parent.frame()
+    )
+  }
+  
+  stats::smooth.spline(
+    x = x,
+    y = y,
+    w = w,
+    ...
+  )
 }
+
 
 
 #' @rdname splineCI

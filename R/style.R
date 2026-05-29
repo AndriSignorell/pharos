@@ -162,16 +162,16 @@ styles <- function(){
 
 
 # defined styles (defaults in options()) used by reporting functions
-# abs.sty <- Coalesce(
+# abs.sty <- coalesceX(
 #                Styles("abs"),
 #                Style(digits=0, big.mark = .thousands_sep))
-# num.sty <- Coalesce(
+# num.sty <- coalesceX(
 #                Styles("num"), 
 #                Style(digits=3, big.mark = .thousands_sep))
-# perc.sty <- Coalesce(
+# perc.sty <- coalesceX(
 #                 Styles("perc"),
 #                 Style(fmt="%", digits=1))
-# pval.sty <- Coalesce(
+# pval.sty <- coalesceX(
 #                 Styles("pval"),
 #                 Style(fmt="pval", pThreshold=3))
 

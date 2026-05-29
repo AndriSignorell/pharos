@@ -143,7 +143,7 @@ addAlpha("steelblue", 0.4)
 
 # geometric canvas
 canvas()
-drawCircle(r.out = 1, col = addAlpha("red", 0.4))
+drawCircle(outerR = 1, col = addAlpha("red", 0.4))
 
 # violin plot
 plotViolin(mpg ~ cyl, data = mtcars)

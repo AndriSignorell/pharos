@@ -13,7 +13,7 @@ smoothSpline(x, ...)
 
 \method{smoothSpline}{default}(x, ...)
 
-\method{smoothSpline}{formula}(formula, data, subset, na.action, weights, ...)
+\method{smoothSpline}{formula}(formula, data, subset, na.action = na.omit, weights, ...)
 
 \method{lines}{SmoothSpline}(
   x,

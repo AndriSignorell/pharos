@@ -21,18 +21,37 @@
 #' @param xlim numeric vector of length 2 specifying the x-axis limits.
 #'
 #' @param layout_heights numeric vector of length 2 specifying the relative
-#'   heights of the density plot (top) and boxplot (bottom).
+#' heights of the density plot (top) and boxplot (bottom).
 #'
 #' @param col vector of colors. If \code{NULL}, a palette is generated.
 #'
-#' @param grid logical; if \code{TRUE}, a background grid is drawn in the
-#'   density plot.
+#' @param grid controls drawing of the background grid.
+#'   Can be:
+#'   \itemize{
+#'     \item \code{TRUE}: draw grid with default settings
+#'     \item \code{FALSE}, \code{NULL}, \code{NA}: suppress grid
+#'     \item a named list: arguments passed to \code{\link[graphics]{grid}}
+#'   }
 #'
-#' @param args.dens optional list of additional arguments passed to
+#' @param densArgs controls density estimation via
 #'   \code{\link[stats]{density}}.
+#'   Can be:
+#'   \itemize{
+#'     \item \code{TRUE}: use default density settings
+#'     \item \code{FALSE}, \code{NULL}, \code{NA}: suppress densities
+#'     \item a named list: additional arguments passed to
+#'       \code{\link[stats]{density}}
+#'   }
 #'
-#' @param args.box optional list of additional arguments passed to
+#' @param boxArgs controls drawing of boxplots via
 #'   \code{\link[graphics]{boxplot}}.
+#'   Can be:
+#'   \itemize{
+#'     \item \code{TRUE}: use default boxplot settings
+#'     \item \code{FALSE}, \code{NULL}, \code{NA}: suppress boxplots
+#'     \item a named list: additional arguments passed to
+#'       \code{\link[graphics]{boxplot}}
+#'   }
 #'
 #' @param stamp optional annotation passed to the plotting framework.
 #'
@@ -44,9 +63,20 @@
 #' a density plot on top and a horizontal boxplot below. When a grouping
 #' variable is provided, densities and boxplots are drawn for each group.
 #'
+#' Optional plot components are controlled using
+#' \code{\link[bedrock]{callIf}} semantics:
+#' \itemize{
+#'   \item \code{TRUE}: draw with defaults
+#'   \item \code{FALSE}: suppress component
+#'   \item named list: customize component arguments
+#' }
+#'
 #' @return Invisibly returns \code{NULL}.
 #'
-#' @seealso \code{\link[stats]{density}}, \code{\link[graphics]{boxplot}}
+#' @seealso
+#' \code{\link[stats]{density}},
+#' \code{\link[graphics]{boxplot}},
+#' \code{\link[bedrock]{callIf}}
 #'
 #' @examples
 #' \dontrun{
@@ -57,13 +87,23 @@
 #' plotDensBox(x)
 #' plotDensBox(x, g)
 #'
+#' plotDensBox(
+#'   x,
+#'   densArgs = list(adjust = 2),
+#'   boxArgs  = list(notch = TRUE)
+#' )
+#'
+#' plotDensBox(
+#'   x,
+#'   boxArgs = FALSE
+#' )
+#'
 #' plotDensBox(x ~ g)
 #' }
 #'
 #' @family plot.univariate
 #' @concept graphics
 #' @concept descriptive-statistics
-#'
 #'
 #' @export
 plotDensBox <- function(x, ...) {
@@ -87,10 +127,11 @@ plotDensBox.default <- function(
   layout_heights = c(2, 1.4),
   
   col = NULL,
+  
   grid = TRUE,
   
-  args.dens = NULL,
-  args.box = NULL,
+  densArgs = TRUE,
+  boxArgs  = TRUE,
   
   stamp = NULL,
   
@@ -101,11 +142,14 @@ plotDensBox.default <- function(
     
     .applyParFromDots(...)
     
-    # --- Prepare data ------------------------------------------------------
+    # --- Prepare data ----------------------------------------------------
     if (is.null(g)) {
+      
       split_x <- list(x)
       names(split_x) <- ""
+      
     } else {
+      
       g <- factor(g)
       split_x <- split(x, g)
     }
@@ -115,92 +159,139 @@ plotDensBox.default <- function(
     
     ng <- length(split_x)
     
-    # --- Colors ------------------------------------------------------------
+    # --- Colors ----------------------------------------------------------
     if (is.null(col))
       col <- grDevices::hcl.colors(ng, "Dark 3")
     
-    # --- Layout ------------------------------------------------------------
-    layout(matrix(c(1, 2), nrow = 2), heights = layout_heights)
+    col <- rep_len(col, ng)
     
-    # --- Density -----------------------------------------------------------
-    par(mar = c(0, 4.5, 1, 1), oma = c(0,0,4,0))
-    
-    
-    
-    # --- Density vorberechnen ---------------------------------------------
-    dens_list <- lapply(split_x, function(v)
-      density(v, na.rm = TRUE)
+    # --- Layout ----------------------------------------------------------
+    layout(
+      matrix(c(1, 2), nrow = 2),
+      heights = layout_heights
     )
     
-    ymax <- max(sapply(dens_list, function(d) max(d$y, na.rm = TRUE)))
+    # ====================================================================
+    # Density plot
+    # ====================================================================
     
-    # --- Plot ---------------------------------------------------------------
-    plot(NA,
-         xlim = xlim,
-         ylim = c(0, ymax),
-         xaxt = "n",
-         xlab = "",
-         ylab = ylab,
-         main = "")
+    par(mar = c(0, 4.5, 1, 1),
+        oma = c(0, 0, 4, 0))
     
-    if (grid)
-      graphics::grid(col = "grey85")
+    # --- Density precalculation -----------------------------------------
+    dens_list <- lapply(
+      
+      split_x,
+      
+      function(v)
+        callIf(
+          stats::density,
+          densArgs,
+          defaults = list(
+            x = v,
+            na.rm = TRUE
+          )
+        )
+    )
     
-    for (i in seq_along(dens_list)) {
-      d <- dens_list[[i]]
-      lines(d$x, d$y, col = col[i], lwd = 2)
+    dens_list <- Filter(
+      Negate(is.null),
+      dens_list
+    )
+    
+    ymax <- if (length(dens_list)) {
+      
+      max(sapply(
+        dens_list,
+        function(d)
+          max(d$y, na.rm = TRUE)
+      ))
+      
+    } else {
+      
+      1
     }
-
-    # --- Boxplot -----------------------------------------------------------
-    par(mar = c(3.5, 4.5, 1, 1))
-
-    # boxplot(
-    #     x = split_x,
-    #     horizontal = TRUE,
-    #     frame.plot = FALSE,
-    #     col = adjustcolor(col, alpha.f = 0.6),
-    #     # xlim = xlim,        # OK
-    #     xlim = c(0.5, length(split_x) + 0.5),  # WICHTIG
-    #     xaxt = "n",
-    #     yaxt = "n"
-    # )
     
-    box_args <- list(
-      x = split_x,
-      horizontal = TRUE,
-      frame.plot = FALSE,
-      col = adjustcolor(col, alpha.f = 0.6),
-      ylim = xlim,      
-      xlim = c(0.5, length(split_x) + 0.5),  
+    # --- Empty plot ------------------------------------------------------
+    plot(
+      NA,
+      xlim = xlim,
+      ylim = c(0, ymax),
       xaxt = "n",
-      yaxt = "n"
+      xlab = "",
+      ylab = ylab,
+      main = ""
     )
-
-    if (!is.null(args.box))
-      box_args[names(args.box)] <- args.box
-
-    do.call(graphics::boxplot, box_args)
+    
+    # --- Grid ------------------------------------------------------------
+    callIf(
+      graphics::grid,
+      grid,
+      defaults = list(col = "grey85")
+    )
+    
+    # --- Density lines ---------------------------------------------------
+    if (length(dens_list)) {
+      
+      for (i in seq_along(dens_list)) {
+        
+        d <- dens_list[[i]]
+        
+        lines(
+          d$x,
+          d$y,
+          col = col[i],
+          lwd = 2
+        )
+      }
+    }
+    
+    # ====================================================================
+    # Boxplot
+    # ====================================================================
+    
+    par(mar = c(3.5, 4.5, 1, 1))
+    
+    callIf(
+      
+      graphics::boxplot,
+      
+      boxArgs,
+      
+      defaults = list(
+        x = split_x,
+        horizontal = TRUE,
+        frame.plot = FALSE,
+        col = adjustcolor(col, alpha.f = 0.6),
+        ylim = xlim,
+        xlim = c(0.5, length(split_x) + 0.5),
+        xaxt = "n",
+        yaxt = "n"
+      )
+    )
     
     axis(1)
     
     if (!is.null(names(split_x))) {
-      axis(2,
-           at = seq_along(split_x),
-           labels = names(split_x),
-           las = 1,
-           lwd = 0)
+      
+      axis(
+        2,
+        at = seq_along(split_x),
+        labels = names(split_x),
+        las = 1,
+        lwd = 0
+      )
     }
     
     if (nzchar(main))
       title(main = main, outer = TRUE)
     
-  }, stamp = stamp, resetLayout = TRUE)
+  },
+  stamp = stamp,
+  resetLayout = TRUE)
   
   invisible(NULL)
 }
-
-
-
 
 
 #' @rdname plotDensBox
@@ -222,23 +313,33 @@ plotDensBox.formula <- function(
   layout_heights = c(2, 1.4),
   
   col = NULL,
+  
   grid = TRUE,
   
-  args.dens = NULL,
-  args.box = NULL,
+  densArgs = TRUE,
+  boxArgs  = TRUE,
   
   stamp = NULL,
   
   ...
 ) {
   
-  r <- resolveFormula(
-    formula = formula,
-    data = data,
-    subset = subset,
+  args <- list(
+    formula   = formula,
     na.action = na.action,
-    allowed = c("two.sample.independent", "n.sample.independent")
+    allowed   = c(
+      "two-sample-independent",
+      "n-sample-independent"
+    )
   )
+  
+  if (!missing(data))
+    args$data <- data
+  
+  if (!missing(subset))
+    args$subset <- substitute(subset)
+  
+  r <- do.call( bedrock::resolveFormula, args )
   
   x <- r$x
   g <- r$group
@@ -262,11 +363,10 @@ plotDensBox.formula <- function(
     layout_heights = layout_heights,
     col = col,
     grid = grid,
-    args.dens = args.dens,
-    args.box = args.box,
+    densArgs = densArgs,
+    boxArgs = boxArgs,
     stamp = stamp,
     ...
   )
-  
 }
 

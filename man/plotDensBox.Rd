@@ -18,8 +18,8 @@ plotDensBox(x, ...)
   layout_heights = c(2, 1.4),
   col = NULL,
   grid = TRUE,
-  args.dens = NULL,
-  args.box = NULL,
+  densArgs = TRUE,
+  boxArgs = TRUE,
   stamp = NULL,
   ...
 )
@@ -36,8 +36,8 @@ plotDensBox(x, ...)
   layout_heights = c(2, 1.4),
   col = NULL,
   grid = TRUE,
-  args.dens = NULL,
-  args.box = NULL,
+  densArgs = TRUE,
+  boxArgs = TRUE,
   stamp = NULL,
   ...
 )
@@ -63,14 +63,33 @@ heights of the density plot (top) and boxplot (bottom).}
 
 \item{col}{vector of colors. If \code{NULL}, a palette is generated.}
 
-\item{grid}{logical; if \code{TRUE}, a background grid is drawn in the
-density plot.}
+\item{grid}{controls drawing of the background grid.
+Can be:
+\itemize{
+\item \code{TRUE}: draw grid with default settings
+\item \code{FALSE}, \code{NULL}, \code{NA}: suppress grid
+\item a named list: arguments passed to \code{\link[graphics]{grid}}
+}}
 
-\item{args.dens}{optional list of additional arguments passed to
-\code{\link[stats]{density}}.}
+\item{densArgs}{controls density estimation via
+\code{\link[stats]{density}}.
+Can be:
+\itemize{
+\item \code{TRUE}: use default density settings
+\item \code{FALSE}, \code{NULL}, \code{NA}: suppress densities
+\item a named list: additional arguments passed to
+\code{\link[stats]{density}}
+}}
 
-\item{args.box}{optional list of additional arguments passed to
-\code{\link[graphics]{boxplot}}.}
+\item{boxArgs}{controls drawing of boxplots via
+\code{\link[graphics]{boxplot}}.
+Can be:
+\itemize{
+\item \code{TRUE}: use default boxplot settings
+\item \code{FALSE}, \code{NULL}, \code{NA}: suppress boxplots
+\item a named list: additional arguments passed to
+\code{\link[graphics]{boxplot}}
+}}
 
 \item{stamp}{optional annotation passed to the plotting framework.}
 
@@ -95,6 +114,14 @@ median, spread, and outliers.
 The function arranges two plots vertically using \code{\link{layout}}:
 a density plot on top and a horizontal boxplot below. When a grouping
 variable is provided, densities and boxplots are drawn for each group.
+
+Optional plot components are controlled using
+\code{\link[bedrock]{callIf}} semantics:
+\itemize{
+\item \code{TRUE}: draw with defaults
+\item \code{FALSE}: suppress component
+\item named list: customize component arguments
+}
 }
 \examples{
 \dontrun{
@@ -105,12 +132,25 @@ g <- sample(c("A", "B"), 100, TRUE)
 plotDensBox(x)
 plotDensBox(x, g)
 
+plotDensBox(
+  x,
+  densArgs = list(adjust = 2),
+  boxArgs  = list(notch = TRUE)
+)
+
+plotDensBox(
+  x,
+  boxArgs = FALSE
+)
+
 plotDensBox(x ~ g)
 }
 
 }
 \seealso{
-\code{\link[stats]{density}}, \code{\link[graphics]{boxplot}}
+\code{\link[stats]{density}},
+\code{\link[graphics]{boxplot}},
+\code{\link[bedrock]{callIf}}
 
 Other plot.univariate:
 \code{\link[=plotBar]{plotBar()}},

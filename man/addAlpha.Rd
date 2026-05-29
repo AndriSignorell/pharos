@@ -25,7 +25,7 @@ addAlpha("yellow", 0.2)
 addAlpha(2, 0.5)   # red
 
 canvas(3)
-drawCircle(x=c(-1,0,1), y=c(1,-1,1), r.out=2, col=addAlpha(2:4, 0.4))
+drawCircle(x=c(-1,0,1), y=c(1,-1,1), outerR=2, col=addAlpha(2:4, 0.4))
 
 x <- rnorm(15000)
 par(mfrow=c(1,2))

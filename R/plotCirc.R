@@ -113,8 +113,8 @@ plotCirc <- function(
   nr <- nrow(x)
   d <- degToRad(gap)    # the gap between the sectors in radiant
   
-  r.in <- .95
-  r.out <- 1
+  innerR <- .95
+  outerR <- 1
   
   # --- plotting ------------------------------------------------
   
@@ -143,10 +143,10 @@ plotCirc <- function(
 
     drawCircle(
       x = 0, y = 0,
-      r.in = r.in,
-      r.out = r.out,
-      theta.1 = mpts[seq_along(mpts) %% 2 == 1],
-      theta.2 = mpts[seq_along(mpts) %% 2 == 0],
+      innerR = innerR,
+      outerR = outerR,
+      startAngle = mpts[seq_along(mpts) %% 2 == 1],
+      endAngle = mpts[seq_along(mpts) %% 2 == 0],
       col = sector,
       border = "grey"
     )
@@ -193,7 +193,7 @@ plotCirc <- function(
         lang <- dpt[(i-1)*(nr+1)+j,]
         rang <- revX(dpt[-nrow(dpt),], margin=1)[(j-1)*(nc+1) + i,]
         .drawRibbon( angle1.beg=rang[,2], angle1.end=lang[,1], angle2.beg=rang[,1], angle2.end=lang[,2],
-                radius1 = r.out, radius2 = r.in-0.05, col = rcol[j], border = rborder[j])
+                radius1 = outerR, radius2 = innerR-0.05, col = rcol[j], border = rborder[j])
       }}
 
 
@@ -205,7 +205,7 @@ plotCirc <- function(
     # calculate position for labels
     mid <- filter(mpts, rep(1/2, 2))
     idx <- seq(1, (nr + nc)*2, by = 2)
-    pos <- polToCart(r = r.out + .2, theta = mid[idx])
+    pos <- polToCart(r = outerR + .2, theta = mid[idx])
     
     bedrock::callIf(
       .drawLabels, 
@@ -264,8 +264,8 @@ plotCirc <- function(
   xy4 <- polToCart(radius2, angle2.end)
   
   bez1 <- drawArc(rx = radius2,
-                          theta.1 = angle1.end,
-                          theta.2 = angle2.end,
+                          startAngle = angle1.end,
+                          endAngle = angle2.end,
                           plot = FALSE)[[1]]
   
   bez2 <- drawBezier(
@@ -276,8 +276,8 @@ plotCirc <- function(
   
   bez3 <- drawArc(
     rx = radius1,
-    theta.1 = angle2.beg,
-    theta.2 = angle1.beg,
+    startAngle = angle2.beg,
+    endAngle = angle1.beg,
     plot = FALSE
   )[[1]]
   

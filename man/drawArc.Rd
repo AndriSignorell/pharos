@@ -9,8 +9,8 @@ drawArc(
   y = x,
   rx = 1,
   ry = rx,
-  theta.1 = 0,
-  theta.2 = 2 * pi,
+  startAngle = 0,
+  endAngle = 2 * pi,
   nv = 100,
   col = par("col"),
   lty = par("lty"),
@@ -29,9 +29,9 @@ the arc(s)}
 the arc(s).  Default is radius.x which will result in a circle arc with
 radius.x.}
 
-\item{theta.1}{a scalar or a vector of starting angles in radians.}
+\item{startAngle}{a scalar or a vector of starting angles in radians.}
 
-\item{theta.2}{a scalar or a vector of ending angles in radians.}
+\item{endAngle}{a scalar or a vector of ending angles in radians.}
 
 \item{nv}{number of vertices used to plot the arc. Scalar or vector.}
 
@@ -50,8 +50,8 @@ you want to combine several geometric structures to a single polygon.}
 coordinates for all shapes.
 }
 \description{
-Draw one or more elliptic (or circular) arcs from \code{theta.1} to
-\code{theta.2} on an existing plot using classic graphics.
+Draw one or more elliptic (or circular) arcs from \code{startAngle} to
+\code{endAngle} on an existing plot using classic graphics.
 }
 \details{
 All parameters are recycled if necessary. \cr Be sure to use an aspect ratio
@@ -60,7 +60,7 @@ of 1 as shown in the example to avoid distortion.
 \examples{
 
 curve(sin(x), 0, pi, col="blue", asp=1)
-drawArc(x = pi/2, y = 0, rx = 1, theta.1 = pi/4, theta.2 = 3*pi/4, col="red")
+drawArc(x = pi/2, y = 0, rx = 1, startAngle = pi/4, endAngle = 3*pi/4, col="red")
 
 }
 \seealso{

@@ -7,11 +7,11 @@
 #' 
 #' @param x,y a vector (or scalar) of xy-coordinates for the center(s) of the
 #' circle(s). 
-#' @param r.out a vector (or scalar) of the outer radius of the circle. 
-#' @param r.in a vector (or scalar) of a potential inner radius of an annulus.
-#' @param theta.1 a vector (or scalar) of the starting angle(s). The sectors
+#' @param outerR a vector (or scalar) of the outer radius of the circle. 
+#' @param innerR a vector (or scalar) of a potential inner radius of an annulus.
+#' @param startAngle a vector (or scalar) of the starting angle(s). The sectors
 #' are built counterclockwise. 
-#' @param theta.2 a vector (or scalar) of the ending angle(s). 
+#' @param endAngle a vector (or scalar) of the ending angle(s). 
 #' @param nv number of vertices to draw the circle. 
 #' @param border color for circle borders. The default is par("fg"). Use border
 #' = \code{NA} to omit borders. 
@@ -36,37 +36,37 @@
 #' cols <- pal("Helsana")[1:5]
 #' 
 #' # Draw ring
-#' drawCircle (r.in = 1, r.out = 5, border="darkgrey", 
+#' drawCircle (innerR = 1, outerR = 5, border="darkgrey", 
 #'             col=addAlpha("yellow", 0.2), lwd=2)
 #' 
 #' # Draw circle
-#' drawCircle (r.in = 6, border="green", lwd=3)
+#' drawCircle (innerR = 6, border="green", lwd=3)
 #' 
 #' # Draw sectors
 #' geom <- rbind(c(-pi, 0, .25, .5), c(0, pi, 1, 2),
 #'               c(-pi/2, pi/2, 2, 2.5), c(pi/2, 3 * pi/2, 3, 4),
 #'               c(pi - pi/8, pi + pi/8, 1.5, 2.5))
 #' 
-#' drawCircle (r.in = geom[,3], r.out = geom[,4],
-#'            theta.1 = geom[,1], theta.2 = geom[,2],
+#' drawCircle (innerR = geom[,3], outerR = geom[,4],
+#'            startAngle = geom[,1], endAngle = geom[,2],
 #'            col = addAlpha(cols, 0.6),
 #'            border = cols, lwd=1)
 #' 
 #' 
 #' # clipping
 #' canvas(bg="lightgrey", main="Yin ~ Yang")
-#' drawCircle (r.out = 1, col="white")
+#' drawCircle (outerR = 1, col="white")
 #' clip(0, 2, 2, -2)
 #' drawCircle(col="black")
 #' clip(-2, 2, 2, -2)
-#' drawCircle (y = c(-0.5,0.5), r.out = 0.5, col=c("black", "white"), border=NA)
-#' drawCircle (y = c(-0.5,0.5), r.out = 0.1, col=c("white", "black"), border=NA)
+#' drawCircle (y = c(-0.5,0.5), outerR = 0.5, col=c("black", "white"), border=NA)
+#' drawCircle (y = c(-0.5,0.5), outerR = 0.1, col=c("white", "black"), border=NA)
 #' drawCircle ()
 #' 
 #' 
 #' # overplotting circles
 #' canvas(xlim=c(-5,5))
-#' drawCircle (r.out=4:1, col=c("white", "steelblue2", "white", "red"), lwd=3, nv=300)
+#' drawCircle (outerR=4:1, col=c("white", "steelblue2", "white", "red"), lwd=3, nv=300)
 #' 
 #' 
 #' # rotation
@@ -77,7 +77,7 @@
 #' 
 #' sapply( (0:11) * pi/6, function(theta) {
 #'   xy <- rotate(x, y=y, theta=theta)
-#'   drawCircle (x=xy$x, y=xy$y, r.in=2.4, border=addAlpha("white", 0.2))
+#'   drawCircle (x=xy$x, y=xy$y, innerR=2.4, border=addAlpha("white", 0.2))
 #' } )
 
 
@@ -88,21 +88,21 @@
 #'
 #'
 #' @export
-drawCircle <- function (x = 0, y = x, r.out = 1, r.in = 0, theta.1 = 0,
-                        theta.2 = 2 * pi, border = par("fg"), col = NA, 
+drawCircle <- function (x = 0, y = x, outerR = 1, innerR = 0, startAngle = 0,
+                        endAngle = 2 * pi, border = par("fg"), col = NA, 
                         lty = par("lty"),
                         lwd = par("lwd"), nv = 100, plot = TRUE) {
   
-  drawSector <- function(x, y, r.in, r.out, theta.1,
-                         theta.2, nv, border, col, lty, lwd, plot) {
+  drawSector <- function(x, y, innerR, outerR, startAngle,
+                         endAngle, nv, border, col, lty, lwd, plot) {
     
     # get arc coordinates
-    pts <- drawArc(x = x, y = y, rx = c(r.out, r.in), ry = c(r.out, r.in),
-                   theta.1 = theta.1, theta.2 = theta.2, nv = nv,
+    pts <- drawArc(x = x, y = y, rx = c(outerR, innerR), ry = c(outerR, innerR),
+                   startAngle = startAngle, endAngle = endAngle, nv = nv,
                    col = border, lty = lty, lwd = lwd, plot = FALSE)
     
-    is.ring <- (r.in != 0)
-    is.sector <- any( ((theta.1-theta.2) %% (2*pi)) != 0)
+    is.ring <- (innerR != 0)
+    is.sector <- any( ((startAngle-endAngle) %% (2*pi)) != 0)
     
     if(is.ring || is.sector) {
       # we have an inner and an outer circle
@@ -133,14 +133,14 @@ drawCircle <- function (x = 0, y = x, r.out = 1, r.in = 0, theta.1 = 0,
     invisible(list(x = ptx, y = pty))
   }
   
-  lgp <- recycle(x=x, y=y, r.in = r.in, r.out = r.out,
-                 theta.1 = theta.1, theta.2 = theta.2, border = border,
+  lgp <- recycle(x=x, y=y, innerR = innerR, outerR = outerR,
+                 startAngle = startAngle, endAngle = endAngle, border = border,
                  col = col, lty = lty, lwd = lwd, nv = nv)
   lst <- list()
   for (i in 1L:attr(lgp, "maxdim")) {
-    pts <- with(lgp, drawSector(x=x[i], y=y[i], r.in=r.in[i],
-                                r.out=r.out[i], theta.1=theta.1[i],
-                                theta.2=theta.2[i], nv=nv[i], border=border[i],
+    pts <- with(lgp, drawSector(x=x[i], y=y[i], innerR=innerR[i],
+                                outerR=outerR[i], startAngle=startAngle[i],
+                                endAngle=endAngle[i], nv=nv[i], border=border[i],
                                 col=col[i], lty=lty[i], lwd=lwd[i],
                                 plot = plot))
     lst[[i]] <- pts

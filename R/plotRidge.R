@@ -206,67 +206,55 @@ plotRidge.default <- function(
 #' @method plotRidge formula
 #' @export
 plotRidge.formula <- function(
-    
-  # DATA
-  formula,
-  data = NULL,
-  subset,
-  na.action = na.omit,
-  
-  ...,
-  
-  # STRUCTURE
-  add = FALSE,
-  bw = "nrd0",
-  scale = 1,
-  spacing = 1,
-  
-  # STYLE
-  col = NULL,
-  border = NULL,
-  lwd = 1,
-  lty = 1,
-  fill = TRUE,
-  grid = NA,
-  
-  # LABELS
-  main = "",
-  xlab = "",
-  ylab = "",
-  
-  # AXES
-  xlim = NULL,
-  ylim = NULL
-  
+    formula,
+    data = NULL,
+    subset,
+    na.action = na.omit,
+    ...,
+    add = FALSE,
+    bw = "nrd0",
+    scale = 1,
+    spacing = 1,
+    col = NULL,
+    border = NULL,
+    lwd = 1,
+    lty = 1,
+    fill = TRUE,
+    grid = NA,
+    main = "",
+    xlab = "",
+    ylab = "",
+    xlim = NULL,
+    ylim = NULL
 ) {
   
-  # --- model.frame (your safe pattern) -------------------------
+  if (missing(formula) || length(formula) != 3L)
+    stop("'formula' missing or incorrect")
   
-  m <- match.call(expand.dots = FALSE)
-  m$... <- NULL
-  m[[1L]] <- quote(stats::model.frame)
+  args <- list(
+    formula   = formula,
+    na.action = na.action,
+    allowed   = c(
+      "two-sample-independent",
+      "n-sample-independent"
+    )
+  )
   
-  if (!missing(subset)) {
-    m$subset <- substitute(subset)
-  } else {
-    m$subset <- NULL
-  }
+  if (!missing(data))
+    args$data <- data
   
-  mf <- eval(m, parent.frame())
+  if (!missing(subset))
+    args$subset <- substitute(subset)
   
-  if (ncol(mf) < 2)
-    stop("formula must be of the form y ~ group")
+  d <- do.call(bedrock::resolveFormula, args)
   
-  y <- mf[[1]]
-  g <- mf[[2]]
-  
-  split_data <- split(y, g)
+  splitData <- split(d$x, d$group)
   
   if (xlab == "")
     xlab <- deparse(formula[[2]])
   
   plotRidge(
-    split_data,
+    splitData,
     add = add,
     bw = bw,
     scale = scale,
@@ -285,4 +273,5 @@ plotRidge.formula <- function(
     ...
   )
 }
+
 

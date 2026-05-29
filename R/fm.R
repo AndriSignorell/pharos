@@ -334,12 +334,12 @@ fm.default <- function(x, digits = NULL, leadDigits = NULL, sci = NULL
           
         } else if(fmt=="p"){
           # better use 0.001 than .Machine$double.eps as eps
-          r <- .format.pval(x, Coalesce(pThreshold, 1e-3), 
-                            Coalesce(digits, 3), Coalesce(leadDigits, 1))
+          r <- .format.pval(x, coalesceX(pThreshold, 1e-3), 
+                            coalesceX(digits, 3), coalesceX(leadDigits, 1))
           
         } else if(fmt=="p*"){
-          r <- .format.pstars(x, Coalesce(pThreshold, 1e-3), 
-                              Coalesce(digits, 3), Coalesce(leadDigits, 1))
+          r <- .format.pstars(x, coalesceX(pThreshold, 1e-3), 
+                              coalesceX(digits, 3), coalesceX(leadDigits, 1))
           
         } else if(fmt=="eng"){
           r <- .format.eng(x, digits=digits, leadDigits=leadDigits, 
@@ -398,7 +398,7 @@ fm.default <- function(x, digits = NULL, leadDigits = NULL, sci = NULL
 
       # if sci is not set at all, the default will be 0, which leads to all numbers being
       # presented as scientific - this is definitely nonsense...
-      if(is.null(sci))       sci <- Coalesce(naIf(getOption("scipen"), 0), 7) # default
+      if(is.null(sci))       sci <- coalesceX(naIf(getOption("scipen"), 0), 7) # default
       if(is.null(pThreshold))     pThreshold <- 1e-3
       if(is.null(bigMark))  bigMark <- getOption("bigMark", "")
       if(is.null(leadDigits))   leadDigits <- 1
@@ -602,7 +602,7 @@ fm.ftable <- function(x, digits = NULL, leadDigits = NULL, sci = NULL
   
   # try to get a default thousand's separator
   
-  Coalesce(
+  coalesceX(
     # take user's choice first
     getOption("thousands_sep"), 
     
@@ -672,10 +672,10 @@ fm.ftable <- function(x, digits = NULL, leadDigits = NULL, sci = NULL
     fixp <- (expo >= -3)
     
     if (any(fixp))
-      rr[fixp] <- fm(x[fixp], digits=Coalesce(digits, 4), leadDigits=leadDigits)
+      rr[fixp] <- fm(x[fixp], digits=coalesceX(digits, 4), leadDigits=leadDigits)
     
     if (any(!fixp))
-      rr[!fixp] <- format(x[!fixp], digits=Coalesce(digits, 3), scientific=TRUE)
+      rr[!fixp] <- format(x[!fixp], digits=coalesceX(digits, 3), scientific=TRUE)
     
     r[!is0] <- rr
   }
