@@ -21,12 +21,14 @@
 #' addAlpha(2, 0.5)   # red
 #' 
 #' canvas(3)
-#' drawCircle(x=c(-1,0,1), y=c(1,-1,1), outerR=2, col=addAlpha(2:4, 0.4))
+#' polygon(circle(x=c(-1,0,1), y=c(1,-1,1), radius=2), 
+#'         col=addAlpha(2:4, 0.4))
 #' 
 #' x <- rnorm(15000)
 #' par(mfrow=c(1,2))
 #' plot(x, type="p", col="blue" )
-#' plot(x, type="p", col=addAlpha("blue", .2), main="Better insight with alpha channel" )
+#' plot(x, type="p", col=addAlpha("blue", .2), 
+#'      main="Better insight with alpha channel" )
 #' 
 #' par(op)
 #' 
@@ -35,4 +37,6 @@
 addAlpha <- function(col, alpha = 0.5) {
   Vectorize(grDevices::adjustcolor)(col = col, alpha.f = alpha)
 }
+
+
 

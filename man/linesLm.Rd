@@ -12,10 +12,8 @@
   lty = "solid",
   type = "l",
   n = 100,
-  conf.level = 0.95,
-  args.cband = NULL,
-  pred.level = NA,
-  args.pband = NULL,
+  cbandArgs = list(conf.level = 0.95),
+  pbandArgs = NA,
   xpred = NULL,
   ...
 )
@@ -27,91 +25,61 @@
   lty = "solid",
   type = "l",
   n = 100,
-  conf.level = 0.95,
-  args.cband = NULL,
-  pred.level = NA,
-  args.pband = NULL,
+  cbandArgs = list(conf.level = 0.95),
+  pbandArgs = NA,
+  xpred = NULL,
   ...
 )
 }
 \arguments{
-\item{x}{linear model object as result from lm(y~x).}
+\item{x}{linear model object as returned by \code{\link{lm}}.}
 
-\item{col}{linecolor of the line. Default is the color returned by
-\code{pal()[1]}.}
+\item{col}{line color. Defaults to \code{pal()[1]}.}
 
-\item{lwd}{line width of the line. \%\% ~~Describe \code{lwd} here~~}
+\item{lwd}{line width.}
 
-\item{lty}{line type of the line. \%\% ~~Describe \code{lwd} here~~}
+\item{lty}{line type.}
 
-\item{type}{character indicating the type of plotting; actually any of the
-\code{types} as in \code{\link{plot.default}}. Type of plot, defaults to
-\code{"l"}.}
+\item{type}{plotting type passed to \code{\link{lines}}.}
 
 \item{n}{number of points used for plotting the fit.}
 
-\item{conf.level}{confidence level for the confidence interval. Set this to
-\code{NA}, if no confidence band should be plotted.  Default is \code{0.95}.}
+\item{cbandArgs}{controls the confidence band. May be \code{TRUE},
+\code{FALSE}, \code{NULL}, \code{NA}, or a named list. The confidence
+level is specified via \code{conf.level}. Default is
+\code{list(conf.level=0.95)}.}
 
-\item{args.cband}{list of arguments for the confidence band, such as color
-or border (see \code{\link{drawBand}}).}
+\item{pbandArgs}{controls the prediction band. May be \code{TRUE},
+\code{FALSE}, \code{NULL}, \code{NA}, or a named list. The confidence
+level is specified via \code{conf.level}. Default is \code{NA}.}
 
-\item{pred.level}{confidence level for the prediction interval. Set this to
-NA, if no prediction band should be plotted.  Default is \code{0.95}.}
+\item{xpred}{optional numeric vector defining the range over which
+predictions should be calculated.}
 
-\item{args.pband}{list of arguments for the prediction band, such as color
-or border (see \code{\link{drawBand}}).}
-
-\item{xpred}{a numeric vector \code{c(from, to)}, if the x limits can't be
-defined based on available data, xpred can be used to provide the range
-where the line and especially the confidence intervals should be plotted.}
-
-\item{\dots}{further arguments are not used specifically.}
+\item{\dots}{currently ignored.}
 }
 \value{
-nothing
+No return value; called for its side effect.
 }
 \description{
 Add a linear regression line to an existing plot. The function first
-calculates the prediction of a \code{lm} object for a reasonable amount of
-points, then adds the line to the plot and inserts a polygon with the
-confidence and, if required, the prediction intervals. In addition to
-\code{\link{abline}} the function will also display polynomial models.
+calculates predictions from an \code{lm} object and then adds the fitted
+line together with optional confidence and prediction bands.
 }
 \details{
-It's sometimes illuminating to plot a regression line with its prediction,
-resp. confidence intervals over an existing scatterplot. This only makes
-sense, if just a simple linear model explaining a target variable by (a
-function of) one single predictor is to be visualized.
+In contrast to \code{\link{abline}}, polynomial models and transformed
+predictors are supported as long as the model contains exactly one predictor.
+
+Confidence and prediction bands are controlled via \code{cbandArgs} and
+\code{pbandArgs}. These arguments can be:
+\itemize{
+\item \code{FALSE}, \code{NULL} or \code{NA}: suppress the band
+\item \code{TRUE}: draw the band with default settings
+\item a named list: customize the band appearance and confidence level
 }
-\examples{
-op <- par(no.readonly = TRUE)
-par(mfrow=c(1,2))
-
-plot(hp ~ wt, mtcars)
-lines(lm(hp ~ wt, mtcars), col="steelblue")
-
-# add the prediction intervals in different color
-plot(hp ~ wt, mtcars)
-r.lm <- lm(hp ~ wt, mtcars)
-lines(r.lm, col="red", pred.level=0.95, args.pband=list(col=addAlpha("grey",0.3)) )
-
-# works with transformations too
-plot(dist ~ sqrt(speed), cars)
-lines(lm(dist ~ sqrt(speed), cars), col="deeppink4")
-
-plot(dist ~ log(speed), cars)
-lines(lm(dist ~ log(speed), cars), col="deeppink4")
-
-# and with more specific variables based on only one predictor
-plot(dist ~ speed, cars)
-lines(lm(dist ~ poly(speed, degree=2), cars), col="deeppink4")
-
-par(op)
-
 }
 \seealso{
-\code{\link{lines}}, \code{\link{lines.loess}}, \code{\link{lm}}
+\code{\link{lines}}, \code{\link{lm}}
 
 Other plot.utils:
 \code{\link{axTicks}},

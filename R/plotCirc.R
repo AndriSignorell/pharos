@@ -141,12 +141,11 @@ plotCirc <- function(
     # --- sectors ----------------------------------------------
     
 
-    drawCircle(
-      x = 0, y = 0,
-      innerR = innerR,
-      outerR = outerR,
+    polygon(ring(
+      innerRadius = innerR,
+      outerRadius = outerR,
       startAngle = mpts[seq_along(mpts) %% 2 == 1],
-      endAngle = mpts[seq_along(mpts) %% 2 == 0],
+      endAngle = mpts[seq_along(mpts) %% 2 == 0]),
       col = sector,
       border = "grey"
     )
@@ -172,8 +171,10 @@ plotCirc <- function(
     rcol <- ribbon$col
     rborder <- ribbon$border
     
-    mpts.left <- c(0, cumsum(as.vector(rbind(rev(apply(tab, 2, sum))/ n * (pi - nc * d), d))))
-    mpts.right <- cumsum(as.vector(rbind(rev(apply(tab, 1, sum))/ n * (pi - nr * d), d)))
+    mpts.left <- c(0, cumsum(as.vector(rbind(rev(apply(tab, 2, sum))/ 
+                                               n * (pi - nc * d), d))))
+    mpts.right <- cumsum(as.vector(rbind(rev(apply(tab, 1, sum))/ 
+                                           n * (pi - nr * d), d)))
     mpts <- c(mpts.left, mpts.right + pi) + pi/2 + d/2
 
         
@@ -192,8 +193,11 @@ plotCirc <- function(
       for( j in 1:nr) {
         lang <- dpt[(i-1)*(nr+1)+j,]
         rang <- revX(dpt[-nrow(dpt),], margin=1)[(j-1)*(nc+1) + i,]
-        .drawRibbon( angle1.beg=rang[,2], angle1.end=lang[,1], angle2.beg=rang[,1], angle2.end=lang[,2],
-                radius1 = outerR, radius2 = innerR-0.05, col = rcol[j], border = rborder[j])
+        
+        .drawRibbon( angle1.beg=rang[,2], angle1.end=lang[,1], 
+                     angle2.beg=rang[,1], angle2.end=lang[,2],
+                     radius1 = outerR, radius2 = innerR-0.05, 
+                     col = rcol[j], border = rborder[j])
       }}
 
 
@@ -254,38 +258,33 @@ plotCirc <- function(
 
 # --- ribbon helper ------------------------------------------
 
-.drawRibbon <- function(angle1.beg, angle1.end, angle2.beg, angle2.end,
-                       radius1 = 10, radius2 = 9,
-                       col, border) {
+.drawRibbon <- function(angle1.beg, angle1.end, 
+                        angle2.beg, angle2.end,
+                        radius1 = 10, radius2 = 9,
+                        col, border) {
   
   xy1 <- polToCart(radius1, angle1.beg)
   xy2 <- polToCart(radius2, angle1.end)
   xy3 <- polToCart(radius1, angle2.beg)
   xy4 <- polToCart(radius2, angle2.end)
   
-  bez1 <- drawArc(rx = radius2,
+  bez1 <- arc(radiusX = radius2,
                           startAngle = angle1.end,
-                          endAngle = angle2.end,
-                          plot = FALSE)[[1]]
+                          endAngle = angle2.end)
   
-  bez2 <- drawBezier(
+  bez2 <- bezier(
     x = c(xy4$x, 0, xy3$x),
-    y = c(xy4$y, 0, xy3$y),
-    draw = FALSE
+    y = c(xy4$y, 0, xy3$y)
   )
   
-  bez3 <- drawArc(
-    rx = radius1,
+  bez3 <- arc(
+    radiusX = radius1,
     startAngle = angle2.beg,
-    endAngle = angle1.beg,
-    plot = FALSE
-  )[[1]]
+    endAngle = angle1.beg)
   
-  bez4 <- drawBezier(
+  bez4 <- bezier(
     x = c(xy1$x, 0, xy2$x),
-    y = c(xy1$y, 0, xy2$y),
-    draw = FALSE
-  )
+    y = c(xy1$y, 0, xy2$y))
   
   polygon(
     x = c(bez1$x, bez2$x, bez3$x, bez4$x),

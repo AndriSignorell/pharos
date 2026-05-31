@@ -256,7 +256,7 @@ plotBar <- function(height,
         ),
         user = grid,
         forbidden = c("horiz"),
-        showWarnings = TRUE
+        warn = TRUE
       )
       
       if (!horiz) {
@@ -322,7 +322,7 @@ plotBar <- function(height,
           ),
           user = connlines,
           forbidden = c("height","b","horiz","width"),
-          showWarnings = TRUE
+          warn = TRUE
         )
         
         do.call(.drawConnLines, connlines)
@@ -342,7 +342,7 @@ plotBar <- function(height,
                 offset = 0
               ),
               forbidden = c("height","b","horiz", "beside"),
-              showWarnings = TRUE
+              warn = TRUE
             )
 
     

@@ -2,45 +2,34 @@
 % Please edit documentation in R/lines.smooth.spline.R
 \name{splineCI}
 \alias{splineCI}
-\alias{smoothSpline}
-\alias{lines.smooth.spline}
-\alias{lines.SmoothSpline}
-\alias{smoothSpline.default}
-\alias{smoothSpline.formula}
+\alias{splineX}
+\alias{lines.splineX}
+\alias{lines.SplineX}
+\alias{splineX.default}
+\alias{splineX.formula}
 \title{Add a Spline Smoother}
 \usage{
-smoothSpline(x, ...)
+splineX(x, ...)
 
-\method{smoothSpline}{default}(x, ...)
+\method{splineX}{default}(x, ...)
 
-\method{smoothSpline}{formula}(formula, data, subset, na.action = na.omit, weights, ...)
+\method{splineX}{formula}(formula, data, subset, na.action = na.omit, weights, ...)
 
-\method{lines}{SmoothSpline}(
+\method{lines}{SplineX}(
   x,
   col = pal()[1],
   lwd = 2,
   lty = "solid",
   type = "l",
-  conf.level = 0.95,
-  args.band = NULL,
-  ...
-)
-
-\method{lines}{smooth.spline}(
-  x,
-  col = pal()[1],
-  lwd = 2,
-  lty = "solid",
-  type = "l",
-  conf.level = 0.95,
-  args.band = NULL,
+  bandArgs = list(conf.level = 0.95),
   ...
 )
 }
 \arguments{
-\item{x}{the smooth.spline object to be plotted.}
+\item{x}{spline object returned by \code{splineX()}.}
 
-\item{\dots}{further arguments are passed to the smoother \code{SmoothSpline()}).}
+\item{\dots}{further arguments passed to
+\code{\link[stats:smooth.spline]{smooth.spline}}.}
 
 \item{formula}{A formula of the form \code{lhs ~ rhs}, where \code{lhs}
 gives the response values and \code{rhs} the corresponding groups
@@ -58,39 +47,54 @@ to be used in the analysis.}
 the data contain \code{NA}s. Defaults to
 \code{getOption("na.action")}.}
 
-\item{weights}{optional vector of weights of the same length as x; defaults to all 1.}
+\item{weights}{optional vector of weights of the same length as x.}
 
-\item{col}{linecolor of the smoother. Default is DescToolsX's \code{col1}.}
+\item{col}{line color of the smoother.}
 
-\item{lwd}{line width of the smoother.}
+\item{lwd}{line width.}
 
-\item{lty}{line type of the smoother.}
+\item{lty}{line type.}
 
-\item{type}{type of plot, defaults to \code{"l"}.}
+\item{type}{plotting type passed to \code{\link{lines}}.}
 
-\item{conf.level}{confidence level for the confidence interval. Set this to
-NA, if no confidence band should be plotted.  Default is 0.95.}
-
-\item{args.band}{list of arguments for the confidence band, such as color or
-border (see \code{\link{drawBand}}).}
+\item{bandArgs}{controls the confidence band. May be \code{TRUE},
+\code{FALSE}, \code{NULL}, \code{NA}, or a named list. The confidence
+level is specified via \code{conf.level}. Default is
+\code{list(conf.level = 0.95)}.}
 }
 \description{
-Add a spline smoother to an existing plot. The function first calculates the
-prediction of a spline object for a reasonable amount of points, then adds
-the line to the plot and inserts a polygon with the confidence intervals.
+Fit a smoothing spline and optionally add confidence bands.
+}
+\details{
+Confidence bands are controlled via \code{bandArgs}. These arguments can be:
+\itemize{
+\item \code{FALSE}, \code{NULL} or \code{NA}: suppress the band
+\item \code{TRUE}: draw the band with default settings
+\item a named list: customize the band appearance and confidence level
+}
 }
 \examples{
-
 op <- par(no.readonly = TRUE)
-par(mfrow=c(1,2))
+par(mfrow = c(1, 2))
 
 x <- runif(100)
 y <- rnorm(100)
-plot(x, y)
-lines(smooth.spline(y ~ x))
 
-plot(dist ~ speed, data=cars)
-lines(smoothSpline(dist ~ speed, data=cars))
+plot(x, y)
+lines(splineX(y ~ x))
+
+plot(dist ~ speed, cars)
+lines(splineX(dist ~ speed, cars))
+
+plot(dist ~ speed, cars)
+lines(
+  splineX(dist ~ speed, cars),
+  bandArgs = list(
+    conf.level = 0.99,
+    col = addAlpha("red", 0.3),
+    border = "black"
+  )
+)
 
 par(op)
 

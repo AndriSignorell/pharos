@@ -2,7 +2,7 @@
 % Please edit documentation in R/lines.loess.r
 \name{lines.loess}
 \alias{lines.loess}
-\title{Add a Loess Smoother and Its Confidence Intervals}
+\title{Add a Loess Smoother and Its Confidence Band}
 \usage{
 \method{lines}{loess}(
   x,
@@ -11,67 +11,67 @@
   lty = "solid",
   type = "l",
   n = 100,
-  conf.level = 0.95,
-  args.band = NULL,
+  bandArgs = list(conf.level = 0.95),
   ...
 )
 }
 \arguments{
-\item{x}{the loess object to be plotted.}
+\item{x}{a fitted \code{\link{loess}} object.}
 
-\item{col}{linecolor of the smoother. Default is DescToolsX's \code{col1}.}
+\item{col}{line color of the smoother.}
 
-\item{lwd}{line width of the smoother.}
+\item{lwd}{line width.}
 
-\item{lty}{line type of the smoother.}
+\item{lty}{line type.}
 
-\item{type}{type of plot, defaults to \code{"l"}.}
+\item{type}{plotting type passed to \code{\link{lines}}.}
 
 \item{n}{number of points used for plotting the fit.}
 
-\item{conf.level}{confidence level for the confidence interval. Set this to
-NA, if no confidence band should be plotted.  Default is 0.95.}
+\item{bandArgs}{controls the confidence band. May be \code{TRUE},
+\code{FALSE}, \code{NULL}, \code{NA}, or a named list. The confidence
+level is specified via \code{conf.level}. Default is
+\code{list(conf.level = 0.95)}.}
 
-\item{args.band}{list of arguments for the confidence band, such as color or
-border (see \code{\link{drawBand}}).}
-
-\item{\dots}{further arguments are passed to the \code{loess()} smoother}
+\item{\dots}{currently ignored.}
 }
 \description{
-Add a loess smoother to an existing plot. The function first calculates the
-prediction of a loess object for a reasonable amount of points, then adds
-the line to the plot and inserts a polygon with the confidence intervals.
+Add a loess smoother to an existing plot. The function first calculates
+predictions from a \code{loess} object and then adds the fitted smoother
+together with an optional confidence band.
+}
+\details{
+The confidence band is controlled via \code{bandArgs}. This argument may be:
+\itemize{
+\item \code{FALSE}, \code{NULL} or \code{NA}: suppress the band
+\item \code{TRUE}: draw the band with default settings
+\item a named list: customize the band appearance and confidence level
+}
 }
 \note{
-Loess can result in heavy computational load if there are many points!
+Loess can result in substantial computational load for large datasets.
 }
 \examples{
-
-op <- par(no.readonly = TRUE)
-par(mfrow=c(1,2))
-
 x <- runif(100)
 y <- rnorm(100)
+
 plot(x, y)
-lines(loess(y~x))
+lines(loess(y ~ x))
 
-plot(dist ~ speed, data=cars)
-lines(loess(dist ~ speed, data=cars))
-
-plot(dist ~ speed, data=cars)
-lines(loess(dist ~ speed, data=cars), conf.level = 0.99,
-            args.band = list(col=addAlpha("red", 0.4), border="black") )
-
-# the default values from scatter.smooth
-lines(loess(dist ~ speed, data=cars,
-            span=2/3, degree=1, family="symmetric"), col="red")
-
-par(op)
+plot(dist ~ speed, cars)
+lines(
+  loess(dist ~ speed, cars),
+  bandArgs = list(
+    conf.level = 0.99,
+    col = addAlpha("red", 0.4),
+    border = "black"
+  )
+)
 
 }
 \seealso{
 \code{\link{loess}}, \code{\link{scatter.smooth}},
-\code{\link{smooth.spline}}   \%\%, \code{\link{smoothSpline}}
+\code{\link{smooth.spline}}
 }
 \keyword{aplot}
 \keyword{math}

@@ -250,7 +250,7 @@ plotCor <- function(
     if(!isFALSE(text)){
       
       defaults <- list(
-        labels = fm(x, digits=2, na.form = "."),
+        labels = fm(x, digits=2, naForm = "."),
         col    = "black",
         cex    = 0.8
       )

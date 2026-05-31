@@ -1,76 +1,115 @@
 
-#' Add a Loess Smoother and Its Confidence Intervals
-#' 
-#' Add a loess smoother to an existing plot. The function first calculates the
-#' prediction of a loess object for a reasonable amount of points, then adds
-#' the line to the plot and inserts a polygon with the confidence intervals. 
-#' 
-#' 
-#' @aliases lines.loess 
-#' @param x the loess object to be plotted.
-#' @param col linecolor of the smoother. Default is DescToolsX's \code{col1}. 
-#' @param lwd line width of the smoother.
-#' @param lty line type of the smoother. 
-#' @param type type of plot, defaults to \code{"l"}. 
-#' @param n number of points used for plotting the fit. 
-#' @param conf.level confidence level for the confidence interval. Set this to
-#' NA, if no confidence band should be plotted.  Default is 0.95. 
-#' @param args.band list of arguments for the confidence band, such as color or
-#' border (see \code{\link{drawBand}}). 
-#' @param \dots further arguments are passed to the \code{loess()} smoother 
-#' @note Loess can result in heavy computational load if there are many points!
+#' Add a Loess Smoother and Its Confidence Band
+#'
+#' Add a loess smoother to an existing plot. The function first calculates
+#' predictions from a \code{loess} object and then adds the fitted smoother
+#' together with an optional confidence band.
+#'
+#' The confidence band is controlled via \code{bandArgs}. This argument may be:
+#' \itemize{
+#'   \item \code{FALSE}, \code{NULL} or \code{NA}: suppress the band
+#'   \item \code{TRUE}: draw the band with default settings
+#'   \item a named list: customize the band appearance and confidence level
+#' }
+#'
+#' @param x a fitted \code{\link{loess}} object.
+#' @param col line color of the smoother.
+#' @param lwd line width.
+#' @param lty line type.
+#' @param type plotting type passed to \code{\link{lines}}.
+#' @param n number of points used for plotting the fit.
+#' @param bandArgs controls the confidence band. May be \code{TRUE},
+#'   \code{FALSE}, \code{NULL}, \code{NA}, or a named list. The confidence
+#'   level is specified via \code{conf.level}. Default is
+#'   \code{list(conf.level = 0.95)}.
+#' @param \dots currently ignored.
+#'
+#' @note Loess can result in substantial computational load for large datasets.
+#'
 #' @seealso \code{\link{loess}}, \code{\link{scatter.smooth}},
-#' \code{\link{smooth.spline}}   %%, \code{\link{smoothSpline}} 
+#'   \code{\link{smooth.spline}}
+#'
 #' @keywords math aplot
+#'
 #' @examples
-#' 
-#' op <- par(no.readonly = TRUE)
-#' par(mfrow=c(1,2))
-#' 
 #' x <- runif(100)
 #' y <- rnorm(100)
+#'
 #' plot(x, y)
-#' lines(loess(y~x))
-#' 
-#' plot(dist ~ speed, data=cars)
-#' lines(loess(dist ~ speed, data=cars))
-#' 
-#' plot(dist ~ speed, data=cars)
-#' lines(loess(dist ~ speed, data=cars), conf.level = 0.99,
-#'             args.band = list(col=addAlpha("red", 0.4), border="black") )
-#' 
-#' # the default values from scatter.smooth
-#' lines(loess(dist ~ speed, data=cars,
-#'             span=2/3, degree=1, family="symmetric"), col="red")
-#' 
-#' par(op)
-#' 
-
-
+#' lines(loess(y ~ x))
+#'
+#' plot(dist ~ speed, cars)
+#' lines(
+#'   loess(dist ~ speed, cars),
+#'   bandArgs = list(
+#'     conf.level = 0.99,
+#'     col = addAlpha("red", 0.4),
+#'     border = "black"
+#'   )
+#' )
+#'
 #' @method lines loess
 #' @export
-lines.loess <- function(x, col = pal()[1], lwd = 2, lty = "solid", type = "l",  n = 100
-                        , conf.level = 0.95, args.band = NULL, ...){
+lines.loess <- function(
+    x,
+    col = pal()[1],
+    lwd = 2,
+    lty = "solid",
+    type = "l",
+    n = 100,
+    bandArgs = list(conf.level = 0.95),
+    ...
+) {
   
-  newx <- seq(from = min(x$x, na.rm=TRUE), to = max(x$x, na.rm=TRUE), length = n)
-  fit <- predict(x, newdata=newx, se = !is.na(conf.level) )
+  newx <- seq(
+    from = min(x$x, na.rm = TRUE),
+    to = max(x$x, na.rm = TRUE),
+    length.out = n
+  )
   
-  if (!is.na(conf.level)) {
-    
-    # define default arguments for ci.band
-    args.band1 <- list(col = addAlpha(col, 0.30), border = NA)
-    # override default arguments with user defined ones
-    if (!is.null(args.band)) args.band1[names(args.band)] <- args.band
-    
-    # add a confidence band before plotting the smoother
-    lwr.ci <- fit$fit + fit$se.fit * qnorm((1 - conf.level)/2)
-    upr.ci <- fit$fit - fit$se.fit * qnorm((1 - conf.level)/2)
-    do.call("drawBand", c(args.band1, list(x=c(newx, rev(newx))), list(y=c(lwr.ci, rev(upr.ci)))) )
-    # reset fit for plotting line afterwards
+  conf.level <- if (is.list(bandArgs))
+    bandArgs$conf.level %||% 0.95
+  else
+    0.95
+  
+  fit <- predict(
+    x,
+    newdata = newx,
+    se = !isFALSE(bandArgs) &&
+      !is.null(bandArgs) &&
+      !isNA(bandArgs)
+  )
+  
+  callIf(
+    .drawBandCI,
+    bandArgs,
+    defaults = list(
+      x = newx,
+      ci = {
+        z <- qnorm((1 - conf.level) / 2)
+        
+        cbind(
+          fit$fit + fit$se.fit * z,
+          fit$fit - fit$se.fit * z
+        )
+      },
+      col = col
+    ),
+    forbidden = "conf.level",
+    warn = FALSE
+  )
+  
+  if (is.list(fit))
     fit <- fit$fit
-  }
   
-  lines( y = fit, x = newx, col = col, lwd = lwd, lty = lty, type = type)
+  lines(
+    x = newx,
+    y = fit,
+    col = col,
+    lwd = lwd,
+    lty = lty,
+    type = type
+  )
   
 }
 

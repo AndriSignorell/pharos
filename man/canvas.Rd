@@ -39,11 +39,6 @@ text(0, 0, "Hello world!", cex=5)
 \seealso{
 Other plot.geometry:
 \code{\link[=abcCoords]{abcCoords()}},
-\code{\link[=drawArc]{drawArc()}},
-\code{\link[=drawBezier]{drawBezier()}},
-\code{\link[=drawCircle]{drawCircle()}},
-\code{\link[=drawEllipse]{drawEllipse()}},
-\code{\link[=drawRegPolygon]{drawRegPolygon()}},
 \code{\link[=polarGrid]{polarGrid()}}
 }
 \concept{geometry}

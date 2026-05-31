@@ -86,7 +86,7 @@ test_that("formatNum: leadDigits = 0 strips leading zero before decimal", {
   expect_equal(res, ".75")
 })
 
-test_that("formatNum: vector recycling of bigMark and decimalMark", {
+test_that("formatNum: vector recycling of bigMark and digits", {
   res <- formatNum(c(1000, 2000), digits = 0L, leadDigits = 1L, bigMark = ".")
   expect_equal(res, c("1.000", "2.000"))
 })

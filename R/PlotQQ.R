@@ -35,7 +35,7 @@
 #' The confidence intervals are calculated pointwise method based on a
 #' Kolmogorov-Smirnov distribution. 
 #' @param cband list of arguments for the confidence band, such as color
-#' or border (see \code{\link{drawBand}}). 
+#' or border (see \code{\link{band}}). 
 #' @param grid Optional list of arguments controlling grid lines.
 #'   Supported elements include:
 #'   \describe{
@@ -153,7 +153,7 @@ plotQQ <- function(x, qdist=stats::qnorm,
                            conf=conf.level, conf.method = "pointwise")
             ),
             forbidden = c("ci"),
-            showWarnings = TRUE
+            warn = TRUE
     )
     
 
@@ -166,7 +166,7 @@ plotQQ <- function(x, qdist=stats::qnorm,
       ),
       user = list(...)
       # forbidden = c("height","b","horiz","width"),
-      # showWarnings = TRUE
+      # warn = TRUE
     ))
     
     
@@ -225,8 +225,8 @@ plotQQ <- function(x, qdist=stats::qnorm,
 .drawConfBandQQ <- function(col = addAlpha("grey", alpha = 0.5), border=NA, 
                             ci ){
   
-  drawBand(x = c(ci$z, rev(ci$z)),
-           y = c(ci$upper.pw, rev(ci$lower.pw)), 
+  polygon(band(x = c(ci$z, rev(ci$z)),
+           y = c(ci$upper.pw, rev(ci$lower.pw))), 
            col  = col, border = border)
   
 }

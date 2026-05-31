@@ -131,9 +131,6 @@ par(op)
 \seealso{
 \code{\link{arrows}},
 \code{\link{points}}
-
-Other plot.augmentation:
-\code{\link[=drawBand]{drawBand()}}
 }
 \concept{graphics}
 \concept{plot-augmentation}

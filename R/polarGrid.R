@@ -84,7 +84,7 @@ polarGrid <- function(nr = NULL, ntheta = NULL,
     }
   } else {at <- NULL}
   if(!is.null(at))
-    drawCircle(x = 0, y = 0, outerR = at, border = col, lty = lty, col = NA)
+    lines(circle(radius = at), col = col, lty = lty)
   
   if (is.null(ntheta)) {             # use standard values with pretty axis values
     at.ang <- seq(0, 2*pi, by=2*pi/12)

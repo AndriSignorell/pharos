@@ -1,70 +1,94 @@
 
 #' Add a Spline Smoother
-#' 
-#' Add a spline smoother to an existing plot. The function first calculates the
-#' prediction of a spline object for a reasonable amount of points, then adds
-#' the line to the plot and inserts a polygon with the confidence intervals. 
-#' 
+#'
+#' Fit a smoothing spline and optionally add confidence bands.
+#'
+#' Confidence bands are controlled via \code{bandArgs}. These arguments can be:
+#' \itemize{
+#'   \item \code{FALSE}, \code{NULL} or \code{NA}: suppress the band
+#'   \item \code{TRUE}: draw the band with default settings
+#'   \item a named list: customize the band appearance and confidence level
+#' }
+#'
 #' @name splineCI
-#' @aliases lines.smooth.spline lines.SmoothSpline
+#' @aliases lines.splineX lines.SplineX
 #' @inheritParams Formulas
-#' @param weights optional vector of weights of the same length as x; defaults to all 1.
-#' @param x the smooth.spline object to be plotted.
-#' @param col linecolor of the smoother. Default is DescToolsX's \code{col1}. 
-#' @param lwd line width of the smoother.
-#' @param lty line type of the smoother. 
-#' @param type type of plot, defaults to \code{"l"}. 
-#' @param conf.level confidence level for the confidence interval. Set this to
-#' NA, if no confidence band should be plotted.  Default is 0.95. 
-#' @param args.band list of arguments for the confidence band, such as color or
-#' border (see \code{\link{drawBand}}). 
-#' @param \dots further arguments are passed to the smoother \code{SmoothSpline()}). 
+#' @param weights optional vector of weights of the same length as x.
+#' @param x spline object returned by \code{splineX()}.
+#' @param col line color of the smoother.
+#' @param lwd line width.
+#' @param lty line type.
+#' @param type plotting type passed to \code{\link{lines}}.
+#' @param bandArgs controls the confidence band. May be \code{TRUE},
+#'   \code{FALSE}, \code{NULL}, \code{NA}, or a named list. The confidence
+#'   level is specified via \code{conf.level}. Default is
+#'   \code{list(conf.level = 0.95)}.
+#' @param \dots further arguments passed to
+#'   \code{\link[stats:smooth.spline]{smooth.spline}}.
+#'
 #' @seealso \code{\link{loess}}, \code{\link{scatter.smooth}}
+#'
 #' @keywords math aplot
+#'
 #' @examples
-#' 
 #' op <- par(no.readonly = TRUE)
-#' par(mfrow=c(1,2))
-#' 
+#' par(mfrow = c(1, 2))
+#'
 #' x <- runif(100)
 #' y <- rnorm(100)
+#'
 #' plot(x, y)
-#' lines(smooth.spline(y ~ x))
-#' 
-#' plot(dist ~ speed, data=cars)
-#' lines(smoothSpline(dist ~ speed, data=cars))
-#' 
+#' lines(splineX(y ~ x))
+#'
+#' plot(dist ~ speed, cars)
+#' lines(splineX(dist ~ speed, cars))
+#'
+#' plot(dist ~ speed, cars)
+#' lines(
+#'   splineX(dist ~ speed, cars),
+#'   bandArgs = list(
+#'     conf.level = 0.99,
+#'     col = addAlpha("red", 0.3),
+#'     border = "black"
+#'   )
+#' )
+#'
 #' par(op)
-#' 
-
-
+#'
 #' @rdname splineCI
 #' @family plot.utils
 #' @concept graphics
 #' @concept regression
 #'
-#'
 #' @export
-smoothSpline <- function(x, ...) {
-  UseMethod("smoothSpline")
+splineX <- function(x, ...) {
+  UseMethod("splineX")
 }
 
 
 #' @rdname splineCI
 #' @export
-smoothSpline.default <- function(x, ...) {
-  stats::smooth.spline(x, ...)
+splineX.default <- function(x, ...) {
+  
+  res <- stats::smooth.spline(x, ...)
+  
+  class(res) <- c("SplineX", class(res))
+  
+  res
+  
 }
 
 
 #' @rdname splineCI
 #' @export
-smoothSpline.formula <- function(formula,
-                                 data,
-                                 subset,
-                                 na.action = na.omit,
-                                 weights,
-                                 ...) {
+splineX.formula <- function(
+    formula,
+    data,
+    subset,
+    na.action = na.omit,
+    weights,
+    ...
+) {
   
   if (!inherits(formula, "formula"))
     stop("'formula' must be a formula")
@@ -73,9 +97,9 @@ smoothSpline.formula <- function(formula,
     stop("Formula must be of the form y ~ x")
   
   args <- list(
-    formula   = formula,
+    formula = formula,
     na.action = na.action,
-    allowed   = c(
+    allowed = c(
       "two-sample-independent",
       "n-sample-independent"
     )
@@ -103,55 +127,90 @@ smoothSpline.formula <- function(formula,
       envir = mf,
       enclos = parent.frame()
     )
+    
   }
   
-  stats::smooth.spline(
+  res <- stats::smooth.spline(
     x = x,
     y = y,
     w = w,
     ...
   )
+  
+  class(res) <- c("SplineX", class(res))
+  
+  res
+  
 }
 
+
+.calcSplineCI <- function(
+    spline,
+    fit,
+    conf.level = 0.95
+) {
+  
+  res <- (spline$yin - spline$y) / (1 - spline$lev)
+  
+  sigma <- sqrt(var(res))
+  
+  z <- qnorm((1 - conf.level) / 2)
+  
+  cbind(
+    fit$y - z * sigma * sqrt(spline$lev),
+    fit$y + z * sigma * sqrt(spline$lev)
+  )
+  
+}
 
 
 #' @rdname splineCI
 #' @export
-lines.SmoothSpline <- function (x, col = pal()[1], lwd = 2, lty = "solid",
-                                type = "l", conf.level = 0.95, args.band = NULL,
-                                ...) {
-  # just pass on to lines
-  lines.smooth.spline(x, col, lwd, lty,
-                      type, conf.level, args.band,  ...)
+lines.SplineX <- function(
+    x,
+    col = pal()[1],
+    lwd = 2,
+    lty = "solid",
+    type = "l",
+    bandArgs = list(conf.level = 0.95),
+    ...
+) {
+  
+  fit <- predict(
+    x,
+    x = x$x
+  )
+  
+  ci <- callIf(
+    .calcSplineCI,
+    bandArgs,
+    defaults = list(
+      spline = x,
+      fit = fit,
+      conf.level = 0.95
+    ),
+    forbidden = c("col", "border")
+  )
+  
+  callIf(
+    .drawBandCI,
+    bandArgs,
+    defaults = list(
+      x = fit$x,
+      ci = ci,
+      col = col
+    ),
+    forbidden = "conf.level",
+    warn = FALSE
+  )
+  
+  lines(
+    x = fit$x,
+    y = fit$y,
+    col = col,
+    lwd = lwd,
+    lty = lty,
+    type = type
+  )
+  
 }
-
-
-#' @rdname splineCI
-#' @export
-lines.smooth.spline <- function (x, col = pal()[1], lwd = 2, lty = "solid",
-                                 type = "l", conf.level = 0.95, args.band = NULL,
-                                 ...) {
-  
-  # newx <- seq(from = min(x$x, na.rm = TRUE), to = max(x$x, na.rm = TRUE), length = n)
-  newx <- x$x
-  
-  fit <- predict(x, newdata = newx)
-  
-  if (!is.na(conf.level)) {
-    args.band1 <- list(col = addAlpha(col, 0.3), border = NA)
-    if (!is.null(args.band))
-      args.band1[names(args.band)] <- args.band
-    
-    res <- (x$yin - x$y)/(1-x$lev)      # jackknife residuals
-    sigma <- sqrt(var(res))                     # estimate sd
-    upr.ci <- fit$y + qnorm((1 - conf.level)/2) * sigma * sqrt(x$lev)   # upper 95% conf. band
-    lwr.ci <- fit$y - qnorm((1 - conf.level)/2) * sigma * sqrt(x$lev)   # lower 95% conf. band
-    
-    do.call("drawBand", c(args.band1, list(x = c(newx, rev(newx))),
-                          list(y = c(lwr.ci, rev(upr.ci)))))
-    
-  }
-  
-  lines(y = fit$y, x = fit$x, col = col, lwd = lwd, lty = lty, type = type)
-}
-

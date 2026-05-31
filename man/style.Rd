@@ -15,7 +15,7 @@ style(
   sci = NULL,
   big.mark = NULL,
   outdec = NULL,
-  na.form = NULL,
+  naForm = NULL,
   zeroForm = NULL,
   fmt = NULL,
   pThreshold = NULL,
@@ -56,7 +56,7 @@ decimals before the decimal point. Default is "" (none).}
 \item{outdec}{character, specifying the decimal mark to be used. If not
 provided, the default set as \code{OutDec} option is used.}
 
-\item{na.form}{character, string specifying how \code{NA}s should be
+\item{naForm}{character, string specifying how \code{NA}s should be
 specially formatted.  If set to \code{NULL} (default) no special action will
 be taken.}
 
@@ -143,13 +143,13 @@ num.sty                             # displays the details of the style
 style("abs.sty")                    # looks for format "abs.sty"
 # style("nexist")                     # return for nonexisting style
 style("abs.sty", big.mark="")       # get Style("abs") and overwrite big.mark
-style("abs.sty", na.form="-")       # get Style("abs") and add user defined na.form
+style("abs.sty", naForm="-")       # get Style("abs") and add user defined naForm
 
 styles()                            # all defined formats
 styles()[c("num.sty", "abs.sty")]   # numeric and integer styles
 
 # define totally new format and store as option
-options(nob.sty=style(digits=5, na.form="nodat"))
+options(nob.sty=style(digits=5, naForm="nodat"))
 
 # using styles
 fm(314.1563, fmt=abs.sty)

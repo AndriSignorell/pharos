@@ -31,7 +31,7 @@ Rotate a geometric structure by an angle theta around a centerpoint xy.
 op <- par(no.readonly = TRUE)
 # let's have a triangle
 canvas(main="Rotation")
-x <- drawRegPolygon(nv=3)[[1]]
+x <- regPolygon(numVertices=3)
 
 # and rotate
 sapply( (0:3) * pi/6, function(theta) {
@@ -45,8 +45,8 @@ par(op)
 
 }
 \seealso{
-\code{\link{polygon}}, \code{\link{drawRegPolygon}},
-\code{\link{drawEllipse}}, \code{\link{drawArc}}
+\code{\link{polygon}}, \code{\link{regPolygon}},
+\code{\link{ellipse}}, \code{\link{arc}}
 
 Other coordinate.transform:
 \code{\link{coordinate-conversions}},

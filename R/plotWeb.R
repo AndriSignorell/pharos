@@ -61,7 +61,7 @@
 #' m[p > 0.05] <- NA
 #' 
 #' # How does that look like now?
-#' # try also: fm(m, na.form = ". ", ldigits=0, digits=3, align = "right")
+#' # try also: fm(m, naForm = ". ", ldigits=0, digits=3, align = "right")
 #' 
 #' # plotWeb(m, las=2, cex=1.2)
 #' 

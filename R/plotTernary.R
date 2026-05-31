@@ -181,7 +181,7 @@ plotTernary <- function(
     
     # --- triangle ----------------------------------------------
     
-    tri <- drawRegPolygon(nv = 3, rot = pi / 2, radius.x = 1, plot = FALSE)
+    tri <- regPolygon(numVertices = 3, startAngle =pi / 2, radius = 1)
     
     polygon(tri,
             border = th$border$col,
@@ -193,9 +193,8 @@ plotTernary <- function(
     if (!is.null(lbl)) {
       
       eps <- 0.15
-      pts <- drawRegPolygon(nv = 3, rot = pi / 2,
-                            radius.x = 1 + eps,
-                            plot = FALSE)
+      pts <- regPolygon(numVertices = 3, startAngle = pi / 2,
+                        radius = 1 + eps)
       
       text(pts, labels = lbl[c(1, 3, 2)])
     }

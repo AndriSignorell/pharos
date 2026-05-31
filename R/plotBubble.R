@@ -178,11 +178,11 @@ plotBubble.default <- function(
     
     # --- draw bubbles ------------------------------------------
     
-    drawEllipse(
+    polygon(ellipse(
       x = d.frm$x,
       y = d.frm$y,
-      radius.x = rx,
-      radius.y = d.frm$ry,
+      radiusX = rx,
+      radiusY = d.frm$ry),
       col = d.frm$col,
       border = d.frm$border
     )

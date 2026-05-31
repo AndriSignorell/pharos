@@ -65,7 +65,7 @@ cols[x+1]
 y0 <- c(-5, -2, 1)
 text(x=1, y=max(y0)+2, labels="Color coding of x:")
 text(x=1.5, y=y0, labels=x)
-drawRegPolygon(x=3, y=y0, nv=4, rot=pi/4, col=xcols)
+polygon(regPolygon(x=3, y=y0, numVertices=4, startAngle=pi/4), col=xcols)
 text(x=6, y=y0, labels=xcols)
 
 # how does the function select colors?
