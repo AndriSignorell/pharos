@@ -10,7 +10,7 @@
 #' @aliases plotTimeSeries
 #' 
 #' @param x univariate time series. 
-#' @param lag.max integer. Defines the number of lags to be displayed. The
+#' @param maxLag integer. Defines the number of lags to be displayed. The
 #' default is 10 * log10(length(series)). 
 #' @param main an overall title for the plot
 #' @param ylab a title for the y axis: see \code{\link{title}}. 
@@ -31,7 +31,7 @@
 #'
 #'
 #' @export
-plotTimeSeries <- function (x, lag.max = 10 * log10(length(x)), 
+plotTimeSeries <- function (x, maxLag = 10 * log10(length(x)), 
                             ylab = NULL,
                             main=NULL,  ...) {
 

@@ -14,7 +14,7 @@ plotQQ(
   add = FALSE,
   conf.level = 0.95,
   cband = TRUE,
-  args.qqline = NULL,
+  qqline = TRUE,
   grid = NULL,
   ...
 )
@@ -46,7 +46,7 @@ Kolmogorov-Smirnov distribution.}
 \item{cband}{list of arguments for the confidence band, such as color
 or border (see \code{\link{band}}).}
 
-\item{args.qqline}{arguments for the qqline. This will be estimated as a
+\item{qqline}{arguments for the qqline. This will be estimated as a
 line through the 25\\% and 75\\% quantiles by default, which is the same
 procedure as \code{\link{qqline}()} does for normal distribution (instead of
 set it to \code{abline(a = 0, b = 1))}. The quantiles can however be

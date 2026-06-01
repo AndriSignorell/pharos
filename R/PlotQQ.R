@@ -21,7 +21,7 @@
 #' \code{FALSE}.
 #' @param add logical specifying if the points should be added to an already
 #' existing plot; defaults to \code{FALSE}.
-#' @param args.qqline arguments for the qqline. This will be estimated as a
+#' @param qqline arguments for the qqline. This will be estimated as a
 #' line through the 25\% and 75\% quantiles by default, which is the same
 #' procedure as \code{\link{qqline}()} does for normal distribution (instead of
 #' set it to \code{abline(a = 0, b = 1))}. The quantiles can however be
@@ -88,10 +88,10 @@
 #' @export
 plotQQ <- function(x, qdist=stats::qnorm, 
                    main=NULL, xlab=NULL, ylab=NULL, 
-                   datax=FALSE, add=FALSE,
+                   datax = FALSE, add=FALSE,
                    conf.level=0.95, 
                    cband = TRUE, 
-                   args.qqline=NULL, grid=NULL, ...) {
+                   qqline = TRUE, grid=NULL, ...) {
   
 
   th <- .theme(
@@ -165,51 +165,21 @@ plotQQ <- function(x, qdist=stats::qnorm,
         bg = addAlpha("white", 0.8)
       ),
       user = list(...)
-      # forbidden = c("height","b","horiz","width"),
-      # warn = TRUE
     ))
-    
-    
-    # points(x=x, y=y, ...)
-    
-    # John Fox implements an envelope option in car::qqplot, in the sense of:
-    #   (unfortunately using ddist...)
-    #
-    #   # add qqline if desired
-    #   if(!identical(args.band, NA)) {
-    #     n <- length(x)
-    #     zz <- qnorm(1 - (1 - args.band$conf.level) / 2)
-    #     SE <- (slope / d.function(z, ...)) * sqrt(p * (1 - p) / n)
-    #     fit.value <- int + slope * z
-    #
-    #     upper <- fit.value + zz * SE
-    #     lower <- fit.value - zz * SE
-    #
-    #     lines(z, upper, lty = 2, lwd = lwd, col = col.lines)
-    #     lines(z, lower, lty = 2, lwd = lwd, col = col.lines)
-    #   }
 
-    # add qqline if desired
-    if(!identical(args.qqline, NA)) {
-      
-      # define default arguments for ci.band
-      args.qqline1 <- list(probs = c(0.25, 0.75), qtype=7, col=par("fg"), 
-                           lwd=par("lwd"), lty=par("lty"))
-      # override default arguments with user defined ones
-      if (!is.null(args.qqline)) args.qqline1[names(args.qqline)] <- args.qqline
-      
-      # estimate qqline, instead of set it to abline(a = 0, b = 1)
-      # plot qqline through the 25% and 75% quantiles (same as qqline does for normal dist)
-      ly <- stats::quantile(y, prob=args.qqline1[["probs"]], 
-                     type=args.qqline1[["qtype"]], na.rm = TRUE)
-      lx <- qdist(args.qqline1[["probs"]])
-      
-      slope <- diff(ly) / diff(lx)
-      int <- ly[1L] - slope * lx[1L]
-      do.call("abline", 
-              c(args.qqline1[c("col","lwd","lty")], list(a=int, b=slope)) )
-      
-    }
+    bedrock::callIf(
+      .drawQQline,
+      qqline,
+      defaults = list(
+        y     = y,
+        qdist = qdist,
+        probs = c(0.25, 0.75),
+        qtype = 7,
+        col   = par("fg"),
+        lwd   = par("lwd"),
+        lty   = par("lty")
+      )
+    )
     
   })
 }
@@ -404,5 +374,33 @@ plotQQ <- function(x, qdist=stats::qnorm,
 }
 
 
-
+.drawQQline <- function(y, qdist,
+                        probs = c(0.25, 0.75),
+                        qtype = 7,
+                        col = par("fg"),
+                        lwd = par("lwd"),
+                        lty = par("lty")) {
+  
+  ly <- stats::quantile(
+    y,
+    probs = probs,
+    type = qtype,
+    na.rm = TRUE
+  )
+  
+  lx <- qdist(probs)
+  
+  slope <- diff(ly) / diff(lx)
+  intercept <- ly[1L] - slope * lx[1L]
+  
+  graphics::abline(
+    a = intercept,
+    b = slope,
+    col = col,
+    lwd = lwd,
+    lty = lty
+  )
+  
+  invisible(NULL)
+}
 

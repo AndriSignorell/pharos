@@ -6,7 +6,7 @@
 \usage{
 plotTimeSeries(
   x,
-  lag.max = 10 * log10(length(x)),
+  maxLag = 10 * log10(length(x)),
   ylab = NULL,
   main = NULL,
   ...
@@ -15,7 +15,7 @@ plotTimeSeries(
 \arguments{
 \item{x}{univariate time series.}
 
-\item{lag.max}{integer. Defines the number of lags to be displayed. The
+\item{maxLag}{integer. Defines the number of lags to be displayed. The
 default is 10 * log10(length(series)).}
 
 \item{ylab}{a title for the y axis: see \code{\link{title}}.}
