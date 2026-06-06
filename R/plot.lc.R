@@ -1,42 +1,42 @@
 
 #' Plot Methods for Lorenz Curve Objects
 #'
-#' Visualize objects of class \code{"lc"} and \code{"lclist"} returned by
+#' Visualize objects of class \code{"Lc"} and \code{"LcList"} returned by
 #' \code{\link[DescToolsX]{lc}()}.  The \code{plot()} method draws a new
 #' Lorenz curve plot including the line of perfect equality; \code{lines()}
 #' and \code{points()} add to an existing plot.
 #'
-#' For \code{"lclist"} objects (grouped Lorenz curves), \code{plot()} draws
+#' For \code{"LcList"} objects (grouped Lorenz curves), \code{plot()} draws
 #' the first group and overlays the remaining groups with \code{lines()}.
 #' Colors cycle automatically when \code{col} is not supplied.
 #'
-#' The confidence band in \code{lines.lc()} is drawn via \code{cbandArgs}.
-#' Pass a list of arguments to \code{\link[DescToolsX]{predict.lc}()} to
+#' The confidence band in \code{lines.Lc()} is drawn via \code{cbandArgs}.
+#' Pass a list of arguments to \code{\link[DescToolsX]{predict.Lc}()} to
 #' control the bootstrap (e.g. \code{cbandArgs = list(conf.level = 0.90,
 #' n = 500)}).  Set \code{cbandArgs = NA} (default) to suppress the band.
 #'
-#' @name plot.lc
+#' @name plot.Lc
 #' 
-#' @param x Object of class \code{"lc"} or \code{"lclist"}.
+#' @param x Object of class \code{"Lc"} or \code{"Lclist"}.
 #' @param general Logical.  If \code{TRUE}, the generalized Lorenz curve
 #'   (scaled by the mean) is displayed instead of the standard curve.
 #'   Default is \code{FALSE}.
 #' @param main,xlab,ylab Main title and axis labels passed to
 #'   \code{\link[graphics]{plot.default}()}.
 #' @param xlim,ylim Numeric vectors of length 2 giving axis limits.
-#' @param col Color(s) for the curve(s).  For \code{"lclist"} methods,
+#' @param col Color(s) for the curve(s).  For \code{"LcList"} methods,
 #'   recycled over groups; defaults to \code{1:k}.
 #' @param lwd Line width.  Default is \code{2}.
 #' @param lty Line type.  Default is \code{1}.
 #' @param pch Plotting symbol.  If \code{NULL} (default in
-#'   \code{plot.lc()}), no points are drawn.
+#'   \code{plot.Lc()}), no points are drawn.
 #' @param grid Logical or list.  If \code{TRUE} or a list, a grid is drawn
 #'   before the curve.  A list is forwarded as arguments to
 #'   \code{\link[graphics]{grid}()}.
 #' @param box Logical.  If \code{TRUE} (default), a box is drawn around the
 #'   plot area.
 #' @param cbandArgs \code{NA} to suppress the confidence band (default), or
-#'   a list of arguments passed to \code{\link[DescToolsX]{predict.lc}()} to
+#'   a list of arguments passed to \code{\link[DescToolsX]{predict.Lc}()} to
 #'   control bootstrap confidence intervals.
 #' @param stamp Optional character string or list.  Passed to the aurora
 #'   graphics framework for plot annotation.
@@ -48,7 +48,7 @@
 #'
 #' @seealso
 #'   \code{\link[DescToolsX]{lc}()} for computing the Lorenz curve,
-#'   \code{\link[DescToolsX]{predict.lc}()} for bootstrap confidence
+#'   \code{\link[DescToolsX]{predict.Lc}()} for bootstrap confidence
 #'   intervals, \code{\link[DescToolsX]{gini}()} for the Gini coefficient.
 #'
 #' @family inequality
@@ -57,9 +57,9 @@
 NULL
 
 
-#' @rdname plot.lc
+#' @rdname plot.Lc
 #' @export
-plot.lc <- function(
+plot.Lc <- function(
     
   # DATA
   x,
@@ -90,8 +90,8 @@ plot.lc <- function(
   ...
 ) {
   
-  if (!inherits(x, "lc"))
-    stop("x must be of class 'lc'")
+  if (!inherits(x, "Lc"))
+    stop("x must be of class 'Lc'")
   
   .withGraphicsState({
     
@@ -141,9 +141,9 @@ plot.lc <- function(
 }
 
 
-#' @rdname plot.lc
+#' @rdname plot.Lc
 #' @export
-lines.lc <- function(
+lines.Lc <- function(
     
   # DATA
   x,
@@ -163,8 +163,8 @@ lines.lc <- function(
   
 ) {
   
-  if (!inherits(x, "lc"))
-    stop("x must be of class 'lc'")
+  if (!inherits(x, "Lc"))
+    stop("x must be of class 'Lc'")
   
   # --- select curve ---
   L <- if (!general) x$L else x$L.general
@@ -207,9 +207,9 @@ lines.lc <- function(
   
 }
 
-#' @rdname plot.lc
+#' @rdname plot.Lc
 #' @export
-points.lc <- function(
+points.Lc <- function(
     
   # DATA
   x,
@@ -224,8 +224,8 @@ points.lc <- function(
   ...
 ) {
   
-  if (!inherits(x, "lc"))
-    stop("x must be of class 'lc'")
+  if (!inherits(x, "Lc"))
+    stop("x must be of class 'Lc'")
   
   # --- select curve ---
   L <- if (!general) x$L else x$L.general
@@ -239,9 +239,9 @@ points.lc <- function(
 
 
 
-#' @rdname plot.lc
+#' @rdname plot.Lc
 #' @export
-lines.lclist <- function(x, col = NULL, ...) {
+lines.LcList <- function(x, col = NULL, ...) {
   
   k <- length(x)
   
@@ -258,9 +258,9 @@ lines.lclist <- function(x, col = NULL, ...) {
 
 
 
-#' @rdname plot.lc
+#' @rdname plot.Lc
 #' @export
-points.lclist <- function(x, col = NULL, ...) {
+points.LcList <- function(x, col = NULL, ...) {
   
   k <- length(x)
   
@@ -276,14 +276,14 @@ points.lclist <- function(x, col = NULL, ...) {
 
 
 
-#' @rdname plot.lc
+#' @rdname plot.Lc
 #' @export
-plot.lclist <- function(x, col = NULL, ...) {
+plot.LcList <- function(x, col = NULL, ...) {
   
   k <- length(x)
   
   if (k == 0)
-    stop("empty lclist")
+    stop("empty LcList")
   
   if (is.null(col))
     col <- seq_len(k)

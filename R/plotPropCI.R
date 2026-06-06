@@ -67,12 +67,12 @@ plotPropCI <- function(
     legend = TRUE,
     ...
 ) {
-
-   if(is.null(col))
-      col <- c("steelblue", "firebrick")
-   
-   border <- NA
-     
+  
+  if(is.null(col))
+    col <- c("steelblue", "firebrick")
+  
+  border <- NA
+  
   .withGraphicsState({
     
     .applyParFromDots(...)
@@ -80,6 +80,13 @@ plotPropCI <- function(
     # --- coerce vector to one-row matrix ----------------------------------------
     if (is.numeric(x) && !is.matrix(x))
       x <- matrix(x, nrow = 1L, dimnames = list(NULL, names(x)))
+    
+    # --- pad missing second column with 0 (e.g. all-TRUE or all-FALSE) ----------
+    if (is.matrix(x) && ncol(x) == 1L) {
+      other <- if (colnames(x) == "TRUE") "FALSE" else "TRUE"
+      x <- cbind(x, matrix(0L, nrow = nrow(x), dimnames = list(NULL, other)))
+      x <- x[, c("FALSE", "TRUE"), drop = FALSE]
+    }
     
     # --- input checks -----------------------------------------------------------
     if (!is.matrix(x) || !is.numeric(x))
@@ -93,7 +100,7 @@ plotPropCI <- function(
     if (length(col) != 2L)
       stop("'col' must be a vector of length 2.")
     
-     
+    
     
     # --- layout constants -------------------------------------------------------
     bar.width <- 1
@@ -126,7 +133,9 @@ plotPropCI <- function(
     for (lvl in ci.levels) {
       ci <- t(vapply(
         seq_len(nrow(x)),
-        function(i) .binomCI_raw(x[i, 1L], n = sum(x[i, ]), conf.level = lvl),
+        function(i) suppressWarnings(
+          .binomCI_raw(x[i, 1L], n = sum(x[i, ]), conf.level = lvl)
+        ),
         numeric(3L)
       ))
       
@@ -170,9 +179,9 @@ plotPropCI <- function(
         inset  = c(-0.045, -0.24),
         xpd    = NA
       )
-      }
-
-
+    }
+    
+    
   })
   
   invisible(ci)

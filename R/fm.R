@@ -229,6 +229,13 @@ fm.default <- function(x, digits = NULL, leadDigits = NULL, sci = NULL
 
   if(is.null(naForm)) naForm <- NA_real_
   
+  # --- Guard: return if only NAs ---
+  if (length(x) == 0L) {
+    r <- rep(as.character(naForm), length(ina))
+    names(r) <- orig_names
+    return(r)
+  }
+  
   # Dispatch on class of x **************
   
   if(all(inherits(x, c("Date", "POSIXct", "POSIXt")))) {
@@ -322,7 +329,7 @@ fm.default <- function(x, digits = NULL, leadDigits = NULL, sci = NULL
         class(fmt) <- setdiff(class(fmt), "Style")
         
         # return the formatted values by recursive call of Fm()
-        return(do.call(fm, c(fmt, x=list(x))))
+        r <- do.call(fm, c(fmt, x = list(x)))   
         
       } else {
         
@@ -444,21 +451,13 @@ fm.default <- function(x, digits = NULL, leadDigits = NULL, sci = NULL
   # restore names
   if (!is.null(orig_names)) names(r) <- orig_names
   
-  class(r) <- c("Fm", class(r))
-  return(r)
-
-}
-
-
-
-
-#' @export
-print.Fm <- function (x, quote=FALSE, ...) {
+  # noquote() marks the result as a formatted string vector —
+  # print() will suppress quotes automatically (via print.noquote).
+  # No custom class needed; base R handles the display.
+  return(noquote(r))
   
-  class(x) <- class(x)[class(x)!="Fm"]
-  # print(x, quote=FALSE, right=TRUE, ...)
-  NextMethod("print", quote = quote, right=TRUE, ...)
 }
+
 
 
 
@@ -510,67 +509,68 @@ fm.data.frame <- function(x,
     )
   }
   
-  class(x) <- c("Fm", class(x))
   x
 }
 
 
 #' @export
-fm.matrix <- function(x, digits = NULL, leadDigits = NULL, sci = NULL
-                      , bigMark=NULL, decMark = NULL
-                      , naForm = NULL, zeroForm = NULL
-                      , fmt = NULL, pThreshold = NULL
-                      , width = NULL, align = NULL
-                      , lang = NULL, ...){
+fm.matrix <- function(x, digits = NULL, leadDigits = NULL, sci = NULL, 
+                      bigMark = NULL, decMark = NULL, naForm = NULL, 
+                      zeroForm = NULL, fmt = NULL, pThreshold = NULL, 
+                      width = NULL, align = NULL, lang = NULL, ...) {
+  dn <- dimnames(x)
+  d  <- dim(x)
+  result <- fm.default(x = as.vector(x), digits = digits, sci = sci, 
+                       bigMark = bigMark, leadDigits = leadDigits, 
+                       zeroForm = zeroForm, naForm = naForm, fmt = fmt, 
+                       align = align, width = width, lang = lang, 
+                       pThreshold = pThreshold, decMark = decMark, ...)
   
-  x[,] <- fm.default(x=x, digits=digits, sci=sci, bigMark=bigMark,
-                         leadDigits=leadDigits, zeroForm=zeroForm, naForm=naForm,
-                         fmt=fmt, align=align, width=width, lang=lang, 
-                         pThreshold=pThreshold, decMark=decMark, ...)
+  result <- matrix(result, nrow = d[1], ncol = d[2], dimnames = dn)
   
-  class(x) <- c("Fm", class(x))
-  return(x)
+  result
+  
 }
 
 
 #' @export
-fm.table <- function(x, digits = NULL, leadDigits = NULL, sci = NULL
-                     , bigMark=NULL, decMark = NULL
-                     , naForm = NULL, zeroForm = NULL
-                     , fmt = NULL, pThreshold = NULL
-                     , width = NULL, align = NULL
-                     , lang = NULL, ...){
+fm.table <- function(x, digits = NULL, leadDigits = NULL, sci = NULL,
+                     bigMark = NULL, decMark = NULL, naForm = NULL, 
+                     zeroForm = NULL, fmt = NULL, pThreshold = NULL,
+                     width = NULL, align = NULL, lang = NULL, ...) {
   
-  x[] <- fm.default(x=x, digits=digits, sci=sci, bigMark=bigMark,
-                        leadDigits=leadDigits, zeroForm=zeroForm, naForm=naForm,
-                        fmt=fmt, align=align, width=width, lang=lang, pThreshold=pThreshold, 
-                        decMark=decMark,...)
+  dn <- dimnames(x)
+  d  <- dim(x)
+  result <- fm.default(x = as.vector(x), digits = digits, sci = sci,
+                       bigMark = bigMark, leadDigits = leadDigits,
+                       zeroForm = zeroForm, naForm = naForm, fmt = fmt,
+                       align = align, width = width, lang = lang,
+                       pThreshold = pThreshold, decMark = decMark, ...)
   
-  class(x) <- c("Fm", class(x))
-  return(x)
+  result <- array(result, dim = d, dimnames = dn)
+  class(result) <- c("table", class(result))
+  result
 }
 
 
 
 #' @export
-fm.ftable <- function(x, digits = NULL, leadDigits = NULL, sci = NULL
-                      , bigMark=NULL, decMark = NULL
-                      , naForm = NULL, zeroForm = NULL
-                      , fmt = NULL, pThreshold = NULL
-                      , width = NULL, align = NULL
-                      , lang = NULL, ...){
+fm.ftable <- function(x, digits = NULL, leadDigits = NULL, sci = NULL,
+                      bigMark = NULL, decMark = NULL, naForm = NULL, 
+                      zeroForm = NULL, fmt = NULL, pThreshold = NULL,
+                      width = NULL, align = NULL, lang = NULL, ...) {
   
-  # convert ftable first to matrix, then to data.frame in order to 
+  # convert ftable first to matrix, then to data.frame in order to
   # apply recycled arguments columnwise, which is a common need
-  res <- fm(as.data.frame(as.matrix(x)), digits = digits, sci = sci, bigMark = bigMark,
-                leadDigits = leadDigits, zeroForm = zeroForm, naForm = naForm,
-                fmt = fmt, align = align, width = width, lang = lang, 
-                pThreshold = pThreshold, decMark=decMark, ...)
+  res <- fm(as.data.frame(as.matrix(x)), digits = digits, sci = sci, 
+            bigMark = bigMark, leadDigits = leadDigits, zeroForm = zeroForm, 
+            naForm = naForm, fmt = fmt, align = align, width = width, 
+            lang = lang, pThreshold = pThreshold, decMark = decMark, ...)
   
-  x[] <- as.matrix(res)
+  m <- as.matrix(res)
+  x[] <- m[seq_len(prod(dim(x)))]
   
   return(x)
-  
 }
 
 

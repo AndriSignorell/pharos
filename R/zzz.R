@@ -75,7 +75,7 @@
 #'             
 #' @importFrom utils head tail combn readRegistry modifyList
 #' 
-#' @importFrom stats qt sd as.dendrogram dist hclust order.dendrogram filter relevel setNames is.ts time prop.test predict qnorm formula var model.frame model.response model.weights terms na.omit acf plot.ts pacf complete.cases dnorm quantile uniroot density as.formula chisq.test na.pass
+#' @importFrom stats qt sd as.dendrogram dist hclust order.dendrogram filter relevel setNames is.ts time prop.test predict qnorm formula var model.frame model.response model.weights terms na.omit acf plot.ts pacf complete.cases dnorm quantile uniroot density as.formula chisq.test na.pass lm
 #'             
 #' @importFrom stringi stri_sub stri_length stri_pad stri_trim_both stri_extract_first_regex
 #' 
