@@ -99,7 +99,8 @@ hexToRGB <- function(hex) {
 #'
 #' @export
 RGBToHex <- function(col) {
-  paste0("#", paste0(decToHex(round(col)), collapse = ""))
+  col <- round(col)
+  paste0("#", paste0(sprintf("%02X", as.integer(col)), collapse = ""))
 }
 
 
@@ -452,5 +453,4 @@ CMYKToRGB <- function(cyan,
 # 
 # colToGrey <- grayscale
 # colToGray <- grayscale
-
 

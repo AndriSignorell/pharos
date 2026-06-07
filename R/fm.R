@@ -728,7 +728,7 @@ fm.ftable <- function(x, digits = NULL, leadDigits = NULL, sci = NULL,
              , c("-","+")[(pwr >= 0) + 1]
              , fm(abs((pwr - (pwr %% 3))), leadDigits=2, digits=0)
              , sep="")
-  am <- d.prefix$abbr[match(as.numeric(a), d.prefix$mult)]
+  am <- Prefix$abbr[match(as.numeric(a), Prefix$mult)]
   
   a[!is.na(am)] <- am[!is.na(am)]
   a[a == "1e+00"] <- ""

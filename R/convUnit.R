@@ -38,7 +38,7 @@
 #' If units are not compatible, an error is thrown.
 #'
 #' For non-SI units (e.g. \code{"mi"}, \code{"bar"}), conversion
-#' paths are resolved via a graph representation of \code{d.units}.
+#' paths are resolved via a graph representation of \code{Units}.
 #'
 #' Temperature conversions are handled separately and do not use
 #' multiplicative scaling.
@@ -108,16 +108,16 @@ convUnit <- local({
   # -----------------------------
   # graph builder with signature
   # -----------------------------
-  build_edges <- function(d.units) {
-    sig <- paste(d.units$from, d.units$to, d.units$fact, collapse="|")
+  build_edges <- function(Units) {
+    sig <- paste(Units$from, Units$to, Units$fact, collapse="|")
     if (is.null(edges_cache) || edges_sig != sig) {
       edges_cache <<- rbind(
-        data.frame(from=as.character(d.units$from),
-                   to=as.character(d.units$to),
-                   w=log(d.units$fact)),
-        data.frame(from=as.character(d.units$to),
-                   to=as.character(d.units$from),
-                   w=-log(d.units$fact))
+        data.frame(from=as.character(Units$from),
+                   to=as.character(Units$to),
+                   w=log(Units$fact)),
+        data.frame(from=as.character(Units$to),
+                   to=as.character(Units$from),
+                   w=-log(Units$fact))
       )
       edges_sig <<- sig
     }
@@ -243,8 +243,8 @@ convUnit <- local({
            prefix = NULL, 
            units = NULL) {
     
-    if (is.null(prefix)) prefix <- d.prefix
-    if (is.null(units))  units  <- d.units
+    if (is.null(prefix)) prefix <- Prefix
+    if (is.null(units))  units  <- Units
     
     stopifnot(is.numeric(x), is.character(from), is.character(to))
     

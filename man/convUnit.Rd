@@ -50,7 +50,7 @@ The function checks dimensional consistency before conversion.
 If units are not compatible, an error is thrown.
 
 For non-SI units (e.g. \code{"mi"}, \code{"bar"}), conversion
-paths are resolved via a graph representation of \code{d.units}.
+paths are resolved via a graph representation of \code{Units}.
 
 Temperature conversions are handled separately and do not use
 multiplicative scaling.

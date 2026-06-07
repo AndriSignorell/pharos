@@ -13,7 +13,7 @@
 
 #' @rdname constants
 #' @export
-d.prefix <- data.frame(
+Prefix <- data.frame(
   pref = c("yotta", "zetta", "exa", "peta", "tera", "giga", "mega", "kilo", 
            "hecto", "deca", "deci", "centi", "milli", "micro", "nano", 
            "pico", "femto", "atto", "zepto", "yocto"), 

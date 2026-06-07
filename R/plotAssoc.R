@@ -57,7 +57,7 @@
 #'   \code{\link[DescToolsX]{conf}}
 #'
 #' @examples
-#' tab <- table(bedrock::d.pizza$driver, bedrock::d.pizza$area)
+#' tab <- table(bedrock::Pizza$driver, bedrock::Pizza$area)
 #'
 #' # default
 #' plotAssoc(tab)

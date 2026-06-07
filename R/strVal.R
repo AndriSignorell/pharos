@@ -54,6 +54,8 @@
 #' @concept data-manipulation
 #'
 #'
+
+
 #' @export
 strVal <- function(x, paste = FALSE, as.numeric = FALSE, dec = getOption("OutDec")) {
   
@@ -75,6 +77,10 @@ strVal <- function(x, paste = FALSE, as.numeric = FALSE, dec = getOption("OutDec
     
   } else {
     if (as.numeric) {
+      if (dec != getOption("OutDec")) {
+        vals <- lapply(vals, function(v)
+          stringi::stri_replace_all_fixed(v, dec, getOption("OutDec")))
+      }
       vals <- lapply(vals, as.numeric)
     }
   }

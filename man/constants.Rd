@@ -2,13 +2,13 @@
 % Please edit documentation in R/constants.R
 \name{constants}
 \alias{constants}
-\alias{d.prefix}
+\alias{Prefix}
 \title{DescToolsX Constants}
 \format{
 A character vector of length 7.
 }
 \usage{
-d.prefix
+Prefix
 }
 \description{
 English abbreviated and full weekday names, starting with Monday.

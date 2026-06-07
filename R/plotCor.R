@@ -336,13 +336,13 @@ plotCor <- function(
 #'                      , mar = c(3,8,8,8), mincor=0, main="", clust=FALSE, ...){
 #'   
 #'   # example:
-#'   # m <- cor(d.pizza[,WhichNumerics(d.pizza)][,1:5], use="pairwise.complete.obs")
+#'   # m <- cor(Pizza[,WhichNumerics(Pizza)][,1:5], use="pairwise.complete.obs")
 #'   # plotCor(m)
 #'   # plotCor(m, args.colLegend="n", las=1)
 #'   # plotCor(m, cols=colorRampPalette(c("red", "white", "blue"), space = "rgb")(4), args.colLegend=list(xlab=sprintf("%.1f", seq(1,-1, length=5))) )
 #'   # plotCor(m, cols=colorRampPalette(c("red", "black", "green"), space = "rgb")(10))
 #'   
-#'   # plotCor(round(CramerV(d.pizza[,c("driver","operator","city", "quality")]),3))
+#'   # plotCor(round(CramerV(Pizza[,c("driver","operator","city", "quality")]),3))
 #'   
 #'   pars <- par(mar=mar); on.exit(par(pars))
 #'   
