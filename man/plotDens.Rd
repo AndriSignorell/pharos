@@ -9,7 +9,7 @@ plotDens(x, ...)
 
 \method{plotDens}{formula}(
   formula,
-  data = NULL,
+  data,
   subset,
   na.action = na.omit,
   ...,

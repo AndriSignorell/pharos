@@ -146,7 +146,8 @@ palNames <- function(type = c("all", "continuous", "discrete")) {
 #'   \code{\link[base]{match.arg}}) or index into \code{\link{palNames}()}.
 #'   If missing, returns the current default palette from
 #'   \code{getOption("DescToolsX.palette")}.
-#' @param n integer, number of colors to return. Default \code{100}.
+#' @param n integer, number of colors to return. Default \code{NA} returns 
+#' the colors as contained in the palette.
 #' @param alpha numeric in \eqn{[0, 1]}, opacity. Default \code{1} (opaque).
 #'   Applied via \code{\link[grDevices]{adjustcolor}}.
 #'
@@ -181,7 +182,7 @@ palNames <- function(type = c("all", "continuous", "discrete")) {
 
 
 #' @export
-pal <- function(name, n = 100L, alpha = 1) {
+pal <- function(name, n = NA, alpha = 1) {
   
   # ── missing: return default ────────────────────────────────────────────────
   if (missing(name)) {

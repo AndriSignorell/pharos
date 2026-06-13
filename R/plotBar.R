@@ -197,33 +197,40 @@ plotBar <- function(height,
                     ...) {
 
   th <- .theme(
-    bar = list(col=col, border=border)
+    bar = list(col=col, border=border), 
+    grid = TRUE
   )
-  col <- th$col
-  border <- th$border
-
+  col    <- th$bar$col
+  border <- th$bar$border
+  
   dots  <- list(...)
   
   .withGraphicsState({
     
         
-    # par() aus ...
-    .applyParFromDots(...)
+    .applyParFromDots(..., defaults=list(
+            mar      = c(left = 5),  # default
+            col.axis = "grey40", 
+            fg       = "grey50"      
+    ))
 
-    # set by .applyParFromDots(...) and needed afterwards...
-    las   <- par("las")
+    # read back the *effective* las (user dots may have changed it via
+    # .applyParFromDots); needed below for axis()/margin computation
+    las <- par("las")
     
     labels <- .getBarplotAxisLabels(height, dots)
     
     # --- margin-corrections ---
-    if (horiz && !(par("yaxt")=="n")) {
-      .adjustMargin(labels, side=2)
-      # .adjustLeftMarginForLabels(labels)
-    }
+    # Skip auto-adjustment when caller supplied mar explicitly
+    .mar_supplied <- "mar" %in% names(dots)
     
-    if (!horiz && las == 2 && !(par("xaxt")=="n")) {
-      .adjustMargin(labels, side=1, las=2)
-      # .adjustBottomMarginForLas2(labels)
+    if (!.mar_supplied) {
+      if (horiz && !(par("yaxt")=="n")) {
+        .adjustMargin(labels, side=2)
+      }
+      if (!horiz && las == 2 && !(par("xaxt")=="n")) {
+        .adjustMargin(labels, side=1, las=2)
+      }
     }
     
     # --- Setup (invisible) ---

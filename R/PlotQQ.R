@@ -107,13 +107,25 @@ plotQQ <- function(x, qdist=stats::qnorm,
     # example:
     # y <- rexp(100, 1/10)
     # plotQQ(y, function(p) qexp(p, rate=1/10))
+
     
+    # resolve main BEFORE applying par defaults, the top margin 
+    # depends on it
+    main <- main %||% gettextf("Q-Q-Plot (%s)", 
+                               deparse(substitute(qdist))[1L])
+    
+    .marTop(main)
+    .applyParFromDots(..., 
+                      defaults=list(
+                        mar      = c(left = 5, top=.marTop(main)),  # default
+                        col.axis = "grey40", 
+                        fg       = "grey30")       # border inherits from here
+    ) 
+
     main <- main %||% gettextf("Q-Q-Plot (%s)", deparse(substitute(qdist))[1L])
     xlab <- xlab %||% "Theoretical Quantiles"
     ylab <- ylab %||% "Sample Quantiles"
-    
-    .applyParFromDots(...)
-    
+
     y <- sort(x)
     p <- stats::ppoints(y)
     x <- qdist(p)
@@ -162,6 +174,7 @@ plotQQ <- function(x, qdist=stats::qnorm,
       defaults = list(
         x=x, y=y,
         pch = 21,
+        cex = 1,
         bg = addAlpha("white", 0.8)
       ),
       user = list(...)

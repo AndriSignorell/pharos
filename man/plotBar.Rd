@@ -180,6 +180,7 @@ Other topic.graphics:
 \code{\link[=plotRidge]{plotRidge()}}
 
 Other plot.univariate:
+\code{\link[=plotBox]{plotBox()}},
 \code{\link[=plotDensBox]{plotDensBox()}},
 \code{\link[=plotDot]{plotDot()}},
 \code{\link[=plotPropCI]{plotPropCI()}},

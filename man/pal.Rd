@@ -5,7 +5,7 @@
 \alias{plot.Palette}
 \title{Get a Color Palette}
 \usage{
-pal(name, n = 100L, alpha = 1)
+pal(name, n = NA, alpha = 1)
 
 \method{plot}{Palette}(x, cex = 2.5, border = "grey70", ...)
 }
@@ -15,7 +15,8 @@ pal(name, n = 100L, alpha = 1)
 If missing, returns the current default palette from
 \code{getOption("DescToolsX.palette")}.}
 
-\item{n}{integer, number of colors to return. Default \code{100}.}
+\item{n}{integer, number of colors to return. Default \code{NA} returns
+the colors as contained in the palette.}
 
 \item{alpha}{numeric in \eqn{[0, 1]}, opacity. Default \code{1} (opaque).
 Applied via \code{\link[grDevices]{adjustcolor}}.}

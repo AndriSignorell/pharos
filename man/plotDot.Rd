@@ -13,7 +13,6 @@ plotDot(
   gap = 1,
   axes = TRUE,
   xax = NULL,
-  yax = NULL,
   box = TRUE,
   grid = TRUE,
   pch = NULL,
@@ -46,8 +45,6 @@ Defaults to \code{dimnames(x)[[1]]} if available.}
 
 \item{xax}{Optional specification of the x-axis. Passed to
 (the internal function) \code{.drawAxis}.}
-
-\item{yax}{Optional specification of the y-axis.}
 
 \item{box}{Logical; if \code{TRUE} a box is drawn around the plotting region.}
 
@@ -120,6 +117,7 @@ points(c(12,18,28,40,65) + runif(n = 5)*15, y=unlist(ypos$ypos),
 \seealso{
 Other plot.univariate:
 \code{\link[=plotBar]{plotBar()}},
+\code{\link[=plotBox]{plotBox()}},
 \code{\link[=plotDensBox]{plotDensBox()}},
 \code{\link[=plotPropCI]{plotPropCI()}},
 \code{\link[=plotViolin]{plotViolin()}}

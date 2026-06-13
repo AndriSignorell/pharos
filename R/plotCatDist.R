@@ -118,61 +118,73 @@ plotCatDist <- function(
     
     # reverse for plotting (top = largest)
     tab <- rev(tab)
-    p   <- rev(p)
+    p   <- unname(rev(p))
     
     y <- seq_along(tab)
     
-    # ── Layout ───────────────────────────────────────────────────
+    # ── Layout & margins ─────────────────────────────────────────
+    # Trigger plot.new() hooks (e.g. .Rprofile setHook) before reading par("cex")
+    frame()
+    ocex <- par("cex")
+    
     if (type == "both") {
-      par(mfrow = c(1, 2))
+      lab_lines <- max(strwidth(names(tab), units = "inches", cex = ocex)) /
+        (par("cin")[2] * ocex) + 1.8
+      par(mfrow = c(1, 2),
+          oma   = c(0, lab_lines, 0, 1),
+          mar   = c(5.1, 0, 3.1, 2),
+          cex   = ocex)
     }
     
     # ── Plot frequency ───────────────────────────────────────────
     if (type %in% c("both", "freq")) {
       
-      plotBar(
-        tab,
-        horiz = TRUE,
-        col = col,
-        border = border,
-        grid = TRUE,
-        yaxt = "n",
-        xlab = "frequency"
-      )
+      b <- barplot(unname(tab), horiz = TRUE, 
+                   border = border,
+                   col = col, space = 0.2,
+                   panel.first = grid(nx = NULL, ny = NA),
+                   xlab = "frequency")
       
-      axis(2, at = y, labels = names(tab), las = 1)
+      mtext(names(tab), side = 2, at = b, line = 1, las = 1,
+            cex = par("cex.axis")*ocex)
     }
     
     # ── Plot proportions ─────────────────────────────────────────
     if (type %in% c("both", "perc")) {
       
-      plotBar(
-        p,
-        horiz = TRUE,
-        col = if (ecdf) col else c(col, fade(col, 0.5)),
-        border = border,
-        grid = TRUE,
-        yaxt = "n",
-        xlim = c(0, 1),
-        xlab = if (ecdf) "cumulative proportion" else "proportion"
-      )
+      col_ecdf <- grDevices::adjustcolor(col, alpha.f = 0.5)
       
-      axis(2, at = y, labels = names(tab), las = 1)
+      if (!ecdf) {
+        bp <- barplot(rev(cumsum(rev(p))), horiz = TRUE,
+                      border = border, col = col_ecdf,
+                      xlim = c(0, 1), space = 0.2,
+                      panel.first = grid(nx = NULL, ny = NA),
+                      xlab = "proportion")
+        barplot(p, horiz = TRUE, border = border, col = col,
+                space = 0.2, add = TRUE)
+      } else {
+        bp <- barplot(p, horiz = TRUE,
+                      border = border, col = col,
+                      xlim = c(0, 1), space = 0.2,
+                      panel.first = grid(nx = NULL, ny = NA),
+                      xlab = "cumulative proportion")
+      }
+      
+      if (type != "both")
+        mtext(names(tab), side = 2, at = bp, line = 1, las = 1,
+              cex = par("cex.axis"))
     }
     
     # ── Title ────────────────────────────────────────────────────
-    bedrock::callIf(
-      title,
-      if (!is.null(main)) list(main = main, outer = TRUE)
-    )
+    if (!is.null(main))
+      title(main = main, outer = (type == "both"), line = if (type == "both") -1.5 else NA)
     
     # ── Truncation note ──────────────────────────────────────────
     if (trunc_fg) {
       mtext("... truncated", side = 1, line = 2, cex = 0.8)
     }
     
-  })
+  }, resetLayout = TRUE)
   
   invisible(list(freq = tab, prop = p))
 }
-

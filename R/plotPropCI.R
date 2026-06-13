@@ -187,3 +187,16 @@ plotPropCI <- function(
   invisible(ci)
 }
 
+
+
+# == internal helper functions =====================================================
+
+
+# needed here to avoid reverse dependency with binomCI defined in lumen
+
+.binomCI_raw <- function(x, n, conf.level=0.95){
+  setNamesX(c(est=x/n, prop.test(x, n, conf.level = conf.level, correct=FALSE)$conf.int),
+            names=c("est", "lci", "uci"))
+}
+
+

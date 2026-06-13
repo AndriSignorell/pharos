@@ -70,13 +70,9 @@ plotBinaryTree <- function(x, main = "Binary tree", horiz = FALSE,
     
   .withGraphicsState({
     
-    
-    # par() aus ...
-    # default: asp = FALSE, mar = c(0,0,2,0) + 1
-    do.call(.applyParFromDots, 
-            mergeArgs(defaults=list(
-              mar=c(0,0,2,0)),
-              list(...)
+    .applyParFromDots(..., 
+                      defaults=list(
+                        mar=c(top=2)
             ))
 
     n <- length(x)

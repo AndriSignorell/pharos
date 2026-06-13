@@ -1,198 +1,255 @@
 
-#' Create an Area Plot
-#' 
-#' Produce a stacked area plot, or add polygons to an existing plot.
-#' 
-#' @name plotArea  
-#' @aliases plotArea plotArea.default plotArea.formula
-#' @param x numeric vector of x values, or if \code{y=NULL} a numeric vector of
-#' y values. Can also be a 1-dimensional table (x values in names, y values in
-#' array), matrix or 2-dimensional table (x values in row names and y values in
-#' columns), a data frame (x values in first column and y values in subsequent
-#' columns), or a time-series object of class \code{ts/mts}.
-#' @param y numeric vector of y values, or a matrix containing y values in
-#' columns.
-#' @param prop whether data should be plotted as proportions, so stacked areas
-#' equal 1.
-#' @param add whether polygons should be added to an existing plot.
-#' @param xlab label for x axis. 
-#' @param ylab label for y axis. 
-#' @param col fill color of polygon(s). The default is a vector of gray colors.
-#' @param frame.plot a logical indicating whether a box should be drawn around
-#' the plot.
-#' @param formula a \code{\link{formula}}, such as \code{y ~ x} or
-#' \code{cbind(y1, y2) ~ x}, specifying x and y values. A dot on the left-hand
-#' side, \code{formula = . ~ x}, means all variables except the one specified
-#' on the right-hand side.
-#' @param data a data frame (or list) from which the variables in
-#' \code{formula} should be taken.
-#' @param subset an optional vector specifying a subset of observations to be
-#' used.
-#' @param na.action a function which indicates what should happen when the data
-#' contain \code{NA} values. Defaults to \code{getOption("na.action")}.
-#' @param \dots further arguments are passed to \code{matplot} and
-#' \code{polygon}.
-#' @return Matrix of cumulative sums that was used for plotting. 
-#' @author Arni Magnusson <thisisarni@@gmail.com>
-#' @seealso \code{\link{barplot}}, \code{\link{polygon}},
-#' \code{\link[areaplot]{areaplot}} 
-#' 
+#' Stacked Area Plot
+#'
+#' Draws one or several stacked area series using cumulative polygons.
+#' The function accepts either a matrix of values or separate \code{x} and
+#' \code{y} coordinates. Multiple series are displayed as stacked areas.
+#'
+#' @param x Numeric vector, matrix or data frame. If \code{y} is missing,
+#'   \code{x} is interpreted as a matrix of series where rows correspond to
+#'   x positions and columns to individual areas.
+#' @param y Optional numeric vector or matrix giving the y-values. If supplied,
+#'   \code{x} is interpreted as the x-coordinates.
+#' @param prop Logical indicating whether rows should be converted to
+#'   proportions so that stacked areas sum to one.
+#' @param col Fill colours used for the areas.
+#' @param xlab Label for the x-axis.
+#' @param ylab Label for the y-axis.
+#' @param xlim Limits for the x-axis.
+#' @param ylim Limits for the y-axis.
+#' @param legend Logical or list controlling the legend. If \code{TRUE}, a legend
+#'   is drawn using the column names of the data. If a list is supplied, its
+#'   elements are passed to the internal legend drawing routine.
+#' @param main Main title of the plot.
+#' @param grid Logical or list controlling the background grid. If \code{TRUE},
+#'   a default grid is drawn.
+#' @param stamp Logical indicating whether a package stamp should be drawn.
+#' @param ... Additional graphical parameters passed to \code{\link[graphics]{par}}
+#'   via \code{.applyParFromDots()} and to the plotting functions.
+#'
+#' @details
+#' If \code{y} is missing, \code{x} is interpreted as a matrix and each column
+#' is drawn as a separate stacked area.
+#'
+#' The cumulative sums are calculated row-wise and displayed as polygons stacked
+#' on top of each other.
+#'
+#' If \code{prop = TRUE}, each row is converted to proportions before plotting,
+#' so the stacked areas sum to one.
+#'
+#' Row names are used as x-axis labels when available and \code{y} is omitted.
+#'
+#' @return Invisibly returns a list containing:
+#' \itemize{
+#' \item \code{x} the x-values used for plotting,
+#' \item \code{y} the original y-values,
+#' \item \code{cumulative} the cumulative values used to construct the areas,
+#' \item \code{legend} the legend specification if drawn.
+#' }
+#'
 #' @examples
-#' plotArea(VADeaths, xaxt="n")
-#' axis(1, at=1:5, labels=rownames(VADeaths))
-#' 
-#' # formula
-#' plotArea(Armed.Forces~Year, data=longley)
-#' plotArea(cbind(Armed.Forces,Unemployed)~Year, data=longley)
-#' 
-#' # add=TRUE
-#' plot(1940:1970, 500*runif(31), ylim=c(0,500))
-#' plotArea(Armed.Forces~Year, data=longley, add=TRUE)
-#' 
-#' # matrix
-#' plotArea(WorldPhones)
-#' plotArea(WorldPhones, prop=TRUE, col=rainbow(10))
-#' 
-#' # table
-#' tab <- xtabs(ncases ~ agegp + alcgp, data = esoph)
-#' plotArea(tab, xaxt="n", xlab="age group")
-#' axis(1, labels=rownames(tab), at=seq(nrow(tab)))
-#' 
-#' # ts/mts
-#' plotArea(austres)
-#' plotArea(Seatbelts[,c("drivers","front","rear")],
-#'          ylab="Killed or seriously injured")
-#' abline(v=1983+1/12, lty=3)
-#' 
-
-
-#' @rdname plotArea  
+#' plotArea(VADeaths)
+#'
+#' plotArea(
+#'   WorldPhones,
+#'   col = pal("Helsana")
+#' )
+#'
+#' plotArea(
+#'   WorldPhones,
+#'   prop = TRUE,
+#'   col = rainbow(ncol(WorldPhones))
+#' )
+#'
+#' x <- 1:20
+#' y <- cbind(
+#'   A = runif(20, 1, 5),
+#'   B = runif(20, 1, 3),
+#'   C = runif(20, 1, 4)
+#' )
+#'
+#' plotArea(x, y)
+#'
 #' @family plot.special
 #' @concept graphics
-#' @concept frequency-analysis
+#' @concept area-plots
 #'
-#'
+
+
 #' @export
-plotArea <- function(x, ...) {
-  # plotArea - mehrere Flaechen uebereinander
-  # source: http://r.789695.n4.nabble.com/plotArea-td2255121.html
-  # arni...
-  UseMethod("plotArea")
-}
-
-
-#' @rdname plotArea  
-#' @export
-plotArea.default <- function(x, y=NULL, prop=FALSE, add=FALSE, xlab=NULL, ylab=NULL,
-                             col=NULL, frame.plot=FALSE, ...) {
-
+plotArea <- function(
+    x, y,
+    prop = FALSE,
+    col = NULL,
+    xlab = "",
+    ylab = "",
+    xlim = NULL,
+    ylim = NULL,
+    legend = TRUE,
+    main = NULL,
+    grid = TRUE,
+    ...
+) {
+  
+  y.missing <- missing(y)
+  
+  if (is.null(col))
+    col <- pal("Helsana")
+  
   .withGraphicsState({
+    
+    if (y.missing) {
       
-    if(is.ts(x)) {  # ts/mts
-      if(is.null(ylab)) ylab <- deparse(substitute(x))
-      x <- data.frame(Time=time(x), x)
-    }
-    
-    if(is.table(x)) { # table
-      if(is.null(ylab)) ylab <- deparse(substitute(x))
-      if(length(dim(x)) == 1)
-        x <- t(t(unclass(x)))
-      else
-        x <- unclass(x)
-    }
-    
-    if(is.matrix(x)) { # matrix
-      if(!is.null(rownames(x)) && !any(is.na(suppressWarnings(as.numeric(rownames(x)))))) {
-        x <- data.frame(as.numeric(rownames(x)), x)
-        names(x)[1] <- ""
-      } else {
-        x <- data.frame(Index=seq_len(nrow(x)), x)
-      }
-    }
-    
-    if(is.list(x)) { # data.frame or list
-      if(is.null(xlab))  xlab <- names(x)[1]
-      if(is.null(ylab)) {
-        if(length(x) == 2)
-          ylab <- names(x)[2]
-        else
-          ylab <- ""
-      }
+      z <- as.matrix(x)
       
-      y <- x[-1]
-      x <- x[[1]]
-    }
-    
-    if(is.null(y)) { # one numeric vector passed, plot it on 1:n
-      if(is.null(xlab))  xlab <- "Index"
-      if(is.null(ylab))  ylab <- deparse(substitute(x))
+      x <- seq_len(nrow(z))
+      y <- z
       
-      y <- x
-      x <- seq_along(x)
+    } else {
+      
+      z <- as.matrix(y)
+      
     }
-    
-    if(is.null(xlab))  xlab <- deparse(substitute(x))
-    if(is.null(ylab))  ylab <- deparse(substitute(y))
     
     y <- as.matrix(y)
     
-    if(is.null(col))  col <- gray.colors(ncol(y))
-    col <- rep(col, length.out=ncol(y))
+    if (prop)
+      y <- prop.table(y, 1)
     
-    if(prop)  y <- prop.table(y, 1)
+    col <- rep_len(col, ncol(y))
     
-    y <- t(rbind(0, apply(y, 1, cumsum)))
-    na <- is.na(x) | apply(is.na(y),1,any)
-    x <- x[!na][order(x[!na])]
-    y <- y[!na,][order(x[!na]),]
+    cumulative <- t(
+      rbind(
+        0,
+        apply(y, 1, cumsum)
+      )
+    )
     
+    if (is.null(xlim))
+      xlim <- range(pretty(x), finite = TRUE)
     
-    if(!add)  
-      suppressWarnings(matplot(x, y, type="n", xlab=xlab, ylab=ylab, frame.plot=frame.plot, ...))
+    if (is.null(ylim))
+      ylim <- if (prop)
+        c(0, 1)
+    else
+      range(pretty(cumulative), finite = TRUE)
+    
+    add.legend <- !isFALSE(legend) && !isNA(legend)
 
-    xx <- c(x, rev(x))
-
+    labs <- colnames(z)
     
-    for(i in 1:(ncol(y)-1)) {
-      yy <- c(y[,i+1], rev(y[,i]))
-      # suppressWarnings(polygon(xx, yy, col=col[i], ...))
-      # think we don't need dots here, but can allow warnings, why not??
-      # me: 2020-03-11
-      polygon(xx, yy, col=col[i])
+    if (is.null(labs))
+      labs <- paste("Series", seq_len(ncol(z)))
+    
+    rmar <- if(add.legend)
+      max(2.1, max(strwidth(labs, units="inches")) / par("csi") + 2) + 2
+    else
+      2.1    
+    
+    .applyParFromDots(
+      ...,
+      defaults = list(
+        mar = c(
+          left  = 5,
+          top   = .marTop(main),
+          right = rmar
+        ),
+        fg = "grey30"
+      )
+    )
+    
+    add <- bedrock::getDotsArg(list(...), "add", FALSE)
+    
+    if (!add) {
+      
+      plot(
+        NA,
+        xlim = xlim,
+        ylim = ylim,
+        xaxt = "n",
+        yaxt = "n",
+        xlab = xlab,
+        ylab = ylab,
+        main = main,
+        ...
+      )
+      
+      if (!is.null(rownames(z)) && y.missing) {
+        
+        axis(
+          side = 1,
+          at = seq_len(nrow(z)),
+          labels = rownames(z)
+        )
+        
+      } else {
+        
+        axis(side = 1)
+        
+      }
+      
+      axis(side = 2, las = 1)
+      
     }
+    
+    xx <- c(x, rev(x))
+    
+    for (i in seq_len(ncol(cumulative) - 1)) {
+      
+      polygon(
+        x = xx,
+        y = c(
+          cumulative[, i + 1],
+          rev(cumulative[, i])
+        ),
+        col = col[i],
+        border = NA
+      )
+      
+    }
+    
+    # grid on top of polygons
+    
+    bedrock::callIf(
+      graphics::grid,
+      grid,
+      defaults = list(
+        nx  = NA,
+        ny  = NULL,
+        col = "grey85",
+        lty = 1,
+        lwd = 1
+      )
+    )
+    
+    if (add.legend) {
+      
+      par(xpd = NA)
+      
+      bedrock::callIf(
+        textLegend,
+        legend,
+        defaults = list(
+          y      = cumsum(midx(y[nrow(y), ], inclZero = TRUE)),
+          labels = labs,
+          col    = col,
+          lwd    = 3
+        ),
+        forbidden = "y"
+      )
+      
+    }
+    
+  })
   
+  invisible(
+    list(
+      x = x,
+      y = y,
+      cumulative = cumulative,
+      legend = if (add.legend) legend else NULL
+    )
+  )
   
-  })  # close .withGraphicsState
-  
-  invisible(y[,-1])
-
 }
 
-
-
-#' @rdname plotArea  
-#' @export
-plotArea.formula <- function (formula, data, subset, na.action, ...) {
-  
-  m <- match.call(expand.dots=FALSE)
-  if(is.matrix(eval(m$data,parent.frame())))   m$data <- as.data.frame(data)
-  
-  m$... <- NULL
-  m[[1]] <- as.name("model.frame")
-  
-  if(as.character(formula[[2]]==".")) {
-    rhs <- unlist(strsplit(deparse(formula[[3]])," *[:+] *"))
-    lhs <- sprintf("cbind(%s)", paste(setdiff(names(data), rhs),collapse=","))
-    m[[2]][[2]] <- parse(text=lhs)[[1]]
-  }
-  
-  mf <- eval(m, parent.frame())
-  if(is.matrix(mf[[1]])) {
-    lhs <- as.data.frame(mf[[1]])
-    names(lhs) <- as.character(m[[2]][[2]])[-1]
-    plotArea.default(cbind(mf[-1],lhs), ...)
-  } else {
-    plotArea.default(mf[2:1], ...)
-  }
-  
-}

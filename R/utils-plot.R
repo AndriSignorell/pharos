@@ -17,7 +17,8 @@
     "mar","mai","cex","cex.axis","cex.lab","cex.main","cex.sub",
     "las","tck","mgp","xaxs","yaxs","xaxt","yaxt",
     "col","col.axis","col.lab","col.main","col.sub",
-    "lwd","lty","pch","bg","fg","xpd", "plt"
+    "lwd","lty","pch","bg","fg","xpd", "plt", 
+    "oma", "omi"  # keep eye on this ...
   )
   
   op <- par(keep)
@@ -42,6 +43,12 @@
 
 
 
+# Top margin in lines depending on the presence of a main title.
+# NULL/NA main -> compact top (room for axis only), else room for title.
+# Values are theme defaults, not magic numbers at 40 call sites.
+.marTop <- function(main) {
+  if (is.null(main) || isTRUE(is.na(main))) 2.1 else 4.1
+}
 
 
 .resolvePar <- function(name, value = NULL, default = NULL) {
@@ -78,58 +85,95 @@
 
 
 
-.applyParFromDots <- function(...) {
-
-  # if some defaults for dots required use:
-  # do.call(.applyParFromDots, 
-  #         mergeArgs(defaults=list(
-  #           yaxs="r"), 
-  #           list(...)
-  #         ))
+.applyParFromDots <- function(..., exclude = "cex", defaults = list()) {
   
+  # exclude defaults to "cex": cex must never reach par() (it scales line
+  # height and thus the margins), see design_rules.md "cex policy".
+  # Callers can override with exclude = NULL if they really know better.
   
+  # WHY exclude/defaults sit AFTER the dots:
+  # formals placed after ... require exact names, so partial matching can
+  # never hijack them (and a user's def=/exc= in the dots stays in the dots).
+  # See design_rules.md "Argument matching & signature design".
+  
+  # Patch a 4-element par (mar, oma) element-wise instead of replacing it:
+  # a user saying mar=c(bottom=2) means "change the bottom", not "throw away
+  # the function's left/right/top defaults". Two input styles are supported:
+  #   - named:    c(left=5)        -> only named sides are replaced
+  #   - unnamed:  c(2, NA, NA, NA) -> NA means "keep current value"
   patch_fourpar <- function(new_val, old_val, pname) {
     
     if (!is.null(names(new_val))) {
-      
-      idx <- match(names(new_val),
-                   c("bottom","left","top","right"))
-      
+      idx <- match(names(new_val), c("bottom","left","top","right"))
+      # fail loudly on typos ("botom"), silently dropping them would be
+      # a debugging nightmare
       if (any(is.na(idx)))
         stop(sprintf("%s names must be bottom, left, top, right", pname))
-      
       old_val[idx] <- new_val
       return(old_val)
     }
     
+    # unnamed: recycle to length 4 so mar=2 works as shorthand,
+    # then fill NA positions from the current values
     new_val <- rep_len(new_val, 4)
     idx_na <- is.na(new_val)
     new_val[idx_na] <- old_val[idx_na]
-    
     new_val
   }
   
+  # One shared worker for both passes (defaults, user dots), so filtering,
+  # exclusion and mar/oma patching behave identically on both levels --
+  # this was previously duplicated (and once even duplicated *within* the
+  # function body).
+  apply_set <- function(args) {
     
-  dots <- list(...)
-  if (!length(dots)) return(invisible())
-  
-  dots <- dots[!is.na(names(dots))]
-  dots <- dots[names(dots) %in% names(par(no.readonly = TRUE))]
-  
-  if (!length(dots)) return(invisible())
-  
-  p <- par(no.readonly = TRUE)
-  
-  
-  if ("mar" %in% names(dots)) {
-    dots$mar <- patch_fourpar(dots$mar, p$mar, "mar")
+    # drop unnamed elements: positional args in the dots belong to
+    # plot()/points(), not to par()
+    args <- args[!is.na(names(args))]
+    
+    # keep only genuine par() parameters; everything else in the dots
+    # (xlim, main, ...) is meant for the plotting functions downstream.
+    # no.readonly = TRUE so we never try to set read-only pars (cin, ...)
+    args <- args[names(args) %in% names(par(no.readonly = TRUE))]
+    
+    # exclude applies to BOTH passes, deliberately: if "cex" must not be
+    # set via par() (it scales line height and thus the margins, see
+    # plotQQ), that holds for function defaults just as for user input
+    if (!is.null(exclude))
+      args <- args[!names(args) %in% exclude]
+    
+    if (!length(args)) return(invisible())
+    
+    # snapshot AFTER filtering and INSIDE each pass: the second pass must
+    # patch against the state the first pass produced, so user mar values
+    # compose with the function's mar defaults instead of resetting them
+    p <- par(no.readonly = TRUE)
+    
+    if ("mar" %in% names(args)) args$mar <- patch_fourpar(args$mar, p$mar, "mar")
+    if ("oma" %in% names(args)) args$oma <- patch_fourpar(args$oma, p$oma, "oma")
+    
+    do.call(par, args)
+    invisible()
   }
   
-  if ("oma" %in% names(dots)) {
-    dots$oma <- patch_fourpar(dots$oma, p$oma, "oma")
+  # Precedence: user dots > options() > function defaults.
+  # Implemented as two sequential par() passes rather than one merged list:
+  # sequential application is what makes element-wise composition of
+  # mar/oma across levels possible (a merged list could only replace
+  # whole vectors, losing e.g. the default left margin when the user
+  # only changes the bottom).
+  if (length(defaults)) {
+    # resolve each default against a possible user option
+    # (DescToolsX.plot.<name>) before applying -- this is the hook that
+    # was missing in the old two-pattern approach, where options() never
+    # had a chance to take effect
+    defaults <- Map(function(nm, val) .resolvePar(nm, default = val),
+                    names(defaults), defaults)
+    apply_set(defaults)
   }
   
-  do.call(par, dots)
+  # user dots last, so they always win
+  apply_set(list(...))
   
   invisible()
 }
@@ -428,7 +472,13 @@
       
     } else if (is.list(arg)) {
       
-      out[[nm]] <- modifyList(th_sub, arg)
+      # ** this would be elegant, but removes things like ny=NULL
+      # out[[nm]] <- modifyList(th_sub, arg)
+      
+      merged <- th_sub
+      for (nm2 in names(arg))
+        merged[nm2] <- list(arg[[nm2]])
+      out[[nm]] <- merged
       
     } else {
       

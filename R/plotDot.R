@@ -28,7 +28,6 @@
 #' @param axes Logical; if \code{TRUE} axes are drawn.
 #' @param xax Optional specification of the x-axis. Passed to
 #'   (the internal function) \code{.drawAxis}.
-#' @param yax Optional specification of the y-axis.
 #' @param box Logical; if \code{TRUE} a box is drawn around the plotting region.
 #' @param grid Logical; if \code{TRUE} horizontal grid lines are drawn.
 #' @param pch Plotting symbol specification for the points. May be a single
@@ -91,6 +90,7 @@
 #' @concept confidence-intervals
 #'
 #'
+
 #' @export
 plotDot <- function(x, 
                     items = NULL,
@@ -100,17 +100,35 @@ plotDot <- function(x,
                     gap = 1,
                     axes = TRUE,
                     xax = NULL, 
-                    yax = NULL, 
                     box = TRUE,
                     grid = TRUE,
                     pch = NULL, 
-                    # col = NULL,
+                            ...) {
+  UseMethod("plotDot")
+}
+
+
+
+#' @export
+plotDot.default <- function(x, 
+                    items = NULL,
+                    groups = NULL,
+                    main=NULL, 
+                    xlim = NULL,
+                    gap = 1,
+                    axes = TRUE,
+                    xax = NULL, 
+                    box = TRUE,
+                    grid = TRUE,
+                    pch = NULL, 
                     ...) {
 
   
   th <- .theme(
     grid = grid,
-    pch  = pch
+    pch  = pch, 
+    box  = list(col="grey",
+                which ="plot") 
   )
   
   
@@ -127,6 +145,11 @@ plotDot <- function(x,
   if (dim(x)[3] == 1 && missing(groups))
     groups <- NULL
 
+  ng <- dim(x)[3]
+  x <- x[,,rev(seq_len(ng)), drop = FALSE]
+  if (!is.null(groups))
+    groups <- rev(groups)
+  
   
   .withGraphicsState({
 
@@ -258,7 +281,7 @@ plotDot <- function(x,
     # draw box if box != FALSE || NA
     bedrock::callIf(graphics::box, 
             box,
-            defaults=list(which="plot"))
+            defaults=th$box)
     
     # place main title if main != FALSE || NA
     if(!(is.null(main) %||% main=="" %||% isNA(main)))
@@ -283,6 +306,162 @@ plotDot <- function(x,
   
 }
 
+
+
+# ============================================================
+# plotDot for CI objects
+# ============================================================
+
+# internal representation expected by plotDot.default:
+#
+# dim = c(
+#   n_items,
+#   3,          # est, lci, uci
+#   n_groups
+# )
+#
+# dimnames[[1]] = item labels
+# dimnames[[3]] = group labels
+#
+# ============================================================
+
+#' @export
+plotDot.CI <- function(x, ...) {
+  
+  grp <- setdiff(
+    names(x),
+    c("est", "lci", "uci")
+  )
+  
+  # ----------------------------------------------------------
+  # no grouping variables
+  # ----------------------------------------------------------
+  
+  if (length(grp) == 0) {
+    
+    arr <- array(
+      NA_real_,
+      dim = c(nrow(x), 3, 1),
+      dimnames = list(
+        rownames(x),
+        c("est", "lci", "uci"),
+        NULL
+      )
+    )
+    
+    arr[,1,1] <- x$est
+    arr[,2,1] <- x$lci
+    arr[,3,1] <- x$uci
+    
+    return(
+      plotDot.default(arr, ...)
+    )
+  }
+  
+  # ----------------------------------------------------------
+  # one grouping variable
+  # ----------------------------------------------------------
+  
+  if (length(grp) == 1) {
+    
+    items <- rownames(x)
+    
+    if (is.null(items))
+      stop(
+        "For CI objects with one grouping variable, ",
+        "rownames must define the items."
+      )
+    
+    groups <- unique(as.character(x[[grp]]))
+    
+    arr <- array(
+      NA_real_,
+      dim = c(
+        length(unique(items)),
+        3,
+        length(groups)
+      ),
+      dimnames = list(
+        unique(items),
+        c("est", "lci", "uci"),
+        groups
+      )
+    )
+    
+    for (i in seq_len(nrow(x))) {
+      
+      ii <- match(
+        rownames(x)[i],
+        dimnames(arr)[[1]]
+      )
+      
+      jj <- match(
+        as.character(x[[grp]][i]),
+        groups
+      )
+      
+      arr[ii,1,jj] <- x$est[i]
+      arr[ii,2,jj] <- x$lci[i]
+      arr[ii,3,jj] <- x$uci[i]
+    }
+    
+    return(
+      plotDot.default(arr, ...)
+    )
+  }
+  
+  # ----------------------------------------------------------
+  # two grouping variables
+  # ----------------------------------------------------------
+  
+  if (length(grp) == 2) {
+    
+    items  <- unique(as.character(x[[grp[1]]]))
+    groups <- unique(as.character(x[[grp[2]]]))
+    
+    arr <- array(
+      NA_real_,
+      dim = c(
+        length(items),
+        3,
+        length(groups)
+      ),
+      dimnames = list(
+        items,
+        c("est", "lci", "uci"),
+        groups
+      )
+    )
+    
+    for (i in seq_len(nrow(x))) {
+      
+      ii <- match(
+        as.character(x[[grp[1]]][i]),
+        items
+      )
+      
+      jj <- match(
+        as.character(x[[grp[2]]][i]),
+        groups
+      )
+      
+      arr[ii,1,jj] <- x$est[i]
+      arr[ii,2,jj] <- x$lci[i]
+      arr[ii,3,jj] <- x$uci[i]
+    }
+    
+    return(
+      plotDot.default(arr, ...)
+    )
+  }
+  
+  stop(
+    "Currently only up to two grouping variables are supported."
+  )
+}
+
+
+# == internal helper functions ==============================================
 
 
 .addDotCI <- function(x, ypos, pch = list(pch = 16), lwd = 1) {
@@ -335,7 +514,6 @@ plotDot <- function(x,
 }
 
 
-
 .resolveNames <- function(x, items=NULL, groups=NULL) {
   
   dn <- dimnames(x)
@@ -353,7 +531,6 @@ plotDot <- function(x,
 
 
 
-
 .normalizeDotData <- function(x) {
   
   if (is.array(x) && length(dim(x)) == 3)
@@ -365,8 +542,36 @@ plotDot <- function(x,
   
   if (is.vector(x)) {
     
-    out <- array(NA_real_, dim=c(length(x),3,1))
+    out <- array(NA_real_, dim = c(length(x), 3, 1))
     out[,1,1] <- x
+    
+    dimnames(out)[[1]] <- names(x)
+    
+    return(out)
+  }
+  
+  # ----------------------------
+  # tapply-like list array
+  # ----------------------------
+  
+  if (is.list(x) && !is.null(dim(x))) {
+    
+    dm <- dim(x)
+    dn <- dimnames(x)
+    
+    out <- array(
+      NA_real_,
+      dim = c(dm[1], 3, dm[2])
+    )
+    
+    for (j in seq_len(dm[2])) {
+      for (i in seq_len(dm[1])) {
+        out[i,,j] <- x[[i + (j - 1) * dm[1]]]
+      }
+    }
+    
+    dimnames(out)[[1]] <- dn[[1]]
+    dimnames(out)[[3]] <- dn[[2]]
     
     return(out)
   }
@@ -377,24 +582,44 @@ plotDot <- function(x,
   
   if (is.matrix(x)) {
     
-    n <- nrow(x)
+    n  <- nrow(x)
+    ng <- ncol(x)
     
-    if (ncol(x) == 1) {
+    rn <- rownames(x)
+    cn <- colnames(x)
+    
+    # estimate only
+    if (ng == 1) {
       
-      out <- array(NA_real_, dim=c(n,3,1))
+      out <- array(
+        NA_real_,
+        dim = c(n, 3, 1)
+      )
+      
       out[,1,1] <- x[,1]
       
-      return(out)
-      
-    } else if (ncol(x) == 3) {
-      
-      out <- array(NA_real_, dim=c(n,3,1))
-      out[,,1] <- x
+      dimnames(out)[[1]] <- rn
       
       return(out)
     }
     
-    stop("Matrix must have 1 or 3 columns")
+    # matrix interpreted as:
+    # rows = items
+    # cols = groups
+    # estimates only
+    
+    out <- array(
+      NA_real_,
+      dim = c(n, 3, ng)
+    )
+    
+    for (i in seq_len(ng))
+      out[,1,i] <- x[,i]
+    
+    dimnames(out)[[1]] <- rn
+    dimnames(out)[[3]] <- cn
+    
+    return(out)
   }
   
   stop("Unsupported data structure")
@@ -419,4 +644,3 @@ plotDot <- function(x,
   
   invisible(NULL)
 }
-

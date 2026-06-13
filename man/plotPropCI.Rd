@@ -74,6 +74,7 @@ plotPropCI(m[1, ], labels = c("yes", "no"))
 \seealso{
 Other plot.univariate:
 \code{\link[=plotBar]{plotBar()}},
+\code{\link[=plotBox]{plotBox()}},
 \code{\link[=plotDensBox]{plotDensBox()}},
 \code{\link[=plotDot]{plotDot()}},
 \code{\link[=plotViolin]{plotViolin()}}

@@ -7,9 +7,9 @@
 plotLines(
   x,
   y,
-  col = 1:5,
-  xlab = NULL,
-  ylab = NULL,
+  col = NULL,
+  xlab = "",
+  ylab = "",
   xlim = NULL,
   ylim = NULL,
   lty = 1,

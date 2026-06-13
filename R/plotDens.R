@@ -82,7 +82,7 @@ plotDens.default <- function(
     lwd = 2,
     lty = 1,
     fill = FALSE,
-    grid = NA,
+    grid = NULL,
     main = "",
     xlab = "",
     ylab = "density",
@@ -127,9 +127,15 @@ plotDens.default <- function(
   lty <- rep_len(lty, n)
   
   th <- .theme(
-    grid = list(col = "grey90", lwd = 1, lty = "dotted")
+    grid = list(col = "grey80", 
+                lwd = 1, lty = "dotted"),
+    box  = list(col = "grey")
   )
   
+  par(mar      = mar(left = 5),  # default
+      col.axis = "grey40", 
+      fg       = "grey50")       # border inherits from here
+
   .withGraphicsState({
     
     .applyParFromDots(...)
@@ -175,132 +181,107 @@ plotDens.default <- function(
 #' @param data Optional data frame.
 #' @param subset Optional subset.
 #' @param na.action NA handling.
+
 #' @method plotDens formula
 #' @export
 plotDens.formula <- function(
     
-  # DATA
   formula,
-  data = NULL,
+  data,
   subset,
   na.action = na.omit,
   
   ...,
   
-  # STRUCTURE
   add = FALSE,
   bw = "nrd0",
   type = NULL,
   
-  # STYLE
   col = NULL,
   lwd = 2,
   lty = 1,
   fill = FALSE,
   grid = NA,
   
-  # LABELS
   main = "",
   xlab = "",
   ylab = NULL,
   
-  # AXES
   xlim = NULL,
   ylim = NULL
   
 ) {
-  
-  # --- detect conditional formula ------------------------------
-  
-  rhs <- formula[[3]]
-  
-  is_conditional <- (
-    is.call(rhs) &&
-      length(rhs) == 3 &&
-      identical(rhs[[1]], as.name("|"))
-  )
-  
-  # --- rewrite formula for model.frame -------------------------
-  
-  if (is_conditional) {
+
     
-    # y ~ x | g  →  y ~ x + g
-    new_formula <- as.formula(
-      paste(
-        deparse(formula[[2]]),
-        "~",
-        deparse(rhs[[2]]),
-        "+",
-        deparse(rhs[[3]])
-      )
+  args <- list(
+    formula   = formula,
+    na.action = na.action,
+    allowed   = c(
+      "one-sample",
+      "two-sample-independent",
+      "n-sample-independent",
+      "n-sample-dependent"
     )
-    
-  } else {
-    
-    new_formula <- formula
-  }
+  )
+
+  if (!missing(data))
+    args$data <- data
   
-  # --- model.frame (robust pattern) ----------------------------
+  if (!missing(subset))
+    args$subset <- substitute(subset)
   
-  m <- match.call(expand.dots = FALSE)
+  r <- do.call( bedrock::resolveFormula, args )
   
-  keep <- c("formula", "data", "subset", "na.action")
-  m <- m[c(1, match(keep, names(m), nomatch = 0))]
-  
-  m[[1L]] <- quote(stats::model.frame)
-  m$formula <- new_formula
-  
-  if (!missing(subset)) {
-    m$subset <- substitute(subset)
-  } else {
-    m$subset <- NULL
-  }
-  
-  mf <- eval(m, parent.frame())
-  
+
   # ============================================================
-  # === CASE 1: STANDARD DENSITY ================================
+  # ordinary densities
   # ============================================================
   
-  if (!is_conditional) {
-    
-    y <- mf[[1]]
-    g <- mf[[2]]
-    
-    # --- type detection ----------------------------------------
+  if (r$type != "n-sample-dependent") {
     
     if (is.null(type)) {
       
-      is_binary <- is.logical(y) ||
-        is.factor(y) ||
-        (is.numeric(y) && all(na.omit(y) %in% c(0,1)))
-      
-      type <- if (is_binary) "conditional" else "density"
+      type <- "density"
       
     } else {
       
-      type <- match.arg(type, c("density", "conditional"))
+      type <- match.arg(type,
+                        c("density", "conditional"))
     }
     
-    if (type == "conditional") {
-      stop("conditional densities require formula y ~ x | group")
-    }
+    if (type != "density")
+      stop(
+        "conditional densities require formula ",
+        "y ~ x | group"
+      )
     
-    split_data <- split(y, g)
+    split_data <- switch(
+      
+      r$type,
+      
+      "one-sample" =
+        list(r$x),
+      
+      "two-sample-independent" =
+        split(r$x, r$group),
+      
+      "n-sample-independent" =
+        split(r$x, r$group)
+    )
     
-    if (xlab == "")
-      xlab <- deparse(formula[[2]])
+    if (!nzchar(xlab))
+      xlab <- names(r$mf)[1]
     
     if (is.null(ylab))
       ylab <- "density"
     
     plotDens(
       split_data,
-      add = add,
-      bw = bw,
-      col = col,
-      lwd = lwd,
-      lty = lty,
+      add  = add,
+      bw   = bw,
+      col  = col,
+      lwd  = lwd,
+      lty  = lty,
       fill = fill,
       grid = grid,
       main = main,
@@ -311,91 +292,97 @@ plotDens.formula <- function(
       ...
     )
     
-    return(invisible())
+    return(invisible(NULL))
   }
   
   # ============================================================
-  # === CASE 2: CONDITIONAL DENSITY =============================
+  # conditional densities
   # ============================================================
-  
-  y <- mf[[1]]
-  x <- mf[[2]]
-  g <- mf[[3]]
-  
-  # --- type handling -------------------------------------------
   
   if (is.null(type)) {
+    
     type <- "conditional"
+    
   } else {
-    type <- match.arg(type, c("density", "conditional"))
+    
+    type <- match.arg(type,
+                      c("density", "conditional"))
   }
   
-  if (type != "conditional") {
-    stop("use type='conditional' for y ~ x | g")
-  }
+  if (type != "conditional")
+    stop("use type='conditional' for y ~ x | group")
   
-  # --- grid points ---------------------------------------------
+  y <- r$response
+  x <- r$group
+  g <- r$block
   
-  if (is.null(xlim)) {
-    ptx <- pretty(range(x, na.rm = TRUE), n = 200)
-  } else {
-    ptx <- pretty(xlim, n = 200)
-  }
-  
-  # --- groups --------------------------------------------------
+  ptx <- if (is.null(xlim))
+    pretty(range(x, na.rm = TRUE), n = 200)
+  else
+    pretty(xlim, n = 200)
   
   g <- factor(g)
+  
   lev <- levels(g)
-  n <- length(lev)
+  n   <- length(lev)
   
   if (is.null(col))
-    col <- .getOption("palette", grDevices::palette())[seq_len(n)]
+    col <- .getOption(
+      "palette",
+      grDevices::palette()
+    )[seq_len(n)]
   
   col <- rep_len(col, n)
   lwd <- rep_len(lwd, n)
   lty <- rep_len(lty, n)
   
-  # --- theme ---------------------------------------------------
-  
   th <- .theme(
-    grid = list(col = "grey90", lwd = 1, lty = "dotted")
+    grid = list(
+      col = "grey90",
+      lwd = 1,
+      lty = "dotted"
+    )
   )
   
   if (is.null(ylab)) {
-    if (type == "conditional") {
-      ylab <- paste0(
-        "P(",
-        deparse(formula[[2]]),
-        " | ",
-        deparse(rhs[[2]]),
-        ")"
-      )
-    } else {
-      ylab <- "density"
-    }
+    
+    ylab <- paste0(
+      "P(",
+      names(r$mf)[1],
+      " | ",
+      names(r$mf)[2],
+      ")"
+    )
   }
-  
-  # --- plotting ------------------------------------------------
   
   .withGraphicsState({
     
     .applyParFromDots(...)
     
     if (!add) {
-      plot(NA,
-           xlim = range(ptx),
-           ylim = c(0,1),
-           main = main,
-           xlab = deparse(rhs[[2]]),
-           ylab = ylab,
-           type = "n")
+      
+      plot(
+        NA,
+        xlim = range(ptx),
+        ylim = c(0, 1),
+        main = main,
+        xlab = names(r$mf)[2],
+        ylab = ylab,
+        type = "n"
+      )
     }
     
-    # grid
-    bedrock::callIf(graphics::grid, grid,
-            defaults = th$grid[!startsWith(names(th$grid), "group.")])
+    bedrock::callIf(
+      graphics::grid,
+      grid,
+      defaults = th$grid[
+        !startsWith(
+          names(th$grid),
+          "group."
+        )
+      ]
+    )
     
-    # curves
     for (i in seq_len(n)) {
       
       idx <- g == lev[i]
@@ -403,24 +390,27 @@ plotDens.formula <- function(
       xi <- x[idx]
       yi <- y[idx]
       
-      # ensure factor for cdplot
-      if (!is.factor(yi)) {
+      if (!is.factor(yi))
         yi <- factor(yi)
-      }
       
-      fit <- cdplot(yi ~ xi,
-                           plot = FALSE,
-                           bw = bw)
+      fit <- cdplot(
+        yi ~ xi,
+        plot = FALSE,
+        bw = bw
+      )
       
       fx <- fit[[1]]
+      
       yy <- fx(ptx)
       
-      lines(ptx, yy,
-            col = col[i],
-            lwd = lwd[i],
-            lty = lty[i])
+      lines(
+        ptx,
+        yy,
+        col = col[i],
+        lwd = lwd[i],
+        lty = lty[i]
+      )
     }
-    
     
   })
   

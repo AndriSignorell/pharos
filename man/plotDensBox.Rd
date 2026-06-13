@@ -154,6 +154,7 @@ plotDensBox(x ~ g)
 
 Other plot.univariate:
 \code{\link[=plotBar]{plotBar()}},
+\code{\link[=plotBox]{plotBox()}},
 \code{\link[=plotDot]{plotDot()}},
 \code{\link[=plotPropCI]{plotPropCI()}},
 \code{\link[=plotViolin]{plotViolin()}}

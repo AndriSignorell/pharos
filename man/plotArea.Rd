@@ -2,105 +2,109 @@
 % Please edit documentation in R/plotArea.R
 \name{plotArea}
 \alias{plotArea}
-\alias{plotArea.default}
-\alias{plotArea.formula}
-\title{Create an Area Plot}
+\title{Stacked Area Plot}
 \usage{
-plotArea(x, ...)
-
-\method{plotArea}{default}(
+plotArea(
   x,
-  y = NULL,
+  y,
   prop = FALSE,
-  add = FALSE,
-  xlab = NULL,
-  ylab = NULL,
   col = NULL,
-  frame.plot = FALSE,
+  xlab = "",
+  ylab = "",
+  xlim = NULL,
+  ylim = NULL,
+  legend = TRUE,
+  main = NULL,
+  grid = TRUE,
   ...
 )
-
-\method{plotArea}{formula}(formula, data, subset, na.action, ...)
 }
 \arguments{
-\item{x}{numeric vector of x values, or if \code{y=NULL} a numeric vector of
-y values. Can also be a 1-dimensional table (x values in names, y values in
-array), matrix or 2-dimensional table (x values in row names and y values in
-columns), a data frame (x values in first column and y values in subsequent
-columns), or a time-series object of class \code{ts/mts}.}
+\item{x}{Numeric vector, matrix or data frame. If \code{y} is missing,
+\code{x} is interpreted as a matrix of series where rows correspond to
+x positions and columns to individual areas.}
 
-\item{\dots}{further arguments are passed to \code{matplot} and
-\code{polygon}.}
+\item{y}{Optional numeric vector or matrix giving the y-values. If supplied,
+\code{x} is interpreted as the x-coordinates.}
 
-\item{y}{numeric vector of y values, or a matrix containing y values in
-columns.}
+\item{prop}{Logical indicating whether rows should be converted to
+proportions so that stacked areas sum to one.}
 
-\item{prop}{whether data should be plotted as proportions, so stacked areas
-equal 1.}
+\item{col}{Fill colours used for the areas.}
 
-\item{add}{whether polygons should be added to an existing plot.}
+\item{xlab}{Label for the x-axis.}
 
-\item{xlab}{label for x axis.}
+\item{ylab}{Label for the y-axis.}
 
-\item{ylab}{label for y axis.}
+\item{xlim}{Limits for the x-axis.}
 
-\item{col}{fill color of polygon(s). The default is a vector of gray colors.}
+\item{ylim}{Limits for the y-axis.}
 
-\item{frame.plot}{a logical indicating whether a box should be drawn around
-the plot.}
+\item{legend}{Logical or list controlling the legend. If \code{TRUE}, a legend
+is drawn using the column names of the data. If a list is supplied, its
+elements are passed to the internal legend drawing routine.}
 
-\item{formula}{a \code{\link{formula}}, such as \code{y ~ x} or
-\code{cbind(y1, y2) ~ x}, specifying x and y values. A dot on the left-hand
-side, \code{formula = . ~ x}, means all variables except the one specified
-on the right-hand side.}
+\item{main}{Main title of the plot.}
 
-\item{data}{a data frame (or list) from which the variables in
-\code{formula} should be taken.}
+\item{grid}{Logical or list controlling the background grid. If \code{TRUE},
+a default grid is drawn.}
 
-\item{subset}{an optional vector specifying a subset of observations to be
-used.}
+\item{...}{Additional graphical parameters passed to \code{\link[graphics]{par}}
+via \code{.applyParFromDots()} and to the plotting functions.}
 
-\item{na.action}{a function which indicates what should happen when the data
-contain \code{NA} values. Defaults to \code{getOption("na.action")}.}
+\item{stamp}{Logical indicating whether a package stamp should be drawn.}
 }
 \value{
-Matrix of cumulative sums that was used for plotting.
+Invisibly returns a list containing:
+\itemize{
+\item \code{x} the x-values used for plotting,
+\item \code{y} the original y-values,
+\item \code{cumulative} the cumulative values used to construct the areas,
+\item \code{legend} the legend specification if drawn.
+}
 }
 \description{
-Produce a stacked area plot, or add polygons to an existing plot.
+Draws one or several stacked area series using cumulative polygons.
+The function accepts either a matrix of values or separate \code{x} and
+\code{y} coordinates. Multiple series are displayed as stacked areas.
+}
+\details{
+If \code{y} is missing, \code{x} is interpreted as a matrix and each column
+is drawn as a separate stacked area.
+
+The cumulative sums are calculated row-wise and displayed as polygons stacked
+on top of each other.
+
+If \code{prop = TRUE}, each row is converted to proportions before plotting,
+so the stacked areas sum to one.
+
+Row names are used as x-axis labels when available and \code{y} is omitted.
 }
 \examples{
-plotArea(VADeaths, xaxt="n")
-axis(1, at=1:5, labels=rownames(VADeaths))
+plotArea(VADeaths)
 
-# formula
-plotArea(Armed.Forces~Year, data=longley)
-plotArea(cbind(Armed.Forces,Unemployed)~Year, data=longley)
+plotArea(
+  WorldPhones,
+  col = pal("Helsana")
+)
 
-# add=TRUE
-plot(1940:1970, 500*runif(31), ylim=c(0,500))
-plotArea(Armed.Forces~Year, data=longley, add=TRUE)
+plotArea(
+  WorldPhones,
+  prop = TRUE,
+  col = rainbow(ncol(WorldPhones))
+)
 
-# matrix
-plotArea(WorldPhones)
-plotArea(WorldPhones, prop=TRUE, col=rainbow(10))
+x <- 1:20
+y <- cbind(
+  A = runif(20, 1, 5),
+  B = runif(20, 1, 3),
+  C = runif(20, 1, 4)
+)
 
-# table
-tab <- xtabs(ncases ~ agegp + alcgp, data = esoph)
-plotArea(tab, xaxt="n", xlab="age group")
-axis(1, labels=rownames(tab), at=seq(nrow(tab)))
-
-# ts/mts
-plotArea(austres)
-plotArea(Seatbelts[,c("drivers","front","rear")],
-         ylab="Killed or seriously injured")
-abline(v=1983+1/12, lty=3)
+plotArea(x, y)
 
 }
 \seealso{
-\code{\link{barplot}}, \code{\link{polygon}},
-\code{\link[areaplot]{areaplot}}
-
 Other plot.special:
 \code{\link[=plotBinaryTree]{plotBinaryTree()}},
 \code{\link[=plotCirc]{plotCirc()}},
@@ -111,9 +115,6 @@ Other plot.special:
 \code{\link[=plotTreemap]{plotTreemap()}},
 \code{\link[=plotWeb]{plotWeb()}}
 }
-\author{
-Arni Magnusson \href{mailto:thisisarni@gmail.com}{thisisarni@gmail.com}
-}
-\concept{frequency-analysis}
+\concept{area-plots}
 \concept{graphics}
 \concept{plot.special}
