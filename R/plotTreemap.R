@@ -1,177 +1,320 @@
 
-#' Create a Treemap 
-#' 
-#' Creates a treemap where rectangular regions of different size, color, and
-#' groupings visualize the elements.
-#' 
-#' A treemap is a two-dimensional visualization for quickly analyzing large,
-#' hierarchical data sets. Treemaps are unique among visualizations because
-#' they provide users with the ability to see both a high level overview of
-#' data as well as fine-grained details. Users can find outliers, notice
-#' trends, and perform comparisons using treemaps. Each data element contained
-#' in a treemap is represented with a rectangle, or a cell. Treemap cell
-#' arrangement, size, and color are each mapped to an attribute of that
-#' element. Treemap cells can be grouped by common attributes. Within a group,
-#' larger cells are placed towards the bottom left, and smaller cells are
-#' placed at the top right. 
-#' 
-#' @param x a vector storing the values to be used to calculate the areas of
-#' rectangles. 
-#' @param groups a vector specifying the group (i.e. country, sector, etc.) to
-#' which each element belongs. 
-#' @param labels a vector specifying the labels. 
-#' @param cex the character extension for the area labels. Default is 1. 
-#' @param text.col the text color of the area labels. Default is "black". 
-#' @param col a vector storing the values to be used to calculate the color of
-#' rectangles. 
-#' @param labels.grp a character vector specifying the labels for the groups.
-#' @param cex.grp the character extension for the group labels. Default is 3.
-#' @param text.col.grp the text color of the group labels. Default is "black".
-#' @param border.grp the border color for the group rectangles. Default is
-#' "grey50". Set this to \code{NA} if no special border is desired. 
-#' @param lwd.grp the linewidth of the group borders. Default is 5. 
-#' @param main a title for the plot. 
-#' @param ... Additional graphical parameters (via \code{\link[graphics]{par}}).
-#'   
-#' @return returns a list with groupwise organized midpoints in x and y for the
-#' rectangles within a group and for the groups themselves. 
-#' 
-#' @note
-#' Parts of the code contributed by Jeff Enos.
-#' 
-#' @seealso \code{\link{plotCirc}}, \code{\link{mosaicplot}},
-#' \code{\link{barplot}}
-#' 
+#' Treemap Plot
+#'
+#' Draws a treemap in which the area of each rectangle is proportional to the
+#' corresponding value in \code{x}. Optionally, rectangles can be grouped into
+#' higher-level regions.
+#'
+#' The appearance of individual rectangles and groups is controlled through the
+#' \code{area}, \code{labels}, \code{groupArea}, and \code{groupLabels}
+#' arguments. These accept logical values, vectors, or lists.
+#'
+#' @param x Numeric vector of positive values determining the rectangle sizes.
+#' @param groups Optional grouping variable. Values sharing the same group are
+#'   placed within a common enclosing region.
+#' @param area Controls the appearance of individual rectangles.
+#'   \itemize{
+#'     \item \code{NULL} or \code{TRUE}: use defaults.
+#'     \item \code{FALSE} or \code{NA}: suppress rectangle fill.
+#'     \item Atomic vector: interpreted as \code{col}.
+#'     \item List: graphical parameters such as \code{col}, \code{border},
+#'       and \code{lwd}.
+#'   }
+#' @param labels Controls the labels of individual rectangles.
+#'   \itemize{
+#'     \item \code{NULL} or \code{TRUE}: use default labels (\code{names(x)}).
+#'     \item \code{FALSE} or \code{NA}: suppress labels.
+#'     \item Character vector: interpreted as label text.
+#'     \item List: label properties such as \code{text}, \code{col}, and
+#'       \code{cex}.
+#'   }
+#' @param groupArea Controls the appearance of enclosing group regions.
+#'   Uses the same conventions as \code{area}.
+#' @param groupLabels Controls the labels of enclosing group regions.
+#'   Uses the same conventions as \code{labels}. By default, group names are
+#'   used when more than one group is present.
+#' @param main Main title of the plot.
+#' @param ... Additional graphical parameters passed to
+#'   \code{.applyParFromDots()}.
+#'
+#' @details
+#' Individual rectangles are sized according to the values in \code{x}. When
+#' \code{groups} is supplied, a treemap is first constructed for the groups,
+#' and each group's area is then subdivided among its members.
+#'
+#' The arguments \code{area}, \code{labels}, \code{groupArea}, and
+#' \code{groupLabels} provide a flexible interface for controlling the
+#' appearance of the plot while keeping the main function signature compact.
+#'
+#' @return Invisibly returns a list containing the coordinates of group centres
+#' and the centres of their child rectangles.
+#'
 #' @examples
-#' 
-#' set.seed(1789)
-#' N <- 20
-#' area <- rlnorm(N)
-#' 
-#' plotTreemap(x=sort(area, decreasing=TRUE), labels=letters[1:20], 
-#'             col=pal("RedToBlack", 20))
-#' 
-#' 
-#' grp <- sample(x=1:3, size=20, replace=TRUE, prob=c(0.2,0.3,0.5))
-#' 
-#' z <- bedrock::sortX(data.frame(area=area, grp=grp), c("grp","area"), 
-#'            decreasing=c(FALSE,TRUE))
-#' z$col <- addAlpha(c("steelblue","green","yellow")[z$grp],
-#'                   unlist(lapply(split(z$area, z$grp),
-#'                   function(...) bedrock::linScale(..., 
-#'                       newLow=0.1, newHigh=0.6))))
-#' 
-#' plotTreemap(x=z$area, groups=z$grp, labels=letters[1:20], col=z$col)
-#' 
-#' 
-#' b <- plotTreemap(x=z$area, groups=z$grp, labels=letters[1:20], labels.grp=NA,
-#'                  col=z$col, main="Treemap")
-#' 
-#' # the function returns the midpoints of the areas
-#' # extract the group midpoints from b
-#' mid <- do.call(rbind, lapply(lapply(b, "[", 1), data.frame))
-#' 
-#' # and draw some visible text
-#' boxedText(x=mid$grp.x, y=mid$grp.y, labels=LETTERS[1:3], 
-#'           cex=3, border=NA,
-#'           col=addAlpha("white",0.7) )
-#' 
-#' 
-
-
+#' x <- c(A = 6, B = 5, C = 4, D = 3, E = 2, F = 1)
+#'
+#' plotTreemap(x)
+#'
+#' plotTreemap(
+#'   x,
+#'   labels = list(col = "white")
+#' )
+#'
+#' grp <- c("G1", "G1", "G1", "G2", "G2", "G2")
+#'
+#' plotTreemap(
+#'   x,
+#'   groups = grp,
+#'   groupLabels = TRUE
+#' )
+#'
+#' plotTreemap(
+#'   x,
+#'   groups = grp,
+#'   area = terrain.colors(length(x)),
+#'   labels = FALSE,
+#'   groupArea = list(border = "black", lwd = 2)
+#' )
+#'
 #' @family plot.special
 #' @concept graphics
-#' @concept frequency-analysis
+#' @concept treemap
 #'
-#'
-#' @export
-plotTreemap <- function(x, groups = NULL, 
-                        labels = NULL,  
-                        text.col="black", 
-                        col=rainbow(length(x)),
-                        labels.grp=NULL, cex.grp=3, 
-                        text.col.grp="black", 
-                        border.grp="grey50",
-                        lwd.grp=5, main="", ...) {
-  
 
-  dots  <- list(...)
+
+#' @export
+plotTreemap <- function(
+    x,
+    groups = NULL,
+    
+    area = NULL,
+    labels = NULL,
+    
+    groupArea = NULL,
+    groupLabels = NULL,
+    
+    main = NULL,
+    
+    ...
+) {
   
   .withGraphicsState({
     
-    
-    # par() aus ...
     .applyParFromDots(...)
-
-    if(is.null(groups)) groups <- rep(1, length(x))
-    if(is.null(labels)) labels <- names(x)
     
-    # we need to sort the stuff
+    if(is.null(groups))
+      groups <- rep(1, length(x))
+    
+    area <- .resolveArea(
+      area,
+      defaults = list(
+        col    = rainbow(length(x)),
+        border = "grey50",
+        lwd    = 1
+      )
+    )
+    
+    labels <- .resolveLabels(
+      labels,
+      defaults = list(
+        text = names(x),
+        col  = "black",
+        cex  = 1
+      )
+    )
+    
+    groupArea <- .resolveArea(
+      groupArea,
+      defaults = list(
+        col    = NA,
+        border = "grey50",
+        lwd    = 5
+      ),
+      invisible = list(border = NA)
+    )
+    
+    # sort
+    
     ord <- order(groups, -x)
-    x <- x[ord]
+    
+    x      <- x[ord]
     groups <- groups[ord]
-    labels <- labels[ord]
-    col <- col[ord]
     
+    area$col <- rep_len(area$col, length(x))[ord]
     
-    # get the groups rects first
-    zg <- .sqMap(sort(tapply(x, groups, sum), decreasing=TRUE))
+    if(!is.null(labels))
+      labels$text <- labels$text[ord]
     
-    # the transformation information: x0 translation, xs stretching
-    tm <- cbind(zg[,1:2], xs=zg$x1 - zg$x0, ys=zg$y1 - zg$y0)
-    gmidpt <- data.frame(x=apply(zg[, c("x0", "x1")], 1, mean),
-                         y=apply(zg[, c("y0", "y1")], 1, mean))
+    # group rectangles
     
-    if(is.null(labels.grp))
-      if(nrow(zg)>1) {
-        labels.grp <- rownames(zg)
-      } else {
-        labels.grp <- NA
-      }
+    zg <- .sqMap(
+      sort(
+        tapply(x, groups, sum),
+        decreasing = TRUE
+      )
+    )
     
-    canvas(c(0,1), xpd=TRUE, asp=NA, main=main)
+    # group labels AFTER zg is known, so order matches display
     
-    res <- list()
+    groupLabels <- .resolveLabels(
+      groupLabels,
+      defaults = list(
+        text = if(nrow(zg) > 1)
+          rownames(zg)
+        else
+          NA,
+        col = "black",
+        cex = 3
+      )
+    )
     
-    for( i in 1:nrow(zg)){
+    tm <- cbind(
+      zg[, 1:2],
+      xs = zg$x1 - zg$x0,
+      ys = zg$y1 - zg$y0
+    )
+    
+    gmidpt <- data.frame(
+      x = apply(zg[, c("x0", "x1")], 1, mean),
+      y = apply(zg[, c("y0", "y1")], 1, mean)
+    )
+    
+    canvas(
+      c(0, 1),
+      xpd = TRUE,
+      asp = NA,
+      main = main,
+      mar = c(
+        2.1,
+        2.1,
+        .marTop(main),
+        2.1
+      )
+    )
+    
+    res <- vector("list", nrow(zg))
+    
+    for(i in seq_len(nrow(zg))) {
       
-      # get the group index
       idx <- groups == rownames(zg)[i]
-      xg.rect <- .sqMap(sort(x[idx], decreasing=TRUE))
       
-      # transform
-      xg.rect[,c(1,3)] <- xg.rect[,c(1,3)] * tm[i,"xs"] + tm[i,"x0"]
-      xg.rect[,c(2,4)] <- xg.rect[,c(2,4)] * tm[i,"ys"] + tm[i,"y0"]
+      xg.rect <- .sqMap(
+        sort(
+          x[idx],
+          decreasing = TRUE
+        )
+      )
       
-      .plotSqMap(xg.rect, col=col[idx], add=TRUE)
+      xg.rect[, c(1, 3)] <-
+        xg.rect[, c(1, 3)] * tm[i, "xs"] + tm[i, "x0"]
       
-      res[[i]] <- list(groups=gmidpt[i,],
-                       child= cbind(x=apply(xg.rect[,c("x0","x1")], 1, mean),
-                                    y=apply(xg.rect[,c("y0","y1")], 1, mean)))
+      xg.rect[, c(2, 4)] <-
+        xg.rect[, c(2, 4)] * tm[i, "ys"] + tm[i, "y0"]
       
-      text( x=apply(xg.rect[, c("x0", "x1")], 1, mean),
-            y=apply(xg.rect[, c("y0", "y1")], 1, mean),
-            labels=labels[idx], col=text.col )
+      .plotSqMap(
+        xg.rect,
+        col    = area$col[idx],
+        border = area$border,
+        lwd    = area$lwd,
+        add    = TRUE
+      )
+      
+      res[[i]] <- list(
+        groups = gmidpt[i, ],
+        child = cbind(
+          x = apply(xg.rect[, c("x0", "x1")], 1, mean),
+          y = apply(xg.rect[, c("y0", "y1")], 1, mean)
+        )
+      )
+      
+      if(!is.null(labels)) {
+        
+        text(
+          x = apply(xg.rect[, c("x0", "x1")], 1, mean),
+          y = apply(xg.rect[, c("y0", "y1")], 1, mean),
+          labels = labels$text[idx],
+          col    = labels$col,
+          cex    = labels$cex
+        )
+        
+      }
+      
     }
     
     names(res) <- rownames(zg)
     
-    .plotSqMap(zg, col=NA, add=TRUE, border=border.grp, lwd=lwd.grp)
+    .plotSqMap(
+      zg,
+      col    = groupArea$col,
+      border = groupArea$border,
+      lwd    = groupArea$lwd,
+      add    = TRUE
+    )
     
-    text( x=apply(zg[, c("x0", "x1")], 1, mean),
-          y=apply(zg[, c("y0", "y1")], 1, mean),
-          labels=labels.grp, cex=cex.grp, col=text.col.grp)
+    if(!is.null(groupLabels)) {
+      
+      text(
+        x = apply(zg[, c("x0", "x1")], 1, mean),
+        y = apply(zg[, c("y0", "y1")], 1, mean),
+        labels = groupLabels$text,
+        col    = groupLabels$col,
+        cex    = groupLabels$cex
+      )
+      
+    }
     
-  
   })
   
   invisible(res)
-
+  
 }
 
 
-
 # == internal helper functions =============================================
+
+.resolveLabels <- function(x, defaults) {
+  
+  if(isFALSE(x) || isNA(x))
+    return(NULL)
+  
+  if(is.null(x) || isTRUE(x))
+    return(defaults)
+  
+  if(is.character(x))
+    return(modifyList(
+      defaults,
+      list(text = x)
+    ))
+  
+  if(is.list(x))
+    return(modifyList(defaults, x))
+  
+  stop("invalid label specification")
+  
+}
+
+
+.resolveArea <- function(x, defaults,
+                         invisible = list(col = NA)) {
+  
+  if(isFALSE(x) || isNA(x))
+    return(modifyList(defaults, invisible))
+  
+  if(is.null(x) || isTRUE(x))
+    return(defaults)
+  
+  if(is.atomic(x) && !is.list(x))
+    return(modifyList(
+      defaults,
+      list(col = x)
+    ))
+  
+  if(is.list(x))
+    return(modifyList(defaults, x))
+  
+  stop("invalid area specification")
+  
+}
+
 
 .sqMap <- function(x) {
   

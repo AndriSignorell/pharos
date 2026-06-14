@@ -34,9 +34,12 @@ canvas <- function(xlim=NULL, ylim=xlim, main=NULL,
                    asp=1, usrbg="white", ...){
   
 
-  .withGraphicsState({
+  # .withGraphicsState({
     
     .applyParFromDots(...)
+
+    # special handling for cex
+    # cex <- bedrock::getDotsArg(list(...), "cex", par("cex"))
 
     if(is.null(xlim)){
       xlim <- c(-1,1)
@@ -58,7 +61,7 @@ canvas <- function(xlim=NULL, ylim=xlim, main=NULL,
            xright=usr[2], ytop=usr[4], col=usrbg, border=NA)
     }
     
-  })      
+  # })      
 
   invisible()
   

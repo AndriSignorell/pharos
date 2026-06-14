@@ -58,6 +58,16 @@
 #' df <- data.frame(x = x, y = y, a = a)
 #' plotBubble(y ~ x | a, data = df)
 #'
+#' US <- data.frame(state.x77, State=state.name, 
+#'                    Region=state.region, Abb=state.abb)
+#' plotBubble(Income ~ Population | Area , 
+#'            data=US, 
+#'            grid=TRUE, col=addAlpha(pal("Helsana")[US$Region]), cex=1.2 )
+#' 
+#' text(Income ~ Population, US, labels=US$Abb, cex=0.8)
+#' 
+
+#'
 #' @seealso \code{\link{symbols}}
 #'
 #' @name plotBubble
@@ -82,7 +92,7 @@ plotBubble.default <- function(
   
   # STRUCTURE
   add = FALSE,
-
+  
   # STYLE
   col = NA,
   border = NULL,
@@ -107,17 +117,20 @@ plotBubble.default <- function(
   
   d.frm <- as.data.frame(
     recycle(
-      x = x,
-      y = y,
-      area = area,
-      col = col,
-      border = border %||% par("fg"),
-      ry = sqrt((area * cex) / pi)
+      x      = x,
+      y      = y,
+      area   = area,
+      col    = col,
+      border = border %||% par("fg")
     ),
     stringsAsFactors = FALSE
   )
   
-  d.frm <- bedrock::sortX(d.frm, ord = 3, decreasing = TRUE)
+  d.frm <- bedrock::sortX(
+    d.frm,
+    ord = 3,
+    decreasing = TRUE
+  )
   
   if (na.rm)
     d.frm <- d.frm[complete.cases(d.frm), ]
@@ -125,33 +138,37 @@ plotBubble.default <- function(
   if (nrow(d.frm) == 0)
     stop("no valid observations")
   
-  # --- ranges (bubble-aware) -----------------------------------
+  # --- ranges ---------------------------------------------------
   
-  if (is.null(xlim)) {
-    xr <- range(d.frm$x, na.rm = TRUE)
-    r  <- d.frm$ry
-    xlim <- range(pretty(xr + c(-max(r), max(r))))
-  }
+  if (is.null(xlim))
+    xlim <- range(pretty(range(d.frm$x, na.rm = TRUE)))
   
-  if (is.null(ylim)) {
-    yr <- range(d.frm$y, na.rm = TRUE)
-    r  <- d.frm$ry
-    ylim <- range(pretty(yr + c(-max(r), max(r))))
-  }
+  if (is.null(ylim))
+    ylim <- range(pretty(range(d.frm$y, na.rm = TRUE)))
   
-  # --- theme ---------------------------------------------------
+  # --- theme ----------------------------------------------------
   
   th <- .theme(
-    grid = list(col = "grey90", lwd = 1, lty = "dotted")
+    grid = list(
+      col = "grey90",
+      lwd = 1,
+      lty = "dotted"
+    )
   )
   
-  # --- plotting ------------------------------------------------
+  # --- plotting -------------------------------------------------
   
   .withGraphicsState({
     
-    .applyParFromDots(...)
+    .applyParFromDots(..., 
+                      defaults=list(
+                        mar=c(left=5, top=.marTop(naIf(main, ""))),
+                        col.axis = "grey40", 
+                        fg       = "grey50"             
+                      ))
     
     if (!add) {
+      
       plot(
         NA,
         xlim = xlim,
@@ -161,34 +178,61 @@ plotBubble.default <- function(
         ylab = ylab,
         type = "n"
       )
+      
     }
     
-    # --- grid --------------------------------------------------
+    # --- grid ---------------------------------------------------
+    
+    bedrock::callIf(
+      graphics::grid,
+      grid,
+      defaults = th$grid[
+        !startsWith(names(th$grid), "group.")
+      ]
+    )
+    
+    # --- bubble scaling (screen based) --------------------------
+    
+    # r.in <- 0.15 * cex *
+    #   sqrt(
+    #     d.frm$area /
+    #       max(d.frm$area, na.rm = TRUE)
+    #   )
+     
+    r.in <- 0.35 * cex *
+      (d.frm$area/max(d.frm$area))^0.4
 
-    bedrock::callIf(graphics::grid, grid,
-            defaults = th$grid[!startsWith(names(th$grid), "group.")])  
+    # r.in <- r.max *
+    #   (d.frm$area / max(d.frm$area, na.rm = TRUE))^scale
+        
+    d.frm$rx <- r.in *
+      diff(par("usr")[1:2]) /
+      par("pin")[1]
     
-    # --- aspect correction -------------------------------------
+    d.frm$ry <- r.in *
+      diff(par("usr")[3:4]) /
+      par("pin")[2]
     
-    asp <- (diff(par("usr")[1:2]) / par("pin")[1]) /
-      (diff(par("usr")[3:4]) / par("pin")[2])
+    # --- draw bubbles -------------------------------------------
     
-    rx <- d.frm$ry / asp
-    
-    
-    # --- draw bubbles ------------------------------------------
-    
-    polygon(ellipse(
-      x = d.frm$x,
-      y = d.frm$y,
-      radiusX = rx,
-      radiusY = d.frm$ry),
-      col = d.frm$col,
+    polygon(
+      ellipse(
+        x       = d.frm$x,
+        y       = d.frm$y,
+        radiusX = d.frm$rx,
+        radiusY = d.frm$ry
+      ),
+      col    = d.frm$col,
       border = d.frm$border
     )
     
   })
+  
+  invisible(d.frm)
+  
 }
+
+
 
 #' @rdname plotBubble
 #' @method plotBubble formula
@@ -237,20 +281,38 @@ plotBubble.formula <- function(
   # --- rewrite formula for model.frame -------------------------
   
   f <- as.formula(
-    paste(deparse(y_var), "~", deparse(x_var), "+", deparse(a_var))
+    paste(
+      deparse(y_var),
+      "~",
+      deparse(x_var),
+      "+",
+      deparse(a_var)
+    )
   )
   
-  # --- model.frame (DEINE saubere Lösung!) ---------------------
+  # --- model.frame ---------------------------------------------
   
   m <- match.call(expand.dots = FALSE)
+  
   m$formula <- f
   m[[1L]] <- quote(stats::model.frame)
   
-  if (!missing(subset)) {
+  if (!missing(subset))
     m$subset <- substitute(subset)
-  } else {
+  else
     m$subset <- NULL
-  }
+  
+  # remove plot-specific arguments
+  m$add    <- NULL
+  m$col    <- NULL
+  m$border <- NULL
+  m$cex    <- NULL
+  m$grid   <- NULL
+  m$xlim   <- NULL
+  m$ylim   <- NULL
+  m$main   <- NULL
+  m$xlab   <- NULL
+  m$ylab   <- NULL
   
   mf <- eval(m, parent.frame())
   
@@ -262,30 +324,34 @@ plotBubble.formula <- function(
   
   # --- default labels ------------------------------------------
   
-  if (xlab == "")
+  if (!nzchar(xlab))
     xlab <- deparse(x_var)
   
-  if (ylab == "")
+  if (!nzchar(ylab))
     ylab <- deparse(y_var)
   
   # --- call default method -------------------------------------
   
-  plotBubble(
+  plotBubble.default(
     x = x,
     y = y,
     area = a,
+    
     add = add,
+    
     col = col,
     border = border,
     cex = cex,
     grid = grid,
+    
     xlim = xlim,
     ylim = ylim,
+    
     main = main,
     xlab = xlab,
     ylab = ylab,
+    
     ...
   )
+  
 }
-
-

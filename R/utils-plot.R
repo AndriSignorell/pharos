@@ -31,8 +31,10 @@
   on.exit({
     if (ok && !is.null(stamp))
       tryCatch(stamp(), error = function(e) NULL)
+    
     if (ok && resetLayout)
       tryCatch(layout(matrix(1)), error = function(e) NULL)
+    
   }, add = TRUE)
   
   eval.parent(substitute(expr))
@@ -204,6 +206,34 @@
 }
 
 
+.marginLines <- function(labels,
+                         side = 4,
+                         las = par("las"),
+                         cex = par("cex"),
+                         pad = 0,
+                         axis.line = 0) {
+  
+  if(is.null(labels) || !length(labels))
+    return(0)
+  
+  w <- max(strwidth(labels, units = "inches", cex = cex))
+  h <- max(strheight(labels, units = "inches", cex = cex))
+  
+  size <- if(las %in% c(2, 3)) {
+    w
+  } else {
+    if(side %in% c(2, 4)) w else h
+  }
+  
+  lineHeight <- par("csi") * par("mex")
+  
+  ceiling(
+    1.15 * (size / lineHeight + axis.line + pad)
+  )
+  
+}
+
+
 
 .adjustMargin <- function(labels,
                           side = 2,
@@ -215,20 +245,14 @@
   if(is.null(labels) || !length(labels))
     return(invisible())
   
-  w <- max(strwidth(labels, units="inches", cex=cex))
-  h <- max(strheight(labels, units="inches", cex=cex))
-  
-  size <- if(las %in% c(2,3)) {
-    w
-  } else {
-    if(side %in% c(2,4)) w else h
-  }
-  
-  lineHeight <- par("csi") * par("mex")
-  
-  lines <- size / lineHeight
-  
-  needed <- ceiling(1.15 * (lines + axis.line + pad))
+  needed <- .marginLines(
+    labels    = labels,
+    side      = side,
+    las       = las,
+    cex       = cex,
+    pad       = pad,
+    axis.line = axis.line
+  )
   
   mar <- par("mar")
   
@@ -241,6 +265,7 @@
   
   invisible()
 }
+
 
 
 
@@ -268,6 +293,24 @@
   
   invisible()
 }
+
+
+
+.resolveCex <- function(dots) {
+  
+  cex <- dots$cex %||% par("cex")
+  
+  list(
+    cex      = cex,
+    cex.axis = dots$cex.axis %||% cex,
+    cex.lab  = dots$cex.lab  %||% cex,
+    cex.main = dots$cex.main %||% cex,
+    cex.sub  = dots$cex.sub  %||% cex
+  )
+  
+}
+
+
 
 
 # .adjustMargin <- function(labels,

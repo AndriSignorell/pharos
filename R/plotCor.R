@@ -207,10 +207,10 @@ plotCor <- function(
   triangle <- match.arg(triangle)
   
   if(triangle=="upper")
-    x[lower.tri(x, diag = !diag)] <- NA
+    x[upper.tri(x, diag = !diag)] <- NA
   
   if(triangle=="lower")
-    x[upper.tri(x, diag = !diag)] <- NA
+    x[lower.tri(x, diag = !diag)] <- NA
   
   if(triangle=="full" && !diag)
     x[row(x) == col(x)] <- NA
@@ -285,21 +285,25 @@ plotCor <- function(
     if(isTRUE(box))
       box(col="grey")
     
-    if(!isFALSE(legend)){
-      
-      digits <- round(1 - log10(diff(range(breaks))))
-      
-      colLegend(
-        labels=sprintf("%.*f", digits,
-                       breaks[seq(1,length(breaks),2)]),
-        x=nrow(x)+0.5+nrow(x)/20,
-        y=ncol(x)+0.5,
-        width=nrow(x)/20,
-        height=ncol(x),
-        cols=col,
-        cex=0.8
+
+    bedrock::callIf(
+      colLegend,
+      legend,
+      defaults = list(
+        labels = sprintf(
+          "%.*f",
+          digits = round(1 - log10(diff(range(breaks))))
+          ,
+          breaks[seq(1, length(breaks), 2)]
+        ),
+        x      = nrow(x) + 0.5 + nrow(x)/20,
+        y      = ncol(x) + 0.5,
+        width  = nrow(x)/20,
+        height = ncol(x),
+        col   = col,
+        cex    = 0.8
       )
-    }
+    )
     
     if(!is.null(main))
       title(main)

@@ -34,8 +34,6 @@
 #' @param zlim numeric vector of length 2 specifying the range used for
 #'   color scaling. If \code{NULL}, the range of the data is used.
 #'
-#' @param stamp optional annotation passed to the plotting framework.
-#'
 #' @param ... further graphical parameters passed to
 #'   \code{\link[graphics]{par}} via the internal framework.
 #'
@@ -68,13 +66,14 @@
 #'
 #'
 #' @export
+#' @export
 plotHeatmap <- function(
     
   # DATA
   x,
   
   # LABELS
-  main = "",
+  main = NULL,
   xlab = "",
   ylab = "",
   
@@ -93,18 +92,16 @@ plotHeatmap <- function(
   # FEATURES
   text = FALSE,
   zlim = NULL,
-  
-  # FRAMEWORK
-  stamp = NULL,
+  box = TRUE,
   
   ...
+  
 ) {
   
   .withGraphicsState({
     
-    .applyParFromDots(...)
+    # --- Input ------------------------------------------------------------
     
-    # --- Input --------------------------------------------------------------
     if (!is.matrix(x) && !is.table(x))
       x <- table(x)
     
@@ -115,69 +112,154 @@ plotHeatmap <- function(
     
     scale <- match.arg(scale)
     
-    # --- Scaling ------------------------------------------------------------
-    z <- switch(scale,
-                count = tab,
-                prop  = prop.table(tab),
-                row   = prop.table(tab, 1),
-                col   = prop.table(tab, 2)
+    # --- Scaling ----------------------------------------------------------
+    
+    z <- switch(
+      scale,
+      count = tab,
+      prop  = prop.table(tab),
+      row   = prop.table(tab, 1),
+      col   = prop.table(tab, 2)
     )
     
-    # --- Limits -------------------------------------------------------------
+    nr <- nrow(z)
+    nc <- ncol(z)
+    
+    # --- Margins ----------------------------------------------------------
+    
+    lmar <- max(
+      2.1,
+      .marginLines(
+        rownames(z),
+        side = 2,
+        las = 1,
+        pad = 1
+      )
+    )
+    
+    bmar <- max(
+      4.1,
+      .marginLines(
+        colnames(z),
+        side = 1,
+        pad = 1
+      )
+    )
+    
+    .applyParFromDots(
+      ...,
+      defaults = list(
+        mar = c(
+          bottom = bmar,
+          left   = lmar,
+          top    = .marTop(main),
+          right  = 2.1
+        )
+      )
+    )
+    
+    # --- Limits -----------------------------------------------------------
+    
     if (is.null(zlim))
       zlim <- range(z, na.rm = TRUE)
     
     if (diff(zlim) == 0)
       zlim <- zlim + c(-0.5, 0.5)
     
-    # --- Colors -------------------------------------------------------------
+    # --- Colors -----------------------------------------------------------
+    
     if (is.null(col)) {
-      pal <- colorRampPalette(c("#F7FBFF", "#08306B"))
+      
+      pal <- colorRampPalette(
+        c("#F7FBFF", "#08306B")
+      )
+      
       ncol_pal <- 100L
       cols_all <- pal(ncol_pal)
+      
     } else {
+      
       cols_all <- col
       ncol_pal <- length(col)
+      
     }
     
     z_scaled <- (z - zlim[1]) / diff(zlim)
     z_scaled[is.na(z_scaled)] <- NA
     
-    idx <- ceiling(z_scaled * (ncol_pal - 1)) + 1
+    idx <- ceiling(
+      z_scaled * (ncol_pal - 1)
+    ) + 1
+    
     idx[idx < 1] <- 1
     idx[idx > ncol_pal] <- ncol_pal
     
-    cols <- matrix(cols_all[idx], nrow = nrow(z))
+    cols <- matrix(
+      cols_all[idx],
+      nrow = nrow(z)
+    )
+    
     cols[is.na(z)] <- naCol
     
-    # --- Coordinates --------------------------------------------------------
-    nr <- nrow(z)
-    nc <- ncol(z)
+    # --- Coordinates ------------------------------------------------------
     
     xpos <- seq_len(nc)
     ypos <- seq_len(nr)
     
-    plot(NA,
-         xlim = c(0.5, nc + 0.5),
-         ylim = c(0.5, nr + 0.5),
-         xaxt = "n",
-         yaxt = "n",
-         xlab = xlab,
-         ylab = ylab,
-         main = main)
+    plot(
+      NA,
+      xlim = xlim %||% c(0.5, nc + 0.5),
+      ylim = ylim %||% c(0.5, nr + 0.5),
+      xaxt = "n",
+      yaxt = "n",
+      xlab = xlab,
+      ylab = ylab,
+      main = main,
+      frame.plot = FALSE
+    )
     
-    # --- Draw tiles ---------------------------------------------------------
+    # --- Draw tiles -------------------------------------------------------
+    
     for (i in seq_len(nr)) {
+      
       for (j in seq_len(nc)) {
         
-        rect(j - 0.5, i - 0.5,
-             j + 0.5, i + 0.5,
-             col = cols[i, j],
-             border = border)
+        rect(
+          j - 0.5,
+          i - 0.5,
+          j + 0.5,
+          i + 0.5,
+          col = cols[i, j],
+          border = border
+        )
+        
       }
+      
     }
     
-    # --- Text overlay (fm-based) -------------------------------------------
+    
+    # --- Draw tiles -------------------------------------------------------
+    
+    if (!isFALSE(box)) {
+      
+      bedrock::callIf(
+        rect,
+        box,
+        defaults = list(
+          xleft   = 0.5,
+          ybottom = 0.5,
+          xright  = nc + 0.5,
+          ytop    = nr + 0.5,
+          border  = "grey50",
+          lwd     = 1,
+          col     = NA
+        )
+      )
+      
+    }
+    
+    # --- Text overlay -----------------------------------------------------
+    
     if (isTRUE(text)) {
       
       lab <- if (scale == "count") {
@@ -187,23 +269,45 @@ plotHeatmap <- function(
       }
       
       for (i in seq_len(nr)) {
+        
         for (j in seq_len(nc)) {
           
           if (!is.na(z[i, j])) {
-            text(j, i, labels = lab[i, j])
+            
+            graphics::text(
+              x = j,
+              y = i,
+              labels = lab[i, j]
+            )
+            
           }
+          
         }
+        
       }
+      
     }
     
-    # --- Axes ---------------------------------------------------------------
-    axis(1, at = xpos, labels = colnames(z))
-    axis(2, at = ypos, labels = rownames(z), las = 1)
+    # --- Labels only (no axes) -------------------------------------------
     
-    # --- Box ---------------------------------------------------------------
-    box()
+    mtext(
+      side = 1,
+      text = colnames(z),
+      at = xpos,
+      line = 1
+    )
     
-  }, stamp = stamp)
+    mtext(
+      side = 2,
+      text = rownames(z),
+      at = ypos,
+      las = 1,
+      line = 1
+    )
+    
+  })
   
   invisible(z)
+  
 }
+

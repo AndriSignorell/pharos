@@ -322,7 +322,7 @@ colLegend <- function(
       
     }
     
-  })
+  }, stamp=NULL)
   
   invisible(list(
     rect = list(

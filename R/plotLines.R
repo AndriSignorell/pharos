@@ -74,72 +74,129 @@
 #'
 #'
 #' @export
-plotLines <- function(x, y, 
-                      col=NULL, 
-                      xlab = "", ylab = "", 
-                      xlim = NULL, ylim = NULL, 
+plotLines <- function(x, y,
+                      col=NULL,
+                      xlab = "", ylab = "",
+                      xlim = NULL, ylim = NULL,
                       lty = 1, lwd = 2, lend = par("lend"),
-                      xaxt=NULL, yaxt=NULL, 
-                      cex = 1, legend = TRUE, 
-                      main=NULL, grid=TRUE, 
-                      pch=FALSE, ...){
-  
-  # example:
-  #
-  # m <- matrix(c(3,4,5,1,5,4,2,6,2), nrow = 3,
-  #             dimnames = list(dose = c("A","B","C"),
-  #                             age = c("2000","2001","2002")))
-  # PlotLinesA(m, col=rev(c(PalHelsana(), "grey")), main="Dosw ~ age", lwd=3, ylim=c(1,10))
+                      xaxt=NULL, yaxt=NULL,
+                      cex = 1, legend = TRUE,
+                      main=NULL, grid=TRUE,
+                      pch=FALSE, ...) {
   
   if(is.null(col))
     col <- pal("Helsana")
   
-  
   .withGraphicsState({
-
-    if(missing(y))
-      z <- as.matrix(x)
-    else
-      z <- as.matrix(y)
-
-    add.legend <- !(isNA(legend) %||% isFALSE(legend))
     
-    .applyParFromDots(..., 
-            defaults=list(
-                mar=c(left=5, top=.marTop(main), right=10),
-                fg="grey30"
-                ))
-
-    add <- bedrock::getDotsArg(list(...), "add", FALSE)
-    if(!add){
-      # do not draw axes, labels and grid when only lines have to be added
-      matplot(x, y, type="n", las=1, xlim=xlim, ylim=ylim, xaxt="n", 
-              yaxt=yaxt, main=main, xlab=xlab, ylab=ylab, cex = cex, ...)
-      if(!identical(xaxt, "n"))
-        # use rownames for x-axis if available, but only if either x or y is missing
-        if(!is.null(rownames(z)) && (missing(x) || missing(y)))
-          axis(side = 1, at=c(1:nrow(z)), rownames(z))
-      else
-        axis(side=1)
-
-      bedrock::callIf(graphics::grid, grid, 
-              defaults = list(
-                col   = "grey85",
-                lty   = 1,
-                lwd   = 1
-              )  )
-
+    y.missing <- missing(y)
+    
+    if(y.missing) {
+      z <- as.matrix(x)
+      x.used <- seq_len(nrow(z))
+    } else {
+      z <- as.matrix(y)
+      x.used <- x
     }
     
-    matplot(x, y, type="l", col=col, lty=lty, lwd=lwd, 
-            xaxt="n", yaxt="n", add=TRUE, ...)
+    if(is.null(xlim))
+      xlim <- range(pretty(range(x.used, finite = TRUE)))
     
-    # if(!is.na(pch))
-    #   matplot(x, y, type="p", pch=pch, col=pch.col, bg=pch.bg, cex=pch.cex, 
-    #           xaxt="n", yaxt="n", add=TRUE)
+    if(is.null(ylim))
+      ylim <- range(pretty(range(z, finite = TRUE)))
+    
+    add.legend <- !isFALSE(legend) && !isNA(legend)
+    
+    labs <- colnames(z)
+    
+    if(is.null(labs))
+      labs <- paste("Series", seq_len(ncol(z)))
+    
+    rmar <- if(add.legend)
+      max(
+        2.1,
+        .marginLines(
+          labs,
+          side = 4,
+          pad = 3
+        )
+      )
+    else
+      2.1
     
     
-    # pch handling, if given
+    .applyParFromDots(
+      ...,
+      defaults = list(
+        mar = c(
+          left  = 5,
+          top   = .marTop(main),
+          right = rmar
+        ),
+        fg = "grey30"
+      )
+    )
+    
+    add <- bedrock::getDotsArg(list(...), "add", FALSE)
+    
+    if(!add) {
+      
+      matplot(
+        x, y,
+        type = "n",
+        las = 1,
+        xlim = xlim,
+        ylim = ylim,
+        xaxt = "n",
+        yaxt = yaxt,
+        main = main,
+        xlab = xlab,
+        ylab = ylab,
+        cex = cex,
+        ...
+      )
+      
+      if(!identical(xaxt, "n")) {
+        
+        if(!is.null(rownames(z)) && y.missing) {
+          
+          axis(
+            side = 1,
+            at = seq_len(nrow(z)),
+            labels = rownames(z)
+          )
+          
+        } else {
+          
+          axis(side = 1)
+          
+        }
+        
+      }
+      
+      bedrock::callIf(
+        graphics::grid,
+        grid,
+        defaults = list(
+          col = "grey85",
+          lty = 1,
+          lwd = 1
+        )
+      )
+      
+    }
+    
+    matplot(
+      x, y,
+      type = "l",
+      col = col,
+      lty = lty,
+      lwd = lwd,
+      xaxt = "n",
+      yaxt = "n",
+      add = TRUE,
+      ...
+    )
     
     pch.args <- list(
       x    = x,
@@ -153,33 +210,43 @@ plotLines <- function(x, y,
       add  = TRUE
     )
     
-    if (!missing(y)) {
+    if(!y.missing)
       pch.args$y <- y
-    }
     
-    bedrock::callIf(matplot, pch, defaults = pch.args)
-
-    if (add.legend) {
+    bedrock::callIf(
+      matplot,
+      pch,
+      defaults = pch.args
+    )
+    
+    if(add.legend) {
+      
+      par(xpd = NA)
       
       last <- t(tail(apply(as.matrix(z), 2, locf), 1))
-      last <- setNames(as.vector(last), rownames(last))   # column order, unsorted!
-    
-      bedrock::callIf(textLegend, legend,
-                      defaults = list(
-                        y   = last,
-                        col = col, lty = lty, lwd = lwd))
+      last <- setNames(as.vector(last), rownames(last))
+      
+      bedrock::callIf(
+        textLegend,
+        legend,
+        defaults = list(
+          y   = last,
+          col = col,
+          lty = lty,
+          lwd = lwd
+        )
+      )
+      
     }
     
-  
   })
   
-  invisible(list(x=x, y= if (!missing(y)) y else NULL, 
-                 legend = if(add.legend) legend else NULL))
-  
+  invisible(
+    list(
+      x = x,
+      y = if(!y.missing) y else NULL,
+      legend = if(add.legend) legend else NULL
+    )
+  )
   
 }
-
-
-
-
-

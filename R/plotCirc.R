@@ -97,7 +97,7 @@ plotCirc <- function(
   gap = 5,
 
   # LABELS
-  main = ""
+  main = NULL
   , ...
   
   
@@ -120,10 +120,22 @@ plotCirc <- function(
   
   .withGraphicsState({
     
-    .applyParFromDots(...)
-    
-    par(xpd=NA)
-    canvas(mar = c(1,1,4,1) + .1, main = main, 
+    .applyParFromDots(
+      ...,
+      defaults = list(
+        mar = c(
+          bottom = 2.1,
+          left  = 2.1,
+          top   = .marTop(main),
+          right = 2.1
+        ),
+        fg = "grey30",
+        xpd=NA, 
+        asp=1
+      )
+    )
+
+    canvas(main = main, 
            xlim=c(-1.2, 1.2), ylim=c(-1.2, 1.2))
 
         

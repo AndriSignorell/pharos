@@ -6,7 +6,7 @@
 \usage{
 plotHeatmap(
   x,
-  main = "",
+  main = NULL,
   xlab = "",
   ylab = "",
   xlim = NULL,
@@ -17,7 +17,7 @@ plotHeatmap(
   naCol = "gray90",
   text = FALSE,
   zlim = NULL,
-  stamp = NULL,
+  box = TRUE,
   ...
 )
 }
@@ -53,8 +53,6 @@ the tiles using \code{fm()} formatting.}
 
 \item{zlim}{numeric vector of length 2 specifying the range used for
 color scaling. If \code{NULL}, the range of the data is used.}
-
-\item{stamp}{optional annotation passed to the plotting framework.}
 
 \item{...}{further graphical parameters passed to
 \code{\link[graphics]{par}} via the internal framework.}

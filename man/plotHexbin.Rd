@@ -2,53 +2,60 @@
 % Please edit documentation in R/plotHexbin.R
 \name{plotHexbin}
 \alias{plotHexbin}
-\title{Hexagonal Binning Scatter Plot}
+\title{Hexagonal Binning Plot}
 \usage{
-plotHexbin(x, y, bins = 30, ...)
+plotHexbin(
+  x,
+  y,
+  bins = 30,
+  col = NULL,
+  border = NA,
+  grid = FALSE,
+  xlim = NULL,
+  ylim = NULL,
+  main = NULL,
+  xlab = "",
+  ylab = "",
+  ...
+)
 }
 \arguments{
-\item{x}{Numeric vector for the x-axis.}
+\item{x}{Numeric vector of x-values.}
 
-\item{y}{Numeric vector for the y-axis. Must have the same length as \code{x}.}
+\item{y}{Numeric vector of y-values.}
 
-\item{bins}{Integer specifying the number of bins along the x-axis.
-Passed to \code{\link[hexbin]{hexbin}} as \code{xbins}. Default is \code{30}.}
+\item{bins}{Number of hexagons across the x-axis.}
+
+\item{col}{Colours used for the count scale. If \code{NULL}, a default
+sequential palette is used.}
+
+\item{border}{Border colour of the hexagons.}
+
+\item{grid}{Logical or list controlling the background grid.}
+
+\item{xlim}{Limits for the x-axis.}
+
+\item{ylim}{Limits for the y-axis.}
+
+\item{main}{Main title.}
+
+\item{xlab}{Label for the x-axis.}
+
+\item{ylab}{Label for the y-axis.}
 
 \item{...}{Additional graphical parameters passed to
-\code{\link[graphics]{plot}}.}
+\code{.applyParFromDots()}.}
 }
 \value{
-Invisibly returns \code{NULL}.
+Invisibly returns a list containing the computed
+\code{hexbin} object and the original \code{x} and \code{y}.
 }
 \description{
-Draws a hexagonal binning plot for two numeric variables using the
-\pkg{hexbin} package. Observations are aggregated into hexagonal cells,
-and cell counts are visualized by color intensity.
-}
-\details{
-The function uses \code{\link[hexbin]{hexbin}} to compute hexagonal binning
-and then draws the hexagons manually using \code{\link[graphics]{polygon}}.
-Colors are assigned based on the relative frequency of observations per
-hexagon, scaled to a fixed palette of 100 colors.
-
-The hexagon size is determined in user coordinates based on the range
-of the data and the number of bins.
-}
-\examples{
-\dontrun{
-set.seed(1)
-x <- rnorm(1000)
-y <- x + rnorm(1000)
-
-plotHexbin(x, y, bins = 40,
-           xlab = "x", ylab = "y",
-           main = "Hexbin plot")
-}
-
+Displays a two-dimensional density estimate using hexagonal bins.
+Observations are aggregated into hexagons and coloured according to the
+number of observations falling into each cell.
 }
 \seealso{
-\code{\link[hexbin]{hexbin}}, \code{\link[graphics]{polygon}}
-
 Other plot.bivariate:
 \code{\link[=plotAssoc]{plotAssoc()}},
 \code{\link[=plotBag]{plotBag()}},
@@ -57,6 +64,6 @@ Other plot.bivariate:
 \code{\link[=plotHeatmap]{plotHeatmap()}},
 \code{\link[=plotMosaic]{plotMosaic()}}
 }
-\concept{descriptive-statistics}
+\concept{density-estimation}
 \concept{graphics}
 \concept{plot.bivariate}

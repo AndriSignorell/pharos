@@ -104,6 +104,15 @@ plotBubble(x, y, a)
 df <- data.frame(x = x, y = y, a = a)
 plotBubble(y ~ x | a, data = df)
 
+US <- data.frame(state.x77, State=state.name, 
+                   Region=state.region, Abb=state.abb)
+plotBubble(Income ~ Population | Area , 
+           data=US, 
+           grid=TRUE, col=addAlpha(pal("Helsana")[US$Region]), cex=1.2 )
+
+text(Income ~ Population, US, labels=US$Abb, cex=0.8)
+
+
 }
 \seealso{
 \code{\link{symbols}}

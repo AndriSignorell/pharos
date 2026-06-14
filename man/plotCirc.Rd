@@ -10,7 +10,7 @@ plotCirc(
   ribbon = TRUE,
   labels = TRUE,
   gap = 5,
-  main = "",
+  main = NULL,
   ...
 )
 }

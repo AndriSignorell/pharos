@@ -23,7 +23,6 @@
 #' @param main Main title of the plot.
 #' @param grid Logical or list controlling the background grid. If \code{TRUE},
 #'   a default grid is drawn.
-#' @param stamp Logical indicating whether a package stamp should be drawn.
 #' @param ... Additional graphical parameters passed to \code{\link[graphics]{par}}
 #'   via \code{.applyParFromDots()} and to the plotting functions.
 #'
@@ -142,9 +141,16 @@ plotArea <- function(
       labs <- paste("Series", seq_len(ncol(z)))
     
     rmar <- if(add.legend)
-      max(2.1, max(strwidth(labs, units="inches")) / par("csi") + 2) + 2
+      max(
+        2.1,
+        .marginLines(
+          labs,
+          side = 4,
+          pad = 3
+        )
+      )
     else
-      2.1    
+      2.1
     
     .applyParFromDots(
       ...,

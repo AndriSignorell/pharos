@@ -51,8 +51,6 @@ a default grid is drawn.}
 
 \item{...}{Additional graphical parameters passed to \code{\link[graphics]{par}}
 via \code{.applyParFromDots()} and to the plotting functions.}
-
-\item{stamp}{Logical indicating whether a package stamp should be drawn.}
 }
 \value{
 Invisibly returns a list containing:

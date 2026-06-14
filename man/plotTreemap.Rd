@@ -2,117 +2,105 @@
 % Please edit documentation in R/plotTreemap.R
 \name{plotTreemap}
 \alias{plotTreemap}
-\title{Create a Treemap}
+\title{Treemap Plot}
 \usage{
 plotTreemap(
   x,
   groups = NULL,
+  area = NULL,
   labels = NULL,
-  text.col = "black",
-  col = rainbow(length(x)),
-  labels.grp = NULL,
-  cex.grp = 3,
-  text.col.grp = "black",
-  border.grp = "grey50",
-  lwd.grp = 5,
-  main = "",
+  groupArea = NULL,
+  groupLabels = NULL,
+  main = NULL,
   ...
 )
 }
 \arguments{
-\item{x}{a vector storing the values to be used to calculate the areas of
-rectangles.}
+\item{x}{Numeric vector of positive values determining the rectangle sizes.}
 
-\item{groups}{a vector specifying the group (i.e. country, sector, etc.) to
-which each element belongs.}
+\item{groups}{Optional grouping variable. Values sharing the same group are
+placed within a common enclosing region.}
 
-\item{labels}{a vector specifying the labels.}
+\item{area}{Controls the appearance of individual rectangles.
+\itemize{
+\item \code{NULL} or \code{TRUE}: use defaults.
+\item \code{FALSE} or \code{NA}: suppress rectangle fill.
+\item Atomic vector: interpreted as \code{col}.
+\item List: graphical parameters such as \code{col}, \code{border},
+and \code{lwd}.
+}}
 
-\item{text.col}{the text color of the area labels. Default is "black".}
+\item{labels}{Controls the labels of individual rectangles.
+\itemize{
+\item \code{NULL} or \code{TRUE}: use default labels (\code{names(x)}).
+\item \code{FALSE} or \code{NA}: suppress labels.
+\item Character vector: interpreted as label text.
+\item List: label properties such as \code{text}, \code{col}, and
+\code{cex}.
+}}
 
-\item{col}{a vector storing the values to be used to calculate the color of
-rectangles.}
+\item{groupArea}{Controls the appearance of enclosing group regions.
+Uses the same conventions as \code{area}.}
 
-\item{labels.grp}{a character vector specifying the labels for the groups.}
+\item{groupLabels}{Controls the labels of enclosing group regions.
+Uses the same conventions as \code{labels}. By default, group names are
+used when more than one group is present.}
 
-\item{cex.grp}{the character extension for the group labels. Default is 3.}
+\item{main}{Main title of the plot.}
 
-\item{text.col.grp}{the text color of the group labels. Default is "black".}
-
-\item{border.grp}{the border color for the group rectangles. Default is
-"grey50". Set this to \code{NA} if no special border is desired.}
-
-\item{lwd.grp}{the linewidth of the group borders. Default is 5.}
-
-\item{main}{a title for the plot.}
-
-\item{...}{Additional graphical parameters (via \code{\link[graphics]{par}}).}
-
-\item{cex}{the character extension for the area labels. Default is 1.}
+\item{...}{Additional graphical parameters passed to
+\code{.applyParFromDots()}.}
 }
 \value{
-returns a list with groupwise organized midpoints in x and y for the
-rectangles within a group and for the groups themselves.
+Invisibly returns a list containing the coordinates of group centres
+and the centres of their child rectangles.
 }
 \description{
-Creates a treemap where rectangular regions of different size, color, and
-groupings visualize the elements.
+Draws a treemap in which the area of each rectangle is proportional to the
+corresponding value in \code{x}. Optionally, rectangles can be grouped into
+higher-level regions.
 }
 \details{
-A treemap is a two-dimensional visualization for quickly analyzing large,
-hierarchical data sets. Treemaps are unique among visualizations because
-they provide users with the ability to see both a high level overview of
-data as well as fine-grained details. Users can find outliers, notice
-trends, and perform comparisons using treemaps. Each data element contained
-in a treemap is represented with a rectangle, or a cell. Treemap cell
-arrangement, size, and color are each mapped to an attribute of that
-element. Treemap cells can be grouped by common attributes. Within a group,
-larger cells are placed towards the bottom left, and smaller cells are
-placed at the top right.
-}
-\note{
-Parts of the code contributed by Jeff Enos.
+The appearance of individual rectangles and groups is controlled through the
+\code{area}, \code{labels}, \code{groupArea}, and \code{groupLabels}
+arguments. These accept logical values, vectors, or lists.
+
+Individual rectangles are sized according to the values in \code{x}. When
+\code{groups} is supplied, a treemap is first constructed for the groups,
+and each group's area is then subdivided among its members.
+
+The arguments \code{area}, \code{labels}, \code{groupArea}, and
+\code{groupLabels} provide a flexible interface for controlling the
+appearance of the plot while keeping the main function signature compact.
 }
 \examples{
+x <- c(A = 6, B = 5, C = 4, D = 3, E = 2, F = 1)
 
-set.seed(1789)
-N <- 20
-area <- rlnorm(N)
+plotTreemap(x)
 
-plotTreemap(x=sort(area, decreasing=TRUE), labels=letters[1:20], 
-            col=pal("RedToBlack", 20))
+plotTreemap(
+  x,
+  labels = list(col = "white")
+)
 
+grp <- c("G1", "G1", "G1", "G2", "G2", "G2")
 
-grp <- sample(x=1:3, size=20, replace=TRUE, prob=c(0.2,0.3,0.5))
+plotTreemap(
+  x,
+  groups = grp,
+  groupLabels = TRUE
+)
 
-z <- bedrock::sortX(data.frame(area=area, grp=grp), c("grp","area"), 
-           decreasing=c(FALSE,TRUE))
-z$col <- addAlpha(c("steelblue","green","yellow")[z$grp],
-                  unlist(lapply(split(z$area, z$grp),
-                  function(...) bedrock::linScale(..., 
-                      newLow=0.1, newHigh=0.6))))
-
-plotTreemap(x=z$area, groups=z$grp, labels=letters[1:20], col=z$col)
-
-
-b <- plotTreemap(x=z$area, groups=z$grp, labels=letters[1:20], labels.grp=NA,
-                 col=z$col, main="Treemap")
-
-# the function returns the midpoints of the areas
-# extract the group midpoints from b
-mid <- do.call(rbind, lapply(lapply(b, "[", 1), data.frame))
-
-# and draw some visible text
-boxedText(x=mid$grp.x, y=mid$grp.y, labels=LETTERS[1:3], 
-          cex=3, border=NA,
-          col=addAlpha("white",0.7) )
-
+plotTreemap(
+  x,
+  groups = grp,
+  area = terrain.colors(length(x)),
+  labels = FALSE,
+  groupArea = list(border = "black", lwd = 2)
+)
 
 }
 \seealso{
-\code{\link{plotCirc}}, \code{\link{mosaicplot}},
-\code{\link{barplot}}
-
 Other plot.special:
 \code{\link[=plotArea]{plotArea()}},
 \code{\link[=plotBinaryTree]{plotBinaryTree()}},
@@ -123,6 +111,6 @@ Other plot.special:
 \code{\link[=plotTernary]{plotTernary()}},
 \code{\link[=plotWeb]{plotWeb()}}
 }
-\concept{frequency-analysis}
 \concept{graphics}
 \concept{plot.special}
+\concept{treemap}

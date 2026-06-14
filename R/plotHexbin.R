@@ -1,52 +1,67 @@
 
-#' Hexagonal Binning Scatter Plot
+#' Hexagonal Binning Plot
 #'
-#' Draws a hexagonal binning plot for two numeric variables using the
-#' \pkg{hexbin} package. Observations are aggregated into hexagonal cells,
-#' and cell counts are visualized by color intensity.
+#' Displays a two-dimensional density estimate using hexagonal bins.
+#' Observations are aggregated into hexagons and coloured according to the
+#' number of observations falling into each cell.
 #'
-#' @param x Numeric vector for the x-axis.
-#' @param y Numeric vector for the y-axis. Must have the same length as \code{x}.
-#' @param bins Integer specifying the number of bins along the x-axis.
-#'   Passed to \code{\link[hexbin]{hexbin}} as \code{xbins}. Default is \code{30}.
+#' @param x Numeric vector of x-values.
+#' @param y Numeric vector of y-values.
+#'
+#' @param bins Number of hexagons across the x-axis.
+#'
+#' @param col Colours used for the count scale. If \code{NULL}, a default
+#'   sequential palette is used.
+#' @param border Border colour of the hexagons.
+#' @param grid Logical or list controlling the background grid.
+#'
+#' @param xlim Limits for the x-axis.
+#' @param ylim Limits for the y-axis.
+#'
+#' @param main Main title.
+#' @param xlab Label for the x-axis.
+#' @param ylab Label for the y-axis.
+#'
 #' @param ... Additional graphical parameters passed to
-#'   \code{\link[graphics]{plot}}.
+#'   \code{.applyParFromDots()}.
 #'
-#' @details
-#' The function uses \code{\link[hexbin]{hexbin}} to compute hexagonal binning
-#' and then draws the hexagons manually using \code{\link[graphics]{polygon}}.
-#' Colors are assigned based on the relative frequency of observations per
-#' hexagon, scaled to a fixed palette of 100 colors.
+#' @return Invisibly returns a list containing the computed
+#'   \code{hexbin} object and the original \code{x} and \code{y}.
 #'
-#' The hexagon size is determined in user coordinates based on the range
-#' of the data and the number of bins.
-#'
-#' @return Invisibly returns \code{NULL}.
-#'
-#' @seealso \code{\link[hexbin]{hexbin}}, \code{\link[graphics]{polygon}}
-#'
-#' @examples
-#' \dontrun{
-#' set.seed(1)
-#' x <- rnorm(1000)
-#' y <- x + rnorm(1000)
-#'
-#' plotHexbin(x, y, bins = 40,
-#'            xlab = "x", ylab = "y",
-#'            main = "Hexbin plot")
-#' }
-#'
-
-
 #' @family plot.bivariate
 #' @concept graphics
-#' @concept descriptive-statistics
-#'
+#' @concept density-estimation
 #'
 #' @export
-plotHexbin <- function(x, y, bins = 30, ...) {
+plotHexbin <- function(
+    
+  # DATA
+  x,
+  y,
   
-  # --- Input checks ---------------------------------------------------------
+  # STRUCTURE
+  bins = 30,
+  
+  # STYLE
+  col = NULL,
+  border = NA,
+  grid = FALSE,
+  
+  # AXES
+  xlim = NULL,
+  ylim = NULL,
+  
+  # LABELS
+  main = NULL,
+  xlab = "",
+  ylab = "",
+  
+  ...
+  
+) {
+  
+  # --- checks -------------------------------------------------------------
+  
   if (length(x) != length(y))
     stop("'x' and 'y' must have the same length")
   
@@ -59,32 +74,111 @@ plotHexbin <- function(x, y, bins = 30, ...) {
   if (!requireNamespace("hexbin", quietly = TRUE))
     stop("Package 'hexbin' needed.")
   
-  # --- Compute hexbin -------------------------------------------------------
-  hb     <- hexbin::hexbin(x, y, xbins = bins)
-  coords <- hexbin::hcell2xy(hb)
-  
-  # --- Hexagon size (user coordinates) -------------------------------------
-  dx <- diff(range(coords$x)) / bins
-  dy <- dx * 2 / sqrt(3)
-  
-  # --- Color mapping --------------------------------------------------------
-  pal     <- colorRampPalette(c("#C6DBEF", "#08306B"))
-  nColors <- 100L
-  cols    <- pal(nColors)[ceiling(hb@count / max(hb@count) * nColors)]
-  
-  # --- Empty plot -----------------------------------------------------------
-  plot(coords$x, coords$y, type = "n", ...)
-  
-  # --- Draw hexagons --------------------------------------------------------
-  for (i in seq_along(coords$x)) {
-    hexcoords <- .hexVertices(coords$x[i], coords$y[i], dx, dy)
-    polygon(hexcoords$x, hexcoords$y,
-            col    = cols[i],
-            border = NA)
+  if (is.null(col)) {
+    col <- colorRampPalette(
+      c("white", pal("Helsana")[1])
+    )(100)
   }
   
-  # --- Return hexbin object -------------------------------------------------
-  invisible(hb)
+  .withGraphicsState({
+    
+    .applyParFromDots(
+      ...,
+      defaults = list(
+        mar = c(
+          left  = 5,
+          top   = .marTop(main),
+          right = 2.1
+        ), 
+        asp = 1
+      )
+    )
+    
+    # --- hexbin -----------------------------------------------------------
+    
+    hb <- hexbin::hexbin(
+      x,
+      y,
+      xbins = bins
+    )
+    
+    coords <- hexbin::hcell2xy(hb)
+    
+    # --- plot region ------------------------------------------------------
+    
+    if (is.null(xlim))
+      xlim <- range(pretty(range(x, finite = TRUE)))
+    
+    if (is.null(ylim))
+      ylim <- range(pretty(range(y, finite = TRUE)))
+    
+    plot(
+      NA,
+      xlim = xlim,
+      ylim = ylim,
+      xlab = xlab,
+      ylab = ylab,
+      main = main,
+      type = "n"
+    )
+    
+    # --- grid -------------------------------------------------------------
+    
+    bedrock::callIf(
+      graphics::grid,
+      grid,
+      defaults = list(
+        col = "grey90",
+        lwd = 1
+      )
+    )
+    
+    # --- hex geometry -----------------------------------------------------
+    
+    dx <- diff(range(coords$x)) / bins
+    dy <- dx * 2 / sqrt(3)
+    
+    # --- colours ----------------------------------------------------------
+    
+    idx <- ceiling(
+      hb@count / max(hb@count) * length(col)
+    )
+    
+    idx[idx < 1] <- 1
+    idx[idx > length(col)] <- length(col)
+    
+    cols <- col[idx]
+    
+    # --- draw -------------------------------------------------------------
+    
+    for (i in seq_along(coords$x)) {
+      
+      hxy <- .hexVertices(
+        cx = coords$x[i],
+        cy = coords$y[i],
+        dx = dx,
+        dy = dy
+      )
+      
+      polygon(
+        hxy$x,
+        hxy$y,
+        col = cols[i],
+        border = border
+      )
+      
+    }
+    
+  })
+  
+  invisible(
+    list(
+      hexbin = hb,
+      x = x,
+      y = y
+    )
+  )
+  
 }
 
 
