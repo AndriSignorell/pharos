@@ -12,12 +12,12 @@ plotHeatmap(
   xlim = NULL,
   ylim = NULL,
   scale = c("count", "prop", "row", "col"),
-  col = NULL,
+  col = .useTheme,
   border = NA,
   naCol = "gray90",
   text = FALSE,
   zlim = NULL,
-  box = TRUE,
+  box = .useTheme,
   ...
 )
 }
@@ -41,8 +41,11 @@ coercible via \code{\link{table}}.}
 \item{\code{"col"}}{column-wise proportions \eqn{P(X \mid Y)}}
 }}
 
-\item{col}{optional vector of colors. If \code{NULL}, a sequential
-blue palette is used.}
+\item{col}{optional vector of colors. Default is a hardcoded sequential
+white-to-navy ramp (\code{pal("Blues", n = 100)}) - deliberately not
+theme-driven: cell values here are sequential (one direction, no sign
+change), unlike the active theme's categorical \code{palette} or
+diverging \code{twin} pair, neither of which fits a heat scale.}
 
 \item{border}{color of tile borders. Defaults to \code{NA}.}
 
@@ -53,6 +56,14 @@ the tiles using \code{fm()} formatting.}
 
 \item{zlim}{numeric vector of length 2 specifying the range used for
 color scaling. If \code{NULL}, the range of the data is used.}
+
+\item{box}{Controls drawing of the outer frame around the tile grid,
+drawn via \code{rect()} at the exact cell boundaries rather than
+\code{\link[graphics]{box}()} (the initial plot suppresses the
+standard box via \code{frame.plot = FALSE}, since cell bounds differ
+from the default plot region). \code{.useTheme} (default) resolves
+border color/width from \code{getTheme()$box}. \code{TRUE}/\code{FALSE},
+or a named list overriding \code{rect()} arguments for this call only.}
 
 \item{...}{further graphical parameters passed to
 \code{\link[graphics]{par}} via the internal framework.}
@@ -83,15 +94,15 @@ plotHeatmap(tab,
 
 }
 \seealso{
-\code{\link{plotAssoc}}, \code{\link[graphics]{image}}
+\code{\link{plotAssoc}}, \code{\link[graphics]{image}},
+\code{\link{getTheme}}
 
 Other plot.bivariate:
 \code{\link[=plotAssoc]{plotAssoc()}},
 \code{\link[=plotBag]{plotBag()}},
 \code{\link[=plotCor]{plotCor()}},
 \code{\link[=plotDens2D]{plotDens2D()}},
-\code{\link[=plotHexbin]{plotHexbin()}},
-\code{\link[=plotMosaic]{plotMosaic()}}
+\code{\link[=plotHexbin]{plotHexbin()}}
 }
 \concept{descriptive-statistics}
 \concept{graphics}

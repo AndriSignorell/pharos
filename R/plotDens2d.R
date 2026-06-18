@@ -1,6 +1,4 @@
 
-
-
 #' Two-Dimensional Kernel Density Plot
 #'
 #' @description
@@ -40,9 +38,19 @@
 #' @param type Character string specifying the plot type.
 #' One of \code{"contour"}, \code{"image"}, or \code{"persp"}.
 #'
-#' @param col Color specification used for image plots.
-#' @param grid Logical or list controlling the addition of grid lines.
-#' @param box Logical indicating whether a box is drawn around the plot.
+#' @param col Color specification used for \code{type = "image"}. Defaults
+#'   to a reversed \code{"RedToBlack"} sequential ramp (\code{pal()}),
+#'   running from black (low density) to red (high density) - hardcoded
+#'   rather than theme-driven, since this is a continuous, unidirectional
+#'   gradient, unlike the active theme's categorical \code{palette} or
+#'   diverging \code{twin} pair, neither of which fits a density surface.
+#' @param grid Controls drawing of the background grid. \code{.useTheme}
+#'   (default) follows the active theme (\code{getTheme()$grid}).
+#'   \code{TRUE}/\code{FALSE}/\code{NA}, or a named list, as for
+#'   \code{\link[graphics]{grid}}.
+#' @param box Controls drawing of the plot box. \code{.useTheme} (default)
+#'   resolves to \code{getTheme()$box}. \code{TRUE}/\code{FALSE}/\code{NA},
+#'   or a named list, as for \code{\link[graphics]{box}}.
 #'
 #' @param ... Additional graphical parameters passed to underlying plotting functions.
 #'
@@ -84,7 +92,7 @@
 #'
 #' @export
 plotDens2D <- function( x, y, 
-                      
+                        
                         # LABELS
                         main = NULL,
                         xlab = NULL,
@@ -96,69 +104,56 @@ plotDens2D <- function( x, y,
                         
                         # STRUCTURE
                         type=c("contour", "image", "persp"),
-                      
+                        
                         # STYLE
-                        col = NULL,
-                        grid = NULL,
-                        box=FALSE,
+                        col  = rev(pal("RedToBlack", n = 100)),
+                        grid = .useTheme,
+                        box  = .useTheme,
                         
                         ... ) {
   
-
+  
   .withGraphicsState({
     
     .applyParFromDots(...)
-
+    
     bw <- c(.bandwidth.nrd(x), .bandwidth.nrd(y))
-  
+    
     kde <- .kde2d(x = x, y=y, h=bw, n=500, 
                   lims = c(range(x), range(y)))
-  
+    
     
     if(is.null(xlim)) xlim <- range(x, finite = TRUE)
     if(is.null(ylim)) ylim <- range(y, finite = TRUE)
     # if(is.null(zlim)) zlim <- range(z, finite = TRUE)
-
+    
     res <- switch(match.arg(type),  
-           contour= { contour(kde, xlab=xlab, ylab=ylab, xlim=xlim, ylim=ylim,
-                              main = main,
-                              nlevels=8, labcex=0.8)},
-           
-           persp = { 
-             persp(kde, ticktype="simple", theta=50, phi=20, r=4, scale=TRUE,
-                   main = main,
-                   xlab=xlab %||% "", ylab=ylab  %||% "", zlab="Relative Frequency")},
-           
-           image = {
-             image(kde, 
-                   xlab=xlab %||% "", ylab=ylab  %||% "", 
-                   col=rev(pal(1, 100)),
-                   main = main,
-                   xlim=xlim %||% range(x), ylim=ylim  %||% range(y)) }
-           )        
-
-    
-    bedrock::callIf(
-      graphics::grid,
-      .theme( grid = grid )$grid[c("col","lty","lwd")]
-      # , defaults = list(
-      #   col = th$col,
-      #   lty = th$lty,
-      #   lwd = th$lwd
-      #)
-    )
+                  contour= { contour(kde, xlab=xlab, ylab=ylab, xlim=xlim, ylim=ylim,
+                                     main = main,
+                                     nlevels=8, labcex=0.8)},
+                  
+                  persp = { 
+                    persp(kde, ticktype="simple", theta=50, phi=20, r=4, scale=TRUE,
+                          main = main,
+                          xlab=xlab %||% "", ylab=ylab  %||% "", zlab="Relative Frequency")},
+                  
+                  image = {
+                    image(kde, 
+                          xlab=xlab %||% "", ylab=ylab  %||% "", 
+                          col=col,
+                          main = main,
+                          xlim=xlim %||% range(x), ylim=ylim  %||% range(y)) }
+    )        
     
     
-    # draw box if box != FALSE || NA
-    bedrock::callIf(graphics::box, 
-            box,
-            defaults=list(which="plot"))
-
+    .drawGrid(grid)
+    .drawBox(box)
+    
     
   })
   
   invisible(res)
-
+  
 }
 
 

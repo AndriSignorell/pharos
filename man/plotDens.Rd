@@ -13,6 +13,11 @@ plotDens(x, ...)
   subset,
   na.action = na.omit,
   ...,
+  main = NULL,
+  xlab = "",
+  ylab = NULL,
+  xlim = NULL,
+  ylim = NULL,
   add = FALSE,
   bw = "nrd0",
   type = NULL,
@@ -20,33 +25,35 @@ plotDens(x, ...)
   lwd = 2,
   lty = 1,
   fill = FALSE,
-  grid = NA,
-  main = "",
-  xlab = "",
-  ylab = NULL,
-  xlim = NULL,
-  ylim = NULL
+  grid = NA
 )
 }
 \arguments{
 \item{x}{A numeric vector or list of numeric vectors.}
 
-\item{...}{Additional graphical parameters passed to \code{par()}.}
+\item{...}{Additional data vectors (unnamed, default method) or
+graphical parameters passed to \code{par()}.}
 
-\item{formula}{A formula of the form ...}
+\item{formula}{A formula of the form \code{y ~ group}, \code{y ~ x}
+(\code{x} numeric, conditional density), or \code{y ~ x | group}.}
 
 \item{data}{Optional data frame.}
 
-\item{subset}{Optional subset.}
+\item{subset}{Optional subset expression.}
 
-\item{na.action}{NA handling.}
+\item{na.action}{Function to handle missing values.}
+
+\item{main, xlab, ylab}{Plot labels.}
+
+\item{xlim, ylim}{Axis limits.}
 
 \item{add}{Logical; if \code{TRUE}, adds to an existing plot.}
 
 \item{bw}{Bandwidth passed to \code{\link[stats]{density}} or \code{cdplot}.}
 
 \item{type}{Character string specifying the plot type. One of
-\code{"density"}, \code{"conditional"}, or \code{NULL} (auto-detect).}
+\code{"density"}, \code{"conditional"}, or \code{NULL} (default,
+determined by \code{resolveFormula()}'s design classification).}
 
 \item{col}{Line color(s).}
 
@@ -54,13 +61,15 @@ plotDens(x, ...)
 
 \item{lty}{Line type(s).}
 
-\item{fill}{Logical; if \code{TRUE}, fills densities (only for type="density").}
+\item{fill}{For \code{type = "density"}: \code{FALSE} (default, no
+fill), \code{TRUE} (translucent fill derived from each group's
+\code{col} via \code{adjustcolor(col, alpha.f = 0.3)}), or one or
+more explicit fill colors recycled over groups. For
+\code{type = "conditional"} on a single, unstratified, binary curve:
+\code{TRUE} for cdplot-style grey shading, or a vector of 2 colors for
+the regions below/above the boundary curve.}
 
 \item{grid}{Logical, \code{NA}, or list controlling background grid.}
-
-\item{main, xlab, ylab}{Plot labels.}
-
-\item{xlim, ylim}{Axis limits.}
 }
 \value{
 Invisibly returns \code{NULL}.
@@ -70,18 +79,20 @@ Draws kernel density estimates for one or more groups. Supports both
 classical density plots and conditional density plots.
 }
 \details{
-The function supports two modes:
+The function defers entirely to \code{\link[bedrock]{resolveFormula}()}'s
+design classification to pick a mode when \code{type = NULL}:
 \itemize{
-\item \code{type = "density"}: standard kernel density estimates.
-\item \code{type = "conditional"}: conditional densities \eqn{P(Y | X)}
-using \code{\link[graphics]{cdplot}}.
+\item \code{y ~ g} (\code{g} categorical) → density, one curve per
+group.
+\item \code{y ~ x} (\code{x} numeric) → conditional density
+\eqn{P(Y | X)}, a single curve - equivalent to
+\code{cdplot(x, factor(y))}.
+\item \code{y ~ x | g} → conditional density, one curve per level of
+\code{g}.
 }
-
-If \code{type = NULL}, the function attempts to infer the appropriate mode:
-\itemize{
-\item \code{y ~ g} → density
-\item \code{y ~ x | g} → conditional density
-}
+\code{type} can be set explicitly to override the default for a given
+design (e.g. to force an error rather than silently doing the wrong
+thing if a formula's shape is ambiguous).
 
 Graphical elements such as grids are controlled via the unified plot
 design system using \code{bedrock::callIf()} and \code{.theme()}.
@@ -91,16 +102,23 @@ set.seed(1)
 x <- rnorm(100)
 g <- rep(c("A", "B"), each = 50)
 
-# standard density
+# standard density (k = 2 groups)
 plotDens(x ~ g)
 
-# conditional density
+# conditional density, single curve - auto-detected, no type= needed
 y <- rbinom(100, 1, plogis(x))
+plotDens(y ~ x)
+
+# same, with cdplot-style fill
+plotDens(y ~ x, fill = c("red", "blue"))
+
+# conditional density, stratified by group
 plotDens(y ~ x | g)
 
 }
 \seealso{
-\code{\link[stats]{density}}, \code{\link[graphics]{cdplot}}
+\code{\link[stats]{density}}, \code{\link[graphics]{cdplot}},
+\code{\link[bedrock]{resolveFormula}}
 
 Other topic.graphics:
 \code{\link[=plotBar]{plotBar()}},

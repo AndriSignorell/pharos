@@ -28,18 +28,28 @@
 #' @param axes Logical; if \code{TRUE} axes are drawn.
 #' @param xax Optional specification of the x-axis. Passed to
 #'   (the internal function) \code{.drawAxis}.
-#' @param box Logical; if \code{TRUE} a box is drawn around the plotting region.
-#' @param grid Logical; if \code{TRUE} horizontal grid lines are drawn.
-#' @param pch Plotting symbol specification for the points. May be a single
-#'   value or a list of graphical parameters passed to
-#'   \code{\link[graphics]{points}}.
+#' @param box Controls drawing of the plot box. \code{.useTheme} (default)
+#'   resolves to \code{getTheme()$box}. \code{TRUE}/\code{FALSE}/\code{NA},
+#'   or a named list, as for \code{\link[graphics]{box}}.
+#' @param grid Controls drawing of the horizontal item/group grid lines.
+#'   \code{.useTheme} (default) follows whether the active theme's grid
+#'   section is enabled (\code{getTheme()$grid}); the line style itself
+#'   (color/lty) stays \code{plotDot}'s own distinctive look unless
+#'   overridden. \code{TRUE}/\code{FALSE}/\code{NA}, or a named list, as
+#'   for \code{.drawDotGrid()} (internal).
+#'   
+#' @param pch Plotting symbol specification for the points. \code{.useTheme}
+#'   (default) resolves to \code{getTheme()$points} (\code{pch}/\code{col}/
+#'   \code{bg}/\code{cex}). May also be a single value or a list of
+#'   graphical parameters passed to \code{\link[graphics]{points}}.
 #' @param ... Additional graphical parameters passed to \code{\link{par}} via
 #'   \code{.applyParFromDots()}.
 #'
 #' @details
-#' Graphical defaults may also be controlled globally through
-#' \code{options(DescToolsX.theme = list(...))}. Values supplied as arguments
-#' take precedence over theme settings.
+#' Graphical defaults for \code{box}, \code{grid}, and \code{pch} are drawn
+#' from the active theme (see \code{\link{getTheme}}/\code{\link{setTheme}})
+#' when left at their default value. Values supplied as arguments take
+#' precedence over theme settings.
 #'
 #' @return Invisibly returns a list with the vertical layout positions used in
 #' the plot:
@@ -100,10 +110,10 @@ plotDot <- function(x,
                     gap = 1,
                     axes = TRUE,
                     xax = NULL, 
-                    box = TRUE,
-                    grid = TRUE,
-                    pch = NULL, 
-                            ...) {
+                    box = .useTheme,
+                    grid = .useTheme,
+                    pch = .useTheme, 
+                    ...) {
   UseMethod("plotDot")
 }
 
@@ -111,29 +121,25 @@ plotDot <- function(x,
 
 #' @export
 plotDot.default <- function(x, 
-                    items = NULL,
-                    groups = NULL,
-                    main=NULL, 
-                    xlim = NULL,
-                    gap = 1,
-                    axes = TRUE,
-                    xax = NULL, 
-                    box = TRUE,
-                    grid = TRUE,
-                    pch = NULL, 
-                    ...) {
-
-  
-  th <- .theme(
-    grid = grid,
-    pch  = pch, 
-    box  = list(col="grey",
-                which ="plot") 
-  )
+                            items = NULL,
+                            groups = NULL,
+                            main=NULL, 
+                            xlim = NULL,
+                            gap = 1,
+                            axes = TRUE,
+                            xax = NULL, 
+                            box = .useTheme,
+                            grid = .useTheme,
+                            pch = .useTheme, 
+                            ...) {
   
   
-  grid <- th$grid
-  pch  <- th$pch
+  gridSpec <- .resolveToggle(grid, getTheme()$grid)
+  
+  if (identical(pch, .useTheme)) {
+    pt  <- getTheme()$points
+    pch <- list(pch = pt$pch, col = pt$col, bg = pt$bg, cex = pt$cex)
+  }
   
   
   x <- .normalizeDotData(x)
@@ -144,7 +150,7 @@ plotDot.default <- function(x,
   
   if (dim(x)[3] == 1 && missing(groups))
     groups <- NULL
-
+  
   ng <- dim(x)[3]
   x <- x[,,rev(seq_len(ng)), drop = FALSE]
   if (!is.null(groups))
@@ -152,7 +158,7 @@ plotDot.default <- function(x,
   
   
   .withGraphicsState({
-
+    
     .applyParFromDots(...)
     
     if(length(dim(x)) != 3)
@@ -177,7 +183,6 @@ plotDot.default <- function(x,
     # adjust margin automatically 
     # --------------------------------
     
-    # .adjustLeftMarginForLabels(c(groups, items), pad=1)
     .adjustMargin(c(groups, items), side=2, pad=1)
     
     # --------------------------------
@@ -192,7 +197,6 @@ plotDot.default <- function(x,
     
     for(g in seq_len(ng)) {
       
-      # ypos[[g]]    <- base + seq_len(nx)
       ypos[[g]]    <- base + rev(seq_len(nx))
       sep_y[g]     <- base + nx + header
       group_y[g]   <- base + nx + header
@@ -222,20 +226,18 @@ plotDot.default <- function(x,
     # --------------------------------
     # Grid
     # --------------------------------
-
+    # NOTE: only the on/off toggle is theme-driven; the line style
+    # (orange/grey40, dotted/dashed) is plotDot's own distinctive default,
+    # taken from .drawDotGrid()'s own formals unless overridden via a
+    # named list passed as 'grid'.
+    
     bedrock::callIf(
       .drawDotGrid,
-      grid,
+      gridSpec,
       defaults = list(
         ypos = ypos,
         sep_y = sep_y,
-        drawGroupHeader = drawGroupHeader,
-        col = th$grid$col,
-        lty = th$grid$lty,
-        lwd = th$grid$lwd,
-        group.col = th$grid$group.col,
-        group.lty = th$grid$group.lty,
-        group.lwd = th$grid$group.lwd
+        drawGroupHeader = drawGroupHeader
       )
     )
     
@@ -247,7 +249,7 @@ plotDot.default <- function(x,
     if(isTRUE(axes)) {
       
       .drawAxis(1, xax)
-
+      
       axis(
         2,
         at = unlist(ypos),
@@ -278,24 +280,22 @@ plotDot.default <- function(x,
       }
     }
     
-    # draw box if box != FALSE || NA
-    bedrock::callIf(graphics::box, 
-            box,
-            defaults=th$box)
+    # --- box ---
+    .drawBox(box, defaults = list(which = "plot"))
     
     # place main title if main != FALSE || NA
     if(!(is.null(main) %||% main=="" %||% isNA(main)))
       title(main=main)
     
- 
+    
     # add data
     .addDotCI(
       x,
       ypos,
       pch = pch
     )
-
-        
+    
+    
   })
   
   invisible(list(
@@ -644,3 +644,4 @@ plotDot.CI <- function(x, ...) {
   
   invisible(NULL)
 }
+

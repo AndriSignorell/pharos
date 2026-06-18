@@ -11,16 +11,17 @@ plotXY(x, ...)
 \method{plotXY}{default}(
   x,
   y,
-  main = "",
+  main = NULL,
   xlab = "",
   ylab = "",
   xlim = NULL,
   ylim = NULL,
-  col = "grey50",
-  bg = addAlpha("grey80"),
-  pch = 21,
-  cex = 1.1,
-  grid = TRUE,
+  col = .useTheme,
+  bg = .useTheme,
+  pch = .useTheme,
+  cex = .useTheme,
+  grid = .useTheme,
+  box = .useTheme,
   lm = TRUE,
   loess = TRUE,
   legend = TRUE,
@@ -32,19 +33,20 @@ plotXY(x, ...)
   data,
   subset,
   na.action = na.omit,
-  main = "",
+  main = NULL,
   xlab = "",
   ylab = "",
   xlim = NULL,
   ylim = NULL,
-  col = "grey50",
-  bg = addAlpha("grey80"),
-  pch = 21,
-  cex = 1.1,
-  grid = TRUE,
+  col = .useTheme,
+  bg = .useTheme,
+  pch = .useTheme,
+  cex = .useTheme,
+  grid = .useTheme,
   lm = TRUE,
   loess = TRUE,
   legend = TRUE,
+  box = .useTheme,
   ...
 )
 }
@@ -56,7 +58,12 @@ internal framework.}
 
 \item{y}{numeric vector of y-values (ignored if a formula is used).}
 
-\item{main}{main title of the plot.}
+\item{main}{main title of the plot. \code{NULL} (default) derives a
+title from the input - \code{deparse(y) ~ deparse(x)} for the default
+method, or the formula's \code{data.name} for the formula method.
+\code{""}, \code{NA}, or \code{FALSE} suppress the title entirely
+(and compact the top margin accordingly); any other string is used
+as given (resolved internally via \code{.resolveTitle()}).}
 
 \item{xlab}{label for the x-axis.}
 
@@ -68,21 +75,38 @@ internal framework.}
 \item{ylim}{numeric vector of length 2; y-axis limits. If \code{NULL}
 (default), the range of \code{y} is used.}
 
-\item{col}{color of the points. Default: \code{"grey50"}.}
+\item{col}{color of the points. \code{.useTheme} (default) resolves to
+\code{getTheme()$points$col}.}
 
-\item{bg}{background (fill) color of the points. Default: a transparent
-\code{"grey80"}.}
+\item{bg}{background (fill) color of the points. \code{.useTheme}
+(default) resolves to \code{getTheme()$points$bg}.}
 
-\item{pch}{plotting character. Default: \code{21} (filled circle).}
+\item{pch}{plotting character. \code{.useTheme} (default) resolves to
+\code{getTheme()$points$pch}.}
 
-\item{cex}{character expansion factor for points. Default: \code{1}.}
+\item{cex}{character expansion factor for points. \code{.useTheme}
+(default) resolves to \code{getTheme()$points$cex}.}
 
 \item{grid}{controls drawing of the background grid.
 Can be:
 \itemize{
-\item \code{TRUE}: draw grid with default settings
+\item \code{.useTheme} (default): follow the active theme
+(\code{getTheme()$grid})
+\item \code{TRUE}: draw grid with theme settings
 \item \code{FALSE}, \code{NULL}, or \code{NA}: suppress grid
-\item a named list: arguments passed to \code{\link[graphics]{grid}}
+\item a named list: arguments passed to \code{\link[graphics]{grid}},
+overriding the theme defaults for this call only
+}}
+
+\item{box}{controls drawing of the plot box.
+Can be:
+\itemize{
+\item \code{.useTheme} (default): follow the active theme
+(\code{getTheme()$box})
+\item \code{TRUE}: draw box with theme settings
+\item \code{FALSE}, \code{NULL}, or \code{NA}: suppress box
+\item a named list: arguments passed to \code{\link[graphics]{box}},
+overriding the theme defaults for this call only
 }}
 
 \item{lm}{controls drawing of the linear regression line.
@@ -112,7 +136,8 @@ Can be:
 e.g. \code{list(x = "bottomleft")}
 }
 The legend is only drawn when at least one of \code{lm} or \code{loess}
-is active.}
+is active. \code{lm}/\code{loess} line colors are taken from the
+active theme's \code{twin} colors (\code{getTheme()$twin}).}
 
 \item{formula}{a formula of the form \code{y ~ x}.}
 
@@ -131,13 +156,21 @@ Draws a scatterplot of two numeric variables with optional linear and
 locally weighted regression lines, and an optional legend.
 }
 \details{
-Optional plot components (\code{grid}, \code{lm}, \code{loess},
-\code{legend}) follow \code{\link[bedrock]{callIf}} semantics:
+Optional plot components (\code{grid}, \code{box}, \code{lm},
+\code{loess}, \code{legend}) follow \code{\link[bedrock]{callIf}}
+semantics:
 \itemize{
 \item \code{TRUE}: draw with defaults
 \item \code{FALSE}, \code{NULL}, or \code{NA}: suppress component
 \item named list: customize component arguments
 }
+
+\code{col}, \code{bg}, \code{pch}, \code{cex}, \code{grid}, and \code{box}
+default to \code{.useTheme}, deferring to the package's active theme
+(see \code{\link{getTheme}}) rather than a hardcoded value. This means
+\code{setTheme(list(points = list(col = "black")))} changes the point
+color for every call to \code{plotXY()} (and any other function using
+the same theme section) that doesn't override \code{col} explicitly.
 }
 \examples{
 \dontrun{
@@ -148,6 +181,9 @@ plotXY(temperature ~ delivery_min, bedrock::Pizza,
 plotXY(temperature ~ delivery_min, bedrock::Pizza,
        lm    = list(col = "darkred", lwd = 2),
        loess = FALSE)
+
+# No title, compact top margin
+plotXY(temperature ~ delivery_min, bedrock::Pizza, main = "")
 }
 
 }
@@ -155,7 +191,8 @@ plotXY(temperature ~ delivery_min, bedrock::Pizza,
 \code{\link[graphics]{plot}},
 \code{\link[stats]{lm}},
 \code{\link[stats]{loess}},
-\code{\link[bedrock]{callIf}}
+\code{\link[bedrock]{callIf}},
+\code{\link{getTheme}}, \code{\link{setTheme}}
 }
 \concept{graphics}
 \concept{regression}

@@ -1,5 +1,4 @@
-
-
+#'
 #' QQ-Plot for Any Distribution 
 #' 
 #' Create a QQ-plot for a variable of any distribution. The assumed underlying
@@ -17,10 +16,27 @@
 #' @param main the main title for the plot. This will be "Q-Q-Plot" by default
 #' @param xlab the xlab for the plot 
 #' @param ylab the ylab for the plot 
+#' 
 #' @param datax logical. Should data values be on the x-axis? Default is
 #' \code{FALSE}.
 #' @param add logical specifying if the points should be added to an already
 #' existing plot; defaults to \code{FALSE}.
+#' 
+#' @param grid Controls drawing of the background grid. \code{.useTheme}
+#'   (default) follows the active theme (\code{getTheme()$grid}).
+#'   \code{TRUE}/\code{FALSE}/\code{NA}, or a named list, as for
+#'   \code{\link[graphics]{grid}}.
+#' @param box Controls drawing of the plot box. \code{.useTheme} (default)
+#'   resolves to \code{getTheme()$box}. \code{TRUE}/\code{FALSE}/\code{NA},
+#'   or a named list, as for \code{\link[graphics]{box}}.
+#' 
+#' @param cband controls the confidence band. \code{FALSE}, \code{NULL}, or
+#'   \code{NA} suppress it. A named list configures it; its
+#'   \code{conf.level} element (default \code{0.95}) controls the
+#'   confidence level of the pointwise Kolmogorov-Smirnov-based band
+#'   (\code{conf.level} is consumed before the band is drawn and never
+#'   forwarded as a graphical parameter). Other list elements (e.g.
+#'   \code{col}, \code{border}) configure the band's appearance.
 #' @param qqline arguments for the qqline. This will be estimated as a
 #' line through the 25\% and 75\% quantiles by default, which is the same
 #' procedure as \code{\link{qqline}()} does for normal distribution (instead of
@@ -30,19 +46,12 @@
 #' (default is 7, see \code{\link{quantile}}). The line defaults are set to
 #' \code{col = par("fg")}, \code{lwd = par("lwd")} and \code{lty = par("lty")}.
 #' No line will be plotted if \code{args.qqline} is set to \code{NA}.
-#' @param conf.level confidence level for the confidence interval. Set this to
-#' \code{NA}, if no confidence band should be plotted.  Default is \code{0.95}.
-#' The confidence intervals are calculated pointwise method based on a
-#' Kolmogorov-Smirnov distribution. 
-#' @param cband list of arguments for the confidence band, such as color
-#' or border (see \code{\link{band}}). 
-#' @param grid Optional list of arguments controlling grid lines.
-#'   Supported elements include:
-#'   \describe{
-#'     \item{col}{Grid line color (default: \code{"grey85"})}
-#'     \item{lty}{Line type (default: \code{1})}
-#'     \item{lwd}{Line width (default: \code{1})}
-#'   }
+#' 
+#' @param stamp Controls the corner stamp. \code{.useTheme} (default)
+#'   resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/\code{NULL},
+#'   a string, or a named list of arguments for \code{stamp()} (e.g.
+#'   \code{list(text = "...", las = 2)}).
+#' 
 #' @param \dots the dots are passed to the plot function. 
 #' 
 #' @note The code is inspired by the tip 10.22 "Creating other
@@ -53,7 +62,8 @@
 #' 
 #' @note Based on code by Ying Wu
 #' 
-#' @seealso \code{\link{qqnorm}}, \code{\link{qqline}}, \code{\link{qqplot}} 
+#' @seealso \code{\link{qqnorm}}, \code{\link{qqline}}, \code{\link{qqplot}},
+#'   \code{\link{getTheme}}, \code{\link{lines.loess}}
 #' @references Teetor, P. (2011) \emph{R Cookbook}. O'Reilly, pp. 254-255.
 #' @examples
 #' 
@@ -69,6 +79,9 @@
 #'        main=expression("Q-Q plot for" ~~ {chi^2}[nu == 3]))
 #' abline(0,1)
 #' 
+#' # 90% confidence band instead of the 95% default
+#' plotQQ(y, function(p) qexp(p, rate=1/10), cband = list(conf.level = 0.90))
+#' 
 #' # add 5 random sets
 #' for(i in 1:5){
 #'   z <- rchisq(100, df=5)
@@ -76,9 +89,6 @@
 #'          col="grey", lty="dotted")
 #' }
 #' 
-
-
-
 #' @family plot.distribution
 #' @concept graphics
 #' @concept normality-testing
@@ -87,45 +97,51 @@
 #'
 #' @export
 plotQQ <- function(x, qdist=stats::qnorm, 
+                   
+                   # LABELS
                    main=NULL, xlab=NULL, ylab=NULL, 
+                   
+                   # STRUCTURE
                    datax = FALSE, add=FALSE,
-                   conf.level=0.95, 
-                   cband = TRUE, 
-                   qqline = TRUE, grid=NULL, ...) {
-  
-
-  th <- .theme(
-    grid = grid
-    # , pch  = pch
-  )
+                   
+                   # STYLE
+                   grid = .useTheme, 
+                   box  = .useTheme,
+                   
+                   # FEATURES
+                   cband  = list(conf.level = 0.95), 
+                   qqline = TRUE, 
+                   
+                   # FRAMEWORK
+                   stamp = .useTheme,
+                   
+                   ...) {
   
   
   .withGraphicsState({
-
+    
     # qqplot for an optional distribution
     
     # example:
     # y <- rexp(100, 1/10)
     # plotQQ(y, function(p) qexp(p, rate=1/10))
-
+    
     
     # resolve main BEFORE applying par defaults, the top margin 
     # depends on it
     main <- main %||% gettextf("Q-Q-Plot (%s)", 
                                deparse(substitute(qdist))[1L])
     
-    .marTop(main)
     .applyParFromDots(..., 
                       defaults=list(
                         mar      = c(left = 5, top=.marTop(main)),  # default
                         col.axis = "grey40", 
                         fg       = "grey30")       # border inherits from here
     ) 
-
-    main <- main %||% gettextf("Q-Q-Plot (%s)", deparse(substitute(qdist))[1L])
+    
     xlab <- xlab %||% "Theoretical Quantiles"
     ylab <- ylab %||% "Sample Quantiles"
-
+    
     y <- sort(x)
     p <- stats::ppoints(y)
     x <- qdist(p)
@@ -136,39 +152,49 @@ plotQQ <- function(x, qdist=stats::qnorm,
       x <- y
       y <- xy
     }
-
-        
+    
+    
     # --------------------------------
     # Grid
     # --------------------------------
     
     if(!add){
-      plot(x=x, y, main=main, xlab=xlab, ylab=ylab, type="n", ...)
-      bedrock::callIf(graphics::grid, grid, 
-              defaults = list(
-                col = th$grid$col,
-                lty = th$grid$lty,
-                lwd = th$grid$lwd
-              )  )
+      plot(x=x, y, main=main, xlab=xlab, ylab=ylab, type="n", frame.plot=FALSE, ...)
+      
+      .drawGrid(grid)
+      
+      # --- box ---
+      .drawBox(box, defaults = list(which = "plot"))
+      
     }
-
+    
+    
+    # conf.level lebt in cband (konsistent mit lines.loess()'s bandArgs /
+    # plot.Lc()'s cbandArgs), wird aber hier herausgeloest, BEVOR die
+    # Liste an callIf() weitergeht - sonst haelt 'forbidden' es faelschlich
+    # fuer einen Missbrauchsfall und warnt bei jedem normalen Aufruf,
+    # auch wenn niemand etwas falsch gemacht hat.
+    confLevel <- if (is.list(cband)) cband$conf.level %||% 0.95 else 0.95
+    
+    cbandSpec <- if (is.list(cband))
+      cband[setdiff(names(cband), "conf.level")]
+    else
+      cband
     
     # add confidence band if desired
     bedrock::callIf(.drawConfBandQQ,
-            cband,
-            defaults = list(
-              col    = addAlpha(.getOption("palette", 
-                                        default = c("#8296C4", "#9A0941"))[1], 0.25), 
-              border = NA,
-              ci     = .create.qqplot.fit.confidence.interval(
-                           y, distribution = qdist, 
-                           conf=conf.level, conf.method = "pointwise")
-            ),
-            forbidden = c("ci"),
-            warn = TRUE
-    )
+                    cbandSpec,
+                    defaults = list(
+                      col    = addAlpha(getTheme()$twin[1], 0.25), 
+                      border = NA,
+                      ci     = .create.qqplot.fit.confidence.interval(
+                        y, distribution = qdist, 
+                        conf=confLevel, conf.method = "pointwise")
+                    ),
+                    forbidden = "ci",
+                    warn = TRUE
+    )    
     
-
     # draw points last so they stay on top of confidence band
     do.call(points, mergeArgs(
       defaults = list(
@@ -179,7 +205,7 @@ plotQQ <- function(x, qdist=stats::qnorm,
       ),
       user = list(...)
     ))
-
+    
     bedrock::callIf(
       .drawQQline,
       qqline,
@@ -194,12 +220,8 @@ plotQQ <- function(x, qdist=stats::qnorm,
       )
     )
     
-  })
+  }, stamp=stamp )
 }
-
-
-
-
 
 
 # == internal helper functions ========================================================

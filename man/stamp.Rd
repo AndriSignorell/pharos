@@ -4,22 +4,21 @@
 \alias{stamp}
 \title{Date/Time/Directory Stamp the Current Plot}
 \usage{
-stamp(txt = NULL, las = NULL, cex = 0.6, col = "grey40")
+stamp(text = .useTheme, las = NULL, cex = 0.6, col = "grey40")
 }
 \arguments{
-\item{txt}{an optional single text string. If it is not given, the function
-will look for a defined option named \code{stamp}. If not found the current
-date will be taken as text. If the stamp option is defined as expression the
-function will evaluate it. This can be used to define dynamic texts. Use \code{NA}
-to not display a stamp at all.}
+\item{text}{Character string, expression, or toggle controlling the
+stamp text. \code{.useTheme} (default) or \code{TRUE} resolve to
+\code{getTheme()$stamp}, evaluated lazily at draw time. \code{FALSE},
+\code{NULL}, or \code{NA} suppress the stamp. Any other string or
+unevaluated \code{expression()} is used as given.}
 
-\item{las}{numeric in \code{c(1, 3)}, defining direction of the text. 1
-means horizontal, 3 vertical. Default is taken from \code{par("las")}.}
+\item{las}{orientation; see \code{\link[graphics]{par}}. \code{NULL}
+(default) inherits the current \code{par("las")}. \code{las = 3}
+places the stamp vertically along the right edge instead of
+horizontally along the bottom.}
 
-\item{cex}{numeric \bold{c}haracter \bold{ex}pansion factor; multiplied by
-\code{par("cex")} yields the final character size. Defaults to 0.6.}
-
-\item{col}{the text color}
+\item{cex, col}{size and color of the stamp text.}
 }
 \description{
 Stamp the current plot in the extreme lower right corner. A free text or

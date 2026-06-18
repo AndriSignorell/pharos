@@ -12,8 +12,8 @@ pal(name, n = NA, alpha = 1)
 \arguments{
 \item{name}{character or integer. Palette name (full match via
 \code{\link[base]{match.arg}}) or index into \code{\link{palNames}()}.
-If missing, returns the current default palette from
-\code{getOption("DescToolsX.palette")}.}
+If missing, returns the palette named in the active theme
+(\code{getTheme()$palette}, see \code{\link{getTheme}}).}
 
 \item{n}{integer, number of colors to return. Default \code{NA} returns
 the colors as contained in the palette.}

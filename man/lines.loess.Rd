@@ -6,7 +6,7 @@
 \usage{
 \method{lines}{loess}(
   x,
-  col = pal()[1],
+  col = .useTheme,
   lwd = 2,
   lty = "solid",
   type = "l",
@@ -18,7 +18,9 @@
 \arguments{
 \item{x}{a fitted \code{\link{loess}} object.}
 
-\item{col}{line color of the smoother.}
+\item{col}{line color of the smoother. \code{.useTheme} (default)
+resolves to \code{getTheme()$twin[1]} - the first of the theme's
+two-color pair (see \code{\link{getTheme}}).}
 
 \item{lwd}{line width.}
 
@@ -71,7 +73,7 @@ lines(
 }
 \seealso{
 \code{\link{loess}}, \code{\link{scatter.smooth}},
-\code{\link{smooth.spline}}
+\code{\link{smooth.spline}}, \code{\link{getTheme}}
 }
 \keyword{aplot}
 \keyword{math}

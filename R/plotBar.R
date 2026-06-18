@@ -22,7 +22,7 @@
 #'   \describe{
 #'     \item{\code{TRUE}}{draw axis using package defaults}
 #'     \item{\code{FALSE}}{suppress axis}
-#'     \item{\code{NULL}}{use package option \code{DescToolsX.yax}}
+#'     \item{\code{NULL}}{do not draw a numeric axis at all}
 #'     \item{\code{list(...)}}{custom axis parameters passed to the axis drawing routine}
 #'   }
 #'
@@ -32,24 +32,26 @@
 #' @param horiz Logical. If \code{TRUE}, bars are drawn horizontally.
 #'   Defaults to \code{FALSE}.
 #'
-#' @param col Bar fill colours. Defaults to the theme value
-#'   \code{bar.col} if not specified.
-#'
-#' @param border Bar border colour. Defaults to the theme value
-#'   \code{bar.border}.
+#' @param col Bar fill colours. \code{.useTheme} (default) resolves to
+#'   \code{getTheme()$bar$col}.
+#' @param border Bar border colour. \code{.useTheme} (default) resolves to
+#'   \code{getTheme()$bar$border}.
 #'
 #' @param grid Controls drawing of grid lines.
-#'
-#'   Supported values are
-#'   \describe{
-#'     \item{\code{TRUE}}{draw grid using theme defaults}
-#'     \item{\code{FALSE}}{suppress grid}
-#'     \item{\code{NULL}}{use package option \code{DescToolsX.grid}}
-#'     \item{\code{list(...)}}{custom grid parameters such as \code{col}, \code{lty}, \code{lwd}}
+#'   Can be:
+#'   \itemize{
+#'     \item \code{.useTheme} (default): follow the active theme
+#'       (\code{getTheme()$grid}), restricted to the axis perpendicular to
+#'       the value axis (e.g. horizontal lines only for vertical bars)
+#'     \item \code{TRUE}: draw grid with theme settings
+#'     \item \code{FALSE}, \code{NULL}, or \code{NA}: suppress grid
+#'     \item a named list: arguments passed to \code{\link[graphics]{grid}},
+#'       overriding the theme/function defaults for this call only
 #'   }
 #'
-#' @param box Logical indicating whether a box should be drawn around the
-#'   plot region.
+#' @param box Controls drawing of the plot box. \code{.useTheme} (default)
+#'   resolves to \code{getTheme()$box}. \code{TRUE}/\code{FALSE}/\code{NA},
+#'   or a named list, as for \code{grid}.
 #'
 #' @param text Optional list of arguments passed to \code{\link{barText}}
 #'   to draw value labels on bars.
@@ -58,9 +60,10 @@
 #'   lines between stacked bars. Only supported when
 #'   \code{beside = FALSE}.
 #'
-#' @param stamp Logical indicating whether a package stamp should be
-#'   drawn. Default is \code{TRUE}.
-#'
+#' @param stamp Controls the corner stamp. \code{.useTheme} (default)
+#'   resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/\code{NULL},
+#'   or an explicit string, as for \code{.withGraphicsState()} (internal).
+#'   
 #' @param ... Additional arguments passed to \code{\link[graphics]{barplot}}
 #'   and graphical parameters (via \code{\link[graphics]{par}}).
 #'
@@ -79,16 +82,18 @@
 #' Graphical parameters such as \code{bg}, \code{cex}, \code{las},
 #' \code{mar}, etc. can be supplied via \code{...}.
 #'
-#' The precedence of graphical settings is
+#' The precedence of theme-aware settings (\code{col}, \code{border},
+#' \code{grid}, \code{box}, \code{stamp}) is
 #'
 #' \preformatted{
-#' user arguments  >  DescToolsX theme  >  base defaults
+#' explicit argument  >  function-specific default  >  active theme (getTheme())
 #' }
 #'
 #' @return Invisibly returns the midpoints of the bars as returned by
 #'   \code{\link[graphics]{barplot}}.
 #'
-#' @seealso \code{\link[graphics]{barplot}}, \code{\link{barText}}
+#' @seealso \code{\link[graphics]{barplot}}, \code{\link{barText}},
+#'   \code{\link{getTheme}}
 #' 
 #' @family topic.graphics
 #' @concept base-graphics
@@ -154,13 +159,6 @@
 #' 
 
 
-
-# Principle for the plot part of aurora:
-# * User arguments override theme
-# * Theme overrides base defaults
-# .apply pars describe!!*********
-
-
 #' @family plot.univariate
 #' @concept graphics
 #' @concept descriptive-statistics
@@ -174,7 +172,7 @@ plotBar <- function(height,
                     main = NULL,
                     xlab = NULL,
                     ylab = NULL,                    
-
+                    
                     # AXES
                     yax = NULL,
                     
@@ -183,37 +181,31 @@ plotBar <- function(height,
                     horiz  = FALSE,
                     
                     # STYLE
-                    col = NULL,
-                    border = NULL,
-                    grid = NULL,
-                    box=FALSE,
+                    col    = .useTheme,
+                    border = .useTheme,
+                    grid   = .useTheme,
+                    box    = FALSE, # .useTheme,
                     
                     # FEATURES
                     text = NULL,
                     connlines = NULL,
                     
                     # FRAMEWORK
-                    stamp = TRUE,
+                    stamp = .useTheme,
                     ...) {
-
-  th <- .theme(
-    bar = list(col=col, border=border), 
-    grid = TRUE
-  )
-  col    <- th$bar$col
-  border <- th$bar$border
+  
+  col    <- .useThemeValue(col,    "bar", "col")
+  border <- .useThemeValue(border, "bar", "border")
   
   dots  <- list(...)
   
   .withGraphicsState({
     
-        
+    
     .applyParFromDots(..., defaults=list(
-            mar      = c(left = 5),  # default
-            col.axis = "grey40", 
-            fg       = "grey50"      
+      mar = c(left = 5)  # default
     ))
-
+    
     # read back the *effective* las (user dots may have changed it via
     # .applyParFromDots); needed below for axis()/margin computation
     las <- par("las")
@@ -236,48 +228,28 @@ plotBar <- function(height,
     # --- Setup (invisible) ---
     dots[c("col", "border", "axes")] <- NULL
     b <- do.call(barplot, c(list(
-                     height = height, 
-                     col    = NA, 
-                     border = NA, 
-                     axes   = FALSE,
-                     main   = main, 
-                     xlab   = xlab, 
-                     ylab   = ylab,
-                     beside = beside,
-                     horiz  = horiz
-                     ), 
-                     dots))
-
+      height = height, 
+      col    = NA, 
+      border = NA, 
+      axes   = FALSE,
+      main   = main, 
+      xlab   = xlab, 
+      ylab   = ylab,
+      beside = beside,
+      horiz  = horiz
+    ), 
+    dots))
+    
     # --- GRID Layer ---
-    if (!is.null(grid)) {
-      
-      if(isTRUE(grid))
-        grid <- NULL
-      
-      grid <- mergeArgs(
-        defaults = list(
-          horiz = horiz,
-          col   = "grey85",
-          lty   = 1,
-          lwd   = 1
-        ),
-        user = grid,
-        forbidden = c("horiz"),
-        warn = TRUE
+    # bars have no continuous scale along the categorical axis, so only
+    # the direction perpendicular to the value axis gets gridlines
+    .drawGrid(
+      grid,
+      defaults = list(
+        nx = if (horiz) NULL else NA,
+        ny = if (horiz) NA   else NULL
       )
-      
-      if (!horiz) {
-        abline(h = axTicks(2),
-               col = grid$col,
-               lty = grid$lty,
-               lwd = grid$lwd)
-      } else {
-        abline(v = axTicks(1),
-               col = grid$col,
-               lty = grid$lty,
-               lwd = grid$lwd)
-      }
-    }
+    )
     
     # --- echte Balken ---
     barplot(height = height,
@@ -289,21 +261,6 @@ plotBar <- function(height,
             horiz  = horiz, 
             ...)
     
-    # --- Zero-Linie nach Balken ---
-    # ******* ???? do we need a zero line ???? ************
-    
-    # usr <- par("usr")
-    # 
-    # if (!horiz) {
-    #   if (!par("ylog") && usr[3] <= 0 && usr[4] >= 0) {
-    #     abline(h = 0, lwd = 1.5)
-    #   }
-    # } else {
-    #   if (!par("xlog") && usr[1] <= 0 && usr[2] >= 0) {
-    #     abline(v = 0, lwd = 1.5)
-    #   }
-    # }
-    
     # --- Connecting Lines (stacked only) ---
     if (!is.null(connlines)) {
       
@@ -312,12 +269,9 @@ plotBar <- function(height,
         
       } else {
         
-        # width <- dots$width %||% 1
-        
-        if(isTRUE(connlines))
-          connlines <- NULL
-        
-        connlines <- mergeArgs(
+        bedrock::callIf(
+          .drawConnLines,
+          connlines,
           defaults = list(
             height = height,
             b      = b,
@@ -327,31 +281,28 @@ plotBar <- function(height,
             lwd    = 1,
             lty    = 2
           ),
-          user = connlines,
           forbidden = c("height","b","horiz","width"),
           warn = TRUE
         )
-        
-        do.call(.drawConnLines, connlines)
       }
     }
     
     # --- Text Layer ---
     bedrock::callIf(barText,
-            text,
-            defaults = list(
-                height = height,
-                b      = b,
-                horiz  = horiz,
-                beside = beside,
-                labels = height,
-                pos    = "mid",
-                offset = 0
-              ),
-              forbidden = c("height","b","horiz", "beside"),
-              warn = TRUE
-            )
-
+                    text,
+                    defaults = list(
+                      height = height,
+                      b      = b,
+                      horiz  = horiz,
+                      beside = beside,
+                      labels = height,
+                      pos    = "mid",
+                      offset = 0
+                    ),
+                    forbidden = c("height","b","horiz", "beside"),
+                    warn = TRUE
+    )
+    
     
     # --- numeric axis ---
     if (!isFALSE(yax)) {
@@ -362,12 +313,10 @@ plotBar <- function(height,
         .drawAxis(1, yax)
       }
     }    
-
-        
-    # draw box if box != FALSE || NA
-    bedrock::callIf(graphics::box, 
-            box,
-            defaults=list(which="plot"))
+    
+    
+    # --- box ---
+    .drawBox(box, defaults = list(which = "plot"))
     
     
   }, stamp = stamp)
@@ -377,6 +326,10 @@ plotBar <- function(height,
 }
 
 
+
+# == internal helper functions =======================================
+# (.applyFmt, .splitAxisArgs, .drawAxis, .drawConnLines,
+#  .getBarplotAxisLabels unverändert)
 
 # == internal helper functions =======================================
 
@@ -467,13 +420,6 @@ plotBar <- function(height,
   )
 }
 
-
-.drawGridY <- function(horiz, col, lty, lwd, ...) {
-  abline(h = axTicks(2), col = col, lty = lty, lwd = lwd, ...)
-}
-.drawGridX <- function(horiz, col, lty, lwd, ...) {
-  abline(v = axTicks(1), col = col, lty = lty, lwd = lwd, ...)
-}
 
 
 .drawConnLines <- function(height, b, horiz = FALSE,

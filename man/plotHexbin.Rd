@@ -61,8 +61,7 @@ Other plot.bivariate:
 \code{\link[=plotBag]{plotBag()}},
 \code{\link[=plotCor]{plotCor()}},
 \code{\link[=plotDens2D]{plotDens2D()}},
-\code{\link[=plotHeatmap]{plotHeatmap()}},
-\code{\link[=plotMosaic]{plotMosaic()}}
+\code{\link[=plotHeatmap]{plotHeatmap()}}
 }
 \concept{density-estimation}
 \concept{graphics}

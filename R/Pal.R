@@ -144,8 +144,9 @@ palNames <- function(type = c("all", "continuous", "discrete")) {
 #'
 #' @param name character or integer. Palette name (full match via
 #'   \code{\link[base]{match.arg}}) or index into \code{\link{palNames}()}.
-#'   If missing, returns the current default palette from
-#'   \code{getOption("DescToolsX.palette")}.
+#'   If missing, returns the palette named in the active theme
+#'   (\code{getTheme()$palette}, see \code{\link{getTheme}}).   
+#'   
 #' @param n integer, number of colors to return. Default \code{NA} returns 
 #' the colors as contained in the palette.
 #' @param alpha numeric in \eqn{[0, 1]}, opacity. Default \code{1} (opaque).
@@ -184,13 +185,9 @@ palNames <- function(type = c("all", "continuous", "discrete")) {
 #' @export
 pal <- function(name, n = NA, alpha = 1) {
   
-  # ── missing: return default ────────────────────────────────────────────────
-  if (missing(name)) {
-    res <- getOption("DescToolsX.palette")
-    if (!inherits(res, "palette"))
-      class(res) <- c("Palette", "character")
-    return(res)
-  }
+  # ── missing: fall back to the active theme's palette ──────────────────────
+  if (missing(name))
+    name <- getTheme()$palette
   
   all_names <- palNames("all")
   
@@ -220,31 +217,26 @@ pal <- function(name, n = NA, alpha = 1) {
   
   nb <- length(base)
   
-  # n = NA: return all base colors as defined
   if (is.na(n)) n <- nb
   
-  # ── sample / interpolate to n ──────────────────────────────────────────────
   res <- if (n == nb) {
     base
   } else if (n < nb) {
-    # evenly spaced indices for maximum contrast
     idx <- round(seq(1, nb, length.out = n))
     base[idx]
   } else {
-    # interpolate
     colorRampPalette(base)(n)
   }
   
-  # ── alpha ──────────────────────────────────────────────────────────────────
   if (alpha != 1)
     res <- grDevices::adjustcolor(res, alpha.f = alpha)
   
-  # ── class and name attribute ───────────────────────────────────────────────
   attr(res, "name") <- name
   class(res)        <- c("Palette", "character")
   
   res
 }
+
 
 
 #' @param x palette object to be plotted.
@@ -267,11 +259,11 @@ plot.Palette <- function(
   
   .withGraphicsState({
     
-    .applyParFromDots(...)
-    
-    oldpar <- par(mar = c(1, 6, 3, 2))
-    on.exit(par(oldpar), add = TRUE)
-    
+    .applyParFromDots(..., 
+                      defaults=list(
+                        mar=c(1, 6, 3, 2)
+                      ))
+
     # --- Meta -------------------------------------------------------------
     palname <- attr(x, "name")
     if (is.null(palname) || is.na(palname))

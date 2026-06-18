@@ -13,7 +13,9 @@
 #' }
 #'
 #' @param x a fitted \code{\link{loess}} object.
-#' @param col line color of the smoother.
+#' @param col line color of the smoother. \code{.useTheme} (default)
+#'   resolves to \code{getTheme()$twin[1]} - the first of the theme's
+#'   two-color pair (see \code{\link{getTheme}}).
 #' @param lwd line width.
 #' @param lty line type.
 #' @param type plotting type passed to \code{\link{lines}}.
@@ -27,7 +29,7 @@
 #' @note Loess can result in substantial computational load for large datasets.
 #'
 #' @seealso \code{\link{loess}}, \code{\link{scatter.smooth}},
-#'   \code{\link{smooth.spline}}
+#'   \code{\link{smooth.spline}}, \code{\link{getTheme}}
 #'
 #' @keywords math aplot
 #'
@@ -52,7 +54,7 @@
 #' @export
 lines.loess <- function(
     x,
-    col = pal()[1],
+    col = .useTheme,
     lwd = 2,
     lty = "solid",
     type = "l",
@@ -60,6 +62,8 @@ lines.loess <- function(
     bandArgs = list(conf.level = 0.95),
     ...
 ) {
+  
+  col <- if (identical(col, .useTheme)) getTheme()$twin[1] else col
   
   newx <- seq(
     from = min(x$x, na.rm = TRUE),

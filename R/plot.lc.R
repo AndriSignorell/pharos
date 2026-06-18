@@ -16,35 +16,61 @@
 #' n = 500)}).  Set \code{cbandArgs = NA} (default) to suppress the band.
 #'
 #' @name plot.Lc
-#' 
-#' @param x Object of class \code{"Lc"} or \code{"Lclist"}.
+#'
+#' @param x Object of class \code{"Lc"} (for \code{plot.Lc()},
+#'   \code{lines.Lc()}, \code{points.Lc()}) or \code{"LcList"} (for the
+#'   \code{*.LcList()} methods).
 #' @param general Logical.  If \code{TRUE}, the generalized Lorenz curve
 #'   (scaled by the mean) is displayed instead of the standard curve.
-#'   Default is \code{FALSE}.
-#' @param main,xlab,ylab Main title and axis labels passed to
-#'   \code{\link[graphics]{plot.default}()}.
-#' @param xlim,ylim Numeric vectors of length 2 giving axis limits.
-#' @param col Color(s) for the curve(s).  For \code{"LcList"} methods,
-#'   recycled over groups; defaults to \code{1:k}.
-#' @param lwd Line width.  Default is \code{2}.
-#' @param lty Line type.  Default is \code{1}.
-#' @param pch Plotting symbol.  If \code{NULL} (default in
-#'   \code{plot.Lc()}), no points are drawn.
-#' @param grid Logical or list.  If \code{TRUE} or a list, a grid is drawn
-#'   before the curve.  A list is forwarded as arguments to
-#'   \code{\link[graphics]{grid}()}.
-#' @param box Logical.  If \code{TRUE} (default), a box is drawn around the
-#'   plot area.
-#' @param cbandArgs \code{NA} to suppress the confidence band (default), or
-#'   a list of arguments passed to \code{\link[DescToolsX]{predict.Lc}()} to
-#'   control bootstrap confidence intervals.
-#' @param stamp Optional character string or list.  Passed to the aurora
-#'   graphics framework for plot annotation.
-#' @param ... Further graphical arguments passed to the underlying
-#'   \code{\link[graphics]{lines}()}, \code{\link[graphics]{points}()}, or
-#'   \code{\link[graphics]{plot.default}()} call.
+#'   Default is \code{FALSE}.  Used by \code{plot.Lc()}, \code{lines.Lc()},
+#'   and \code{points.Lc()}; for the \code{"LcList"} methods it is passed
+#'   through \code{...} to the underlying \code{Lc} method.
+#' @param main,xlab,ylab Main title and axis labels, used by
+#'   \code{plot.Lc()} only.  Defaults are \code{NULL}, \code{"p"}, and
+#'   \code{"L(p)"}, respectively.
+#' @param xlim,ylim Numeric vectors of length 2 giving axis limits, used by
+#'   \code{plot.Lc()} only.  Default \code{NULL}, which resolves to
+#'   \code{c(0, 1)}.
+#' @param line Logical or list, used by \code{plot.Lc()} to control drawing
+#'   of the Lorenz curve line.  \code{TRUE} (default) draws the line with
+#'   package defaults (\code{col = "black"}, \code{lty = 1}, \code{lwd = 2});
+#'   \code{FALSE} suppresses it; a list overrides individual defaults and is
+#'   forwarded to \code{\link[graphics]{lines}()}.
+#' @param points Logical or list, used by \code{plot.Lc()} to control drawing
+#'   of points on the Lorenz curve.  \code{TRUE} (default) draws points with
+#'   package defaults (\code{pch = 21}, \code{bg = "white"},
+#'   \code{col = "black"}, \code{cex = 1.4}); \code{FALSE} suppresses them; a
+#'   list overrides individual defaults and is forwarded to
+#'   \code{\link[graphics]{points}()}.
+#' @param grid Logical or list, used by \code{plot.Lc()} only.  If
+#'   \code{TRUE} (default) or a list, a grid is drawn before the curve via
+#'   \code{\link[graphics]{grid}()}; a list is forwarded as arguments to that
+#'   function.
+#' @param box Logical, used by \code{plot.Lc()} only.  If \code{TRUE}
+#'   (default), a box is drawn around the plot area.
+#' @param col Color for the curve or points.  For \code{lines.Lc()} and
+#'   \code{points.Lc()}, a single color (default \code{NULL}, i.e. the
+#'   current device default).  For the \code{"LcList"} methods, a vector
+#'   recycled over groups (default \code{NULL}, i.e. \code{seq_len(k)}).
+#' @param lwd Line width, used by \code{lines.Lc()} only.  Default is
+#'   \code{2}.
+#' @param lty Line type, used by \code{lines.Lc()} only.  Default is
+#'   \code{1}.
+#' @param pch Plotting symbol, used by \code{points.Lc()} only.  Default is
+#'   \code{16}.
+#' @param cbandArgs Used by \code{lines.Lc()} only.  \code{NA} to suppress
+#'   the confidence band (default), or a list of arguments passed to
+#'   \code{\link[DescToolsX]{predict.Lc}()} to control bootstrap confidence
+#'   intervals.
+#' @param ... Further arguments.  For \code{plot.Lc()}, graphical parameters
+#'   passed to \code{\link[graphics]{par}()} via \code{.applyParFromDots()}
+#'   (e.g. \code{mar}, \code{cex.axis}, \code{las}).  For \code{lines.Lc()}
+#'   and \code{points.Lc()}, further arguments passed on to
+#'   \code{\link[graphics]{lines}()} and \code{\link[graphics]{points}()},
+#'   respectively.  For the \code{"LcList"} methods, arguments passed through
+#'   to the corresponding \code{Lc} method for each group.
 #'
-#' @return All methods return the input object \code{x} invisibly.
+#' @return All methods return \code{NULL} invisibly.
 #'
 #' @seealso
 #'   \code{\link[DescToolsX]{lc}()} for computing the Lorenz curve,
@@ -65,7 +91,7 @@ plot.Lc <- function(
   x,
   
   # LABELS
-  main = "Lorenz curve",
+  main = NULL,
   xlab = "p",
   ylab = "L(p)",
   
@@ -77,16 +103,11 @@ plot.Lc <- function(
   general = FALSE,
   
   # STYLE
-  col = NULL,
-  lwd = 2,
-  lty = 1,
-  pch = NULL,
-  grid = FALSE,
+  line = TRUE,
+  points = TRUE,
+
+  grid = TRUE,
   box = TRUE,
-  
-  # FRAMEWORK
-  stamp = NULL,
-  
   ...
 ) {
   
@@ -95,7 +116,14 @@ plot.Lc <- function(
   
   .withGraphicsState({
     
-    .applyParFromDots(...)
+    .applyParFromDots(...,
+                      defaults = list(
+                        pty="s",
+                        mar = c(
+                          left  = 5,
+                          top   = .marTop(main)
+                        )
+                      ))
     
     # --- data selection ---
     L <- if (!general) x$L else x$L.general
@@ -113,31 +141,55 @@ plot.Lc <- function(
       xlab = xlab,
       ylab = ylab,
       xlim = xlim,
-      ylim = ylim
+      ylim = ylim, 
+      xaxs="i", 
+      yaxs="i"
     )
     
     # --- grid ---
     callIf(
       graphics::grid,
       grid,
-      defaults = list(col = "grey90", lty = 1)
+      defaults = list(
+        col = "grey90", 
+        lty = 1)
     )
     
     # --- Lorenz curve ---
-    lines(p, L, col = col, lwd = lwd, lty = lty)
-    
+    callIf(
+      graphics::lines,
+      line,
+      defaults = list(
+        x = p, 
+        y = L, 
+        col = "black", 
+        lty = 1, 
+        lwd = 2)
+    )
+
     # --- equality line ---
     abline(0, 1, col = "grey50", lty = 2)
-    
-    # --- points ---
-    if (!is.null(pch)) {
-      points(p, L, pch = pch, col = col)
-    }
     
     # --- box ---
     if (isTRUE(box)) box()
     
-  }, stamp = stamp)
+    # --- points ---
+    callIf(
+      graphics::points,
+      points,
+      defaults = list(
+        x = p, 
+        y = L, 
+        col = "black", 
+        pch = 21,
+        bg = "white",
+        cex = 1.4, 
+        xpd = NA
+        )
+    )
+    
+    
+  })
 }
 
 

@@ -1,243 +1,268 @@
 
-#' Mosaic Plots 
-#' 
-#' Plots a mosaic on the current graphics device. 
-#' 
-#' The reason for this function to exist are the unsatisfying labels in base
-#' mosaicplot. 
-#' 
-#' @param x a contingency table in array form, with optional category labels
-#' specified in the dimnames(x) attribute. The table is best created by the
-#' table() command. So far only 2-way tables are allowed. 
-#' @param main character string for the mosaic title. 
-#' @param horiz logical, defining the orientation of the mosaicplot.
-#' \code{TRUE} (default) makes a horizontal plot. 
-#' @param cols the colors of the plot. 
-#' @param off the offset between the rectangles. Default is 0.02. 
-#' @param mar the margin for the plot. 
-#' @param xlab,ylab x- and y-axis labels used for the plot; by default, the
-#' first and second element of names(dimnames(X)) (i.e., the name of the first
-#' and second variable in X). 
-#' @param cex numeric character expansion factor; multiplied by
-#' \code{par("cex")} yields the final character size. \code{NULL} and \code{NA}
-#' are equivalent to 1.0. 
-#' @param las the style of axis labels. 0 - parallel to the axis, 1 -
-#' horizontal, 2 - perpendicular, 3 - vertical. 
-#' @param ... Graphical parameters passed to \code{par()}, such as
-#'   \code{cex}, \code{las}, \code{mar}, or \code{oma}.
+#' Compute Mosaic Tile Geometry for 2-Way Tables
 #'
-#' 
-#' @return list with the midpoints of the rectangles 
-#' 
-#' @seealso \code{\link{mosaicplot}} 
-#' @references Friendly, M. (1994) Mosaic displays for multi-way contingency
-#' tables. \emph{Journal of the American Statistical Association}, \bold{89},
-#' 190-200.
-#' 
-#' 
+#' Internal geometry engine for [plotMosaic()]. Computes rectangular tile
+#' coordinates for a mosaic plot from a 2-way contingency table, using a
+#' spine-plot-style proportional split: the first table dimension determines
+#' tile widths (x-axis), the second dimension determines the conditional
+#' heights within each resulting column.
+#'
+#' @param x a 2-way contingency table, matrix, or array coercible via
+#'   `as.table()`. Higher-dimensional arrays must be collapsed first, e.g.
+#'   via `apply(x, c(1,2), sum)`.
+#' @param swap logical. If `TRUE`, the two dimensions of `x` are transposed
+#'   before computing tile geometry, swapping which variable determines the
+#'   x-axis split and which determines the fill/conditional split.
+#'   Default `FALSE`.
+#'
+#' @return A `data.frame` with one row per tile and the columns:
+#'   \describe{
+#'     \item{`<rowVar>`, `<colVar>`}{factor levels of the first and second
+#'       table dimension, named after `dimnames(x)` (or `Var1`/`Var2` if
+#'       unnamed)}
+#'     \item{`x0`, `x1`}{left/right tile boundaries in `[0, 1]`}
+#'     \item{`y0`, `y1`}{bottom/top tile boundaries in `[0, 1]`}
+#'     \item{`n`}{absolute cell frequency}
+#'     \item{`p`}{cell frequency as proportion of the table total}
+#'     \item{`pCond`}{cell frequency as proportion of its row total}
+#'   }
+#'   The `varNames` attribute holds the names of the two table dimensions.
+#'
+#' @details Rows of `x` with a row total of zero produce tiles of height
+#'   zero (`y0 == y1`, `pCond == 0`) rather than `NaN`, so empty categories
+#'   do not propagate missing values into the geometry.
+#'
 #' @examples
-#' 
-#' plotMosaic(HairEyeColor[,,1])
-#' 
-
-
-#' @family plot.bivariate
-#' @concept graphics
-#' @concept association-measures
-#' @concept table-manipulation
+#' tiles <- .computeMosaicTiles(apply(HairEyeColor, c(1, 2), sum))
+#' sum(tiles$p)
 #'
 #'
-#' @export
-plotMosaic <- function (x, main = deparse(substitute(x)), 
-                        horiz = TRUE, cols = NULL,
-                        off = 0.02, mar = NULL, 
-                        xlab = NULL, ylab = NULL, 
-                        cex=par("cex"), las=2, ...) {
+#' @noRd
+.computeMosaicTiles <- function(x, swap = FALSE) {
   
-  if(length(dim(x))>2){
-    warning("plotMosaic is restricted to max. 2 dimensions")
-    invisible()
+  x <- as.table(x)
+  if (length(dim(x)) != 2L) {
+    stop("'.computeMosaicTiles' currently supports 2-way tables only. ",
+         "Collapse higher-dimensional arrays first, e.g. via apply(x, c(1,2), sum).")
   }
   
-  .withGraphicsState({
-    
-    
+  if (swap) x <- t(x)
   
-  if (is.null(xlab))
-    xlab <- names(dimnames(x)[2]) %||% "x"
-  if (is.null(ylab))
-    ylab <- names(dimnames(x)[1]) %||%  "y"
-  
-  if (is.null(mar)){
-    # ymar <- 5.1
-    # xmar <- 6.1
-    
-    inches_to_lines <- (par("mar") / par("mai") )[1]  # 5
-    lab.width <- max(strwidth(colnames(x), units="inches")) * inches_to_lines
-    xmar <- lab.width + 1
-    lab.width <- max(strwidth(rownames(x), units="inches")) * inches_to_lines
-    ymar <- lab.width + 1
-    
-    mar <- c(ifelse(is.na(xlab), 2.1, 5.1), ifelse(is.na(ylab), ymar, ymar+2),
-             ifelse(is.na(main), xmar, xmar+4), 1.6)
-    
-    # par(mai = c(par("mai")[1], max(par("mai")[2], strwidth(levels(grp), "inch")) +
-    #               0.5, par("mai")[3], par("mai")[4]))
-    
+  dn <- dimnames(x)
+  varNames <- names(dn)
+  if (is.null(varNames) || any(varNames == "")) {
+    varNames <- c("Var1", "Var2")
   }
   
-  canvas(xlim = c(0, 1), ylim = c(0, 1), asp = NA, mar = mar)
+  total     <- sum(x)
+  rowTotals <- unname(rowSums(x))
   
-  col1 <- pal()[1]
-  col2 <- pal()[2]
+  # x-Achse: Breiten proportional zu Zeilen-Randsummen
+  width <- rowTotals / total
+  x1 <- cumsum(width)
+  x0 <- x1 - width
   
-  oldpar <- par(xpd = TRUE)
-  on.exit(par(oldpar))
+  out <- vector("list", nrow(x))
   
-  
-  if(any(dim(x)==1)) {
+  for (i in seq_len(nrow(x))) {
     
-    if (is.null(cols))
-      cols <- colorRampPalette(c(col1, "white", col2), space = "rgb")(length(x))
+    rowTotal  <- rowTotals[i]
+    rowCounts <- unname(x[i, ])
+    height    <- if (rowTotal > 0) rowCounts / rowTotal else rep(0, ncol(x))
+    y1 <- cumsum(height)
+    y0 <- y1 - height
     
-    
-    if(horiz){
-      
-      ptab <- prop.table(as.vector(x))
-      pxt <- ptab * (1 - (length(ptab) - 1) * off)
-      
-      y_from <- c(0, cumsum(pxt) + (1:(length(ptab))) * off)[-length(ptab) - 1]
-      y_to <- cumsum(pxt) + (0:(length(ptab) - 1)) * off
-      
-      if(nrow(x) > ncol(x))
-        x <- t(x)
-      
-      x_from <- y_from
-      x_to <- y_to
-      
-      y_from <- 0
-      y_to <- 1
-      
-      
-    } else {
-      
-      ptab <- rev(prop.table(as.vector(x)))
-      pxt <- ptab * (1 - (length(ptab) - 1) * off)
-      
-      y_from <- c(0, cumsum(pxt) + (1:(length(ptab))) * off)[-length(ptab) - 1]
-      y_to <- cumsum(pxt) + (0:(length(ptab) - 1)) * off
-      
-      
-      x_from <- 0
-      x_to <- 1
-      
-      if(ncol(x) > nrow(x))
-        x <- t(x)
-      
-    }
-    
-    rect(xleft = x_from, ybottom = y_from, xright = x_to, ytop = y_to, col = cols)
-    
-    txt_y <- apply(cbind(y_from, y_to), 1, mean)
-    txt_x <-  midx(c(x_from, 1))
-    
-  } else {
-    
-    if (horiz) {
-      
-      if (is.null(cols))
-        cols <- colorRampPalette(c(col1, "white", col2), space = "rgb")(ncol(x))
-      
-      ptab <- prop.table(x, 1)[nrow(x):1, ]
-      ptab <- ptab * (1 - (ncol(ptab) - 1) * off)
-      pxt <- .rev(prop.table(margin.table(x, 1)) * (1 - (nrow(x) - 1) * off))
-      
-      y_from <- c(0, cumsum(pxt) + (1:(nrow(x))) * off)[-nrow(x) - 1]
-      y_to <- cumsum(pxt) + (0:(nrow(x) - 1)) * off
-      
-      x_from <- t((apply(cbind(0, ptab), 1, cumsum) + (0:ncol(ptab)) * off)[-(ncol(ptab) + 1), ])
-      x_to <- t((apply(ptab, 1, cumsum) + (0:(ncol(ptab) - 1) * off))[-(ncol(ptab) + 1), ])
-      
-      for (j in 1:nrow(ptab)) {
-        rect(xleft = x_from[j,], ybottom = y_from[j],
-             xright = x_to[j,], ytop = y_to[j], col = cols)
-      }
-      
-      txt_y <- apply(cbind(y_from, y_to), 1, mean)
-      txt_x <- apply(cbind(x_from[nrow(x_from),], x_to[nrow(x_from),]), 1, mean)
-      
-      # srt.x <- if (las > 1) 90  else 0
-      # srt.y <- if (las == 0 || las == 3) 90 else 0
-      #
-      # text(labels = .rev(rownames(x)), y = txt_y, x = -0.04, adj = ifelse(srt.y==90, 0.5, 1), cex=cex, srt=srt.y)
-      # text(labels = colnames(x), x = txt_x, y = 1.04, adj = ifelse(srt.x==90, 0, 0.5), cex=cex, srt=srt.x)
-      
-    } else {
-      
-      if (is.null(cols))
-        cols <- colorRampPalette(c(col1, "white", col2), space = "rgb")(nrow(x))
-      
-      ptab <- .rev(prop.table(x, 2), margin = 1)
-      ptab <- ptab * (1 - (nrow(ptab) - 1) * off)
-      pxt <- (prop.table(margin.table(x, 2)) * (1 - (ncol(x) - 1) * off))
-      
-      x_from <- c(0, cumsum(pxt) + (1:(ncol(x))) * off)[-ncol(x) - 1]
-      x_to <- cumsum(pxt) + (0:(ncol(x) - 1)) * off
-      
-      y_from <- (apply(rbind(0, ptab), 2, cumsum) + (0:nrow(ptab)) *
-                   off)[-(nrow(ptab) + 1), ]
-      y_to <- (apply(ptab, 2, cumsum) + (0:(nrow(ptab) - 1) *
-                                           off))[-(nrow(ptab) + 1), ]
-      
-      for (j in 1:ncol(ptab)) {
-        rect(xleft = x_from[j], ybottom = y_from[, j], xright = x_to[j],
-             ytop = y_to[, j], col = cols)
-      }
-      
-      txt_y <- apply(cbind(y_from[, 1], y_to[, 1]), 1, mean)
-      txt_x <- apply(cbind(x_from, x_to), 1, mean)
-      
-      # srt.x <- if (las > 1) 90  else 0
-      # srt.y <- if (las == 0 || las == 3) 90 else 0
-      #
-      # text(labels = .rev(rownames(x)), y = txt_y, x = -0.04, adj = ifelse(srt.y==90, 0.5, 1), cex=cex, srt=srt.y)
-      # text(labels = colnames(x), x = txt_x, y = 1.04, adj = ifelse(srt.x==90, 0, 0.5), cex=cex, srt=srt.x)
-      
-    }
+    out[[i]] <- data.frame(
+      row   = dn[[1]][i],
+      col   = dn[[2]],
+      x0    = x0[i], x1 = x1[i],
+      y0    = y0,    y1 = y1,
+      n     = rowCounts,
+      p     = rowCounts / total,
+      pCond = height,
+      stringsAsFactors = FALSE
+    )
   }
   
-  srt.x <- if (las > 1) 90  else 0
-  srt.y <- if (las == 0 || las == 3) 90 else 0
+  tiles <- do.call(rbind, out)
+  names(tiles)[1:2] <- varNames
+  rownames(tiles) <- NULL
+  attr(tiles, "varNames") <- varNames
   
-  text(labels = .rev(rownames(x)), y = txt_y, x = -0.04, adj = ifelse(srt.y==90, 0.5, 1), cex=cex, srt=srt.y)
-  text(labels = colnames(x), x = txt_x, y = 1.04, adj = ifelse(srt.x==90, 0, 0.5), cex=cex, srt=srt.x)
-  
-  
-  if (!is.na(main)) {
-    usr <- par("usr")
-    plt <- par("plt")
-    ym <- usr[4] + diff(usr[3:4])/diff(plt[3:4])*(plt[3]) + (1.2 + is.na(xlab)*4) * strheight('m', cex=1.2, font=2)
-    
-    text(x=0.5, y=ym, labels = main, cex=1.2, font=2)
-  }
-  
-  
-  if (!is.na(xlab)) title(xlab = xlab, line = 1)
-  if (!is.na(ylab)) title(ylab = ylab)
-
-  invisible(list(x = txt_x, y = txt_y))
-  
-  })
+  tiles
 }
 
 
+## ---- Rendering -------------------------------------------------------------
 
-.rev <- function(x, margin, ...) {
+#' Mosaic Plot for 2-Way Contingency Tables
+#'
+#' Draws a mosaic plot (spine plot) for a 2-way contingency table, with
+#' proportional tile areas, optional cell labels (counts or percentages),
+#' and a "Few"-style minimal appearance (white tile separators, muted
+#' palette, optional legend).
+#'
+#' @param x a 2-way contingency table, matrix, or array coercible via
+#'   `as.table()`. Higher-dimensional arrays must be collapsed first, e.g.
+#'   via `apply(x, c(1,2), sum)`.
+#' @param main character. Plot title. Default `""` (no title).
+#' @param xlab,ylab character or `NULL`. Axis labels. Default `NULL`
+#'   (no labels), since the category levels together with `main` and the
+#'   legend title are usually self-explanatory.
+#' @param swap logical. If `TRUE`, transpose the two dimensions of `x`
+#'   before plotting, so the second table dimension determines the x-axis
+#'   split and the first becomes the fill/legend variable. Default `FALSE`.
+#' @param horiz logical. If `TRUE`, draw the mosaic horizontally: the first
+#'   table dimension is shown top-to-bottom on the y-axis instead of
+#'   left-to-right on the x-axis. Default `FALSE`.
+#' @param gap numeric. Width of the white separator drawn between adjacent
+#'   tiles, in plot-region units (`[0, 1]`). Default `0.01`.
+#' @param col vector of colors for the fill/legend variable (the second
+#'   table dimension, or first if `swap = TRUE`). `.useTheme` (default)
+#'   resolves to `pal(getTheme()$palette, n = <number of levels>)` - the
+#'   active theme's qualitative palette (see \code{\link{getTheme}}),
+#'   sampled or interpolated to match the number of category levels.
+#'   A diverging or sequential color ramp is deliberately not used here:
+#'   the fill variable is an unordered categorical variable, and a ramp
+#'   would visually suggest an ordering between levels that doesn't exist.
+#' @param border color of the tile borders. Default `"white"`.
+#' @param legend logical. Draw a legend for the fill variable.
+#'   Default `TRUE`.
+#' @param labels character, one of `"p"`, `"n"`, `"none"`. Cell labels
+#'   showing the proportion of the table total (`"p"`), the absolute
+#'   frequency (`"n"`), or no labels (`"none"`). Labels are only drawn for
+#'   tiles large enough to hold them. Default `"p"`.
+#' @param labCex numeric. Character expansion factor for cell labels.
+#'   Default `0.8`.
+#' @param labDigits integer. Number of decimal digits for percentage cell
+#'   labels when `labels = "p"`. Default `1`.
+#' @param ... further graphical parameters passed to `par()` via
+#'   `.applyParFromDots()`, e.g. `mar`, `cex.axis`, `las`.
+#'
+#' @return Invisibly, the `data.frame` of tile geometry as produced by
+#'   `.computeMosaicTiles()`, with columns `x0`, `x1`, `y0`, `y1`, `n`, `p`,
+#'   `pCond` and one column per table dimension. This allows users to add
+#'   further annotations (e.g. via `rect()` or `text()`) on top of the plot.
+#'
+#' @details Cells belonging to a row with a row total of zero are drawn as
+#'   zero-height tiles and receive no label, but do not cause an error or
+#'   `NaN` in the geometry.
+#'
+#' When `horiz = TRUE`, only the first table dimension (shown on the y-axis)
+#' receives an axis, since its split points are constant across the whole
+#' plot. The second dimension's split points vary by row/column and is
+#' represented via the legend only.
+#'
+#' @examples
+#' tab <- apply(HairEyeColor, c(1, 2), sum)
+#'
+#' plotMosaic(tab)
+#' plotMosaic(tab, swap = TRUE)
+#' plotMosaic(tab, horiz = TRUE, main = "Hair ~ Eyecolor")
+#'
+#' @family topic.categoricalPlots
+#' @concept mosaic-plot
+#' @concept contingency-table
+#' @concept categorical-data
+#' @concept spine-plot
+#'
+#' @seealso [plotCatDist()], [plotBar()], [getTheme()]
+#'
+#'
+#' @export
+plotMosaic <- function(x,
+                       # LABELS
+                       main      = "",
+                       xlab      = NULL,
+                       ylab      = NULL,
+                       # STRUCTURE
+                       swap      = FALSE,
+                       horiz     = FALSE,
+                       gap       = 0.01,
+                       # STYLE
+                       col       = .useTheme,
+                       border    = "white",
+                       # FEATURES
+                       legend    = TRUE,
+                       labels    = c("p", "n", "none"),
+                       labCex    = 0.8,
+                       labDigits = 1,
+                       ...) {
   
-  newdim <- rep("", length(dim(x)))
-  newdim[margin] <- paste(dim(x), ":1", sep="")[margin]
-  z <- eval(parse(text=gettextf("x[%s, drop = FALSE]", paste(newdim, sep="", collapse=","))))
-  class(z) <- oldClass(x)
-  return(z)
+  labels <- match.arg(labels)
+  tiles  <- .computeMosaicTiles(x, swap = swap)
+  varNames <- attr(tiles, "varNames")
+  rowVar <- varNames[1]; colVar <- varNames[2]
   
+  rowLevels <- unique(tiles[[rowVar]])
+  colLevels <- unique(tiles[[colVar]])
+  
+  # horiz: x<->y vertauschen + vertikal spiegeln,
+  # sodass die erste Kategorie oben liegt (analog DescTools-Layout)
+  if (horiz) {
+    tiles[c("x0", "x1", "y0", "y1")] <-
+      list(tiles$y0, tiles$y1, 1 - tiles$x1, 1 - tiles$x0)
+  }
+  
+  if (identical(col, .useTheme))
+    col <- pal(getTheme()$palette, n = length(colLevels))
+  
+  fillCol <- col[match(tiles[[colVar]], colLevels)]
+  dots <- list(...)
+  
+  .withGraphicsState({
+    
+    .applyParFromDots(dots, defaults = list(
+      mar = c(if (horiz) 1 else 3, 
+              5.1, 
+              .marTop(main), 
+              if (legend) 6 else 1)
+    ))
+    
+    plot.new()
+    plot.window(xlim = c(0, 1), ylim = c(0, 1), xaxs = "i", yaxs = "i")
+    
+    # Gaps nur fürs Zeichnen, Geometrie bleibt exakt proportional
+    # TODO: Clamping falls gap > kleinste Tile-Dimension
+    rect(tiles$x0 + gap/2, tiles$y0 + gap/2,
+         tiles$x1 - gap/2, tiles$y1 - gap/2,
+         col = fillCol, border = border, lwd = 1)
+    
+    if (labels != "none") {
+      labTxt <- switch(labels,
+                       n = fm(tiles$n,             digits = 0,         sciThreshold = Inf),
+                       p = paste0(fm(tiles$p * 100, digits = labDigits, sciThreshold = Inf), "%")
+      )
+      
+      show <- (tiles$x1 - tiles$x0) > 0.03 &
+        (tiles$y1 - tiles$y0) > 0.03 &
+        tiles$n > 0
+      
+      text((tiles$x0 + tiles$x1)[show] / 2,
+           (tiles$y0 + tiles$y1)[show] / 2,
+           labels = labTxt[show], cex = labCex)
+    }
+    
+    if (horiz) {
+      # y-Achse: rowVar an Tile-Zentren (eindeutig, erste Splitdimension)
+      rowInfo <- unique(tiles[c(rowVar, "y0", "y1")])
+      axis(2, at = (rowInfo$y0 + rowInfo$y1) / 2,
+           labels = rowInfo[[rowVar]], tick = FALSE, las = 1)
+      # colVar: Splits variieren je Zeile -> keine Achse, nur Legende
+    } else {
+      rowInfo <- unique(tiles[c(rowVar, "x0", "x1")])
+      axis(1, at = (rowInfo$x0 + rowInfo$x1) / 2,
+           labels = rowInfo[[rowVar]], tick = FALSE, las = 1)
+      axis(2, las = 1)
+    }
+    
+    if (legend) {
+      legend(x = 1, y = 1, legend = colLevels, fill = col,
+             bty = "n", xpd = TRUE, xjust = 0, yjust = 1, title = colVar)
+    }
+    
+    title(main = main, xlab = xlab, ylab = ylab)
+  })
+  
+  invisible(tiles)
 }

@@ -12,13 +12,13 @@ plotBar(
   yax = NULL,
   beside = FALSE,
   horiz = FALSE,
-  col = NULL,
-  border = NULL,
-  grid = NULL,
+  col = .useTheme,
+  border = .useTheme,
+  grid = .useTheme,
   box = FALSE,
   text = NULL,
   connlines = NULL,
-  stamp = TRUE,
+  stamp = .useTheme,
   ...
 )
 }
@@ -35,7 +35,7 @@ Supported values are
 \describe{
 \item{\code{TRUE}}{draw axis using package defaults}
 \item{\code{FALSE}}{suppress axis}
-\item{\code{NULL}}{use package option \code{DescToolsX.yax}}
+\item{\code{NULL}}{do not draw a numeric axis at all}
 \item{\code{list(...)}}{custom axis parameters passed to the axis drawing routine}
 }}
 
@@ -45,24 +45,27 @@ If \code{FALSE} (default), bars are stacked.}
 \item{horiz}{Logical. If \code{TRUE}, bars are drawn horizontally.
 Defaults to \code{FALSE}.}
 
-\item{col}{Bar fill colours. Defaults to the theme value
-\code{bar.col} if not specified.}
+\item{col}{Bar fill colours. \code{.useTheme} (default) resolves to
+\code{getTheme()$bar$col}.}
 
-\item{border}{Bar border colour. Defaults to the theme value
-\code{bar.border}.}
+\item{border}{Bar border colour. \code{.useTheme} (default) resolves to
+\code{getTheme()$bar$border}.}
 
 \item{grid}{Controls drawing of grid lines.
-
-Supported values are
-\describe{
-\item{\code{TRUE}}{draw grid using theme defaults}
-\item{\code{FALSE}}{suppress grid}
-\item{\code{NULL}}{use package option \code{DescToolsX.grid}}
-\item{\code{list(...)}}{custom grid parameters such as \code{col}, \code{lty}, \code{lwd}}
+Can be:
+\itemize{
+\item \code{.useTheme} (default): follow the active theme
+(\code{getTheme()$grid}), restricted to the axis perpendicular to
+the value axis (e.g. horizontal lines only for vertical bars)
+\item \code{TRUE}: draw grid with theme settings
+\item \code{FALSE}, \code{NULL}, or \code{NA}: suppress grid
+\item a named list: arguments passed to \code{\link[graphics]{grid}},
+overriding the theme/function defaults for this call only
 }}
 
-\item{box}{Logical indicating whether a box should be drawn around the
-plot region.}
+\item{box}{Controls drawing of the plot box. \code{.useTheme} (default)
+resolves to \code{getTheme()$box}. \code{TRUE}/\code{FALSE}/\code{NA},
+or a named list, as for \code{grid}.}
 
 \item{text}{Optional list of arguments passed to \code{\link{barText}}
 to draw value labels on bars.}
@@ -71,8 +74,9 @@ to draw value labels on bars.}
 lines between stacked bars. Only supported when
 \code{beside = FALSE}.}
 
-\item{stamp}{Logical indicating whether a package stamp should be
-drawn. Default is \code{TRUE}.}
+\item{stamp}{Controls the corner stamp. \code{.useTheme} (default)
+resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/\code{NULL},
+or an explicit string, as for \code{.withGraphicsState()} (internal).}
 
 \item{...}{Additional arguments passed to \code{\link[graphics]{barplot}}
 and graphical parameters (via \code{\link[graphics]{par}}).}
@@ -106,10 +110,11 @@ The function internally performs the following steps:
 Graphical parameters such as \code{bg}, \code{cex}, \code{las},
 \code{mar}, etc. can be supplied via \code{...}.
 
-The precedence of graphical settings is
+The precedence of theme-aware settings (\code{col}, \code{border},
+\code{grid}, \code{box}, \code{stamp}) is
 
 \preformatted{
-user arguments  >  DescToolsX theme  >  base defaults
+explicit argument  >  function-specific default  >  active theme (getTheme())
 }
 }
 \examples{
@@ -171,7 +176,8 @@ plotBar(VADeaths/1e3,  box=FALSE, bg="lightyellow", main="VADeaths",
 
 }
 \seealso{
-\code{\link[graphics]{barplot}}, \code{\link{barText}}
+\code{\link[graphics]{barplot}}, \code{\link{barText}},
+\code{\link{getTheme}}
 
 Other topic.graphics:
 \code{\link[=plotBubble]{plotBubble()}},

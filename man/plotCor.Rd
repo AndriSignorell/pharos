@@ -15,9 +15,9 @@ plotCor(
   mincor = 0,
   triangle = c("full", "upper", "lower"),
   diag = TRUE,
-  col = colorRampPalette(c(pal()[2], "white", pal()[1]), space = "rgb")(20),
-  grid = TRUE,
-  box = TRUE,
+  col = .useTheme,
+  grid = .useTheme,
+  box = .useTheme,
   legend = TRUE,
   text = FALSE,
   ...
@@ -49,18 +49,26 @@ One of
 
 \item{diag}{Logical; should the diagonal be displayed.}
 
-\item{col}{Color palette used for the correlation values.}
+\item{col}{Color palette used for the correlation values. \code{.useTheme}
+(default) builds a diverging ramp from \code{getTheme()$twin} - the
+active theme's two-color pair - through white: \code{twin[1]} at the
+negative end (\eqn{-1}), white at zero, \code{twin[2]} at the positive
+end (\eqn{+1}).}
 
-\item{grid}{Logical or list controlling grid lines between cells.
-
-Supported values are
-\describe{
-\item{\code{TRUE}}{draw grid using theme defaults}
-\item{\code{FALSE}}{no grid}
-\item{\code{list(...)}}{custom grid parameters}
+\item{grid}{Controls drawing of cell-separator grid lines at the
+half-integer matrix boundaries (clipped to the matrix extent, so they
+never bleed into the margins). Can be:
+\itemize{
+\item \code{.useTheme} (default): follow the active theme
+(\code{getTheme()$grid$col}/\code{$lwd})
+\item \code{TRUE}: draw with theme settings
+\item \code{FALSE}, \code{NULL}, or \code{NA}: suppress
+\item a named list: override \code{col}/\code{lwd} for this call only
 }}
 
-\item{box}{Logical; draw a box around the plot region.}
+\item{box}{Controls drawing of the plot box. \code{.useTheme} (default)
+resolves to \code{getTheme()$box}. \code{TRUE}/\code{FALSE}/\code{NA},
+or a named list, as for \code{grid}.}
 
 \item{legend}{Logical; draw a color legend for the correlation scale.}
 
@@ -103,6 +111,13 @@ The function internally:
 \item Draws the matrix using \code{\link[graphics]{image}}.
 \item Optionally adds grid lines, numeric labels, axes, and a color legend.
 }
+
+Grid lines are drawn via clipped \code{\link[graphics]{abline}()} calls
+at the matrix's half-integer cell boundaries rather than via
+\code{\link[graphics]{grid}()}: \code{grid()}'s \code{nx}/\code{ny}
+divide the full plot region (\code{par("usr")}), which may carry axis
+padding unrelated to \code{image()}'s integer cell geometry, whereas the
+clipped approach stays exact regardless of that padding.
 }
 \examples{
 m <- cor(swiss)
@@ -175,15 +190,15 @@ mtext(text = rev(rownames(m)), side = 4, at=1:ncol(m), las=1, line = -5, cex=0.8
 
 }
 \seealso{
-\code{\link[graphics]{image}}, \code{\link[stats]{cor}}
+\code{\link[graphics]{image}}, \code{\link[stats]{cor}},
+\code{\link{getTheme}}
 
 Other plot.bivariate:
 \code{\link[=plotAssoc]{plotAssoc()}},
 \code{\link[=plotBag]{plotBag()}},
 \code{\link[=plotDens2D]{plotDens2D()}},
 \code{\link[=plotHeatmap]{plotHeatmap()}},
-\code{\link[=plotHexbin]{plotHexbin()}},
-\code{\link[=plotMosaic]{plotMosaic()}}
+\code{\link[=plotHexbin]{plotHexbin()}}
 }
 \concept{correlation}
 \concept{descriptive-statistics}

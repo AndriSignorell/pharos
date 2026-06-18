@@ -1,3 +1,4 @@
+
 #' Correlation Matrix Plot with Theming and Optional Labels
 #'
 #' Draws a correlation matrix using \code{\link[graphics]{image}} with
@@ -38,18 +39,26 @@
 #'
 #' @param diag Logical; should the diagonal be displayed.
 #'
-#' @param col Color palette used for the correlation values.
+#' @param col Color palette used for the correlation values. \code{.useTheme}
+#'   (default) builds a diverging ramp from \code{getTheme()$twin} - the
+#'   active theme's two-color pair - through white: \code{twin[1]} at the
+#'   negative end (\eqn{-1}), white at zero, \code{twin[2]} at the positive
+#'   end (\eqn{+1}).
 #'
-#' @param grid Logical or list controlling grid lines between cells.
-#'
-#'   Supported values are
-#'   \describe{
-#'     \item{\code{TRUE}}{draw grid using theme defaults}
-#'     \item{\code{FALSE}}{no grid}
-#'     \item{\code{list(...)}}{custom grid parameters}
+#' @param grid Controls drawing of cell-separator grid lines at the
+#'   half-integer matrix boundaries (clipped to the matrix extent, so they
+#'   never bleed into the margins). Can be:
+#'   \itemize{
+#'     \item \code{.useTheme} (default): follow the active theme
+#'       (\code{getTheme()$grid$col}/\code{$lwd})
+#'     \item \code{TRUE}: draw with theme settings
+#'     \item \code{FALSE}, \code{NULL}, or \code{NA}: suppress
+#'     \item a named list: override \code{col}/\code{lwd} for this call only
 #'   }
 #'
-#' @param box Logical; draw a box around the plot region.
+#' @param box Controls drawing of the plot box. \code{.useTheme} (default)
+#'   resolves to \code{getTheme()$box}. \code{TRUE}/\code{FALSE}/\code{NA},
+#'   or a named list, as for \code{grid}.
 #'
 #' @param legend Logical; draw a color legend for the correlation scale.
 #'
@@ -76,9 +85,17 @@
 #'   \item Optionally adds grid lines, numeric labels, axes, and a color legend.
 #' }
 #'
+#' Grid lines are drawn via clipped \code{\link[graphics]{abline}()} calls
+#' at the matrix's half-integer cell boundaries rather than via
+#' \code{\link[graphics]{grid}()}: \code{grid()}'s \code{nx}/\code{ny}
+#' divide the full plot region (\code{par("usr")}), which may carry axis
+#' padding unrelated to \code{image()}'s integer cell geometry, whereas the
+#' clipped approach stays exact regardless of that padding.
+#'
 #' @return Invisibly returns the (possibly reordered) matrix used for plotting.
 #'
-#' @seealso \code{\link[graphics]{image}}, \code{\link[stats]{cor}}
+#' @seealso \code{\link[graphics]{image}}, \code{\link[stats]{cor}},
+#'   \code{\link{getTheme}}
 #' 
 #' @examples
 #' m <- cor(swiss)
@@ -177,9 +194,9 @@ plotCor <- function(
     diag = TRUE, 
     
     # STYLE
-    col = colorRampPalette(c(pal()[2], "white", pal()[1]), space="rgb")(20),
-    grid = TRUE,
-    box = TRUE,
+    col  = .useTheme,
+    grid = .useTheme,
+    box  = .useTheme,
     
     # FEATURES
     legend = TRUE,
@@ -187,12 +204,17 @@ plotCor <- function(
     
     ...
 ){
-
+  
+  if (identical(col, .useTheme)) {
+    twin <- getTheme()$twin
+    col  <- colorRampPalette(c(twin[1], "white", twin[2]), space = "rgb")(20)
+  }
+  
   if(is.null(xlab)) xlab <- ""
   if(is.null(ylab)) ylab <- ""
-
   
-#  x <- t(x)
+  
+  #  x <- t(x)
   
   if(isTRUE(cluster)){
     idx <- order.dendrogram(
@@ -203,7 +225,7 @@ plotCor <- function(
     x <- x[idx, idx]
   }
   
-    
+  
   triangle <- match.arg(triangle)
   
   if(triangle=="upper")
@@ -219,7 +241,7 @@ plotCor <- function(
   .withGraphicsState({
     
     .applyParFromDots(...)
-
+    
     if(mincor > 0)
       x[abs(x) < mincor] <- NA
     
@@ -231,7 +253,7 @@ plotCor <- function(
     .adjustMargin(rownames(x), side = 3, las = 2)
     .adjustMargin(colnames(x), side = 2)
     .adjustMargin("XXXXXXX", side = 4)
-
+    
     breaks <- seq(-1,1,length.out=length(col)+1)
     
     image(
@@ -264,28 +286,39 @@ plotCor <- function(
     if(!isFALSE(yax))
       axis(2, at=1:ncol(x), labels=laby, las=1, lwd=-1)
     
-    if(!isFALSE(grid)){
+    # --- grid: cell separators at half-integer matrix boundaries ---
+    # NOTE: .drawGrid()/graphics::grid() is not used here - its nx/ny
+    # divide the *full plot region* (par("usr")), which may carry axis
+    # padding unrelated to image()'s integer cell geometry. The clipped
+    # abline() approach below stays independent of that.
+    if (!isFALSE(grid) && !is.null(grid) && !isTRUE(suppressWarnings(is.na(grid)))) {
       
-      th <- .theme(grid=grid)$grid
+      gridSpec <- if (identical(grid, .useTheme) || isTRUE(grid)) list() else grid
+      th       <- getTheme()$grid
+      
+      gridArgs <- utils::modifyList(
+        list(col = th$col, lwd = th$lwd, lty = 1),   # lty=1: solid separators,
+        gridSpec                                      # not the theme's dotted default
+      )
+      
       usr <- par("usr")
-      
-      clip(0.5,nrow(x)+0.5,0.5,ncol(x)+0.5)
+      clip(0.5, nrow(x) + 0.5, 0.5, ncol(x) + 0.5)
       
       abline(
-        h=seq(0.5,ncol(x)+0.5,1),
-        v=seq(0.5,nrow(x)+0.5,1),
-        col=th$col,
-        lty=1,
-        lwd=th$lwd
+        h   = seq(0.5, ncol(x) + 0.5, 1),
+        v   = seq(0.5, nrow(x) + 0.5, 1),
+        col = gridArgs$col,
+        lty = gridArgs$lty,
+        lwd = gridArgs$lwd
       )
       
       do.call("clip", as.list(usr))
     }
     
-    if(isTRUE(box))
-      box(col="grey")
+    # --- box ---
+    .drawBox(box)
     
-
+    
     bedrock::callIf(
       colLegend,
       legend,
@@ -328,79 +361,3 @@ plotCor <- function(
   
 }
 
-
-
-# == old stuff - not used anymore ========================
-
-
-
-#' plotCor <- function(x, cols = colorRampPalette(c(pal()[2], "white", Pal()[1]), space = "rgb")(20)
-#'                      , breaks = seq(-1, 1, length = length(cols)+1), border="grey", lwd=1
-#'                      , args.colLegend = NULL, xaxt = par("xaxt"), yaxt = par("yaxt"), cex.axis = 0.8, las = 2
-#'                      , mar = c(3,8,8,8), mincor=0, main="", clust=FALSE, ...){
-#'   
-#'   # example:
-#'   # m <- cor(Pizza[,WhichNumerics(Pizza)][,1:5], use="pairwise.complete.obs")
-#'   # plotCor(m)
-#'   # plotCor(m, args.colLegend="n", las=1)
-#'   # plotCor(m, cols=colorRampPalette(c("red", "white", "blue"), space = "rgb")(4), args.colLegend=list(xlab=sprintf("%.1f", seq(1,-1, length=5))) )
-#'   # plotCor(m, cols=colorRampPalette(c("red", "black", "green"), space = "rgb")(10))
-#'   
-#'   # plotCor(round(CramerV(Pizza[,c("driver","operator","city", "quality")]),3))
-#'   
-#'   pars <- par(mar=mar); on.exit(par(pars))
-#'   
-#'   # matrix should be transposed to allow upper.tri with the corresponding representation
-#'   x <- t(x)
-#'   
-#'   if(clust==TRUE) {
-#'     # cluster correlations in order to put similar values together
-#'     idx <- order.dendrogram(as.dendrogram(
-#'       hclust(dist(x), method = "mcquitty")
-#'     ))
-#'     
-#'     x <- x[idx, idx]
-#'   }
-#'   
-#'   # if mincor is set delete all correlations with abs. val. < mincor
-#'   if(mincor!=0)
-#'     x[abs(x) < abs(mincor)] <- NA
-#'   
-#'   x <- x[,ncol(x):1]
-#'   image(x=1:nrow(x), y=1:ncol(x), xaxt="n", yaxt="n", z=x, frame.plot=FALSE, xlab="", ylab=""
-#'         , col=cols, breaks=breaks, ... )
-#'   if(xaxt!="n") axis(side=3, at=1:nrow(x), labels=rownames(x), cex.axis=cex.axis, las=las, lwd=-1)
-#'   if(yaxt!="n") axis(side=2, at=1:ncol(x), labels=colnames(x), cex.axis=cex.axis, las=las, lwd=-1)
-#'   
-#'   if((is.list(args.colLegend) || is.null(args.colLegend))){
-#'     
-#'     # bugfix dmurdoch 7.2.2022
-#'     digits <- round(1 - log10(diff(range(breaks))))
-#'     args.colLegend1 <- list( labels=sprintf("%.*f", digits,
-#'                                               breaks[seq(1,length(breaks), by = 2)])
-#'                                # args.colLegend1 <- list( labels=sprintf("%.1f", seq(-1,1, length=length(cols)/2+1))
-#'                                , x=nrow(x)+0.5 + nrow(x)/20, y=ncol(x)+0.5
-#'                                , width=nrow(x)/20, height=ncol(x), cols=cols, cex=0.8 )
-#'     if ( !is.null(args.colLegend) ) { args.colLegend1[names(args.colLegend)] <- args.colLegend }
-#'     
-#'     do.call("colLegend", args.colLegend1)
-#'   }
-#'   
-#'   if(!is.na(border)) {
-#'     usr <- par("usr")
-#'     rect(xleft=0.5, xright=nrow(x)+0.5, ybottom=0.5, ytop=nrow(x)+0.5,
-#'          lwd=lwd, border=border)
-#'     usr <- par("usr")
-#'     clip(0.5, nrow(x)+0.5, 0.5, nrow(x)+0.5)
-#'     abline(h=seq(-2, nrow(x)+1,1)-0.5, v=seq(1,nrow(x)+1,1)-0.5, col=border,lwd=lwd)
-#'     do.call("clip", as.list(usr))
-#'   }
-#'   
-#'   if(!is.null(.getOption("stamp")))
-#'     stamp()
-#'   
-#'   if(main!="") title(main=main)
-#'   
-#' }
-#' 
-#' ###

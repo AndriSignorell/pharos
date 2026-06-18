@@ -99,10 +99,7 @@ splineX.formula <- function(
   args <- list(
     formula = formula,
     na.action = na.action,
-    allowed = c(
-      "two-sample-independent",
-      "n-sample-independent"
-    )
+    allowed = "numeric-numeric"
   )
   
   if (!missing(data))

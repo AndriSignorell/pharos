@@ -1,3 +1,4 @@
+
 #' Violin Plot
 #'
 #' Draws violin plots for one or more groups, combining kernel density
@@ -27,29 +28,40 @@
 #' @param ... Additional data vectors (unnamed) or graphical parameters
 #'   passed to \code{par()}.
 #'
+#' @param main,xlab,ylab Plot labels.
+#' @param xlim,ylim Axis limits.
+#'
 #' @param horizontal Logical; if \code{TRUE}, draws horizontal violins.
 #' @param at Numeric positions of the groups.
 #' @param names Optional group labels.
 #' @param add Logical; if \code{TRUE}, adds to an existing plot.
 #' @param bw Bandwidth specification passed to \code{density()}.
+#' @param trim Logical. If \code{TRUE} (default), the kernel density
+#'   estimate of each group is restricted to the observed data range
+#'   (\code{from = min(x)}, \code{to = max(x)}), so the violin never
+#'   extends beyond the actual data — matching the default behavior of
+#'   \code{ggplot2::geom_violin()}. If \code{FALSE}, \code{density()} is
+#'   called with its own defaults, which extend the tails up to
+#'   \code{cut * bw} beyond \code{range(x)} and may produce violins that
+#'   reach into implausible values (e.g. scores above 100 or below 0).
+#'
 #' @param col Fill color(s) of the violins.
 #' @param border Border color(s) of the violins.
 #' @param lwd Line width for violin borders.
 #' @param box Logical or list controlling the boxplot overlay
 #'   (see Details).
 #' @param grid Logical, \code{NA}, or list controlling background grid.
+#'
 #' @param quantiles Optional numeric vector of probabilities for drawing
 #'   quantile lines inside each violin.
-#' @param main,xlab,ylab Plot labels.
-#' @param xlim,ylim Axis limits.
-#' 
+#'
 #' @param formula A formula of the form y ~ group.
 #' @param data Optional data frame.
 #' @param subset Optional subset expression.
 #' @param na.action Function to handle missing values.
-#' 
+#'
 #' @name plotViolin
-#' 
+#'
 #' @return Invisibly returns \code{NULL}.
 #'
 #' @examples
@@ -64,6 +76,9 @@
 #'
 #' # with quantiles
 #' plotViolin(x, y, quantiles = c(0.25, 0.5, 0.75))
+#'
+#' # untrimmed: tails extend beyond the observed data range
+#' plotViolin(x, y, trim = FALSE)
 #'
 #' # custom styling
 #' plotViolin(x, y,
@@ -81,9 +96,7 @@
 #' plotViolin(value ~ group, data = df)
 #'
 #' @seealso \code{\link{boxplot}}, \code{\link{density}}
-#' 
-
-
+#'
 #' @family plot.univariate
 #' @concept graphics
 #' @concept descriptive-statistics
@@ -93,9 +106,6 @@
 plotViolin <- function(x, ...) {
   UseMethod("plotViolin")
 }
-
-
-
 #' @rdname plotViolin
 #' @method plotViolin default
 #' @export
@@ -106,12 +116,22 @@ plotViolin.default <- function(
   
   ...,
   
-  # STRUCTURE (boxplot-like)
+  # LABELS
+  main = NULL,
+  xlab = "",
+  ylab = "",
+  
+  # AXES
+  xlim = NULL,
+  ylim = NULL,
+  
+  # STRUCTURE
   horizontal = FALSE,
   at = NULL,
   names = NULL,
   add = FALSE,
   bw = "nrd0",
+  trim = TRUE,
   
   # STYLE
   col = "grey80",
@@ -121,16 +141,7 @@ plotViolin.default <- function(
   grid = NA,
   
   # FEATURES
-  quantiles = NULL,
-  
-  # LABELS
-  main = "",
-  xlab = "",
-  ylab = "",
-  
-  # AXES
-  xlim = NULL,
-  ylim = NULL
+  quantiles = NULL
   
 ) {
   
@@ -159,7 +170,11 @@ plotViolin.default <- function(
     xi <- xi[!is.na(xi)]
     if (length(xi) < 2) next
     
-    dens_list[[i]] <- density(xi, bw = bw)
+    dens_list[[i]] <- if (isTRUE(trim)) {
+      density(xi, bw = bw, from = min(xi), to = max(xi))
+    } else {
+      density(xi, bw = bw)
+    }
   }
   
   # --- ranges based on densities --------------------------------
@@ -196,12 +211,23 @@ plotViolin.default <- function(
   # --- plotting -------------------------------------------------
   
   th <- .theme(
-    grid = list(col = "grey", lwd = 1, lty = "dotted")
+    grid = list(
+      col = "grey", 
+      lwd = 1, 
+      lty = "dotted",
+      nx=NA, 
+      ny=NULL)
   )
   
   .withGraphicsState({
     
-    .applyParFromDots(...)
+    .applyParFromDots(...,
+          defaults = list(
+              mar = c(
+                left  = 5.1,
+                top   = .marTop(main)
+              ))
+      )
     
     if (!add) {
       plot(NA,
@@ -217,7 +243,7 @@ plotViolin.default <- function(
     # --- grid ---------------------------------------------------
     
     bedrock::callIf(graphics::grid, grid,
-            defaults = th$grid[!startsWith(names(th$grid), "group.")])  
+                    defaults = th$grid[!startsWith(names(th$grid), "group.")])
     
     # --- violins ------------------------------------------------
     
@@ -295,6 +321,7 @@ plotViolin.default <- function(
 
 
 
+
 #' @rdname plotViolin
 #' @method plotViolin formula
 #' @export
@@ -308,12 +335,22 @@ plotViolin.formula <- function(
   
   ...,
   
+  # LABELS
+  main = NULL,
+  xlab = "",
+  ylab = "",
+  
+  # AXES
+  xlim = NULL,
+  ylim = NULL,
+  
   # STRUCTURE
   horizontal = FALSE,
   at = NULL,
   names = NULL,
   add = FALSE,
   bw = "nrd0",
+  trim = TRUE,
   
   # STYLE
   col = "grey80",
@@ -323,24 +360,15 @@ plotViolin.formula <- function(
   grid = NA,
   
   # FEATURES
-  quantiles = NULL,
-  
-  # LABELS
-  main = "",
-  xlab = "",
-  ylab = "",
-  
-  # AXES
-  xlim = NULL,
-  ylim = NULL
+  quantiles = NULL
   
 ) {
   
   # --- model frame (wie boxplot.formula) ------------------------
   
   m <- match.call(expand.dots = FALSE)
-  m$... <- NULL
-  m[[1]] <- as.name("model.frame")
+  m <- m[c(1L, which(names(m) %in% c("formula", "data", "subset", "na.action")))]
+  m[[1L]] <- quote(stats::model.frame)
   
   mf <- eval(m, parent.frame())
   
@@ -391,6 +419,7 @@ plotViolin.formula <- function(
     names = names,
     add = add,
     bw = bw,
+    trim = trim,
     col = col,
     border = border,
     lwd = lwd,

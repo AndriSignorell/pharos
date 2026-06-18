@@ -22,8 +22,11 @@
 #'     \item{\code{"col"}}{column-wise proportions \eqn{P(X \mid Y)}}
 #'   }
 #'
-#' @param col optional vector of colors. If \code{NULL}, a sequential
-#'   blue palette is used.
+#' @param col optional vector of colors. Default is a hardcoded sequential
+#'   white-to-navy ramp (\code{pal("Blues", n = 100)}) - deliberately not
+#'   theme-driven: cell values here are sequential (one direction, no sign
+#'   change), unlike the active theme's categorical \code{palette} or
+#'   diverging \code{twin} pair, neither of which fits a heat scale.
 #'
 #' @param border color of tile borders. Defaults to \code{NA}.
 #' @param naCol color used for missing values.
@@ -33,6 +36,14 @@
 #'
 #' @param zlim numeric vector of length 2 specifying the range used for
 #'   color scaling. If \code{NULL}, the range of the data is used.
+#'
+#' @param box Controls drawing of the outer frame around the tile grid,
+#'   drawn via \code{rect()} at the exact cell boundaries rather than
+#'   \code{\link[graphics]{box}()} (the initial plot suppresses the
+#'   standard box via \code{frame.plot = FALSE}, since cell bounds differ
+#'   from the default plot region). \code{.useTheme} (default) resolves
+#'   border color/width from \code{getTheme()$box}. \code{TRUE}/\code{FALSE},
+#'   or a named list overriding \code{rect()} arguments for this call only.
 #'
 #' @param ... further graphical parameters passed to
 #'   \code{\link[graphics]{par}} via the internal framework.
@@ -46,7 +57,8 @@
 #'
 #' @return Invisibly returns the matrix used for plotting.
 #'
-#' @seealso \code{\link{plotAssoc}}, \code{\link[graphics]{image}}
+#' @seealso \code{\link{plotAssoc}}, \code{\link[graphics]{image}},
+#'   \code{\link{getTheme}}
 #'
 #' @examples
 #' \dontrun{
@@ -66,7 +78,6 @@
 #'
 #'
 #' @export
-#' @export
 plotHeatmap <- function(
     
   # DATA
@@ -85,14 +96,14 @@ plotHeatmap <- function(
   scale = c("count", "prop", "row", "col"),
   
   # STYLE
-  col = NULL,
+  col = .useTheme,
   border = NA,
   naCol = "gray90",
   
   # FEATURES
   text = FALSE,
   zlim = NULL,
-  box = TRUE,
+  box = .useTheme,
   
   ...
   
@@ -168,20 +179,12 @@ plotHeatmap <- function(
     
     # --- Colors -----------------------------------------------------------
     
-    if (is.null(col)) {
-      
-      pal <- colorRampPalette(
-        c("#F7FBFF", "#08306B")
-      )
-      
-      ncol_pal <- 100L
-      cols_all <- pal(ncol_pal)
-      
+    if (identical(col, .useTheme)) {
+      cols_all <- pal("Blues", n = 100)
+      ncol_pal <- length(cols_all)
     } else {
-      
       cols_all <- col
       ncol_pal <- length(col)
-      
     }
     
     z_scaled <- (z - zlim[1]) / diff(zlim)
@@ -238,20 +241,27 @@ plotHeatmap <- function(
     }
     
     
-    # --- Draw tiles -------------------------------------------------------
+    # --- Outer frame --------------------------------------------------
+    # NOTE: rect() at exact cell boundaries, not graphics::box()/.drawBox() -
+    # the initial plot() call suppresses the standard box (frame.plot=FALSE)
+    # since the cell grid extends 0.5 beyond the nominal plot region.
     
-    if (!isFALSE(box)) {
+    boxSpec <- .resolveToggle(box, getTheme()$box)
+    
+    if (!isFALSE(boxSpec)) {
+      
+      boxTheme <- getTheme()$box
       
       bedrock::callIf(
         rect,
-        box,
+        boxSpec,
         defaults = list(
           xleft   = 0.5,
           ybottom = 0.5,
           xright  = nc + 0.5,
           ytop    = nr + 0.5,
-          border  = "grey50",
-          lwd     = 1,
+          border  = boxTheme$col,
+          lwd     = boxTheme$lwd,
           col     = NA
         )
       )

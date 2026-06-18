@@ -2,84 +2,110 @@
 % Please edit documentation in R/plotMosaic.R
 \name{plotMosaic}
 \alias{plotMosaic}
-\title{Mosaic Plots}
+\title{Mosaic Plot for 2-Way Contingency Tables}
 \usage{
 plotMosaic(
   x,
-  main = deparse(substitute(x)),
-  horiz = TRUE,
-  cols = NULL,
-  off = 0.02,
-  mar = NULL,
+  main = "",
   xlab = NULL,
   ylab = NULL,
-  cex = par("cex"),
-  las = 2,
+  swap = FALSE,
+  horiz = FALSE,
+  gap = 0.01,
+  col = .useTheme,
+  border = "white",
+  legend = TRUE,
+  labels = c("p", "n", "none"),
+  labCex = 0.8,
+  labDigits = 1,
   ...
 )
 }
 \arguments{
-\item{x}{a contingency table in array form, with optional category labels
-specified in the dimnames(x) attribute. The table is best created by the
-table() command. So far only 2-way tables are allowed.}
+\item{x}{a 2-way contingency table, matrix, or array coercible via
+\code{as.table()}. Higher-dimensional arrays must be collapsed first, e.g.
+via \code{apply(x, c(1,2), sum)}.}
 
-\item{main}{character string for the mosaic title.}
+\item{main}{character. Plot title. Default \code{""} (no title).}
 
-\item{horiz}{logical, defining the orientation of the mosaicplot.
-\code{TRUE} (default) makes a horizontal plot.}
+\item{xlab, ylab}{character or \code{NULL}. Axis labels. Default \code{NULL}
+(no labels), since the category levels together with \code{main} and the
+legend title are usually self-explanatory.}
 
-\item{cols}{the colors of the plot.}
+\item{swap}{logical. If \code{TRUE}, transpose the two dimensions of \code{x}
+before plotting, so the second table dimension determines the x-axis
+split and the first becomes the fill/legend variable. Default \code{FALSE}.}
 
-\item{off}{the offset between the rectangles. Default is 0.02.}
+\item{horiz}{logical. If \code{TRUE}, draw the mosaic horizontally: the first
+table dimension is shown top-to-bottom on the y-axis instead of
+left-to-right on the x-axis. Default \code{FALSE}.}
 
-\item{mar}{the margin for the plot.}
+\item{gap}{numeric. Width of the white separator drawn between adjacent
+tiles, in plot-region units (\verb{[0, 1]}). Default \code{0.01}.}
 
-\item{xlab, ylab}{x- and y-axis labels used for the plot; by default, the
-first and second element of names(dimnames(X)) (i.e., the name of the first
-and second variable in X).}
+\item{col}{vector of colors for the fill/legend variable (the second
+table dimension, or first if \code{swap = TRUE}). \code{.useTheme} (default)
+resolves to \verb{pal(getTheme()$palette, n = <number of levels>)} - the
+active theme's qualitative palette (see \code{\link{getTheme}}),
+sampled or interpolated to match the number of category levels.
+A diverging or sequential color ramp is deliberately not used here:
+the fill variable is an unordered categorical variable, and a ramp
+would visually suggest an ordering between levels that doesn't exist.}
 
-\item{cex}{numeric character expansion factor; multiplied by
-\code{par("cex")} yields the final character size. \code{NULL} and \code{NA}
-are equivalent to 1.0.}
+\item{border}{color of the tile borders. Default \code{"white"}.}
 
-\item{las}{the style of axis labels. 0 - parallel to the axis, 1 -
-horizontal, 2 - perpendicular, 3 - vertical.}
+\item{legend}{logical. Draw a legend for the fill variable.
+Default \code{TRUE}.}
 
-\item{...}{Graphical parameters passed to \code{par()}, such as
-\code{cex}, \code{las}, \code{mar}, or \code{oma}.}
+\item{labels}{character, one of \code{"p"}, \code{"n"}, \code{"none"}. Cell labels
+showing the proportion of the table total (\code{"p"}), the absolute
+frequency (\code{"n"}), or no labels (\code{"none"}). Labels are only drawn for
+tiles large enough to hold them. Default \code{"p"}.}
+
+\item{labCex}{numeric. Character expansion factor for cell labels.
+Default \code{0.8}.}
+
+\item{labDigits}{integer. Number of decimal digits for percentage cell
+labels when \code{labels = "p"}. Default \code{1}.}
+
+\item{...}{further graphical parameters passed to \code{par()} via
+\code{.applyParFromDots()}, e.g. \code{mar}, \code{cex.axis}, \code{las}.}
 }
 \value{
-list with the midpoints of the rectangles
+Invisibly, the \code{data.frame} of tile geometry as produced by
+\code{.computeMosaicTiles()}, with columns \code{x0}, \code{x1}, \code{y0}, \code{y1}, \code{n}, \code{p},
+\code{pCond} and one column per table dimension. This allows users to add
+further annotations (e.g. via \code{rect()} or \code{text()}) on top of the plot.
 }
 \description{
-Plots a mosaic on the current graphics device.
+Draws a mosaic plot (spine plot) for a 2-way contingency table, with
+proportional tile areas, optional cell labels (counts or percentages),
+and a "Few"-style minimal appearance (white tile separators, muted
+palette, optional legend).
 }
 \details{
-The reason for this function to exist are the unsatisfying labels in base
-mosaicplot.
+Cells belonging to a row with a row total of zero are drawn as
+zero-height tiles and receive no label, but do not cause an error or
+\code{NaN} in the geometry.
+
+When \code{horiz = TRUE}, only the first table dimension (shown on the y-axis)
+receives an axis, since its split points are constant across the whole
+plot. The second dimension's split points vary by row/column and is
+represented via the legend only.
 }
 \examples{
+tab <- apply(HairEyeColor, c(1, 2), sum)
 
-plotMosaic(HairEyeColor[,,1])
+plotMosaic(tab)
+plotMosaic(tab, swap = TRUE)
+plotMosaic(tab, horiz = TRUE, main = "Hair ~ Eyecolor")
 
-}
-\references{
-Friendly, M. (1994) Mosaic displays for multi-way contingency
-tables. \emph{Journal of the American Statistical Association}, \bold{89},
-190-200.
 }
 \seealso{
-\code{\link{mosaicplot}}
-
-Other plot.bivariate:
-\code{\link[=plotAssoc]{plotAssoc()}},
-\code{\link[=plotBag]{plotBag()}},
-\code{\link[=plotCor]{plotCor()}},
-\code{\link[=plotDens2D]{plotDens2D()}},
-\code{\link[=plotHeatmap]{plotHeatmap()}},
-\code{\link[=plotHexbin]{plotHexbin()}}
+\code{\link[=plotCatDist]{plotCatDist()}}, \code{\link[=plotBar]{plotBar()}}, \code{\link[=getTheme]{getTheme()}}
 }
-\concept{association-measures}
-\concept{graphics}
-\concept{plot.bivariate}
-\concept{table-manipulation}
+\concept{categorical-data}
+\concept{contingency-table}
+\concept{mosaic-plot}
+\concept{spine-plot}
+\concept{topic.categoricalPlots}

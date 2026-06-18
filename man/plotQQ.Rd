@@ -12,10 +12,11 @@ plotQQ(
   ylab = NULL,
   datax = FALSE,
   add = FALSE,
-  conf.level = 0.95,
-  cband = TRUE,
+  grid = .useTheme,
+  box = .useTheme,
+  cband = list(conf.level = 0.95),
   qqline = TRUE,
-  grid = NULL,
+  stamp = .useTheme,
   ...
 )
 }
@@ -38,13 +39,22 @@ required arguments. Default is \code{qnorm()}. See examples.}
 \item{add}{logical specifying if the points should be added to an already
 existing plot; defaults to \code{FALSE}.}
 
-\item{conf.level}{confidence level for the confidence interval. Set this to
-\code{NA}, if no confidence band should be plotted.  Default is \code{0.95}.
-The confidence intervals are calculated pointwise method based on a
-Kolmogorov-Smirnov distribution.}
+\item{grid}{Controls drawing of the background grid. \code{.useTheme}
+(default) follows the active theme (\code{getTheme()$grid}).
+\code{TRUE}/\code{FALSE}/\code{NA}, or a named list, as for
+\code{\link[graphics]{grid}}.}
 
-\item{cband}{list of arguments for the confidence band, such as color
-or border (see \code{\link{band}}).}
+\item{box}{Controls drawing of the plot box. \code{.useTheme} (default)
+resolves to \code{getTheme()$box}. \code{TRUE}/\code{FALSE}/\code{NA},
+or a named list, as for \code{\link[graphics]{box}}.}
+
+\item{cband}{controls the confidence band. \code{FALSE}, \code{NULL}, or
+\code{NA} suppress it. A named list configures it; its
+\code{conf.level} element (default \code{0.95}) controls the
+confidence level of the pointwise Kolmogorov-Smirnov-based band
+(\code{conf.level} is consumed before the band is drawn and never
+forwarded as a graphical parameter). Other list elements (e.g.
+\code{col}, \code{border}) configure the band's appearance.}
 
 \item{qqline}{arguments for the qqline. This will be estimated as a
 line through the 25\\% and 75\\% quantiles by default, which is the same
@@ -56,13 +66,10 @@ values. Also the method for calculating the quantiles can be defined
 \code{col = par("fg")}, \code{lwd = par("lwd")} and \code{lty = par("lty")}.
 No line will be plotted if \code{args.qqline} is set to \code{NA}.}
 
-\item{grid}{Optional list of arguments controlling grid lines.
-Supported elements include:
-\describe{
-\item{col}{Grid line color (default: \code{"grey85"})}
-\item{lty}{Line type (default: \code{1})}
-\item{lwd}{Line width (default: \code{1})}
-}}
+\item{stamp}{Controls the corner stamp. \code{.useTheme} (default)
+resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/\code{NULL},
+a string, or a named list of arguments for \code{stamp()} (e.g.
+\code{list(text = "...", las = 2)}).}
 
 \item{\dots}{the dots are passed to the plot function.}
 }
@@ -98,6 +105,9 @@ plotQQ(z, function(p) qchisq(p, df=5),
        main=expression("Q-Q plot for" ~~ {chi^2}[nu == 3]))
 abline(0,1)
 
+# 90\% confidence band instead of the 95\% default
+plotQQ(y, function(p) qexp(p, rate=1/10), cband = list(conf.level = 0.90))
+
 # add 5 random sets
 for(i in 1:5){
   z <- rchisq(100, df=5)
@@ -110,7 +120,8 @@ for(i in 1:5){
 Teetor, P. (2011) \emph{R Cookbook}. O'Reilly, pp. 254-255.
 }
 \seealso{
-\code{\link{qqnorm}}, \code{\link{qqline}}, \code{\link{qqplot}}
+\code{\link{qqnorm}}, \code{\link{qqline}}, \code{\link{qqplot}},
+\code{\link{getTheme}}, \code{\link{lines.loess}}
 
 Other plot.distribution:
 \code{\link[=plotCatDist]{plotCatDist()}},

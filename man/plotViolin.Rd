@@ -11,22 +11,23 @@ plotViolin(x, ...)
 \method{plotViolin}{default}(
   x,
   ...,
+  main = NULL,
+  xlab = "",
+  ylab = "",
+  xlim = NULL,
+  ylim = NULL,
   horizontal = FALSE,
   at = NULL,
   names = NULL,
   add = FALSE,
   bw = "nrd0",
+  trim = TRUE,
   col = "grey80",
   border = "black",
   lwd = 1,
   box = TRUE,
   grid = NA,
-  quantiles = NULL,
-  main = "",
-  xlab = "",
-  ylab = "",
-  xlim = NULL,
-  ylim = NULL
+  quantiles = NULL
 )
 
 \method{plotViolin}{formula}(
@@ -35,22 +36,23 @@ plotViolin(x, ...)
   subset,
   na.action = na.omit,
   ...,
+  main = NULL,
+  xlab = "",
+  ylab = "",
+  xlim = NULL,
+  ylim = NULL,
   horizontal = FALSE,
   at = NULL,
   names = NULL,
   add = FALSE,
   bw = "nrd0",
+  trim = TRUE,
   col = "grey80",
   border = "black",
   lwd = 1,
   box = TRUE,
   grid = NA,
-  quantiles = NULL,
-  main = "",
-  xlab = "",
-  ylab = "",
-  xlim = NULL,
-  ylim = NULL
+  quantiles = NULL
 )
 }
 \arguments{
@@ -58,6 +60,10 @@ plotViolin(x, ...)
 
 \item{...}{Additional data vectors (unnamed) or graphical parameters
 passed to \code{par()}.}
+
+\item{main, xlab, ylab}{Plot labels.}
+
+\item{xlim, ylim}{Axis limits.}
 
 \item{horizontal}{Logical; if \code{TRUE}, draws horizontal violins.}
 
@@ -68,6 +74,15 @@ passed to \code{par()}.}
 \item{add}{Logical; if \code{TRUE}, adds to an existing plot.}
 
 \item{bw}{Bandwidth specification passed to \code{density()}.}
+
+\item{trim}{Logical. If \code{TRUE} (default), the kernel density
+estimate of each group is restricted to the observed data range
+(\code{from = min(x)}, \code{to = max(x)}), so the violin never
+extends beyond the actual data — matching the default behavior of
+\code{ggplot2::geom_violin()}. If \code{FALSE}, \code{density()} is
+called with its own defaults, which extend the tails up to
+\code{cut * bw} beyond \code{range(x)} and may produce violins that
+reach into implausible values (e.g. scores above 100 or below 0).}
 
 \item{col}{Fill color(s) of the violins.}
 
@@ -82,10 +97,6 @@ passed to \code{par()}.}
 
 \item{quantiles}{Optional numeric vector of probabilities for drawing
 quantile lines inside each violin.}
-
-\item{main, xlab, ylab}{Plot labels.}
-
-\item{xlim, ylim}{Axis limits.}
 
 \item{formula}{A formula of the form y ~ group.}
 
@@ -135,6 +146,9 @@ plotViolin(x, y, horizontal = TRUE)
 
 # with quantiles
 plotViolin(x, y, quantiles = c(0.25, 0.5, 0.75))
+
+# untrimmed: tails extend beyond the observed data range
+plotViolin(x, y, trim = FALSE)
 
 # custom styling
 plotViolin(x, y,

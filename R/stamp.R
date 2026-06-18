@@ -11,16 +11,16 @@
 #' 
 #' For \R results may not be satisfactory if \code{par(mfrow=)} is in effect.
 #' 
-#' @param txt an optional single text string. If it is not given, the function
-#' will look for a defined option named \code{stamp}. If not found the current
-#' date will be taken as text. If the stamp option is defined as expression the
-#' function will evaluate it. This can be used to define dynamic texts. Use \code{NA}
-#' to not display a stamp at all.
-#' @param las numeric in \code{c(1, 3)}, defining direction of the text. 1
-#' means horizontal, 3 vertical. Default is taken from \code{par("las")}.
-#' @param cex numeric \bold{c}haracter \bold{ex}pansion factor; multiplied by
-#' \code{par("cex")} yields the final character size. Defaults to 0.6.
-#' @param col the text color
+#' @param text Character string, expression, or toggle controlling the
+#'   stamp text. \code{.useTheme} (default) or \code{TRUE} resolve to
+#'   \code{getTheme()$stamp}, evaluated lazily at draw time. \code{FALSE},
+#'   \code{NULL}, or \code{NA} suppress the stamp. Any other string or
+#'   unevaluated \code{expression()} is used as given.
+#' @param las orientation; see \code{\link[graphics]{par}}. \code{NULL}
+#'   (default) inherits the current \code{par("las")}. \code{las = 3}
+#'   places the stamp vertically along the right edge instead of
+#'   horizontally along the bottom.
+#' @param cex,col size and color of the stamp text.
 #' 
 #' @seealso \code{\link{text}}
 #' @keywords aplot
@@ -35,23 +35,33 @@
 #' @concept graphics
 #' @concept date-handling
 #'
+
 #'
 #' @export
-stamp <- function(txt = NULL, las = NULL, cex = 0.6, col="grey40") {
+stamp <- function(text = .useTheme, las = NULL, cex = 0.6, col = "grey40") {
   
-
-  ## resolve text
-  if (is.null(txt)) {
-    txt <- .getOption("stamp")
-    if (is.null(txt)) {
-      txt <- format(Sys.time(), "%Y-%m-%d")
-    } else if (is.expression(txt)) {
-      txt <- eval(parse(text = txt))
-    } else if(is.na(txt)) {
-      # don't do anything if txt = NA
-      txt=""
-    }  
+  resolved <- if (identical(text, .useTheme) || isTRUE(text)) {
+    
+    themeStamp <- getTheme()$stamp
+    if (isFALSE(themeStamp)) "" else eval(themeStamp)
+    
+  } else if (isFALSE(text) || is.null(text) ||
+             (length(text) == 1L && !is.character(text) && !is.expression(text) &&
+              isTRUE(suppressWarnings(is.na(text))))) {
+    
+    ""
+    
+  } else if (is.expression(text)) {
+    
+    eval(text)
+    
+  } else {
+    
+    text
   }
+  
+  if (!nzchar(resolved))
+    return(invisible(""))
   
   ## handle las locally
   old_las <- par("las")
@@ -68,9 +78,9 @@ stamp <- function(txt = NULL, las = NULL, cex = 0.6, col="grey40") {
   if (las == 3) {
     ## vertical stamp (right bottom)
     mtext(
-      paste0("  ", txt),
+      paste0("  ", resolved),
       side  = 4,
-      line  = line_pos,   # << FIX
+      line  = line_pos,
       adj   = 0,
       srt   = 90,
       outer = TRUE,
@@ -80,16 +90,23 @@ stamp <- function(txt = NULL, las = NULL, cex = 0.6, col="grey40") {
     
   } else {
     ## horizontal stamp (bottom right)
+    # las explicitly forced to 1 (always horizontal) here, regardless of
+    # what 'las' value was requested - only las = 3 selects the dedicated
+    # vertical branch above; any other value (0, 1, 2, or the ambient
+    # par("las") this function just set via op_las) must not rotate this
+    # mtext() call via inherited orientation.
     mtext(
-      paste0(txt, "  "),
+      paste0(resolved, "  "),
       side  = 1,
-      line  = line_pos,   # << FIX
+      line  = line_pos,
       adj   = 1,
+      las   = 1,
       outer = TRUE,
       cex   = cex,
       col   = col
     )
   }
-
-  invisible(txt)
+  
+  invisible(resolved)
 }
+
