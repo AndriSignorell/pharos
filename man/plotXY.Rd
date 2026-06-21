@@ -25,6 +25,7 @@ plotXY(x, ...)
   lm = TRUE,
   loess = TRUE,
   legend = TRUE,
+  stamp = .useTheme,
   ...
 )
 
@@ -47,6 +48,7 @@ plotXY(x, ...)
   loess = TRUE,
   legend = TRUE,
   box = .useTheme,
+  stamp = .useTheme,
   ...
 )
 }

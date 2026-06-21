@@ -73,10 +73,8 @@
 #'   the active theme (\code{getTheme()$box}); \code{FALSE}/\code{NA}
 #'   suppress it; a named list overrides frame-drawing arguments.
 #'   \describe{
-#'     \item{panel 1}{\code{spineplot()} draws its frame unconditionally
-#'       with no native toggle, so suppressing it here repaints the frame
-#'       in the device background color instead of skipping the draw
-#'       (via \code{\link[graphics]{box}()}).}
+#'     \item{panel 1}{has no effect - \code{spineplot()} always draws its
+#'       native frame unconditionally, with no toggle to override it.}
 #'     \item{panel 2}{\code{\link{plotMosaic}} always draws its own frame;
 #'       this argument has no effect.}
 #'     \item{panel 3}{\code{\link{plotAssoc}} has no frame/box concept of
@@ -90,11 +88,11 @@
 #'
 #' @param stamp Controls the corner stamp. \code{.useTheme} (default)
 #'   resolves to \code{getTheme()$stamp}, drawn once after all selected
-#'   panels. Neither \code{\link{plotAssoc}} nor \code{\link{plotHeatmap}}
-#'   draw their own stamp, so there is no duplicate-stamp concern here
-#'   (unlike e.g. \code{plot.Desc.qn}, where some delegated panel functions
-#'   do draw their own). \code{TRUE}/\code{FALSE}/\code{NULL}, a string, or
-#'   a named list for \code{\link{stamp}()}.
+#'   panels. Panels 2-4 delegate to \code{\link{plotMosaic}}/
+#'   \code{\link{plotAssoc}}/\code{\link{plotHeatmap}}, whose own
+#'   \code{stamp} argument is set to \code{NA} internally to avoid a
+#'   duplicate. \code{TRUE}/\code{FALSE}/\code{NULL}, a string, or a
+#'   named list for \code{\link{stamp}()}.
 #'
 #' @param ... further graphical parameters, passed to \code{\link{par}} via
 #'   the internal framework and to the underlying panel-drawing functions
@@ -120,8 +118,17 @@
 #' @concept data-description
 #' @concept descriptive-statistics
 #'
-#' @rdname desc
-#' @export
+#' @rdname plot.Desc.table
+#'
+#' @exportS3Method
+#' @rawNamespace export(plot.Desc.table)
+# Both tags above are required, not redundant: @exportS3Method alone
+# registers S3 dispatch (plot(obj)) but does NOT export the bare symbol,
+# so unqualified calls like plot.Desc.table(x, ...) from other packages
+# (e.g. DescToolsX's plot.Desc.qq) fail with "could not find function" -
+# even with @importFrom aurora plot.Desc.table on the calling side.
+# @rawNamespace forces the missing export() NAMESPACE line. See
+# design_rules.md, "Exporting S3 Methods Callable From Other Packages".
 plot.Desc.table <- function(x,
 
                             # LABELS
@@ -196,16 +203,6 @@ plot.Desc.table <- function(x,
       if (identical(col, .useTheme)) default else col
     }
 
-    # spineplot() draws box() unconditionally - no argument suppresses it
-    # (see graphics:::spineplot.default). When boxHere is FALSE, erase it by
-    # repainting in the device's current background, via callIf dispatched
-    # on the negated boxHere. Kept as a separate variable (boxSpine) so
-    # panel 4's own 'box' forwarding to plotHeatmap() still sees the
-    # original value (including the .useTheme sentinel) untouched.
-    boxSpine <- box
-    if (isNA(boxSpine) || isFALSE(boxSpine))
-      boxSpine <- list(col = par("bg"))
-
     for (w in which) {
 
       switch(as.character(w),
@@ -213,7 +210,9 @@ plot.Desc.table <- function(x,
              # ── 1: Spineplot ─────────────────────────────────────────────────
              "1" = {
                # ylab left at "" (no override) since there is no separate
-               # row-dimension name to derive one from.
+               # row-dimension name to derive one from. The frame is left
+               # as spineplot() draws it natively (no box() override here
+               # by design - see @param box).
                spineplot(tab,
                          col  = resolveCol(colSpineDefault),
                          xlab = xName,
@@ -221,10 +220,6 @@ plot.Desc.table <- function(x,
                          main = .main(.panelDefault("Spineplot")),
                          ...)
 
-               # bedrock::callIf(graphics::box, boxSpine,
-               #                 defaults = list(
-               #                   col = "grey50"
-               #                 ))
                axis(side = 1, labels = NA, col.ticks = NA)
                axis(side = 4, labels = NA, col.ticks = NA)
              },

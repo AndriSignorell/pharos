@@ -87,6 +87,9 @@
 #'       overriding the theme defaults for this call only
 #'   }
 #'
+#' @param stamp Controls the corner stamp. \code{.useTheme} (default)
+#'   resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
+#'   \code{NULL}, a string, or a named list for \code{\link{stamp}()}.
 #' @param ... further graphical parameters passed to \code{par()} via the
 #'   internal framework.
 #'
@@ -171,7 +174,8 @@ plotXY.default <- function(
   lm     = TRUE,
   loess  = TRUE,
   legend = TRUE,
-  
+
+  stamp = .useTheme,  
   ...
 ) {
   
@@ -254,14 +258,14 @@ plotXY.default <- function(
                         x        = "topright",
                         legend   = leg_labels,
                         fill     = leg_fill,
-                        inset    = 0.01,
-                        text.col = "black"
+                        text.col = "black", 
+                        bg       = addAlpha("white")
                       )),
                       forbidden = c("legend", "fill"))
       
     }
     
-  }, stamp = .useTheme)
+  }, stamp = stamp)
   
   invisible(NULL)
 }
@@ -295,6 +299,7 @@ plotXY.formula <- function(
   legend = TRUE,
   box    = .useTheme,
   
+  stamp  = .useTheme,
   ...
 ) {
   
@@ -337,6 +342,7 @@ plotXY.formula <- function(
     loess  = loess,
     legend = legend,
     box    = box,
+    stamp  = stamp,
     ...
   )
 }

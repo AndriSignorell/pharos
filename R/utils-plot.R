@@ -59,8 +59,8 @@ fcol <- .pal_data$discrete$Helsana
     "mar","mai","cex","cex.axis","cex.lab","cex.main","cex.sub",
     "las","tck","mgp","xaxs","yaxs","xaxt","yaxt",
     "col","col.axis","col.lab","col.main","col.sub",
-    "lwd","lty","pch","bg","fg","xpd", "plt", 
-    "oma", "omi"
+    "lwd","lty","pch","bg","fg","xpd", "plt"
+    #,"oma", "omi"
   )
   
   op <- par(keep)

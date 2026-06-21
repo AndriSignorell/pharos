@@ -202,9 +202,11 @@ plotBar <- function(height,
   .withGraphicsState({
     
     
-    .applyParFromDots(..., defaults=list(
-      mar = c(left = 5)  # default
-    ))
+    .applyParFromDots(...,
+          defaults=list(
+            mar=c(left=5, top=.marTop(main))
+      )
+    )
     
     # read back the *effective* las (user dots may have changed it via
     # .applyParFromDots); needed below for axis()/margin computation

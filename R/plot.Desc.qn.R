@@ -57,16 +57,16 @@
 #'   }
 #'   Supplying \code{col} explicitly overrides the default uniformly for
 #'   every selected panel.
-#' @param box Controls the plot frame for panels 1, 2, and 5.
+#' @param box Controls the plot frame for panels 4 and 5.
 #'   \code{.useTheme} (default) follows the active theme
 #'   (\code{getTheme()$box}); \code{FALSE}/\code{NA} suppress it; a named
 #'   list overrides \code{\link[graphics]{box}()} arguments. Panels 1/2
-#'   (\code{cdplot()}/\code{spineplot()}) draw their frame unconditionally
-#'   with no native toggle, so suppressing it here repaints the frame in
-#'   the device background color instead of skipping the draw. Panel 4
-#'   (\code{\link{plotBox}}) always draws its own frame regardless of this
-#'   argument. Panel 3 (\code{\link{plotDens}}) never draws a frame,
-#'   regardless of this argument.
+#'   (\code{cdplot()}/\code{spineplot()}) have no effect from this
+#'   argument - they always draw their native frame unconditionally, with
+#'   no toggle to override it. Panel 4 (\code{\link{plotBox}}) always
+#'   draws its own frame regardless of this argument. Panel 3
+#'   (\code{\link{plotDens}}) never draws a frame, regardless of this
+#'   argument.
 #' @param legend Controls the legend for panel 3 (grouped density curves).
 #'   \code{TRUE} (default) draws a legend with the group levels.
 #'   \code{FALSE}/\code{NA} suppresses it. A named list overrides arguments
@@ -102,8 +102,12 @@
 #' @concept data-description
 #' @concept descriptive-statistics
 #'
-#' @rdname desc
-#' @export
+#' @rdname plot.Desc.qn
+#' @exportS3Method
+#' @rawNamespace export(plot.Desc.qn)
+# Both tags above are required, not redundant - see plot.Desc.table for
+# the full explanation, or design_rules.md, "Exporting S3 Methods
+# Callable From Other Packages".
 plot.Desc.qn <- function(x,
                          
                          # LABELS
@@ -190,14 +194,6 @@ plot.Desc.qn <- function(x,
     }
     
     
-    # cdplot()/spineplot() draw box() unconditionally - no argument
-    # suppresses it (see graphics:::cdplot / graphics:::spineplot.default).
-    # When boxHere is FALSE, erase it by repainting in the device's
-    # current background, via callIf dispatched on the negated boxHere.
-    if(isNA(box) || isFALSE(box))
-      box <- list(col=par("bg"))
-    
-    
     for (w in which) {
       
       switch(as.character(w),
@@ -211,10 +207,6 @@ plot.Desc.qn <- function(x,
                       main = .main(.panelDefault("Conditional density")),
                       ...)
                
-               # bedrock::callIf(graphics::box, box, 
-               #                 defaults = list(
-               #                   col = "grey50"
-               #                 ))
                axis(side = 1, labels = NA, col.ticks = NA)
                axis(side = 4, labels = NA, col.ticks = NA)
              },
@@ -228,10 +220,6 @@ plot.Desc.qn <- function(x,
                          main = .main(.panelDefault("Spineplot")),
                          ...)
                
-               # bedrock::callIf(graphics::box, box, 
-               #                 defaults = list(
-               #                   col = "grey50"
-               #                 ))
                axis(side = 1, labels = NA, col.ticks = NA)
                axis(side = 4, labels = NA, col.ticks = NA)
              },
