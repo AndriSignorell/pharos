@@ -13,11 +13,15 @@
     SteelblueWhite = c("steelblue", "white"),
     RedWhiteGreen  = c("red", "white", "green"),
     RedWhiteBlue0  = c("red", "white", "blue"),
+    
     RedWhiteBlue1  = c("#67001F", "#B2182B", "#D6604D", "#F4A582", "#FDDBC7",
                        "#FFFFFF", "#D1E5F0", "#92C5DE", "#4393C3", "#2166AC",
                        "#053061"),
+    
     RedWhiteBlue2  = c("#BB4444", "#EE9988", "#FFFFFF", "#77AADD", "#4477AA"),
+    
     RedWhiteBlue3  = c("#9A0941", "white", "#8296C4"),
+    
     RedGreen1      = c("#E3001B", "#E63808", "#EA5901", "#EC6700", "#F18400",
                        "#F59E00", "#FBB800", "#FDC300", "#FFD900", "#CBC639",
                        "#96AC62", "#76936C")
@@ -25,12 +29,16 @@
   
   discrete = list(
     # ── Institutional ──────────────────────────────────────────────────────
-    Helsana  = c("#9A0941", "#F08100", "#FED037", "#CAB790", "#D35186",
-                 "#8296C4", "#B3BA12", "#CCCCCC", "#666666", "#FFFFFF"),
+    Helsana  = c(blue="#8296C4", red="#9A0941", orange="#F08100", yellow="#FED037",
+                 ecru="#CAB790", green="#B3BA12", pink="#D35186", moss="#8FAE8C",  
+                 slate="#5F6F9A", sand="#E6E2D3", brown="#6E5A3C", plum="#5B2A45"),
+    
     Helsana1 = c("#000000", "#8296C4", "#9A0941", "#F08100", "#FED037",
                  "#CAB790", "#B3BA12", "#D35186", "#CCCCCC", "#666666"),
+    
     Helsana2 = c("#9a0941", "#62aedf", "#9181c6", "#e55086", "#f2f2f2",
                  "#b6ca2f", "#fec600", "#bea786"),
+    
     Tibco    = c("#005B00", "#009D45", "#FD0161", "#3C78B1", "#9CCD24",
                  "#F4C607", "#FE8201", "#608A8A", "#B2713C"),
     

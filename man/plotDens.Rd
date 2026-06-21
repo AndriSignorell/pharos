@@ -25,7 +25,8 @@ plotDens(x, ...)
   lwd = 2,
   lty = 1,
   fill = FALSE,
-  grid = NA
+  grid = NA,
+  stamp = TRUE
 )
 }
 \arguments{
@@ -70,6 +71,10 @@ more explicit fill colors recycled over groups. For
 the regions below/above the boundary curve.}
 
 \item{grid}{Logical, \code{NA}, or list controlling background grid.}
+
+\item{stamp}{Controls the corner stamp. \code{.useTheme} (default)
+resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/\code{NULL},
+or an explicit string, as for \code{.withGraphicsState()} (internal).}
 }
 \value{
 Invisibly returns \code{NULL}.

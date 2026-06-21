@@ -32,36 +32,31 @@
 #' @export
 canvas <- function(xlim=NULL, ylim=xlim, main=NULL, 
                    asp=1, usrbg="white", ...){
+
+  .applyParFromDots(...)
+
+  # special handling for cex
+  # cex <- bedrock::getDotsArg(list(...), "cex", par("cex"))
+
+  if(is.null(xlim)){
+    xlim <- c(-1,1)
+    ylim <- xlim
+  }
+  if(length(xlim)==1) {
+    xlim <- c(-xlim,xlim)
+    ylim <- xlim
+  }
+
+  plot( NA, NA, xlim=xlim, ylim=ylim, main=main, asp=asp, 
+        type="n", xaxt="n", yaxt="n",
+        xlab="", ylab="", frame.plot = FALSE, ...)
   
-
-  # .withGraphicsState({
-    
-    .applyParFromDots(...)
-
-    # special handling for cex
-    # cex <- bedrock::getDotsArg(list(...), "cex", par("cex"))
-
-    if(is.null(xlim)){
-      xlim <- c(-1,1)
-      ylim <- xlim
-    }
-    if(length(xlim)==1) {
-      xlim <- c(-xlim,xlim)
-      ylim <- xlim
-    }
-
-    plot( NA, NA, xlim=xlim, ylim=ylim, main=main, asp=asp, 
-          type="n", xaxt="n", yaxt="n",
-          xlab="", ylab="", frame.plot = FALSE, ...)
-    
-    
-    if(usrbg != "white"){
-      usr <- par("usr")
-      rect(xleft=usr[1], ybottom=usr[3], 
-           xright=usr[2], ytop=usr[4], col=usrbg, border=NA)
-    }
-    
-  # })      
+  
+  if(usrbg != "white"){
+    usr <- par("usr")
+    rect(xleft=usr[1], ybottom=usr[3], 
+         xright=usr[2], ytop=usr[4], col=usrbg, border=NA)
+  }
 
   invisible()
   

@@ -2,69 +2,155 @@
 % Please edit documentation in R/plotECDF.R
 \name{plotECDF}
 \alias{plotECDF}
+\alias{plotECDF.default}
+\alias{plotECDF.formula}
 \title{Empirical Cumulative Distribution Function}
 \usage{
-plotECDF(
+plotECDF(x, ...)
+
+\method{plotECDF}{default}(
   x,
-  breaks = NULL,
-  col = pal()[1],
-  ylab = "",
-  lwd = 2,
+  main = NULL,
   xlab = NULL,
+  ylab = "",
+  xlim = NULL,
+  breaks = 1000,
+  add = FALSE,
+  col = .useTheme,
+  lwd = 2,
+  grid = .useTheme,
+  box = .useTheme,
+  stamp = .useTheme,
+  ...
+)
+
+\method{plotECDF}{formula}(
+  formula,
+  data,
+  subset,
+  na.action = na.omit,
+  main = NULL,
+  xlab = NULL,
+  ylab = "",
+  xlim = NULL,
+  breaks = 1000,
+  col = .useTheme,
+  lwd = 2,
+  grid = .useTheme,
+  box = .useTheme,
+  legend = TRUE,
+  stamp = .useTheme,
   ...
 )
 }
 \arguments{
-\item{x}{numeric vector of the observations for ecdf.}
+\item{x}{numeric vector of the observations for the ECDF.}
 
-\item{breaks}{will be passed directly to \code{\link{hist}}. If left to
-\code{NULL}, no histogram will be used.}
+\item{\dots}{further graphical parameters passed to \code{\link{par}} via
+the internal framework.}
 
-\item{col}{color of the line.}
+\item{main}{main title of the plot. \code{NULL} (default) derives a
+title from \code{deparse(substitute(x))}. \code{""}, \code{NA}, or
+\code{FALSE} suppress the title.}
 
-\item{ylab}{label for the y-axis.}
+\item{xlab}{label for the x-axis. \code{NULL} (default) derives a label
+the same way as \code{main}.}
+
+\item{ylab}{label for the y-axis. The y-axis itself always shows fixed
+probability labels (\code{.00} to \code{1.00}); \code{ylab} adds an
+axis title above/beside those, empty by default.}
+
+\item{xlim}{numeric vector of length 2; x-axis limits. \code{NULL}
+(default) uses \code{range(x)}.}
+
+\item{breaks}{controls the rendered resolution. A single integer (default
+\code{1000}) subsamples the ECDF at that many evenly-spaced quantiles
+whenever \code{length(x)} exceeds it; for \code{length(x) <= breaks},
+full resolution is used regardless (no data is ever thinned below its
+actual size). \code{NULL}, \code{FALSE}, or \code{Inf} force full
+resolution unconditionally, regardless of \code{length(x)}.}
+
+\item{add}{logical; if \code{TRUE}, adds to an existing plot instead of
+starting a new one.}
+
+\item{col}{color of the step line and the min/max marker points.
+\code{.useTheme} (default) resolves to \code{getTheme()$twin[1]} - a
+single accent color, consistent with \code{\link{lines.loess}} and
+\code{plotQQ()}'s confidence band.}
 
 \item{lwd}{line width.}
 
-\item{xlab}{label for the x-axis.}
+\item{grid}{Controls drawing of the background grid (vertical lines at
+default tick positions, plus a fixed set of horizontal reference
+lines at the probability ticks \code{0}/\code{.25}/\code{.5}/\code{.75}/\code{1}
+\itemize{
+\item the latter always grey regardless of the active theme, a
+deliberately distinct look, not theme-driven). \code{.useTheme}
+(default) follows the active theme's grid on/off state
+(\code{getTheme()$grid}). \code{TRUE}/\code{FALSE}/\code{NA}, or a
+named list, as for \code{\link[graphics]{grid}}.
+}}
 
-\item{\dots}{arguments to be passed to subsequent functions.}
+\item{box}{Controls drawing of the plot box. \code{.useTheme} (default)
+resolves to \code{getTheme()$box}. \code{TRUE}/\code{FALSE}/\code{NA},
+or a named list, as for \code{\link[graphics]{box}}.}
+
+\item{stamp}{Controls the corner stamp. \code{.useTheme} (default)
+resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/\code{NULL},
+a string, or a named list of arguments for \code{stamp()}.}
+
+\item{formula}{a formula of the form \code{y ~ x}.}
+
+\item{data}{an optional data frame containing variables in the formula.}
+
+\item{subset}{optional expression indicating which observations to use.}
+
+\item{na.action}{a function specifying how missing values are handled.
+Defaults to \code{na.omit}.}
+
+\item{legend}{Logical or list controlling the legend. If \code{TRUE}, a legend
+is drawn using the column names of the data. If a list is supplied, its
+elements are passed to the internal legend drawing routine.}
 }
 \value{
-no value returned, use \code{\link{plot.ecdf}} if any results are
-required.
+Invisibly returns \code{NULL}.
 }
 \description{
-Faster alternative for plotting the empirical cumulative distribution
-function (ecdf). The function offers the option to construct the ecdf on the
-base of a histogram, which makes sense, when x is large. So the plot process
-is much faster, without loosing much precision in the details.
+Fast plotting of the empirical cumulative distribution function (ECDF),
+designed to stay performant even for very large vectors (n ~ 1e6-1e7).
 }
 \details{
-The stats function \code{\link{plot.ecdf}} is fine for vectors that are not
-too large. However for n ~ 1e7 we would observe a dramatic performance
-breakdown (possibly in combination with the use of \code{\link{do.call}}).
+The base \code{\link{plot.ecdf}}/\code{\link{ecdf}} machinery becomes
+impractically slow well below \code{n = 1e7}, since it tracks every single
+jump. Beyond a few thousand points, individual jumps are visually
+indistinguishable anyway, so \code{plotECDF()} caps the rendered resolution
+at \code{breaks} points by default.
 
-\code{PlotECDF} is designed as alternative for quicker plotting the ecdf for
-larger vectors. If \code{breaks} are provided as argument, a histogram with
-that number of breaks will be calculated and the ecdf will use those
-frequencies instead of respecting every single point. \cr Note that a plot
-will rarely need more than ~1'000 points on x to have a sufficient
-resolution on usual terms. \code{\link{plotFdist}} will also use this number
-of breaks by default.
+Resolution is achieved via quantile subsampling, not histogram binning:
+\code{breaks} evenly-spaced probability points are mapped back to their
+corresponding quantiles (\code{\link[stats]{quantile}}, \code{type = 7}).
+Each rendered point therefore lies exactly on the true ECDF - unlike an
+equal-width-histogram approximation, this adapts automatically to the
+shape of the distribution (no resolution is wasted on near-empty bins in
+a skewed or heavy-tailed distribution, nor lost in the tails).
 }
 \examples{
-
 plotECDF(faithful$eruptions)
 
-# make large vector
-x <- rnorm(n=1e7)
+# large vector - automatically thinned to 1000 points, no breaks= needed
+x <- rnorm(1e6)
+plotECDF(x)
 
-# plot only 1000 points instead of 1e7
-plotECDF(x, breaks=1000)
+# force full resolution regardless of size
+plotECDF(x, breaks = NULL)
+
+# grouped ECDFs via the formula interface
+plotECDF(Sepal.Length ~ Species, data = iris)
+
 }
 \seealso{
-\code{\link{plot.ecdf}}, \code{\link{plotFdist}}
+\code{\link{plot.ecdf}}, \code{\link{plotFdist}},
+\code{\link{getTheme}}
 
 Other plot.distribution:
 \code{\link[=plotCatDist]{plotCatDist()}},

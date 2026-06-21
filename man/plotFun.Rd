@@ -6,7 +6,7 @@
 \usage{
 plotFun(
   expr,
-  main = "",
+  main = NULL,
   xlab = "",
   ylab = "",
   xlim = NULL,
@@ -15,53 +15,70 @@ plotFun(
   to = 1,
   n = 500,
   args = NULL,
-  col = 1,
+  add = FALSE,
+  col = .useTheme,
   lwd = 1,
   lty = 1,
-  grid = NA,
-  add = FALSE,
+  grid = .useTheme,
+  stamp = .useTheme,
   ...
 )
 }
 \arguments{
-\item{expr}{Expression defining the function. Either a formula (\code{y ~ f(x)}),
-a polar formula (\code{r ~ f(phi)}), or a list of two formulas for parametric plots.}
+\item{expr}{Expression defining the function. Either a formula
+(\code{y ~ f(x)}), a polar formula (\code{r ~ f(phi)}), or a list
+of two formulas for parametric plots.}
 
-\item{main}{Character. Main title of the plot.}
+\item{main}{main title of the plot. \code{NULL} (default) derives a
+title from \code{expr}. \code{""}, \code{NA}, or \code{FALSE}
+suppress the title and compact the top margin.}
 
-\item{xlab}{Character. Label for x-axis.}
+\item{xlab, ylab}{labels for the axes.}
 
-\item{ylab}{Character. Label for y-axis.}
+\item{xlim, ylim}{numeric vectors of length 2 defining axis limits.
+For Cartesian functions, \code{xlim} defaults to \code{c(from, to)}.
+For polar and parametric plots, limits are derived from the data.
+If only \code{xlim} is supplied for polar/parametric plots, \code{ylim}
+mirrors it (ensures \code{asp=1} renders correctly).}
 
-\item{xlim}{Numeric vector of length 2 defining x-axis limits.}
+\item{from, to}{numeric; lower and upper bound of the parameter domain.
+Default \code{from=0}, \code{to=1}.}
 
-\item{ylim}{Numeric vector of length 2 defining y-axis limits.}
+\item{n}{integer; number of evaluation points. Default \code{500}.}
 
-\item{from}{Numeric. Lower bound of the parameter domain.}
+\item{args}{named list of additional parameters fixed for the function
+expression (e.g. \code{list(a = 2)} for \code{y ~ sin(a*x)}).}
 
-\item{to}{Numeric. Upper bound of the parameter domain.}
+\item{add}{logical; if \code{TRUE}, adds to an existing plot without
+redrawing axes or grid. Default \code{FALSE}.}
 
-\item{n}{Integer. Number of evaluation points.}
+\item{col}{color of the line. \code{.useTheme} (default) resolves to
+\code{getTheme()$twin[1]} - the primary accent color, consistent with
+\code{\link{lines.loess}} and \code{plotQQ()}.}
 
-\item{args}{Named list of additional parameters used in the function expression.}
+\item{lwd}{line width. Default \code{1}.}
 
-\item{col}{Color of the line.}
+\item{lty}{line type. Default \code{1}.}
 
-\item{lwd}{Line width.}
+\item{grid}{controls drawing of the background grid. \code{.useTheme}
+(default) follows the active theme (\code{getTheme()$grid}).
+\code{TRUE}/\code{FALSE}/\code{NA}, or a named list, as for
+\code{\link[graphics]{grid}}.}
 
-\item{lty}{Line type.}
+\item{stamp}{controls the corner stamp. \code{.useTheme} (default)
+resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
+\code{NULL}, a string, or a named list for \code{\link{stamp}()}.}
 
-\item{grid}{Logical, \code{NA}, or list. Controls grid display.}
-
-\item{add}{Logical. If \code{TRUE}, adds to existing plot.}
-
-\item{...}{Additional graphical parameters passed to \code{par()}.}
+\item{\dots}{further graphical parameters passed to
+\code{\link[graphics]{par}} via the internal framework.}
 }
 \value{
-Invisibly returns a list with components \code{x} and \code{y}.
+Invisibly returns a list with components \code{x} and \code{y}
+(the plotted coordinates after finite filtering).
 }
 \description{
-Flexible plotting of mathematical functions in Cartesian, polar, and parametric form.
+Flexible plotting of mathematical functions in Cartesian, polar, and
+parametric form.
 }
 \details{
 The function automatically detects the type of input:
@@ -71,121 +88,34 @@ The function automatically detects the type of input:
 \item \strong{Parametric:} \code{list(x ~ f(t), y ~ g(t))}
 }
 
-Additional parameters can be passed via \code{args}.
-
-The plotting is performed using base graphics with a fixed aspect ratio (\code{asp = 1}),
-ensuring geometrically correct representations.
-
-For Cartesian functions, \code{xlim} defaults to \code{c(from, to)}.
-For polar and parametric plots, limits are derived from the data.
+Additional parameters fixed for the expression can be passed via
+\code{args}.
 }
 \examples{
-par(mfrow = c(3,4))
-
-# --- basic -------------------------------------------------
+# Cartesian
 plotFun(y ~ x^2)
 
-# --- Cartesian leaf ----------------------------------------
-plotFun(
-  list(
-    x ~ 3*2*z / (z^3 + 1 + 0.1),
-    y ~ 3*2*z^2 / (z^3 + 1)
-  ),
-  from = -10, to = 10,
-  col = "magenta", asp = 1, lwd = 2
-)
+# Damped oscillation - add second curve to existing plot
+plotFun(y ~ 3*exp(-x/5)*sin(4*x), from = 0, to = 10)
+plotFun(y ~ 3*exp(-x/5)*sin(6*x), from = 0, to = 10, add = TRUE)
 
-# --- damped oscillations -----------------------------------
-plotFun(y ~ 3*exp(-x/5)*sin(4*x),
-        from = 0, to = 10,
-        col = "green")
+# Cardioid (polar)
+plotFun(r ~ 2*(1 + cos(phi)), from = 0, to = 2*pi)
 
-plotFun(y ~ 3*exp(-x/5)*sin(6*x),
-        from = 0, to = 10,
-        col = "darkgreen", add = TRUE)
-
-# --- cardioid (polar) --------------------------------------
-plotFun(r ~ 2*(1 + cos(phi)),
-        from = 0, to = 2*pi)
-
-# --- heart curve (parametric) -------------------------------
+# Heart curve (parametric)
 plotFun(
   list(
     x ~ 13*cos(t) - 5*cos(2*t) - 2*cos(3*t) - cos(4*t),
     y ~ 16*sin(t)^3
   ),
-  from = 0, to = 2*pi,
-  col = "red", lwd = 2
+  from = 0, to = 2*pi, lwd = 2
 )
 
-# --- polar flower ------------------------------------------
-plotFun(r ~ 6*sin(2*phi)*cos(2*phi),
-        from = 0, to = 2*pi,
-        col = "orange")
-
-# --- astroid -----------------------------------------------
-plotFun(
-  list(
-    x ~ 2*cos(t)^3,
-    y ~ 2*sin(t)^3
-  ),
-  from = 0, to = 2*pi,
-  col = "red", lwd = 3
-)
-
-# --- lemniscate --------------------------------------------
-plotFun(r ~ (2*cos(2*phi))^2,
-        from = 0, to = 2*pi,
-        col = "darkblue")
-
-# --- cycloid -----------------------------------------------
-plotFun(
-  list(
-    x ~ 0.5*(t - sin(t)),
-    y ~ 0.5*(1 - cos(t))
-  ),
-  from = 0, to = 30,
-  col = "orange"
-)
-
-# --- involute ----------------------------------------------
-plotFun(
-  list(
-    x ~ 0.2*(cos(t) + t*sin(t)),
-    y ~ 0.2*(sin(t) - t*cos(t))
-  ),
-  from = 0, to = 50,
-  col = "brown"
-)
-
-# --- Lissajous ---------------------------------------------
-plotFun(
-  list(
-    x ~ sin(t),
-    y ~ sin(2*t)
-  ),
-  from = 0, to = 2*pi,
-  col = "blue", lwd = 2
-)
-
-# --- parameter sweep ---------------------------------------
-for(a in 1:3) {
-  plotFun(y ~ sin(a*x),
-          args = list(a = a),
+# Parameter sweep
+for (a in 1:3)
+  plotFun(y ~ sin(a*x), args = list(a = a),
           from = 0, to = 2*pi,
-          add = (a != 1),
-          col = a)
-}
-
-# --- polar sine --------------------------------------------
-plotFun(r ~ sin(3*phi),
-        from = 0, to = pi,
-        col = "deeppink4", lwd = 2)
-
-# --- ripple ------------------------------------------------
-plotFun(r ~ 1 + 0.1*sin(10*phi),
-        from = 0, to = 2*pi,
-        col = "deeppink4")
+          add = (a != 1), col = a)
 
 }
 \seealso{

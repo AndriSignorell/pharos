@@ -1,541 +1,485 @@
 
 #' Frequency Distribution Plot 
 #' 
-#' This function was developed to create a univariate graphical representation 
-#' of the frequency distribution of a numerical vector. 
-#' It combines a histogram, a density
-#' curve, a boxplot and the empirical cumulative distribution function (ecdf)
-#' in one single plot. A rug as well as a model distribution curve (e.g. a
-#' normal curve) can optionally be superposed. This results in a dense and
-#' informative picture of the facts. Still the function remains flexible as all
-#' possible arguments can be passed to the single components (\code{hist},
-#' \code{boxplot} etc.) as a list (see examples). 
+#' Creates a univariate graphical summary combining a histogram (or probability
+#' mass plot for discrete data), a kernel density curve, a boxplot, and an
+#' empirical cumulative distribution function in a single multi-panel figure.
+#' Optional components include a rug, and fitted theoretical distribution
+#' curves for both the histogram and the ECDF panel.
+#'
+#' Each plot component is controlled via a single argument accepting
+#' \code{\link[bedrock]{callIf}} semantics:
+#' \itemize{
+#'   \item \code{TRUE}: draw with package defaults
+#'   \item \code{FALSE}, \code{NULL}, or \code{NA}: suppress entirely
+#'   \item a named list: draw with the given overrides merged into the defaults
+#' }
 #' 
-#' Performance has been significantly improved, but if \code{x} is growing
-#' large (n > 1e7) the function will take its time to complete. Especially the
-#' density curve and the ecdf, but as well as the boxplot (due to the chosen
-#' alpha channel) will take their time to calculate and plot.\cr In such cases
-#' consider taking a sample, i.e. \code{ plotFdist(x[sample(length(x),
-#' size=5000)])}, the big picture of the distribution won't usually change
-#' much. .
-#' 
-#' @param x the numerical variable, whose distribution is to be plotted. 
-#' @param main main title of the plot. Use \code{NA} to suppress the title.
-#' @param xlab label of the x-axis, defaults to \code{""}. (The name of the
-#' variable is typically placed in the main title and would be redundant here.)
-#' @param xlim range of the x-axis, defaults to a pretty \code{range(x, na.rm =
-#' TRUE)}. 
-#' @param args.hist list of additional arguments to be passed to the histogram
-#' \code{hist()}.  The defaults chosen when setting \code{args.hist = NULL} are
-#' more or less the same as in \code{\link{hist}}. The argument \code{type}
-#' defines, whether a histogram (\code{"hist"}) or a plot with \code{type =
-#' "h"} (for 'histogram' like vertical lines for \code{mass} representation)
-#' should be used.  The arguments for a "h-plot"" will be \code{col},
-#' \code{lwd}, \code{pch.col}, \code{pch}, \code{pch.bg} for the line and for
-#' an optional point character on top.  The default type used will be chosen on
-#' the structure of \code{x}. If \code{x} is an integer with up to 12 unique
-#' values there will be a "h-plot" and else a histogram! 
-#' 
-#' @param args.rug list of additional arguments to be passed to the function
-#' \code{rug()}.  Use \code{args.rug = NA} if no rug should be added. This is
-#' the default. Use \code{args.rug = NULL} to add rug with reasonable default
-#' values.  
-#' @param args.dens list of additional arguments to be passed to
-#' \code{density}.  Use \code{args.dens = NA} if no density curve should be
-#' drawn. The defaults are taken from \code{\link{density}}. 
-#' @param args.curve list of additional arguments to be passed to
-#' \code{\link{curve}}.  This argument allows to add a fitted distribution
-#' curve to the histogram. By default no curve will be added (\code{args.curve
-#' = NA}). If the argument is set to \code{NULL}, a normal curve with
-#' \code{mean(x)} and \code{sd(x)} will be drawn. See examples for more
-#' details. 
-#' @param args.boxplot list of additional arguments to be passed to the boxplot
-#' \code{boxplot()}.  The defaults are pretty much the same as in
-#' \code{\link{boxplot}}.  The two additional arguments \code{pch.mean}
-#' (default \code{23}) and \code{col.meanci} (default \code{"grey80"}) control,
-#' if the mean is displayed within the boxplot. Setting those arguments to
-#' \code{NA} will prevent them from being displayed. 
-
-#' @param args.ecdf list of additional arguments to be passed to \code{ecdf()}.
-#' Use \code{args.ecdf = NA} if no empirical cumulation function should be
-#' included in the plot.  The defaults are taken from \code{\link{plot.ecdf}}.
-
-#' @param args.curve.ecdf list of additional arguments to be passed to
-#' \code{\link{curve}}.  This argument allows to add a fitted distribution
-#' curve to the cumulative distribution function. By default no curve will be
-#' added (\code{args.curve.ecdf = NA}). If the argument is set to \code{NULL},
-#' a normal curve with \code{mean(x)} and \code{sd(x)} will be drawn. See
-#' examples for more details. 
-
-#' @param heights heights of the plotparts, defaults to \code{c(2,0.5,1.4)} for
-#' the histogram, the boxplot and the empirical cumulative distribution
-#' function, resp. to \code{c(2,1.5)} for a histogram and a boxplot only. 
-#' 
-#' @param pdist distances of the plotparts, defaults to \code{c(0, 0)}, say
-#' there will be no distance between the histogram, the boxplot and the
-#' ecdf-plot. This can be useful for instance in case that the x-axis has to be
-#' added to the histogram. 
-#' 
-#' @param na.rm logical, should \code{NA}s be omitted? Histogram and boxplot
-#' could do without this option, but the density-function refuses to plot with
-#' missings. Defaults to \code{FALSE}. 
-#' 
-#' @param \dots can be used to set graphic parameters (\code{\link{par}}) 
-#' as cex.main, las etc. 
-#' 
-#' 
-#' 
-#' @seealso \code{\link{hist}}, \code{\link{boxplot}}, \code{\link{ecdf}},
-#' \code{\link{density}}, \code{\link{rug}}, \code{\link{layout}} 
-#' 
+#' Performance: for very large vectors (n > 1e7) the density curve, ECDF,
+#' and semi-transparent boxplot outliers will still take noticeable time.
+#' For exploratory work on very large data, consider sampling first:
+#' \code{plotFdist(x[sample(length(x), 5000)])}.
+#'
+#' @param x numeric vector whose distribution is to be plotted.
+#'
+#' @param main main title. \code{NULL} (default) derives the title from
+#'   \code{deparse(substitute(x))}. \code{""}, \code{NA}, or \code{FALSE}
+#'   suppress the title and compact the top margin.
+#' @param xlab label for the x-axis. The variable name is typically placed
+#'   in \code{main}, so this defaults to \code{""}.
+#' @param xlim range of the x-axis. \code{NULL} (default) uses a pretty
+#'   range of \code{range(x, na.rm = TRUE)}.
+#'
+#' @param na.rm logical; should \code{NA}s be removed before plotting?
+#'   The density function requires complete cases, so \code{TRUE} is
+#'   recommended when \code{x} contains missing values. Default \code{FALSE}.
+#' @param heights numeric vector of relative panel heights for
+#'   \code{\link{layout}}: three values for histogram/boxplot/ecdf, two
+#'   for histogram/boxplot or histogram/ecdf only. \code{NULL} (default)
+#'   chooses automatically.
+#'
+#' @param hist controls the histogram panel. \code{TRUE} (default) uses
+#'   package defaults; \code{FALSE}/\code{NA} suppresses the panel
+#'   (not recommended: also disables automatic \code{xlim} detection);
+#'   a list overrides specific arguments forwarded to
+#'   \code{\link[graphics]{hist}}. The element \code{type} selects the
+#'   plot style: \code{"hist"} (standard histogram, chosen automatically
+#'   for continuous or high-cardinality data) or \code{"mass"} (vertical
+#'   bars per unique value, for discrete/low-cardinality data).
+#' @param dens controls the kernel density curve. \code{TRUE} (default)
+#'   draws a curve via \code{\link[stats]{density}}; a list overrides
+#'   specific arguments (e.g. \code{list(bw = 0.1, col = "red")}).
+#' @param rug controls a rug plot. \code{FALSE} (default) suppresses it;
+#'   \code{TRUE} or a list draw a rug via \code{\link[graphics]{rug}}.
+#' @param curve controls a fitted theoretical distribution curve on the
+#'   histogram. \code{FALSE} (default) suppresses it; \code{TRUE} or
+#'   \code{NULL} draws a normal curve with \code{mean(x)}/\code{sd(x)};
+#'   a list may include \code{expr} as a character string or expression
+#'   for any distribution (e.g.
+#'   \code{list(expr = "dt(x, df=2)", col = "darkgreen")}).
+#' @param boxplot controls the boxplot panel. \code{TRUE} (default) draws
+#'   a horizontal boxplot with a mean marker and CI band; \code{FALSE}/
+#'   \code{NA} suppresses the panel. A list overrides arguments forwarded
+#'   to \code{\link[graphics]{boxplot}}; two extra elements control the
+#'   mean display: \code{pch.mean} (default \code{3}) and \code{col.meanci}
+#'   (default \code{getTheme()$grid$col}). Set either to \code{NA} to
+#'   suppress that element.
+#' @param ecdf controls the ECDF panel. \code{TRUE} (default) calls
+#'   \code{\link{plotECDF}}; a list overrides specific arguments.
+#' @param curve.ecdf controls a fitted theoretical CDF curve on the ECDF
+#'   panel, analogous to \code{curve}. \code{FALSE} (default) suppresses
+#'   it.
+#'
+#' @param stamp Controls the corner stamp. \code{.useTheme} (default)
+#'   resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
+#'   \code{NULL}, a string, or a named list for \code{\link{stamp}()}.
+#' @param \dots further graphical parameters passed to \code{\link{par}}
+#'   via the internal framework.
+#'
+#' @seealso \code{\link{hist}}, \code{\link{boxplot}}, \code{\link{plotECDF}},
+#'   \code{\link{density}}, \code{\link{rug}}, \code{\link{layout}},
+#'   \code{\link{getTheme}}
+#'
 #' @examples
-#' op <- par(no.readonly=TRUE)
-#' 
-#' plotFdist(x=faithful$eruptions, na.rm=TRUE)
-#' 
-#' # define additional arguments for hist, dens and boxplot
-#' # do not display the mean and its CI on the boxplot
-#' plotFdist(faithful$eruptions, args.hist=list(breaks=50),
-#'   args.dens=list(col="olivedrab4"), na.rm=TRUE,
-#'   args.boxplot=list(col="olivedrab2", pch.mean=NA, col.meanci=NA))
-#' 
-#' 
-#' # do a "h"-plot instead of a histogram for integers
-#' x <- sample(runif(10), 100, replace = TRUE)
-#' plotFdist(x, args.hist=list(type="mass"))
-#' 
-#' pp <- rpois(n = 100, lambda = 3)
-#' plotFdist(pp, args.hist = list(type="mass", pch=21, col="darkorange2",
-#'           cex.pch=2.5, col.pch="deeppink4", lwd=3, bg.pch="white"),
-#'           args.boxplot = NULL, args.ecdf = NA, main="Probability mass function")
-#' 
-#' # special arguments for hist, density and ecdf
-#' plotFdist(x=faithful$eruptions,
-#'           args.hist=list(breaks=20), args.dens=list(bw=.1),
-#'           args.ecdf=list(cex=1.2, pch=16, lwd=1), args.rug=TRUE)
-#' 
-#' # no density curve, no ecdf but add rug instead, make boxplot a bit higher
-#' plotFdist(x=faithful$eruptions, na.rm=TRUE, args.dens=NA, args.ecdf=NA,
-#'   args.hist=list(xaxt="s"),  # display x-axis on the histogram
-#'   args.rug=TRUE, heights=c(3, 2.5), pdist=2.5, main="Delivery time")
-#' 
-#' # alpha channel on rug is cool, but takes its time for being drawn...
-#' plotFdist(x=faithful$eruptions, args.rug=list(col=addAlpha("black", 0.1)), 
-#'           na.rm=TRUE)
-#' 
-#' # plot a normal density curve, but no boxplot nor ecdf
+#' plotFdist(faithful$eruptions, na.rm = TRUE)
+#'
+#' # custom histogram breaks, density color, boxplot styling
+#' plotFdist(faithful$eruptions,
+#'   hist    = list(breaks = 50),
+#'   dens    = list(col = "olivedrab4"),
+#'   na.rm   = TRUE,
+#'   boxplot = list(col = "olivedrab2", pch.mean = NA, col.meanci = NA))
+#'
+#' # no density, no ecdf, add rug instead
+#' plotFdist(faithful$eruptions,
+#'   dens = FALSE, ecdf = FALSE,
+#'   hist = list(xaxt = "s"),
+#'   rug  = TRUE,
+#'   heights = c(3, 2.5), 
+#'   main = "Eruption time")
+#'
+#' # overlay a normal density curve
 #' x <- rnorm(1000)
-#' plotFdist(x, args.curve = NULL, args.boxplot=NA, args.ecdf=NA)
-#' 
-#' # compare with a t-distribution
-#' plotFdist(x, args.curve = list(expr="dt(x, df=2)", col="darkgreen"),
-#'           args.boxplot=NA, args.ecdf=NA)
-#' legend(x="topright", legend=c("kernel density", "t-distribution (df=2)"),
-#'        fill=c("deeppink4", "darkgreen"), xpd=NA)
-#' 
-#' # add a gamma distribution curve to both, histogram and ecdf
+#' plotFdist(x, curve = TRUE, boxplot = FALSE, ecdf = FALSE)
+#'
+#' # compare with a t-distribution curve
+#' plotFdist(x,
+#'   curve   = list(expr = "dt(x, df=2)", col = "darkgreen"),
+#'   boxplot = FALSE, ecdf = FALSE)
+#'
+#' # overlay gamma distribution on both histogram and ECDF
 #' ozone <- airquality$Ozone
 #' m <- mean(ozone, na.rm = TRUE)
 #' v <- var(ozone, na.rm = TRUE)
-#' 
-#' plotFdist(ozone, args.hist = list(breaks=15),
-#'   args.curve = list(expr="dgamma(x, shape = m^2/v, scale = v/m)", 
-#'                     col="navajowhite3"),
-#'   args.curve.ecdf = list(expr="pgamma(x, shape = m^2/v, scale = v/m)", 
-#'                          col="navajowhite3"),
+#' plotFdist(ozone,
+#'   hist       = list(breaks = 15),
+#'   curve      = list(expr = "dgamma(x, shape = m^2/v, scale = v/m)",
+#'                     col = "navajowhite3"),
+#'   curve.ecdf = list(expr = "pgamma(x, shape = m^2/v, scale = v/m)",
+#'                     col = "navajowhite3"),
 #'   na.rm = TRUE, main = "Airquality - Ozone")
-#' 
-#'        
-#' par(op)
-#'         
-
-
-
+#'
 #' @family plot.distribution
 #' @concept graphics
 #' @concept descriptive-statistics
 #' @concept frequency-analysis
 #'
-#'
 #' @export
-plotFdist <- function (x, main = deparse(substitute(x)), xlab = ""
-                       , xlim = NULL
-                       , na.rm = FALSE
-                       # , do.hist =NULL # !(all(IsWhole(x,na.rm=TRUE)) & length(unique(na.omit(x))) < 13)
-                       # do.hist overrides args.hist, add.dens and rug
-                       , args.hist = NULL          # list( breaks = "Sturges", ...)
-                       , args.rug = NA             # list( ticksize = 0.03, side = 1, ...), pass NA if no rug
-                       , args.dens = NULL          # list( bw = "nrd0", col="#9A0941FF", lwd=2, ...), NA for no dens
-                       , args.curve = NA           # list( ...), NA for no dcurve
-                       , args.boxplot = NULL       # list( pars=list(boxwex=0.5), ...), NA for no boxplot
-                       , args.ecdf = NULL          # list( col="#8296C4FF", ...), NA for no ecdf
-                       , args.curve.ecdf = NA      # list( ...), NA for no dcurve
-                       , heights = NULL            # heights (hist, boxplot, ecdf) used by layout
-                       , pdist = NULL              # distances of the plots, default = 0
-                       # , cex.axis = NULL, cex.main = NULL, mar = NULL, las=1
-                       , ...) {
+plotFdist <- function(x,
+                      
+                      # LABELS
+                      main  = NULL,
+                      xlab  = "",
+                      
+                      # AXES
+                      xlim  = NULL,
+                      
+                      # STRUCTURE
+                      na.rm   = FALSE,
+                      heights = NULL,
+
+                      # STYLE (callIf semantics)
+                      hist       = TRUE,
+                      dens       = TRUE,
+                      rug        = FALSE,
+                      curve      = FALSE,
+                      boxplot    = TRUE,
+                      ecdf       = TRUE,
+                      curve.ecdf = FALSE,
+                      
+                      # FRAMEWORK
+                      stamp = .useTheme,
+                      
+                      ...) {
   
   
-  
-  .plotMass <- function(x = x, xlab = "", ylab = "",
-                        xaxt = ifelse(add.boxplot || add.ecdf, "n", "s"), xlim = xlim, ylim = NULL, main = NA, las = 1,
-                        yaxt="n", col=1, lwd=3, pch=NA, col.pch=1, cex.pch=1, bg.pch=0, cex.axis=cex.axis, ...)   {
+  # --- Internal helper: probability mass plot ------------------------------
+  .plotMass <- function(x, xlab = "", ylab = "",
+                        xaxt = ifelse(add.boxplot || add.ecdf, "n", "s"),
+                        xlim = NULL,        # NULL here, set explicitly below
+                        ylim = NULL,
+                        main = NA,
+                        las  = 1,
+                        yaxt = "n",
+                        col  = 1,
+                        lwd  = 3,
+                        pch  = NA,
+                        col.pch  = 1,
+                        cex.pch  = 1,
+                        bg.pch   = 0,
+                        cex.axis = NULL,    # NULL here, not cex.axis - no recursive ref
+                        ...) {
     
     pp <- prop.table(table(x))
+    if (is.null(ylim)) ylim <- c(0, max(pretty(pp)))
     
-    if(is.null(ylim))
-      ylim <- c(0, max(pretty(pp)))
-    
-    plot(pp, type = "h", lwd=lwd, col=col,
-         xlab = "", ylab = "", cex.axis=cex.axis, xlim=xlim, ylim=ylim,
-         xaxt = xaxt, main = NA, frame.plot = FALSE,
-         las = las, panel.first = {
+    plot(pp, type = "h", lwd = lwd, col = col,
+         xlab = "", ylab = "", cex.axis = cex.axis,
+         xlim = xlim, ylim = ylim,
+         xaxt = xaxt, main = NA, frame.plot = FALSE, las = las,
+         panel.first = {
            abline(h = axTicks(2), col = "grey", lty = "dotted")
            abline(h = 0, col = "black")
          })
     
-    if(!identical(pch, NA))
-      points(pp, type="p", pch=pch, col=col.pch, bg=bg.pch, cex=cex.pch)
-    
+    if (!identical(pch, NA))
+      points(pp, type = "p", pch = pch, col = col.pch, bg = bg.pch, cex = cex.pch)
   }
   
   
-  
-  # Plot function to display the distribution of a cardinal variable
-  # combines a histogram with a density curve, a boxplot and an ecdf
-  # rug can be added by using add.rug = TRUE
-  
-  # default colors are Helsana CI-colors
-  
-  # dev question: should dots be passed somewhere??
-  
-  # usr <- par(no.readonly=TRUE)
-  # on.exit({
-  #   graphics::par(usr)               # reset par on exit  
-  #   graphics::layout(matrix(1))      # reset layout on exit    
-  # }, add=TRUE)
+  mc           <- match.call()
+  defaultTitle <- deparse(mc$x)
   
   .withGraphicsState({
     
-    # if(!is.null(cex.axis)) par(cex.axis=cex.axis)
-    # if(!is.null(cex.main)) par(cex.axis=cex.main)
-
-#    .setDescToolsXOption(stamp=NULL)
-
     .applyParFromDots(...)
     
-    if(!"mar" %in% ...names()) mar <- NULL else mar <- par("mar")
-    if(!"las" %in% ...names()) las <- 1 else las <- par("las")
-    if(!"cex.axis" %in% ...names()) cex.axis <- NULL else cex.axis = par(cex.axis)
-
+    # Read back effective par state - reflects theme defaults, function
+    # defaults, AND any user override from ..., all already merged by
+    # .applyParFromDots() above.
+    las      <- par("las")
+    cex.axis <- par("cex.axis")
+    mar      <- if ("mar" %in% ...names()) par("mar") else NULL
     
-    add.boxplot <- !identical(args.boxplot, NA)
-    add.rug <- !identical(args.rug, NA)
-    add.dens <- !identical(args.dens, NA)
-    add.ecdf <- !identical(args.ecdf, NA)
-    add.dcurve <- !identical(args.curve, NA)
-    add.pcurve <- !identical(args.curve.ecdf, NA)
+    th     <- getTheme()
+    twin   <- th$twin
+    thGrid <- th$grid
     
-    # preset heights
-    if(is.null(heights)){
-      if(add.boxplot) {
-        if(add.ecdf) heights <- c(1.8, 0.5, 1.6)
-        else heights <- c(2, 1.4)
-      } else {
-        if(add.ecdf) heights <- c(2, 1.4)
+    main <- .resolveTitle(main, default = defaultTitle)
+    
+    # Remove NAs FIRST
+    if (na.rm) x <- x[!is.na(x)]
+    
+    # Resolve component specs
+    hist_args <- .resolveSpec(hist, list(
+      x    = x, xlab = "", ylab = "", freq = FALSE,
+      xlim = xlim, ylim = NULL, main = NA, las = 1,
+      col  = "white", border = "grey70", yaxt = "n",
+      xaxt = NULL
+    ))
+    
+    dens_args <- .resolveSpec(dens, list(
+      x   = x,
+      bw  = if (length(x) > 1000) "nrd0" else "SJ",
+      col = twin[1], lwd = 2, lty = "solid"
+    ))
+    
+    rug_args <- .resolveSpec(rug, list(x = x, col = "grey"))
+    curve_args <- .resolveSpec(curve, list(
+      expr = parse(text = gettextf("dnorm(x, %s, %s)", mean(x), sd(x))),
+      add  = TRUE, n = 500,
+      col  = twin[2], lwd = 2, lty = "solid"
+    ))
+    
+    boxplot_args <- .resolveSpec(boxplot, list(
+      x          = x,
+      frame.plot = FALSE, main = NA, boxwex = 1,
+      horizontal = TRUE, col = "grey95", at = 1,
+      outcex     = 1.3, outcol = rgb(0, 0, 0, 0.5),
+      cex.axis   = cex.axis,
+      pch.mean   = 3,
+      col.meanci = thGrid$col
+    ))
+    
+    ecdf_args <- .resolveSpec(ecdf, list(
+      x        = x, main = NA, ylim = c(0, 1),
+      col      = twin[2], lwd = 2,
+      xlab     = "", ylab = "",
+      cex.axis = cex.axis, las = las,
+      stamp    = FALSE
+    ))
+    
+    curve.ecdf_args <- .resolveSpec(curve.ecdf, list(
+      expr = parse(text = gettextf("pnorm(x, %s, %s)", mean(x), sd(x))),
+      add  = TRUE, n = 500,
+      col  = twin[2], lwd = 2, lty = "solid"
+    ))
+    
+    add.hist    <- !is.null(hist_args)
+    add.dens    <- !is.null(dens_args)
+    add.rug     <- !is.null(rug_args)
+    add.dcurve  <- !is.null(curve_args)
+    add.boxplot <- !is.null(boxplot_args)
+    add.ecdf    <- !is.null(ecdf_args)
+    add.pcurve  <- !is.null(curve.ecdf_args)
+    
+    if (add.hist)
+      hist_args$xaxt <- ifelse(add.boxplot || add.ecdf, "n", "s")
+    
+    if (is.null(heights)) {
+      if (add.boxplot) {
+        heights <- if (add.ecdf) c(1.8, 0.6, 1.4) else c(2, 1.4)
+      } else if (add.ecdf) {
+        heights <- c(2, 1.4)
       }
     }
-    
-    if(is.null(pdist)) {
-      if(add.boxplot) pdist <- c(0, 0)
-      else pdist <- c(0, 1)
-    }
-    
-    # layout changes par settings arbitrarily, especially cex in the first case
-    # so store here and reset
-    
-    # ******
-    # the font is too small without this...
+
     ppp <- par()[grep("cex", names(par()))]
-    
     if (add.ecdf && add.boxplot) {
       layout(matrix(c(1, 2, 3), nrow = 3, byrow = TRUE), heights = heights, TRUE)
+    } else if (add.ecdf || add.boxplot) {
+      layout(matrix(c(1, 2), nrow = 2, byrow = TRUE), heights = heights[1:2], TRUE)
+    }
+    par(ppp)
+
+    if(add.boxplot)    {
+      par(mar = c(0, 4.1, 2.1, 2.1))
+    } else if(add.ecdf){
+      par(mar = c(1.1, 4.1, 2.1, 2.1))
     } else {
-      if((add.ecdf || add.boxplot)) {
-        layout(matrix(c(1, 2), nrow = 2, byrow = TRUE), heights = heights[1:2], TRUE)
+      par(mar = c(ifelse(is.null(xlab), 3.1, 5.1), 4.1, 2.1, 2.1))
+    } 
+
+    if (!is.null(mar)) {
+      par(oma = mar)
+    } else if (nzchar(main)) {
+      par(oma = c(0, 0, 2, 0))
+    } else {
+      par(oma = c(0, 0, 0, 0))
+    }
+    
+    
+    # =========================================================================
+    # Panel 1: histogram or mass plot
+    # =========================================================================
+    
+    if (add.hist) {
+      
+      panel.last    <- hist_args[["panel.last"]]
+      hist_args[["panel.last"]] <- NULL
+      
+      type_override <- hist_args[["type"]]
+      hist_args[["type"]] <- NULL
+      do.hist <- if (is.null(type_override)) {
+        !(isTRUE(all.equal(x, round(x), tol = sqrt(.Machine$double.eps))) &&
+            isLowCardinality(x, maxUnique = 12))
+      } else {
+        type_override == "hist"
       }
-    }
-    
-    # ******
-    par(ppp)  # reset unwanted layout changes
-    
-    # plot histogram, change margin if no main title
-    par(mar = c(ifelse(add.boxplot || add.ecdf, 0, 5.1), 4.1, 2.1, 2.1))
-    
-    if(!is.null(mar)) {
-      par(oma=mar)
-    } else {
-      if(!is.na(main)) { par(oma=c(0,0,2,0)) }
-    }
-    
-    # wait for omitting NAs until all arguments are evaluated, e.g. main...
-    if(na.rm) x <- x[!is.na(x)]
-    
-    
-    if(!is.null(args.hist[["panel.last"]])) {
-      panel.last <- args.hist[["panel.last"]]
-      args.hist[["panel.last"]] <- NULL
       
-    } else {
-      panel.last <- NULL
-    }
-    
-    if(is.null(args.hist$type)){
-      do.hist <- !(isTRUE(all.equal(x, round(x), tol = sqrt(.Machine$double.eps))) && length(unique(x)) < 13)
-    } else {
-      do.hist <- (args.hist$type == "hist")
-      args.hist$type <- NULL
-    }
-    
-    # handle open list of arguments: args.legend in barplot is implemented this way...
-    # we need histogram anyway to define xlim
-    args.hist1 <- list(x = x, xlab = "", ylab = "", freq = FALSE,
-                       xaxt = ifelse(add.boxplot || add.ecdf, "n", "s"), xlim = xlim, ylim = NULL, main = NA, las = 1,
-                       col = "white", border = "grey70", yaxt="n")
-    if (!is.null(args.hist)) {
-      args.hist1[names(args.hist)] <- args.hist
-    }
-    
-    
-    x.hist <- do.call("hist", c(args.hist1[names(args.hist1) %in%
-                                            c("x", "breaks", "include.lowest", "right", "nclass")], plot = FALSE))
-    x.hist$xname <- deparse(substitute(x))
-    if (is.null(xlim))    args.hist1$xlim <- range(pretty(x.hist$breaks))
-    args.histplot <- args.hist1[!names(args.hist1) %in% c("x", "breaks", "include.lowest", "right", "nclass")]
-    
-    
-    if (do.hist) {
-      # calculate max ylim for density curve, provided there should be one...
-      # what's the maximal value in density or in histogramm$densities?
+      comp_keys <- c("x","breaks","include.lowest","right","nclass")
+      x.hist    <- do.call("hist",
+                           c(hist_args[names(hist_args) %in% comp_keys],
+                             plot = FALSE))
+      x.hist$xname <- deparse(mc$x)
       
-      # plot density
-      if (add.dens) {
-        # preset default values
-        args.dens1 <- list(x = x, bw = (if(length(x) > 1000){"nrd0"} else {"SJ"}),
-                           col = .getOption("palette", default = c("#8296C4", "#9A0941"))[2], 
-                           lwd = 2, lty = "solid")
-        if (!is.null(args.dens)) {
-          args.dens1[names(args.dens)] <- args.dens
+      # xlim: add 5% padding so outermost bars/lines don't sit flush
+      # against the axis edge
+      if (is.null(hist_args$xlim)) {
+        raw <- range(pretty(x.hist$breaks))
+        pad <- diff(raw) * 0.05
+        hist_args$xlim <- c(raw[1] - pad, raw[2] + pad)
+      }
+      
+      xlim_plot <- hist_args$xlim
+      
+      if (do.hist) {
+        
+        if (add.dens) {
+          x.dens <- tryCatch(
+            do.call("density",
+                    dens_args[!names(dens_args) %in% c("col","lwd","lty")]),
+            error = function(e) {
+              warning(gettextf("density curve could not be added\n%s",
+                               conditionMessage(e)))
+              NULL
+            }
+          )
+          if (is.null(x.dens)) {
+            add.dens <- FALSE
+          } else if (is.null(hist_args[["ylim"]])) {
+            hist_args[["ylim"]] <-
+              range(pretty(c(0, max(c(x.dens$y, x.hist$density)))))
+          }
         }
         
-        # x.dens <- DoCall("density", args.dens1[-match(c("col",
-        #                                                  "lwd", "lty"), names(args.dens1))])
-        #
-        # # overwrite the ylim if there's a larger density-curve
-        # args.histplot[["ylim"]] <- range(pretty(c(0, max(c(x.dens$y, x.hist$density)))))
+        plot_args <- hist_args[!names(hist_args) %in% comp_keys]
+        do.call("plot", append(list(x.hist), plot_args))
         
-        x.dens <- try( do.call("density", 
-                              args.dens1[-match(c("col", "lwd", "lty"), names(args.dens1))])
-                       , silent=TRUE)
-        
-        if(inherits(x.dens, "try-error")) {
-          warning(gettextf("density curve could not be added\n%s", x.dens))
-          add.dens <- FALSE
-          
+        ticks <- axTicks(2)
+        n     <- max(floor(log(ticks, base = 10)))
+        if (abs(n) > 2) {
+          lab <- fm(ticks * 10^(-n),
+                    digits = max(nDec(as.character(zapsmall(ticks * 10^(-n))))))
+          axis(2, at = ticks, labels = lab, las = las,
+               cex.axis = par("cex.axis"))
+          text(par("usr")[1], par("usr")[4], bquote(~~~x~10^.(n)),
+               xpd = NA, pos = 3, cex = par("cex.axis") * 0.8)
         } else {
-          # overwrite the ylim if there's a larger density-curve
-          # but only if the user has not set an ylim value by himself, 
-          # ... we should not disobey or overrun user instructions 
-          if(is.null(args.histplot[["ylim"]]))
-            args.histplot[["ylim"]] <- range(pretty(c(0, max(c(x.dens$y, x.hist$density)))))
-          
+          axis(2, cex.axis = par("cex.axis"), las = las)
         }
         
-      }
-      
-      # plot histogram
-      do.call("plot", append(list(x.hist), args.histplot))
-      
-      # draw axis
-      ticks <- axTicks(2)
-      n <- max(floor(log(ticks, base = 10)))    # highest power of ten
-      if(abs(n)>2) {
-        lab <- fm(ticks * 10^(-n), digits=max(nDec(as.character(zapsmall(ticks*10^(-n))))))
-        axis(side=2, at=ticks, labels=lab, las=las, cex.axis=par("cex.axis"))
+        if (!is.null(panel.last))
+          eval(parse(text = panel.last))
         
-        text(x=par("usr")[1], y=par("usr")[4], bquote(~~~x~10^.(n)), xpd=NA, 
-             pos = 3, cex=par("cex.axis") * 0.8)
+        if (add.dens)
+          lines(x.dens, col = dens_args$col, lwd = dens_args$lwd,
+                lty = dens_args$lty)
+        
+        if (add.dcurve) {
+          if (is.character(curve_args$expr))
+            curve_args$expr <- parse(text = curve_args$expr)
+          do.call("curve", curve_args)
+        }
+        
+        if (add.rug)
+          do.call("rug", rug_args)
         
       } else {
-        axis(side=2, cex.axis=par("cex.axis"), las=las)
         
-      }
-      
-      if(!is.null(panel.last)){
-        eval(parse(text=panel.last))
-      }
-      
-      if (add.dens) {
-        lines(x.dens, col = args.dens1$col, lwd = args.dens1$lwd, lty = args.dens1$lty)
-      }
-      
-      
-      # plot special distribution curve
-      if (add.dcurve) {
-        # preset default values
-        args.curve1 <- list(expr = parse(text = gettextf("dnorm(x, %s, %s)", mean(x), sd(x))),
-                            add = TRUE,
-                            n = 500, 
-                            col = .getOption("palette", 
-                                             default=c("#8296C4", "#9A0941","#F08100"))[3], 
-                            lwd = 2, lty = "solid")
-        if (!is.null(args.curve)) {
-          args.curve1[names(args.curve)] <- args.curve
-        }
+        # --- mass plot: own defaults, not from hist_args ---
+        # hist_args has col="white" (for histogram bars) which would make
+        # the mass lines invisible. Build a clean arg list for .plotMass().
+        mass_args <- list(
+          x        = x,
+          xlim     = xlim_plot,
+          xaxt     = ifelse(add.boxplot || add.ecdf, "n", "s"),
+          las      = las,
+          cex.axis = cex.axis    # injected explicitly, no recursive ref
+        )
         
-        if (is.character(args.curve1$expr)) args.curve1$expr <- parse(text=args.curve1$expr)
+        # forward any user overrides from the 'hist' spec (type already stripped)
+        protected <- c("x", "xlim", "xaxt", "las", "cex.axis",
+                       "type", "freq", "col", "border", "yaxt")
+        if (is.list(hist) && length(hist) > 0)
+          mass_args[setdiff(names(hist), protected)] <-
+          hist[setdiff(names(hist), protected)]
         
-        # do.call("curve", args.curve1)
-        # this throws an error heere:
-        # Error in eval(expr, envir, enclos) : could not find function "expr"
-        # so we roll back to do.call
-        do.call("curve", args.curve1)
-        
+        do.call(.plotMass, mass_args)
       }
-      
-      
-      if (add.rug) {
-        args.rug1 <- list(x = x, col = "grey")
-        if (!is.null(args.rug)) {
-          args.rug1[names(args.rug)] <- args.rug
-        }
-        do.call("rug", args.rug1)
-      }
-      
-      
     } else {
-      # do not draw a histogram, but a line bar chart
-      # PlotMass
-      args.hist1 <- list(x = x, xlab = "", ylab = "", xlim = xlim,
-                         xaxt = ifelse(add.boxplot || add.ecdf, "n", "s"), 
-                         ylim = NULL, main = NA, las = 1,
-                         yaxt="n", col=1, lwd=3, pch=NA, col.pch=1, 
-                         cex.pch=2, bg.pch=0, cex.axis=cex.axis)
-      if (is.null(xlim))    args.hist1$xlim <- range(pretty(x.hist$breaks))
-      
-      if (!is.null(args.hist)) {
-        args.hist1[names(args.hist)] <- args.hist
-        if(is.null(args.hist$col.pch))   # use the same color for pch as for the line, when not defined
-          args.hist1$col.pch <- args.hist1$col
-      }
-      
-      do.call(.plotMass, args.hist1)
-      
-      
-      # plot(prop.table(table(x)), type = "h", xlab = "", ylab = "",
-      #      xaxt = "n", xlim = args.hist1$xlim, main = NA,
-      #      frame.plot = FALSE, las = 1, cex.axis = cex.axis, panel.first = {
-      #        abline(h = axTicks(2), col = "grey", lty = "dotted")
-      #        abline(h = 0, col = "black")
-      #      })
+      xlim_plot <- xlim %||% c(0, 1)   # fallback if hist suppressed
     }
     
-    # boxplot
-    if(add.boxplot){
-      par(mar = c(ifelse(add.ecdf, 0, 5.1), 4.1, pdist[1], 2.1))
-      args.boxplot1 <- list(x = x, frame.plot = FALSE, main = NA, boxwex = 1,
-                            horizontal = TRUE, ylim = args.hist1$xlim, col="grey95",
-                            at = 1, xaxt = ifelse(add.ecdf, "n", "s"),
-                            outcex = 1.3, outcol = rgb(0,0,0,0.5), cex.axis=cex.axis,
-                            pch.mean=3, col.meanci="grey85")
-      if (!is.null(args.boxplot)) {
-        args.boxplot1[names(args.boxplot)] <- args.boxplot
-      }
-      plot(1, type="n", xlim=args.hist1$xlim, ylim=c(0,1)+.5, xlab="", ylab="", axes=FALSE)
-      grid(ny=NA)
-      if(length(x)>1){
+    
+    # =========================================================================
+    # Panel 2: boxplot
+    # =========================================================================
+    
+    if (add.boxplot) {
+      par(mar = c(ifelse(add.ecdf, 0, 5.1), 4.1, 0, 2.1))
+      
+      boxplot_args$ylim <- boxplot_args$ylim %||% xlim_plot
+      boxplot_args$xaxt <- ifelse(add.ecdf, "n", "s")
+      
+      plot(1, type = "n",
+           xlim = xlim_plot, ylim = c(0, 1) + 0.5,
+           xlab = "", ylab = "", axes = FALSE)
+      
+      grid(ny = NA, col = thGrid$col, lty = thGrid$lty, lwd = thGrid$lwd)
+      
+      if (length(x) > 1) {
         ci <- .meanCI_raw(x)
-        rect(xleft = ci[2], ybottom = 0.62, xright = ci[3], ytop = 1.35,
-             col=args.boxplot1$col.meanci, border=NA)
+        if (!is.na(boxplot_args$col.meanci))
+          rect(xleft = ci[2], ybottom = 0.62, xright = ci[3], ytop = 1.35,
+               col = boxplot_args$col.meanci, border = NA)
       } else {
         ci <- mean(x)
       }
-      args.boxplot1$add = TRUE
-      do.call("boxplot", args.boxplot1)
-      points(x=ci[1], y=1, cex=1.5, col="grey65", pch=args.boxplot1$pch.mean, bg="white")
       
+      bp_extra   <- c("pch.mean", "col.meanci")
+      pch.mean   <- boxplot_args$pch.mean
+      boxplot_args$add <- TRUE
+      do.call("boxplot", boxplot_args[!names(boxplot_args) %in% bp_extra])
+      
+      if (!is.na(pch.mean))
+        points(ci[1], 1, cex = 1.5, col = "grey65", pch = pch.mean, bg = "white")
     }
     
-    # plot ecdf
+    
+    # =========================================================================
+    # Panel 3: ECDF
+    # =========================================================================
+    
     if (add.ecdf) {
-      par(mar = c(5.1, 4.1, pdist[2], 2.1))
-      #     args.ecdf1 <- list(x = x, frame.plot = FALSE, main = NA,
-      #                        xlim = args.hist1$xlim, col = getOption("col1", hblue), lwd = 2,
-      #                        xlab = xlab, yaxt = "n", ylab = "", verticals = TRUE,
-      #                        do.points = FALSE, cex.axis = cex.axis)
       
-      # 13.1.2018 Andri:
-      # if there are many datapoints (n > 1e5) well distributed over the x range, a histogram is significantly
-      # faster, than plot.ecdf, which will break down in performance
-      # however, if there are only few unique values, the histogram will not be correct and might result in
-      # gross deviations.
-      # example: PlotECDF(rep(-40, 2001), breaks = 1000)
+      ecdf_args$xlim   <- ecdf_args$xlim   %||% xlim_plot
+      ecdf_args$breaks <- ecdf_args$breaks %||%
+        if (add.hist && length(x) > 1000 && length(x.hist$mids) > 10) 1000 else NULL
       
-      # we provisionally use the number of classes length(x.hist$mids) as proxy for good distribution
-      # not sure, how robust this is...
+      # mar passed explicitly to plotECDF() - it has its own
+      # .applyParFromDots() call that would otherwise apply its own
+      # left=5 default, misaligning the y-axis with the panels above
+      ecdf_args$mar <- c(3.1 + ifelse(identical(xlab, ""), 0, 2), 4.1, 0, 2.1)
+      ecdf_args$box <- FALSE
       
-      args.ecdf1 <- list(x = x, main = NA, 
-                         breaks={if(length(x)>1000 & length(x.hist$mids) > 10) 1000 else NULL}, 
-                         ylim=c(0,1),
-                         xlim = args.hist1$xlim, 
-                         col = .getOption("palette", default = c("#8296C4"))[1], 
-                         lwd = 2, xlab = "", ylab = "", 
-                         frame.plot = FALSE, cex.axis=cex.axis, las=las)
-      if (!is.null(args.ecdf)) {
-        args.ecdf1[names(args.ecdf)] <- args.ecdf
-      }
+      ecdf_args$xlab <- xlab   # set directly - plotECDF() restores its own
+      # par() on exit, so title() called from here
+      # afterwards would write into the wrong state
       
-      do.call("plotECDF", args.ecdf1)
+      do.call("plotECDF", ecdf_args)
       
-      # plot special distribution ecdf curve
       if (add.pcurve) {
-        # preset default values
-        args.curve.ecdf1 <- list(expr = parse(text = gettextf("pnorm(x, %s, %s)", mean(x), sd(x))),
-                                 add = TRUE,
-                                 n = 500, col = pal()[3], lwd = 2, lty = "solid")
-        if (!is.null(args.curve.ecdf)) {
-          args.curve.ecdf1[names(args.curve.ecdf)] <- args.curve.ecdf
-        }
-        
-        if (is.character(args.curve.ecdf1$expr))
-          args.curve.ecdf1$expr <- parse(text=args.curve.ecdf1$expr)
-        
-        # do.call("curve", args.curve1)
-        # this throws an error here:
-        # Error in eval(expr, envir, enclos) : could not find function "expr"
-        # so we roll back to do.call
-        do.call("curve", args.curve.ecdf1)
-        
+        if (is.character(curve.ecdf_args$expr))
+          curve.ecdf_args$expr <- parse(text = curve.ecdf_args$expr)
+        do.call("curve", curve.ecdf_args)
       }
-      
     }
     
-    if(!is.na(main)) {
-      title(main=main, outer = TRUE)
-    }
+    if (nzchar(main))        title(main = main, outer = TRUE)
+    if (!add.ecdf & !identical(xlab, "")) title(xlab = xlab)
     
-    if(!identical(xlab, "")) {
-      title(xlab=xlab)
-    }
-
-
-  }, stamp=FALSE, resetLayout=TRUE)  # close .withGraphicsState
+  }, stamp = stamp, resetLayout = TRUE)
   
 }
 
-# legend(x="topright", xpd=NA,
-#        legend=c(expression(plain("gamma:  ") * Gamma * " " * bgroup("(", k * " = " *
-#            over(bar(x)^2, s^2) * " , " * theta * plain(" = ") * over(s^2, bar(x)), ")") ),
-#                 "kernel density"),
-#        fill=c("navajowhite3", "deeppink4"), text.width = 0.25)
-# 

@@ -248,18 +248,17 @@ plotXY.default <- function(
         leg_labels <- c(leg_labels, "loess")
         leg_fill   <- c(leg_fill,   loess_col)
       }
-      
+
       bedrock::callIf(graphics::legend, legend,
-                      defaults = list(
+                      defaults = .legendDefaults(list(
                         x        = "topright",
                         legend   = leg_labels,
                         fill     = leg_fill,
-                        box.col  = "white", 
-                        bg       = addAlpha("white"), 
                         inset    = 0.01,
                         text.col = "black"
-                      ),
+                      )),
                       forbidden = c("legend", "fill"))
+      
     }
     
   }, stamp = .useTheme)

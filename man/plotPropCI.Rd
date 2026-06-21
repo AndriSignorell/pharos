@@ -6,13 +6,18 @@
 \usage{
 plotPropCI(
   x,
-  labels = NULL,
   main = NULL,
+  labels = c("", ""),
   xlab = "",
-  col = NULL,
-  ci.col = addAlpha("grey80", 0.12),
   xlim = c(0, 1),
+  col = .useTheme,
+  ci.col = addAlpha("grey80", 0.12),
+  border = NA,
+  ciLevels = seq(0.99, 0.8, by = -0.01),
+  grid = .useTheme,
+  box = FALSE,
   legend = TRUE,
+  stamp = .useTheme,
   ...
 )
 }
@@ -21,57 +26,95 @@ plotPropCI(
 the two columns contain counts for the two categories. A numeric vector
 of length 2 is also accepted and will be coerced to a one-row matrix.}
 
+\item{main}{Main title of the plot. \code{NULL} (default) derives a title
+from \code{deparse(substitute(x))}. \code{""}, \code{NA}, or \code{FALSE}
+suppress the title and compact the top margin. Any other string is used
+as given.}
+
 \item{labels}{Character vector of length 2 with labels for the two
-categories, displayed at the top of the plot. Default is \code{c("", "")}.}
+categories, displayed at the top of the plot. Default \code{c("", "")}.}
 
-\item{main}{Character string giving the plot title. Default is \code{""}.}
-
-\item{xlab}{Label for the x-axis. Default is \code{""}.}
-
-\item{col}{Character vector of length 2 specifying fill colours for the
-stacked bar. Defaults to \code{c(hblue, hred)} from \pkg{DescToolsX}.}
-
-\item{ci.col}{Colour for the confidence interval bands. Default is a
-semi-transparent grey (\code{adjustcolor("grey50", alpha.f = 0.5)}). With
-20 overlapping bands the accumulated opacity creates a density gradient.}
+\item{xlab}{Label for the x-axis. Default \code{""}.}
 
 \item{xlim}{Numeric vector of length 2 for the x-axis limits.
-Default is \code{c(0, 1)}.}
+Default \code{c(0, 1)}.}
 
-\item{legend}{Logical; if \code{TRUE} a legend is drawn. Default is \code{TRUE}.}
+\item{col}{Character vector of length 2 specifying fill colours for the
+stacked bar. \code{.useTheme} (default) resolves to
+\code{getTheme()$twin} - the active theme's two-color pair. Note this
+is purely "first label gets the first color"; unlike
+\code{\link{plotCor}}/\code{\link{plotWeb}}, there is no positive/
+negative sign convention here, since proportions of two arbitrary
+categories (e.g. "yes"/"no") have no inherent sign.}
 
-\item{...}{Further arguments passed to \code{\link[graphics]{barplot}}.}
+\item{ci.col}{Colour for the confidence interval bands. Default is a
+semi-transparent grey (\code{addAlpha("grey80", 0.12)}). Deliberately
+not theme-driven (like the sequential scales in
+\code{\link{plotDens2D}}/\code{\link{plotHeatmap}}): this is a
+structural mechanism (many overlapping translucent bands building a
+gradient via overdraw), not a categorical or diverging color choice.}
+
+\item{border}{Border colour for the confidence interval bands and the
+stacked bar. Default \code{NA} (no border).}
+
+\item{ciLevels}{Numeric vector of confidence levels for the nested bands.
+Default \code{seq(0.99, 0.80, by = -0.01)} (20 bands, 99\\% down to
+80\\% in 1\\% steps). Draw order does not affect the result, since all
+bands share the same translucent color and no border.}
+
+\item{grid}{Controls drawing of the background grid (vertical lines at
+the proportion ticks only - there is no meaningful horizontal grid
+for the categorical group axis). \code{.useTheme} (default) follows
+the active theme (\code{getTheme()$grid}). \code{TRUE}/\code{FALSE}/
+\code{NA}, or a named list, as for \code{\link[graphics]{grid}}.}
+
+\item{box}{Controls drawing of the plot box. Default \code{FALSE} (no
+frame, consistent with this chart's minimal "Few"-style appearance).
+\code{TRUE}/\code{NA}, or a named list, as for
+\code{\link[graphics]{box}}.}
+
+\item{legend}{Controls the legend explaining the CI band range.
+\code{TRUE} (default) draws it. \code{FALSE}/\code{NA} suppresses it.
+A named list overrides arguments forwarded to
+\code{\link[graphics]{legend}}.}
+
+\item{stamp}{Controls the corner stamp. \code{.useTheme} (default)
+resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
+\code{NULL}, a string, or a named list for \code{\link{stamp}()}.}
+
+\item{...}{Further arguments passed to \code{\link[graphics]{par}} via
+the internal framework, and to \code{\link[graphics]{barplot}}.}
 }
 \value{
-Invisibly returns \code{NULL}. Called for its side effect of producing
-a plot.
+Invisibly returns \code{NULL}. Called for its side effect of
+producing a plot.
 }
 \description{
-Displays a horizontal bar with nested confidence interval bands from 80\%
-to 99\% (in 1\% steps) to visualise the uncertainty of a proportion. Bands
-are drawn in a semi-transparent grey so that the accumulated overlap
-creates a natural density gradient — darker in the centre, lighter at the
-edges.
+Displays a horizontal bar with nested confidence interval bands from
+\code{min(ciLevels)} to \code{max(ciLevels)} to visualise the uncertainty
+of a proportion. Bands are drawn in a semi-transparent grey so that the
+accumulated overlap creates a natural density gradient - darker in the
+centre, lighter at the edges.
 }
 \details{
 Each row of \code{x} is displayed as a horizontal stacked bar showing the
 proportion of the first category. Confidence intervals are calculated
-using \code{prop.test()} and drawn as 20 nested bands from
-80\% to 99\% in 1\% steps, all in the same semi-transparent colour. The
-repeated overdraw naturally darkens the centre of the interval where all
-bands overlap. A vertical segment marks the observed proportion.
+using \code{prop.test()} and drawn as nested bands per \code{ciLevels},
+all in the same semi-transparent colour. The repeated overdraw naturally
+darkens the centre of the interval where all bands overlap. A vertical
+segment marks the observed proportion.
 }
 \examples{
 m <- matrix(c(22, 111, 33, 120, 80, 100), nrow = 3, byrow = TRUE)
-hblue <- "steelblue"
-hred  <- "firebrick"
 plotPropCI(m, labels = c("yes", "no"), main = "Response by Group")
 
-# single row — vector input is accepted
+# single row - vector input is accepted
 plotPropCI(m[1, ], labels = c("yes", "no"))
 
 }
 \seealso{
+\code{\link[stats]{prop.test}}, \code{\link{getTheme}}
+
 Other plot.univariate:
 \code{\link[=plotBar]{plotBar()}},
 \code{\link[=plotBox]{plotBox()}},

@@ -7,21 +7,20 @@
 plotLines(
   x,
   y,
-  col = NULL,
+  main = NULL,
   xlab = "",
   ylab = "",
   xlim = NULL,
   ylim = NULL,
-  lty = 1,
-  lwd = 2,
-  lend = par("lend"),
   xaxt = NULL,
   yaxt = NULL,
-  cex = 1,
+  lty = 1,
+  lwd = 2,
+  col = .useTheme,
+  points = FALSE,
+  grid = .useTheme,
   legend = TRUE,
-  main = NULL,
-  grid = TRUE,
-  pch = FALSE,
+  stamp = .useTheme,
   ...
 )
 }
@@ -33,40 +32,40 @@ x positions and columns to individual lines.}
 \item{y}{Optional numeric vector or matrix giving the y-values. If supplied,
 \code{x} is interpreted as the x-coordinates.}
 
-\item{col}{Colours used for the lines.}
+\item{main}{Main title of the plot. \code{NULL} (default) derives a title
+from the input. \code{""}, \code{NA}, or \code{FALSE} suppress the title
+and compact the top margin.}
 
-\item{xlab}{Label for the x-axis.}
+\item{xlab, ylab}{Labels for the axes.}
 
-\item{ylab}{Label for the y-axis.}
+\item{xlim, ylim}{Limits for the axes.}
 
-\item{xlim}{Limits for the x-axis.}
-
-\item{ylim}{Limits for the y-axis.}
+\item{xaxt, yaxt}{Axis specification passed to \code{\link[graphics]{axis}}.}
 
 \item{lty}{Line type(s).}
 
 \item{lwd}{Line width(s).}
 
-\item{lend}{Line end style passed to \code{\link[graphics]{par}}.}
+\item{col}{Colours for the lines. \code{.useTheme} (default) resolves to
+\code{pal(getTheme()$palette)}, the active theme's qualitative palette.}
 
-\item{xaxt}{Specification of the x-axis (passed to \code{\link[graphics]{axis}}).}
+\item{points}{Controls drawing of points on the lines. \code{FALSE}
+(default) suppresses points; \code{TRUE} draws with theme defaults
+(\code{getTheme()$points}); a named list overrides individual elements
+(\code{pch}, \code{col}, \code{bg}, \code{cex}).}
 
-\item{yaxt}{Specification of the y-axis.}
+\item{grid}{Controls drawing of the background grid. \code{.useTheme}
+(default) follows the active theme (\code{getTheme()$grid}).
+\code{TRUE}/\code{FALSE}/\code{NA}, or a named list, as for
+\code{\link[graphics]{grid}}.}
 
-\item{cex}{Character expansion for labels and annotations.}
+\item{legend}{Controls the legend. \code{TRUE} (default) draws an
+inline legend via \code{textLegend} at the last value of each series.
+\code{FALSE}/\code{NA} suppresses it. A list overrides legend arguments.}
 
-\item{legend}{Logical or list controlling the legend. If \code{TRUE}, a legend
-is drawn using the column names of the data. If a list is supplied, its
-elements are passed to the internal legend drawing routine.}
-
-\item{main}{Main title of the plot.}
-
-\item{grid}{Logical or list controlling the background grid. If \code{TRUE},
-a default grid is drawn.}
-
-\item{pch}{Logical, numeric or list controlling the drawing of points on the
-lines. If \code{TRUE}, points are drawn with default settings. A list is
-passed to \code{\link[graphics]{matplot}}.}
+\item{stamp}{Controls the corner stamp. \code{.useTheme} (default)
+resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/\code{NULL},
+a string, or a named list for \code{\link{stamp}()}.}
 
 \item{...}{Additional graphical parameters passed to \code{\link[graphics]{par}}
 via \code{.applyParFromDots()} and to the plotting functions.}
@@ -89,9 +88,6 @@ and an automatically positioned legend.
 If \code{y} is missing, \code{x} is interpreted as a matrix and each column
 is drawn as a separate line. Row names are used for the x-axis labels if
 available. The legend labels default to the column names of the data.
-
-The function internally uses \code{\link[graphics]{matplot}} and supports
-adding lines to an existing plot via \code{add = TRUE}.
 }
 \examples{
 m <- matrix(c(3,4,5,1,5,4,2,6,2), nrow = 3,
@@ -100,11 +96,10 @@ m <- matrix(c(3,4,5,1,5,4,2,6,2), nrow = 3,
               age  = c("2000","2001","2002")
             ))
 
-plotLines(m, col = 1:3, lwd = 2,
-          main = "Dose ~ Age")
+plotLines(m, lwd = 2, main = "Dose ~ Age")
 
 # with points
-plotLines(m, col = 1:3, pch = TRUE)
+plotLines(m, points = TRUE)
 
 # custom legend
 plotLines(m, legend = list(cex = 0.8))

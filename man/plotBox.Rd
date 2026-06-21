@@ -11,13 +11,14 @@ plotBox(x, ...)
 \method{plotBox}{default}(
   x,
   g = NULL,
-  main = "",
+  main = NULL,
   xlab = "",
   ylab = "",
   ylim = NULL,
   col = NULL,
   grid = TRUE,
   means = TRUE,
+  stamp = TRUE,
   ...
 )
 
@@ -26,12 +27,13 @@ plotBox(x, ...)
   data,
   subset,
   na.action = na.omit,
-  main = "",
+  main = NULL,
   xlab = "",
   ylab = "",
   ylim = NULL,
   col = NULL,
   grid = TRUE,
+  stamp = TRUE,
   ...
 )
 }
@@ -75,6 +77,10 @@ line. Can be:
 Supported arguments: \code{col}, \code{pch}, \code{cex},
 \code{lcol}, \code{lty}, \code{lwd}.
 }}
+
+\item{stamp}{Controls the corner stamp. \code{.useTheme} (default)
+resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/\code{NULL},
+or an explicit string, as for \code{.withGraphicsState()} (internal).}
 
 \item{formula}{A formula of the form \code{y ~ group}.}
 

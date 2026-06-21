@@ -43,6 +43,10 @@
 #'       \code{lcol}, \code{lty}, \code{lwd}.
 #'   }
 #'
+#' @param stamp Controls the corner stamp. \code{.useTheme} (default)
+#'   resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/\code{NULL},
+#'   or an explicit string, as for \code{.withGraphicsState()} (internal).
+#'   
 #' @param ... graphical parameters. Parameters recognized by the
 #' internal graphics framework are applied via \code{par()};
 #' remaining arguments are forwarded to \code{\link[graphics]{boxplot}}.
@@ -91,7 +95,7 @@ plotBox.default <- function(
   x,
   g = NULL,
   
-  main = "",
+  main = NULL,
   xlab = "",
   ylab = "",
   
@@ -103,6 +107,8 @@ plotBox.default <- function(
   
   means = TRUE,
   
+  stamp = TRUE,
+
   ...
 ) {
   
@@ -113,12 +119,14 @@ plotBox.default <- function(
                 nx=NA, ny=NULL)
   )
   
+  mc   <- match.call()
+  main <- .resolveTitle(main, default = paste(deparse(mc$y), "~", deparse(mc$x)))
   
   .withGraphicsState({
     
     .applyParFromDots(...,
                       defaults=list(
-                        mar      = c(left = 5),  # default
+                        mar      = c(left = 5, top = .marTop(main)) + 1,  # default
                         col.axis = "grey40", 
                         fg       = "grey30"
                         )       # border inherits from here
@@ -147,8 +155,6 @@ plotBox.default <- function(
     # ====================================================================
     # Boxplot
     # ====================================================================
-    
-    mar(top = 5.1)
     
     ylim <- ylim %||% range(x, na.rm = TRUE)
     ng_xlim <- if (is.null(g)) 1L else nlevels(factor(g))
@@ -210,13 +216,15 @@ plotBox.default <- function(
     
     if (nzchar(main))
       title(main = main, line = 3)
+    
     if (nzchar(xlab))
       title(xlab = xlab)
+    
     if (nzchar(ylab))
       title(ylab = ylab)
     
     
-  },
+  }, stamp = stamp,
   resetLayout = TRUE)
   
   invisible(NULL)
@@ -233,7 +241,7 @@ plotBox.formula <- function(
   subset,
   na.action = na.omit,
   
-  main = "",
+  main = NULL,
   xlab = "",
   ylab = "",
   
@@ -242,6 +250,9 @@ plotBox.formula <- function(
   col = NULL,
   
   grid = TRUE,
+  
+  stamp = TRUE,
+  
   ...
 ) {
   
@@ -265,9 +276,8 @@ plotBox.formula <- function(
   x <- r$x
   g <- r$group
   
-  if (!nzchar(main))
-    main <- r$data.name
-  
+  main <- .resolveTitle(main, default = r$data.name)
+
   if (!nzchar(xlab))
     xlab <- names(r$mf)[2]   # grouping variable on x-axis
   
@@ -283,6 +293,8 @@ plotBox.formula <- function(
     ylim = ylim,
     col = col,
     grid = grid,
+    stamp = stamp,
+    
     ...
   )
 }

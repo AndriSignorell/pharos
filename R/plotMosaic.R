@@ -14,7 +14,7 @@
 #'   before computing tile geometry, swapping which variable determines the
 #'   x-axis split and which determines the fill/conditional split.
 #'   Default `FALSE`.
-#'
+#'   
 #' @return A `data.frame` with one row per tile and the columns:
 #'   \describe{
 #'     \item{`<rowVar>`, `<colVar>`}{factor levels of the first and second
@@ -136,6 +136,10 @@
 #'   Default `0.8`.
 #' @param labDigits integer. Number of decimal digits for percentage cell
 #'   labels when `labels = "p"`. Default `1`.
+#' @param stamp Controls the corner stamp. \code{.useTheme} (default)
+#'   resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
+#'   \code{NULL}, or an explicit string, as for
+#'   \code{.withGraphicsState()} (internal).
 #' @param ... further graphical parameters passed to `par()` via
 #'   `.applyParFromDots()`, e.g. `mar`, `cex.axis`, `las`.
 #'
@@ -175,18 +179,25 @@ plotMosaic <- function(x,
                        main      = "",
                        xlab      = NULL,
                        ylab      = NULL,
+                       
                        # STRUCTURE
                        swap      = FALSE,
                        horiz     = FALSE,
                        gap       = 0.01,
+                       
                        # STYLE
                        col       = .useTheme,
                        border    = "white",
+                       
                        # FEATURES
                        legend    = TRUE,
                        labels    = c("p", "n", "none"),
                        labCex    = 0.8,
                        labDigits = 1,
+                       
+                       # FRAMEWORK
+                       stamp = .useTheme,
+                       
                        ...) {
   
   labels <- match.arg(labels)
@@ -262,7 +273,7 @@ plotMosaic <- function(x,
     }
     
     title(main = main, xlab = xlab, ylab = ylab)
-  })
+  }, stamp=stamp)
   
   invisible(tiles)
 }

@@ -53,6 +53,10 @@
 #'   the regions below/above the boundary curve.
 #' @param grid Logical, \code{NA}, or list controlling background grid.
 #'
+#' @param stamp Controls the corner stamp. \code{.useTheme} (default)
+#'   resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/\code{NULL},
+#'   or an explicit string, as for \code{.withGraphicsState()} (internal).
+#'   
 #' @return Invisibly returns \code{NULL}.
 #'
 #' @examples
@@ -115,7 +119,10 @@ plotDens.default <- function(
   lwd = 2,
   lty = 1,
   fill = FALSE,
-  grid = NULL
+  grid = NULL,
+  
+  # FRAMEWORK
+  stamp = TRUE
   
 ) {
   
@@ -212,7 +219,7 @@ plotDens.default <- function(
             lty = lty[i])
     }
     
-  })
+  }, stamp=stamp)
   
   invisible(NULL)
 }
@@ -271,6 +278,8 @@ plotDens.default <- function(
   fill = FALSE,
   grid = NA,
   
+  stamp = TRUE,
+
   ...
 ) {
   
@@ -369,7 +378,7 @@ plotDens.default <- function(
       lines(ptx, yy, col = col[i], lwd = lwd[i], lty = lty[i])
     }
     
-  })
+  }, stamp=stamp)
   
   invisible(NULL)
 }
@@ -407,8 +416,10 @@ plotDens.formula <- function(
   lwd = 2,
   lty = 1,
   fill = FALSE,
-  grid = NA
-  
+  grid = NA,
+
+  stamp = TRUE
+
 ) {
   
   args <- list(
@@ -482,6 +493,7 @@ plotDens.formula <- function(
       xlim = xlim, ylim = ylim,
       add = add, bw = bw,
       col = col, lwd = lwd, lty = lty, fill = fill, grid = grid,
+      stamp = stamp,
       ...
     )
     
@@ -529,6 +541,7 @@ plotDens.formula <- function(
     xlim = xlim, ylim = ylim,
     add = add, bw = bw,
     col = col, lwd = lwd, lty = lty, fill = fill, grid = grid,
+    stamp = stamp,
     ...
   )
   

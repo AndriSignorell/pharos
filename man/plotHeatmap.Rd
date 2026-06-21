@@ -18,6 +18,7 @@ plotHeatmap(
   text = FALSE,
   zlim = NULL,
   box = .useTheme,
+  stamp = .useTheme,
   ...
 )
 }
@@ -25,7 +26,17 @@ plotHeatmap(
 \item{x}{a contingency table, matrix, or a pair of categorical vectors
 coercible via \code{\link{table}}.}
 
-\item{main}{main title of the plot.}
+\item{main}{main title of the plot. \code{NULL} (default) derives a
+title from the expression passed as \code{x} (via
+\code{deparse(match.call()$x)}), the same "substitute magic"
+convention used by \code{\link{plotXY}}/\code{\link{plotBox}}/
+\code{\link{plotAssoc}} for their default titles - there's no
+formula pair here, just the single table argument, so the default
+is simply that expression's text (e.g. \code{plotHeatmap(tab)}
+titles itself \code{"tab"}). \code{""}, \code{NA}, or \code{FALSE}
+suppress the title entirely and compact the top margin; any other
+string is used as given (resolved internally via
+\code{.resolveTitle()}).}
 
 \item{xlab}{label for the x-axis.}
 
@@ -64,6 +75,11 @@ standard box via \code{frame.plot = FALSE}, since cell bounds differ
 from the default plot region). \code{.useTheme} (default) resolves
 border color/width from \code{getTheme()$box}. \code{TRUE}/\code{FALSE},
 or a named list overriding \code{rect()} arguments for this call only.}
+
+\item{stamp}{Controls the corner stamp. \code{.useTheme} (default)
+resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
+\code{NULL}, or an explicit string, as for
+\code{.withGraphicsState()} (internal).}
 
 \item{...}{further graphical parameters passed to
 \code{\link[graphics]{par}} via the internal framework.}

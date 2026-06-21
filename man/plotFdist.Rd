@@ -6,178 +6,154 @@
 \usage{
 plotFdist(
   x,
-  main = deparse(substitute(x)),
+  main = NULL,
   xlab = "",
   xlim = NULL,
   na.rm = FALSE,
-  args.hist = NULL,
-  args.rug = NA,
-  args.dens = NULL,
-  args.curve = NA,
-  args.boxplot = NULL,
-  args.ecdf = NULL,
-  args.curve.ecdf = NA,
   heights = NULL,
-  pdist = NULL,
+  hist = TRUE,
+  dens = TRUE,
+  rug = FALSE,
+  curve = FALSE,
+  boxplot = TRUE,
+  ecdf = TRUE,
+  curve.ecdf = FALSE,
+  stamp = .useTheme,
   ...
 )
 }
 \arguments{
-\item{x}{the numerical variable, whose distribution is to be plotted.}
+\item{x}{numeric vector whose distribution is to be plotted.}
 
-\item{main}{main title of the plot. Use \code{NA} to suppress the title.}
+\item{main}{main title. \code{NULL} (default) derives the title from
+\code{deparse(substitute(x))}. \code{""}, \code{NA}, or \code{FALSE}
+suppress the title and compact the top margin.}
 
-\item{xlab}{label of the x-axis, defaults to \code{""}. (The name of the
-variable is typically placed in the main title and would be redundant here.)}
+\item{xlab}{label for the x-axis. The variable name is typically placed
+in \code{main}, so this defaults to \code{""}.}
 
-\item{xlim}{range of the x-axis, defaults to a pretty \code{range(x, na.rm =
-TRUE)}.}
+\item{xlim}{range of the x-axis. \code{NULL} (default) uses a pretty
+range of \code{range(x, na.rm = TRUE)}.}
 
-\item{na.rm}{logical, should \code{NA}s be omitted? Histogram and boxplot
-could do without this option, but the density-function refuses to plot with
-missings. Defaults to \code{FALSE}.}
+\item{na.rm}{logical; should \code{NA}s be removed before plotting?
+The density function requires complete cases, so \code{TRUE} is
+recommended when \code{x} contains missing values. Default \code{FALSE}.}
 
-\item{args.hist}{list of additional arguments to be passed to the histogram
-\code{hist()}.  The defaults chosen when setting \code{args.hist = NULL} are
-more or less the same as in \code{\link{hist}}. The argument \code{type}
-defines, whether a histogram (\code{"hist"}) or a plot with \code{type =
-"h"} (for 'histogram' like vertical lines for \code{mass} representation)
-should be used.  The arguments for a "h-plot"" will be \code{col},
-\code{lwd}, \code{pch.col}, \code{pch}, \code{pch.bg} for the line and for
-an optional point character on top.  The default type used will be chosen on
-the structure of \code{x}. If \code{x} is an integer with up to 12 unique
-values there will be a "h-plot" and else a histogram!}
+\item{heights}{numeric vector of relative panel heights for
+\code{\link{layout}}: three values for histogram/boxplot/ecdf, two
+for histogram/boxplot or histogram/ecdf only. \code{NULL} (default)
+chooses automatically.}
 
-\item{args.rug}{list of additional arguments to be passed to the function
-\code{rug()}.  Use \code{args.rug = NA} if no rug should be added. This is
-the default. Use \code{args.rug = NULL} to add rug with reasonable default
-values.}
+\item{hist}{controls the histogram panel. \code{TRUE} (default) uses
+package defaults; \code{FALSE}/\code{NA} suppresses the panel
+(not recommended: also disables automatic \code{xlim} detection);
+a list overrides specific arguments forwarded to
+\code{\link[graphics]{hist}}. The element \code{type} selects the
+plot style: \code{"hist"} (standard histogram, chosen automatically
+for continuous or high-cardinality data) or \code{"mass"} (vertical
+bars per unique value, for discrete/low-cardinality data).}
 
-\item{args.dens}{list of additional arguments to be passed to
-\code{density}.  Use \code{args.dens = NA} if no density curve should be
-drawn. The defaults are taken from \code{\link{density}}.}
+\item{dens}{controls the kernel density curve. \code{TRUE} (default)
+draws a curve via \code{\link[stats]{density}}; a list overrides
+specific arguments (e.g. \code{list(bw = 0.1, col = "red")}).}
 
-\item{args.curve}{list of additional arguments to be passed to
-\code{\link{curve}}.  This argument allows to add a fitted distribution
-curve to the histogram. By default no curve will be added (\code{args.curve
-= NA}). If the argument is set to \code{NULL}, a normal curve with
-\code{mean(x)} and \code{sd(x)} will be drawn. See examples for more
-details.}
+\item{rug}{controls a rug plot. \code{FALSE} (default) suppresses it;
+\code{TRUE} or a list draw a rug via \code{\link[graphics]{rug}}.}
 
-\item{args.boxplot}{list of additional arguments to be passed to the boxplot
-\code{boxplot()}.  The defaults are pretty much the same as in
-\code{\link{boxplot}}.  The two additional arguments \code{pch.mean}
-(default \code{23}) and \code{col.meanci} (default \code{"grey80"}) control,
-if the mean is displayed within the boxplot. Setting those arguments to
-\code{NA} will prevent them from being displayed.}
+\item{curve}{controls a fitted theoretical distribution curve on the
+histogram. \code{FALSE} (default) suppresses it; \code{TRUE} or
+\code{NULL} draws a normal curve with \code{mean(x)}/\code{sd(x)};
+a list may include \code{expr} as a character string or expression
+for any distribution (e.g.
+\code{list(expr = "dt(x, df=2)", col = "darkgreen")}).}
 
-\item{args.ecdf}{list of additional arguments to be passed to \code{ecdf()}.
-Use \code{args.ecdf = NA} if no empirical cumulation function should be
-included in the plot.  The defaults are taken from \code{\link{plot.ecdf}}.}
+\item{boxplot}{controls the boxplot panel. \code{TRUE} (default) draws
+a horizontal boxplot with a mean marker and CI band; \code{FALSE}/
+\code{NA} suppresses the panel. A list overrides arguments forwarded
+to \code{\link[graphics]{boxplot}}; two extra elements control the
+mean display: \code{pch.mean} (default \code{3}) and \code{col.meanci}
+(default \code{getTheme()$grid$col}). Set either to \code{NA} to
+suppress that element.}
 
-\item{args.curve.ecdf}{list of additional arguments to be passed to
-\code{\link{curve}}.  This argument allows to add a fitted distribution
-curve to the cumulative distribution function. By default no curve will be
-added (\code{args.curve.ecdf = NA}). If the argument is set to \code{NULL},
-a normal curve with \code{mean(x)} and \code{sd(x)} will be drawn. See
-examples for more details.}
+\item{ecdf}{controls the ECDF panel. \code{TRUE} (default) calls
+\code{\link{plotECDF}}; a list overrides specific arguments.}
 
-\item{heights}{heights of the plotparts, defaults to \code{c(2,0.5,1.4)} for
-the histogram, the boxplot and the empirical cumulative distribution
-function, resp. to \code{c(2,1.5)} for a histogram and a boxplot only.}
+\item{curve.ecdf}{controls a fitted theoretical CDF curve on the ECDF
+panel, analogous to \code{curve}. \code{FALSE} (default) suppresses
+it.}
 
-\item{pdist}{distances of the plotparts, defaults to \code{c(0, 0)}, say
-there will be no distance between the histogram, the boxplot and the
-ecdf-plot. This can be useful for instance in case that the x-axis has to be
-added to the histogram.}
+\item{stamp}{Controls the corner stamp. \code{.useTheme} (default)
+resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
+\code{NULL}, a string, or a named list for \code{\link{stamp}()}.}
 
-\item{\dots}{can be used to set graphic parameters (\code{\link{par}})
-as cex.main, las etc.}
+\item{\dots}{further graphical parameters passed to \code{\link{par}}
+via the internal framework.}
 }
 \description{
-This function was developed to create a univariate graphical representation
-of the frequency distribution of a numerical vector.
-It combines a histogram, a density
-curve, a boxplot and the empirical cumulative distribution function (ecdf)
-in one single plot. A rug as well as a model distribution curve (e.g. a
-normal curve) can optionally be superposed. This results in a dense and
-informative picture of the facts. Still the function remains flexible as all
-possible arguments can be passed to the single components (\code{hist},
-\code{boxplot} etc.) as a list (see examples).
+Creates a univariate graphical summary combining a histogram (or probability
+mass plot for discrete data), a kernel density curve, a boxplot, and an
+empirical cumulative distribution function in a single multi-panel figure.
+Optional components include a rug, and fitted theoretical distribution
+curves for both the histogram and the ECDF panel.
 }
 \details{
-Performance has been significantly improved, but if \code{x} is growing
-large (n > 1e7) the function will take its time to complete. Especially the
-density curve and the ecdf, but as well as the boxplot (due to the chosen
-alpha channel) will take their time to calculate and plot.\cr In such cases
-consider taking a sample, i.e. \code{ plotFdist(x[sample(length(x),
-size=5000)])}, the big picture of the distribution won't usually change
-much. .
+Each plot component is controlled via a single argument accepting
+\code{\link[bedrock]{callIf}} semantics:
+\itemize{
+\item \code{TRUE}: draw with package defaults
+\item \code{FALSE}, \code{NULL}, or \code{NA}: suppress entirely
+\item a named list: draw with the given overrides merged into the defaults
+}
+
+Performance: for very large vectors (n > 1e7) the density curve, ECDF,
+and semi-transparent boxplot outliers will still take noticeable time.
+For exploratory work on very large data, consider sampling first:
+\code{plotFdist(x[sample(length(x), 5000)])}.
 }
 \examples{
-op <- par(no.readonly=TRUE)
+plotFdist(faithful$eruptions, na.rm = TRUE)
 
-plotFdist(x=faithful$eruptions, na.rm=TRUE)
+# custom histogram breaks, density color, boxplot styling
+plotFdist(faithful$eruptions,
+  hist    = list(breaks = 50),
+  dens    = list(col = "olivedrab4"),
+  na.rm   = TRUE,
+  boxplot = list(col = "olivedrab2", pch.mean = NA, col.meanci = NA))
 
-# define additional arguments for hist, dens and boxplot
-# do not display the mean and its CI on the boxplot
-plotFdist(faithful$eruptions, args.hist=list(breaks=50),
-  args.dens=list(col="olivedrab4"), na.rm=TRUE,
-  args.boxplot=list(col="olivedrab2", pch.mean=NA, col.meanci=NA))
+# no density, no ecdf, add rug instead
+plotFdist(faithful$eruptions,
+  dens = FALSE, ecdf = FALSE,
+  hist = list(xaxt = "s"),
+  rug  = TRUE,
+  heights = c(3, 2.5), 
+  main = "Eruption time")
 
-
-# do a "h"-plot instead of a histogram for integers
-x <- sample(runif(10), 100, replace = TRUE)
-plotFdist(x, args.hist=list(type="mass"))
-
-pp <- rpois(n = 100, lambda = 3)
-plotFdist(pp, args.hist = list(type="mass", pch=21, col="darkorange2",
-          cex.pch=2.5, col.pch="deeppink4", lwd=3, bg.pch="white"),
-          args.boxplot = NULL, args.ecdf = NA, main="Probability mass function")
-
-# special arguments for hist, density and ecdf
-plotFdist(x=faithful$eruptions,
-          args.hist=list(breaks=20), args.dens=list(bw=.1),
-          args.ecdf=list(cex=1.2, pch=16, lwd=1), args.rug=TRUE)
-
-# no density curve, no ecdf but add rug instead, make boxplot a bit higher
-plotFdist(x=faithful$eruptions, na.rm=TRUE, args.dens=NA, args.ecdf=NA,
-  args.hist=list(xaxt="s"),  # display x-axis on the histogram
-  args.rug=TRUE, heights=c(3, 2.5), pdist=2.5, main="Delivery time")
-
-# alpha channel on rug is cool, but takes its time for being drawn...
-plotFdist(x=faithful$eruptions, args.rug=list(col=addAlpha("black", 0.1)), 
-          na.rm=TRUE)
-
-# plot a normal density curve, but no boxplot nor ecdf
+# overlay a normal density curve
 x <- rnorm(1000)
-plotFdist(x, args.curve = NULL, args.boxplot=NA, args.ecdf=NA)
+plotFdist(x, curve = TRUE, boxplot = FALSE, ecdf = FALSE)
 
-# compare with a t-distribution
-plotFdist(x, args.curve = list(expr="dt(x, df=2)", col="darkgreen"),
-          args.boxplot=NA, args.ecdf=NA)
-legend(x="topright", legend=c("kernel density", "t-distribution (df=2)"),
-       fill=c("deeppink4", "darkgreen"), xpd=NA)
+# compare with a t-distribution curve
+plotFdist(x,
+  curve   = list(expr = "dt(x, df=2)", col = "darkgreen"),
+  boxplot = FALSE, ecdf = FALSE)
 
-# add a gamma distribution curve to both, histogram and ecdf
+# overlay gamma distribution on both histogram and ECDF
 ozone <- airquality$Ozone
 m <- mean(ozone, na.rm = TRUE)
 v <- var(ozone, na.rm = TRUE)
-
-plotFdist(ozone, args.hist = list(breaks=15),
-  args.curve = list(expr="dgamma(x, shape = m^2/v, scale = v/m)", 
-                    col="navajowhite3"),
-  args.curve.ecdf = list(expr="pgamma(x, shape = m^2/v, scale = v/m)", 
-                         col="navajowhite3"),
+plotFdist(ozone,
+  hist       = list(breaks = 15),
+  curve      = list(expr = "dgamma(x, shape = m^2/v, scale = v/m)",
+                    col = "navajowhite3"),
+  curve.ecdf = list(expr = "pgamma(x, shape = m^2/v, scale = v/m)",
+                    col = "navajowhite3"),
   na.rm = TRUE, main = "Airquality - Ozone")
 
-       
-par(op)
-        
 }
 \seealso{
-\code{\link{hist}}, \code{\link{boxplot}}, \code{\link{ecdf}},
-\code{\link{density}}, \code{\link{rug}}, \code{\link{layout}}
+\code{\link{hist}}, \code{\link{boxplot}}, \code{\link{plotECDF}},
+\code{\link{density}}, \code{\link{rug}}, \code{\link{layout}},
+\code{\link{getTheme}}
 
 Other plot.distribution:
 \code{\link[=plotCatDist]{plotCatDist()}},

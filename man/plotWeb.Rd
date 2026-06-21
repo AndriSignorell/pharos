@@ -6,110 +6,109 @@
 \usage{
 plotWeb(
   m,
-  col = NULL,
+  main = NULL,
+  dist = 0.5,
+  col = hcol("red", "blue"),
   lty = NULL,
   lwd = NULL,
-  args.legend = NULL,
-  pch = 21,
-  pt.cex = 2,
-  pt.col = "black",
-  pt.bg = "darkgrey",
-  cex.lab = 1,
-  las = 1,
-  adj = NULL,
-  dist = 0.5,
+  labels = TRUE,
+  points = list(pch = 21, cex = 2, col = "black", bg = "darkgrey"),
+  legend = TRUE,
+  stamp = .useTheme,
   ...
 )
 }
 \arguments{
-\item{m}{a symmetric matrix of numeric values}
+\item{m}{a symmetric numeric matrix (e.g. a correlation matrix).}
 
-\item{col}{the color for the connecting lines}
+\item{main}{main title of the plot. \code{NULL} (default) produces no
+title.}
 
-\item{lty}{the line type for the connecting lines, the default will be
-\code{par("lty")}.}
+\item{dist}{distance of node labels from the outer circle. Default
+\code{0.5}.}
 
-\item{lwd}{the line widths for the connecting lines. If left to \code{NULL}
-it will be linearly scaled between the minimum and maximum value of
-\code{m}.}
+\item{col}{two colors for the connecting lines: the first is used for
+negative values, the second for positive values. \code{.useTheme}
+(default) resolves to \code{getTheme()$twin} - consistent with the
+sign-based coloring in \code{\link{plotCor}}.}
 
-\item{args.legend}{list of additional arguments to be passed to the
-\code{legend} function.  Use \code{args.legend = NA} if no legend should be
-added.}
+\item{lty}{line type for the connecting lines. \code{NULL} (default)
+inherits from \code{par("lty")}.}
 
-\item{pch}{the plotting symbols appearing in the plot, as a non-negative
-numeric vector (see \code{\link{points}}, but unlike there negative values
-are omitted) or a vector of 1-character strings, or one multi-character
-string.}
+\item{lwd}{line widths for the connecting lines. \code{NULL} (default)
+scales widths linearly between 0.5 and 10 in proportion to the absolute
+matrix values.}
 
-\item{pt.cex}{expansion factor(s) for the points.}
+\item{labels}{controls node labels around the circle. \code{TRUE}
+(default) draws labels using \code{colnames(m)} with default styling.
+\code{FALSE}/\code{NA}/\code{NULL} suppresses labels. A named list
+overrides individual settings:
+\describe{
+\item{\code{labels}}{character vector of label texts; defaults to
+\code{colnames(m)}}
+\item{\code{las}}{orientation: \code{1} horizontal (default),
+\code{2} radial, \code{3} vertical}
+\item{\code{adj}}{label adjustment (0/0.5/1); \code{NULL} (default)
+chooses automatically based on position around the circle}
+\item{\code{cex}}{character expansion; default \code{1.0}}
+}}
 
-\item{pt.col}{the foreground color for the points, corresponding to its
-argument \code{col}.}
+\item{points}{controls the node point symbols. The default
+(\code{list(pch=21, cex=2, col="black", bg="darkgrey")}) draws
+prominent filled circles, larger than the generic data-point default,
+since nodes represent variables rather than observations.
+\code{FALSE}/\code{NA}/\code{NULL} suppresses the points. A named list
+overrides individual elements (\code{pch}, \code{cex}, \code{col},
+\code{bg}).}
 
-\item{pt.bg}{the background color for the points, corresponding to its
-argument \code{bg}.}
+\item{legend}{controls the legend. \code{TRUE} (default) draws a legend
+showing the line widths and colors for the minimum/maximum positive
+and negative values. \code{FALSE}/\code{NA} suppresses it. A named
+list overrides arguments forwarded to \code{\link[graphics]{legend}}.}
 
-\item{cex.lab}{the character extension for the labels.}
+\item{stamp}{controls the corner stamp. \code{.useTheme} (default)
+resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
+\code{NULL}, a string, or a named list for \code{\link{stamp}()}.}
 
-\item{las}{alignment of the labels, 1 means horizontal, 2 radial and 3
-vertical.}
-
-\item{adj}{adjustments for the labels. (Left: 0, Right: 1, Mid: 0.5)}
-
-\item{dist}{gives the distance of the labels from the outer circle. Default
-is 2.}
-
-\item{\dots}{dots are passed to plot.}
+\item{\dots}{further graphical parameters passed to
+\code{\link[graphics]{par}} and to the internal \code{canvas()} call.}
 }
 \value{
-A list of x and y coordinates, giving the coordinates of all the
-points drawn, useful for adding other elements to the plot.
+Invisibly returns a list of \code{x}/\code{y} coordinates of the
+node points, useful for adding further annotations to the plot.
 }
 \description{
-This plot can be used to graphically display a correlation matrix by using
-the linewidth between the nodes in proportion to the correlation of two
-variables. It will place the elements homogenously around a circle and draw
-connecting lines between the points.
+Displays a symmetric matrix (typically a correlation matrix) as a
+network diagram: variables are placed equidistantly around a circle,
+and connecting lines between each pair are drawn with width proportional
+to the absolute value of the matrix entry and color indicating its sign.
 }
 \details{
-The function uses the lower triangular matrix of \code{m}, so this is the
-order colors, linewidth etc. must be given, when the defaults are to be
-overrun.
+The function uses the lower triangular matrix of \code{m}; when
+overriding \code{lwd} or \code{col} manually, values must be supplied in
+the same order as \code{m[lower.tri(m)]}.
 }
 \examples{
-op <- par(no.readonly = TRUE)
-
 m <- cor(swiss)
-plotWeb(m=m, main="Swiss correlation")
+plotWeb(m, main = "Swiss correlation")
 
+# custom labels (abbreviations)
+plotWeb(m, labels = list(labels = abbreviate(colnames(m), 4), cex = 0.9))
 
-# let's describe only the significant corrs and start with a dataset
-# get the p-values
+# show only significant correlations
 p <- outer(
   (vars <- colnames(mtcars)), vars,
   Vectorize(function(v1, v2)
-    cor.test(mtcars[[v1]], mtcars[[v2]], method = "pearson")$p.value
-  )
+    cor.test(mtcars[[v1]], mtcars[[v2]])$p.value)
 )
 dimnames(p) <- list(vars, vars)
-
-# ok, got all the p-values, now replace > 0.05 with NAs
-m[p > 0.05] <- NA
-
-# How does that look like now?
-# try also: fm(m, naForm = ". ", ldigits=0, digits=3, align = "right")
-
-# plotWeb(m, las=2, cex=1.2)
-
-# define line widths
-# plotWeb(m, lwd=abs(m[lower.tri(m)] * 10))
-
-par(op)
+m2 <- cor(mtcars)
+m2[p > 0.05] <- NA
+plotWeb(m2, labels = list(las = 2))
 
 }
 \seealso{
-\code{\link{plotCor}}
+\code{\link{plotCor}}, \code{\link{getTheme}}
 
 Other plot.special:
 \code{\link[=plotArea]{plotArea()}},

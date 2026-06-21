@@ -8,7 +8,17 @@
 #' @param x a contingency table, matrix, or a pair of categorical vectors
 #'   coercible via \code{\link{table}}.
 #'
-#' @param main main title of the plot.
+#' @param main main title of the plot. \code{NULL} (default) derives a
+#'   title from the expression passed as \code{x} (via
+#'   \code{deparse(match.call()$x)}), the same "substitute magic"
+#'   convention used by \code{\link{plotXY}}/\code{\link{plotBox}}/
+#'   \code{\link{plotAssoc}} for their default titles - there's no
+#'   formula pair here, just the single table argument, so the default
+#'   is simply that expression's text (e.g. \code{plotHeatmap(tab)}
+#'   titles itself \code{"tab"}). \code{""}, \code{NA}, or \code{FALSE}
+#'   suppress the title entirely and compact the top margin; any other
+#'   string is used as given (resolved internally via
+#'   \code{.resolveTitle()}).
 #' @param xlab label for the x-axis.
 #' @param ylab label for the y-axis.
 #'
@@ -44,6 +54,11 @@
 #'   from the default plot region). \code{.useTheme} (default) resolves
 #'   border color/width from \code{getTheme()$box}. \code{TRUE}/\code{FALSE},
 #'   or a named list overriding \code{rect()} arguments for this call only.
+#'
+#' @param stamp Controls the corner stamp. \code{.useTheme} (default)
+#'   resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
+#'   \code{NULL}, or an explicit string, as for
+#'   \code{.withGraphicsState()} (internal).
 #'
 #' @param ... further graphical parameters passed to
 #'   \code{\link[graphics]{par}} via the internal framework.
@@ -105,9 +120,19 @@ plotHeatmap <- function(
   zlim = NULL,
   box = .useTheme,
   
+  # FRAMEWORK
+  stamp = .useTheme,
+  
   ...
   
 ) {
+  
+  # Default title follows the same "substitute magic" convention as
+  # plotXY()/plotBox()/plotAssoc() (deparse() of the call's argument
+  # expression) - there's no y ~ x formula pair here, just the single
+  # table argument 'x', so the default is simply deparse(mc$x) (e.g.
+  # plotHeatmap(tab) titles itself "tab").
+  mc <- match.call()
   
   .withGraphicsState({
     
@@ -122,6 +147,8 @@ plotHeatmap <- function(
       stop("Only 2D tables supported.")
     
     scale <- match.arg(scale)
+    
+    main <- .resolveTitle(main, default = deparse(mc$x))
     
     # --- Scaling ----------------------------------------------------------
     
@@ -180,7 +207,7 @@ plotHeatmap <- function(
     # --- Colors -----------------------------------------------------------
     
     if (identical(col, .useTheme)) {
-      cols_all <- pal("Blues", n = 100)
+      cols_all <- pal("SteelblueWhite", n = 100)
       ncol_pal <- length(cols_all)
     } else {
       cols_all <- col
@@ -315,7 +342,7 @@ plotHeatmap <- function(
       line = 1
     )
     
-  })
+  }, stamp = stamp)
   
   invisible(z)
   

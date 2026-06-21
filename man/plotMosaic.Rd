@@ -18,6 +18,7 @@ plotMosaic(
   labels = c("p", "n", "none"),
   labCex = 0.8,
   labDigits = 1,
+  stamp = .useTheme,
   ...
 )
 }
@@ -67,6 +68,11 @@ Default \code{0.8}.}
 
 \item{labDigits}{integer. Number of decimal digits for percentage cell
 labels when \code{labels = "p"}. Default \code{1}.}
+
+\item{stamp}{Controls the corner stamp. \code{.useTheme} (default)
+resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
+\code{NULL}, or an explicit string, as for
+\code{.withGraphicsState()} (internal).}
 
 \item{...}{further graphical parameters passed to \code{par()} via
 \code{.applyParFromDots()}, e.g. \code{mar}, \code{cex.axis}, \code{las}.}

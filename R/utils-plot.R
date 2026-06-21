@@ -1,5 +1,11 @@
 
 
+# R/fcol.R
+fcol <- .pal_data$discrete$Helsana
+
+
+# check for not used anymore, use theme for that kind of questions
+
 # internal getOption wrapper for DescToolsX options
 .getOption <- function(name, default = NULL) {
   getOption(paste0("DescToolsX.", name), default)
@@ -380,4 +386,25 @@
 }
 
 
+
+# utils-plot.R — neuer Helper
+
+#' @noRd
+.resolveSpec <- function(spec, defaults, forbidden = character(0)) {
+  # Resolves a callIf-style spec (TRUE/FALSE/NA/NULL/list) against a set of
+  # defaults without calling any function - returns NULL if suppressed, or a
+  # merged argument list otherwise. Used for tightly-coupled multi-panel plots
+  # where components must share state (xlim, ylim) before any drawing happens.
+  if (isFALSE(spec) || is.null(spec) ||
+      (length(spec) == 1L && !is.list(spec) &&
+       isTRUE(suppressWarnings(is.na(spec)))))
+    return(NULL)
+  if (isTRUE(spec) || identical(spec, .useTheme))
+    return(defaults)
+  if (is.list(spec)) {
+    clean <- spec[!names(spec) %in% forbidden]
+    return(.modifyListSafe(defaults, clean))
+  }
+  defaults
+}
 

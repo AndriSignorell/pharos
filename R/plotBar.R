@@ -390,12 +390,15 @@ plotBar <- function(height,
     axis$col.axis <- par("col")
   }
   
-  if("cex" %in% names(axis))
+  if ("cex" %in% names(axis)) {
     axis$cex.axis <- axis$cex
+    axis$cex <- NULL
+  }
   
-  if("font" %in% names(axis))
+  if ("font" %in% names(axis)) {
     axis$font.axis <- axis$font
-  
+    axis$font <- NULL
+  }  
   
   list(fmt = fmt, axis = axis)
 }
