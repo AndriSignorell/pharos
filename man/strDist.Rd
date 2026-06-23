@@ -10,7 +10,7 @@ strDist(
   method = "levenshtein",
   mismatch = 1,
   gap = 1,
-  ignore.case = FALSE
+  ignoreCase = FALSE
 )
 }
 \arguments{
@@ -26,7 +26,7 @@ is \code{"levenshtein"}, the classical Levenshtein distance.}
 
 \item{gap}{numeric, distance value for inserting a gap.}
 
-\item{ignore.case}{if \code{FALSE} (default), the distance measure will be
+\item{ignoreCase}{if \code{FALSE} (default), the distance measure will be
 case sensitive and if \code{TRUE}, case is ignored.}
 }
 \value{
@@ -106,8 +106,7 @@ Other string.manipulation:
 \code{\link[=strRev]{strRev()}},
 \code{\link[=strSpell]{strSpell()}},
 \code{\link[=strSplit]{strSplit()}},
-\code{\link[=strTrim]{strTrim()}},
-\code{\link[=strVal]{strVal()}}
+\code{\link[=strTrim]{strTrim()}}
 }
 \author{
 Matthias Kohl \href{mailto:Matthias.Kohl@stamats.de}{Matthias.Kohl@stamats.de}

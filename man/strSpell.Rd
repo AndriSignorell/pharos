@@ -66,8 +66,7 @@ Other string.manipulation:
 \code{\link[=strPos]{strPos()}},
 \code{\link[=strRev]{strRev()}},
 \code{\link[=strSplit]{strSplit()}},
-\code{\link[=strTrim]{strTrim()}},
-\code{\link[=strVal]{strVal()}}
+\code{\link[=strTrim]{strTrim()}}
 }
 \concept{string-manipulation}
 \concept{string.manipulation}

@@ -55,9 +55,9 @@ test_that("strDist has ScoringMatrix attribute for levenshtein", {
   expect_false(is.null(attr(d, "ScoringMatrix")))
 })
 
-test_that("strDist ignore.case works", {
+test_that("strDist ignoreCase works", {
   d_sensitive   <- strDist("ABC", "abc")
-  d_insensitive <- strDist("ABC", "abc", ignore.case = TRUE)
+  d_insensitive <- strDist("ABC", "abc", ignoreCase = TRUE)
   expect_equal(as.numeric(d_insensitive), 0)
   expect_gt(as.numeric(d_sensitive), 0)
 })

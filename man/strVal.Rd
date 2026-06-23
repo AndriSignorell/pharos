@@ -4,27 +4,32 @@
 \alias{strVal}
 \title{Extract Numeric Values from Strings}
 \usage{
-strVal(x, paste = FALSE, as.numeric = FALSE, dec = getOption("OutDec"))
+strVal(
+  x,
+  collapse = FALSE,
+  output = c("character", "numeric"),
+  dec = getOption("OutDec")
+)
 }
 \arguments{
 \item{x}{A character vector.}
 
-\item{paste}{Logical; if \code{TRUE}, all extracted numbers per element of
-\code{x} are concatenated into a single string. Otherwise, a list of
+\item{collapse}{Logical; if \code{TRUE}, all extracted numbers per element
+of \code{x} are concatenated into a single string. Otherwise, a list of
 character vectors is returned.}
 
-\item{as.numeric}{Logical; if \code{TRUE}, extracted values are converted
-to numeric.}
+\item{output}{Character; controls the type of the returned values.
+\code{"character"} (default) returns strings; \code{"numeric"} coerces
+extracted values to numeric.}
 
 \item{dec}{Character; decimal separator used in the input. Defaults to
 \code{getOption("OutDec")}.}
 }
 \value{
-If \code{paste = FALSE}, a list of character vectors (or numeric vectors if
-\code{as.numeric = TRUE}) containing the extracted values for each element
-of \code{x}.
-If \code{paste = TRUE}, a character vector (or numeric vector if
-\code{as.numeric = TRUE}) with concatenated values per element.
+If \code{collapse = FALSE}, a list of character or numeric vectors
+containing the extracted values for each element of \code{x}.
+If \code{collapse = TRUE}, a character or numeric vector with
+concatenated values per element.
 }
 \description{
 Extracts numeric values from character strings using regular expressions.
@@ -37,7 +42,7 @@ and scientific notation (e.g., \code{"1.23e-4"}).
 Whitespace between sign and number (e.g., \code{"- 2.5"}) is tolerated and
 removed before returning results.
 
-If \code{as.numeric = TRUE} and the decimal separator \code{dec} differs
+If \code{output = "numeric"} and the decimal separator \code{dec} differs
 from the current system setting (\code{getOption("OutDec")}), values are
 converted accordingly before coercion.
 }
@@ -48,33 +53,17 @@ x <- c("value = 12.5", "x = -3.2e2 and 7", "no numbers here")
 strVal(x)
 
 # extract as numeric
-strVal(x, as.numeric = TRUE)
+strVal(x, output = "numeric")
 
 # concatenate values
-strVal(x, paste = TRUE)
+strVal(x, collapse = TRUE)
 
 # different decimal separator
-strVal("value = 3,14", dec = ",", as.numeric = TRUE)
+strVal("value = 3,14", dec = ",", output = "numeric")
 
 }
 \seealso{
 \code{\link{as.numeric}}, \code{\link[stringi]{stri_extract_all_regex}}
-
-Other string.manipulation:
-\code{\link[=strCap]{strCap()}},
-\code{\link[=strChop]{strChop()}},
-\code{\link[=strCountW]{strCountW()}},
-\code{\link[=strDist]{strDist()}},
-\code{\link[=strExtract]{strExtract()}},
-\code{\link[=strExtractBetween]{strExtractBetween()}},
-\code{\link[=strIsNumeric]{strIsNumeric()}},
-\code{\link{strLeftRight}},
-\code{\link[=strPos]{strPos()}},
-\code{\link[=strRev]{strRev()}},
-\code{\link[=strSpell]{strSpell()}},
-\code{\link[=strSplit]{strSplit()}},
-\code{\link[=strTrim]{strTrim()}}
 }
 \concept{data-manipulation}
 \concept{string-manipulation}
-\concept{string.manipulation}

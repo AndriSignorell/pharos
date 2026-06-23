@@ -1,6 +1,6 @@
 Package: aurora
 Title: Descriptive Statistics Graphics and Utilities
-Version: 0.0.0.924
+Version: 0.0.0.925
 Authors@R: 
     person("Andri", "Signorell", , "andri@signorell.net", role = c("aut", "cre"))
 Description: Provides plots and graphic routines used in DescToolsX.

@@ -5,20 +5,20 @@
 #' The function supports integers, decimal numbers, and scientific notation.
 #'
 #' @param x A character vector.
-#' @param paste Logical; if \code{TRUE}, all extracted numbers per element of
-#'   \code{x} are concatenated into a single string. Otherwise, a list of
+#' @param collapse Logical; if \code{TRUE}, all extracted numbers per element
+#'   of \code{x} are concatenated into a single string. Otherwise, a list of
 #'   character vectors is returned.
-#' @param as.numeric Logical; if \code{TRUE}, extracted values are converted
-#'   to numeric.
+#' @param output Character; controls the type of the returned values.
+#'   \code{"character"} (default) returns strings; \code{"numeric"} coerces
+#'   extracted values to numeric.
 #' @param dec Character; decimal separator used in the input. Defaults to
 #'   \code{getOption("OutDec")}.
 #'
 #' @return
-#' If \code{paste = FALSE}, a list of character vectors (or numeric vectors if
-#' \code{as.numeric = TRUE}) containing the extracted values for each element
-#' of \code{x}.  
-#' If \code{paste = TRUE}, a character vector (or numeric vector if
-#' \code{as.numeric = TRUE}) with concatenated values per element.
+#' If \code{collapse = FALSE}, a list of character or numeric vectors
+#' containing the extracted values for each element of \code{x}.
+#' If \code{collapse = TRUE}, a character or numeric vector with
+#' concatenated values per element.
 #'
 #' @details
 #' The function detects numeric values including optional signs, decimal parts,
@@ -27,7 +27,7 @@
 #' Whitespace between sign and number (e.g., \code{"- 2.5"}) is tolerated and
 #' removed before returning results.
 #'
-#' If \code{as.numeric = TRUE} and the decimal separator \code{dec} differs
+#' If \code{output = "numeric"} and the decimal separator \code{dec} differs
 #' from the current system setting (\code{getOption("OutDec")}), values are
 #' converted accordingly before coercion.
 #'
@@ -40,49 +40,43 @@
 #' strVal(x)
 #'
 #' # extract as numeric
-#' strVal(x, as.numeric = TRUE)
+#' strVal(x, output = "numeric")
 #'
 #' # concatenate values
-#' strVal(x, paste = TRUE)
+#' strVal(x, collapse = TRUE)
 #'
 #' # different decimal separator
-#' strVal("value = 3,14", dec = ",", as.numeric = TRUE)
+#' strVal("value = 3,14", dec = ",", output = "numeric")
 #'
-
-#' @family string.manipulation
+#' @family string-manipulation
 #' @concept string-manipulation
 #' @concept data-manipulation
 #'
 #'
-
-
 #' @export
-strVal <- function(x, paste = FALSE, as.numeric = FALSE, dec = getOption("OutDec")) {
+strVal <- function(x,
+                   collapse = FALSE,
+                   output   = c("character", "numeric"),
+                   dec      = getOption("OutDec")) {
   
-  pat <- paste0("([+-]\\s?)?\\d+(", ifelse(dec==".", "\\.", dec), "\\d+)?([eE][+-]?\\d+)?")
+  output <- match.arg(output)
   
+  pat  <- paste0("([+-]\\s?)?\\d+(", ifelse(dec == ".", "\\.", dec), "\\d+)?([eE][+-]?\\d+)?")
   vals <- stringi::stri_extract_all_regex(x, pat)
-  
   vals <- lapply(vals, function(v) stringi::stri_replace_all_fixed(v, " ", ""))
   
-  if (paste) {
+  if (output == "numeric" && dec != getOption("OutDec")) {
+    vals <- lapply(vals, function(v)
+      stringi::stri_replace_all_fixed(v, dec, getOption("OutDec")))
+  }
+  
+  if (collapse) {
     vals <- sapply(vals, paste, collapse = "")
-    
-    if (as.numeric) {
-      if (dec != getOption("OutDec")) {
-        vals <- stringi::stri_replace_all_fixed(vals, dec, getOption("OutDec"))
-      }
+    if (output == "numeric")
       vals <- as.numeric(vals)
-    }
-    
   } else {
-    if (as.numeric) {
-      if (dec != getOption("OutDec")) {
-        vals <- lapply(vals, function(v)
-          stringi::stri_replace_all_fixed(v, dec, getOption("OutDec")))
-      }
+    if (output == "numeric")
       vals <- lapply(vals, as.numeric)
-    }
   }
   
   vals

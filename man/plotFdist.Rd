@@ -17,7 +17,7 @@ plotFdist(
   curve = FALSE,
   boxplot = TRUE,
   ecdf = TRUE,
-  curve.ecdf = FALSE,
+  curveEcdf = FALSE,
   stamp = .useTheme,
   ...
 )
@@ -78,7 +78,7 @@ suppress that element.}
 \item{ecdf}{controls the ECDF panel. \code{TRUE} (default) calls
 \code{\link{plotECDF}}; a list overrides specific arguments.}
 
-\item{curve.ecdf}{controls a fitted theoretical CDF curve on the ECDF
+\item{curveEcdf}{controls a fitted theoretical CDF curve on the ECDF
 panel, analogous to \code{curve}. \code{FALSE} (default) suppresses
 it.}
 
@@ -145,7 +145,7 @@ plotFdist(ozone,
   hist       = list(breaks = 15),
   curve      = list(expr = "dgamma(x, shape = m^2/v, scale = v/m)",
                     col = "navajowhite3"),
-  curve.ecdf = list(expr = "pgamma(x, shape = m^2/v, scale = v/m)",
+  curveEcdf = list(expr = "pgamma(x, shape = m^2/v, scale = v/m)",
                     col = "navajowhite3"),
   na.rm = TRUE, main = "Airquality - Ozone")
 

@@ -66,7 +66,7 @@
 #'   suppress that element.
 #' @param ecdf controls the ECDF panel. \code{TRUE} (default) calls
 #'   \code{\link{plotECDF}}; a list overrides specific arguments.
-#' @param curve.ecdf controls a fitted theoretical CDF curve on the ECDF
+#' @param curveEcdf controls a fitted theoretical CDF curve on the ECDF
 #'   panel, analogous to \code{curve}. \code{FALSE} (default) suppresses
 #'   it.
 #'
@@ -115,7 +115,7 @@
 #'   hist       = list(breaks = 15),
 #'   curve      = list(expr = "dgamma(x, shape = m^2/v, scale = v/m)",
 #'                     col = "navajowhite3"),
-#'   curve.ecdf = list(expr = "pgamma(x, shape = m^2/v, scale = v/m)",
+#'   curveEcdf = list(expr = "pgamma(x, shape = m^2/v, scale = v/m)",
 #'                     col = "navajowhite3"),
 #'   na.rm = TRUE, main = "Airquality - Ozone")
 #'
@@ -145,7 +145,7 @@ plotFdist <- function(x,
                       curve      = FALSE,
                       boxplot    = TRUE,
                       ecdf       = TRUE,
-                      curve.ecdf = FALSE,
+                      curveEcdf = FALSE,
                       
                       # FRAMEWORK
                       stamp = .useTheme,
@@ -249,7 +249,7 @@ plotFdist <- function(x,
       stamp    = FALSE
     ))
     
-    curve.ecdf_args <- .resolveSpec(curve.ecdf, list(
+    curveEcdf_args <- .resolveSpec(curveEcdf, list(
       expr = parse(text = gettextf("pnorm(x, %s, %s)", mean(x), sd(x))),
       add  = TRUE, n = 500,
       col  = twin[2], lwd = 2, lty = "solid"
@@ -261,7 +261,7 @@ plotFdist <- function(x,
     add.dcurve  <- !is.null(curve_args)
     add.boxplot <- !is.null(boxplot_args)
     add.ecdf    <- !is.null(ecdf_args)
-    add.pcurve  <- !is.null(curve.ecdf_args)
+    add.pcurve  <- !is.null(curveEcdf_args)
     
     if (add.hist)
       hist_args$xaxt <- ifelse(add.boxplot || add.ecdf, "n", "s")
@@ -470,9 +470,9 @@ plotFdist <- function(x,
       do.call("plotECDF", ecdf_args)
       
       if (add.pcurve) {
-        if (is.character(curve.ecdf_args$expr))
-          curve.ecdf_args$expr <- parse(text = curve.ecdf_args$expr)
-        do.call("curve", curve.ecdf_args)
+        if (is.character(curveEcdf_args$expr))
+          curveEcdf_args$expr <- parse(text = curveEcdf_args$expr)
+        do.call("curve", curveEcdf_args)
       }
     }
     

@@ -32,9 +32,10 @@
 #'     \item{\code{1}}{Spineplot (\code{\link[graphics]{spineplot}}).
 #'       Default.}
 #'     \item{\code{2}}{Mosaic plot (via \code{\link{plotMosaic}}).}
-#'     \item{\code{3}}{Association plot (Cohen-Friendly plot) via
+#'     \item{\code{3}}{Mosaic plot (swapped axis).}
+#'     \item{\code{4}}{Association plot (Cohen-Friendly plot) via
 #'       \code{\link{plotAssoc}}.}
-#'     \item{\code{4}}{Heatmap of cell proportions (via
+#'     \item{\code{5}}{Heatmap of cell proportions (via
 #'       \code{\link{plotHeatmap}}, \code{scale = "prop"}).}
 #'   }
 #'   Selecting multiple panels does not change the plotting layout (no
@@ -213,10 +214,10 @@ plot.Desc.table <- function(x,
                # row-dimension name to derive one from. The frame is left
                # as spineplot() draws it natively (no box() override here
                # by design - see @param box).
-               spineplot(tab,
+               spineplot(t(tab),
                          col  = resolveCol(colSpineDefault),
-                         xlab = xName,
-                         ylab = ylab %||% "",
+                         xlab = ylab %||% "",
+                         ylab = xName,
                          main = .main(.panelDefault("Spineplot")),
                          ...)
 
@@ -231,12 +232,26 @@ plot.Desc.table <- function(x,
                           xlab = xName,
                           ylab = ylab %||% "",
                           main = .main(.panelDefault("Mosaic plot")),
+                          horiz = TRUE,
                           stamp = NA,
                           ...)
              },
 
-             # ── 3: Association plot ──────────────────────────────────────────
+             # ── 3: Mosaic plot ───────────────────────────────────────────────
              "3" = {
+               plotMosaic(tab,
+                          col  = resolveCol(colSpineDefault),
+                          xlab = xName,
+                          ylab = ylab %||% "",
+                          main = .main(.panelDefault("Mosaic plot")),
+                          horiz = FALSE, 
+                          swap = TRUE,
+                          stamp = NA,
+                          ...)
+             },
+
+             # ── 4: Association plot ──────────────────────────────────────────
+             "4" = {
                # plotAssoc() has its own diverging-palette default
                # (pal("RedWhiteBlue3", n=100)) appropriate for signed
                # residuals - a grey/categorical default would not be
@@ -252,8 +267,8 @@ plot.Desc.table <- function(x,
                         ...)
              },
 
-             # ── 4: Heatmap ────────────────────────────────────────────────────
-             "4" = {
+             # ── 5: Heatmap ────────────────────────────────────────────────────
+             "5" = {
                plotHeatmap(tab,
                           scale = "prop",
                           col   = col,

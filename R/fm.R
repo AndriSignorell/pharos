@@ -595,8 +595,7 @@ fm.ftable <- function(x, digits = NULL, leadDigits = NULL, sci = NULL,
   any(grepl("_CH|Switzerland", Sys.getlocale()))
 }
 
-.dec_sep <- function() gsub("1", "", format(1.1))
-
+# .dec_sep <- function() getOption("OutDec", ".")
 
 .thousands_sep <- function(sep="") {
   

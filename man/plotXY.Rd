@@ -141,6 +141,10 @@ The legend is only drawn when at least one of \code{lm} or \code{loess}
 is active. \code{lm}/\code{loess} line colors are taken from the
 active theme's \code{twin} colors (\code{getTheme()$twin}).}
 
+\item{stamp}{Controls the corner stamp. \code{.useTheme} (default)
+resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
+\code{NULL}, a string, or a named list for \code{\link{stamp}()}.}
+
 \item{formula}{a formula of the form \code{y ~ x}.}
 
 \item{data}{an optional data frame containing variables in the formula.}

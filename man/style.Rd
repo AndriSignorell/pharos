@@ -11,10 +11,10 @@ styles()
 style(
   x,
   digits = NULL,
-  ldigits = NULL,
+  leadDigits = NULL,
   sci = NULL,
-  big.mark = NULL,
-  outdec = NULL,
+  bigMark = NULL,
+  decMark = NULL,
   naForm = NULL,
   zeroForm = NULL,
   fmt = NULL,
@@ -37,9 +37,9 @@ decimal point. Unlike \code{\link{formatC}} you will always get this number
 of digits even if the last digit is 0.  Negative numbers of digits round to
 a power of ten (\code{digits=-2} would round to the nearest hundred).}
 
-\item{ldigits}{number of leading zeros. \code{ldigits=3} would make sure
+\item{leadDigits}{number of leading zeros. \code{leadDigits=3} would make sure
 that at least 3 digits on the left side will be printed, say \code{3.4} will
-be printed as \code{003.4}. Setting \code{ldigits} to \code{0} will yield
+be printed as \code{003.4}. Setting \code{leadDigits} to \code{0} will yield
 results like \code{.452} for \code{0.452}. The default \code{NULL} will
 leave the numbers as they are (meaning at least one 0 digit).}
 
@@ -50,11 +50,11 @@ for the left border 10^(-scipen) as well as for the right one (10^scipen). A
 negative and a positive value can also be set independently. Default is
 \code{getOption("scipen")}, whereas \code{scipen=0} is overridden.}
 
-\item{big.mark}{character; if not empty used as mark between every 3
+\item{bigMark}{character; if not empty used as mark between every 3
 decimals before the decimal point. Default is "" (none).}
 
-\item{outdec}{character, specifying the decimal mark to be used. If not
-provided, the default set as \code{OutDec} option is used.}
+\item{decMark}{character, specifying the decimal mark to be used. If not
+provided, the default set as \code{decMark} option is used.}
 
 \item{naForm}{character, string specifying how \code{NA}s should be
 specially formatted.  If set to \code{NULL} (default) no special action will
@@ -108,10 +108,10 @@ arguments from \code{fm()} and combines them to an object of class
 \code{fmt}. \cr Following will define a new format template named
 "\code{num.sty}".  Passed to \code{fm()} this will result in a number
 displayed with 2 fixed digits and a comma as big mark: \preformatted{num.sty
-<- style(digits=2, big.mark=",") fm(12222.89345, fmt=num.sty) = 12,222.89}
+<- style(digits=2, bigMark=",") fm(12222.89345, fmt=num.sty) = 12,222.89}
 This is the same result as if the arguments would have been supplied
 directly, but helps to avoid boilerplate code: \cr \code{fm(12222.89345,
-digits=2, big.mark=",")}.
+digits=2, bigMark=",")}.
 
 To edit a style we can provide \code{style()} with its name and overwrite,
 resp. add new format options.  \code{style("num.sty", digits=1, sci=10)}
@@ -124,7 +124,7 @@ environment or in the options.
 
 The styles can be stored as options for convenience.  To store a new format
 we use the default \code{options()} approach: \code{options(num.sty =
-style(digits=1, big.mark=" "))} Defined styles in the options can be passed
+style(digits=1, bigMark=" "))} Defined styles in the options can be passed
 on to \code{fm()} simply by their name.
 
 Many report functions (e.g. \code{\link[DescToolsX]{tOne}()}) in \bold{DescToolsX} use
@@ -134,15 +134,15 @@ three default formats for counts (named \code{"abs.sty"}), numeric values
 \examples{
 
 # use style() to get and define new formats stored as option
-num.sty <- style(digits=2, big.mark=" ")
-abs.sty <- style(digits=0, big.mark=" ")
+num.sty <- style(digits=2, bigMark=" ")
+abs.sty <- style(digits=0, bigMark=" ")
 dat.sty <- style(fmt="MM, dd yyyy")
 
 num.sty                             # displays the details of the style
 # editing styles
 style("abs.sty")                    # looks for format "abs.sty"
 # style("nexist")                     # return for nonexisting style
-style("abs.sty", big.mark="")       # get Style("abs") and overwrite big.mark
+style("abs.sty", bigMark="")       # get Style("abs") and overwrite bigMark
 style("abs.sty", naForm="-")       # get Style("abs") and add user defined naForm
 
 styles()                            # all defined formats

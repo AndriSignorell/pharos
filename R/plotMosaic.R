@@ -219,16 +219,23 @@ plotMosaic <- function(x,
     col <- pal(getTheme()$palette, n = length(colLevels))
   
   fillCol <- col[match(tiles[[colVar]], colLevels)]
-  dots <- list(...)
+
+  lmar <- max(
+    5.1,
+    .marginLines(if(horiz) rowLevels else colLevels, 
+                 side = 2, las = 1, pad = 1)
+  )
+  
   
   .withGraphicsState({
     
-    .applyParFromDots(dots, defaults = list(
-      mar = c(if (horiz) 1 else 3, 
-              5.1, 
-              .marTop(main), 
-              if (legend) 6 else 1)
-    ))
+    .applyParFromDots(..., 
+                      defaults = list(
+                          mar = c(if (horiz) 1 else 3, 
+                                  lmar, 
+                                  .marTop(main), 
+                                  if (legend) 6 else 1)
+                        ))
     
     plot.new()
     plot.window(xlim = c(0, 1), ylim = c(0, 1), xaxs = "i", yaxs = "i")

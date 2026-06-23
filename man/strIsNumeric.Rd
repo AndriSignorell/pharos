@@ -52,8 +52,7 @@ Other string.manipulation:
 \code{\link[=strRev]{strRev()}},
 \code{\link[=strSpell]{strSpell()}},
 \code{\link[=strSplit]{strSplit()}},
-\code{\link[=strTrim]{strTrim()}},
-\code{\link[=strVal]{strVal()}}
+\code{\link[=strTrim]{strTrim()}}
 }
 \concept{data-inspection}
 \concept{string-manipulation}

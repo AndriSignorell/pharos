@@ -43,9 +43,10 @@ given order. One or more of:
 \item{\code{1}}{Spineplot (\code{\link[graphics]{spineplot}}).
 Default.}
 \item{\code{2}}{Mosaic plot (via \code{\link{plotMosaic}}).}
-\item{\code{3}}{Association plot (Cohen-Friendly plot) via
+\item{\code{3}}{Mosaic plot (swapped axis).}
+\item{\code{4}}{Association plot (Cohen-Friendly plot) via
 \code{\link{plotAssoc}}.}
-\item{\code{4}}{Heatmap of cell proportions (via
+\item{\code{5}}{Heatmap of cell proportions (via
 \code{\link{plotHeatmap}}, \code{scale = "prop"}).}
 }
 Selecting multiple panels does not change the plotting layout (no

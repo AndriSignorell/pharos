@@ -34,8 +34,6 @@
 #'   printed inside each cell. If \code{FALSE} (default), no labels are shown.
 #'   A character format string (e.g. \code{"\%.1f"}) can also be passed for
 #'   custom formatting.
-#' @param cex.labels numeric, character expansion for cell labels.
-#'   Default \code{0.7}.
 #' @param stamp Controls the corner stamp. \code{.useTheme} (default)
 #'   resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
 #'   \code{NULL}, or an explicit string, as for
@@ -126,8 +124,7 @@ plotAssoc <- function(x,
                       
                       # FEATURES
                       labels     = FALSE,
-                      cex.labels = 0.7,
-                      
+
                       # FRAMEWORK
                       stamp      = .useTheme,
                       
@@ -262,7 +259,6 @@ plotAssoc <- function(x,
             x.m[i],
             y.m[j] + d[i, j] / 2,
             labels = sprintf(fmt, d[i, j]),
-            cex    = cex.labels,
             col    = if (abs(d[i, j]) > d_abs_max * 0.6) "white" else "black"
           )
         }

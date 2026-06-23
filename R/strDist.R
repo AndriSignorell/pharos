@@ -39,7 +39,7 @@
 #' is \code{"levenshtein"}, the classical Levenshtein distance.
 #' @param mismatch numeric, distance value for a mismatch between symbols.
 #' @param gap numeric, distance value for inserting a gap.
-#' @param ignore.case if \code{FALSE} (default), the distance measure will be
+#' @param ignoreCase if \code{FALSE} (default), the distance measure will be
 #' case sensitive and if \code{TRUE}, case is ignored.
 #' @return \code{strDist} returns an object of class \code{"dist"}; cf.
 #' \code{\link[stats]{dist}}.
@@ -77,91 +77,128 @@
 #'
 #'
 #' @export
-strDist <- function (x, y, method = "levenshtein", mismatch = 1, gap = 1, ignore.case = FALSE){
+strDist <- function(x, y,
+                    method = "levenshtein",
+                    mismatch = 1,
+                    gap = 1,
+                    ignoreCase = FALSE) {
   
   # source MKmisc, Author: Matthias Kohl
   
-  if(ignore.case){
+  method <- match.arg(method,
+                      c("levenshtein", "normlevenshtein", "hamming"))
+  
+  if (!is.character(x))
+    stop("Argument 'x' must be character.")
+  
+  if (!is.character(y))
+    stop("Argument 'y' must be character.")
+  
+  if (length(x) == 0L)
+    stop("Argument 'x' must not be empty.")
+  
+  if (length(y) == 0L)
+    stop("Argument 'y' must not be empty.")
+  
+  if (ignoreCase) {
     x <- tolower(x)
     y <- tolower(y)
   }
   
-  if (!is.na(pmatch(method, "levenshtein")))
-    method <- "levenshtein"
-  
-  METHODS <- c("levenshtein", "normlevenshtein", "hamming")
-  method <- pmatch(method, METHODS)
-  
-  if (is.na(method))
-    stop("invalid distance method")
-  
-  if (method == -1)
-    stop("ambiguous distance method")
-  
-  stopifnot(is.character(x), is.character(y))
-  
-  if (length(x) == 1 & nchar(x[1]) > 1)
-    x1 <- strsplit(x, split = "")[[1]]
+  if (length(x) == 1L && nchar(x) > 1L)
+    x1 <- strsplit(x, split = "", fixed = TRUE)[[1]]
   else
     x1 <- x
   
-  if (length(y) == 1 & nchar(y[1]) > 1)
-    y1 <- strsplit(y, split = "")[[1]]
+  if (length(y) == 1L && nchar(y) > 1L)
+    y1 <- strsplit(y, split = "", fixed = TRUE)[[1]]
   else
     y1 <- y
   
-  if (method %in% c(1,2)){ ## Levenshtein
+  if (method %in% c("levenshtein", "normlevenshtein")) {
+    
     m <- length(x1)
     n <- length(y1)
-    D <- matrix(NA, nrow = m+1, ncol = n+1)
-    M <- matrix("", nrow = m+1, ncol = n+1)
-    D[,1] <- seq_len(m+1)*gap-1
-    D[1,] <- seq_len(n+1)*gap-1
-    D[1,1] <- 0
-    M[,1] <- "d"
-    M[1,] <- "i"
-    M[1,1] <- "start"
-    text <- c("d", "m", "i")
-    for(i in c(2:(m+1))){
-      for(j in c(2:(n+1))){
-        m1 <- D[i-1,j] + gap
-        m2 <- D[i-1,j-1] + (x1[i-1] != y1[j-1])*mismatch
-        m3 <- D[i,j-1] + gap
-        D[i,j] <- min(m1, m2, m3)
-        wmin <- text[which(c(m1, m2, m3) == D[i,j])]
-        if("m" %in% wmin & x1[i-1] != y1[j-1])
-          wmin[wmin == "m"] <- "mm"
-        M[i,j] <- paste(wmin, collapse = "/")
+    
+    D <- matrix(NA_real_, nrow = m + 1L, ncol = n + 1L)
+    M <- matrix("",        nrow = m + 1L, ncol = n + 1L)
+    
+    D[, 1]  <- seq_len(m + 1L) * gap - 1L
+    D[1, ]  <- seq_len(n + 1L) * gap - 1L
+    D[1, 1] <- 0
+    
+    M[, 1]  <- "d"
+    M[1, ]  <- "i"
+    M[1, 1] <- "start"
+    
+    ops <- c("d", "m", "i")
+    
+    if (m > 0L && n > 0L) {
+      
+      for (i in seq.int(2L, m + 1L)) {
+        
+        for (j in seq.int(2L, n + 1L)) {
+          
+          dDel <- D[i - 1L, j] +
+            gap
+          
+          dSub <- D[i - 1L, j - 1L] +
+            (x1[i - 1L] != y1[j - 1L]) * mismatch
+          
+          dIns <- D[i, j - 1L] +
+            gap
+          
+          D[i, j] <- min(dDel, dSub, dIns)
+          
+          wmin <- ops[which(c(dDel, dSub, dIns) == D[i, j])]
+          
+          if ("m" %in% wmin &&
+              x1[i - 1L] != y1[j - 1L])
+            wmin[wmin == "m"] <- "mm"
+          
+          M[i, j] <- paste(wmin, collapse = "/")
+        }
       }
     }
-    rownames(M) <- rownames(D) <- c("gap", x1)
-    colnames(M) <- colnames(D) <- c("gap", y1)
-    d <- D[m+1, n+1]
     
-    if(method == 2){  ## normalized levenshtein
-      d <- 1-d / (max(m, n))
-    }
+    rownames(D) <- rownames(M) <- c("gap", x1)
+    colnames(D) <- colnames(M) <- c("gap", y1)
+    
+    d <- D[m + 1L, n + 1L]
+    
+    if (method == "normlevenshtein")
+      d <- 1 - d / max(m, n)
   }
   
-  
-  if(method == 3){ ## Hamming
-    if(length(x1) != length(y1))
-      stop("Hamming distance is only defined for equal length strings")
+  if (method == "hamming") {
+    
+    if (length(x1) != length(y1))
+      stop(
+        "Hamming distance is only defined for equal-length strings."
+      )
+    
     d <- sum(x1 != y1)
+    
     D <- NULL
     M <- NULL
   }
-  attr(d, "Size") <- 2
-  attr(d, "Diag") <- FALSE
-  if(length(x) > 1) x <- paste0("", x, collapse = "")
-  if(length(y) > 1) y <- paste0("", y, collapse = "")
-  attr(d, "Labels") <- c(x,y)
-  attr(d, "Upper") <- FALSE
-  attr(d, "method") <- METHODS[method]
-  attr(d, "call") <- match.call()
-  attr(d, "ScoringMatrix") <- D
+  
+  if (length(x) > 1L)
+    x <- paste0(x, collapse = "")
+  
+  if (length(y) > 1L)
+    y <- paste0(y, collapse = "")
+  
+  attr(d, "Size")            <- 2L
+  attr(d, "Diag")            <- FALSE
+  attr(d, "Labels")          <- c(x, y)
+  attr(d, "Upper")           <- FALSE
+  attr(d, "method")          <- method
+  attr(d, "call")            <- match.call()
+  attr(d, "ScoringMatrix")   <- D
   attr(d, "TraceBackMatrix") <- M
+  
   class(d) <- c("stringDist", "dist")
   
-  return(d)
+  d
 }

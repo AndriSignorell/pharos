@@ -20,7 +20,7 @@ test_that("strVal extracts scientific notation", {
 
 test_that("strVal converts to numeric", {
   expect_equal(
-    strVal("x=2.5", as.numeric = TRUE)[[1]],
+    strVal("x=2.5", output="numeric")[[1]],
     2.5
   )
 })
@@ -28,7 +28,7 @@ test_that("strVal converts to numeric", {
 
 test_that("strVal pastes values", {
   expect_equal(
-    strVal("a1b2", paste = TRUE),
+    strVal("a1b2", collapse = TRUE),
     "12"
   )
 })
@@ -60,26 +60,26 @@ test_that("strVal returns empty on no-number string", {
 })
 
 test_that("strVal as.numeric=TRUE returns numeric list", {
-  res <- strVal("x = 2.5 and y = 3", as.numeric = TRUE)
+  res <- strVal("x = 2.5 and y = 3", output="numeric")
   expect_type(res[[1]], "double")
   expect_equal(res[[1]], c(2.5, 3))
 })
 
-test_that("strVal paste=TRUE concatenates per element", {
+test_that("strVal collapse=TRUE concatenates per element", {
   x <- c("a=1 b=2", "c=3")
-  res <- strVal(x, paste = TRUE)
+  res <- strVal(x, collapse = TRUE)
   expect_length(res, 2)
   expect_type(res, "character")
 })
 
 test_that("strVal dec=',' handles comma decimal", {
-  res <- strVal("3,14", dec = ",", as.numeric = TRUE)
+  res <- strVal("3,14", dec = ",", output="numeric")
   expect_equal(res[[1]], 3.14)
 })
 
 test_that("strVal vectorises over input", {
   x <- c("a=1", "b=2", "c=3")
-  res <- strVal(x, as.numeric = TRUE)
+  res <- strVal(x, output="numeric")
   expect_length(res, 3)
   expect_equal(sapply(res, `[`, 1), c(1, 2, 3))
 })

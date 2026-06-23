@@ -9,7 +9,7 @@ findColor(
   col = rev(heat.colors(100)),
   minX = NULL,
   maxX = NULL,
-  all.inside = FALSE
+  allInside = FALSE
 )
 }
 \arguments{
@@ -23,7 +23,7 @@ left to the default \code{NULL} \code{min(pretty(x))} will be used.}
 \item{maxX}{the x-value to be used for the right edge of the last color. If
 left to the default \code{NULL} \code{max(pretty(x))} will be used.}
 
-\item{all.inside}{logical; if true, the returned indices are coerced into
+\item{allInside}{logical; if true, the returned indices are coerced into
 \code{1, ..., N-1}, i.e., \code{0} is mapped to \code{1} and \code{N} to
 \code{N-1}.}
 }
@@ -36,7 +36,7 @@ For the selection of colors the option \code{rightmost.closed} in the used
 function \code{\link{findInterval}} is set to TRUE. This will ensure that
 all values on the right edge of the range are assigned a color. How values
 outside the boundaries of minX and maxX should be handled can be
-controlled by \code{all.inside}. Set this value to TRUE, if those values
+controlled by \code{allInside}. Set this value to TRUE, if those values
 should get the colors at the edges or set it to FALSE, if they should remain
 white (which is the default).
 
@@ -78,9 +78,9 @@ x <- c(-0.2, 0, 0.15, 0.55, .75, 1, 1.3)
 arrows(x0 = x, y0 = 0.6, y1 = 0.8, angle = 15, length = .2)
 text(x=x, y = 0.5, labels = x, adj = c(0.5,0.5))
 text(x=x, y = 0.4, labels = names(findColor(x, col=cols,
-   minX = 0, maxX = 1, all.inside = TRUE)), adj = c(0.5,0.5))
+   minX = 0, maxX = 1, allInside = TRUE)), adj = c(0.5,0.5))
 text(x=x, y = 0.3, labels = names(findColor(x, col=cols,
-   minX = 0, maxX = 1, all.inside = FALSE)), adj = c(0.5,0.5))
+   minX = 0, maxX = 1, allInside = FALSE)), adj = c(0.5,0.5))
 }
 \seealso{
 \code{\link{findInterval}}

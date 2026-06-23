@@ -58,8 +58,7 @@ Other string.manipulation:
 \code{\link[=strPos]{strPos()}},
 \code{\link[=strRev]{strRev()}},
 \code{\link[=strSpell]{strSpell()}},
-\code{\link[=strTrim]{strTrim()}},
-\code{\link[=strVal]{strVal()}}
+\code{\link[=strTrim]{strTrim()}}
 }
 \concept{data-manipulation}
 \concept{string-manipulation}

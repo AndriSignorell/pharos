@@ -14,7 +14,6 @@ plotAssoc(
   col = pal("RedWhiteBlue3", n = 100L),
   border = NA,
   labels = FALSE,
-  cex.labels = 0.7,
   stamp = .useTheme,
   ...
 )
@@ -55,9 +54,6 @@ to the last.}
 printed inside each cell. If \code{FALSE} (default), no labels are shown.
 A character format string (e.g. \code{"\%.1f"}) can also be passed for
 custom formatting.}
-
-\item{cex.labels}{numeric, character expansion for cell labels.
-Default \code{0.7}.}
 
 \item{stamp}{Controls the corner stamp. \code{.useTheme} (default)
 resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/

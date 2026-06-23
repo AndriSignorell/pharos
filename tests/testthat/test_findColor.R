@@ -21,15 +21,15 @@ test_that("findColor: value at maxX returns last color", {
   expect_equal(res, "red")
 })
 
-test_that("findColor: out-of-range returns NA without all.inside", {
+test_that("findColor: out-of-range returns NA without allInside", {
   cols <- c("blue", "white", "red")
-  res <- findColor(-10, col = cols, minX = 0, maxX = 100, all.inside = FALSE)
+  res <- findColor(-10, col = cols, minX = 0, maxX = 100, allInside = FALSE)
   expect_true(is.na(res))
 })
 
-test_that("findColor: out-of-range clamps with all.inside=TRUE", {
+test_that("findColor: out-of-range clamps with allInside=TRUE", {
   cols <- c("blue", "white", "red")
-  res <- findColor(-10, col = cols, minX = 0, maxX = 100, all.inside = TRUE)
+  res <- findColor(-10, col = cols, minX = 0, maxX = 100, allInside = TRUE)
   expect_false(is.na(res))
   expect_equal(res, "blue")
 })
