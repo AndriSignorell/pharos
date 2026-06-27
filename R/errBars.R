@@ -227,7 +227,7 @@ errBars <- function(
       code   = 3,
       length = 0.05
     ),
-    return_rest = TRUE
+    returnRest = TRUE
   )
   
   arrArgs <- tmp$args

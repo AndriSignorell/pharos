@@ -7,85 +7,106 @@
 plotProbDist(
   breaks,
   FUN,
-  blab = NULL,
   main = "",
   xlim = NULL,
   col = NULL,
   density = 7,
-  alab = LETTERS[1:(length(breaks) - 1)],
-  alab_x = NULL,
-  alab_y = NULL,
   ylab = "density",
+  areaLabels = NULL,
+  breakLabels = NULL,
+  grid = FALSE,
+  box = .useTheme,
   ...
 )
 }
 \arguments{
-\item{breaks}{a numeric vector containing the breaks of different areas. The
-start and end must not be infinity.}
+\item{breaks}{Numeric vector of break points defining the boundaries between
+shaded areas. The first and last value define the plot range passed to
+\code{\link{shade}()}; interior values are the actual boundaries.}
 
-\item{FUN}{the (typically) distribution function}
+\item{FUN}{The distribution density function to plot, typically of the form
+\code{function(x) dnorm(x, mean=0, sd=1)}.}
 
-\item{blab}{text for labelling the breaks}
+\item{main}{Main title for the plot. \code{NULL} or \code{""} suppresses
+the title and reduces the top margin automatically.}
 
-\item{main}{main title for the plot}
+\item{xlim}{Numeric vector of length 2. x-axis limits passed to
+\code{\link{curve}()}.}
 
-\item{xlim}{the x-limits for the plot}
+\item{col}{Color(s) for the shaded areas. Recycled if shorter than the
+number of areas. Defaults to the Helsana palette.}
 
-\item{col}{the color for the shaded areas}
+\item{density}{Density of shading lines passed to \code{\link{shade}()}.
+Default is \code{7}.}
 
-\item{density}{the density for the shaded areas}
+\item{ylab}{Label for the y-axis. Default is \code{"density"}.}
 
-\item{alab}{the labels for areas}
+\item{areaLabels}{Controls labels placed in the centre of each shaded area.
+\code{NULL} (default) suppresses labels. \code{TRUE} uses
+\code{LETTERS} as default labels. A character vector sets explicit labels.
+A named list overrides individual arguments passed to
+\code{\link{boxedText}()} (e.g. \code{list(cex = 3)} or
+\code{list(x = c(-2, 3), y = 0.1)} for manual positioning).}
 
-\item{alab_x}{the x-coord for the area labels}
+\item{breakLabels}{Controls labels placed on the x-axis at interior break
+points via \code{\link{mtext}()}. \code{NULL} (default) suppresses labels.
+\code{TRUE} uses \code{LETTERS} as default labels. A character vector
+sets explicit labels. A named list overrides individual arguments
+(e.g. \code{list(cex = 1.8, font = 1)}).}
 
-\item{alab_y}{the y-coord for the area labels, if left to default they will
-be placed in the middle of the plot}
+\item{grid}{Controls background grid. \code{FALSE} (default) suppresses the
+grid. \code{TRUE} or \code{.useTheme} draws a grid according to the
+current theme. A named list overrides individual arguments passed to
+\code{\link{grid}()}.}
 
-\item{ylab}{the label for they y-axis}
+\item{box}{Controls the plot box. \code{.useTheme} (default) uses the
+current theme setting. \code{TRUE}/\code{FALSE} forces the box on or off.
+A named list overrides individual arguments passed to
+\code{\link{box}()}.}
 
-\item{\dots}{further parameters passed to internally used function
-\code{\link{curve}()}}
+\item{\dots}{Further graphical parameters passed to \code{\link{curve}()}
+and \code{.applyParFromDots()}, e.g. \code{las}, \code{col.axis}.}
 }
 \value{
-nothing returned
+\code{NULL}, invisibly.
 }
 \description{
-Produce a plot from a probability distribution with shaded areas. This is
-often needed in theory texts for classes in statistics.
-}
-\details{
-The function sets up a two-step plot procedure based on curve() and shade()
-with additional labelling for convenience.
+Produces a plot of a probability distribution function with shaded areas.
+Useful for illustrating critical regions, p-values, or probability masses
+in statistics teaching materials.
 }
 \examples{
-# plot t-distribution
-plotProbDist(breaks=c(-6, -2.3, 1.5, 6), 
-             function(x) dt(x, df=8), 
-             blab=c("A","B"), xlim=c(-4,4), alab=NA,
-             main="t-Distribution (df=8)",
-             col=c("deeppink4", "skyblue3", "darkorange2"), 
-             density=c(20, 7))
+# Normal distribution with two areas
+plotProbDist(breaks = c(-10, -1, 12),
+             FUN    = function(x) dnorm(x, mean = 2, sd = 2),
+             main   = "Normal-Distribution N(2,2)",
+             xlim   = c(-7, 10),
+             col    = c("deeppink4", "skyblue3"),
+             density = c(20, 7),
+             breakLabels = TRUE)
 
-# Normal
-plotProbDist(breaks=c(-10, -1, 12), 
-             function(x) dnorm(x, mean=2, sd=2), 
-             blab="A", xlim=c(-7,10),
-             main="Normal-Distribution N(2,2)",
-             col=c("deeppink4", "skyblue3"), 
-             density=c(20, 7))
+# t-distribution with three areas
+plotProbDist(breaks = c(-6, -2.3, 1.5, 6),
+             FUN    = function(x) dt(x, df = 8),
+             main   = "t-Distribution (df=8)",
+             xlim   = c(-4, 4),
+             col    = c("deeppink4", "skyblue3", "darkorange2"),
+             density = c(20, 7),
+             areaLabels = FALSE,
+             breakLabels = list(text=c("A", "B")))
 
-# same for Chi-square
-plotProbDist(breaks=c(0, 15, 35), 
-             function(x) dchisq(x, df=8), 
-             blab="B", xlim=c(0, 30),
-             main=expression(paste(chi^2-Distribution, " (df=8)")),
-             col=c("deeppink4", "skyblue3"), density=c(0, 20))
-
+# Chi-square distribution
+plotProbDist(breaks  = c(0, 15, 35),
+             FUN     = function(x) dchisq(x, df = 8),
+             main    = expression(chi^2~"-Distribution (df=8)"),
+             xlim    = c(0, 30),
+             col     = c("deeppink4", "skyblue3"),
+             density = c(0, 20),
+             breakLabels = list(text="B"))
 
 }
 \seealso{
-\code{\link{shade}}, \code{\link{curve}}, \code{\link{polygon}}
+\code{\link{shade}}, \code{\link{curve}}, \code{\link{boxedText}}
 
 Other plot.distribution:
 \code{\link[=plotCatDist]{plotCatDist()}},
