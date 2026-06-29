@@ -32,6 +32,12 @@
 #' @return
 #' Invisibly returns \code{x}.
 #'
+
+#' @family plot.s3  
+#' @concept agreement  
+#' @concept method-comparison
+#'
+#'
 #' @export
 plot.BlandAltman <- function(
     x,

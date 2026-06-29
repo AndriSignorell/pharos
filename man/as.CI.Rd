@@ -113,4 +113,6 @@ plotDot(as.CI(xci))
 \code{\link{plotDot}},
 \code{\link{is.CI}}
 }
+\concept{ci.objects}
+\concept{confidence-interval}
 \concept{confidence-intervals}

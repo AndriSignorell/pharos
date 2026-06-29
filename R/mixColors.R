@@ -5,7 +5,7 @@
 #'
 #' @param col1 First vector of colors.
 #' @param col2 Second vector of colors.
-#' @param weight Numeric value between 0 and 1 specifying the
+#' @param weights Numeric value between 0 and 1 specifying the
 #'   contribution of \code{col2}. A value of 0 returns \code{col1},
 #'   while 1 returns \code{col2}.
 #'
@@ -14,7 +14,7 @@
 #' @details
 #' Colors are mixed linearly in RGB space:
 #' \deqn{
-#'   x_{mix} = (1 - weight) x_1 + weight x_2
+#'   x_{mix} = (1 - weights) x_1 + weights x_2
 #' }
 #'
 #' All arguments are recycled as necessary.
@@ -23,15 +23,17 @@
 #' \code{\link{lighten}},
 #' \code{\link{darken}}
 #'
-#' @family color.manipulation
-#' @concept color-manipulation
+
+#' @family color  
+#' @concept color
+#'
 #'
 #' @export
-mixColors <- function(col1, col2, weight = 0.5) {
+mixColors <- function(col1, col2, weights = 0.5) {
   
-  if (!is.numeric(weight) || length(weight) != 1L ||
-      is.na(weight) || weight < 0 || weight > 1)
-    stop("'weight' must be a number between 0 and 1.")
+  if (!is.numeric(weights) || length(weights) != 1L ||
+      is.na(weights) || weights < 0 || weights > 1)
+    stop("'weights' must be a number between 0 and 1.")
   
   n <- max(length(col1), length(col2))
   
@@ -41,7 +43,7 @@ mixColors <- function(col1, col2, weight = 0.5) {
   rgb1 <- col2rgb(col1)
   rgb2 <- col2rgb(col2)
   
-  rgbMix <- (1 - weight) * rgb1 + weight * rgb2
+  rgbMix <- (1 - weights) * rgb1 + weights * rgb2
   
   rgb(
     red   = rgbMix[1, ],

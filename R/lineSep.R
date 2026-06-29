@@ -24,9 +24,9 @@
 #'
 
 
-#' @family string.format
-#' @concept string-formatting
-#' @concept graphics
+
+#' @family graphics.utils  
+#' @concept annotation
 #'
 #'
 #' @export

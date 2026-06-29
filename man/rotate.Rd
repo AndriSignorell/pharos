@@ -48,11 +48,14 @@ par(op)
 \code{\link{polygon}}, \code{\link{regPolygon}},
 \code{\link{ellipse}}, \code{\link{arc}}
 
-Other coordinate.transform:
-\code{\link{coordinate-conversions}},
-\code{\link[=degToRad]{degToRad()}},
+Other geometry:
+\code{\link[=arc]{arc()}},
+\code{\link[=band]{band()}},
+\code{\link[=bezier]{bezier()}},
+\code{\link[=canvas]{canvas()}},
+\code{\link[=polarGrid]{polarGrid()}},
+\code{\link[=polygon]{polygon()}},
+\code{\link[=shade]{shade()}},
 \code{\link[=transformXY]{transformXY()}}
 }
-\concept{coordinate.transform}
 \concept{geometry}
-\concept{mathematics}

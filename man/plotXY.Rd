@@ -199,8 +199,16 @@ plotXY(temperature ~ delivery_min, bedrock::Pizza, main = "")
 \code{\link[stats]{loess}},
 \code{\link[bedrock]{callIf}},
 \code{\link{getTheme}}, \code{\link{setTheme}}
+
+Other plot.bivariate:
+\code{\link[=plotAssoc]{plotAssoc()}},
+\code{\link[=plotBag]{plotBag()}},
+\code{\link[=plotCor]{plotCor()}},
+\code{\link[=plotDens2D]{plotDens2D()}},
+\code{\link[=plotHeatmap]{plotHeatmap()}},
+\code{\link[=plotHexbin]{plotHexbin()}},
+\code{\link[=plotMosaic]{plotMosaic()}}
 }
-\concept{graphics}
-\concept{regression}
+\concept{bivariate}
+\concept{plot.bivariate}
 \concept{scatterplot}
-\concept{topic.plots}

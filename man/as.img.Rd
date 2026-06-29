@@ -24,3 +24,9 @@ the resulting image as a self-contained, base64-encoded \verb{<img>}
 tag (class \code{"html"}, see \code{\link{as.html}}) suitable for
 embedding directly in HTML text.
 }
+\seealso{
+Other html:
+\code{\link[=as.html]{as.html()}},
+\code{\link[=toHtmlTable]{toHtmlTable()}}
+}
+\concept{html}

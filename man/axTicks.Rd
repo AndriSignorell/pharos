@@ -55,12 +55,7 @@ with(beaver1, {
 \code{\link{axTicks}}, \code{\link{axis.POSIXct}}
 
 Other plot.utils:
-\code{\link[=lineToUser]{lineToUser()}},
-\code{\link[=lines.lm]{lines.lm()}},
-\code{\link[=mar]{mar()}},
-\code{\link[=setBackCol]{setBackCol()}},
-\code{\link{splineCI}},
-\code{\link[=spreadOut]{spreadOut()}}
+\code{\link{splineCI}}
 }
 \concept{date-handling}
 \concept{graphics}

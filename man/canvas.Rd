@@ -37,10 +37,14 @@ text(0, 0, "Hello world!", cex=5)
 
 }
 \seealso{
-Other plot.geometry:
-\code{\link[=abcCoords]{abcCoords()}},
-\code{\link[=polarGrid]{polarGrid()}}
+Other geometry:
+\code{\link[=arc]{arc()}},
+\code{\link[=band]{band()}},
+\code{\link[=bezier]{bezier()}},
+\code{\link[=polarGrid]{polarGrid()}},
+\code{\link[=polygon]{polygon()}},
+\code{\link[=rotate]{rotate()}},
+\code{\link[=shade]{shade()}},
+\code{\link[=transformXY]{transformXY()}}
 }
 \concept{geometry}
-\concept{graphics}
-\concept{plot.geometry}

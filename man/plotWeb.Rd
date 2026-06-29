@@ -111,15 +111,14 @@ plotWeb(m2, labels = list(las = 2))
 \code{\link{plotCor}}, \code{\link{getTheme}}
 
 Other plot.special:
-\code{\link[=plotArea]{plotArea()}},
 \code{\link[=plotBinaryTree]{plotBinaryTree()}},
 \code{\link[=plotCirc]{plotCirc()}},
-\code{\link[=plotFun]{plotFun()}},
 \code{\link[=plotMiss]{plotMiss()}},
 \code{\link[=plotPolar]{plotPolar()}},
+\code{\link[=plotPropCI]{plotPropCI()}},
 \code{\link[=plotTernary]{plotTernary()}},
+\code{\link[=plotTimeSeries]{plotTimeSeries()}},
 \code{\link[=plotTreemap]{plotTreemap()}}
 }
-\concept{association-measures}
-\concept{graphics}
+\concept{bivariate}
 \concept{plot.special}

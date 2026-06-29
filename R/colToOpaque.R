@@ -28,9 +28,10 @@
 #' barplot(c(1, 1.2, 1.3), col=cols, panel.first=abline(h=0.4, lwd=10, col="grey35"))
 #' 
 
-#' @family topic.colors
-#' @concept color-manipulation
-#' @concept graphics
+
+#' @family color  
+#' @concept color  
+#' @concept color-conversion
 #'
 #'
 #' @export
@@ -62,10 +63,10 @@ colToOpaque <- function(col, alpha=NULL, bg=NULL){
   res <- sapply(1:attr(lst, "maxdim"), function(i)
             # discard any alpha channel by only using rows 1:3
             round(bg - lst[["alpha"]][[i]] * (bg - lst[["rgb"]][[i]][1:3, ])))
-  colnames(res) <- paste0(lapply(lst[["rgb"]], function(z) RGBToHex(z[1:3, ])), 
+  colnames(res) <- paste0(lapply(lst[["rgb"]], function(z) rgbToHex(z[1:3, ])), 
                       decToHex(round(lst[["alpha"]] * 255))) 
   
-  res <- apply(res, 2, RGBToHex)
+  res <- apply(res, 2, rgbToHex)
   
   return(res)
   

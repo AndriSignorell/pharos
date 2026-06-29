@@ -84,11 +84,23 @@ sapply(c("topleft", "top", "topright",
 \code{\link{text}}, \code{\link{legend}},
 \code{\link{boxedText}}
 
-Other plot.geometry:
-\code{\link[=canvas]{canvas()}},
-\code{\link[=polarGrid]{polarGrid()}}
+Other graphics.utils:
+\code{\link[=axisBreak]{axisBreak()}},
+\code{\link[=barText]{barText()}},
+\code{\link[=boxedText]{boxedText()}},
+\code{\link[=colLegend]{colLegend()}},
+\code{\link[=degToRad]{degToRad()}},
+\code{\link[=errBars]{errBars()}},
+\code{\link[=lineSep]{lineSep()}},
+\code{\link[=lineToUser]{lineToUser()}},
+\code{\link[=lines.lm]{lines.lm()}},
+\code{\link[=mar]{mar()}},
+\code{\link[=preview]{preview()}},
+\code{\link[=spreadOut]{spreadOut()}},
+\code{\link[=stamp]{stamp()}},
+\code{\link[=textLegend]{textLegend()}},
+\code{\link[=titleRect]{titleRect()}},
+\code{\link[=unit]{unit()}}
 }
-\concept{geometry}
-\concept{graphics}
-\concept{plot-positioning}
-\concept{plot.geometry}
+\concept{annotation}
+\concept{graphics.utils}

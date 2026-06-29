@@ -24,10 +24,9 @@
 #' plotTimeSeries(AirPassengers)
  
 
-#' @family plot.timeseries
-#' @concept graphics
+
+#' @family plot.special  
 #' @concept time-series
-#' @concept descriptive-statistics
 #'
 #'
 #' @export

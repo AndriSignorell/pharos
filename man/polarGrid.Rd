@@ -91,10 +91,14 @@ polarGrid(rlabels = NA, alabels = NA)
 
 }
 \seealso{
-Other plot.geometry:
-\code{\link[=abcCoords]{abcCoords()}},
-\code{\link[=canvas]{canvas()}}
+Other geometry:
+\code{\link[=arc]{arc()}},
+\code{\link[=band]{band()}},
+\code{\link[=bezier]{bezier()}},
+\code{\link[=canvas]{canvas()}},
+\code{\link[=polygon]{polygon()}},
+\code{\link[=rotate]{rotate()}},
+\code{\link[=shade]{shade()}},
+\code{\link[=transformXY]{transformXY()}}
 }
 \concept{geometry}
-\concept{graphics}
-\concept{plot.geometry}

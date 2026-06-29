@@ -42,9 +42,9 @@
 #' plotPolar(r[1,], theta = theta, type = "h")
 #'
 
-#' @family plot.special
-#' @concept graphics
-#' @concept geometry
+
+#' @family plot.special  
+#' @concept bivariate
 #'
 #'
 #' @export

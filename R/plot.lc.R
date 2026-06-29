@@ -84,6 +84,11 @@ NULL
 
 
 #' @rdname plot.Lc
+
+#' @family plot.s3  
+#' @concept inequality
+#'
+#'
 #' @export
 plot.Lc <- function(
     

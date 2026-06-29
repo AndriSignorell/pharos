@@ -54,4 +54,15 @@ polygon(
 \seealso{
 \code{\link{polygon}},
 \code{\link{ring}}
+
+Other geometry:
+\code{\link[=arc]{arc()}},
+\code{\link[=bezier]{bezier()}},
+\code{\link[=canvas]{canvas()}},
+\code{\link[=polarGrid]{polarGrid()}},
+\code{\link[=polygon]{polygon()}},
+\code{\link[=rotate]{rotate()}},
+\code{\link[=shade]{shade()}},
+\code{\link[=transformXY]{transformXY()}}
 }
+\concept{geometry}

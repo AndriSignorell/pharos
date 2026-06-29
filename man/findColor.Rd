@@ -85,11 +85,19 @@ text(x=x, y = 0.3, labels = names(findColor(x, col=cols,
 \seealso{
 \code{\link{findInterval}}
 
-Other topic.colors:
+Other color:
+\code{\link[=addAlpha]{addAlpha()}},
 \code{\link[=colToOpaque]{colToOpaque()}},
+\code{\link[=colToRGB]{colToRGB()}},
 \code{\link[=contrastColor]{contrastColor()}},
-\code{\link[=palNames]{palNames()}}
+\code{\link[=darken]{darken()}},
+\code{\link[=grayscale]{grayscale()}},
+\code{\link[=hcol]{hcol()}},
+\code{\link[=hexToRGB]{hexToRGB()}},
+\code{\link[=lighten]{lighten()}},
+\code{\link[=mixColors]{mixColors()}},
+\code{\link[=pal]{pal()}},
+\code{\link[=palNames]{palNames()}},
+\code{\link[=setBackCol]{setBackCol()}}
 }
-\concept{color-manipulation}
-\concept{graphics}
-\concept{topic.colors}
+\concept{color}

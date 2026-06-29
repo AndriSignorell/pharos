@@ -43,9 +43,9 @@
 #' 
 
 
-#' @family plot.utils
-#' @concept graphics
-#' @concept vector-manipulation
+
+#' @family graphics.utils  
+#' @concept annotation
 #'
 #'
 #' @export

@@ -60,12 +60,6 @@ polToCart(r=c(1,2,3), theta=pi/2)
 cartToSph(x=1, y=2, z=3)   # r=3.741657, theta=0.930274, phi=1.107149
 
 }
-\seealso{
-Other coordinate.transform:
-\code{\link[=degToRad]{degToRad()}},
-\code{\link[=rotate]{rotate()}},
-\code{\link[=transformXY]{transformXY()}}
-}
 \concept{coordinate.transform}
 \concept{geometry}
 \concept{mathematics}

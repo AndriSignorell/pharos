@@ -119,16 +119,8 @@ for (a in 1:3)
 
 }
 \seealso{
-Other plot.special:
-\code{\link[=plotArea]{plotArea()}},
-\code{\link[=plotBinaryTree]{plotBinaryTree()}},
-\code{\link[=plotCirc]{plotCirc()}},
-\code{\link[=plotMiss]{plotMiss()}},
-\code{\link[=plotPolar]{plotPolar()}},
-\code{\link[=plotTernary]{plotTernary()}},
-\code{\link[=plotTreemap]{plotTreemap()}},
-\code{\link[=plotWeb]{plotWeb()}}
+Other plot.distribution:
+\code{\link[=plotProbDist]{plotProbDist()}}
 }
-\concept{graphics}
-\concept{mathematics}
-\concept{plot.special}
+\concept{distribution-summary}
+\concept{plot.distribution}

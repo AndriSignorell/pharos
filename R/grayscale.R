@@ -27,11 +27,14 @@
 #' 
 #' par(op)
 #'
-#' @family color.manipulation
-#' @concept graphics
-#' @concept color-manipulation
 
 
+
+#' @family color  
+#' @concept color  
+#' @concept color-conversion
+#'
+#'
 #' @export
 grayscale <- function(col) {
   

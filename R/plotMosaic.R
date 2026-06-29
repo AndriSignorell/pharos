@@ -164,13 +164,13 @@
 #' plotMosaic(tab, swap = TRUE)
 #' plotMosaic(tab, horiz = TRUE, main = "Hair ~ Eyecolor")
 #'
-#' @family topic.categoricalPlots
-#' @concept mosaic-plot
-#' @concept contingency-table
-#' @concept categorical-data
-#' @concept spine-plot
-#'
 #' @seealso [plotCatDist()], [plotBar()], [getTheme()]
+#'
+#'
+
+#' @family plot.bivariate  
+#' @concept frequency-table  
+#' @concept bivariate
 #'
 #'
 #' @export

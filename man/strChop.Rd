@@ -49,20 +49,25 @@ strChop(x=x, pos=c(5, 10))
 \code{\link{strLeft}},
 \code{\link{substr}}
 
-Other string.manipulation:
+Other string:
+\code{\link[=mgsub]{mgsub()}},
+\code{\link[=strAbbr]{strAbbr()}},
+\code{\link[=strAlign]{strAlign()}},
 \code{\link[=strCap]{strCap()}},
 \code{\link[=strCountW]{strCountW()}},
 \code{\link[=strDist]{strDist()}},
 \code{\link[=strExtract]{strExtract()}},
 \code{\link[=strExtractBetween]{strExtractBetween()}},
 \code{\link[=strIsNumeric]{strIsNumeric()}},
-\code{\link{strLeftRight}},
+\code{\link[=strLen]{strLen()}},
+\code{\link[=strPad]{strPad()}},
 \code{\link[=strPos]{strPos()}},
 \code{\link[=strRev]{strRev()}},
 \code{\link[=strSpell]{strSpell()}},
 \code{\link[=strSplit]{strSplit()}},
-\code{\link[=strTrim]{strTrim()}}
+\code{\link[=strTrim]{strTrim()}},
+\code{\link[=strTrunc]{strTrunc()}},
+\code{\link[=strVal]{strVal()}}
 }
-\concept{data-manipulation}
+\concept{string}
 \concept{string-manipulation}
-\concept{string.manipulation}

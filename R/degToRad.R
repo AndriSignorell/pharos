@@ -22,9 +22,9 @@
 
 
 #' @rdname degToRad
-#' @family coordinate.transform
-#' @concept geometry
-#' @concept mathematics
+
+#' @family graphics.utils  
+#' @concept annotation
 #'
 #'
 #' @export

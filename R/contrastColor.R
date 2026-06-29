@@ -55,10 +55,9 @@
 #'
 
   
-#' @family topic.colors
-#' @concept color-manipulation
-#' @concept graphics
-#' @concept string-formatting
+
+#' @family color  
+#' @concept color
 #'
 #'
 #' @export

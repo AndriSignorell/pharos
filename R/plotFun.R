@@ -83,9 +83,9 @@
 #'           from = 0, to = 2*pi,
 #'           add = (a != 1), col = a)
 #'
-#' @family plot.special
-#' @concept graphics
-#' @concept mathematics
+
+#' @family plot.distribution  
+#' @concept distribution-summary
 #'
 #'
 #' @export

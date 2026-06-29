@@ -93,7 +93,6 @@ plotDens2D(x, y, type = "image")
 }
 \seealso{
 Other topic.graphics:
-\code{\link[=plotBar]{plotBar()}},
 \code{\link[=plotBubble]{plotBubble()}},
 \code{\link[=plotDens]{plotDens()}},
 \code{\link[=plotRidge]{plotRidge()}}
@@ -103,7 +102,9 @@ Other plot.bivariate:
 \code{\link[=plotBag]{plotBag()}},
 \code{\link[=plotCor]{plotCor()}},
 \code{\link[=plotHeatmap]{plotHeatmap()}},
-\code{\link[=plotHexbin]{plotHexbin()}}
+\code{\link[=plotHexbin]{plotHexbin()}},
+\code{\link[=plotMosaic]{plotMosaic()}},
+\code{\link[=plotXY]{plotXY()}}
 }
 \concept{base-graphics}
 \concept{bivariate}

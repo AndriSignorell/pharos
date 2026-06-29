@@ -88,10 +88,10 @@
 #' 
 
 #' @rdname boxedText
-#' @family plot.annotation
-#' @concept graphics
-#' @concept plot-annotation
-#' 
+
+#' @family graphics.utils  
+#' @concept annotation
+#'
 #'
 #' @export
 boxedText <- function(x, ...) 

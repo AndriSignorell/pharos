@@ -48,9 +48,10 @@
 #' # different decimal separator
 #' strVal("value = 3,14", dec = ",", output = "numeric")
 #'
-#' @family string-manipulation
-#' @concept string-manipulation
-#' @concept data-manipulation
+
+#' @family string  
+#' @concept string-manipulation  
+#' @concept number-formatting
 #'
 #'
 #' @export
@@ -81,3 +82,5 @@ strVal <- function(x,
   
   vals
 }
+
+

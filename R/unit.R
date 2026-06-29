@@ -35,9 +35,9 @@
 #' unit(y) <- NULL
 #'
 #' @name unit
-#' @family unit.utils
-#' @concept units
-#' @concept data-manipulation
+
+#' @family graphics.utils  
+#' @concept annotation
 #'
 #'
 #' @export

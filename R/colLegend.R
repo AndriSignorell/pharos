@@ -100,10 +100,11 @@
 #' \code{\link{legend}},
 #' \code{\link{abcCoords}}
 #'
-#' @family plot.annotation
-#' @concept graphics
-#' @concept plot-annotation
-#' 
+
+#' @family graphics.utils  
+#' @concept annotation
+#'
+#'
 #' @export
 colLegend <- function(
     x,

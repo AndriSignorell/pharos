@@ -152,13 +152,18 @@ plotECDF(Sepal.Length ~ Species, data = iris)
 \code{\link{plot.ecdf}}, \code{\link{plotFdist}},
 \code{\link{getTheme}}
 
-Other plot.distribution:
+Other plot.univariate:
+\code{\link[=plotArea]{plotArea()}},
+\code{\link[=plotBar]{plotBar()}},
+\code{\link[=plotBox]{plotBox()}},
 \code{\link[=plotCatDist]{plotCatDist()}},
+\code{\link[=plotDens]{plotDens()}},
+\code{\link[=plotDensBox]{plotDensBox()}},
+\code{\link[=plotDot]{plotDot()}},
 \code{\link[=plotFdist]{plotFdist()}},
-\code{\link[=plotProbDist]{plotProbDist()}},
-\code{\link[=plotQQ]{plotQQ()}}
+\code{\link[=plotLines]{plotLines()}},
+\code{\link[=plotQQ]{plotQQ()}},
+\code{\link[=plotViolin]{plotViolin()}}
 }
-\concept{descriptive-statistics}
-\concept{graphics}
-\concept{nonparametric}
-\concept{plot.distribution}
+\concept{distribution-summary}
+\concept{plot.univariate}

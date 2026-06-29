@@ -28,9 +28,11 @@
 #' @return Invisibly returns a list containing the computed
 #'   \code{hexbin} object and the original \code{x} and \code{y}.
 #'
-#' @family plot.bivariate
-#' @concept graphics
-#' @concept density-estimation
+
+#' @family plot.bivariate  
+#' @concept scatterplot  
+#' @concept bivariate
+#'
 #'
 #' @export
 plotHexbin <- function(

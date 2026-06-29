@@ -70,8 +70,9 @@
 #' # custom legend
 #' plotLines(m, legend = list(cex = 0.8))
 #'
-#' @family plot.timeseries
-#' @concept graphics
+
+#' @family plot.univariate  
+#' @concept line-chart  
 #' @concept time-series
 #'
 #'

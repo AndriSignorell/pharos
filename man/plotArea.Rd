@@ -103,16 +103,18 @@ plotArea(x, y)
 
 }
 \seealso{
-Other plot.special:
-\code{\link[=plotBinaryTree]{plotBinaryTree()}},
-\code{\link[=plotCirc]{plotCirc()}},
-\code{\link[=plotFun]{plotFun()}},
-\code{\link[=plotMiss]{plotMiss()}},
-\code{\link[=plotPolar]{plotPolar()}},
-\code{\link[=plotTernary]{plotTernary()}},
-\code{\link[=plotTreemap]{plotTreemap()}},
-\code{\link[=plotWeb]{plotWeb()}}
+Other plot.univariate:
+\code{\link[=plotBar]{plotBar()}},
+\code{\link[=plotBox]{plotBox()}},
+\code{\link[=plotCatDist]{plotCatDist()}},
+\code{\link[=plotDens]{plotDens()}},
+\code{\link[=plotDensBox]{plotDensBox()}},
+\code{\link[=plotDot]{plotDot()}},
+\code{\link[=plotECDF]{plotECDF()}},
+\code{\link[=plotFdist]{plotFdist()}},
+\code{\link[=plotLines]{plotLines()}},
+\code{\link[=plotQQ]{plotQQ()}},
+\code{\link[=plotViolin]{plotViolin()}}
 }
-\concept{area-plots}
-\concept{graphics}
-\concept{plot.special}
+\concept{line-chart}
+\concept{plot.univariate}

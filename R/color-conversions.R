@@ -19,9 +19,9 @@
 #' 
 #' @examples
 #' 
-#' RGBToCol(matrix(c(162,42,42), nrow=3))
+#' rgbToCol(matrix(c(162,42,42), nrow=3))
 #' 
-#' RGBToLong(matrix(c(162,42,42), nrow=3))
+#' rgbToLong(matrix(c(162,42,42), nrow=3))
 #' 
 #' colToRGB("peachpuff")
 #' colToRGB(c(blu = "royalblue", reddish = "tomato")) # names kept
@@ -31,10 +31,13 @@
 #' 
 
 #'
-#' @family color.conversion
-#' @concept graphics
-#' @concept color-conversion
 
+
+#' @family color  
+#' @concept color  
+#' @concept color-conversion
+#'
+#'
 #' @export
 colToRGB <- function(col, alpha = FALSE)
   col2rgb(col, alpha = alpha)
@@ -48,9 +51,11 @@ colToRGB <- function(col, alpha = FALSE)
 #'
 #' @return Integer matrix with RGB rows.
 #'
-#' @family color.conversion
-#' @concept graphics
+
+#' @family color  
+#' @concept color  
 #' @concept color-conversion
+#'
 #'
 #' @export
 hexToRGB <- function(hex) {
@@ -98,7 +103,7 @@ hexToRGB <- function(hex) {
 #' @concept color-conversion
 #'
 #' @export
-RGBToHex <- function(col) {
+rgbToHex <- function(col) {
   col <- round(col)
   paste0("#", paste0(sprintf("%02X", as.integer(col)), collapse = ""))
 }
@@ -151,7 +156,7 @@ colToHex <- function(col, alpha = 1) {
 #' @concept color-conversion
 #'
 #' @export
-RGBToCol <- function(col,
+rgbToCol <- function(col,
                      method = c("rgb", "hsv"),
                      metric = c("euclidean", "manhattan")) {
   
@@ -197,7 +202,7 @@ RGBToCol <- function(col,
 #'
 #' Convert hexadecimal colors to the nearest named R colors.
 #'
-#' @inheritParams RGBToCol
+#' @inheritParams rgbToCol
 #' @param hex Character vector of hexadecimal colors.
 #'
 #' @return Character vector of named R colors.
@@ -211,7 +216,7 @@ hexToCol <- function(hex,
                      method = c("rgb", "hsv"),
                      metric = c("euclidean", "manhattan")) {
   
-  RGBToCol(hex, method = method, metric = metric)
+  rgbToCol(hex, method = method, metric = metric)
 }
 
 
@@ -247,7 +252,7 @@ colToHSV <- function(col, alpha = FALSE)
 #' @concept color-conversion
 #'
 #' @export
-RGBToLong <- function(col)
+rgbToLong <- function(col)
   (c(1, 256, 256^2) %*% col)[1, ]
 
 
@@ -294,7 +299,7 @@ longToRGB <- function(col)
 #' @concept color-conversion
 #' 
 #' @export
-RGBToCMY <- function(col, maxColorValue = 1) {
+rgbToCmy <- function(col, maxColorValue = 1) {
   
   if (!is.matrix(col)) {
     
@@ -331,7 +336,7 @@ RGBToCMY <- function(col, maxColorValue = 1) {
 #' @concept color-conversion
 #'
 #' @export
-CMYToCMYK <- function(col) {
+cmyToCmyk <- function(col) {
   
   if (is.null(dim(col)) && length(col) > 2)
     col <- matrix(col, ncol = 3, byrow = TRUE)
@@ -363,7 +368,7 @@ CMYToCMYK <- function(col) {
 #' @concept color-conversion
 #'
 #' @export
-CMYKToCMY <- function(col) {
+cmykToCmy <- function(col) {
   
   if (is.null(dim(col)) && length(col) > 3)
     col <- matrix(col, ncol = 4, byrow = TRUE)
@@ -394,7 +399,7 @@ CMYKToCMY <- function(col) {
 #' @concept color-conversion
 #'
 #' @export
-CMYKToRGB <- function(cyan,
+cmykToRgb <- function(cyan,
                       magenta,
                       yellow,
                       black,
@@ -435,19 +440,19 @@ CMYKToRGB <- function(cyan,
 # colToRgb  <- colToRGB
 # colToHsv  <- colToHSV
 # 
-# rgbToCol  <- RGBToCol
+# rgbToCol  <- rgbToCol
 # 
 # hexToRgb  <- hexToRGB
-# rgbToHex  <- RGBToHex
+# rgbToHex  <- rgbToHex
 # 
-# rgbToLong <- RGBToLong
+# rgbToLong <- rgbToLong
 # longToRgb <- longToRGB
 # 
-# rgbToCmy  <- RGBToCMY
-# cmyToCmyk <- CMYToCMYK
+# rgbToCmy  <- rgbToCmy
+# cmyToCmyk <- cmyToCmyk
 # 
-# cmykToCmy <- CMYKToCMY
-# cmykToRgb <- CMYKToRGB
+# cmykToCmy <- cmykToCmy
+# cmykToRgb <- cmykToRgb
 # 
 # alpha     <- addAlpha
 # 

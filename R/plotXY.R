@@ -133,13 +133,13 @@
 #' plotXY(temperature ~ delivery_min, bedrock::Pizza, main = "")
 #' }
 #'
-#' @family topic.plots
-#' @concept graphics
-#' @concept scatterplot
-#' @concept regression
-#'
-#'
 
+
+#' @family plot.bivariate  
+#' @concept scatterplot  
+#' @concept bivariate
+#'
+#'
 #' @export
 plotXY <- function(x, ...) {
   UseMethod("plotXY")

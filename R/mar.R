@@ -39,8 +39,9 @@
 #'
 
 
-#' @family plot.utils
-#' @concept graphics
+
+#' @family graphics.utils  
+#' @concept annotation
 #'
 #'
 #' @export

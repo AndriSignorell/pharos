@@ -14,3 +14,26 @@ strLen(x, ...)
 \description{
 Intuitive alias for \code{\link{nchar}}.
 }
+\seealso{
+Other string:
+\code{\link[=mgsub]{mgsub()}},
+\code{\link[=strAbbr]{strAbbr()}},
+\code{\link[=strAlign]{strAlign()}},
+\code{\link[=strCap]{strCap()}},
+\code{\link[=strChop]{strChop()}},
+\code{\link[=strCountW]{strCountW()}},
+\code{\link[=strDist]{strDist()}},
+\code{\link[=strExtract]{strExtract()}},
+\code{\link[=strExtractBetween]{strExtractBetween()}},
+\code{\link[=strIsNumeric]{strIsNumeric()}},
+\code{\link[=strPad]{strPad()}},
+\code{\link[=strPos]{strPos()}},
+\code{\link[=strRev]{strRev()}},
+\code{\link[=strSpell]{strSpell()}},
+\code{\link[=strSplit]{strSplit()}},
+\code{\link[=strTrim]{strTrim()}},
+\code{\link[=strTrunc]{strTrunc()}},
+\code{\link[=strVal]{strVal()}}
+}
+\concept{string}
+\concept{string-manipulation}

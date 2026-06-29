@@ -84,9 +84,9 @@
 #' m2[p > 0.05] <- NA
 #' plotWeb(m2, labels = list(las = 2))
 #'
-#' @family plot.special
-#' @concept graphics
-#' @concept association-measures
+
+#' @family plot.special  
+#' @concept bivariate
 #'
 #'
 #' @export

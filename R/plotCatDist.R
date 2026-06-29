@@ -55,10 +55,9 @@
 #'
 
 
-#' @family plot.distribution
-#' @concept graphics
-#' @concept descriptive-statistics
-#' @concept factor-handling
+
+#' @family plot.univariate  
+#' @concept frequency-table
 #'
 #'
 #' @export

@@ -12,6 +12,11 @@
 #' @return
 #' An object inheriting from class `"arcGeometry"`.
 #'
+
+#' @family geometry  
+#' @concept geometry
+#'
+#'
 #' @export
 arc <- function(
     x = 0,

@@ -137,9 +137,10 @@ invisibly without drawing anything.
 \code{\link{plotHeatmap}}, \code{\link{plotMosaic}},
 \code{\link[graphics]{spineplot}}, \code{\link{getTheme}}
 
-Other desc:
-\code{\link[=plot.Desc.qn]{plot.Desc.qn()}}
+Other plot.s3:
+\code{\link[=plot.BlandAltman]{plot.BlandAltman()}},
+\code{\link[=plot.Desc.qn]{plot.Desc.qn()}},
+\code{\link[=plot.Lc]{plot.Lc()}}
 }
-\concept{data-description}
-\concept{desc}
-\concept{descriptive-statistics}
+\concept{frequency-table}
+\concept{plot.s3}

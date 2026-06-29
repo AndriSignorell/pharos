@@ -103,12 +103,7 @@ par(op)
 \code{\link{loess}}, \code{\link{scatter.smooth}}
 
 Other plot.utils:
-\code{\link{axTicks}},
-\code{\link[=lineToUser]{lineToUser()}},
-\code{\link[=lines.lm]{lines.lm()}},
-\code{\link[=mar]{mar()}},
-\code{\link[=setBackCol]{setBackCol()}},
-\code{\link[=spreadOut]{spreadOut()}}
+\code{\link{axTicks}}
 }
 \concept{graphics}
 \concept{plot.utils}

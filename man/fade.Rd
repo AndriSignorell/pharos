@@ -17,13 +17,5 @@ Character vector of colors.
 \description{
 Apply transparency and remove the alpha channel afterwards.
 }
-\seealso{
-Other color.manipulation:
-\code{\link[=addAlpha]{addAlpha()}},
-\code{\link[=darken]{darken()}},
-\code{\link[=grayscale]{grayscale()}},
-\code{\link[=lighten]{lighten()}},
-\code{\link[=mixColors]{mixColors()}}
-}
 \concept{color-manipulation}
 \concept{color.manipulation}

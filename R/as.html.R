@@ -14,6 +14,11 @@
 #' @examples
 #' as.html("<b>bold</b>")
 #'
+
+#' @family html  
+#' @concept html
+#'
+#'
 #' @export
 as.html <- function(x) {
   structure(x, class = "html")

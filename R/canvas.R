@@ -24,11 +24,12 @@
 #' 
  
 
-#' @family plot.geometry
-#' @concept graphics
-#' @concept geometry
-#' 
 
+
+#' @family geometry  
+#' @concept geometry
+#'
+#'
 #' @export
 canvas <- function(xlim=NULL, ylim=xlim, main=NULL, 
                    asp=1, usrbg="white", ...){

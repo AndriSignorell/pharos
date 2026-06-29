@@ -109,9 +109,16 @@ plotMosaic(tab, horiz = TRUE, main = "Hair ~ Eyecolor")
 }
 \seealso{
 \code{\link[=plotCatDist]{plotCatDist()}}, \code{\link[=plotBar]{plotBar()}}, \code{\link[=getTheme]{getTheme()}}
+
+Other plot.bivariate:
+\code{\link[=plotAssoc]{plotAssoc()}},
+\code{\link[=plotBag]{plotBag()}},
+\code{\link[=plotCor]{plotCor()}},
+\code{\link[=plotDens2D]{plotDens2D()}},
+\code{\link[=plotHeatmap]{plotHeatmap()}},
+\code{\link[=plotHexbin]{plotHexbin()}},
+\code{\link[=plotXY]{plotXY()}}
 }
-\concept{categorical-data}
-\concept{contingency-table}
-\concept{mosaic-plot}
-\concept{spine-plot}
-\concept{topic.categoricalPlots}
+\concept{bivariate}
+\concept{frequency-table}
+\concept{plot.bivariate}

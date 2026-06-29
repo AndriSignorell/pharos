@@ -60,8 +60,8 @@
 #'
 
 
-#' @family plot.geometry
-#' @concept graphics
+
+#' @family geometry  
 #' @concept geometry
 #'
 #'

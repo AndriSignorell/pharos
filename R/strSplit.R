@@ -35,9 +35,9 @@
 #' strSplit("a1b2c3", "\\d")
 #'
 
-#' @family string.manipulation
+
+#' @family string  
 #' @concept string-manipulation
-#' @concept data-manipulation
 #'
 #'
 #' @export

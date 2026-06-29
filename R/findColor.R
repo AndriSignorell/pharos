@@ -69,13 +69,13 @@
 #'    minX = 0, maxX = 1, allInside = FALSE)), adj = c(0.5,0.5))
 
 
-#' @family topic.colors
-#' @concept color-manipulation
-#' @concept graphics
-#'
-#'
 
 
+
+#' @family color  
+#' @concept color
+#'
+#'
 #' @export
 findColor <- function(x, col=rev(heat.colors(100)), minX=NULL, maxX=NULL,
                       allInside = FALSE){

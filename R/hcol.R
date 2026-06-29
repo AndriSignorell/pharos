@@ -17,6 +17,12 @@
 #' hcol("blue", "green")
 #' hcol()
 
+
+#' @family color  
+#' @concept color  
+#' @concept palette
+#'
+#'
 #' @export
 hcol <- function(...) {
   nms <- c(...)

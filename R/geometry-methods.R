@@ -43,6 +43,11 @@
 #'   border = "red"
 #' )
 #'
+
+#' @family geometry  
+#' @concept geometry
+#'
+#'
 #' @export
 polygon <- function(x, ...) UseMethod("polygon")
 

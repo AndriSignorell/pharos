@@ -18,6 +18,11 @@
 #'
 #' @seealso \code{\link{as.html}}
 #'
+
+#' @family graphics.utils  
+#' @concept annotation
+#'
+#'
 #' @export
 preview <- function(x, ...) {
   UseMethod("preview")

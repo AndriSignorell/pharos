@@ -34,6 +34,12 @@
 #'
 
 
+
+#' @family html  
+#' @concept html  
+#' @concept frequency-table
+#'
+#'
 #' @export
 toHtmlTable <- function(m, sepCol = FALSE, caption = "", bodyAlign = "center",
                         valign = "top", width = NULL, cellpadding = 3,

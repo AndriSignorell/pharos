@@ -52,6 +52,12 @@
 NULL
 
 
+
+#' @family plot.univariate  
+#' @concept density  
+#' @concept distribution-summary
+#'
+#'
 #' @export
 plotRidge <- function(x, ...) {
   UseMethod("plotRidge")

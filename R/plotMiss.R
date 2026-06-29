@@ -25,9 +25,9 @@
 #'
 
 
-#' @family plot.special
-#' @concept graphics
-#' @concept missing-data
+
+#' @family plot.special  
+#' @concept missing-value
 #'
 #'
 #' @export 

@@ -34,6 +34,11 @@
 #' )
 #'
 
+
+#' @family geometry  
+#' @concept geometry
+#'
+#'
 #' @export
 bezier <- function(
     x,

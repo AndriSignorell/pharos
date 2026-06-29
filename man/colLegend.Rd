@@ -146,14 +146,23 @@ text(x = c(8,0.5,2.5,4.5,0.5,0.5,0.5)+.2, y=c(14,9,9,9,2,14,12), LETTERS[1:7], c
 \code{\link{legend}},
 \code{\link{abcCoords}}
 
-Other plot.annotation:
+Other graphics.utils:
+\code{\link[=abcCoords]{abcCoords()}},
 \code{\link[=axisBreak]{axisBreak()}},
 \code{\link[=barText]{barText()}},
 \code{\link[=boxedText]{boxedText()}},
-\code{\link[=shade]{shade()}},
+\code{\link[=degToRad]{degToRad()}},
+\code{\link[=errBars]{errBars()}},
+\code{\link[=lineSep]{lineSep()}},
+\code{\link[=lineToUser]{lineToUser()}},
+\code{\link[=lines.lm]{lines.lm()}},
+\code{\link[=mar]{mar()}},
+\code{\link[=preview]{preview()}},
+\code{\link[=spreadOut]{spreadOut()}},
 \code{\link[=stamp]{stamp()}},
-\code{\link[=titleRect]{titleRect()}}
+\code{\link[=textLegend]{textLegend()}},
+\code{\link[=titleRect]{titleRect()}},
+\code{\link[=unit]{unit()}}
 }
-\concept{graphics}
-\concept{plot-annotation}
-\concept{plot.annotation}
+\concept{annotation}
+\concept{graphics.utils}

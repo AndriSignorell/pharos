@@ -186,4 +186,8 @@ resetTheme()
 \code{\link{pal}} for the color palette registry,
 \code{\link{fm}} for the formatting styles referenced by \code{sty},
 \code{\link{stamp}} for the corner stamp mechanism.
+
+Other theme:
+\code{\link[=style]{style()}}
 }
+\concept{theme}

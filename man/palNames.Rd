@@ -26,11 +26,20 @@ palNames("discrete")
 \seealso{
 \code{\link{pal}}
 
-Other topic.colors:
+Other color:
+\code{\link[=addAlpha]{addAlpha()}},
 \code{\link[=colToOpaque]{colToOpaque()}},
+\code{\link[=colToRGB]{colToRGB()}},
 \code{\link[=contrastColor]{contrastColor()}},
-\code{\link[=findColor]{findColor()}}
+\code{\link[=darken]{darken()}},
+\code{\link[=findColor]{findColor()}},
+\code{\link[=grayscale]{grayscale()}},
+\code{\link[=hcol]{hcol()}},
+\code{\link[=hexToRGB]{hexToRGB()}},
+\code{\link[=lighten]{lighten()}},
+\code{\link[=mixColors]{mixColors()}},
+\code{\link[=pal]{pal()}},
+\code{\link[=setBackCol]{setBackCol()}}
 }
-\concept{color-manipulation}
-\concept{graphics}
-\concept{topic.colors}
+\concept{color}
+\concept{palette}

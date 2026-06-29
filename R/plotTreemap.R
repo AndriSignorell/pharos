@@ -75,12 +75,13 @@
 #'   groupArea = list(border = "black", lwd = 2)
 #' )
 #'
-#' @family plot.special
-#' @concept graphics
-#' @concept treemap
+
+
+
+#' @family plot.special  
+#' @concept frequency-table
 #'
-
-
+#'
 #' @export
 plotTreemap <- function(
     x,

@@ -25,8 +25,8 @@
 #' 
 
 
-#' @family string.format
-#' @concept string-formatting
+
+#' @family string  
 #' @concept string-manipulation
 #'
 #'

@@ -69,12 +69,13 @@
 #'
 #' plotArea(x, y)
 #'
-#' @family plot.special
-#' @concept graphics
-#' @concept area-plots
+
+
+
+#' @family plot.univariate  
+#' @concept line-chart
 #'
-
-
+#'
 #' @export
 plotArea <- function(
     x, y,

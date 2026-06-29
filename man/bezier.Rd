@@ -41,4 +41,15 @@ Academic Press.
 \seealso{
 \code{\link{arc}},
 \code{\link{lines}}
+
+Other geometry:
+\code{\link[=arc]{arc()}},
+\code{\link[=band]{band()}},
+\code{\link[=canvas]{canvas()}},
+\code{\link[=polarGrid]{polarGrid()}},
+\code{\link[=polygon]{polygon()}},
+\code{\link[=rotate]{rotate()}},
+\code{\link[=shade]{shade()}},
+\code{\link[=transformXY]{transformXY()}}
 }
+\concept{geometry}

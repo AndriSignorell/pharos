@@ -178,6 +178,11 @@ styles <- function(){
 
 
 #' @rdname style
+
+#' @family theme  
+#' @concept theme
+#'
+#'
 #' @export
 style <- function( x, digits = NULL, leadDigits = NULL, sci = NULL
                    , bigMark=NULL, decMark = NULL

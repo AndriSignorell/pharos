@@ -156,9 +156,10 @@ Other plot.bivariate:
 \code{\link[=plotCor]{plotCor()}},
 \code{\link[=plotDens2D]{plotDens2D()}},
 \code{\link[=plotHeatmap]{plotHeatmap()}},
-\code{\link[=plotHexbin]{plotHexbin()}}
+\code{\link[=plotHexbin]{plotHexbin()}},
+\code{\link[=plotMosaic]{plotMosaic()}},
+\code{\link[=plotXY]{plotXY()}}
 }
-\concept{descriptive-statistics}
-\concept{graphics}
+\concept{bivariate}
 \concept{plot.bivariate}
 \concept{robust-statistics}

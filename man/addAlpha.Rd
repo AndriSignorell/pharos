@@ -40,12 +40,19 @@ par(op)
 \seealso{
 \code{\link{adjustcolor}}, \code{\link{colToOpaque}}
 
-Other color.manipulation:
+Other color:
+\code{\link[=colToOpaque]{colToOpaque()}},
+\code{\link[=colToRGB]{colToRGB()}},
+\code{\link[=contrastColor]{contrastColor()}},
 \code{\link[=darken]{darken()}},
-\code{\link[=fade]{fade()}},
+\code{\link[=findColor]{findColor()}},
 \code{\link[=grayscale]{grayscale()}},
+\code{\link[=hcol]{hcol()}},
+\code{\link[=hexToRGB]{hexToRGB()}},
 \code{\link[=lighten]{lighten()}},
-\code{\link[=mixColors]{mixColors()}}
+\code{\link[=mixColors]{mixColors()}},
+\code{\link[=pal]{pal()}},
+\code{\link[=palNames]{palNames()}},
+\code{\link[=setBackCol]{setBackCol()}}
 }
-\concept{color-manipulation}
-\concept{color.manipulation}
+\concept{color}

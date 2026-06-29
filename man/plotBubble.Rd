@@ -118,7 +118,6 @@ text(Income ~ Population, US, labels=US$Abb, cex=0.8)
 \code{\link{symbols}}
 
 Other topic.graphics:
-\code{\link[=plotBar]{plotBar()}},
 \code{\link[=plotDens]{plotDens()}},
 \code{\link[=plotDens2D]{plotDens2D()}},
 \code{\link[=plotRidge]{plotRidge()}}

@@ -22,9 +22,9 @@
 #' 
 
  
-#' @family plot.utils
-#' @concept graphics
-#' @concept geometry
+
+#' @family graphics.utils  
+#' @concept annotation
 #'
 #'
 #' @export 

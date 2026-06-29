@@ -42,10 +42,15 @@ plotTimeSeries(AirPassengers)
 \seealso{
 \code{\link{ts}}
 
-Other plot.timeseries:
-\code{\link[=plotLines]{plotLines()}}
+Other plot.special:
+\code{\link[=plotBinaryTree]{plotBinaryTree()}},
+\code{\link[=plotCirc]{plotCirc()}},
+\code{\link[=plotMiss]{plotMiss()}},
+\code{\link[=plotPolar]{plotPolar()}},
+\code{\link[=plotPropCI]{plotPropCI()}},
+\code{\link[=plotTernary]{plotTernary()}},
+\code{\link[=plotTreemap]{plotTreemap()}},
+\code{\link[=plotWeb]{plotWeb()}}
 }
-\concept{descriptive-statistics}
-\concept{graphics}
-\concept{plot.timeseries}
+\concept{plot.special}
 \concept{time-series}

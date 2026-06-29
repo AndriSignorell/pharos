@@ -43,13 +43,13 @@
 #'
 
 
-#' @family string.format
-#' @concept string-formatting
+
+
+
+#' @family string  
 #' @concept string-manipulation
 #'
 #'
-
-
 #' @export
 strAbbr <- function(x,
                     minchar = 1,

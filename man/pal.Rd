@@ -66,6 +66,21 @@ palNames()
 \seealso{
 \code{\link{palNames}}, \code{\link[grDevices]{colorRampPalette}},
 \code{\link[grDevices]{adjustcolor}}
+
+Other color:
+\code{\link[=addAlpha]{addAlpha()}},
+\code{\link[=colToOpaque]{colToOpaque()}},
+\code{\link[=colToRGB]{colToRGB()}},
+\code{\link[=contrastColor]{contrastColor()}},
+\code{\link[=darken]{darken()}},
+\code{\link[=findColor]{findColor()}},
+\code{\link[=grayscale]{grayscale()}},
+\code{\link[=hcol]{hcol()}},
+\code{\link[=hexToRGB]{hexToRGB()}},
+\code{\link[=lighten]{lighten()}},
+\code{\link[=mixColors]{mixColors()}},
+\code{\link[=palNames]{palNames()}},
+\code{\link[=setBackCol]{setBackCol()}}
 }
 \concept{color}
 \concept{color palette ramp discrete continuous}

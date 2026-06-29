@@ -95,11 +95,6 @@
 #' @seealso \code{\link[graphics]{barplot}}, \code{\link{barText}},
 #'   \code{\link{getTheme}}
 #' 
-#' @family topic.graphics
-#' @concept base-graphics
-#' @concept plotting
-#' 
-#'
 #' @examples
 #' # Simple barplot
 #' plotBar(1:5)
@@ -159,10 +154,9 @@
 #' 
 
 
-#' @family plot.univariate
-#' @concept graphics
-#' @concept descriptive-statistics
-#' @concept frequency-analysis
+
+#' @family plot.univariate  
+#' @concept bar-chart
 #'
 #'
 #' @export

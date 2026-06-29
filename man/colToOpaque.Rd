@@ -39,11 +39,20 @@ barplot(c(1, 1.2, 1.3), col=cols, panel.first=abline(h=0.4, lwd=10, col="grey35"
 \seealso{
 \code{\link[bedrock]{decToHex}},
 
-Other topic.colors:
+Other color:
+\code{\link[=addAlpha]{addAlpha()}},
+\code{\link[=colToRGB]{colToRGB()}},
 \code{\link[=contrastColor]{contrastColor()}},
+\code{\link[=darken]{darken()}},
 \code{\link[=findColor]{findColor()}},
-\code{\link[=palNames]{palNames()}}
+\code{\link[=grayscale]{grayscale()}},
+\code{\link[=hcol]{hcol()}},
+\code{\link[=hexToRGB]{hexToRGB()}},
+\code{\link[=lighten]{lighten()}},
+\code{\link[=mixColors]{mixColors()}},
+\code{\link[=pal]{pal()}},
+\code{\link[=palNames]{palNames()}},
+\code{\link[=setBackCol]{setBackCol()}}
 }
-\concept{color-manipulation}
-\concept{graphics}
-\concept{topic.colors}
+\concept{color}
+\concept{color-conversion}

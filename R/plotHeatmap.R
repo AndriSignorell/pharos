@@ -86,10 +86,9 @@
 #'
 
 
-#' @family plot.bivariate
-#' @concept graphics
-#' @concept descriptive-statistics
-#' @concept table-manipulation
+
+#' @family plot.bivariate  
+#' @concept bivariate
 #'
 #'
 #' @export

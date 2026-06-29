@@ -87,4 +87,15 @@ polygon(
 \code{\link{regPolygon}},
 \code{\link{ring}},
 \code{\link[graphics]{polygon}}
+
+Other geometry:
+\code{\link[=arc]{arc()}},
+\code{\link[=band]{band()}},
+\code{\link[=bezier]{bezier()}},
+\code{\link[=canvas]{canvas()}},
+\code{\link[=polarGrid]{polarGrid()}},
+\code{\link[=rotate]{rotate()}},
+\code{\link[=shade]{shade()}},
+\code{\link[=transformXY]{transformXY()}}
 }
+\concept{geometry}

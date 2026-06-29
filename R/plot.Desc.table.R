@@ -115,12 +115,10 @@
 #'   \code{\link{plotHeatmap}}, \code{\link{plotMosaic}},
 #'   \code{\link[graphics]{spineplot}}, \code{\link{getTheme}}
 #'
-#' @family desc
-#' @concept data-description
-#' @concept descriptive-statistics
+#' @family plot.s3  
+#' @concept frequency-table
 #'
 #' @rdname plot.Desc.table
-#'
 #' @exportS3Method
 #' @rawNamespace export(plot.Desc.table)
 # Both tags above are required, not redundant: @exportS3Method alone
@@ -130,6 +128,7 @@
 # even with @importFrom aurora plot.Desc.table on the calling side.
 # @rawNamespace forces the missing export() NAMESPACE line. See
 # design_rules.md, "Exporting S3 Methods Callable From Other Packages".
+
 plot.Desc.table <- function(x,
 
                             # LABELS

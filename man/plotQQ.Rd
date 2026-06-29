@@ -123,13 +123,19 @@ Teetor, P. (2011) \emph{R Cookbook}. O'Reilly, pp. 254-255.
 \code{\link{qqnorm}}, \code{\link{qqline}}, \code{\link{qqplot}},
 \code{\link{getTheme}}, \code{\link{lines.loess}}
 
-Other plot.distribution:
+Other plot.univariate:
+\code{\link[=plotArea]{plotArea()}},
+\code{\link[=plotBar]{plotBar()}},
+\code{\link[=plotBox]{plotBox()}},
 \code{\link[=plotCatDist]{plotCatDist()}},
+\code{\link[=plotDens]{plotDens()}},
+\code{\link[=plotDensBox]{plotDensBox()}},
+\code{\link[=plotDot]{plotDot()}},
 \code{\link[=plotECDF]{plotECDF()}},
 \code{\link[=plotFdist]{plotFdist()}},
-\code{\link[=plotProbDist]{plotProbDist()}}
+\code{\link[=plotLines]{plotLines()}},
+\code{\link[=plotViolin]{plotViolin()}}
 }
-\concept{distributions}
-\concept{graphics}
-\concept{normality-testing}
-\concept{plot.distribution}
+\concept{distribution-summary}
+\concept{normality-test}
+\concept{plot.univariate}

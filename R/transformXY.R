@@ -47,10 +47,9 @@
 
 
 
-#' @family coordinate.transform
+
+#' @family geometry  
 #' @concept geometry
-#' @concept mathematics
-#' @concept data-manipulation
 #'
 #'
 #' @export

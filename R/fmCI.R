@@ -28,9 +28,10 @@
 #' 
 
 
-#' @family string.format
-#' @concept string-formatting
-#' @concept confidence-intervals
+
+#' @family format  
+#' @concept formatting  
+#' @concept confidence-interval
 #'
 #'
 #' @export  

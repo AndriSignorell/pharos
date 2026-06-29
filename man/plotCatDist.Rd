@@ -75,13 +75,18 @@ plotCatDist(x2, maxcats = 10)
 
 }
 \seealso{
-Other plot.distribution:
+Other plot.univariate:
+\code{\link[=plotArea]{plotArea()}},
+\code{\link[=plotBar]{plotBar()}},
+\code{\link[=plotBox]{plotBox()}},
+\code{\link[=plotDens]{plotDens()}},
+\code{\link[=plotDensBox]{plotDensBox()}},
+\code{\link[=plotDot]{plotDot()}},
 \code{\link[=plotECDF]{plotECDF()}},
 \code{\link[=plotFdist]{plotFdist()}},
-\code{\link[=plotProbDist]{plotProbDist()}},
-\code{\link[=plotQQ]{plotQQ()}}
+\code{\link[=plotLines]{plotLines()}},
+\code{\link[=plotQQ]{plotQQ()}},
+\code{\link[=plotViolin]{plotViolin()}}
 }
-\concept{descriptive-statistics}
-\concept{factor-handling}
-\concept{graphics}
-\concept{plot.distribution}
+\concept{frequency-table}
+\concept{plot.univariate}

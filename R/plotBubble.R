@@ -74,6 +74,12 @@
 NULL
 
 
+
+#' @family plot.bivariate  
+#' @concept scatterplot  
+#' @concept bivariate
+#'
+#'
 #' @export
 plotBubble <- function(x, ...) {
   UseMethod("plotBubble")

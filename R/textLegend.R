@@ -66,7 +66,11 @@
 #'
 
 
-#' @concept graphics
+
+#' @family graphics.utils  
+#' @concept annotation
+#'
+#'
 #' @export
 #' 
 textLegend <- function(y, labels = names(y),

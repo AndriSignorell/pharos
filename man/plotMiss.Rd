@@ -51,15 +51,14 @@ plotMiss(airquality, main="Missing data (clustered)", clust=TRUE)
 \code{\link{hclust}}, \code{\link[bedrock]{countCompCases}}
 
 Other plot.special:
-\code{\link[=plotArea]{plotArea()}},
 \code{\link[=plotBinaryTree]{plotBinaryTree()}},
 \code{\link[=plotCirc]{plotCirc()}},
-\code{\link[=plotFun]{plotFun()}},
 \code{\link[=plotPolar]{plotPolar()}},
+\code{\link[=plotPropCI]{plotPropCI()}},
 \code{\link[=plotTernary]{plotTernary()}},
+\code{\link[=plotTimeSeries]{plotTimeSeries()}},
 \code{\link[=plotTreemap]{plotTreemap()}},
 \code{\link[=plotWeb]{plotWeb()}}
 }
-\concept{graphics}
-\concept{missing-data}
+\concept{missing-value}
 \concept{plot.special}

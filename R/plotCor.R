@@ -168,10 +168,10 @@
 #' 
 
 
-#' @family plot.bivariate
-#' @concept graphics
-#' @concept correlation
-#' @concept descriptive-statistics
+
+#' @family plot.bivariate  
+#' @concept correlation  
+#' @concept bivariate
 #'
 #'
 #' @export

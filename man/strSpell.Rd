@@ -54,7 +54,10 @@ strSpell("ABC", upr = NA)
 \code{\link{strTrim}},
 \code{\link[stringi]{stri_split_boundaries}}
 
-Other string.manipulation:
+Other string:
+\code{\link[=mgsub]{mgsub()}},
+\code{\link[=strAbbr]{strAbbr()}},
+\code{\link[=strAlign]{strAlign()}},
 \code{\link[=strCap]{strCap()}},
 \code{\link[=strChop]{strChop()}},
 \code{\link[=strCountW]{strCountW()}},
@@ -62,11 +65,14 @@ Other string.manipulation:
 \code{\link[=strExtract]{strExtract()}},
 \code{\link[=strExtractBetween]{strExtractBetween()}},
 \code{\link[=strIsNumeric]{strIsNumeric()}},
-\code{\link{strLeftRight}},
+\code{\link[=strLen]{strLen()}},
+\code{\link[=strPad]{strPad()}},
 \code{\link[=strPos]{strPos()}},
 \code{\link[=strRev]{strRev()}},
 \code{\link[=strSplit]{strSplit()}},
-\code{\link[=strTrim]{strTrim()}}
+\code{\link[=strTrim]{strTrim()}},
+\code{\link[=strTrunc]{strTrunc()}},
+\code{\link[=strVal]{strVal()}}
 }
+\concept{string}
 \concept{string-manipulation}
-\concept{string.manipulation}

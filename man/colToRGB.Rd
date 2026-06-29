@@ -21,9 +21,9 @@ Convert any valid R color specification to an RGB matrix.
 }
 \examples{
 
-RGBToCol(matrix(c(162,42,42), nrow=3))
+rgbToCol(matrix(c(162,42,42), nrow=3))
 
-RGBToLong(matrix(c(162,42,42), nrow=3))
+rgbToLong(matrix(c(162,42,42), nrow=3))
 
 colToRGB("peachpuff")
 colToRGB(c(blu = "royalblue", reddish = "tomato")) # names kept
@@ -36,16 +36,20 @@ colToRGB(1:8)
 \seealso{
 \code{\link{col2rgb}}
 
-Other color.conversion:
-\code{\link[=RGBToCol]{RGBToCol()}},
-\code{\link[=RGBToHex]{RGBToHex()}},
-\code{\link[=RGBToLong]{RGBToLong()}},
-\code{\link[=colToHSV]{colToHSV()}},
-\code{\link[=colToHex]{colToHex()}},
-\code{\link[=hexToCol]{hexToCol()}},
+Other color:
+\code{\link[=addAlpha]{addAlpha()}},
+\code{\link[=colToOpaque]{colToOpaque()}},
+\code{\link[=contrastColor]{contrastColor()}},
+\code{\link[=darken]{darken()}},
+\code{\link[=findColor]{findColor()}},
+\code{\link[=grayscale]{grayscale()}},
+\code{\link[=hcol]{hcol()}},
 \code{\link[=hexToRGB]{hexToRGB()}},
-\code{\link[=longToRGB]{longToRGB()}}
+\code{\link[=lighten]{lighten()}},
+\code{\link[=mixColors]{mixColors()}},
+\code{\link[=pal]{pal()}},
+\code{\link[=palNames]{palNames()}},
+\code{\link[=setBackCol]{setBackCol()}}
 }
+\concept{color}
 \concept{color-conversion}
-\concept{color.conversion}
-\concept{graphics}

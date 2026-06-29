@@ -24,9 +24,9 @@
 #' 
  
 
-#' @family string.utilities
+
+#' @family string  
 #' @concept string-manipulation
-#' @concept data-manipulation
 #'
 #'
 #' @export

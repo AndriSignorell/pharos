@@ -16,11 +16,13 @@
 #'   x_{new} = x \\cdot (1 - amount)
 #' }
 #'
-#' @family color.manipulation
-#' @concept color-manipulation
+
+
+
+#' @family color  
+#' @concept color
 #'
-
-
+#'
 #' @export
 darken <- function(col, amount = 0.2) {
   

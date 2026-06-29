@@ -153,12 +153,18 @@ plotDensBox(x ~ g)
 \code{\link[bedrock]{callIf}}
 
 Other plot.univariate:
+\code{\link[=plotArea]{plotArea()}},
 \code{\link[=plotBar]{plotBar()}},
 \code{\link[=plotBox]{plotBox()}},
+\code{\link[=plotCatDist]{plotCatDist()}},
+\code{\link[=plotDens]{plotDens()}},
 \code{\link[=plotDot]{plotDot()}},
-\code{\link[=plotPropCI]{plotPropCI()}},
+\code{\link[=plotECDF]{plotECDF()}},
+\code{\link[=plotFdist]{plotFdist()}},
+\code{\link[=plotLines]{plotLines()}},
+\code{\link[=plotQQ]{plotQQ()}},
 \code{\link[=plotViolin]{plotViolin()}}
 }
-\concept{descriptive-statistics}
-\concept{graphics}
+\concept{boxplot}
+\concept{density}
 \concept{plot.univariate}

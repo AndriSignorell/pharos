@@ -124,6 +124,12 @@ n = 500)}).  Set \code{cbandArgs = NA} (default) to suppress the band.
 \code{\link[DescToolsX]{lc}()} for computing the Lorenz curve,
 \code{\link[DescToolsX]{predict.Lc}()} for bootstrap confidence
 intervals, \code{\link[DescToolsX]{gini}()} for the Gini coefficient.
+
+Other plot.s3:
+\code{\link[=plot.BlandAltman]{plot.BlandAltman()}},
+\code{\link[=plot.Desc.qn]{plot.Desc.qn()}},
+\code{\link[=plot.Desc.table]{plot.Desc.table()}}
 }
 \concept{graphics}
 \concept{inequality}
+\concept{plot.s3}

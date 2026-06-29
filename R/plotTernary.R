@@ -52,9 +52,9 @@
 #' @seealso \code{\link{plotDens}}, \code{\link{plotRidge}}
 
 
-#' @family plot.special
-#' @concept graphics
-#' @concept geometry
+
+#' @family plot.special  
+#' @concept bivariate
 #'
 #'
 #' @export

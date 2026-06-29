@@ -61,8 +61,10 @@ Other plot.bivariate:
 \code{\link[=plotBag]{plotBag()}},
 \code{\link[=plotCor]{plotCor()}},
 \code{\link[=plotDens2D]{plotDens2D()}},
-\code{\link[=plotHeatmap]{plotHeatmap()}}
+\code{\link[=plotHeatmap]{plotHeatmap()}},
+\code{\link[=plotMosaic]{plotMosaic()}},
+\code{\link[=plotXY]{plotXY()}}
 }
-\concept{density-estimation}
-\concept{graphics}
+\concept{bivariate}
 \concept{plot.bivariate}
+\concept{scatterplot}

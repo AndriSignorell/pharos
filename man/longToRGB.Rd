@@ -17,14 +17,12 @@ Decode long integers into RGB values.
 }
 \seealso{
 Other color.conversion:
-\code{\link[=RGBToCol]{RGBToCol()}},
-\code{\link[=RGBToHex]{RGBToHex()}},
-\code{\link[=RGBToLong]{RGBToLong()}},
 \code{\link[=colToHSV]{colToHSV()}},
 \code{\link[=colToHex]{colToHex()}},
-\code{\link[=colToRGB]{colToRGB()}},
 \code{\link[=hexToCol]{hexToCol()}},
-\code{\link[=hexToRGB]{hexToRGB()}}
+\code{\link[=rgbToCol]{rgbToCol()}},
+\code{\link[=rgbToHex]{rgbToHex()}},
+\code{\link[=rgbToLong]{rgbToLong()}}
 }
 \concept{color-manipulation}
 \concept{color.conversion}

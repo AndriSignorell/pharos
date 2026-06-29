@@ -21,14 +21,12 @@ Convert hexadecimal colors to the nearest named R colors.
 }
 \seealso{
 Other color.conversion:
-\code{\link[=RGBToCol]{RGBToCol()}},
-\code{\link[=RGBToHex]{RGBToHex()}},
-\code{\link[=RGBToLong]{RGBToLong()}},
 \code{\link[=colToHSV]{colToHSV()}},
 \code{\link[=colToHex]{colToHex()}},
-\code{\link[=colToRGB]{colToRGB()}},
-\code{\link[=hexToRGB]{hexToRGB()}},
-\code{\link[=longToRGB]{longToRGB()}}
+\code{\link[=longToRGB]{longToRGB()}},
+\code{\link[=rgbToCol]{rgbToCol()}},
+\code{\link[=rgbToHex]{rgbToHex()}},
+\code{\link[=rgbToLong]{rgbToLong()}}
 }
 \concept{color-conversion}
 \concept{color.conversion}

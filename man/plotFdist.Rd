@@ -155,13 +155,18 @@ plotFdist(ozone,
 \code{\link{density}}, \code{\link{rug}}, \code{\link{layout}},
 \code{\link{getTheme}}
 
-Other plot.distribution:
+Other plot.univariate:
+\code{\link[=plotArea]{plotArea()}},
+\code{\link[=plotBar]{plotBar()}},
+\code{\link[=plotBox]{plotBox()}},
 \code{\link[=plotCatDist]{plotCatDist()}},
+\code{\link[=plotDens]{plotDens()}},
+\code{\link[=plotDensBox]{plotDensBox()}},
+\code{\link[=plotDot]{plotDot()}},
 \code{\link[=plotECDF]{plotECDF()}},
-\code{\link[=plotProbDist]{plotProbDist()}},
-\code{\link[=plotQQ]{plotQQ()}}
+\code{\link[=plotLines]{plotLines()}},
+\code{\link[=plotQQ]{plotQQ()}},
+\code{\link[=plotViolin]{plotViolin()}}
 }
-\concept{descriptive-statistics}
-\concept{frequency-analysis}
-\concept{graphics}
-\concept{plot.distribution}
+\concept{frequency-table}
+\concept{plot.univariate}

@@ -186,9 +186,10 @@
 
 
 
-#' @family string.format
-#' @concept string-formatting
-#' @concept data-manipulation
+
+#' @family format  
+#' @concept formatting  
+#' @concept number-formatting
 #'
 #'
 #' @export  

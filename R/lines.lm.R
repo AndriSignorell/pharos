@@ -41,9 +41,11 @@
 #'
 #' @rdname linesLm
 #' @method lines lm
-#' @family plot.utils
-#' @concept graphics
-#' @concept regression
+
+#' @family graphics.utils  
+#' @concept regression  
+#' @concept annotation
+#'
 #'
 #' @export
 lines.lm <- function(

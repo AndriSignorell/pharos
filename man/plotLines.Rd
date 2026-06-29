@@ -106,9 +106,19 @@ plotLines(m, legend = list(cex = 0.8))
 
 }
 \seealso{
-Other plot.timeseries:
-\code{\link[=plotTimeSeries]{plotTimeSeries()}}
+Other plot.univariate:
+\code{\link[=plotArea]{plotArea()}},
+\code{\link[=plotBar]{plotBar()}},
+\code{\link[=plotBox]{plotBox()}},
+\code{\link[=plotCatDist]{plotCatDist()}},
+\code{\link[=plotDens]{plotDens()}},
+\code{\link[=plotDensBox]{plotDensBox()}},
+\code{\link[=plotDot]{plotDot()}},
+\code{\link[=plotECDF]{plotECDF()}},
+\code{\link[=plotFdist]{plotFdist()}},
+\code{\link[=plotQQ]{plotQQ()}},
+\code{\link[=plotViolin]{plotViolin()}}
 }
-\concept{graphics}
-\concept{plot.timeseries}
+\concept{line-chart}
+\concept{plot.univariate}
 \concept{time-series}

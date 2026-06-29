@@ -97,9 +97,10 @@
 #'
 #' @seealso \code{\link{boxplot}}, \code{\link{density}}
 #'
-#' @family plot.univariate
-#' @concept graphics
-#' @concept descriptive-statistics
+
+#' @family plot.univariate  
+#' @concept density  
+#' @concept distribution-summary
 #'
 #'
 #' @export

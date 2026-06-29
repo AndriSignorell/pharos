@@ -118,9 +118,9 @@
 #' plotBag(x, points = FALSE, median = FALSE)
 #'
 
-#' @family plot.bivariate
-#' @concept graphics
-#' @concept descriptive-statistics
+
+#' @family plot.bivariate  
+#' @concept bivariate  
 #' @concept robust-statistics
 #'
 #'

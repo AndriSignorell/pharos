@@ -119,10 +119,10 @@
 #'                     col = "navajowhite3"),
 #'   na.rm = TRUE, main = "Airquality - Ozone")
 #'
-#' @family plot.distribution
-#' @concept graphics
-#' @concept descriptive-statistics
-#' @concept frequency-analysis
+
+#' @family plot.univariate  
+#' @concept frequency-table
+#'
 #'
 #' @export
 plotFdist <- function(x,

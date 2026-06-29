@@ -74,12 +74,12 @@
 #'
 
 #' @seealso \code{\link{shade}}, \code{\link{curve}}, \code{\link{boxedText}}
-#' @family plot.distribution
-#' @concept graphics
-#' @concept distributions
-#' @concept descriptive-statistics
-#'
 
+
+#' @family plot.distribution  
+#' @concept distribution-summary
+#'
+#'
 #' @export
 plotProbDist <- function(breaks, FUN, main = "",
                          xlim = NULL,

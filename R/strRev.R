@@ -22,9 +22,9 @@
 #' strRev("äöü")
 #'
 
-#' @family string.manipulation
+
+#' @family string  
 #' @concept string-manipulation
-#' @concept data-manipulation
 #'
 #'
 #' @export

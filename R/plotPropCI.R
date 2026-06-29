@@ -85,10 +85,10 @@
 #'
 #' @seealso \code{\link[stats]{prop.test}}, \code{\link{getTheme}}
 #'
-#' @family plot.univariate
-#' @concept graphics
-#' @concept confidence-intervals
-#' @concept descriptive-statistics
+
+#' @family plot.special  
+#' @concept confidence-interval  
+#' @concept proportion
 #'
 #'
 #' @export

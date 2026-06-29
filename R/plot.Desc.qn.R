@@ -98,16 +98,15 @@
 #'   \code{\link[graphics]{cdplot}}, \code{\link[graphics]{spineplot}},
 #'   \code{\link{getTheme}}
 #'
-#' @family desc
-#' @concept data-description
-#' @concept descriptive-statistics
+#' @family plot.s3  
+#' @concept distribution-summary
 #'
 #' @rdname plot.Desc.qn
 #' @exportS3Method
 #' @rawNamespace export(plot.Desc.qn)
 # Both tags above are required, not redundant - see plot.Desc.table for
 # the full explanation, or design_rules.md, "Exporting S3 Methods
-# Callable From Other Packages".
+# Callable From Other Packages 
 plot.Desc.qn <- function(x,
                          
                          # LABELS

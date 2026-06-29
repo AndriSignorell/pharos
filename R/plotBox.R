@@ -78,9 +78,11 @@
 #' plotBox(x ~ g)
 #' }
 #'
-#' @family plot.univariate
-#' @concept graphics
-#' @concept descriptive-statistics
+
+#' @family plot.univariate  
+#' @concept boxplot  
+#' @concept distribution-summary
+#'
 #'
 #' @export
 plotBox <- function(x, ...) {

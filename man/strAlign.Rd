@@ -60,15 +60,25 @@ strAlign(z, ".")
 \code{\link[stringi]{stri_sub}},
 \code{\link[stringi]{stri_trim_right}}
 
-Other string.format:
-\code{\link[=fm]{fm()}},
-\code{\link[=fmCI]{fmCI()}},
-\code{\link[=lineSep]{lineSep()}},
+Other string:
+\code{\link[=mgsub]{mgsub()}},
 \code{\link[=strAbbr]{strAbbr()}},
+\code{\link[=strCap]{strCap()}},
+\code{\link[=strChop]{strChop()}},
+\code{\link[=strCountW]{strCountW()}},
+\code{\link[=strDist]{strDist()}},
+\code{\link[=strExtract]{strExtract()}},
+\code{\link[=strExtractBetween]{strExtractBetween()}},
+\code{\link[=strIsNumeric]{strIsNumeric()}},
+\code{\link[=strLen]{strLen()}},
 \code{\link[=strPad]{strPad()}},
+\code{\link[=strPos]{strPos()}},
+\code{\link[=strRev]{strRev()}},
+\code{\link[=strSpell]{strSpell()}},
+\code{\link[=strSplit]{strSplit()}},
+\code{\link[=strTrim]{strTrim()}},
 \code{\link[=strTrunc]{strTrunc()}},
-\code{\link[=style]{style()}}
+\code{\link[=strVal]{strVal()}}
 }
-\concept{graphics}
-\concept{string-formatting}
-\concept{string.format}
+\concept{string}
+\concept{string-manipulation}

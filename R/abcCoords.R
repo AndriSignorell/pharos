@@ -66,13 +66,13 @@
 #'          labels = p, adj = xy$adj, xpd = NA)
 #'   })
 #'
-#' @family plot.geometry
-#' @concept graphics
-#' @concept geometry
-#' @concept plot-positioning
-#' 
 
 
+
+#' @family graphics.utils  
+#' @concept annotation
+#'
+#'
 #' @export
 abcCoords <- function(x       = "topleft",
                       region  = c("figure", "plot", "device"),

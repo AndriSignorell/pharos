@@ -109,12 +109,7 @@ plotProbDist(breaks  = c(0, 15, 35),
 \code{\link{shade}}, \code{\link{curve}}, \code{\link{boxedText}}
 
 Other plot.distribution:
-\code{\link[=plotCatDist]{plotCatDist()}},
-\code{\link[=plotECDF]{plotECDF()}},
-\code{\link[=plotFdist]{plotFdist()}},
-\code{\link[=plotQQ]{plotQQ()}}
+\code{\link[=plotFun]{plotFun()}}
 }
-\concept{descriptive-statistics}
-\concept{distributions}
-\concept{graphics}
+\concept{distribution-summary}
 \concept{plot.distribution}

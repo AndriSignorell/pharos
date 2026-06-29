@@ -126,11 +126,26 @@ plotDens(y ~ x | g)
 \code{\link[bedrock]{resolveFormula}}
 
 Other topic.graphics:
-\code{\link[=plotBar]{plotBar()}},
 \code{\link[=plotBubble]{plotBubble()}},
 \code{\link[=plotDens2D]{plotDens2D()}},
 \code{\link[=plotRidge]{plotRidge()}}
+
+Other plot.univariate:
+\code{\link[=plotArea]{plotArea()}},
+\code{\link[=plotBar]{plotBar()}},
+\code{\link[=plotBox]{plotBox()}},
+\code{\link[=plotCatDist]{plotCatDist()}},
+\code{\link[=plotDensBox]{plotDensBox()}},
+\code{\link[=plotDot]{plotDot()}},
+\code{\link[=plotECDF]{plotECDF()}},
+\code{\link[=plotFdist]{plotFdist()}},
+\code{\link[=plotLines]{plotLines()}},
+\code{\link[=plotQQ]{plotQQ()}},
+\code{\link[=plotViolin]{plotViolin()}}
 }
 \concept{base-graphics}
+\concept{density}
+\concept{distribution-summary}
+\concept{plot.univariate}
 \concept{plotting}
 \concept{topic.graphics}

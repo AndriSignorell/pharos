@@ -226,16 +226,10 @@ fm(1200, digits=2, bigMark = ".", decMark=",")
 \code{\link[DescToolsX]{month}},
 \code{\link[DescToolsX]{setDescToolsXOption}}, \code{\link{style}}, \code{\link{styles}}
 
-Other string.format:
-\code{\link[=fmCI]{fmCI()}},
-\code{\link[=lineSep]{lineSep()}},
-\code{\link[=strAbbr]{strAbbr()}},
-\code{\link[=strAlign]{strAlign()}},
-\code{\link[=strPad]{strPad()}},
-\code{\link[=strTrunc]{strTrunc()}},
-\code{\link[=style]{style()}}
+Other format:
+\code{\link[=fmCI]{fmCI()}}
 }
-\concept{data-manipulation}
-\concept{string-formatting}
-\concept{string.format}
+\concept{format}
+\concept{formatting}
+\concept{number-formatting}
 \keyword{IO}

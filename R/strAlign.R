@@ -52,9 +52,9 @@
 #'
 
 
-#' @family string.format
-#' @concept string-formatting
-#' @concept graphics
+
+#' @family string  
+#' @concept string-manipulation
 #'
 #'
 #' @export

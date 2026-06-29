@@ -22,9 +22,9 @@
 #' 
 
 
-#' @family plot.utils
-#' @concept graphics
-#' @concept color-manipulation
+
+#' @family color  
+#' @concept color
 #'
 #'
 #' @export

@@ -2,11 +2,7 @@
 % Please edit documentation in R/shade.R
 \name{shade}
 \alias{shade}
-\title{Sometimes the area under a density curve has to be color shaded, for
-instance to illustrate a p-value or a specific region under the normal
-curve. This function draws a curve corresponding to a function over the
-interval \code{[from, to]}. It can plot also an expression in the variable
-\code{xname}, default \code{x}.}
+\title{Produce a shaded Curve}
 \usage{
 shade(expr, col = par("fg"), breaks, density = 10, n = 101, xname = "x", ...)
 }
@@ -36,6 +32,13 @@ A list with components \code{x} and \code{y} of the points that were
 drawn is returned invisibly.
 }
 \description{
+Sometimes the area under a density curve has to be color shaded, for
+instance to illustrate a p-value or a specific region under the normal
+curve. This function draws a curve corresponding to a function over the
+interval \code{[from, to]}. It can plot also an expression in the variable
+\code{xname}, default \code{x}.
+}
+\details{
 Useful for shading the area under a curve as often needed for explaining
 significance tests.
 }
@@ -52,16 +55,15 @@ shade(dt(x, df=5), breaks=c(-6, qt(0.025, df=5), qt(0.975, df=5), 6),
 \seealso{
 \code{\link{polygon}}, \code{\link{curve}}
 
-Other plot.annotation:
-\code{\link[=axisBreak]{axisBreak()}},
-\code{\link[=barText]{barText()}},
-\code{\link[=boxedText]{boxedText()}},
-\code{\link[=colLegend]{colLegend()}},
-\code{\link[=stamp]{stamp()}},
-\code{\link[=titleRect]{titleRect()}}
+Other geometry:
+\code{\link[=arc]{arc()}},
+\code{\link[=band]{band()}},
+\code{\link[=bezier]{bezier()}},
+\code{\link[=canvas]{canvas()}},
+\code{\link[=polarGrid]{polarGrid()}},
+\code{\link[=polygon]{polygon()}},
+\code{\link[=rotate]{rotate()}},
+\code{\link[=transformXY]{transformXY()}}
 }
-\concept{descriptive-statistics}
-\concept{distributions}
-\concept{graphics}
-\concept{plot.annotation}
+\concept{geometry}
 \keyword{aplot}

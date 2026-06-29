@@ -46,6 +46,11 @@
 #' )
 #'
 
+
+#' @family geometry  
+#' @concept geometry
+#'
+#'
 #' @export
 band <- function(x, y) {
   

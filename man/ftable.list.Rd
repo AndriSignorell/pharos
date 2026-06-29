@@ -67,5 +67,5 @@ ftable(
 \code{\link{tapply}},
 \code{\link{ftable}}
 }
-\concept{descriptive-statistics}
+\concept{frequency-table}
 \concept{tables}

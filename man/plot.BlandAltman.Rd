@@ -67,3 +67,12 @@ Plots a Bland-Altman agreement analysis.
 Objects of class \code{"blandAltman"} are typically created with
 \code{DescToolsX::blandAltmanData()}.
 }
+\seealso{
+Other plot.s3:
+\code{\link[=plot.Desc.qn]{plot.Desc.qn()}},
+\code{\link[=plot.Desc.table]{plot.Desc.table()}},
+\code{\link[=plot.Lc]{plot.Lc()}}
+}
+\concept{agreement}
+\concept{method-comparison}
+\concept{plot.s3}

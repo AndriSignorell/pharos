@@ -29,11 +29,23 @@ radToDeg( c(0.5,1,2) * pi)
 
 }
 \seealso{
-Other coordinate.transform:
-\code{\link{coordinate-conversions}},
-\code{\link[=rotate]{rotate()}},
-\code{\link[=transformXY]{transformXY()}}
+Other graphics.utils:
+\code{\link[=abcCoords]{abcCoords()}},
+\code{\link[=axisBreak]{axisBreak()}},
+\code{\link[=barText]{barText()}},
+\code{\link[=boxedText]{boxedText()}},
+\code{\link[=colLegend]{colLegend()}},
+\code{\link[=errBars]{errBars()}},
+\code{\link[=lineSep]{lineSep()}},
+\code{\link[=lineToUser]{lineToUser()}},
+\code{\link[=lines.lm]{lines.lm()}},
+\code{\link[=mar]{mar()}},
+\code{\link[=preview]{preview()}},
+\code{\link[=spreadOut]{spreadOut()}},
+\code{\link[=stamp]{stamp()}},
+\code{\link[=textLegend]{textLegend()}},
+\code{\link[=titleRect]{titleRect()}},
+\code{\link[=unit]{unit()}}
 }
-\concept{coordinate.transform}
-\concept{geometry}
-\concept{mathematics}
+\concept{annotation}
+\concept{graphics.utils}

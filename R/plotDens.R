@@ -89,6 +89,12 @@ NULL
 
 
 #' @param x A numeric vector or list of numeric vectors.
+
+#' @family plot.univariate  
+#' @concept density  
+#' @concept distribution-summary
+#'
+#'
 #' @export
 plotDens <- function(x, ...) {
   UseMethod("plotDens")

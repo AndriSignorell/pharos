@@ -115,14 +115,16 @@ plotPropCI(m[1, ], labels = c("yes", "no"))
 \seealso{
 \code{\link[stats]{prop.test}}, \code{\link{getTheme}}
 
-Other plot.univariate:
-\code{\link[=plotBar]{plotBar()}},
-\code{\link[=plotBox]{plotBox()}},
-\code{\link[=plotDensBox]{plotDensBox()}},
-\code{\link[=plotDot]{plotDot()}},
-\code{\link[=plotViolin]{plotViolin()}}
+Other plot.special:
+\code{\link[=plotBinaryTree]{plotBinaryTree()}},
+\code{\link[=plotCirc]{plotCirc()}},
+\code{\link[=plotMiss]{plotMiss()}},
+\code{\link[=plotPolar]{plotPolar()}},
+\code{\link[=plotTernary]{plotTernary()}},
+\code{\link[=plotTimeSeries]{plotTimeSeries()}},
+\code{\link[=plotTreemap]{plotTreemap()}},
+\code{\link[=plotWeb]{plotWeb()}}
 }
-\concept{confidence-intervals}
-\concept{descriptive-statistics}
-\concept{graphics}
-\concept{plot.univariate}
+\concept{confidence-interval}
+\concept{plot.special}
+\concept{proportion}

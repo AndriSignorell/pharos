@@ -81,15 +81,14 @@ plotTernary(M, lbl = c("A", "B", "C"))
 \code{\link{plotDens}}, \code{\link{plotRidge}}
 
 Other plot.special:
-\code{\link[=plotArea]{plotArea()}},
 \code{\link[=plotBinaryTree]{plotBinaryTree()}},
 \code{\link[=plotCirc]{plotCirc()}},
-\code{\link[=plotFun]{plotFun()}},
 \code{\link[=plotMiss]{plotMiss()}},
 \code{\link[=plotPolar]{plotPolar()}},
+\code{\link[=plotPropCI]{plotPropCI()}},
+\code{\link[=plotTimeSeries]{plotTimeSeries()}},
 \code{\link[=plotTreemap]{plotTreemap()}},
 \code{\link[=plotWeb]{plotWeb()}}
 }
-\concept{geometry}
-\concept{graphics}
+\concept{bivariate}
 \concept{plot.special}

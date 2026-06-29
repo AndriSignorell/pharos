@@ -179,23 +179,18 @@ plotBar(VADeaths/1e3,  box=FALSE, bg="lightyellow", main="VADeaths",
 \code{\link[graphics]{barplot}}, \code{\link{barText}},
 \code{\link{getTheme}}
 
-Other topic.graphics:
-\code{\link[=plotBubble]{plotBubble()}},
-\code{\link[=plotDens]{plotDens()}},
-\code{\link[=plotDens2D]{plotDens2D()}},
-\code{\link[=plotRidge]{plotRidge()}}
-
 Other plot.univariate:
+\code{\link[=plotArea]{plotArea()}},
 \code{\link[=plotBox]{plotBox()}},
+\code{\link[=plotCatDist]{plotCatDist()}},
+\code{\link[=plotDens]{plotDens()}},
 \code{\link[=plotDensBox]{plotDensBox()}},
 \code{\link[=plotDot]{plotDot()}},
-\code{\link[=plotPropCI]{plotPropCI()}},
+\code{\link[=plotECDF]{plotECDF()}},
+\code{\link[=plotFdist]{plotFdist()}},
+\code{\link[=plotLines]{plotLines()}},
+\code{\link[=plotQQ]{plotQQ()}},
 \code{\link[=plotViolin]{plotViolin()}}
 }
-\concept{base-graphics}
-\concept{descriptive-statistics}
-\concept{frequency-analysis}
-\concept{graphics}
+\concept{bar-chart}
 \concept{plot.univariate}
-\concept{plotting}
-\concept{topic.graphics}

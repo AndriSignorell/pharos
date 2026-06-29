@@ -17,6 +17,11 @@
 #'
 
 
+
+#' @family html  
+#' @concept html
+#'
+#'
 #' @export
 as.img <- function(x, ...) {
   

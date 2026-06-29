@@ -16,10 +16,12 @@
 #'   x_{new} = x + amount \cdot (255 - x)
 #' }
 #'
-#' @family color.manipulation
-#' @concept color-manipulation
-#'
 
+
+#' @family color  
+#' @concept color
+#'
+#'
 #' @export
 lighten <- function(col, amount = 0.2) {
   

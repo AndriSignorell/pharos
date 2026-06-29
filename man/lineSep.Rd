@@ -32,15 +32,23 @@ lineSep(cli::col_red("="))
 
 }
 \seealso{
-Other string.format:
-\code{\link[=fm]{fm()}},
-\code{\link[=fmCI]{fmCI()}},
-\code{\link[=strAbbr]{strAbbr()}},
-\code{\link[=strAlign]{strAlign()}},
-\code{\link[=strPad]{strPad()}},
-\code{\link[=strTrunc]{strTrunc()}},
-\code{\link[=style]{style()}}
+Other graphics.utils:
+\code{\link[=abcCoords]{abcCoords()}},
+\code{\link[=axisBreak]{axisBreak()}},
+\code{\link[=barText]{barText()}},
+\code{\link[=boxedText]{boxedText()}},
+\code{\link[=colLegend]{colLegend()}},
+\code{\link[=degToRad]{degToRad()}},
+\code{\link[=errBars]{errBars()}},
+\code{\link[=lineToUser]{lineToUser()}},
+\code{\link[=lines.lm]{lines.lm()}},
+\code{\link[=mar]{mar()}},
+\code{\link[=preview]{preview()}},
+\code{\link[=spreadOut]{spreadOut()}},
+\code{\link[=stamp]{stamp()}},
+\code{\link[=textLegend]{textLegend()}},
+\code{\link[=titleRect]{titleRect()}},
+\code{\link[=unit]{unit()}}
 }
-\concept{graphics}
-\concept{string-formatting}
-\concept{string.format}
+\concept{annotation}
+\concept{graphics.utils}

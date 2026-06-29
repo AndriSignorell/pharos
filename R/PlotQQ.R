@@ -89,10 +89,10 @@
 #'          col="grey", lty="dotted")
 #' }
 #' 
-#' @family plot.distribution
-#' @concept graphics
-#' @concept normality-testing
-#' @concept distributions
+
+#' @family plot.univariate  
+#' @concept normality-test  
+#' @concept distribution-summary
 #'
 #'
 #' @export

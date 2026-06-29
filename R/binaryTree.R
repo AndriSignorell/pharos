@@ -56,9 +56,9 @@
 
 
 #' @rdname binaryTree
-#' @family plot.special
-#' @concept graphics
-#' @concept data-structures
+
+#' @family plot.special  
+#' @concept tree
 #'
 #'
 #' @export

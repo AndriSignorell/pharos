@@ -56,12 +56,13 @@
 #' \code{\link{tapply}},
 #' \code{\link{ftable}}
 #'
-#' @family tables
-#' @concept tables
-#' @concept descriptive-statistics
+
+
+
+#' @family tables  
+#' @concept frequency-table
 #'
-
-
+#'
 #' @export
 ftable.list <- function(x, row.vars = NULL, col.vars = NULL, ...) {
   

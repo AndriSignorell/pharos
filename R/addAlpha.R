@@ -8,9 +8,6 @@
 #'
 #' @return Character vector of hexadecimal colors with alpha channel.
 #'
-#' @family color.manipulation
-#' @concept color-manipulation
-#'
 #' @seealso \code{\link{adjustcolor}}, \code{\link{colToOpaque}}
 #' 
 #' @examples
@@ -33,6 +30,11 @@
 #' par(op)
 #' 
  
+
+#' @family color  
+#' @concept color
+#'
+#'
 #' @export
 addAlpha <- function(col, alpha = 0.5) {
   Vectorize(grDevices::adjustcolor)(col = col, alpha.f = alpha)

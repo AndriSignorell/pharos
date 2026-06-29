@@ -78,9 +78,9 @@
 #'
 
 
-#' @family plot.special
-#' @concept graphics
-#' @concept association-measures
+
+#' @family plot.special  
+#' @concept bar-chart
 #'
 #'
 #' @export

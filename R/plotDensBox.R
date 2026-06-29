@@ -101,9 +101,11 @@
 #' plotDensBox(x ~ g)
 #' }
 #'
-#' @family plot.univariate
-#' @concept graphics
-#' @concept descriptive-statistics
+
+#' @family plot.univariate  
+#' @concept density  
+#' @concept boxplot
+#'
 #'
 #' @export
 plotDensBox <- function(x, ...) {

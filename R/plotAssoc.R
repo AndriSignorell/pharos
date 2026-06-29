@@ -100,10 +100,9 @@
 #' 
 
 
-#' @family plot.bivariate
-#' @concept graphics
-#' @concept association-measures
-#' @concept table-manipulation
+
+#' @family plot.bivariate  
+#' @concept frequency-table
 #'
 #'
 #' @export

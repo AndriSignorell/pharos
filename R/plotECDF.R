@@ -95,10 +95,9 @@
 #' # grouped ECDFs via the formula interface
 #' plotECDF(Sepal.Length ~ Species, data = iris)
 #'
-#' @family plot.distribution
-#' @concept graphics
-#' @concept descriptive-statistics
-#' @concept nonparametric
+
+#' @family plot.univariate  
+#' @concept distribution-summary
 #'
 #'
 #' @export

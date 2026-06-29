@@ -73,9 +73,9 @@
 #' 
 #' 
 
-#' @family plot.annotation
-#' @concept graphics
-#' @concept string-formatting
+
+#' @family graphics.utils  
+#' @concept annotation
 #'
 #'
 #' @export

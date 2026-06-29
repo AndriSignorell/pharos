@@ -94,13 +94,12 @@
 #'        cex=1.5, pch=15)
 
 
-#' @family plot.univariate
-#' @concept graphics
-#' @concept descriptive-statistics
-#' @concept confidence-intervals
-#'
-#'
 
+
+#' @family plot.univariate  
+#' @concept dotchart
+#'
+#'
 #' @export
 plotDot <- function(x, 
                     items = NULL,

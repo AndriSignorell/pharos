@@ -31,9 +31,9 @@
 
 
 #' @importFrom stringi stri_detect_regex
-#' @family string.manipulation
+
+#' @family string  
 #' @concept string-manipulation
-#' @concept data-inspection
 #'
 #'
 #' @export

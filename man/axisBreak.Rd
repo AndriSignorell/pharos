@@ -55,16 +55,26 @@ axisBreak(2, 2.9, style="zigzag")
 
 }
 \seealso{
-Other plot.annotation:
+Other graphics.utils:
+\code{\link[=abcCoords]{abcCoords()}},
 \code{\link[=barText]{barText()}},
 \code{\link[=boxedText]{boxedText()}},
 \code{\link[=colLegend]{colLegend()}},
-\code{\link[=shade]{shade()}},
+\code{\link[=degToRad]{degToRad()}},
+\code{\link[=errBars]{errBars()}},
+\code{\link[=lineSep]{lineSep()}},
+\code{\link[=lineToUser]{lineToUser()}},
+\code{\link[=lines.lm]{lines.lm()}},
+\code{\link[=mar]{mar()}},
+\code{\link[=preview]{preview()}},
+\code{\link[=spreadOut]{spreadOut()}},
 \code{\link[=stamp]{stamp()}},
-\code{\link[=titleRect]{titleRect()}}
+\code{\link[=textLegend]{textLegend()}},
+\code{\link[=titleRect]{titleRect()}},
+\code{\link[=unit]{unit()}}
 }
 \author{
 Jim Lemon and Ben Bolker
 }
-\concept{graphics}
-\concept{plot.annotation}
+\concept{annotation}
+\concept{graphics.utils}

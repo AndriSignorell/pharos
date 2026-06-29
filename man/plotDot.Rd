@@ -125,13 +125,17 @@ points(c(12,18,28,40,65) + runif(n = 5)*15, y=unlist(ypos$ypos),
 }
 \seealso{
 Other plot.univariate:
+\code{\link[=plotArea]{plotArea()}},
 \code{\link[=plotBar]{plotBar()}},
 \code{\link[=plotBox]{plotBox()}},
+\code{\link[=plotCatDist]{plotCatDist()}},
+\code{\link[=plotDens]{plotDens()}},
 \code{\link[=plotDensBox]{plotDensBox()}},
-\code{\link[=plotPropCI]{plotPropCI()}},
+\code{\link[=plotECDF]{plotECDF()}},
+\code{\link[=plotFdist]{plotFdist()}},
+\code{\link[=plotLines]{plotLines()}},
+\code{\link[=plotQQ]{plotQQ()}},
 \code{\link[=plotViolin]{plotViolin()}}
 }
-\concept{confidence-intervals}
-\concept{descriptive-statistics}
-\concept{graphics}
+\concept{dotchart}
 \concept{plot.univariate}

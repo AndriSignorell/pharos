@@ -112,7 +112,6 @@ plotRidge(value ~ group, data = df)
 \code{\link{plotDens}}
 
 Other topic.graphics:
-\code{\link[=plotBar]{plotBar()}},
 \code{\link[=plotBubble]{plotBubble()}},
 \code{\link[=plotDens]{plotDens()}},
 \code{\link[=plotDens2D]{plotDens2D()}}

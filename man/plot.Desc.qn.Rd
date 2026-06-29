@@ -122,9 +122,10 @@ clipped regardless of \code{which}.
 \code{\link[graphics]{cdplot}}, \code{\link[graphics]{spineplot}},
 \code{\link{getTheme}}
 
-Other desc:
-\code{\link[=plot.Desc.table]{plot.Desc.table()}}
+Other plot.s3:
+\code{\link[=plot.BlandAltman]{plot.BlandAltman()}},
+\code{\link[=plot.Desc.table]{plot.Desc.table()}},
+\code{\link[=plot.Lc]{plot.Lc()}}
 }
-\concept{data-description}
-\concept{desc}
-\concept{descriptive-statistics}
+\concept{distribution-summary}
+\concept{plot.s3}

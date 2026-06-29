@@ -1,5 +1,5 @@
 
-' Produce a shaded Curve 
+#' Produce a shaded Curve 
 #' 
 #' Sometimes the area under a density curve has to be color shaded, for
 #' instance to illustrate a p-value or a specific region under the normal
@@ -39,10 +39,9 @@
 #'       col=c("deeppink4", "skyblue3"), density=c(20, 7))
 #' 
 
-#' @family plot.annotation
-#' @concept graphics
-#' @concept distributions
-#' @concept descriptive-statistics
+
+#' @family geometry  
+#' @concept geometry
 #'
 #'
 #' @export

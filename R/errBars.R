@@ -124,11 +124,13 @@
 #'
 #' par(op)
 #'
-#' @family plot.augmentation
-#' @concept graphics
-#' @concept plot-augmentation
-#'
 
+
+#' @family graphics.utils  
+#' @concept annotation  
+#' @concept confidence-interval
+#'
+#'
 #' @export
 errBars <- function(
     from,

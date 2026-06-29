@@ -257,6 +257,11 @@
 #'   \code{\link{stamp}} for the corner stamp mechanism.
 #'
 #' @name getTheme
+
+#' @family theme  
+#' @concept theme
+#'
+#'
 #' @export
 getTheme <- function() {
   getOption("aurora.theme", .themeDefaults)

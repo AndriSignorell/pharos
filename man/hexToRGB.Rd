@@ -16,16 +16,20 @@ Integer matrix with RGB rows.
 Convert hexadecimal color strings to an RGB matrix.
 }
 \seealso{
-Other color.conversion:
-\code{\link[=RGBToCol]{RGBToCol()}},
-\code{\link[=RGBToHex]{RGBToHex()}},
-\code{\link[=RGBToLong]{RGBToLong()}},
-\code{\link[=colToHSV]{colToHSV()}},
-\code{\link[=colToHex]{colToHex()}},
+Other color:
+\code{\link[=addAlpha]{addAlpha()}},
+\code{\link[=colToOpaque]{colToOpaque()}},
 \code{\link[=colToRGB]{colToRGB()}},
-\code{\link[=hexToCol]{hexToCol()}},
-\code{\link[=longToRGB]{longToRGB()}}
+\code{\link[=contrastColor]{contrastColor()}},
+\code{\link[=darken]{darken()}},
+\code{\link[=findColor]{findColor()}},
+\code{\link[=grayscale]{grayscale()}},
+\code{\link[=hcol]{hcol()}},
+\code{\link[=lighten]{lighten()}},
+\code{\link[=mixColors]{mixColors()}},
+\code{\link[=pal]{pal()}},
+\code{\link[=palNames]{palNames()}},
+\code{\link[=setBackCol]{setBackCol()}}
 }
+\concept{color}
 \concept{color-conversion}
-\concept{color.conversion}
-\concept{graphics}

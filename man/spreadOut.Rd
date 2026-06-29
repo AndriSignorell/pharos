@@ -57,15 +57,24 @@ spreadOut(rnorm(10), 0.5)
 \seealso{
 \code{\link{strheight}()}
 
-Other plot.utils:
-\code{\link{axTicks}},
+Other graphics.utils:
+\code{\link[=abcCoords]{abcCoords()}},
+\code{\link[=axisBreak]{axisBreak()}},
+\code{\link[=barText]{barText()}},
+\code{\link[=boxedText]{boxedText()}},
+\code{\link[=colLegend]{colLegend()}},
+\code{\link[=degToRad]{degToRad()}},
+\code{\link[=errBars]{errBars()}},
+\code{\link[=lineSep]{lineSep()}},
 \code{\link[=lineToUser]{lineToUser()}},
 \code{\link[=lines.lm]{lines.lm()}},
 \code{\link[=mar]{mar()}},
-\code{\link[=setBackCol]{setBackCol()}},
-\code{\link{splineCI}}
+\code{\link[=preview]{preview()}},
+\code{\link[=stamp]{stamp()}},
+\code{\link[=textLegend]{textLegend()}},
+\code{\link[=titleRect]{titleRect()}},
+\code{\link[=unit]{unit()}}
 }
-\concept{graphics}
-\concept{plot.utils}
-\concept{vector-manipulation}
+\concept{annotation}
+\concept{graphics.utils}
 \keyword{misc}

@@ -31,11 +31,12 @@
 
 
 
-#' @family plot.annotation
-#' @concept graphics
-#' @concept date-handling
+
 #'
 
+#' @family graphics.utils  
+#' @concept annotation
+#'
 #'
 #' @export
 stamp <- function(text = .useTheme, las = NULL, cex = 0.6, col = "grey40") {

@@ -121,9 +121,10 @@
 #' palNames("discrete")
 #'
 
-#' @family topic.colors
-#' @concept color-manipulation
-#' @concept graphics
+
+#' @family color  
+#' @concept color  
+#' @concept palette
 #'
 #'
 #' @export

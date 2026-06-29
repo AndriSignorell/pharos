@@ -161,16 +161,11 @@ fm(Sys.Date(), fmt=dat.sty)
 \seealso{
 \code{\link{fm}()}
 
-Other string.format:
-\code{\link[=fm]{fm()}},
-\code{\link[=fmCI]{fmCI()}},
-\code{\link[=lineSep]{lineSep()}},
-\code{\link[=strAbbr]{strAbbr()}},
-\code{\link[=strAlign]{strAlign()}},
-\code{\link[=strPad]{strPad()}},
-\code{\link[=strTrunc]{strTrunc()}}
+Other theme:
+\code{\link[=getTheme]{getTheme()}}
 }
 \concept{graphics}
 \concept{string-formatting}
 \concept{string.format}
+\concept{theme}
 \keyword{IO}
