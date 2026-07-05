@@ -18,7 +18,7 @@
 #' 
 #' @importFrom graphics plot hist abline par points text axTicks axis grid layout lines mtext rect title polygon strheight strwidth clip  image grconvertX grconvertY segments barplot box matplot layout.show arrows plot.new plot.window close.screen screen split.screen rug curve contour persp boxplot cdplot frame spineplot
 #'             
-#' @importFrom grDevices rgb col2rgb rgb2hsv colors colorRampPalette xy.coords heat.colors dev.size gray.colors rainbow adjustcolor dev.off png
+#' @importFrom grDevices rgb col2rgb rgb2hsv colors colorRampPalette xy.coords heat.colors dev.size gray.colors rainbow adjustcolor dev.off png dev.cur
 #'             
 #' @importFrom utils head tail combn readRegistry modifyList
 #' 

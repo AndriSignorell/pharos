@@ -119,14 +119,12 @@ plotDens2D <- function( x, y,
     
     bw <- c(.bandwidth.nrd(x), .bandwidth.nrd(y))
     
-    kde <- .kde2d(x = x, y=y, h=bw, n=500, 
-                  lims = c(range(x), range(y)))
-    
-    
     if(is.null(xlim)) xlim <- range(x, finite = TRUE)
     if(is.null(ylim)) ylim <- range(y, finite = TRUE)
-    # if(is.null(zlim)) zlim <- range(z, finite = TRUE)
     
+    kde <- .kde2d(x = x, y = y, h = bw, n = 500, 
+                  lims = c(xlim, ylim))           
+        
     res <- switch(match.arg(type),  
                   contour= { contour(kde, xlab=xlab, ylab=ylab, xlim=xlim, ylim=ylim,
                                      main = main,

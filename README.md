@@ -1,194 +1,167 @@
+# aurora <img src="man/figures/logo.png" align="right" height="120" alt="" />
 
-# 🌌 aurora
+**Descriptive Statistics Graphics and Utilities**
 
-**Version:** 0.0.0.910\
-**Title:** Descriptive Statistics Graphics and Utilities\
-**License:** GPL (≥ 2)
+Version 0.0.0.927 · License GPL (≥ 2)
 
-## 🧩 Overview
+<!-- badges: start -->
+<!-- [![R-CMD-check](https://github.com/AndriSignorell/aurora/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/AndriSignorell/aurora/actions) -->
+<!-- badges: end -->
 
-`aurora` is the visualization and graphics package of the **DescToolsX
-ecosystem**.\
-It provides a large collection of plotting utilities, geometric drawing
-functions, color manipulation tools, coordinate transformations, and
-statistical graphics. fileciteturn3file0
+## Overview
 
-The package focuses on:
+`aurora` is the graphics package of the **DescToolsX ecosystem**. It provides
+a comprehensive collection of statistical plots, geometric drawing primitives,
+color tools, annotation helpers, and formatting utilities — all built directly
+on **base R graphics**.
 
--   elegant base-R graphics
--   geometric plotting
--   statistical visualization
--   color science and palettes
--   annotation utilities
--   publication-ready helper functions
+Building on base graphics keeps the package lightweight and fully compatible
+with everything base R offers (`layout()`, `par()`, custom devices), while a
+central **theme system** and consistent argument conventions remove the usual
+boilerplate: sensible defaults, automatic margin handling, and uniform
+styling across all plot functions.
 
-Unlike many modern plotting frameworks, `aurora` builds directly on top
-of **base graphics**, making it lightweight, flexible, and highly
-customizable.
+`aurora` is part of the DescToolsX package suite:
 
-------------------------------------------------------------------------
+| Package   | Role                                    |
+|-----------|-----------------------------------------|
+| `bedrock` | core infrastructure and utilities       |
+| `aurora`  | graphics and visualization (this package) |
+| `lumen`   | statistical tests and confidence intervals |
+| `alloy`   | model fitting and evaluation            |
+| `hermes`  | reporting and output                    |
 
-## ⚙️ Installation
+## Installation
 
 ``` r
+# development version from GitHub
 remotes::install_github("AndriSignorell/aurora")
 ```
 
-------------------------------------------------------------------------
+## Key Features
 
-## 🎨 Core Features
+### Statistical plots
 
-### 🔹 Statistical Graphics
+A large family of high-level `plot*()` functions with a consistent
+interface (formula support, grouped variants, theme-driven styling):
 
--   `plotDens()` -- density plots
--   `plotHeatmap()` -- heatmaps
--   `plotMosaic()` -- mosaic plots
--   `plotQQ()` -- QQ plots
--   `plotViolin()` -- violin plots
--   `plotCor()` -- correlation plots
--   `plotBubble()` -- bubble charts
--   `plotTreemap()` -- treemap visualization
--   `plotTimeSeries()` -- time-series plotting
--   `plotAssoc()` -- association visualization
+- **Distributions:** `plotDens()`, `plotDens2D()`, `plotDensBox()`,
+  `plotViolin()`, `plotRidge()`, `plotBox()`, `plotECDF()`, `plotFdist()`,
+  `plotQQ()`, `plotProbDist()`
+- **Categorical data:** `plotBar()`, `plotDot()`, `plotMosaic()`,
+  `plotCatDist()`, `plotTreemap()`, `plotWeb()`
+- **Relationships:** `plotXY()`, `plotLines()`, `plotCor()`, `plotAssoc()`,
+  `plotBubble()`, `plotHexbin()`, `plotBag()`
+- **Special purpose:** `plotTimeSeries()`, `plotArea()`, `plotMiss()`,
+  `plotPropCI()`, `plotCirc()`, `plotPolar()`, `plotTernary()`,
+  `plotBinaryTree()`, `plotFun()`
 
-------------------------------------------------------------------------
+Plot methods for objects from the suite are included, e.g.
+`plot.Desc.*` (for `desc()` results), `plot.Lc` (Lorenz curves),
+`plot.BlandAltman`, and `lines()` methods for `lm` and `loess` fits.
 
-### 🔹 Geometric Drawing
+### Theme system
 
--   `drawCircle()`
--   `drawEllipse()`
--   `drawArc()`
--   `drawBezier()`
--   `drawRegPolygon()`
--   `drawBand()`
+All plot functions draw their defaults from a central, replaceable theme:
 
-Together with:
+``` r
+getTheme()                              # inspect the active theme
+setTheme(list(palette = "Set2"))        # change one component globally
+setTheme(list(grid = list(col = "grey90", lwd = 1, lty = "dotted")))
+resetTheme()                            # back to the default
+```
 
--   `canvas()`
--   `polarGrid()`
+Explicit arguments always override the theme at the call site; the theme in
+turn overrides the package defaults. One place to define the look — every
+plot follows.
 
-these functions enable low-level geometric graphics and custom diagram
-creation.
+### Geometric drawing
 
-------------------------------------------------------------------------
+Geometry follows a clean two-step design: **constructors** create geometry
+objects — `circle()`, `ellipse()`, `arc()`, `bezier()`, `band()`, `ring()`,
+`regPolygon()` — and an overloaded `polygon()` generic (fully compatible with
+`graphics::polygon()`) draws them. `canvas()` provides a blank, aspect-true
+plotting canvas, `polarGrid()` a polar coordinate system.
 
-### 🔹 Colors & Transparency
+``` r
+canvas()
+polygon(circle(radius = 1), col = "lightblue")
+polygon(regPolygon(radius = 0.7, numVertices = 5), border = "red")
+```
 
--   `addAlpha()` -- alpha transparency
--   `colToOpaque()`
--   `contrastColor()` -- WCAG-aware contrast colors
--   `findColor()`
--   `pal()` / `palNames()`
+Because geometries are plain objects, they can be transformed before
+drawing (`rotate()`, `transformXY()`) or combined into composite shapes.
 
-Includes RGB, HSV, CMYK, and grayscale conversion utilities.
+### Colors
 
-------------------------------------------------------------------------
+- **Manipulation:** `addAlpha()`, `fade()`, `darken()`, `lighten()`,
+  `mixColors()`, `grayscale()`, `colToOpaque()`
+- **Analysis:** `contrastColor()` (legible text colors on any background),
+  `findColor()` (nearest named color)
+- **Conversion:** hex, RGB, HSV, CMY(K), and long integer representations
+  (`colToHex()`, `hexToRGB()`, `cmykToRgb()`, `rgbToLong()`, …)
+- **Palettes:** `pal()` and `palNames()` for the suite's curated palettes
 
-### 🔹 Plot Annotation Utilities
+### Annotation and layout helpers
 
--   `boxedText()`
--   `barText()`
--   `colLegend()`
--   `errBars()`
--   `shade()`
--   `stamp()`
--   `titleRect()`
--   `axisBreak()`
+Utilities that handle the fiddly parts of base graphics:
 
-These helpers simplify complex plot annotations and labeling.
+- `stamp()` — automatic plot stamping (author/date), theme-controlled
+- `boxedText()`, `barText()`, `textLegend()`, `colLegend()` — labels and
+  legends beyond `text()`/`legend()`
+- `errBars()`, `shade()`, `splineCI()`, `band()` — uncertainty display
+- `axisBreak()`, `axTicks()`, `titleRect()`, `lineSep()` — axis and title
+  furniture
+- `spreadOut()` — de-overlapping label positions
+- `isValidPlotRegion()` — check the device geometry before drawing
 
-------------------------------------------------------------------------
+### Formatting and output
 
-### 🔹 Coordinate & Unit Systems
+- `fm()` / `fmCI()` — flexible number and confidence interval formatting
+- `notation()`, `style()` — notation and style control
+- `as.html()`, `toHtmlTable()`, `preview()` — HTML rendering of tables and
+  plots, e.g. for quick reports
 
--   Cartesian ↔ polar ↔ spherical transforms
--   Degree/radian conversion
--   Unit conversion engine (`convUnit()`)
+### Coordinates, units, and strings
 
-Supports symbolic SI units and derived unit systems.
+- Coordinate transformations: `transformXY()`, `rotate()`, `degToRad()`,
+  `lineToUser()`, `abcCoords()`
+- Unit conversion engine: `convUnit()` with SI and derived units
+- A complete `str*()` family for string handling (`strTrim()`, `strPad()`,
+  `strAlign()`, `strExtract()`, `strDist()`, `strAbbr()`, …)
 
-------------------------------------------------------------------------
-
-### 🔹 String Utilities
-
-Includes numerous text-processing helpers:
-
--   `strTrim()`
--   `strSplit()`
--   `strPad()`
--   `strExtract()`
--   `strAlign()`
--   `strCountW()`
-
-------------------------------------------------------------------------
-
-## 🚀 Design Principles
-
--   Built on base graphics
--   Lightweight and dependency-conscious
--   Publication-oriented plotting
--   Reusable geometric primitives
--   High customizability
--   Strong color utility support
-
-------------------------------------------------------------------------
-
-## 🧪 Examples
+## Example
 
 ``` r
 library(aurora)
 
-# transparency
-addAlpha("steelblue", 0.4)
-
-# geometric canvas
-canvas()
-drawCircle(outerR = 1, col = addAlpha("red", 0.4))
-
-# violin plot
+# grouped violin plot, styled by the active theme
 plotViolin(mpg ~ cyl, data = mtcars)
 
-# heatmap
-plotHeatmap(cor(mtcars))
+# correlation matrix plot
+plotCor(cor(mtcars))
+
+# custom geometric graphic
+canvas(main = "aurora primitives")
+polygon(circle(radius = 1), col = addAlpha("steelblue", 0.4))
+polygon(regPolygon(radius = 0.7, numVertices = 6), border = "red")
 ```
 
-------------------------------------------------------------------------
+## Design principles
 
-## 📦 Dependencies
+- **Base graphics, no grid** — lightweight, transparent, hackable
+- **Consistent API** — lowerCamelCase, uniform argument names and ordering
+  across the whole suite
+- **Theme-driven** — one place to define the look, every plot follows
+- **Robust by default** — automatic margin adjustment, device geometry
+  checks, protected graphics state
+- **Performance-aware** — Rcpp under the hood where it matters
 
-Core imports include:
+## Documentation
 
--   `Rcpp`
--   `graphics`
--   `bedrock`
--   `MASS`
--   `cli`
--   `stringi`
--   `withr`
+- Website: <https://andrisignorell.github.io/aurora/>
+- Bug reports: <https://github.com/AndriSignorell/aurora/issues>
 
-------------------------------------------------------------------------
-
-## 📖 Documentation
-
--   🌐 Website:\
-    https://andrisignorell.github.io/aurora/
-
--   🐛 Issues:\
-    https://github.com/AndriSignorell/aurora/issues
-
-------------------------------------------------------------------------
-
-## 🧠 Typical Use Cases
-
--   Publication-ready statistical graphics
--   Custom geometry and diagrams
--   Educational visualizations
--   Color analysis and manipulation
--   Advanced base-R graphics workflows
--   Lightweight alternatives to ggplot2
-
-------------------------------------------------------------------------
-
-## 📜 License
+## License
 
 GPL (≥ 2)

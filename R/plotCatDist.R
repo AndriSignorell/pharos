@@ -109,7 +109,7 @@ plotCatDist <- function(
     names(tab) <- labs
     
     # ── Proportions ──────────────────────────────────────────────
-    p <- tab / sum(tab)
+    p <- tab / sum(x) # sum(tab)
     
     if (ecdf) {
       p <- cumsum(p)
@@ -180,7 +180,9 @@ plotCatDist <- function(
     
     # ── Truncation note ──────────────────────────────────────────
     if (trunc_fg) {
-      mtext("... truncated", side = 1, line = 2, cex = 0.8)
+      text(x = 1, y = 1, labels = " ...[list output truncated]",
+      cex = 0.6, adj = c(1, 0.5))
+      
     }
     
   }, resetLayout = TRUE)
