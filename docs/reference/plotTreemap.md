@@ -95,14 +95,14 @@ keeping the main function signature compact.
 ## See also
 
 Other plot.special:
-[`plotBinaryTree()`](https://andrisignorell.github.io/lyra/reference/binaryTree.md),
-[`plotCirc()`](https://andrisignorell.github.io/lyra/reference/plotCirc.md),
-[`plotMiss()`](https://andrisignorell.github.io/lyra/reference/plotMiss.md),
-[`plotPolar()`](https://andrisignorell.github.io/lyra/reference/plotPolar.md),
-[`plotPropCI()`](https://andrisignorell.github.io/lyra/reference/plotPropCI.md),
-[`plotTernary()`](https://andrisignorell.github.io/lyra/reference/plotTernary.md),
-[`plotTimeSeries()`](https://andrisignorell.github.io/lyra/reference/plotTimeSeries.md),
-[`plotWeb()`](https://andrisignorell.github.io/lyra/reference/plotWeb.md)
+[`plotBinaryTree()`](https://andrisignorell.github.io/aurora/reference/binaryTree.md),
+[`plotCirc()`](https://andrisignorell.github.io/aurora/reference/plotCirc.md),
+[`plotMiss()`](https://andrisignorell.github.io/aurora/reference/plotMiss.md),
+[`plotPolar()`](https://andrisignorell.github.io/aurora/reference/plotPolar.md),
+[`plotPropCI()`](https://andrisignorell.github.io/aurora/reference/plotPropCI.md),
+[`plotTernary()`](https://andrisignorell.github.io/aurora/reference/plotTernary.md),
+[`plotTimeSeries()`](https://andrisignorell.github.io/aurora/reference/plotTimeSeries.md),
+[`plotWeb()`](https://andrisignorell.github.io/aurora/reference/plotWeb.md)
 
 ## Examples
 

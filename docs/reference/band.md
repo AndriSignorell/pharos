@@ -32,18 +32,18 @@ Typically used to represent confidence or prediction bands.
 
 ## See also
 
-[`polygon`](https://andrisignorell.github.io/lyra/reference/polygon.md),
-[`ring`](https://andrisignorell.github.io/lyra/reference/ring.md)
+[`polygon`](https://andrisignorell.github.io/aurora/reference/polygon.md),
+[`ring`](https://andrisignorell.github.io/aurora/reference/ring.md)
 
 Other geometry:
-[`arc()`](https://andrisignorell.github.io/lyra/reference/arc.md),
-[`bezier()`](https://andrisignorell.github.io/lyra/reference/bezier.md),
-[`canvas()`](https://andrisignorell.github.io/lyra/reference/canvas.md),
-[`polarGrid()`](https://andrisignorell.github.io/lyra/reference/polarGrid.md),
-[`polygon()`](https://andrisignorell.github.io/lyra/reference/polygon.md),
-[`rotate()`](https://andrisignorell.github.io/lyra/reference/rotate.md),
-[`shade()`](https://andrisignorell.github.io/lyra/reference/shade.md),
-[`transformXY()`](https://andrisignorell.github.io/lyra/reference/transformXY.md)
+[`arc()`](https://andrisignorell.github.io/aurora/reference/arc.md),
+[`bezier()`](https://andrisignorell.github.io/aurora/reference/bezier.md),
+[`canvas()`](https://andrisignorell.github.io/aurora/reference/canvas.md),
+[`polarGrid()`](https://andrisignorell.github.io/aurora/reference/polarGrid.md),
+[`polygon()`](https://andrisignorell.github.io/aurora/reference/polygon.md),
+[`rotate()`](https://andrisignorell.github.io/aurora/reference/rotate.md),
+[`shade()`](https://andrisignorell.github.io/aurora/reference/shade.md),
+[`transformXY()`](https://andrisignorell.github.io/aurora/reference/transformXY.md)
 
 ## Examples
 

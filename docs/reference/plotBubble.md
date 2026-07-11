@@ -135,9 +135,9 @@ design system using
 [`symbols`](https://rdrr.io/r/graphics/symbols.html)
 
 Other topic.graphics:
-[`plotDens()`](https://andrisignorell.github.io/lyra/reference/plotDens.md),
-[`plotDens2D()`](https://andrisignorell.github.io/lyra/reference/plotDens2D.md),
-[`plotRidge()`](https://andrisignorell.github.io/lyra/reference/plotRidge.md)
+[`plotDens()`](https://andrisignorell.github.io/aurora/reference/plotDens.md),
+[`plotDens2D()`](https://andrisignorell.github.io/aurora/reference/plotDens2D.md),
+[`plotRidge()`](https://andrisignorell.github.io/aurora/reference/plotRidge.md)
 
 ## Examples
 

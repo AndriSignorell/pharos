@@ -38,8 +38,8 @@ plotHeatmap(
   main title of the plot. `NULL` (default) derives a title from the
   expression passed as `x` (via `deparse(match.call()$x)`), the same
   "substitute magic" convention used by
-  [`plotXY`](https://andrisignorell.github.io/lyra/reference/plotXY.md)/[`plotBox`](https://andrisignorell.github.io/lyra/reference/plotBox.md)/
-  [`plotAssoc`](https://andrisignorell.github.io/lyra/reference/plotAssoc.md)
+  [`plotXY`](https://andrisignorell.github.io/aurora/reference/plotXY.md)/[`plotBox`](https://andrisignorell.github.io/aurora/reference/plotBox.md)/
+  [`plotAssoc`](https://andrisignorell.github.io/aurora/reference/plotAssoc.md)
   for their default titles - there's no formula pair here, just the
   single table argument, so the default is simply that expression's text
   (e.g. `plotHeatmap(tab)` titles itself `"tab"`). `""`, `NA`, or
@@ -98,7 +98,7 @@ plotHeatmap(
 - text:
 
   logical; if `TRUE`, cell values are printed on top of the tiles using
-  [`fm()`](https://andrisignorell.github.io/lyra/reference/fm.md)
+  [`fm()`](https://andrisignorell.github.io/aurora/reference/fm.md)
   formatting.
 
 - zlim:
@@ -144,18 +144,18 @@ distributions or statistical inference.
 
 ## See also
 
-[`plotAssoc`](https://andrisignorell.github.io/lyra/reference/plotAssoc.md),
+[`plotAssoc`](https://andrisignorell.github.io/aurora/reference/plotAssoc.md),
 [`image`](https://rdrr.io/r/graphics/image.html),
-[`getTheme`](https://andrisignorell.github.io/lyra/reference/getTheme.md)
+[`getTheme`](https://andrisignorell.github.io/aurora/reference/getTheme.md)
 
 Other plot.bivariate:
-[`plotAssoc()`](https://andrisignorell.github.io/lyra/reference/plotAssoc.md),
-[`plotBag()`](https://andrisignorell.github.io/lyra/reference/plotBag.md),
-[`plotCor()`](https://andrisignorell.github.io/lyra/reference/plotCor.md),
-[`plotDens2D()`](https://andrisignorell.github.io/lyra/reference/plotDens2D.md),
-[`plotHexbin()`](https://andrisignorell.github.io/lyra/reference/plotHexbin.md),
-[`plotMosaic()`](https://andrisignorell.github.io/lyra/reference/plotMosaic.md),
-[`plotXY()`](https://andrisignorell.github.io/lyra/reference/plotXY.md)
+[`plotAssoc()`](https://andrisignorell.github.io/aurora/reference/plotAssoc.md),
+[`plotBag()`](https://andrisignorell.github.io/aurora/reference/plotBag.md),
+[`plotCor()`](https://andrisignorell.github.io/aurora/reference/plotCor.md),
+[`plotDens2D()`](https://andrisignorell.github.io/aurora/reference/plotDens2D.md),
+[`plotHexbin()`](https://andrisignorell.github.io/aurora/reference/plotHexbin.md),
+[`plotMosaic()`](https://andrisignorell.github.io/aurora/reference/plotMosaic.md),
+[`plotXY()`](https://andrisignorell.github.io/aurora/reference/plotXY.md)
 
 ## Examples
 

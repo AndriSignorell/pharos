@@ -37,6 +37,6 @@ Hexadecimal RGB colors.
 ## See also
 
 Other color.space:
-[`cmyToCmyk()`](https://andrisignorell.github.io/lyra/reference/cmyToCmyk.md),
-[`cmykToCmy()`](https://andrisignorell.github.io/lyra/reference/cmykToCmy.md),
-[`rgbToCmy()`](https://andrisignorell.github.io/lyra/reference/rgbToCmy.md)
+[`cmyToCmyk()`](https://andrisignorell.github.io/aurora/reference/cmyToCmyk.md),
+[`cmykToCmy()`](https://andrisignorell.github.io/aurora/reference/cmykToCmy.md),
+[`rgbToCmy()`](https://andrisignorell.github.io/aurora/reference/rgbToCmy.md)

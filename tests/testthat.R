@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/articles/special-files.html
 
 library(testthat)
-library(aurora)
+library(lyra)
 
-test_check("aurora")
+test_check("lyra")

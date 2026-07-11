@@ -25,10 +25,10 @@ plot(x, cex = 2.5, border = "grey70", ...)
 
   character or integer. Palette name (full match via
   [`match.arg`](https://rdrr.io/r/base/match.arg.html)) or index into
-  [`palNames()`](https://andrisignorell.github.io/lyra/reference/palNames.md).
+  [`palNames()`](https://andrisignorell.github.io/aurora/reference/palNames.md).
   If missing, returns the palette named in the active theme
   (`getTheme()$palette`, see
-  [`getTheme`](https://andrisignorell.github.io/lyra/reference/getTheme.md)).
+  [`getTheme`](https://andrisignorell.github.io/aurora/reference/getTheme.md)).
 
 - n:
 
@@ -63,24 +63,24 @@ a character vector of `n` hex color codes of class
 
 ## See also
 
-[`palNames`](https://andrisignorell.github.io/lyra/reference/palNames.md),
+[`palNames`](https://andrisignorell.github.io/aurora/reference/palNames.md),
 [`colorRampPalette`](https://rdrr.io/r/grDevices/colorRamp.html),
 [`adjustcolor`](https://rdrr.io/r/grDevices/adjustcolor.html)
 
 Other color:
-[`addAlpha()`](https://andrisignorell.github.io/lyra/reference/addAlpha.md),
-[`colToOpaque()`](https://andrisignorell.github.io/lyra/reference/colToOpaque.md),
-[`colToRGB()`](https://andrisignorell.github.io/lyra/reference/colToRGB.md),
-[`contrastColor()`](https://andrisignorell.github.io/lyra/reference/contrastColor.md),
-[`darken()`](https://andrisignorell.github.io/lyra/reference/darken.md),
-[`findColor()`](https://andrisignorell.github.io/lyra/reference/findColor.md),
-[`grayscale()`](https://andrisignorell.github.io/lyra/reference/grayscale.md),
-[`hcol()`](https://andrisignorell.github.io/lyra/reference/hcol.md),
-[`hexToRGB()`](https://andrisignorell.github.io/lyra/reference/hexToRGB.md),
-[`lighten()`](https://andrisignorell.github.io/lyra/reference/lighten.md),
-[`mixColors()`](https://andrisignorell.github.io/lyra/reference/mixColors.md),
-[`palNames()`](https://andrisignorell.github.io/lyra/reference/palNames.md),
-[`setBackCol()`](https://andrisignorell.github.io/lyra/reference/setBackCol.md)
+[`addAlpha()`](https://andrisignorell.github.io/aurora/reference/addAlpha.md),
+[`colToOpaque()`](https://andrisignorell.github.io/aurora/reference/colToOpaque.md),
+[`colToRGB()`](https://andrisignorell.github.io/aurora/reference/colToRGB.md),
+[`contrastColor()`](https://andrisignorell.github.io/aurora/reference/contrastColor.md),
+[`darken()`](https://andrisignorell.github.io/aurora/reference/darken.md),
+[`findColor()`](https://andrisignorell.github.io/aurora/reference/findColor.md),
+[`grayscale()`](https://andrisignorell.github.io/aurora/reference/grayscale.md),
+[`hcol()`](https://andrisignorell.github.io/aurora/reference/hcol.md),
+[`hexToRGB()`](https://andrisignorell.github.io/aurora/reference/hexToRGB.md),
+[`lighten()`](https://andrisignorell.github.io/aurora/reference/lighten.md),
+[`mixColors()`](https://andrisignorell.github.io/aurora/reference/mixColors.md),
+[`palNames()`](https://andrisignorell.github.io/aurora/reference/palNames.md),
+[`setBackCol()`](https://andrisignorell.github.io/aurora/reference/setBackCol.md)
 
 ## Examples
 

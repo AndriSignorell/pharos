@@ -53,7 +53,7 @@ plotDens2D(
 
   Color specification used for `type = "image"`. Defaults to a reversed
   `"RedToBlack"` sequential ramp
-  ([`pal()`](https://andrisignorell.github.io/lyra/reference/pal.md)),
+  ([`pal()`](https://andrisignorell.github.io/aurora/reference/pal.md)),
   running from black (low density) to red (high density) - hardcoded
   rather than theme-driven, since this is a continuous, unidirectional
   gradient, unlike the active theme's categorical `palette` or diverging
@@ -108,18 +108,18 @@ error.
 ## See also
 
 Other topic.graphics:
-[`plotBubble()`](https://andrisignorell.github.io/lyra/reference/plotBubble.md),
-[`plotDens()`](https://andrisignorell.github.io/lyra/reference/plotDens.md),
-[`plotRidge()`](https://andrisignorell.github.io/lyra/reference/plotRidge.md)
+[`plotBubble()`](https://andrisignorell.github.io/aurora/reference/plotBubble.md),
+[`plotDens()`](https://andrisignorell.github.io/aurora/reference/plotDens.md),
+[`plotRidge()`](https://andrisignorell.github.io/aurora/reference/plotRidge.md)
 
 Other plot.bivariate:
-[`plotAssoc()`](https://andrisignorell.github.io/lyra/reference/plotAssoc.md),
-[`plotBag()`](https://andrisignorell.github.io/lyra/reference/plotBag.md),
-[`plotCor()`](https://andrisignorell.github.io/lyra/reference/plotCor.md),
-[`plotHeatmap()`](https://andrisignorell.github.io/lyra/reference/plotHeatmap.md),
-[`plotHexbin()`](https://andrisignorell.github.io/lyra/reference/plotHexbin.md),
-[`plotMosaic()`](https://andrisignorell.github.io/lyra/reference/plotMosaic.md),
-[`plotXY()`](https://andrisignorell.github.io/lyra/reference/plotXY.md)
+[`plotAssoc()`](https://andrisignorell.github.io/aurora/reference/plotAssoc.md),
+[`plotBag()`](https://andrisignorell.github.io/aurora/reference/plotBag.md),
+[`plotCor()`](https://andrisignorell.github.io/aurora/reference/plotCor.md),
+[`plotHeatmap()`](https://andrisignorell.github.io/aurora/reference/plotHeatmap.md),
+[`plotHexbin()`](https://andrisignorell.github.io/aurora/reference/plotHexbin.md),
+[`plotMosaic()`](https://andrisignorell.github.io/aurora/reference/plotMosaic.md),
+[`plotXY()`](https://andrisignorell.github.io/aurora/reference/plotXY.md)
 
 ## Examples
 

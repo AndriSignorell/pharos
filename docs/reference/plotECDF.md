@@ -98,9 +98,9 @@ plotECDF(
   color of the step line and the min/max marker points. `.useTheme`
   (default) resolves to `getTheme()$twin[1]` - a single accent color,
   consistent with
-  [`lines.loess`](https://andrisignorell.github.io/lyra/reference/lines.loess.md)
+  [`lines.loess`](https://andrisignorell.github.io/aurora/reference/lines.loess.md)
   and
-  [`plotQQ()`](https://andrisignorell.github.io/lyra/reference/plotQQ.md)'s
+  [`plotQQ()`](https://andrisignorell.github.io/aurora/reference/plotQQ.md)'s
   confidence band.
 
 - lwd:
@@ -130,7 +130,7 @@ plotECDF(
   Controls the corner stamp. `.useTheme` (default) resolves to
   `getTheme()$stamp`. `TRUE`/`FALSE`/`NULL`, a string, or a named list
   of arguments for
-  [`stamp()`](https://andrisignorell.github.io/lyra/reference/stamp.md).
+  [`stamp()`](https://andrisignorell.github.io/aurora/reference/stamp.md).
 
 - formula:
 
@@ -180,21 +180,21 @@ a skewed or heavy-tailed distribution, nor lost in the tails).
 ## See also
 
 [`plot.ecdf`](https://rdrr.io/r/stats/ecdf.html),
-[`plotFdist`](https://andrisignorell.github.io/lyra/reference/plotFdist.md),
-[`getTheme`](https://andrisignorell.github.io/lyra/reference/getTheme.md)
+[`plotFdist`](https://andrisignorell.github.io/aurora/reference/plotFdist.md),
+[`getTheme`](https://andrisignorell.github.io/aurora/reference/getTheme.md)
 
 Other plot.univariate:
-[`plotArea()`](https://andrisignorell.github.io/lyra/reference/plotArea.md),
-[`plotBar()`](https://andrisignorell.github.io/lyra/reference/plotBar.md),
-[`plotBox()`](https://andrisignorell.github.io/lyra/reference/plotBox.md),
-[`plotCatDist()`](https://andrisignorell.github.io/lyra/reference/plotCatDist.md),
-[`plotDens()`](https://andrisignorell.github.io/lyra/reference/plotDens.md),
-[`plotDensBox()`](https://andrisignorell.github.io/lyra/reference/plotDensBox.md),
-[`plotDot()`](https://andrisignorell.github.io/lyra/reference/plotDot.md),
-[`plotFdist()`](https://andrisignorell.github.io/lyra/reference/plotFdist.md),
-[`plotLines()`](https://andrisignorell.github.io/lyra/reference/plotLines.md),
-[`plotQQ()`](https://andrisignorell.github.io/lyra/reference/plotQQ.md),
-[`plotViolin()`](https://andrisignorell.github.io/lyra/reference/plotViolin.md)
+[`plotArea()`](https://andrisignorell.github.io/aurora/reference/plotArea.md),
+[`plotBar()`](https://andrisignorell.github.io/aurora/reference/plotBar.md),
+[`plotBox()`](https://andrisignorell.github.io/aurora/reference/plotBox.md),
+[`plotCatDist()`](https://andrisignorell.github.io/aurora/reference/plotCatDist.md),
+[`plotDens()`](https://andrisignorell.github.io/aurora/reference/plotDens.md),
+[`plotDensBox()`](https://andrisignorell.github.io/aurora/reference/plotDensBox.md),
+[`plotDot()`](https://andrisignorell.github.io/aurora/reference/plotDot.md),
+[`plotFdist()`](https://andrisignorell.github.io/aurora/reference/plotFdist.md),
+[`plotLines()`](https://andrisignorell.github.io/aurora/reference/plotLines.md),
+[`plotQQ()`](https://andrisignorell.github.io/aurora/reference/plotQQ.md),
+[`plotViolin()`](https://andrisignorell.github.io/aurora/reference/plotViolin.md)
 
 ## Examples
 

@@ -160,6 +160,6 @@ bootstrap confidence intervals,
 coefficient.
 
 Other plot.s3:
-[`plot.BlandAltman()`](https://andrisignorell.github.io/lyra/reference/plot.BlandAltman.md),
-[`plot.Desc.qn()`](https://andrisignorell.github.io/lyra/reference/plot.Desc.qn.md),
-[`plot.Desc.table()`](https://andrisignorell.github.io/lyra/reference/plot.Desc.table.md)
+[`plot.BlandAltman()`](https://andrisignorell.github.io/aurora/reference/plot.BlandAltman.md),
+[`plot.Desc.qn()`](https://andrisignorell.github.io/aurora/reference/plot.Desc.qn.md),
+[`plot.Desc.table()`](https://andrisignorell.github.io/aurora/reference/plot.Desc.table.md)

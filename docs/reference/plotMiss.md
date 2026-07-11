@@ -63,14 +63,14 @@ Following an idea of Henk Harmsen <henk@carbonmetrics.com>
 [`countCompCases`](https://rdrr.io/pkg/bedrock/man/countCompCases.html)
 
 Other plot.special:
-[`plotBinaryTree()`](https://andrisignorell.github.io/lyra/reference/binaryTree.md),
-[`plotCirc()`](https://andrisignorell.github.io/lyra/reference/plotCirc.md),
-[`plotPolar()`](https://andrisignorell.github.io/lyra/reference/plotPolar.md),
-[`plotPropCI()`](https://andrisignorell.github.io/lyra/reference/plotPropCI.md),
-[`plotTernary()`](https://andrisignorell.github.io/lyra/reference/plotTernary.md),
-[`plotTimeSeries()`](https://andrisignorell.github.io/lyra/reference/plotTimeSeries.md),
-[`plotTreemap()`](https://andrisignorell.github.io/lyra/reference/plotTreemap.md),
-[`plotWeb()`](https://andrisignorell.github.io/lyra/reference/plotWeb.md)
+[`plotBinaryTree()`](https://andrisignorell.github.io/aurora/reference/binaryTree.md),
+[`plotCirc()`](https://andrisignorell.github.io/aurora/reference/plotCirc.md),
+[`plotPolar()`](https://andrisignorell.github.io/aurora/reference/plotPolar.md),
+[`plotPropCI()`](https://andrisignorell.github.io/aurora/reference/plotPropCI.md),
+[`plotTernary()`](https://andrisignorell.github.io/aurora/reference/plotTernary.md),
+[`plotTimeSeries()`](https://andrisignorell.github.io/aurora/reference/plotTimeSeries.md),
+[`plotTreemap()`](https://andrisignorell.github.io/aurora/reference/plotTreemap.md),
+[`plotWeb()`](https://andrisignorell.github.io/aurora/reference/plotWeb.md)
 
 ## Examples
 

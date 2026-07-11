@@ -24,7 +24,7 @@ fmCI(x, template = NULL, ...)
 - ...:
 
   the dots are passed on to the
-  [`fm()`](https://andrisignorell.github.io/lyra/reference/fm.md)
+  [`fm()`](https://andrisignorell.github.io/aurora/reference/fm.md)
   function.
 
 ## Value
@@ -33,10 +33,10 @@ a formatted string
 
 ## See also
 
-[`fm`](https://andrisignorell.github.io/lyra/reference/fm.md)
+[`fm`](https://andrisignorell.github.io/aurora/reference/fm.md)
 
 Other format:
-[`fm()`](https://andrisignorell.github.io/lyra/reference/fm.md)
+[`fm()`](https://andrisignorell.github.io/aurora/reference/fm.md)
 
 ## Examples
 

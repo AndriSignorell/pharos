@@ -29,7 +29,7 @@ plotProbDist(
 
   Numeric vector of break points defining the boundaries between shaded
   areas. The first and last value define the plot range passed to
-  [`shade()`](https://andrisignorell.github.io/lyra/reference/shade.md);
+  [`shade()`](https://andrisignorell.github.io/aurora/reference/shade.md);
   interior values are the actual boundaries.
 
 - FUN:
@@ -55,7 +55,7 @@ plotProbDist(
 - density:
 
   Density of shading lines passed to
-  [`shade()`](https://andrisignorell.github.io/lyra/reference/shade.md).
+  [`shade()`](https://andrisignorell.github.io/aurora/reference/shade.md).
   Default is `7`.
 
 - ylab:
@@ -68,7 +68,7 @@ plotProbDist(
   (default) suppresses labels. `TRUE` uses `LETTERS` as default labels.
   A character vector sets explicit labels. A named list overrides
   individual arguments passed to
-  [`boxedText()`](https://andrisignorell.github.io/lyra/reference/boxedText.md)
+  [`boxedText()`](https://andrisignorell.github.io/aurora/reference/boxedText.md)
   (e.g. `list(cex = 3)` or `list(x = c(-2, 3), y = 0.1)` for manual
   positioning).
 
@@ -106,12 +106,12 @@ plotProbDist(
 
 ## See also
 
-[`shade`](https://andrisignorell.github.io/lyra/reference/shade.md),
+[`shade`](https://andrisignorell.github.io/aurora/reference/shade.md),
 [`curve`](https://rdrr.io/r/graphics/curve.html),
-[`boxedText`](https://andrisignorell.github.io/lyra/reference/boxedText.md)
+[`boxedText`](https://andrisignorell.github.io/aurora/reference/boxedText.md)
 
 Other plot.distribution:
-[`plotFun()`](https://andrisignorell.github.io/lyra/reference/plotFun.md)
+[`plotFun()`](https://andrisignorell.github.io/aurora/reference/plotFun.md)
 
 ## Examples
 

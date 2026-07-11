@@ -186,17 +186,17 @@ Groups are handled similarly to
 [`density`](https://rdrr.io/r/stats/density.html)
 
 Other plot.univariate:
-[`plotArea()`](https://andrisignorell.github.io/lyra/reference/plotArea.md),
-[`plotBar()`](https://andrisignorell.github.io/lyra/reference/plotBar.md),
-[`plotBox()`](https://andrisignorell.github.io/lyra/reference/plotBox.md),
-[`plotCatDist()`](https://andrisignorell.github.io/lyra/reference/plotCatDist.md),
-[`plotDens()`](https://andrisignorell.github.io/lyra/reference/plotDens.md),
-[`plotDensBox()`](https://andrisignorell.github.io/lyra/reference/plotDensBox.md),
-[`plotDot()`](https://andrisignorell.github.io/lyra/reference/plotDot.md),
-[`plotECDF()`](https://andrisignorell.github.io/lyra/reference/plotECDF.md),
-[`plotFdist()`](https://andrisignorell.github.io/lyra/reference/plotFdist.md),
-[`plotLines()`](https://andrisignorell.github.io/lyra/reference/plotLines.md),
-[`plotQQ()`](https://andrisignorell.github.io/lyra/reference/plotQQ.md)
+[`plotArea()`](https://andrisignorell.github.io/aurora/reference/plotArea.md),
+[`plotBar()`](https://andrisignorell.github.io/aurora/reference/plotBar.md),
+[`plotBox()`](https://andrisignorell.github.io/aurora/reference/plotBox.md),
+[`plotCatDist()`](https://andrisignorell.github.io/aurora/reference/plotCatDist.md),
+[`plotDens()`](https://andrisignorell.github.io/aurora/reference/plotDens.md),
+[`plotDensBox()`](https://andrisignorell.github.io/aurora/reference/plotDensBox.md),
+[`plotDot()`](https://andrisignorell.github.io/aurora/reference/plotDot.md),
+[`plotECDF()`](https://andrisignorell.github.io/aurora/reference/plotECDF.md),
+[`plotFdist()`](https://andrisignorell.github.io/aurora/reference/plotFdist.md),
+[`plotLines()`](https://andrisignorell.github.io/aurora/reference/plotLines.md),
+[`plotQQ()`](https://andrisignorell.github.io/aurora/reference/plotQQ.md)
 
 ## Examples
 

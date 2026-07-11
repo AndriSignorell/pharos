@@ -30,22 +30,22 @@ degrees.
 ## See also
 
 Other graphics.utils:
-[`abcCoords()`](https://andrisignorell.github.io/lyra/reference/abcCoords.md),
-[`axisBreak()`](https://andrisignorell.github.io/lyra/reference/axisBreak.md),
-[`barText()`](https://andrisignorell.github.io/lyra/reference/barText.md),
-[`boxedText()`](https://andrisignorell.github.io/lyra/reference/boxedText.md),
-[`colLegend()`](https://andrisignorell.github.io/lyra/reference/colLegend.md),
-[`errBars()`](https://andrisignorell.github.io/lyra/reference/errBars.md),
-[`lineSep()`](https://andrisignorell.github.io/lyra/reference/lineSep.md),
-[`lineToUser()`](https://andrisignorell.github.io/lyra/reference/lineToUser.md),
-[`lines.lm()`](https://andrisignorell.github.io/lyra/reference/linesLm.md),
-[`mar()`](https://andrisignorell.github.io/lyra/reference/mar.md),
-[`preview()`](https://andrisignorell.github.io/lyra/reference/preview.md),
-[`spreadOut()`](https://andrisignorell.github.io/lyra/reference/spreadOut.md),
-[`stamp()`](https://andrisignorell.github.io/lyra/reference/stamp.md),
-[`textLegend()`](https://andrisignorell.github.io/lyra/reference/textLegend.md),
-[`titleRect()`](https://andrisignorell.github.io/lyra/reference/titleRect.md),
-[`unit()`](https://andrisignorell.github.io/lyra/reference/unit.md)
+[`abcCoords()`](https://andrisignorell.github.io/aurora/reference/abcCoords.md),
+[`axisBreak()`](https://andrisignorell.github.io/aurora/reference/axisBreak.md),
+[`barText()`](https://andrisignorell.github.io/aurora/reference/barText.md),
+[`boxedText()`](https://andrisignorell.github.io/aurora/reference/boxedText.md),
+[`colLegend()`](https://andrisignorell.github.io/aurora/reference/colLegend.md),
+[`errBars()`](https://andrisignorell.github.io/aurora/reference/errBars.md),
+[`lineSep()`](https://andrisignorell.github.io/aurora/reference/lineSep.md),
+[`lineToUser()`](https://andrisignorell.github.io/aurora/reference/lineToUser.md),
+[`lines.lm()`](https://andrisignorell.github.io/aurora/reference/linesLm.md),
+[`mar()`](https://andrisignorell.github.io/aurora/reference/mar.md),
+[`preview()`](https://andrisignorell.github.io/aurora/reference/preview.md),
+[`spreadOut()`](https://andrisignorell.github.io/aurora/reference/spreadOut.md),
+[`stamp()`](https://andrisignorell.github.io/aurora/reference/stamp.md),
+[`textLegend()`](https://andrisignorell.github.io/aurora/reference/textLegend.md),
+[`titleRect()`](https://andrisignorell.github.io/aurora/reference/titleRect.md),
+[`unit()`](https://andrisignorell.github.io/aurora/reference/unit.md)
 
 ## Examples
 

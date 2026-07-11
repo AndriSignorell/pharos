@@ -35,7 +35,7 @@ plotAssoc(
   main title of the plot. `NULL` (default) derives a title from the
   expression passed as `x` (via `deparse(match.call()$x)`), the same
   "substitute magic" convention used by
-  [`plotXY`](https://andrisignorell.github.io/lyra/reference/plotXY.md)/[`plotBox`](https://andrisignorell.github.io/lyra/reference/plotBox.md)
+  [`plotXY`](https://andrisignorell.github.io/aurora/reference/plotXY.md)/[`plotBox`](https://andrisignorell.github.io/aurora/reference/plotBox.md)
   for their `y ~ x` default - there's no formula pair here, just the
   single table argument, so the default is simply that expression's text
   (e.g. `plotAssoc(tab)` titles itself `"tab"`). `""`, `NA`, or `FALSE`
@@ -121,17 +121,17 @@ Group International Conference Proceedings*, 17, 190–200.
 ## See also
 
 [`mosaicplot`](https://rdrr.io/r/graphics/mosaicplot.html),
-[`plotMosaic`](https://andrisignorell.github.io/lyra/reference/plotMosaic.md),
+[`plotMosaic`](https://andrisignorell.github.io/aurora/reference/plotMosaic.md),
 [`conf`](https://rdrr.io/pkg/DescToolsX/man/conf.html)
 
 Other plot.bivariate:
-[`plotBag()`](https://andrisignorell.github.io/lyra/reference/plotBag.md),
-[`plotCor()`](https://andrisignorell.github.io/lyra/reference/plotCor.md),
-[`plotDens2D()`](https://andrisignorell.github.io/lyra/reference/plotDens2D.md),
-[`plotHeatmap()`](https://andrisignorell.github.io/lyra/reference/plotHeatmap.md),
-[`plotHexbin()`](https://andrisignorell.github.io/lyra/reference/plotHexbin.md),
-[`plotMosaic()`](https://andrisignorell.github.io/lyra/reference/plotMosaic.md),
-[`plotXY()`](https://andrisignorell.github.io/lyra/reference/plotXY.md)
+[`plotBag()`](https://andrisignorell.github.io/aurora/reference/plotBag.md),
+[`plotCor()`](https://andrisignorell.github.io/aurora/reference/plotCor.md),
+[`plotDens2D()`](https://andrisignorell.github.io/aurora/reference/plotDens2D.md),
+[`plotHeatmap()`](https://andrisignorell.github.io/aurora/reference/plotHeatmap.md),
+[`plotHexbin()`](https://andrisignorell.github.io/aurora/reference/plotHexbin.md),
+[`plotMosaic()`](https://andrisignorell.github.io/aurora/reference/plotMosaic.md),
+[`plotXY()`](https://andrisignorell.github.io/aurora/reference/plotXY.md)
 
 ## Examples
 

@@ -139,12 +139,12 @@ readability compared to overlaid density plots.
 
 ## See also
 
-[`plotDens`](https://andrisignorell.github.io/lyra/reference/plotDens.md)
+[`plotDens`](https://andrisignorell.github.io/aurora/reference/plotDens.md)
 
 Other topic.graphics:
-[`plotBubble()`](https://andrisignorell.github.io/lyra/reference/plotBubble.md),
-[`plotDens()`](https://andrisignorell.github.io/lyra/reference/plotDens.md),
-[`plotDens2D()`](https://andrisignorell.github.io/lyra/reference/plotDens2D.md)
+[`plotBubble()`](https://andrisignorell.github.io/aurora/reference/plotBubble.md),
+[`plotDens()`](https://andrisignorell.github.io/aurora/reference/plotDens.md),
+[`plotDens2D()`](https://andrisignorell.github.io/aurora/reference/plotDens2D.md)
 
 ## Examples
 
