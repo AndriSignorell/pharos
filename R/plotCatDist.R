@@ -79,6 +79,8 @@ plotCatDist <- function(
     
     .applyParFromDots(...)
     
+    n <- length(x)
+    
     # ── Input handling ───────────────────────────────────────────
     if (is.factor(x) || is.character(x)) {
       tab <- table(x)
@@ -109,7 +111,7 @@ plotCatDist <- function(
     names(tab) <- labs
     
     # ── Proportions ──────────────────────────────────────────────
-    p <- tab / sum(x) # sum(tab)
+    p <- tab / n # sum(tab)
     
     if (ecdf) {
       p <- cumsum(p)

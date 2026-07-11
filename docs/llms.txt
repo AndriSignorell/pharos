@@ -1,4 +1,4 @@
-# aurora ![](reference/figures/logo.png)
+# aurora
 
 **Descriptive Statistics Graphics and Utilities**
 
