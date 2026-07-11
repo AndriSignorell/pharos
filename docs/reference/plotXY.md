@@ -191,7 +191,7 @@ plotXY(
   Controls the corner stamp. `.useTheme` (default) resolves to
   `getTheme()$stamp`. `TRUE`/`FALSE`/ `NULL`, a string, or a named list
   for
-  [`stamp()`](https://andrisignorell.github.io/aurora/reference/stamp.md).
+  [`stamp()`](https://andrisignorell.github.io/lyra/reference/stamp.md).
 
 - formula:
 
@@ -227,7 +227,7 @@ Optional plot components (`grid`, `box`, `lm`, `loess`, `legend`) follow
 
 `col`, `bg`, `pch`, `cex`, `grid`, and `box` default to `.useTheme`,
 deferring to the package's active theme (see
-[`getTheme`](https://andrisignorell.github.io/aurora/reference/getTheme.md))
+[`getTheme`](https://andrisignorell.github.io/lyra/reference/getTheme.md))
 rather than a hardcoded value. This means
 `setTheme(list(points = list(col = "black")))` changes the point color
 for every call to `plotXY()` (and any other function using the same
@@ -239,17 +239,17 @@ theme section) that doesn't override `col` explicitly.
 [`lm`](https://rdrr.io/r/stats/lm.html),
 [`loess`](https://rdrr.io/r/stats/loess.html),
 [`callIf`](https://rdrr.io/pkg/bedrock/man/callIf.html),
-[`getTheme`](https://andrisignorell.github.io/aurora/reference/getTheme.md),
-[`setTheme`](https://andrisignorell.github.io/aurora/reference/getTheme.md)
+[`getTheme`](https://andrisignorell.github.io/lyra/reference/getTheme.md),
+[`setTheme`](https://andrisignorell.github.io/lyra/reference/getTheme.md)
 
 Other plot.bivariate:
-[`plotAssoc()`](https://andrisignorell.github.io/aurora/reference/plotAssoc.md),
-[`plotBag()`](https://andrisignorell.github.io/aurora/reference/plotBag.md),
-[`plotCor()`](https://andrisignorell.github.io/aurora/reference/plotCor.md),
-[`plotDens2D()`](https://andrisignorell.github.io/aurora/reference/plotDens2D.md),
-[`plotHeatmap()`](https://andrisignorell.github.io/aurora/reference/plotHeatmap.md),
-[`plotHexbin()`](https://andrisignorell.github.io/aurora/reference/plotHexbin.md),
-[`plotMosaic()`](https://andrisignorell.github.io/aurora/reference/plotMosaic.md)
+[`plotAssoc()`](https://andrisignorell.github.io/lyra/reference/plotAssoc.md),
+[`plotBag()`](https://andrisignorell.github.io/lyra/reference/plotBag.md),
+[`plotCor()`](https://andrisignorell.github.io/lyra/reference/plotCor.md),
+[`plotDens2D()`](https://andrisignorell.github.io/lyra/reference/plotDens2D.md),
+[`plotHeatmap()`](https://andrisignorell.github.io/lyra/reference/plotHeatmap.md),
+[`plotHexbin()`](https://andrisignorell.github.io/lyra/reference/plotHexbin.md),
+[`plotMosaic()`](https://andrisignorell.github.io/lyra/reference/plotMosaic.md)
 
 ## Examples
 

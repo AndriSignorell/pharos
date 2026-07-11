@@ -3,15 +3,15 @@
 
 .onLoad <- function(libname, pkgname) {
   
-  current <- getOption("aurora.theme", list())
-  options(aurora.theme = utils::modifyList(.themeDefaults, current))
+  current <- getOption("lyra.theme", list())
+  options(lyra.theme = utils::modifyList(.themeDefaults, current))
   
 }
   
 
 
 
-#' @useDynLib aurora, .registration = TRUE
+#' @useDynLib lyra, .registration = TRUE
 
 
 #' @importFrom Rcpp sourceCpp

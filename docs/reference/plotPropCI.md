@@ -60,7 +60,7 @@ plotPropCI(
   bar. `.useTheme` (default) resolves to `getTheme()$twin` - the active
   theme's two-color pair. Note this is purely "first label gets the
   first color"; unlike
-  [`plotCor`](https://andrisignorell.github.io/aurora/reference/plotCor.md)/[`plotWeb`](https://andrisignorell.github.io/aurora/reference/plotWeb.md),
+  [`plotCor`](https://andrisignorell.github.io/lyra/reference/plotCor.md)/[`plotWeb`](https://andrisignorell.github.io/lyra/reference/plotWeb.md),
   there is no positive/ negative sign convention here, since proportions
   of two arbitrary categories (e.g. "yes"/"no") have no inherent sign.
 
@@ -69,7 +69,7 @@ plotPropCI(
   Colour for the confidence interval bands. Default is a
   semi-transparent grey (`addAlpha("grey80", 0.12)`). Deliberately not
   theme-driven (like the sequential scales in
-  [`plotDens2D`](https://andrisignorell.github.io/aurora/reference/plotDens2D.md)/[`plotHeatmap`](https://andrisignorell.github.io/aurora/reference/plotHeatmap.md)):
+  [`plotDens2D`](https://andrisignorell.github.io/lyra/reference/plotDens2D.md)/[`plotHeatmap`](https://andrisignorell.github.io/lyra/reference/plotHeatmap.md)):
   this is a structural mechanism (many overlapping translucent bands
   building a gradient via overdraw), not a categorical or diverging
   color choice.
@@ -111,7 +111,7 @@ plotPropCI(
   Controls the corner stamp. `.useTheme` (default) resolves to
   `getTheme()$stamp`. `TRUE`/`FALSE`/ `NULL`, a string, or a named list
   for
-  [`stamp()`](https://andrisignorell.github.io/aurora/reference/stamp.md).
+  [`stamp()`](https://andrisignorell.github.io/lyra/reference/stamp.md).
 
 - ...:
 
@@ -137,17 +137,17 @@ all bands overlap. A vertical segment marks the observed proportion.
 ## See also
 
 [`prop.test`](https://rdrr.io/r/stats/prop.test.html),
-[`getTheme`](https://andrisignorell.github.io/aurora/reference/getTheme.md)
+[`getTheme`](https://andrisignorell.github.io/lyra/reference/getTheme.md)
 
 Other plot.special:
-[`plotBinaryTree()`](https://andrisignorell.github.io/aurora/reference/binaryTree.md),
-[`plotCirc()`](https://andrisignorell.github.io/aurora/reference/plotCirc.md),
-[`plotMiss()`](https://andrisignorell.github.io/aurora/reference/plotMiss.md),
-[`plotPolar()`](https://andrisignorell.github.io/aurora/reference/plotPolar.md),
-[`plotTernary()`](https://andrisignorell.github.io/aurora/reference/plotTernary.md),
-[`plotTimeSeries()`](https://andrisignorell.github.io/aurora/reference/plotTimeSeries.md),
-[`plotTreemap()`](https://andrisignorell.github.io/aurora/reference/plotTreemap.md),
-[`plotWeb()`](https://andrisignorell.github.io/aurora/reference/plotWeb.md)
+[`plotBinaryTree()`](https://andrisignorell.github.io/lyra/reference/binaryTree.md),
+[`plotCirc()`](https://andrisignorell.github.io/lyra/reference/plotCirc.md),
+[`plotMiss()`](https://andrisignorell.github.io/lyra/reference/plotMiss.md),
+[`plotPolar()`](https://andrisignorell.github.io/lyra/reference/plotPolar.md),
+[`plotTernary()`](https://andrisignorell.github.io/lyra/reference/plotTernary.md),
+[`plotTimeSeries()`](https://andrisignorell.github.io/lyra/reference/plotTimeSeries.md),
+[`plotTreemap()`](https://andrisignorell.github.io/lyra/reference/plotTreemap.md),
+[`plotWeb()`](https://andrisignorell.github.io/lyra/reference/plotWeb.md)
 
 ## Examples
 

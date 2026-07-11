@@ -105,6 +105,6 @@ Objects of class `"blandAltman"` are typically created with
 ## See also
 
 Other plot.s3:
-[`plot.Desc.qn()`](https://andrisignorell.github.io/aurora/reference/plot.Desc.qn.md),
-[`plot.Desc.table()`](https://andrisignorell.github.io/aurora/reference/plot.Desc.table.md),
-[`plot.Lc()`](https://andrisignorell.github.io/aurora/reference/plot.Lc.md)
+[`plot.Desc.qn()`](https://andrisignorell.github.io/lyra/reference/plot.Desc.qn.md),
+[`plot.Desc.table()`](https://andrisignorell.github.io/lyra/reference/plot.Desc.table.md),
+[`plot.Lc()`](https://andrisignorell.github.io/lyra/reference/plot.Lc.md)

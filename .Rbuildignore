@@ -8,3 +8,5 @@
 ^pkgdown$
 Rplots.pdf
 desktop\.ini$
+prepare.R
+

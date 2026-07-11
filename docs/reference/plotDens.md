@@ -147,22 +147,22 @@ design system using
 [`resolveFormula`](https://rdrr.io/pkg/bedrock/man/resolveFormula.html)
 
 Other topic.graphics:
-[`plotBubble()`](https://andrisignorell.github.io/aurora/reference/plotBubble.md),
-[`plotDens2D()`](https://andrisignorell.github.io/aurora/reference/plotDens2D.md),
-[`plotRidge()`](https://andrisignorell.github.io/aurora/reference/plotRidge.md)
+[`plotBubble()`](https://andrisignorell.github.io/lyra/reference/plotBubble.md),
+[`plotDens2D()`](https://andrisignorell.github.io/lyra/reference/plotDens2D.md),
+[`plotRidge()`](https://andrisignorell.github.io/lyra/reference/plotRidge.md)
 
 Other plot.univariate:
-[`plotArea()`](https://andrisignorell.github.io/aurora/reference/plotArea.md),
-[`plotBar()`](https://andrisignorell.github.io/aurora/reference/plotBar.md),
-[`plotBox()`](https://andrisignorell.github.io/aurora/reference/plotBox.md),
-[`plotCatDist()`](https://andrisignorell.github.io/aurora/reference/plotCatDist.md),
-[`plotDensBox()`](https://andrisignorell.github.io/aurora/reference/plotDensBox.md),
-[`plotDot()`](https://andrisignorell.github.io/aurora/reference/plotDot.md),
-[`plotECDF()`](https://andrisignorell.github.io/aurora/reference/plotECDF.md),
-[`plotFdist()`](https://andrisignorell.github.io/aurora/reference/plotFdist.md),
-[`plotLines()`](https://andrisignorell.github.io/aurora/reference/plotLines.md),
-[`plotQQ()`](https://andrisignorell.github.io/aurora/reference/plotQQ.md),
-[`plotViolin()`](https://andrisignorell.github.io/aurora/reference/plotViolin.md)
+[`plotArea()`](https://andrisignorell.github.io/lyra/reference/plotArea.md),
+[`plotBar()`](https://andrisignorell.github.io/lyra/reference/plotBar.md),
+[`plotBox()`](https://andrisignorell.github.io/lyra/reference/plotBox.md),
+[`plotCatDist()`](https://andrisignorell.github.io/lyra/reference/plotCatDist.md),
+[`plotDensBox()`](https://andrisignorell.github.io/lyra/reference/plotDensBox.md),
+[`plotDot()`](https://andrisignorell.github.io/lyra/reference/plotDot.md),
+[`plotECDF()`](https://andrisignorell.github.io/lyra/reference/plotECDF.md),
+[`plotFdist()`](https://andrisignorell.github.io/lyra/reference/plotFdist.md),
+[`plotLines()`](https://andrisignorell.github.io/lyra/reference/plotLines.md),
+[`plotQQ()`](https://andrisignorell.github.io/lyra/reference/plotQQ.md),
+[`plotViolin()`](https://andrisignorell.github.io/lyra/reference/plotViolin.md)
 
 ## Examples
 

@@ -107,7 +107,7 @@ plotFdist(
 - ecdf:
 
   controls the ECDF panel. `TRUE` (default) calls
-  [`plotECDF`](https://andrisignorell.github.io/aurora/reference/plotECDF.md);
+  [`plotECDF`](https://andrisignorell.github.io/lyra/reference/plotECDF.md);
   a list overrides specific arguments.
 
 - curveEcdf:
@@ -120,7 +120,7 @@ plotFdist(
   Controls the corner stamp. `.useTheme` (default) resolves to
   `getTheme()$stamp`. `TRUE`/`FALSE`/ `NULL`, a string, or a named list
   for
-  [`stamp()`](https://andrisignorell.github.io/aurora/reference/stamp.md).
+  [`stamp()`](https://andrisignorell.github.io/lyra/reference/stamp.md).
 
 - ...:
 
@@ -148,24 +148,24 @@ For exploratory work on very large data, consider sampling first:
 
 [`hist`](https://rdrr.io/r/graphics/hist.html),
 [`boxplot`](https://rdrr.io/r/graphics/boxplot.html),
-[`plotECDF`](https://andrisignorell.github.io/aurora/reference/plotECDF.md),
+[`plotECDF`](https://andrisignorell.github.io/lyra/reference/plotECDF.md),
 [`density`](https://rdrr.io/r/stats/density.html),
 [`rug`](https://rdrr.io/r/graphics/rug.html),
 [`layout`](https://rdrr.io/r/graphics/layout.html),
-[`getTheme`](https://andrisignorell.github.io/aurora/reference/getTheme.md)
+[`getTheme`](https://andrisignorell.github.io/lyra/reference/getTheme.md)
 
 Other plot.univariate:
-[`plotArea()`](https://andrisignorell.github.io/aurora/reference/plotArea.md),
-[`plotBar()`](https://andrisignorell.github.io/aurora/reference/plotBar.md),
-[`plotBox()`](https://andrisignorell.github.io/aurora/reference/plotBox.md),
-[`plotCatDist()`](https://andrisignorell.github.io/aurora/reference/plotCatDist.md),
-[`plotDens()`](https://andrisignorell.github.io/aurora/reference/plotDens.md),
-[`plotDensBox()`](https://andrisignorell.github.io/aurora/reference/plotDensBox.md),
-[`plotDot()`](https://andrisignorell.github.io/aurora/reference/plotDot.md),
-[`plotECDF()`](https://andrisignorell.github.io/aurora/reference/plotECDF.md),
-[`plotLines()`](https://andrisignorell.github.io/aurora/reference/plotLines.md),
-[`plotQQ()`](https://andrisignorell.github.io/aurora/reference/plotQQ.md),
-[`plotViolin()`](https://andrisignorell.github.io/aurora/reference/plotViolin.md)
+[`plotArea()`](https://andrisignorell.github.io/lyra/reference/plotArea.md),
+[`plotBar()`](https://andrisignorell.github.io/lyra/reference/plotBar.md),
+[`plotBox()`](https://andrisignorell.github.io/lyra/reference/plotBox.md),
+[`plotCatDist()`](https://andrisignorell.github.io/lyra/reference/plotCatDist.md),
+[`plotDens()`](https://andrisignorell.github.io/lyra/reference/plotDens.md),
+[`plotDensBox()`](https://andrisignorell.github.io/lyra/reference/plotDensBox.md),
+[`plotDot()`](https://andrisignorell.github.io/lyra/reference/plotDot.md),
+[`plotECDF()`](https://andrisignorell.github.io/lyra/reference/plotECDF.md),
+[`plotLines()`](https://andrisignorell.github.io/lyra/reference/plotLines.md),
+[`plotQQ()`](https://andrisignorell.github.io/lyra/reference/plotQQ.md),
+[`plotViolin()`](https://andrisignorell.github.io/lyra/reference/plotViolin.md)
 
 ## Examples
 

@@ -1,6 +1,6 @@
 # Changelog
 
-## aurora 0.0.0.9000
+## lyra 0.0.0.9000
 
 ### New features
 

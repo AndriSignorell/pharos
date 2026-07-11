@@ -18,7 +18,7 @@ preview(x, ...)
 Generic function for an explicit, on-demand preview of an object, as
 distinct from \code{print()}. \code{preview()} exists for object types
 where \code{print()} is shared with another package's S3 generic
-dispatch (e.g. class \code{"html"}, used both by \pkg{aurora} and
+dispatch (e.g. class \code{"html"}, used both by \pkg{lyra} and
 \pkg{htmltools} for genuinely different purposes), so that registering
 an own \code{print.*} method would silently overwrite - or be
 overwritten by - the other package's behaviour.

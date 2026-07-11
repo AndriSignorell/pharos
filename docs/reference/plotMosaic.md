@@ -68,7 +68,7 @@ plotMosaic(
   dimension, or first if `swap = TRUE`). `.useTheme` (default) resolves
   to `pal(getTheme()$palette, n = <number of levels>)` - the active
   theme's qualitative palette (see
-  [`getTheme`](https://andrisignorell.github.io/aurora/reference/getTheme.md)),
+  [`getTheme`](https://andrisignorell.github.io/lyra/reference/getTheme.md)),
   sampled or interpolated to match the number of category levels. A
   diverging or sequential color ramp is deliberately not used here: the
   fill variable is an unordered categorical variable, and a ramp would
@@ -132,18 +132,18 @@ is represented via the legend only.
 
 ## See also
 
-[`plotCatDist()`](https://andrisignorell.github.io/aurora/reference/plotCatDist.md),
-[`plotBar()`](https://andrisignorell.github.io/aurora/reference/plotBar.md),
-[`getTheme()`](https://andrisignorell.github.io/aurora/reference/getTheme.md)
+[`plotCatDist()`](https://andrisignorell.github.io/lyra/reference/plotCatDist.md),
+[`plotBar()`](https://andrisignorell.github.io/lyra/reference/plotBar.md),
+[`getTheme()`](https://andrisignorell.github.io/lyra/reference/getTheme.md)
 
 Other plot.bivariate:
-[`plotAssoc()`](https://andrisignorell.github.io/aurora/reference/plotAssoc.md),
-[`plotBag()`](https://andrisignorell.github.io/aurora/reference/plotBag.md),
-[`plotCor()`](https://andrisignorell.github.io/aurora/reference/plotCor.md),
-[`plotDens2D()`](https://andrisignorell.github.io/aurora/reference/plotDens2D.md),
-[`plotHeatmap()`](https://andrisignorell.github.io/aurora/reference/plotHeatmap.md),
-[`plotHexbin()`](https://andrisignorell.github.io/aurora/reference/plotHexbin.md),
-[`plotXY()`](https://andrisignorell.github.io/aurora/reference/plotXY.md)
+[`plotAssoc()`](https://andrisignorell.github.io/lyra/reference/plotAssoc.md),
+[`plotBag()`](https://andrisignorell.github.io/lyra/reference/plotBag.md),
+[`plotCor()`](https://andrisignorell.github.io/lyra/reference/plotCor.md),
+[`plotDens2D()`](https://andrisignorell.github.io/lyra/reference/plotDens2D.md),
+[`plotHeatmap()`](https://andrisignorell.github.io/lyra/reference/plotHeatmap.md),
+[`plotHexbin()`](https://andrisignorell.github.io/lyra/reference/plotHexbin.md),
+[`plotXY()`](https://andrisignorell.github.io/lyra/reference/plotXY.md)
 
 ## Examples
 

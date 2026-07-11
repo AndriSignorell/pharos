@@ -125,7 +125,7 @@
 # registers S3 dispatch (plot(obj)) but does NOT export the bare symbol,
 # so unqualified calls like plot.Desc.table(x, ...) from other packages
 # (e.g. DescToolsX's plot.Desc.qq) fail with "could not find function" -
-# even with @importFrom aurora plot.Desc.table on the calling side.
+# even with @importFrom lyra plot.Desc.table on the calling side.
 # @rawNamespace forces the missing export() NAMESPACE line. See
 # design_rules.md, "Exporting S3 Methods Callable From Other Packages".
 

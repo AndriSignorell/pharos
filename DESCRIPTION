@@ -1,6 +1,6 @@
-Package: aurora
+Package: lyra
 Title: Descriptive Statistics Graphics and Utilities
-Version: 0.0.0.929
+Version: 0.0.0.930
 Authors@R: 
     person("Andri", "Signorell", , "andri@signorell.net", role = c("aut", "cre"))
 Description: Provides plots and graphic routines used in DescToolsX.
@@ -14,7 +14,7 @@ Suggests:
     testthat (>= 3.0.0), R.rsp, hexbin
 Config/testthat/edition: 3
 VignetteBuilder: R.rsp
-URL: https://andrisignorell.github.io/aurora/,
-            https://github.com/AndriSignorell/aurora/
-BugReports: https://github.com/AndriSignorell/aurora/issues
+URL: https://andrisignorell.github.io/lyra/,
+            https://github.com/AndriSignorell/lyra/
+BugReports: https://github.com/AndriSignorell/lyra/issues
 Config/roxygen2/version: 8.0.0

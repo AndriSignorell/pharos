@@ -1,16 +1,16 @@
-# aurora <img src="man/figures/logo.png" align="right" height="120" alt="" />
+# lyra <img src="man/figures/logo.png" align="right" height="120" alt="" />
 
 **Descriptive Statistics Graphics and Utilities**
 
 Version 0.0.0.927 · License GPL (≥ 2)
 
 <!-- badges: start -->
-<!-- [![R-CMD-check](https://github.com/AndriSignorell/aurora/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/AndriSignorell/aurora/actions) -->
+<!-- [![R-CMD-check](https://github.com/AndriSignorell/lyra/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/AndriSignorell/lyra/actions) -->
 <!-- badges: end -->
 
 ## Overview
 
-`aurora` is the graphics package of the **DescToolsX ecosystem**. It provides
+`lyra` is the graphics package of the **DescToolsX ecosystem**. It provides
 a comprehensive collection of statistical plots, geometric drawing primitives,
 color tools, annotation helpers, and formatting utilities — all built directly
 on **base R graphics**.
@@ -21,12 +21,12 @@ central **theme system** and consistent argument conventions remove the usual
 boilerplate: sensible defaults, automatic margin handling, and uniform
 styling across all plot functions.
 
-`aurora` is part of the DescToolsX package suite:
+`lyra` is part of the DescToolsX package suite:
 
 | Package   | Role                                    |
 |-----------|-----------------------------------------|
 | `bedrock` | core infrastructure and utilities       |
-| `aurora`  | graphics and visualization (this package) |
+| `lyra`  | graphics and visualization (this package) |
 | `lumen`   | statistical tests and confidence intervals |
 | `alloy`   | model fitting and evaluation            |
 | `hermes`  | reporting and output                    |
@@ -35,7 +35,7 @@ styling across all plot functions.
 
 ``` r
 # development version from GitHub
-remotes::install_github("AndriSignorell/aurora")
+remotes::install_github("AndriSignorell/lyra")
 ```
 
 ## Key Features
@@ -133,7 +133,7 @@ Utilities that handle the fiddly parts of base graphics:
 ## Example
 
 ``` r
-library(aurora)
+library(lyra)
 
 # grouped violin plot, styled by the active theme
 plotViolin(mpg ~ cyl, data = mtcars)
@@ -142,7 +142,7 @@ plotViolin(mpg ~ cyl, data = mtcars)
 plotCor(cor(mtcars))
 
 # custom geometric graphic
-canvas(main = "aurora primitives")
+canvas(main = "lyra primitives")
 polygon(circle(radius = 1), col = addAlpha("steelblue", 0.4))
 polygon(regPolygon(radius = 0.7, numVertices = 6), border = "red")
 ```
@@ -159,8 +159,8 @@ polygon(regPolygon(radius = 0.7, numVertices = 6), border = "red")
 
 ## Documentation
 
-- Website: <https://andrisignorell.github.io/aurora/>
-- Bug reports: <https://github.com/AndriSignorell/aurora/issues>
+- Website: <https://andrisignorell.github.io/lyra/>
+- Bug reports: <https://github.com/AndriSignorell/lyra/issues>
 
 ## License
 

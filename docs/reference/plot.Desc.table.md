@@ -66,7 +66,7 @@ plot(
   `2`
 
   :   Mosaic plot (via
-      [`plotMosaic`](https://andrisignorell.github.io/aurora/reference/plotMosaic.md)).
+      [`plotMosaic`](https://andrisignorell.github.io/lyra/reference/plotMosaic.md)).
 
   `3`
 
@@ -75,12 +75,12 @@ plot(
   `4`
 
   :   Association plot (Cohen-Friendly plot) via
-      [`plotAssoc`](https://andrisignorell.github.io/aurora/reference/plotAssoc.md).
+      [`plotAssoc`](https://andrisignorell.github.io/lyra/reference/plotAssoc.md).
 
   `5`
 
   :   Heatmap of cell proportions (via
-      [`plotHeatmap`](https://andrisignorell.github.io/aurora/reference/plotHeatmap.md),
+      [`plotHeatmap`](https://andrisignorell.github.io/lyra/reference/plotHeatmap.md),
       `scale = "prop"`).
 
   Selecting multiple panels does not change the plotting layout (no
@@ -112,12 +112,12 @@ plot(
 
   :   a grey ramp from `"grey30"` to `"grey90"`, sized to the number of
       columns of `tab`, passed to
-      [`plotMosaic`](https://andrisignorell.github.io/aurora/reference/plotMosaic.md).
+      [`plotMosaic`](https://andrisignorell.github.io/lyra/reference/plotMosaic.md).
 
   panel 3
 
   :   left at
-      [`plotAssoc`](https://andrisignorell.github.io/aurora/reference/plotAssoc.md)'s
+      [`plotAssoc`](https://andrisignorell.github.io/lyra/reference/plotAssoc.md)'s
       own default (`pal("RedWhiteBlue3", n = 100)`), a diverging
       palette - cell colors there encode the sign and strength of
       Pearson residuals, so a categorical or grey-ramp default would not
@@ -127,7 +127,7 @@ plot(
   panel 4
 
   :   left at
-      [`plotHeatmap`](https://andrisignorell.github.io/aurora/reference/plotHeatmap.md)'s
+      [`plotHeatmap`](https://andrisignorell.github.io/lyra/reference/plotHeatmap.md)'s
       own default (`pal("Blues", n = 100)`), a sequential ramp - cell
       colors there encode magnitude only. Supplying `col` overrides
       this.
@@ -150,19 +150,19 @@ plot(
 
   panel 2
 
-  :   [`plotMosaic`](https://andrisignorell.github.io/aurora/reference/plotMosaic.md)
+  :   [`plotMosaic`](https://andrisignorell.github.io/lyra/reference/plotMosaic.md)
       always draws its own frame; this argument has no effect.
 
   panel 3
 
-  :   [`plotAssoc`](https://andrisignorell.github.io/aurora/reference/plotAssoc.md)
+  :   [`plotAssoc`](https://andrisignorell.github.io/lyra/reference/plotAssoc.md)
       has no frame/box concept of its own (it draws dashed reference
       lines instead); this argument has no effect.
 
   panel 4
 
   :   forwarded as-is to
-      [`plotHeatmap`](https://andrisignorell.github.io/aurora/reference/plotHeatmap.md)'s
+      [`plotHeatmap`](https://andrisignorell.github.io/lyra/reference/plotHeatmap.md)'s
       own `box` argument, which draws the outer frame via
       [`rect()`](https://rdrr.io/r/graphics/rect.html) at the exact tile
       boundaries rather than
@@ -173,11 +173,11 @@ plot(
   Controls the corner stamp. `.useTheme` (default) resolves to
   `getTheme()$stamp`, drawn once after all selected panels. Panels 2-4
   delegate to
-  [`plotMosaic`](https://andrisignorell.github.io/aurora/reference/plotMosaic.md)/
-  [`plotAssoc`](https://andrisignorell.github.io/aurora/reference/plotAssoc.md)/[`plotHeatmap`](https://andrisignorell.github.io/aurora/reference/plotHeatmap.md),
+  [`plotMosaic`](https://andrisignorell.github.io/lyra/reference/plotMosaic.md)/
+  [`plotAssoc`](https://andrisignorell.github.io/lyra/reference/plotAssoc.md)/[`plotHeatmap`](https://andrisignorell.github.io/lyra/reference/plotHeatmap.md),
   whose own `stamp` argument is set to `NA` internally to avoid a
   duplicate. `TRUE`/`FALSE`/`NULL`, a string, or a named list for
-  [`stamp()`](https://andrisignorell.github.io/aurora/reference/stamp.md).
+  [`stamp()`](https://andrisignorell.github.io/lyra/reference/stamp.md).
 
 - ...:
 
@@ -185,10 +185,10 @@ plot(
   [`par`](https://rdrr.io/r/graphics/par.html) via the internal
   framework and to the underlying panel-drawing functions
   ([`spineplot()`](https://rdrr.io/r/graphics/spineplot.html),
-  [`plotMosaic`](https://andrisignorell.github.io/aurora/reference/plotMosaic.md),
-  [`plotAssoc`](https://andrisignorell.github.io/aurora/reference/plotAssoc.md),
+  [`plotMosaic`](https://andrisignorell.github.io/lyra/reference/plotMosaic.md),
+  [`plotAssoc`](https://andrisignorell.github.io/lyra/reference/plotAssoc.md),
   or
-  [`plotHeatmap`](https://andrisignorell.github.io/aurora/reference/plotHeatmap.md),
+  [`plotHeatmap`](https://andrisignorell.github.io/lyra/reference/plotHeatmap.md),
   depending on the selected panel).
 
 ## Value
@@ -208,13 +208,13 @@ invisibly without drawing anything.
 ## See also
 
 [`desc`](https://rdrr.io/pkg/DescToolsX/man/desc.html),
-[`plotAssoc`](https://andrisignorell.github.io/aurora/reference/plotAssoc.md),
-[`plotHeatmap`](https://andrisignorell.github.io/aurora/reference/plotHeatmap.md),
-[`plotMosaic`](https://andrisignorell.github.io/aurora/reference/plotMosaic.md),
+[`plotAssoc`](https://andrisignorell.github.io/lyra/reference/plotAssoc.md),
+[`plotHeatmap`](https://andrisignorell.github.io/lyra/reference/plotHeatmap.md),
+[`plotMosaic`](https://andrisignorell.github.io/lyra/reference/plotMosaic.md),
 [`spineplot`](https://rdrr.io/r/graphics/spineplot.html),
-[`getTheme`](https://andrisignorell.github.io/aurora/reference/getTheme.md)
+[`getTheme`](https://andrisignorell.github.io/lyra/reference/getTheme.md)
 
 Other plot.s3:
-[`plot.BlandAltman()`](https://andrisignorell.github.io/aurora/reference/plot.BlandAltman.md),
-[`plot.Desc.qn()`](https://andrisignorell.github.io/aurora/reference/plot.Desc.qn.md),
-[`plot.Lc()`](https://andrisignorell.github.io/aurora/reference/plot.Lc.md)
+[`plot.BlandAltman()`](https://andrisignorell.github.io/lyra/reference/plot.BlandAltman.md),
+[`plot.Desc.qn()`](https://andrisignorell.github.io/lyra/reference/plot.Desc.qn.md),
+[`plot.Lc()`](https://andrisignorell.github.io/lyra/reference/plot.Lc.md)

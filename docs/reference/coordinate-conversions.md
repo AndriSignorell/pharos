@@ -47,7 +47,7 @@ angles of the given points.
 ## Details
 
 Angles are in radians, not degrees (i.e., a right angle is pi/2). Use
-[`degToRad`](https://andrisignorell.github.io/aurora/reference/degToRad.md)
+[`degToRad`](https://andrisignorell.github.io/lyra/reference/degToRad.md)
 to convert, if you don't wanna do it by yourself.  
 All parameters are recycled if necessary.
 

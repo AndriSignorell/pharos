@@ -4,7 +4,7 @@
 \alias{getTheme}
 \alias{setTheme}
 \alias{resetTheme}
-\title{aurora's Graphics and Formatting Theme}
+\title{lyra's Graphics and Formatting Theme}
 \usage{
 getTheme()
 
@@ -27,7 +27,7 @@ theme as well, invisibly.
 }
 \description{
 \code{getTheme()}, \code{setTheme()}, and \code{resetTheme()} are the
-user-facing entry points to aurora's theme system: a single, named list
+user-facing entry points to lyra's theme system: a single, named list
 of graphical and formatting defaults, consulted by essentially every
 plotting function in the package (and by \code{\link{fm}()} for
 numeric/percentage/p-value formatting) whenever the corresponding
@@ -36,7 +36,7 @@ function argument is left at its default value.
 \section{What the theme is for}{
 
 
-Most graphical parameters in aurora's plotting functions (\code{col},
+Most graphical parameters in lyra's plotting functions (\code{col},
 \code{grid}, \code{box}, \code{pch}, ...) default to a sentinel value,
 \code{.useTheme}, rather than to a hardcoded color or number. At call
 time, that sentinel is resolved against \code{getTheme()} - so changing

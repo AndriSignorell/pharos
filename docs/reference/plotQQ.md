@@ -97,7 +97,7 @@ plotQQ(
   Controls the corner stamp. `.useTheme` (default) resolves to
   `getTheme()$stamp`. `TRUE`/`FALSE`/`NULL`, a string, or a named list
   of arguments for
-  [`stamp()`](https://andrisignorell.github.io/aurora/reference/stamp.md)
+  [`stamp()`](https://andrisignorell.github.io/lyra/reference/stamp.md)
   (e.g. `list(text = "...", las = 2)`).
 
 - ...:
@@ -128,21 +128,21 @@ Teetor, P. (2011) *R Cookbook*. O'Reilly, pp. 254-255.
 [`qqnorm`](https://rdrr.io/r/stats/qqnorm.html),
 [`qqline`](https://rdrr.io/r/stats/qqnorm.html),
 [`qqplot`](https://rdrr.io/r/stats/qqnorm.html),
-[`getTheme`](https://andrisignorell.github.io/aurora/reference/getTheme.md),
-[`lines.loess`](https://andrisignorell.github.io/aurora/reference/lines.loess.md)
+[`getTheme`](https://andrisignorell.github.io/lyra/reference/getTheme.md),
+[`lines.loess`](https://andrisignorell.github.io/lyra/reference/lines.loess.md)
 
 Other plot.univariate:
-[`plotArea()`](https://andrisignorell.github.io/aurora/reference/plotArea.md),
-[`plotBar()`](https://andrisignorell.github.io/aurora/reference/plotBar.md),
-[`plotBox()`](https://andrisignorell.github.io/aurora/reference/plotBox.md),
-[`plotCatDist()`](https://andrisignorell.github.io/aurora/reference/plotCatDist.md),
-[`plotDens()`](https://andrisignorell.github.io/aurora/reference/plotDens.md),
-[`plotDensBox()`](https://andrisignorell.github.io/aurora/reference/plotDensBox.md),
-[`plotDot()`](https://andrisignorell.github.io/aurora/reference/plotDot.md),
-[`plotECDF()`](https://andrisignorell.github.io/aurora/reference/plotECDF.md),
-[`plotFdist()`](https://andrisignorell.github.io/aurora/reference/plotFdist.md),
-[`plotLines()`](https://andrisignorell.github.io/aurora/reference/plotLines.md),
-[`plotViolin()`](https://andrisignorell.github.io/aurora/reference/plotViolin.md)
+[`plotArea()`](https://andrisignorell.github.io/lyra/reference/plotArea.md),
+[`plotBar()`](https://andrisignorell.github.io/lyra/reference/plotBar.md),
+[`plotBox()`](https://andrisignorell.github.io/lyra/reference/plotBox.md),
+[`plotCatDist()`](https://andrisignorell.github.io/lyra/reference/plotCatDist.md),
+[`plotDens()`](https://andrisignorell.github.io/lyra/reference/plotDens.md),
+[`plotDensBox()`](https://andrisignorell.github.io/lyra/reference/plotDensBox.md),
+[`plotDot()`](https://andrisignorell.github.io/lyra/reference/plotDot.md),
+[`plotECDF()`](https://andrisignorell.github.io/lyra/reference/plotECDF.md),
+[`plotFdist()`](https://andrisignorell.github.io/lyra/reference/plotFdist.md),
+[`plotLines()`](https://andrisignorell.github.io/lyra/reference/plotLines.md),
+[`plotViolin()`](https://andrisignorell.github.io/lyra/reference/plotViolin.md)
 
 ## Examples
 

@@ -60,19 +60,19 @@ get the color of the bigger one.
 [`findInterval`](https://rdrr.io/r/base/findInterval.html)
 
 Other color:
-[`addAlpha()`](https://andrisignorell.github.io/aurora/reference/addAlpha.md),
-[`colToOpaque()`](https://andrisignorell.github.io/aurora/reference/colToOpaque.md),
-[`colToRGB()`](https://andrisignorell.github.io/aurora/reference/colToRGB.md),
-[`contrastColor()`](https://andrisignorell.github.io/aurora/reference/contrastColor.md),
-[`darken()`](https://andrisignorell.github.io/aurora/reference/darken.md),
-[`grayscale()`](https://andrisignorell.github.io/aurora/reference/grayscale.md),
-[`hcol()`](https://andrisignorell.github.io/aurora/reference/hcol.md),
-[`hexToRGB()`](https://andrisignorell.github.io/aurora/reference/hexToRGB.md),
-[`lighten()`](https://andrisignorell.github.io/aurora/reference/lighten.md),
-[`mixColors()`](https://andrisignorell.github.io/aurora/reference/mixColors.md),
-[`pal()`](https://andrisignorell.github.io/aurora/reference/pal.md),
-[`palNames()`](https://andrisignorell.github.io/aurora/reference/palNames.md),
-[`setBackCol()`](https://andrisignorell.github.io/aurora/reference/setBackCol.md)
+[`addAlpha()`](https://andrisignorell.github.io/lyra/reference/addAlpha.md),
+[`colToOpaque()`](https://andrisignorell.github.io/lyra/reference/colToOpaque.md),
+[`colToRGB()`](https://andrisignorell.github.io/lyra/reference/colToRGB.md),
+[`contrastColor()`](https://andrisignorell.github.io/lyra/reference/contrastColor.md),
+[`darken()`](https://andrisignorell.github.io/lyra/reference/darken.md),
+[`grayscale()`](https://andrisignorell.github.io/lyra/reference/grayscale.md),
+[`hcol()`](https://andrisignorell.github.io/lyra/reference/hcol.md),
+[`hexToRGB()`](https://andrisignorell.github.io/lyra/reference/hexToRGB.md),
+[`lighten()`](https://andrisignorell.github.io/lyra/reference/lighten.md),
+[`mixColors()`](https://andrisignorell.github.io/lyra/reference/mixColors.md),
+[`pal()`](https://andrisignorell.github.io/lyra/reference/pal.md),
+[`palNames()`](https://andrisignorell.github.io/lyra/reference/palNames.md),
+[`setBackCol()`](https://andrisignorell.github.io/lyra/reference/setBackCol.md)
 
 ## Examples
 

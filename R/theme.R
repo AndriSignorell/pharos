@@ -1,9 +1,9 @@
 
 ## ============================================================================
-## Theme system for aurora
+## Theme system for lyra
 ## ============================================================================
 ## Central default values for graphical and formatting parameters, controlled
-## package-wide via getOption("aurora.theme"). Plotting functions consume the
+## package-wide via getOption("lyra.theme"). Plotting functions consume the
 ## theme via .theme()/.useThemeValue()/.drawGrid()/.drawBox()/
 ## .withGraphicsState() and can override it locally via explicit arguments
 ## (precedence: explicit argument > function-specific default > active theme).
@@ -94,10 +94,10 @@
 
 ## ---- Public session API -----------------------------------------------
 
-#' aurora's Graphics and Formatting Theme
+#' lyra's Graphics and Formatting Theme
 #'
 #' \code{getTheme()}, \code{setTheme()}, and \code{resetTheme()} are the
-#' user-facing entry points to aurora's theme system: a single, named list
+#' user-facing entry points to lyra's theme system: a single, named list
 #' of graphical and formatting defaults, consulted by essentially every
 #' plotting function in the package (and by \code{\link{fm}()} for
 #' numeric/percentage/p-value formatting) whenever the corresponding
@@ -116,7 +116,7 @@
 #'
 #' @section What the theme is for:
 #'
-#' Most graphical parameters in aurora's plotting functions (\code{col},
+#' Most graphical parameters in lyra's plotting functions (\code{col},
 #' \code{grid}, \code{box}, \code{pch}, ...) default to a sentinel value,
 #' \code{.useTheme}, rather than to a hardcoded color or number. At call
 #' time, that sentinel is resolved against \code{getTheme()} - so changing
@@ -264,7 +264,7 @@
 #'
 #' @export
 getTheme <- function() {
-  getOption("aurora.theme", .themeDefaults)
+  getOption("lyra.theme", .themeDefaults)
 }
 
 #' @rdname getTheme
@@ -285,14 +285,14 @@ setTheme <- function(theme) {
     stop("'theme' must be a named list or a preset name")
   }
   
-  options(aurora.theme = new)
+  options(lyra.theme = new)
   invisible(new)
 }
 
 #' @rdname getTheme
 #' @export
 resetTheme <- function() {
-  options(aurora.theme = .themeDefaults)
+  options(lyra.theme = .themeDefaults)
   invisible(.themeDefaults)
 }
 
@@ -335,7 +335,7 @@ resetTheme <- function() {
 # grid = NULL already means "explicitly suppress" for several functions -
 # theme integration must not silently reinterpret that). No dots-sniffing,
 # no new ...-argument - plain, explicit formal-argument matching.
-.useTheme <- structure(list(), class = "aurora_useTheme")
+.useTheme <- structure(list(), class = "lyra_useTheme")
 
 
 #' @noRd
