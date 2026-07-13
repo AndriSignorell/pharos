@@ -26,10 +26,6 @@
 #' @param \dots further arguments passed to
 #'   \code{\link[stats:smooth.spline]{smooth.spline}}.
 #'
-#' @seealso \code{\link{loess}}, \code{\link{scatter.smooth}}
-#'
-#' @keywords math aplot
-#'
 #' @examples
 #' op <- par(no.readonly = TRUE)
 #' par(mfrow = c(1, 2))
@@ -48,18 +44,20 @@
 #'   splineX(dist ~ speed, cars),
 #'   bandArgs = list(
 #'     conf.level = 0.99,
-#'     col = addAlpha("red", 0.3),
+#'     col = addOpacity("red", 0.3),
 #'     border = "black"
 #'   )
 #' )
 #'
 #' par(op)
 #'
-#' @rdname splineCI
-#' @family plot.utils
+#' @seealso \code{\link{loess}}, \code{\link{scatter.smooth}}
+#'
+#' @family graphics.trendlines  
 #' @concept graphics
 #' @concept regression
 #'
+#' @rdname splineCI
 #' @export
 splineX <- function(x, ...) {
   UseMethod("splineX")

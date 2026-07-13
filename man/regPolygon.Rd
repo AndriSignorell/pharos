@@ -21,3 +21,15 @@ An object inheriting from class \code{"regPolygonGeometry"}.
 \description{
 Create a regular polygon.
 }
+\seealso{
+Other geometry.structures:
+\code{\link[=arc]{arc()}},
+\code{\link[=band]{band()}},
+\code{\link[=bezier]{bezier()}},
+\code{\link[=circle]{circle()}},
+\code{\link[=ellipse]{ellipse()}},
+\code{\link[=polygon]{polygon()}},
+\code{\link[=ring]{ring()}}
+}
+\concept{geometry}
+\concept{geometry.structures}

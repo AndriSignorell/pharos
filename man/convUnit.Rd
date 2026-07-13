@@ -65,8 +65,15 @@ convUnit(1, "ml", "l")
 
 }
 \seealso{
-\code{\link{unit}}
+\link[bedrock:label]{bedrock::label}
+
+Other format:
+\code{\link[=fm]{fm()}},
+\code{\link[=fmCI]{fmCI()}},
+\code{\link[=print.Unit]{print.Unit()}},
+\code{\link[=style]{style()}},
+\code{\link[=unit]{unit()}}
 }
+\concept{format}
 \concept{symbolic-units}
-\concept{topic.conversion}
 \concept{unit-conversion}

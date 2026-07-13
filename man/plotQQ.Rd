@@ -120,8 +120,8 @@ for(i in 1:5){
 Teetor, P. (2011) \emph{R Cookbook}. O'Reilly, pp. 254-255.
 }
 \seealso{
-\code{\link{qqnorm}}, \code{\link{qqline}}, \code{\link{qqplot}},
-\code{\link{getTheme}}, \code{\link{lines.loess}}
+\link[stats:qqnorm]{stats::qqnorm}, \link[stats:qqline]{stats::qqline}, \link[stats:qqplot]{stats::qqplot},
+\link{theme}, \link{lines.loess}
 
 Other plot.univariate:
 \code{\link[=plotArea]{plotArea()}},

@@ -8,14 +8,11 @@
 #' Convert any valid R color specification to an RGB matrix.
 #'
 #' @param col Vector of valid R colors.
-#' @param alpha Logical indicating whether the alpha channel
-#'   should be included.
+#' @param useAlphaChannel Logical indicating whether the alpha
+#'   channel should be included.
 #'
 #' @return Integer matrix with rows corresponding to RGB
 #'   (and optionally alpha) channels.
-#'
-#' @seealso
-#' \code{\link{col2rgb}}
 #' 
 #' @examples
 #' 
@@ -29,18 +26,13 @@
 #' colToRGB(1:8)
 #' 
 #' 
-
-#'
-
-
-#' @family color  
+#' @seealso [grDevices::col2rgb], [color-conversion-overview]
 #' @concept color  
-#' @concept color-conversion
 #'
 #'
 #' @export
-colToRGB <- function(col, alpha = FALSE)
-  col2rgb(col, alpha = alpha)
+colToRGB <- function(col, useAlphaChannel = FALSE)
+  col2rgb(col, alpha = useAlphaChannel)
 
 
 #' Convert Hex Colors to RGB
@@ -52,7 +44,7 @@ colToRGB <- function(col, alpha = FALSE)
 #' @return Integer matrix with RGB rows.
 #'
 
-#' @family color  
+#' @seealso [color-conversion-overview]
 #' @concept color  
 #' @concept color-conversion
 #'
@@ -98,7 +90,7 @@ hexToRGB <- function(hex) {
 #'
 #' @return Character vector of hexadecimal colors.
 #'
-#' @family color.conversion
+#' @seealso [color-conversion-overview]
 #' @concept graphics
 #' @concept color-conversion
 #'
@@ -114,16 +106,16 @@ rgbToHex <- function(col) {
 #' Convert any valid R color specification to hexadecimal colors.
 #'
 #' @param col Vector of valid R colors.
-#' @param alpha Alpha transparency value.
+#' @param opacity Opacity value between 0 and 1.
 #'
 #' @return Character vector of hexadecimal colors.
 #'
-#' @family color.conversion
+#' @seealso [color-conversion-overview]
 #' @concept graphics
 #' @concept color-conversion
 #'
 #' @export
-colToHex <- function(col, alpha = 1) {
+colToHex <- function(col, opacity = 1) {
   
   colRGB <- col2rgb(col)
   
@@ -134,8 +126,8 @@ colToHex <- function(col, alpha = 1) {
       sprintf("#%02X%02X%02X", x[1], x[2], x[3])
   )
   
-  if (alpha != 1)
-    res <- paste0(res, decToHex(round(alpha * 255, 0)))
+  if (any(opacity != 1))
+    res <- paste0(res, decToHex(round(opacity * 255, 0)))
   
   res
 }
@@ -151,7 +143,7 @@ colToHex <- function(col, alpha = 1) {
 #'
 #' @return Character vector of named R colors.
 #'
-#' @family color.conversion
+#' @seealso [color-conversion-overview]
 #' @concept graphics
 #' @concept color-conversion
 #'
@@ -207,7 +199,7 @@ rgbToCol <- function(col,
 #'
 #' @return Character vector of named R colors.
 #'
-#' @family color.conversion
+#' @seealso [color-conversion-overview]
 #' @concept graphics
 #' @concept color-conversion
 #'
@@ -225,18 +217,18 @@ hexToCol <- function(hex,
 #' Convert any valid R color specification to HSV.
 #'
 #' @param col Vector of valid R colors.
-#' @param alpha Logical indicating whether alpha values should
-#'   be returned.
+#' @param useAlphaChannel Logical indicating whether the alpha
+#'   channel should be included.
 #'
 #' @return Numeric HSV matrix.
 #'
-#' @family color.conversion
+#' @seealso [color-conversion-overview]
 #' @concept graphics
 #' @concept color-conversion
 #'
 #' @export
-colToHSV <- function(col, alpha = FALSE)
-  rgb2hsv(colToRGB(col, alpha = alpha))
+colToHSV <- function(col, useAlphaChannel = FALSE)
+  rgb2hsv(colToRGB(col, useAlphaChannel = useAlphaChannel))
 
 
 #' Convert RGB to Long Integers
@@ -247,7 +239,7 @@ colToHSV <- function(col, alpha = FALSE)
 #'
 #' @return Integer vector.
 #'
-#' @family color.conversion
+#' @seealso [color-conversion-overview]
 #' @concept graphics
 #' @concept color-conversion
 #'
@@ -264,7 +256,7 @@ rgbToLong <- function(col)
 #'
 #' @return RGB matrix.
 #'
-#' @family color.conversion
+#' @seealso [color-conversion-overview]
 #' @concept color-manipulation
 #'
 #' @export
@@ -293,7 +285,7 @@ longToRGB <- function(col)
 #'
 #' @return Numeric CMY matrix.
 #'
-#' @family color.space
+#' @seealso [color-conversion-overview]
 #' @concept graphics
 #' @concept color-space
 #' @concept color-conversion
@@ -330,7 +322,7 @@ rgbToCmy <- function(col, maxColorValue = 1) {
 #'
 #' @return Numeric CMYK matrix.
 #'
-#' @family color.space
+#' @seealso [color-conversion-overview]
 #' @concept graphics
 #' @concept color-space
 #' @concept color-conversion
@@ -362,7 +354,7 @@ cmyToCmyk <- function(col) {
 #'
 #' @return Numeric CMY matrix.
 #'
-#' @family color.space
+#' @seealso [color-conversion-overview]
 #' @concept graphics
 #' @concept color-space
 #' @concept color-conversion
@@ -385,50 +377,27 @@ cmykToCmy <- function(col) {
 #'
 #' Convert CMYK colors to RGB.
 #'
-#' @param cyan Cyan values.
-#' @param magenta Magenta values.
-#' @param yellow Yellow values.
-#' @param black Black values.
+#' @param col Numeric CMYK matrix (columns C, M, Y, K).
 #' @param maxColorValue Maximum channel value.
 #'
-#' @return Hexadecimal RGB colors.
+#' @return Numeric RGB matrix.
 #'
-#' @family color.space
+#' @seealso [color-conversion-overview]
 #' @concept graphics
 #' @concept color-space
 #' @concept color-conversion
 #'
 #' @export
-cmykToRgb <- function(cyan,
-                      magenta,
-                      yellow,
-                      black,
-                      maxColorValue = 1) {
+cmykToRgb <- function(col, maxColorValue = 1) {
   
-  if (missing(black)) {
-    
-    rgb(
-      red   = maxColorValue - cyan,
-      green = maxColorValue - magenta,
-      blue  = maxColorValue - yellow,
-      maxColorValue = maxColorValue
-    )
-    
-  } else {
-    
-    rgb(
-      red   = ((maxColorValue - cyan) * (maxColorValue - black)) /
-        maxColorValue,
-      
-      green = ((maxColorValue - magenta) * (maxColorValue - black)) /
-        maxColorValue,
-      
-      blue  = ((maxColorValue - yellow) * (maxColorValue - black)) /
-        maxColorValue,
-      
-      maxColorValue = maxColorValue
-    )
-  }
+  if (is.null(dim(col)) && length(col) > 3)
+    col <- matrix(col, ncol = 4, byrow = TRUE)
+  
+  cbind(
+    R = (maxColorValue - col[, 1]) * (maxColorValue - col[, 4]) / maxColorValue,
+    G = (maxColorValue - col[, 2]) * (maxColorValue - col[, 4]) / maxColorValue,
+    B = (maxColorValue - col[, 3]) * (maxColorValue - col[, 4]) / maxColorValue
+  )
 }
 
 
@@ -454,7 +423,7 @@ cmykToRgb <- function(cyan,
 # cmykToCmy <- cmykToCmy
 # cmykToRgb <- cmykToRgb
 # 
-# alpha     <- addAlpha
+# alpha     <- addOpacity
 # 
 # colToGrey <- grayscale
 # colToGray <- grayscale

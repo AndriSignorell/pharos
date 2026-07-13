@@ -8,8 +8,8 @@
 #' Alignment is achieved by padding strings with spaces so that all elements
 #' have equal width. This is mainly useful for monospaced output.
 #'
-#' @param x A character vector.
-#' @param sep A character specifying the alignment mode:
+#' @param x a character vector
+#' @param sep a character specifying the alignment mode:
 #' \itemize{
 #'   \item \code{"\\l"}: left alignment
 #'   \item \code{"\\r"}: right alignment (default)
@@ -53,8 +53,11 @@
 
 
 
-#' @family string  
+#' @seealso
+#' [string-overview] for an overview of all string utilities in lyra.
+#'
 #' @concept string-manipulation
+#' @concept formatting
 #'
 #'
 #' @export

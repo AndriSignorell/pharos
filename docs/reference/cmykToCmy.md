@@ -21,6 +21,6 @@ Numeric CMY matrix.
 ## See also
 
 Other color.space:
-[`cmyToCmyk()`](https://andrisignorell.github.io/aurora/reference/cmyToCmyk.md),
-[`cmykToRgb()`](https://andrisignorell.github.io/aurora/reference/cmykToRgb.md),
-[`rgbToCmy()`](https://andrisignorell.github.io/aurora/reference/rgbToCmy.md)
+[`cmyToCmyk()`](https://andrisignorell.github.io/lyra/reference/cmyToCmyk.md),
+[`cmykToRgb()`](https://andrisignorell.github.io/lyra/reference/cmykToRgb.md),
+[`rgbToCmy()`](https://andrisignorell.github.io/lyra/reference/rgbToCmy.md)

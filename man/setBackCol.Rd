@@ -27,23 +27,14 @@ plot(x = rnorm(100), col="blue", cex=1.2, pch=16,
      panel.first={setBackCol(c("red", "lightyellow"))
                   grid()})
 
+
 }
 \seealso{
 \code{\link{rect}}
 
-Other color:
-\code{\link[=addAlpha]{addAlpha()}},
-\code{\link[=colToOpaque]{colToOpaque()}},
-\code{\link[=colToRGB]{colToRGB()}},
-\code{\link[=contrastColor]{contrastColor()}},
-\code{\link[=darken]{darken()}},
-\code{\link[=findColor]{findColor()}},
-\code{\link[=grayscale]{grayscale()}},
-\code{\link[=hcol]{hcol()}},
-\code{\link[=hexToRGB]{hexToRGB()}},
-\code{\link[=lighten]{lighten()}},
-\code{\link[=mixColors]{mixColors()}},
-\code{\link[=pal]{pal()}},
-\code{\link[=palNames]{palNames()}}
+Other graphics.setup:
+\code{\link[=canvas]{canvas()}},
+\code{\link[=polarGrid]{polarGrid()}}
 }
 \concept{color}
+\concept{graphics.setup}

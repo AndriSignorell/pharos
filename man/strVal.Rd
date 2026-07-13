@@ -12,17 +12,17 @@ strVal(
 )
 }
 \arguments{
-\item{x}{A character vector.}
+\item{x}{a character vector}
 
-\item{collapse}{Logical; if \code{TRUE}, all extracted numbers per element
+\item{collapse}{logical; if \code{TRUE}, all extracted numbers per element
 of \code{x} are concatenated into a single string. Otherwise, a list of
 character vectors is returned.}
 
-\item{output}{Character; controls the type of the returned values.
+\item{output}{character; controls the type of the returned values.
 \code{"character"} (default) returns strings; \code{"numeric"} coerces
 extracted values to numeric.}
 
-\item{dec}{Character; decimal separator used in the input. Defaults to
+\item{dec}{character; decimal separator used in the input. Defaults to
 \code{getOption("OutDec")}.}
 }
 \value{
@@ -65,26 +65,8 @@ strVal("value = 3,14", dec = ",", output = "numeric")
 \seealso{
 \code{\link{as.numeric}}, \code{\link[stringi]{stri_extract_all_regex}}
 
-Other string:
-\code{\link[=mgsub]{mgsub()}},
-\code{\link[=strAbbr]{strAbbr()}},
-\code{\link[=strAlign]{strAlign()}},
-\code{\link[=strCap]{strCap()}},
-\code{\link[=strChop]{strChop()}},
-\code{\link[=strCountW]{strCountW()}},
-\code{\link[=strDist]{strDist()}},
-\code{\link[=strExtract]{strExtract()}},
-\code{\link[=strExtractBetween]{strExtractBetween()}},
-\code{\link[=strIsNumeric]{strIsNumeric()}},
-\code{\link[=strLen]{strLen()}},
-\code{\link[=strPad]{strPad()}},
-\code{\link[=strPos]{strPos()}},
-\code{\link[=strRev]{strRev()}},
-\code{\link[=strSpell]{strSpell()}},
-\code{\link[=strSplit]{strSplit()}},
-\code{\link[=strTrim]{strTrim()}},
-\code{\link[=strTrunc]{strTrunc()}}
+\link{string-overview} for an overview of all string utilities in lyra.
 }
 \concept{number-formatting}
-\concept{string}
+\concept{pattern-matching}
 \concept{string-manipulation}

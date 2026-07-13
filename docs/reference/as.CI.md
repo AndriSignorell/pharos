@@ -69,7 +69,7 @@ The returned object inherits from class `"ci"`.
 
 ## See also
 
-[`plotDot`](https://andrisignorell.github.io/aurora/reference/plotDot.md),
+[`plotDot`](https://andrisignorell.github.io/lyra/reference/plotDot.md),
 `is.CI`
 
 ## Examples

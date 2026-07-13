@@ -41,11 +41,11 @@ An object inheriting from class `"arcGeometry"`.
 ## See also
 
 Other geometry:
-[`band()`](https://andrisignorell.github.io/aurora/reference/band.md),
-[`bezier()`](https://andrisignorell.github.io/aurora/reference/bezier.md),
-[`canvas()`](https://andrisignorell.github.io/aurora/reference/canvas.md),
-[`polarGrid()`](https://andrisignorell.github.io/aurora/reference/polarGrid.md),
-[`polygon()`](https://andrisignorell.github.io/aurora/reference/polygon.md),
-[`rotate()`](https://andrisignorell.github.io/aurora/reference/rotate.md),
-[`shade()`](https://andrisignorell.github.io/aurora/reference/shade.md),
-[`transformXY()`](https://andrisignorell.github.io/aurora/reference/transformXY.md)
+[`band()`](https://andrisignorell.github.io/lyra/reference/band.md),
+[`bezier()`](https://andrisignorell.github.io/lyra/reference/bezier.md),
+[`canvas()`](https://andrisignorell.github.io/lyra/reference/canvas.md),
+[`polarGrid()`](https://andrisignorell.github.io/lyra/reference/polarGrid.md),
+[`polygon()`](https://andrisignorell.github.io/lyra/reference/polygon.md),
+[`rotate()`](https://andrisignorell.github.io/lyra/reference/rotate.md),
+[`shade()`](https://andrisignorell.github.io/lyra/reference/shade.md),
+[`transformXY()`](https://andrisignorell.github.io/lyra/reference/transformXY.md)

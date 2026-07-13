@@ -36,7 +36,7 @@ x <- regPolygon(numVertices=3)
 # and rotate
 sapply( (0:3) * pi/6, function(theta) {
   xy <- rotate( x=x, theta=theta )
-  polygon(xy, col=addAlpha("blue", 0.2))
+  polygon(xy, col=addOpacity("blue", 0.2))
 } )
 
 abline(v=0, h=0)
@@ -48,14 +48,8 @@ par(op)
 \code{\link{polygon}}, \code{\link{regPolygon}},
 \code{\link{ellipse}}, \code{\link{arc}}
 
-Other geometry:
-\code{\link[=arc]{arc()}},
-\code{\link[=band]{band()}},
-\code{\link[=bezier]{bezier()}},
-\code{\link[=canvas]{canvas()}},
-\code{\link[=polarGrid]{polarGrid()}},
-\code{\link[=polygon]{polygon()}},
-\code{\link[=shade]{shade()}},
+Other geometry.transformation:
 \code{\link[=transformXY]{transformXY()}}
 }
 \concept{geometry}
+\concept{geometry.transformation}

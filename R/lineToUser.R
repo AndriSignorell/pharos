@@ -11,21 +11,15 @@
 #' @param side the side of the plot 
 #' @return the user coordinates for the given lines 
 #' 
-#' @seealso \code{\link{mtext}} 
-
-
-
 #' @examples
 #' 
 #' plot(1:10)
 #' lineToUser(line=2, side=4)
 #' 
-
- 
-
-#' @family graphics.utils  
+#' 
+#' @seealso \code{\link{mtext}} 
+#' @family graphics.layout
 #' @concept annotation
-#'
 #'
 #' @export 
 lineToUser <- function(line, side) {

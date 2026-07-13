@@ -80,7 +80,6 @@
 #' @seealso \code{\link[stats]{density}}, \code{\link[graphics]{cdplot}},
 #'   \code{\link[bedrock]{resolveFormula}}
 #' 
-#' @family topic.graphics
 #' @concept base-graphics
 #' @concept plotting
 #' 

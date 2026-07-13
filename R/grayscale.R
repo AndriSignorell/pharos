@@ -30,7 +30,7 @@
 
 
 
-#' @family color  
+#' @family color.conversion
 #' @concept color  
 #' @concept color-conversion
 #'

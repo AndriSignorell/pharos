@@ -40,7 +40,7 @@
 #' cartToSph(x=1, y=2, z=3)   # r=3.741657, theta=0.930274, phi=1.107149
 #' 
 
-#' @family coordinate.transform
+#' @family geometry.conversion
 #' @concept geometry
 #' @concept mathematics
 #'

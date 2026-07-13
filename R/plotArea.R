@@ -51,7 +51,7 @@
 #'
 #' plotArea(
 #'   WorldPhones,
-#'   col = pal("Helsana")
+#'   col = pal("helsana")
 #' )
 #'
 #' plotArea(
@@ -94,7 +94,7 @@ plotArea <- function(
   y.missing <- missing(y)
   
   if (is.null(col))
-    col <- pal("Helsana")
+    col <- pal("helsana")
   
   .withGraphicsState({
     

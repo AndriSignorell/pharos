@@ -140,12 +140,6 @@
 #' @return the formatted values as characters. \cr If \code{x} was a
 #' \code{matrix}, then a the result will also be a \code{matrix}. (Hope this
 #' will not surprise you...)
-#' @seealso \code{\link{format}}, \code{\link{formatC}},
-#' \code{\link{prettyNum}}, \code{\link{sprintf}}, \code{\link{symnum}},\cr
-#' \code{\link{Sys.setlocale}},\cr \code{\link[DescToolsX]{weekday}}, 
-#' \code{\link[DescToolsX]{month}},
-#' \code{\link[DescToolsX]{setDescToolsXOption}}, \code{\link{style}}, \code{\link{styles}}
-#' @keywords IO
 #' @examples
 #' 
 #' fm(as.Date(c("2014-11-28", "2014-1-2")), fmt="ddd, d mmmm yyyy")
@@ -183,10 +177,12 @@
 #' # change the character to be used as the decimal point
 #' fm(1200, digits=2, bigMark = ".", decMark=",")
 #' 
-
-
-
-
+#' @seealso [base::format], [base::formatC],
+#' [base::prettyNum], [base::sprintf], [stats::symnum],\cr
+#' [base::Sys.setlocale],\cr [DescToolsX::weekday], 
+#' [DescToolsX::month],
+#' [theme]
+#' 
 #' @family format  
 #' @concept formatting  
 #' @concept number-formatting

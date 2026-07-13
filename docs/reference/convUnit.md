@@ -75,7 +75,7 @@ multiplicative scaling.
 
 ## See also
 
-[`unit`](https://andrisignorell.github.io/aurora/reference/unit.md)
+[`unit`](https://andrisignorell.github.io/lyra/reference/unit.md)
 
 ## Examples
 

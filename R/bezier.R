@@ -17,9 +17,7 @@
 #' \emph{Curves and Surfaces for Computer Aided Geometric Design}.
 #' Academic Press.
 #'
-#' @seealso
-#' \code{\link{arc}},
-#' \code{\link{lines}}
+#' @seealso [graphics::lines]
 #'
 #' @examples
 #' canvas(xlim = c(0, 1))
@@ -35,7 +33,7 @@
 #'
 
 
-#' @family geometry  
+#' @family geometry.structures
 #' @concept geometry
 #'
 #'

@@ -78,7 +78,7 @@ plotHexbin <- function(
   
   if (is.null(col)) {
     col <- colorRampPalette(
-      c("white", pal("Helsana")[1])
+      c("white", pal("helsana")[1])
     )(100)
   }
   

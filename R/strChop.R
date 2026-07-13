@@ -15,8 +15,8 @@
 #' 
 #' Typical usages are \preformatted{ strChop(x, len) strChop(x, pos) } 
 #' 
-#' @param x the string to be cut in pieces. 
-#' @param len a vector with the lengths of the pieces.
+#' @param x the string to be cut in pieces
+#' @param len a vector with the lengths of the pieces
 #' @param pos a vector of cutting positions. Will be ignored when \code{len}
 #' has been defined.
 #' @return a vector with the parts of the string.
@@ -37,8 +37,11 @@
 
 
 
-#' @family string  
+#' @seealso
+#' [string-overview] for an overview of all string utilities in lyra.
+#'
 #' @concept string-manipulation
+#' @concept reshape
 #'
 #'
 #' @export

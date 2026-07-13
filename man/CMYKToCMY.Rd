@@ -16,12 +16,8 @@ Numeric CMY matrix.
 Convert CMYK colors to CMY.
 }
 \seealso{
-Other color.space:
-\code{\link[=cmyToCmyk]{cmyToCmyk()}},
-\code{\link[=cmykToRgb]{cmykToRgb()}},
-\code{\link[=rgbToCmy]{rgbToCmy()}}
+\link{color-conversion-overview}
 }
 \concept{color-conversion}
 \concept{color-space}
-\concept{color.space}
 \concept{graphics}

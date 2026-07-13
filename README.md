@@ -94,7 +94,7 @@ drawing (`rotate()`, `transformXY()`) or combined into composite shapes.
 
 ### Colors
 
-- **Manipulation:** `addAlpha()`, `fade()`, `darken()`, `lighten()`,
+- **Manipulation:** `addOpacity()`, `fade()`, `darken()`, `lighten()`,
   `mixColors()`, `grayscale()`, `colToOpaque()`
 - **Analysis:** `contrastColor()` (legible text colors on any background),
   `findColor()` (nearest named color)
@@ -143,7 +143,7 @@ plotCor(cor(mtcars))
 
 # custom geometric graphic
 canvas(main = "lyra primitives")
-polygon(circle(radius = 1), col = addAlpha("steelblue", 0.4))
+polygon(circle(radius = 1), col = addOpacity("steelblue", 0.4))
 polygon(regPolygon(radius = 0.7, numVertices = 6), border = "red")
 ```
 

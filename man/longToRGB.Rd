@@ -16,13 +16,6 @@ RGB matrix.
 Decode long integers into RGB values.
 }
 \seealso{
-Other color.conversion:
-\code{\link[=colToHSV]{colToHSV()}},
-\code{\link[=colToHex]{colToHex()}},
-\code{\link[=hexToCol]{hexToCol()}},
-\code{\link[=rgbToCol]{rgbToCol()}},
-\code{\link[=rgbToHex]{rgbToHex()}},
-\code{\link[=rgbToLong]{rgbToLong()}}
+\link{color-conversion-overview}
 }
 \concept{color-manipulation}
-\concept{color.conversion}

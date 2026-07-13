@@ -8,10 +8,10 @@
 #' If the input \code{x} has length 1, the result is returned as a character
 #' vector instead of a list for convenience.
 #'
-#' @param x A character vector to be split.
-#' @param split A character string specifying the delimiter (if
-#'   \code{fixed = TRUE}) or a regular expression (if \code{fixed = FALSE}).
-#' @param fixed Logical; if \code{TRUE}, \code{split} is treated as a fixed
+#' @param x a character vector to be split
+#' @param split a character string specifying the delimiter (if
+#'   \code{fixed = TRUE}) or a regular expression (if \code{fixed = FALSE})
+#' @param fixed logical; if \code{TRUE}, \code{split} is treated as a fixed
 #'   string. Otherwise, it is interpreted as a regular expression.
 #'
 #' @return A list of character vectors. If \code{x} has length 1, a character
@@ -20,11 +20,11 @@
 #' @details
 #' This function provides a simplified interface to string splitting using
 #' the \pkg{stringi} package. It avoids some of the complexity of
-#' \code{\link{strSplit}} while providing consistent and Unicode-aware
+#' \code{\link[base]{strsplit}} while providing consistent and Unicode-aware
 #' behavior.
 #'
 #' @seealso \code{\link[stringi]{stri_split_fixed}},
-#' \code{\link[stringi]{stri_split_regex}}
+#' \code{\link[stringi]{stri_split_regex}}, \code{\link[base]{strsplit}}
 #'
 #' @examples
 #' strSplit("a,b,c", ",", fixed = TRUE)
@@ -36,8 +36,12 @@
 #'
 
 
-#' @family string  
+#' @seealso
+#' [string-overview] for an overview of all string utilities in lyra.
+#'
 #' @concept string-manipulation
+#' @concept reshape
+#' @concept pattern-matching
 #'
 #'
 #' @export

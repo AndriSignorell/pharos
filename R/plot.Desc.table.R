@@ -59,7 +59,7 @@
 #'       sized to the number of columns of \code{tab}, passed to
 #'       \code{\link{plotMosaic}}.}
 #'     \item{panel 3}{left at \code{\link{plotAssoc}}'s own default
-#'       (\code{pal("RedWhiteBlue3", n = 100)}), a diverging palette - cell
+#'       (\code{pal("red-white-blue-3", n = 100)}), a diverging palette - cell
 #'       colors there encode the sign and strength of Pearson residuals, so
 #'       a categorical or grey-ramp default would not be meaningful. Supplying
 #'       \code{col} overrides this with the diverging palette of the user's
@@ -113,7 +113,7 @@
 #'
 #' @seealso \code{\link[DescToolsX]{desc}}, \code{\link{plotAssoc}},
 #'   \code{\link{plotHeatmap}}, \code{\link{plotMosaic}},
-#'   \code{\link[graphics]{spineplot}}, \code{\link{getTheme}}
+#'   \code{\link[graphics]{spineplot}}
 #'
 #' @family plot.s3  
 #' @concept frequency-table
@@ -252,7 +252,7 @@ plot.Desc.table <- function(x,
              # ── 4: Association plot ──────────────────────────────────────────
              "4" = {
                # plotAssoc() has its own diverging-palette default
-               # (pal("RedWhiteBlue3", n=100)) appropriate for signed
+               # (pal("red-white-blue-3", n=100)) appropriate for signed
                # residuals - a grey/categorical default would not be
                # meaningful here, so it's only overridden when the caller
                # supplies col explicitly. Its xlab/ylab are TRUE/FALSE/
@@ -260,7 +260,7 @@ plot.Desc.table <- function(x,
                # strings - left at their own TRUE default (show dimnames)
                # unless the caller overrides.
                plotAssoc(tab,
-                        col  = if (identical(col, .useTheme)) pal("RedWhiteBlue3", n = 100L) else col,
+                        col  = if (identical(col, .useTheme)) pal("red-white-blue-3", n = 100L) else col,
                         main = .main(.panelDefault("Association plot")),
                         stamp = NA,
                         ...)

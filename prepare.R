@@ -21,9 +21,13 @@ devtools::run_examples()
 
 covr::package_coverage()
 
+available::available("figura", browse = FALSE)
+available::available("playfair", browse = FALSE)
+available::available("clarity", browse = FALSE)
 
 pkgdown::build_site()
-
+lyra::mgsub()
+bedrock::mg
 
 par()
 
@@ -144,3 +148,8 @@ plotBar(VADeaths/1e3,  box=FALSE, bg="lightyellow", main="VADeaths",
                    col="red", col.axis="blue", lwd=2))
 
 
+
+debug(pal)
+pal()
+
+preview()

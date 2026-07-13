@@ -77,7 +77,6 @@
 #'   \code{\link[DescToolsX]{predict.Lc}()} for bootstrap confidence
 #'   intervals, \code{\link[DescToolsX]{gini}()} for the Gini coefficient.
 #'
-#' @family inequality
 #' @concept inequality
 #' @concept graphics
 NULL

@@ -81,26 +81,10 @@ Confidence and prediction bands are controlled via \code{cbandArgs} and
 \seealso{
 \code{\link{lines}}, \code{\link{lm}}
 
-Other graphics.utils:
-\code{\link[=abcCoords]{abcCoords()}},
-\code{\link[=axisBreak]{axisBreak()}},
-\code{\link[=barText]{barText()}},
-\code{\link[=boxedText]{boxedText()}},
-\code{\link[=colLegend]{colLegend()}},
-\code{\link[=degToRad]{degToRad()}},
-\code{\link[=errBars]{errBars()}},
-\code{\link[=lineSep]{lineSep()}},
-\code{\link[=lineToUser]{lineToUser()}},
-\code{\link[=mar]{mar()}},
-\code{\link[=preview]{preview()}},
-\code{\link[=spreadOut]{spreadOut()}},
-\code{\link[=stamp]{stamp()}},
-\code{\link[=textLegend]{textLegend()}},
-\code{\link[=titleRect]{titleRect()}},
-\code{\link[=unit]{unit()}}
+Other graphics.trendlines:
+\code{\link[=lines.loess]{lines.loess()}},
+\code{\link{splineCI}}
 }
 \concept{annotation}
-\concept{graphics.utils}
+\concept{graphics.trendlines}
 \concept{regression}
-\keyword{aplot}
-\keyword{math}

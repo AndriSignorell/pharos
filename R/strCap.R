@@ -5,8 +5,8 @@
 #' Capitalizes character strings in different ways: first letter,
 #' each word, or title case.
 #'
-#' @param x A character vector.
-#' @param method Character string specifying the capitalization method:
+#' @param x a character vector
+#' @param method character string specifying the capitalization method:
 #' \itemize{
 #'   \item \code{"first"}: capitalize the first letter of the string
 #'   \item \code{"word"}: capitalize the first letter of each word
@@ -40,8 +40,11 @@
 #'
 
 
-#' @family string  
+#' @seealso
+#' [string-overview] for an overview of all string utilities in lyra.
+#'
 #' @concept string-manipulation
+#' @concept formatting
 #'
 #'
 #' @export

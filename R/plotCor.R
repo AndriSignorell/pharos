@@ -124,7 +124,7 @@
 #'          args.colLegend=NA)
 #' 
 #' m <- cor(mtcars)
-#' plotCor(m, col=pal("RedWhiteBlue1", 100), border="grey",
+#' plotCor(m, col=pal("red-white-blue-1", 100), border="grey",
 #'          args.colLegend=list(labels=format(seq(-1,1,.25), digits=2), frame="grey"))
 #' 
 #' # display only correlation with a value > 0.7

@@ -41,24 +41,13 @@ stamp()
 \seealso{
 \code{\link{text}}
 
-Other graphics.utils:
-\code{\link[=abcCoords]{abcCoords()}},
-\code{\link[=axisBreak]{axisBreak()}},
+Other graphics.annotation:
 \code{\link[=barText]{barText()}},
 \code{\link[=boxedText]{boxedText()}},
 \code{\link[=colLegend]{colLegend()}},
-\code{\link[=degToRad]{degToRad()}},
 \code{\link[=errBars]{errBars()}},
-\code{\link[=lineSep]{lineSep()}},
-\code{\link[=lineToUser]{lineToUser()}},
-\code{\link[=lines.lm]{lines.lm()}},
-\code{\link[=mar]{mar()}},
-\code{\link[=preview]{preview()}},
-\code{\link[=spreadOut]{spreadOut()}},
 \code{\link[=textLegend]{textLegend()}},
-\code{\link[=titleRect]{titleRect()}},
-\code{\link[=unit]{unit()}}
+\code{\link[=titleRect]{titleRect()}}
 }
 \concept{annotation}
-\concept{graphics.utils}
-\keyword{aplot}
+\concept{graphics.annotation}

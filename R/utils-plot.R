@@ -9,7 +9,7 @@
 
 
 # R/fcol.R
-fcol <- .pal_data$discrete$Helsana
+fcol <- .pal_data$discrete$helsana
 
 
 #' Get a DescToolsX Option

@@ -3,7 +3,7 @@
 #'
 #' Reverses each element of a character vector.
 #'
-#' @param x A character vector.
+#' @param x a character vector
 #'
 #' @return A character vector with each string reversed.
 #'
@@ -23,8 +23,11 @@
 #'
 
 
-#' @family string  
+#' @seealso
+#' [string-overview] for an overview of all string utilities in lyra.
+#'
 #' @concept string-manipulation
+#' @concept ordering
 #'
 #'
 #' @export

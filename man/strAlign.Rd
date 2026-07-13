@@ -7,9 +7,9 @@
 strAlign(x, sep = "\\\\r")
 }
 \arguments{
-\item{x}{A character vector.}
+\item{x}{a character vector}
 
-\item{sep}{A character specifying the alignment mode:
+\item{sep}{a character specifying the alignment mode:
 \itemize{
 \item \code{"\\l"}: left alignment
 \item \code{"\\r"}: right alignment (default)
@@ -60,25 +60,7 @@ strAlign(z, ".")
 \code{\link[stringi]{stri_sub}},
 \code{\link[stringi]{stri_trim_right}}
 
-Other string:
-\code{\link[=mgsub]{mgsub()}},
-\code{\link[=strAbbr]{strAbbr()}},
-\code{\link[=strCap]{strCap()}},
-\code{\link[=strChop]{strChop()}},
-\code{\link[=strCountW]{strCountW()}},
-\code{\link[=strDist]{strDist()}},
-\code{\link[=strExtract]{strExtract()}},
-\code{\link[=strExtractBetween]{strExtractBetween()}},
-\code{\link[=strIsNumeric]{strIsNumeric()}},
-\code{\link[=strLen]{strLen()}},
-\code{\link[=strPad]{strPad()}},
-\code{\link[=strPos]{strPos()}},
-\code{\link[=strRev]{strRev()}},
-\code{\link[=strSpell]{strSpell()}},
-\code{\link[=strSplit]{strSplit()}},
-\code{\link[=strTrim]{strTrim()}},
-\code{\link[=strTrunc]{strTrunc()}},
-\code{\link[=strVal]{strVal()}}
+\link{string-overview} for an overview of all string utilities in lyra.
 }
-\concept{string}
+\concept{formatting}
 \concept{string-manipulation}

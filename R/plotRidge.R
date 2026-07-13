@@ -44,7 +44,6 @@
 #' plotRidge(value ~ group, data = df)
 #'
 #' @seealso \code{\link{plotDens}}
-#' @family topic.graphics
 #' @concept base-graphics
 #' @concept plotting
 #'

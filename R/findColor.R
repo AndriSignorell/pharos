@@ -72,7 +72,7 @@
 
 
 
-#' @family color  
+#' @family color.lookup
 #' @concept color
 #'
 #'

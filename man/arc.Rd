@@ -30,14 +30,14 @@ An object inheriting from class \code{"arcGeometry"}.
 Create one or more circular or elliptic arcs.
 }
 \seealso{
-Other geometry:
+Other geometry.structures:
 \code{\link[=band]{band()}},
 \code{\link[=bezier]{bezier()}},
-\code{\link[=canvas]{canvas()}},
-\code{\link[=polarGrid]{polarGrid()}},
+\code{\link[=circle]{circle()}},
+\code{\link[=ellipse]{ellipse()}},
 \code{\link[=polygon]{polygon()}},
-\code{\link[=rotate]{rotate()}},
-\code{\link[=shade]{shade()}},
-\code{\link[=transformXY]{transformXY()}}
+\code{\link[=regPolygon]{regPolygon()}},
+\code{\link[=ring]{ring()}}
 }
 \concept{geometry}
+\concept{geometry.structures}

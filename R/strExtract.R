@@ -4,10 +4,10 @@
 #' Extracts the first substring matching a regular expression from each
 #' element of a character vector.
 #'
-#' @param x A character vector.
-#' @param pattern A character string containing a regular expression to match.
-#' @param ... Additional arguments passed to
-#'   \code{\link[stringi]{stri_extract_first_regex}}.
+#' @param x a character vector
+#' @param pattern a character string containing a regular expression to match
+#' @param ... additional arguments passed to
+#'   \code{\link[stringi]{stri_extract_first_regex}}
 #'
 #' @return A character vector containing the first match for each element of
 #'   \code{x}. If no match is found, \code{NA} is returned.
@@ -33,8 +33,11 @@
 
 
 
-#' @family string  
+#' @seealso
+#' [string-overview] for an overview of all string utilities in lyra.
+#'
 #' @concept string-manipulation
+#' @concept pattern-matching
 #'
 #'
 #' @export

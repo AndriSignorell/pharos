@@ -7,10 +7,10 @@
 strTrim(x, pattern = " \\t\\n", method = "both")
 }
 \arguments{
-\item{x}{the string to be trimmed.}
+\item{x}{the string to be trimmed}
 
 \item{pattern}{the pattern of the whitespaces to be deleted, defaults to
-space, tab and newline: \code{" \t\n"}.}
+space, tab and newline: \code{" \t\n"}}
 
 \item{method}{one out of \code{"both"} (default), \code{"left"},
 \code{"right"}. Determines on which side the string should be trimmed.}
@@ -44,25 +44,9 @@ strTrim(" ..Hello ... world! ", pattern=" \\\\.")
 
 }
 \seealso{
-Other string:
-\code{\link[=mgsub]{mgsub()}},
-\code{\link[=strAbbr]{strAbbr()}},
-\code{\link[=strAlign]{strAlign()}},
-\code{\link[=strCap]{strCap()}},
-\code{\link[=strChop]{strChop()}},
-\code{\link[=strCountW]{strCountW()}},
-\code{\link[=strDist]{strDist()}},
-\code{\link[=strExtract]{strExtract()}},
-\code{\link[=strExtractBetween]{strExtractBetween()}},
-\code{\link[=strIsNumeric]{strIsNumeric()}},
-\code{\link[=strLen]{strLen()}},
-\code{\link[=strPad]{strPad()}},
-\code{\link[=strPos]{strPos()}},
-\code{\link[=strRev]{strRev()}},
-\code{\link[=strSpell]{strSpell()}},
-\code{\link[=strSplit]{strSplit()}},
-\code{\link[=strTrunc]{strTrunc()}},
-\code{\link[=strVal]{strVal()}}
+\code{\link[base]{trimws}}
+
+\link{string-overview} for an overview of all string utilities in lyra.
 }
-\concept{string}
+\concept{formatting}
 \concept{string-manipulation}

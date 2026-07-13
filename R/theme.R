@@ -46,7 +46,7 @@
   points = list(
     pch = 21,
     col = "grey50",
-    bg  = addAlpha("grey"),   # alpha baked into the theme default, not recomputed per call
+    bg  = addOpacity("grey"),   # alpha baked into the theme default, not recomputed per call
     cex = 1.1
   ),
   
@@ -54,8 +54,8 @@
   # If a context needs two colors but 'twin' doesn't fit, the calling
   # function must define that explicitly itself (no implicit fallback
   # to palette(n=2)).
-  twin    = pal("Helsana")[c(2, 1)],
-  palette = "Helsana",
+  twin    = pal("helsana")[c(2, 1)],
+  palette = "helsana",
   
   bar = list(
     col    = "grey80",
@@ -63,7 +63,7 @@
   ),
   
   legend = list(
-    bg      = addAlpha("white"),
+    bg      = addOpacity("white"),
     box.col = "grey50"
   ),
   
@@ -157,10 +157,10 @@
 #'   \code{par}          \tab \code{col.axis="grey40", las=1, cex=1.1}   \tab Global \code{par()} pass applied by every \code{.applyParFromDots()} call (axis label color, axis label orientation, global text scaling). \cr
 #'   \code{grid}         \tab \code{col="grey80", lwd=1, lty="dotted"}, plus \code{group.*} variants \tab Background grid lines, via \code{.drawGrid()}. The \code{group.*} entries style a subordinate/secondary grid (e.g. group separators) where a function draws one. \cr
 #'   \code{box}          \tab \code{col="grey50", lwd=1, lty="solid"}    \tab The frame drawn around a plot region, via \code{.drawBox()}. \cr
-#'   \code{points}       \tab \code{pch=21, col="grey50", bg=addAlpha("grey"), cex=1.1} \tab Default point styling for scatterplot-like functions (e.g. \code{plotXY()}, \code{plotDot()}). \cr
-#'   \code{twin}         \tab \code{pal("Helsana")[c(6, 1)]}             \tab A fixed pair of colors for contexts that inherently need exactly two contrasting colors (e.g. a fit line and a smoother in \code{plotXY()}, the two poles of a diverging color ramp in \code{plotCor()}, a single accent color via \code{twin[1]} in \code{\link{lines.loess}}/\code{plotQQ()}'s confidence band). Never used as a substitute for \code{palette} when more than two colors are needed. \cr
-#'   \code{palette}      \tab \code{"Helsana"}                          \tab Name of the qualitative (categorical) palette used whenever more than two unordered colors are needed (e.g. \code{plotMosaic()}'s fill colors), resolved via \code{\link{pal}()}. Deliberately not used for sequential or diverging numeric scales - see the next point. \cr
-#'   (none - by design) \tab -                                          \tab Sequential/diverging numeric color scales (e.g. \code{plotDens2D()}'s density heatmap, \code{plotHeatmap()}'s cell shading) are deliberately \emph{not} theme-driven; they use a hardcoded, purpose-built palette via \code{\link{pal}()} instead (e.g. \code{pal("RedToBlack")}, \code{pal("Blues")}). Neither \code{palette} (categorical) nor \code{twin} (a fixed pair) is the right semantic fit for an ordered, continuous scale - see \code{\link{pal}} for the registry of named continuous palettes. \cr
+#'   \code{points}       \tab \code{pch=21, col="grey50", bg=addOpacity("grey"), cex=1.1} \tab Default point styling for scatterplot-like functions (e.g. \code{plotXY()}, \code{plotDot()}). \cr
+#'   \code{twin}         \tab \code{pal("helsana")[c(6, 1)]}             \tab A fixed pair of colors for contexts that inherently need exactly two contrasting colors (e.g. a fit line and a smoother in \code{plotXY()}, the two poles of a diverging color ramp in \code{plotCor()}, a single accent color via \code{twin[1]} in \code{\link{lines.loess}}/\code{plotQQ()}'s confidence band). Never used as a substitute for \code{palette} when more than two colors are needed. \cr
+#'   \code{palette}      \tab \code{"helsana"}                          \tab Name of the qualitative (categorical) palette used whenever more than two unordered colors are needed (e.g. \code{plotMosaic()}'s fill colors), resolved via \code{\link{pal}()}. Deliberately not used for sequential or diverging numeric scales - see the next point. \cr
+#'   (none - by design) \tab -                                          \tab Sequential/diverging numeric color scales (e.g. \code{plotDens2D()}'s density heatmap, \code{plotHeatmap()}'s cell shading) are deliberately \emph{not} theme-driven; they use a hardcoded, purpose-built palette via \code{\link{pal}()} instead (e.g. \code{pal("red-black")}, \code{pal("Blues")}). Neither \code{palette} (categorical) nor \code{twin} (a fixed pair) is the right semantic fit for an ordered, continuous scale - see \code{\link{pal}} for the registry of named continuous palettes. \cr
 #'   \code{bar}          \tab \code{col="grey80", border=NA}             \tab Default bar fill/border in \code{plotBar()}. \cr
 #'   \code{sty}          \tab \code{abs="abs.sty", perc="per.sty", num="num.sty", pval="pval.sty"} \tab Names of \code{\link{fm}()} format styles (see \code{\link{styles}()}) used for absolute counts, percentages, plain numbers, and p-values respectively. \cr
 #'   \code{stamp}        \tab \code{expression(...)} - unevaluated         \tab The corner stamp text drawn by every \code{\link{stamp}()}/\code{.withGraphicsState()} call. Stored as an unevaluated \code{expression()} and \code{eval()}'d at draw time (not at theme-load or theme-set time), so it always reflects the current user and date rather than freezing whatever they were when the theme was defined or last changed. Default: \code{"<username> / <YYYY-MM-DD>"}. \cr
@@ -256,8 +256,8 @@
 #'   \code{\link{fm}} for the formatting styles referenced by \code{sty},
 #'   \code{\link{stamp}} for the corner stamp mechanism.
 #'
-#' @name getTheme
-
+#' @name theme
+#' 
 #' @family theme  
 #' @concept theme
 #'
@@ -267,7 +267,7 @@ getTheme <- function() {
   getOption("lyra.theme", .themeDefaults)
 }
 
-#' @rdname getTheme
+#' @rdname theme
 #' @export
 setTheme <- function(theme) {
   
@@ -289,7 +289,7 @@ setTheme <- function(theme) {
   invisible(new)
 }
 
-#' @rdname getTheme
+#' @rdname theme
 #' @export
 resetTheme <- function() {
   options(lyra.theme = .themeDefaults)

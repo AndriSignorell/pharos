@@ -4,13 +4,13 @@
 \alias{colToHSV}
 \title{Convert R Colors to HSV}
 \usage{
-colToHSV(col, alpha = FALSE)
+colToHSV(col, useAlphaChannel = FALSE)
 }
 \arguments{
 \item{col}{Vector of valid R colors.}
 
-\item{alpha}{Logical indicating whether alpha values should
-be returned.}
+\item{useAlphaChannel}{Logical indicating whether the alpha
+channel should be included.}
 }
 \value{
 Numeric HSV matrix.
@@ -19,14 +19,7 @@ Numeric HSV matrix.
 Convert any valid R color specification to HSV.
 }
 \seealso{
-Other color.conversion:
-\code{\link[=colToHex]{colToHex()}},
-\code{\link[=hexToCol]{hexToCol()}},
-\code{\link[=longToRGB]{longToRGB()}},
-\code{\link[=rgbToCol]{rgbToCol()}},
-\code{\link[=rgbToHex]{rgbToHex()}},
-\code{\link[=rgbToLong]{rgbToLong()}}
+\link{color-conversion-overview}
 }
 \concept{color-conversion}
-\concept{color.conversion}
 \concept{graphics}

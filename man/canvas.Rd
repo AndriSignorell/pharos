@@ -35,16 +35,11 @@ The plot is created with these settings:\cr \code{asp = 1, xaxt = "n", yaxt
 canvas(7)
 text(0, 0, "Hello world!", cex=5)
 
+
 }
 \seealso{
-Other geometry:
-\code{\link[=arc]{arc()}},
-\code{\link[=band]{band()}},
-\code{\link[=bezier]{bezier()}},
+Other graphics.setup:
 \code{\link[=polarGrid]{polarGrid()}},
-\code{\link[=polygon]{polygon()}},
-\code{\link[=rotate]{rotate()}},
-\code{\link[=shade]{shade()}},
-\code{\link[=transformXY]{transformXY()}}
+\code{\link[=setBackCol]{setBackCol()}}
 }
-\concept{geometry}
+\concept{graphics.setup}

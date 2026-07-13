@@ -57,11 +57,10 @@
 #'
 #' # suppress labels
 #' polarGrid(rlabels = NA, alabels = NA)
-#'
-
-
-
-#' @family geometry  
+#' 
+#' 
+#' @seealso [grid()]
+#' @family graphics.setup
 #' @concept geometry
 #'
 #'

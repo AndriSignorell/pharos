@@ -7,7 +7,7 @@
 #' the strings if needed.
 #' 
 #' 
-#' @param x a vector of strings.
+#' @param x a vector of strings
 #' @param maxlen the maximum length of the returned strings (NOT counting the
 #' appended ellipsis). \code{maxlen} is recycled.
 #' @param ellipsis the string to be appended, if the string is longer than the
@@ -17,6 +17,8 @@
 #' \code{FALSE}.
 #' @return The string(s) passed as \samp{x} now with a maximum length of
 #' \samp{maxlen} + 3 (for the ellipsis).
+#' 
+#' @seealso \code{\link{strAlign}}, \code{\link{strPad}}
 #' 
 #' @examples
 #' 
@@ -41,8 +43,11 @@
 
 
 
-#' @family string  
+#' @seealso
+#' [string-overview] for an overview of all string utilities in lyra.
+#'
 #' @concept string-manipulation
+#' @concept formatting
 #'
 #'
 #' @export

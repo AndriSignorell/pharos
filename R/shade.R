@@ -26,9 +26,6 @@
 #' 
 #' @return A list with components \code{x} and \code{y} of the points that were
 #' drawn is returned invisibly. 
-#' @seealso \code{\link{polygon}}, \code{\link{curve}} 
-#' 
-#' @keywords aplot
 #' @examples
 #' 
 #' curve(dt(x, df=5), xlim=c(-6,6),
@@ -38,9 +35,10 @@
 #' shade(dt(x, df=5), breaks=c(-6, qt(0.025, df=5), qt(0.975, df=5), 6),
 #'       col=c("deeppink4", "skyblue3"), density=c(20, 7))
 #' 
-
-
-#' @family geometry  
+#' 
+#' @seealso \code{\link{polygon}}, \code{\link{curve}} 
+#' 
+#' @family plot.distribution
 #' @concept geometry
 #'
 #'

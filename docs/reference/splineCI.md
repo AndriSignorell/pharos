@@ -124,7 +124,7 @@ lines(
   splineX(dist ~ speed, cars),
   bandArgs = list(
     conf.level = 0.99,
-    col = addAlpha("red", 0.3),
+    col = addOpacity("red", 0.3),
     border = "black"
   )
 )

@@ -8,7 +8,7 @@ strPos(x, pattern, pos = 1)
 }
 \arguments{
 \item{x}{a character vector in which to search for the pattern, or an object
-which can be coerced by as.character to a character vector.}
+which can be coerced by as.character to a character vector}
 
 \item{pattern}{character string (search string) containing the pattern to be
 matched in the given character vector. This can be a character string or a
@@ -40,25 +40,7 @@ strPos(x=rownames(mtcars), pattern="t", pos=4)
 \seealso{
 \code{\link{strChop}}, \code{\link{regexpr}}
 
-Other string:
-\code{\link[=mgsub]{mgsub()}},
-\code{\link[=strAbbr]{strAbbr()}},
-\code{\link[=strAlign]{strAlign()}},
-\code{\link[=strCap]{strCap()}},
-\code{\link[=strChop]{strChop()}},
-\code{\link[=strCountW]{strCountW()}},
-\code{\link[=strDist]{strDist()}},
-\code{\link[=strExtract]{strExtract()}},
-\code{\link[=strExtractBetween]{strExtractBetween()}},
-\code{\link[=strIsNumeric]{strIsNumeric()}},
-\code{\link[=strLen]{strLen()}},
-\code{\link[=strPad]{strPad()}},
-\code{\link[=strRev]{strRev()}},
-\code{\link[=strSpell]{strSpell()}},
-\code{\link[=strSplit]{strSplit()}},
-\code{\link[=strTrim]{strTrim()}},
-\code{\link[=strTrunc]{strTrunc()}},
-\code{\link[=strVal]{strVal()}}
+\link{string-overview} for an overview of all string utilities in lyra.
 }
-\concept{string}
-\concept{string-manipulation}
+\concept{pattern-matching}
+\concept{string-inspection}

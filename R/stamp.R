@@ -22,19 +22,14 @@
 #'   horizontally along the bottom.
 #' @param cex,col size and color of the stamp text.
 #' 
-#' @seealso \code{\link{text}}
-#' @keywords aplot
 #' @examples
 #' 
 #' plot(1:20)
 #' stamp()
-
-
-
-
 #'
-
-#' @family graphics.utils  
+#' @seealso \code{\link{text}}
+#' 
+#' @family graphics.annotation
 #' @concept annotation
 #'
 #'

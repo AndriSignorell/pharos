@@ -32,3 +32,15 @@ An object inheriting from class \code{"ringGeometry"} or a
 \description{
 Create one or more rings or ring segments.
 }
+\seealso{
+Other geometry.structures:
+\code{\link[=arc]{arc()}},
+\code{\link[=band]{band()}},
+\code{\link[=bezier]{bezier()}},
+\code{\link[=circle]{circle()}},
+\code{\link[=ellipse]{ellipse()}},
+\code{\link[=polygon]{polygon()}},
+\code{\link[=regPolygon]{regPolygon()}}
+}
+\concept{geometry}
+\concept{geometry.structures}

@@ -7,12 +7,12 @@
 strSplit(x, split = "", fixed = FALSE)
 }
 \arguments{
-\item{x}{A character vector to be split.}
+\item{x}{a character vector to be split}
 
-\item{split}{A character string specifying the delimiter (if
-\code{fixed = TRUE}) or a regular expression (if \code{fixed = FALSE}).}
+\item{split}{a character string specifying the delimiter (if
+\code{fixed = TRUE}) or a regular expression (if \code{fixed = FALSE})}
 
-\item{fixed}{Logical; if \code{TRUE}, \code{split} is treated as a fixed
+\item{fixed}{logical; if \code{TRUE}, \code{split} is treated as a fixed
 string. Otherwise, it is interpreted as a regular expression.}
 }
 \value{
@@ -30,7 +30,7 @@ vector instead of a list for convenience.
 
 This function provides a simplified interface to string splitting using
 the \pkg{stringi} package. It avoids some of the complexity of
-\code{\link{strSplit}} while providing consistent and Unicode-aware
+\code{\link[base]{strsplit}} while providing consistent and Unicode-aware
 behavior.
 }
 \examples{
@@ -44,27 +44,10 @@ strSplit("a1b2c3", "\\\\d")
 }
 \seealso{
 \code{\link[stringi]{stri_split_fixed}},
-\code{\link[stringi]{stri_split_regex}}
+\code{\link[stringi]{stri_split_regex}}, \code{\link[base]{strsplit}}
 
-Other string:
-\code{\link[=mgsub]{mgsub()}},
-\code{\link[=strAbbr]{strAbbr()}},
-\code{\link[=strAlign]{strAlign()}},
-\code{\link[=strCap]{strCap()}},
-\code{\link[=strChop]{strChop()}},
-\code{\link[=strCountW]{strCountW()}},
-\code{\link[=strDist]{strDist()}},
-\code{\link[=strExtract]{strExtract()}},
-\code{\link[=strExtractBetween]{strExtractBetween()}},
-\code{\link[=strIsNumeric]{strIsNumeric()}},
-\code{\link[=strLen]{strLen()}},
-\code{\link[=strPad]{strPad()}},
-\code{\link[=strPos]{strPos()}},
-\code{\link[=strRev]{strRev()}},
-\code{\link[=strSpell]{strSpell()}},
-\code{\link[=strTrim]{strTrim()}},
-\code{\link[=strTrunc]{strTrunc()}},
-\code{\link[=strVal]{strVal()}}
+\link{string-overview} for an overview of all string utilities in lyra.
 }
-\concept{string}
+\concept{pattern-matching}
+\concept{reshape}
 \concept{string-manipulation}

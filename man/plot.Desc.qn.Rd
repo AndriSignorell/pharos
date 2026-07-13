@@ -119,8 +119,7 @@ clipped regardless of \code{which}.
 }
 \seealso{
 \code{\link[DescToolsX]{desc}}, \code{\link{plotDens}}, \code{\link{plotBox}},
-\code{\link[graphics]{cdplot}}, \code{\link[graphics]{spineplot}},
-\code{\link{getTheme}}
+\code{\link[graphics]{cdplot}}, \code{\link[graphics]{spineplot}}
 
 Other plot.s3:
 \code{\link[=plot.BlandAltman]{plot.BlandAltman()}},

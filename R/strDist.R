@@ -6,18 +6,18 @@
 #' 
 #' The function computes the Hamming and the Levenshtein (edit) distance of two
 #' given strings (sequences). The Hamming distance between two vectors is the
-#' number mismatches between corresponding entries.
+#' number of mismatches between corresponding entries.
 #' 
 #' In case of the Hamming distance the two strings must have the same length.
 #' 
 #' In case of the Levenshtein (edit) distance a scoring and a trace-back matrix
 #' are computed and are saved as attributes \code{"ScoringMatrix"} and
 #' \code{"TraceBackMatrix"}.  The numbers in the trace-back matrix reflect
-#' insertion of a gap in string \code{y} (1), match/missmatch (2), and
+#' insertion of a gap in string \code{y} (1), match/mismatch (2), and
 #' insertion of a gap in string \code{x} (3).
 #' 
 #' The edit distance is useful, but normalizing the distance to fall within the
-#' interval \verb{[0,1]} is preferred because it is somewhat diffcult to judge whether
+#' interval \verb{[0,1]} is preferred because it is somewhat difficult to judge whether
 #' an LD of for example 4 suggests a high or low degree of similarity.  The
 #' method \code{"normlevenshtein"} for normalizing the LD is sensitive to this
 #' scenario. In this implementation, the Levenshtein distance is transformed to
@@ -32,20 +32,24 @@
 #' value is to 1, the more certain we can be that the character strings are the
 #' same; the closer to 0, the less certain.
 #' 
-#' @param x character vector, first string.
-#' @param y character vector, second string.
+#' @param x character vector, first string
+#' @param y character vector, second string
 #' @param method character, name of the distance method. This must be
 #' \code{"levenshtein"}, \code{"normlevenshtein"} or \code{"hamming"}. Default
 #' is \code{"levenshtein"}, the classical Levenshtein distance.
-#' @param mismatch numeric, distance value for a mismatch between symbols.
-#' @param gap numeric, distance value for inserting a gap.
+#' @param mismatch numeric, distance value for a mismatch between symbols
+#' @param gap numeric, distance value for inserting a gap
 #' @param ignoreCase if \code{FALSE} (default), the distance measure will be
-#' case sensitive and if \code{TRUE}, case is ignored.
+#' case sensitive and if \code{TRUE}, case is ignored
+#' 
 #' @return \code{strDist} returns an object of class \code{"dist"}; cf.
 #' \code{\link[stats]{dist}}.
+#' 
 #' @note For distances between strings and for string alignments see also
 #' Bioconductor package \pkg{Biostrings}
-#' @author Matthias Kohl <Matthias.Kohl@@stamats.de>
+#' 
+#' @note Based on code by Matthias Kohl, adapted to conform to package standards. 
+#' 
 #' @seealso \code{\link[utils]{adist}}, \code{\link[stats]{dist}}
 #' @references R. Merkl and S. Waack (2009) \emph{Bioinformatik Interaktiv}.
 #' Wiley.
@@ -72,8 +76,11 @@
 
 
 
-#' @family string  
-#' @concept string-manipulation
+#' @seealso
+#' [string-overview] for an overview of all string utilities in lyra.
+#'
+#' @concept string-inspection
+#' @concept numerical-methods
 #'
 #'
 #' @export

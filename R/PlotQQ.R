@@ -62,8 +62,6 @@
 #' 
 #' @note Based on code by Ying Wu
 #' 
-#' @seealso \code{\link{qqnorm}}, \code{\link{qqline}}, \code{\link{qqplot}},
-#'   \code{\link{getTheme}}, \code{\link{lines.loess}}
 #' @references Teetor, P. (2011) \emph{R Cookbook}. O'Reilly, pp. 254-255.
 #' @examples
 #' 
@@ -90,6 +88,9 @@
 #' }
 #' 
 
+#' @seealso [stats::qqnorm], [stats::qqline], [stats::qqplot],
+#'   [theme], [lines.loess]
+#'   
 #' @family plot.univariate  
 #' @concept normality-test  
 #' @concept distribution-summary
@@ -185,7 +186,7 @@ plotQQ <- function(x, qdist=stats::qnorm,
     bedrock::callIf(.drawConfBandQQ,
                     cbandSpec,
                     defaults = list(
-                      col    = addAlpha(getTheme()$twin[1], 0.25), 
+                      col    = addOpacity(getTheme()$twin[1], 0.25), 
                       border = NA,
                       ci     = .create.qqplot.fit.confidence.interval(
                         y, distribution = qdist, 
@@ -201,7 +202,7 @@ plotQQ <- function(x, qdist=stats::qnorm,
         x=x, y=y,
         pch = 21,
         cex = 1,
-        bg = addAlpha("white", 0.8)
+        bg = addOpacity("white", 0.8)
       ),
       user = list(...)
     ))
@@ -227,7 +228,7 @@ plotQQ <- function(x, qdist=stats::qnorm,
 # == internal helper functions ========================================================
 
 
-.drawConfBandQQ <- function(col = addAlpha("grey", alpha = 0.5), border=NA, 
+.drawConfBandQQ <- function(col = addOpacity("grey", opacity = 0.5), border=NA, 
                             ci ){
   
   polygon(band(x = c(ci$z, rev(ci$z)),

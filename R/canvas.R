@@ -22,13 +22,8 @@
 #' canvas(7)
 #' text(0, 0, "Hello world!", cex=5)
 #' 
- 
-
-
-
-#' @family geometry  
-#' @concept geometry
-#'
+#' 
+#' @family graphics.setup
 #'
 #' @export
 canvas <- function(xlim=NULL, ylim=xlim, main=NULL, 

@@ -46,7 +46,6 @@
 #' 
 #' @return returns the geometry of the labels invisibly
 #' 
-#' @seealso \code{\link{boxedText}} 
 #' 
 #' @examples
 #' 
@@ -70,11 +69,7 @@
 #' b <- barplot(VADeaths, horiz = TRUE)
 #' barText(VADeaths, b=b, horiz = TRUE, col="red", cex=1.5)
 #' 
-#' 
-#' 
-
-
-#' @family graphics.utils  
+#' @family graphics.annotation
 #' @concept annotation
 #'
 #'

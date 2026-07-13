@@ -47,23 +47,13 @@ mar(top = 1, outer = TRUE)
 
 }
 \seealso{
-Other graphics.utils:
+Other graphics.layout:
 \code{\link[=abcCoords]{abcCoords()}},
+\code{\link{axTicks}},
 \code{\link[=axisBreak]{axisBreak()}},
-\code{\link[=barText]{barText()}},
-\code{\link[=boxedText]{boxedText()}},
-\code{\link[=colLegend]{colLegend()}},
-\code{\link[=degToRad]{degToRad()}},
-\code{\link[=errBars]{errBars()}},
-\code{\link[=lineSep]{lineSep()}},
+\code{\link[=isValidPlotRegion]{isValidPlotRegion()}},
 \code{\link[=lineToUser]{lineToUser()}},
-\code{\link[=lines.lm]{lines.lm()}},
-\code{\link[=preview]{preview()}},
-\code{\link[=spreadOut]{spreadOut()}},
-\code{\link[=stamp]{stamp()}},
-\code{\link[=textLegend]{textLegend()}},
-\code{\link[=titleRect]{titleRect()}},
-\code{\link[=unit]{unit()}}
+\code{\link[=spreadOut]{spreadOut()}}
 }
 \concept{annotation}
-\concept{graphics.utils}
+\concept{graphics.layout}

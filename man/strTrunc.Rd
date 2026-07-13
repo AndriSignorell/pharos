@@ -7,7 +7,7 @@
 strTrunc(x, maxlen = 20, ellipsis = "...", wbound = FALSE)
 }
 \arguments{
-\item{x}{a vector of strings.}
+\item{x}{a vector of strings}
 
 \item{maxlen}{the maximum length of the returned strings (NOT counting the
 appended ellipsis). \code{maxlen} is recycled.}
@@ -50,25 +50,9 @@ for(i in 0:20)
 
 }
 \seealso{
-Other string:
-\code{\link[=mgsub]{mgsub()}},
-\code{\link[=strAbbr]{strAbbr()}},
-\code{\link[=strAlign]{strAlign()}},
-\code{\link[=strCap]{strCap()}},
-\code{\link[=strChop]{strChop()}},
-\code{\link[=strCountW]{strCountW()}},
-\code{\link[=strDist]{strDist()}},
-\code{\link[=strExtract]{strExtract()}},
-\code{\link[=strExtractBetween]{strExtractBetween()}},
-\code{\link[=strIsNumeric]{strIsNumeric()}},
-\code{\link[=strLen]{strLen()}},
-\code{\link[=strPad]{strPad()}},
-\code{\link[=strPos]{strPos()}},
-\code{\link[=strRev]{strRev()}},
-\code{\link[=strSpell]{strSpell()}},
-\code{\link[=strSplit]{strSplit()}},
-\code{\link[=strTrim]{strTrim()}},
-\code{\link[=strVal]{strVal()}}
+\code{\link{strAlign}}, \code{\link{strPad}}
+
+\link{string-overview} for an overview of all string utilities in lyra.
 }
-\concept{string}
+\concept{formatting}
 \concept{string-manipulation}

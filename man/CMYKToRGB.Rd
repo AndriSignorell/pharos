@@ -4,32 +4,22 @@
 \alias{cmykToRgb}
 \title{Convert CMYK to RGB}
 \usage{
-cmykToRgb(cyan, magenta, yellow, black, maxColorValue = 1)
+cmykToRgb(col, maxColorValue = 1)
 }
 \arguments{
-\item{cyan}{Cyan values.}
-
-\item{magenta}{Magenta values.}
-
-\item{yellow}{Yellow values.}
-
-\item{black}{Black values.}
+\item{col}{Numeric CMYK matrix (columns C, M, Y, K).}
 
 \item{maxColorValue}{Maximum channel value.}
 }
 \value{
-Hexadecimal RGB colors.
+Numeric RGB matrix.
 }
 \description{
 Convert CMYK colors to RGB.
 }
 \seealso{
-Other color.space:
-\code{\link[=cmyToCmyk]{cmyToCmyk()}},
-\code{\link[=cmykToCmy]{cmykToCmy()}},
-\code{\link[=rgbToCmy]{rgbToCmy()}}
+\link{color-conversion-overview}
 }
 \concept{color-conversion}
 \concept{color-space}
-\concept{color.space}
 \concept{graphics}

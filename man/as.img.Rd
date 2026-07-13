@@ -27,6 +27,8 @@ embedding directly in HTML text.
 \seealso{
 Other html:
 \code{\link[=as.html]{as.html()}},
+\code{\link{htmlNotation}},
+\code{\link{htmlSubscript}},
 \code{\link[=toHtmlTable]{toHtmlTable()}}
 }
 \concept{html}

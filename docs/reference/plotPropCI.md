@@ -16,7 +16,7 @@ plotPropCI(
   xlab = "",
   xlim = c(0, 1),
   col = .useTheme,
-  ci.col = addAlpha("grey80", 0.12),
+  ci.col = addOpacity("grey80", 0.12),
   border = NA,
   ciLevels = seq(0.99, 0.8, by = -0.01),
   grid = .useTheme,
@@ -67,7 +67,7 @@ plotPropCI(
 - ci.col:
 
   Colour for the confidence interval bands. Default is a
-  semi-transparent grey (`addAlpha("grey80", 0.12)`). Deliberately not
+  semi-transparent grey (`addOpacity("grey80", 0.12)`). Deliberately not
   theme-driven (like the sequential scales in
   [`plotDens2D`](https://andrisignorell.github.io/aurora/reference/plotDens2D.md)/[`plotHeatmap`](https://andrisignorell.github.io/aurora/reference/plotHeatmap.md)):
   this is a structural mechanism (many overlapping translucent bands

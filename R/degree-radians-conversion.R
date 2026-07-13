@@ -3,7 +3,7 @@
 #' 
 #' Convert degrees to radians (and back again). 
 #' 
-#' @name degToRad
+#' @name degree-radians-conversion
 #' @aliases degToRad radToDeg
 #' @param deg a vector of angles in degrees. 
 #' @param rad a vector of angles in radians. 
@@ -21,9 +21,9 @@
 
 
 
-#' @rdname degToRad
+#' @rdname degree-radians-conversion
 
-#' @family graphics.utils  
+#' @family geometry.conversion
 #' @concept annotation
 #'
 #'
@@ -31,7 +31,7 @@
 degToRad <- function(deg) deg * pi /180
 
 
-#' @rdname degToRad
+#' @rdname degree-radians-conversion
 #' @export
 radToDeg <- function(rad) rad * 180 / pi
 

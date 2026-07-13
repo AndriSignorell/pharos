@@ -64,7 +64,7 @@ x <- regPolygon(numVertices=3)
 # and rotate
 sapply( (0:3) * pi/6, function(theta) {
   xy <- rotate( x=x, theta=theta )
-  polygon(xy, col=addAlpha("blue", 0.2))
+  polygon(xy, col=addOpacity("blue", 0.2))
 } )
 #> [[1]]
 #> NULL

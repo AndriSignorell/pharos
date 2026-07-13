@@ -16,14 +16,7 @@ Character vector of hexadecimal colors.
 Convert RGB values to hexadecimal color strings.
 }
 \seealso{
-Other color.conversion:
-\code{\link[=colToHSV]{colToHSV()}},
-\code{\link[=colToHex]{colToHex()}},
-\code{\link[=hexToCol]{hexToCol()}},
-\code{\link[=longToRGB]{longToRGB()}},
-\code{\link[=rgbToCol]{rgbToCol()}},
-\code{\link[=rgbToLong]{rgbToLong()}}
+\link{color-conversion-overview}
 }
 \concept{color-conversion}
-\concept{color.conversion}
 \concept{graphics}

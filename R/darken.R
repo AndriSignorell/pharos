@@ -19,7 +19,7 @@
 
 
 
-#' @family color  
+#' @family color.manipulation
 #' @concept color
 #'
 #'

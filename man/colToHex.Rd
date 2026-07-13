@@ -4,12 +4,12 @@
 \alias{colToHex}
 \title{Convert R Colors to Hexadecimal Colors}
 \usage{
-colToHex(col, alpha = 1)
+colToHex(col, opacity = 1)
 }
 \arguments{
 \item{col}{Vector of valid R colors.}
 
-\item{alpha}{Alpha transparency value.}
+\item{opacity}{Opacity value between 0 and 1.}
 }
 \value{
 Character vector of hexadecimal colors.
@@ -18,14 +18,7 @@ Character vector of hexadecimal colors.
 Convert any valid R color specification to hexadecimal colors.
 }
 \seealso{
-Other color.conversion:
-\code{\link[=colToHSV]{colToHSV()}},
-\code{\link[=hexToCol]{hexToCol()}},
-\code{\link[=longToRGB]{longToRGB()}},
-\code{\link[=rgbToCol]{rgbToCol()}},
-\code{\link[=rgbToHex]{rgbToHex()}},
-\code{\link[=rgbToLong]{rgbToLong()}}
+\link{color-conversion-overview}
 }
 \concept{color-conversion}
-\concept{color.conversion}
 \concept{graphics}

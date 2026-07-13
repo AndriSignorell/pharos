@@ -22,10 +22,10 @@ as.html("<b>bold</b>")
 
 }
 \seealso{
-\code{\link{preview.html}}, \code{\link{toHtmlTable}}
-
 Other html:
 \code{\link[=as.img]{as.img()}},
+\code{\link{htmlNotation}},
+\code{\link{htmlSubscript}},
 \code{\link[=toHtmlTable]{toHtmlTable()}}
 }
 \concept{html}

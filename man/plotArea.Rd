@@ -83,7 +83,7 @@ plotArea(VADeaths)
 
 plotArea(
   WorldPhones,
-  col = pal("Helsana")
+  col = pal("helsana")
 )
 
 plotArea(

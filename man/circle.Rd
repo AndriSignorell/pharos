@@ -19,3 +19,15 @@ An object inheriting from class \code{"circleGeometry"}.
 \description{
 Create a circular geometry.
 }
+\seealso{
+Other geometry.structures:
+\code{\link[=arc]{arc()}},
+\code{\link[=band]{band()}},
+\code{\link[=bezier]{bezier()}},
+\code{\link[=ellipse]{ellipse()}},
+\code{\link[=polygon]{polygon()}},
+\code{\link[=regPolygon]{regPolygon()}},
+\code{\link[=ring]{ring()}}
+}
+\concept{geometry}
+\concept{geometry.structures}

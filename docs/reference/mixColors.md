@@ -40,7 +40,7 @@ All arguments are recycled as necessary.
 [`darken`](https://andrisignorell.github.io/aurora/reference/darken.md)
 
 Other color:
-[`addAlpha()`](https://andrisignorell.github.io/aurora/reference/addAlpha.md),
+[`addOpacity()`](https://andrisignorell.github.io/aurora/reference/addOpacity.md),
 [`colToOpaque()`](https://andrisignorell.github.io/aurora/reference/colToOpaque.md),
 [`colToRGB()`](https://andrisignorell.github.io/aurora/reference/colToRGB.md),
 [`contrastColor()`](https://andrisignorell.github.io/aurora/reference/contrastColor.md),

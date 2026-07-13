@@ -44,6 +44,9 @@ devoting too much of the plot to empty space. \cr The major objection seems
 to be that the reader will be misled by assuming continuous coordinates.
 The \samp{gap} style that clearly separates the two sections of the plot is
 probably best for avoiding this.
+
+Based on code by Jim Lemon and Ben Bolker, adapted to conform to package
+standards
 }
 \examples{
 
@@ -55,26 +58,13 @@ axisBreak(2, 2.9, style="zigzag")
 
 }
 \seealso{
-Other graphics.utils:
+Other graphics.layout:
 \code{\link[=abcCoords]{abcCoords()}},
-\code{\link[=barText]{barText()}},
-\code{\link[=boxedText]{boxedText()}},
-\code{\link[=colLegend]{colLegend()}},
-\code{\link[=degToRad]{degToRad()}},
-\code{\link[=errBars]{errBars()}},
-\code{\link[=lineSep]{lineSep()}},
+\code{\link{axTicks}},
+\code{\link[=isValidPlotRegion]{isValidPlotRegion()}},
 \code{\link[=lineToUser]{lineToUser()}},
-\code{\link[=lines.lm]{lines.lm()}},
 \code{\link[=mar]{mar()}},
-\code{\link[=preview]{preview()}},
-\code{\link[=spreadOut]{spreadOut()}},
-\code{\link[=stamp]{stamp()}},
-\code{\link[=textLegend]{textLegend()}},
-\code{\link[=titleRect]{titleRect()}},
-\code{\link[=unit]{unit()}}
-}
-\author{
-Jim Lemon and Ben Bolker
+\code{\link[=spreadOut]{spreadOut()}}
 }
 \concept{annotation}
-\concept{graphics.utils}
+\concept{graphics.layout}

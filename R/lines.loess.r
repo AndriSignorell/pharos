@@ -28,11 +28,6 @@
 #'
 #' @note Loess can result in substantial computational load for large datasets.
 #'
-#' @seealso \code{\link{loess}}, \code{\link{scatter.smooth}},
-#'   \code{\link{smooth.spline}}, \code{\link{getTheme}}
-#'
-#' @keywords math aplot
-#'
 #' @examples
 #' x <- runif(100)
 #' y <- rnorm(100)
@@ -45,10 +40,14 @@
 #'   loess(dist ~ speed, cars),
 #'   bandArgs = list(
 #'     conf.level = 0.99,
-#'     col = addAlpha("red", 0.4),
+#'     col = addOpacity("red", 0.4),
 #'     border = "black"
 #'   )
 #' )
+#'
+#' @seealso \code{\link{loess}}, \code{\link{scatter.smooth}},
+#'   \code{\link{smooth.spline}}
+#' @family graphics.trendlines  
 #'
 #' @method lines loess
 #' @export

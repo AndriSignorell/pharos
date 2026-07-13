@@ -81,21 +81,14 @@ polygon(
 
 }
 \seealso{
-\code{\link{arc}},
-\code{\link{circle}},
-\code{\link{ellipse}},
-\code{\link{regPolygon}},
-\code{\link{ring}},
-\code{\link[graphics]{polygon}}
-
-Other geometry:
+Other geometry.structures:
 \code{\link[=arc]{arc()}},
 \code{\link[=band]{band()}},
 \code{\link[=bezier]{bezier()}},
-\code{\link[=canvas]{canvas()}},
-\code{\link[=polarGrid]{polarGrid()}},
-\code{\link[=rotate]{rotate()}},
-\code{\link[=shade]{shade()}},
-\code{\link[=transformXY]{transformXY()}}
+\code{\link[=circle]{circle()}},
+\code{\link[=ellipse]{ellipse()}},
+\code{\link[=regPolygon]{regPolygon()}},
+\code{\link[=ring]{ring()}}
 }
 \concept{geometry}
+\concept{geometry.structures}

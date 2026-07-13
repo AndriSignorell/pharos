@@ -36,7 +36,7 @@
 #'
 #' @name unit
 
-#' @family graphics.utils  
+#' @family format
 #' @concept annotation
 #'
 #'
@@ -80,6 +80,9 @@ unit <- function(x) {
 #' print(x)
 #'
 
+#' @family format
+#' @concept annotation
+#' 
 #' @export
 print.Unit <- function(x, ...) {
   cat(x, "[", unit(x), "]\n")

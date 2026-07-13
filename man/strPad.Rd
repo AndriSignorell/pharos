@@ -7,7 +7,7 @@
 strPad(x, width = NULL, pad = " ", adj = "left")
 }
 \arguments{
-\item{x}{a vector of strings to be padded.}
+\item{x}{a vector of strings to be padded}
 
 \item{width}{resulting width of padded string. If x is a vector and width is
 left to NULL, it will be set to the length of the largest string in x.}
@@ -15,7 +15,7 @@ left to NULL, it will be set to the length of the largest string in x.}
 \item{pad}{string to pad with. Will be repeated as often as necessary.
 Default is " ".}
 
-\item{adj}{adjustement of the old string, one of \code{"left"},
+\item{adj}{adjustment of the old string, one of \code{"left"},
 \code{"right"}, \code{"center"}. If set to \code{"left"} the old string will
 be adjusted on the left and the new characters will be filled in on the
 right side.}
@@ -38,25 +38,9 @@ strPad("My string", 25, "XoX", "center")
 
 }
 \seealso{
-Other string:
-\code{\link[=mgsub]{mgsub()}},
-\code{\link[=strAbbr]{strAbbr()}},
-\code{\link[=strAlign]{strAlign()}},
-\code{\link[=strCap]{strCap()}},
-\code{\link[=strChop]{strChop()}},
-\code{\link[=strCountW]{strCountW()}},
-\code{\link[=strDist]{strDist()}},
-\code{\link[=strExtract]{strExtract()}},
-\code{\link[=strExtractBetween]{strExtractBetween()}},
-\code{\link[=strIsNumeric]{strIsNumeric()}},
-\code{\link[=strLen]{strLen()}},
-\code{\link[=strPos]{strPos()}},
-\code{\link[=strRev]{strRev()}},
-\code{\link[=strSpell]{strSpell()}},
-\code{\link[=strSplit]{strSplit()}},
-\code{\link[=strTrim]{strTrim()}},
-\code{\link[=strTrunc]{strTrunc()}},
-\code{\link[=strVal]{strVal()}}
+\code{\link{strAlign}}, \code{\link{strTrunc}}
+
+\link{string-overview} for an overview of all string utilities in lyra.
 }
-\concept{string}
+\concept{formatting}
 \concept{string-manipulation}

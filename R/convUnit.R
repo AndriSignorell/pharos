@@ -51,9 +51,9 @@
 #' convUnit(25, "C", "F")
 #' convUnit(1, "ml", "l")
 #'
-#' @seealso \code{\link{unit}}
+#' @seealso [bedrock::label]
 #'
-#' @family topic.conversion
+#' @family format
 #' @concept unit-conversion
 #' @concept symbolic-units
 

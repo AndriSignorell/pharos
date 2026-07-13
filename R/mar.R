@@ -37,10 +37,7 @@
 #' # Modify outer margins
 #' mar(top = 1, outer = TRUE)
 #'
-
-
-
-#' @family graphics.utils  
+#' @family graphics.layout
 #' @concept annotation
 #'
 #'

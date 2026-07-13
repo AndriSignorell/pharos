@@ -4,13 +4,13 @@
 \alias{colToRGB}
 \title{Convert R Colors to RGB}
 \usage{
-colToRGB(col, alpha = FALSE)
+colToRGB(col, useAlphaChannel = FALSE)
 }
 \arguments{
 \item{col}{Vector of valid R colors.}
 
-\item{alpha}{Logical indicating whether the alpha channel
-should be included.}
+\item{useAlphaChannel}{Logical indicating whether the alpha
+channel should be included.}
 }
 \value{
 Integer matrix with rows corresponding to RGB
@@ -31,25 +31,8 @@ colToRGB(c(blu = "royalblue", reddish = "tomato")) # names kept
 colToRGB(1:8)
 
 
-
 }
 \seealso{
-\code{\link{col2rgb}}
-
-Other color:
-\code{\link[=addAlpha]{addAlpha()}},
-\code{\link[=colToOpaque]{colToOpaque()}},
-\code{\link[=contrastColor]{contrastColor()}},
-\code{\link[=darken]{darken()}},
-\code{\link[=findColor]{findColor()}},
-\code{\link[=grayscale]{grayscale()}},
-\code{\link[=hcol]{hcol()}},
-\code{\link[=hexToRGB]{hexToRGB()}},
-\code{\link[=lighten]{lighten()}},
-\code{\link[=mixColors]{mixColors()}},
-\code{\link[=pal]{pal()}},
-\code{\link[=palNames]{palNames()}},
-\code{\link[=setBackCol]{setBackCol()}}
+\link[grDevices:col2rgb]{grDevices::col2rgb}, \link{color-conversion-overview}
 }
 \concept{color}
-\concept{color-conversion}

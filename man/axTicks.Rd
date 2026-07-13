@@ -54,11 +54,14 @@ with(beaver1, {
 \seealso{
 \code{\link{axTicks}}, \code{\link{axis.POSIXct}}
 
-Other plot.utils:
-\code{\link{splineCI}}
+Other graphics.layout:
+\code{\link[=abcCoords]{abcCoords()}},
+\code{\link[=axisBreak]{axisBreak()}},
+\code{\link[=isValidPlotRegion]{isValidPlotRegion()}},
+\code{\link[=lineToUser]{lineToUser()}},
+\code{\link[=mar]{mar()}},
+\code{\link[=spreadOut]{spreadOut()}}
 }
 \concept{date-handling}
 \concept{graphics}
-\concept{plot.utils}
-\keyword{aplot}
-\keyword{chron}
+\concept{graphics.layout}

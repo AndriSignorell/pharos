@@ -4,14 +4,14 @@
 #' Extracts numeric values from character strings using regular expressions.
 #' The function supports integers, decimal numbers, and scientific notation.
 #'
-#' @param x A character vector.
-#' @param collapse Logical; if \code{TRUE}, all extracted numbers per element
+#' @param x a character vector
+#' @param collapse logical; if \code{TRUE}, all extracted numbers per element
 #'   of \code{x} are concatenated into a single string. Otherwise, a list of
 #'   character vectors is returned.
-#' @param output Character; controls the type of the returned values.
+#' @param output character; controls the type of the returned values.
 #'   \code{"character"} (default) returns strings; \code{"numeric"} coerces
 #'   extracted values to numeric.
-#' @param dec Character; decimal separator used in the input. Defaults to
+#' @param dec character; decimal separator used in the input. Defaults to
 #'   \code{getOption("OutDec")}.
 #'
 #' @return
@@ -49,9 +49,12 @@
 #' strVal("value = 3,14", dec = ",", output = "numeric")
 #'
 
-#' @family string  
-#' @concept string-manipulation  
+#' @seealso
+#' [string-overview] for an overview of all string utilities in lyra.
+#'
+#' @concept string-manipulation
 #' @concept number-formatting
+#' @concept pattern-matching
 #'
 #'
 #' @export

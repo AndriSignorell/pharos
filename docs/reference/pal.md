@@ -68,7 +68,7 @@ a character vector of `n` hex color codes of class
 [`adjustcolor`](https://rdrr.io/r/grDevices/adjustcolor.html)
 
 Other color:
-[`addAlpha()`](https://andrisignorell.github.io/aurora/reference/addAlpha.md),
+[`addOpacity()`](https://andrisignorell.github.io/aurora/reference/addOpacity.md),
 [`colToOpaque()`](https://andrisignorell.github.io/aurora/reference/colToOpaque.md),
 [`colToRGB()`](https://andrisignorell.github.io/aurora/reference/colToRGB.md),
 [`contrastColor()`](https://andrisignorell.github.io/aurora/reference/contrastColor.md),
@@ -124,7 +124,7 @@ pal(1, n = 10)
 #>  [1] "#FF0000" "#FF7100" "#FFE200" "#AAFF00" "#38FF00" "#00C638" "#0055A9"
 #>  [8] "#0000E2" "#000071" "#000000"
 #> attr(,"name")
-#> [1] "RedToBlack"
+#> [1] "red-black"
 #> attr(,"class")
 #> [1] "Palette"   "character"
 
@@ -138,7 +138,7 @@ pal("Helsana", n = 5, alpha = 0.5)
 
 # show all names
 palNames()
-#>  [1] "RedToBlack"     "RedBlackGreen"  "SteelblueWhite" "RedWhiteGreen" 
+#>  [1] "red-black"     "RedBlackGreen"  "SteelblueWhite" "RedWhiteGreen" 
 #>  [5] "RedWhiteBlue0"  "RedWhiteBlue1"  "RedWhiteBlue2"  "RedWhiteBlue3" 
 #>  [9] "RedGreen1"      "Helsana"        "Helsana1"       "Helsana2"      
 #> [13] "Tibco"          "Spring"         "Soap"           "Maiden"        

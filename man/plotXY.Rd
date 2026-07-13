@@ -197,8 +197,7 @@ plotXY(temperature ~ delivery_min, bedrock::Pizza, main = "")
 \code{\link[graphics]{plot}},
 \code{\link[stats]{lm}},
 \code{\link[stats]{loess}},
-\code{\link[bedrock]{callIf}},
-\code{\link{getTheme}}, \code{\link{setTheme}}
+\code{\link[bedrock]{callIf}}
 
 Other plot.bivariate:
 \code{\link[=plotAssoc]{plotAssoc()}},

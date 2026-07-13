@@ -29,5 +29,5 @@ An object inheriting from class `"ellipseGeometry"`.
 ## Details
 
 Use
-[`rotate`](https://andrisignorell.github.io/aurora/reference/rotate.md)
+[`rotate`](https://andrisignorell.github.io/lyra/reference/rotate.md)
 to rotate the resulting geometry.

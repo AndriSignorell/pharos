@@ -91,7 +91,7 @@ lines(
   splineX(dist ~ speed, cars),
   bandArgs = list(
     conf.level = 0.99,
-    col = addAlpha("red", 0.3),
+    col = addOpacity("red", 0.3),
     border = "black"
   )
 )
@@ -102,11 +102,10 @@ par(op)
 \seealso{
 \code{\link{loess}}, \code{\link{scatter.smooth}}
 
-Other plot.utils:
-\code{\link{axTicks}}
+Other graphics.trendlines:
+\code{\link[=lines.lm]{lines.lm()}},
+\code{\link[=lines.loess]{lines.loess()}}
 }
 \concept{graphics}
-\concept{plot.utils}
+\concept{graphics.trendlines}
 \concept{regression}
-\keyword{aplot}
-\keyword{math}

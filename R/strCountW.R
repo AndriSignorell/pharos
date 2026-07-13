@@ -2,7 +2,7 @@
 #'
 #' Counts the number of words in each element of a character vector.
 #'
-#' @param x A character vector.
+#' @param x a character vector
 #'
 #' @return An integer vector giving the number of words in each element of
 #'   \code{x}.
@@ -23,8 +23,11 @@
 
 
 
-#' @family string  
-#' @concept string-manipulation
+#' @seealso
+#' [string-overview] for an overview of all string utilities in lyra.
+#'
+#' @concept string-inspection
+#' @concept summary
 #'
 #'
 #' @export

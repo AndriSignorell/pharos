@@ -20,14 +20,7 @@ Character vector of named R colors.
 Match RGB colors to the nearest named R color.
 }
 \seealso{
-Other color.conversion:
-\code{\link[=colToHSV]{colToHSV()}},
-\code{\link[=colToHex]{colToHex()}},
-\code{\link[=hexToCol]{hexToCol()}},
-\code{\link[=longToRGB]{longToRGB()}},
-\code{\link[=rgbToHex]{rgbToHex()}},
-\code{\link[=rgbToLong]{rgbToLong()}}
+\link{color-conversion-overview}
 }
 \concept{color-conversion}
-\concept{color.conversion}
 \concept{graphics}

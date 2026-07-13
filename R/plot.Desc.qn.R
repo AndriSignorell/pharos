@@ -95,8 +95,7 @@
 #' @return Invisibly returns \code{x}.
 #'
 #' @seealso \code{\link[DescToolsX]{desc}}, \code{\link{plotDens}}, \code{\link{plotBox}},
-#'   \code{\link[graphics]{cdplot}}, \code{\link[graphics]{spineplot}},
-#'   \code{\link{getTheme}}
+#'   \code{\link[graphics]{cdplot}}, \code{\link[graphics]{spineplot}}
 #'
 #' @family plot.s3  
 #' @concept distribution-summary

@@ -126,7 +126,7 @@
 #'
 
 
-#' @family graphics.utils  
+#' @family graphics.annotation
 #' @concept annotation  
 #' @concept confidence-interval
 #'

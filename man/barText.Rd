@@ -99,29 +99,15 @@ barText(VADeaths, b=b)
 b <- barplot(VADeaths, horiz = TRUE)
 barText(VADeaths, b=b, horiz = TRUE, col="red", cex=1.5)
 
-
-
 }
 \seealso{
-\code{\link{boxedText}}
-
-Other graphics.utils:
-\code{\link[=abcCoords]{abcCoords()}},
-\code{\link[=axisBreak]{axisBreak()}},
+Other graphics.annotation:
 \code{\link[=boxedText]{boxedText()}},
 \code{\link[=colLegend]{colLegend()}},
-\code{\link[=degToRad]{degToRad()}},
 \code{\link[=errBars]{errBars()}},
-\code{\link[=lineSep]{lineSep()}},
-\code{\link[=lineToUser]{lineToUser()}},
-\code{\link[=lines.lm]{lines.lm()}},
-\code{\link[=mar]{mar()}},
-\code{\link[=preview]{preview()}},
-\code{\link[=spreadOut]{spreadOut()}},
 \code{\link[=stamp]{stamp()}},
 \code{\link[=textLegend]{textLegend()}},
-\code{\link[=titleRect]{titleRect()}},
-\code{\link[=unit]{unit()}}
+\code{\link[=titleRect]{titleRect()}}
 }
 \concept{annotation}
-\concept{graphics.utils}
+\concept{graphics.annotation}

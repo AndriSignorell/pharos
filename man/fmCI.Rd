@@ -41,7 +41,11 @@ tapply(warpbreaks$breaks, warpbreaks$wool,
 \code{\link{fm}}
 
 Other format:
-\code{\link[=fm]{fm()}}
+\code{\link[=convUnit]{convUnit()}},
+\code{\link[=fm]{fm()}},
+\code{\link[=print.Unit]{print.Unit()}},
+\code{\link[=style]{style()}},
+\code{\link[=unit]{unit()}}
 }
 \concept{confidence-interval}
 \concept{format}

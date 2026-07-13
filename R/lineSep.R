@@ -25,8 +25,7 @@
 
 
 
-#' @family graphics.utils  
-#' @concept annotation
+#' @concept string-manipulation
 #'
 #'
 #' @export

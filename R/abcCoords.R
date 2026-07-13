@@ -7,6 +7,7 @@
 #' consistent, region-aware positions.
 #'
 #' @details
+#' The positioning logic is adapted from \code{\link{legend}}.
 #' The inset is computed in character units via \code{\link{strwidth}} and
 #' \code{\link{strheight}}, making it robust to device resizing, font
 #' changes, and plot-range scaling.
@@ -19,8 +20,6 @@
 #'   \item{\code{"device"}}{The full device area.}
 #' }
 #'
-#' @note
-#' The positioning logic is adapted from \code{\link{legend}}.
 #'
 #' @param x       A character string specifying the anchor position.  One
 #'   of \code{"bottomright"}, \code{"bottom"}, \code{"bottomleft"},
@@ -41,9 +40,6 @@
 #'   \item{\code{adj}}{A numeric vector of length 2, suitable for the
 #'     \code{adj} argument of \code{\link{text}}.}
 #' }
-#'
-#' @seealso \code{\link{text}}, \code{\link{legend}},
-#'   \code{\link{boxedText}}
 #'
 #' @examples
 #' plot(x = rnorm(10), type = "n", xlab = "", ylab = "")
@@ -66,12 +62,10 @@
 #'          labels = p, adj = xy$adj, xpd = NA)
 #'   })
 #'
-
-
-
-#' @family graphics.utils  
-#' @concept annotation
+#' @seealso \code{\link{text}}, \code{\link{legend}}
 #'
+#' @family graphics.layout
+#' @concept annotation
 #'
 #' @export
 abcCoords <- function(x       = "topleft",

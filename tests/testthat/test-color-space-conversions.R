@@ -3,16 +3,19 @@
 # Color space conversions: cmykToRgb, cmykToCmy, cmyToCmyk, rgbToCmy
 # ===========================================================================
 
-test_that("cmykToRgb converts black (0,0,0,1) to #000000", {
-  expect_equal(cmykToRgb(0, 0, 0, 1), "#000000")
+test_that("cmykToRgb converts black (0,0,0,1) to RGB (0,0,0)", {
+  res <- cmykToRgb(matrix(c(0, 0, 0, 1), nrow = 1))
+  expect_equal(as.numeric(res), c(0, 0, 0))
 })
 
-test_that("cmykToRgb converts white (0,0,0,0) to #FFFFFF", {
-  expect_equal(cmykToRgb(0, 0, 0, 0), "#FFFFFF")
+test_that("cmykToRgb converts white (0,0,0,0) to RGB (1,1,1)", {
+  res <- cmykToRgb(matrix(c(0, 0, 0, 0), nrow = 1))
+  expect_equal(as.numeric(res), c(1, 1, 1))
 })
 
-test_that("cmykToRgb converts pure cyan (1,0,0,0) to #00FFFF", {
-  expect_equal(cmykToRgb(1, 0, 0, 0), "#00FFFF")
+test_that("cmykToRgb converts pure cyan (1,0,0,0) to RGB (0,1,1)", {
+  res <- cmykToRgb(matrix(c(1, 0, 0, 0), nrow = 1))
+  expect_equal(as.numeric(res), c(0, 1, 1))
 })
 
 test_that("cmykToCmy converts black ink (0,0,0,1) correctly", {

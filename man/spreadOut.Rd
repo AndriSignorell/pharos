@@ -53,28 +53,18 @@ spreadOut(c(5, 2.5, 2.5, NA, 3.5, 1, 3.5, NA), 0.2)
 # this will almost always invoke the brute force second pass
 spreadOut(rnorm(10), 0.5)
 
+
 }
 \seealso{
 \code{\link{strheight}()}
 
-Other graphics.utils:
+Other graphics.layout:
 \code{\link[=abcCoords]{abcCoords()}},
+\code{\link{axTicks}},
 \code{\link[=axisBreak]{axisBreak()}},
-\code{\link[=barText]{barText()}},
-\code{\link[=boxedText]{boxedText()}},
-\code{\link[=colLegend]{colLegend()}},
-\code{\link[=degToRad]{degToRad()}},
-\code{\link[=errBars]{errBars()}},
-\code{\link[=lineSep]{lineSep()}},
+\code{\link[=isValidPlotRegion]{isValidPlotRegion()}},
 \code{\link[=lineToUser]{lineToUser()}},
-\code{\link[=lines.lm]{lines.lm()}},
-\code{\link[=mar]{mar()}},
-\code{\link[=preview]{preview()}},
-\code{\link[=stamp]{stamp()}},
-\code{\link[=textLegend]{textLegend()}},
-\code{\link[=titleRect]{titleRect()}},
-\code{\link[=unit]{unit()}}
+\code{\link[=mar]{mar()}}
 }
 \concept{annotation}
-\concept{graphics.utils}
-\keyword{misc}
+\concept{graphics.layout}

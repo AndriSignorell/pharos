@@ -46,23 +46,24 @@ polygon(
     x = new,
     y = pred[,2:3]
   ),
-  col = addAlpha("grey80", 0.5),
+  col = addOpacity("grey80", 0.5),
   border = NA
 )
 
+
+
 }
 \seealso{
-\code{\link{polygon}},
-\code{\link{ring}}
+\link[graphics:polygon]{graphics::polygon}
 
-Other geometry:
+Other geometry.structures:
 \code{\link[=arc]{arc()}},
 \code{\link[=bezier]{bezier()}},
-\code{\link[=canvas]{canvas()}},
-\code{\link[=polarGrid]{polarGrid()}},
+\code{\link[=circle]{circle()}},
+\code{\link[=ellipse]{ellipse()}},
 \code{\link[=polygon]{polygon()}},
-\code{\link[=rotate]{rotate()}},
-\code{\link[=shade]{shade()}},
-\code{\link[=transformXY]{transformXY()}}
+\code{\link[=regPolygon]{regPolygon()}},
+\code{\link[=ring]{ring()}}
 }
 \concept{geometry}
+\concept{geometry.structures}

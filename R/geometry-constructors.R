@@ -12,10 +12,8 @@
 #' @return
 #' An object inheriting from class `"arcGeometry"`.
 #'
-
-#' @family geometry  
+#' @family geometry.structures
 #' @concept geometry
-#'
 #'
 #' @export
 arc <- function(
@@ -78,6 +76,9 @@ arc <- function(
 #' @return
 #' An object inheriting from class `"circleGeometry"`.
 #'
+#' @family geometry.structures
+#' @concept geometry
+#' 
 #' @export
 circle <- function(
     x = 0,
@@ -119,6 +120,9 @@ circle <- function(
 #' @return
 #' An object inheriting from class `"ellipseGeometry"`.
 #'
+#' @family geometry.structures
+#' @concept geometry
+#' 
 #' @export
 ellipse <- function(
     x = 0,
@@ -159,6 +163,9 @@ ellipse <- function(
 #' @return
 #' An object inheriting from class `"regPolygonGeometry"`.
 #'
+#' @family geometry.structures
+#' @concept geometry
+#' 
 #' @export
 regPolygon <- function(
     x = 0,
@@ -204,6 +211,9 @@ regPolygon <- function(
 #' An object inheriting from class \code{"ringGeometry"} or a
 #' \code{"geometryCollection"}.
 #'
+#' @family geometry.structures
+#' @concept geometry
+#' 
 #' @export
 ring <- function(
     x = 0,

@@ -69,9 +69,6 @@
 #'   to be used in the analysis.
 #'
 #' 
-#' @seealso \code{\link{spreadOut}}, similar function in package \pkg{plotrix}
-#' \code{\link[plotrix]{boxed.labels}} (lacking rotation option) 
-#' 
 #' @examples
 #' 
 #' canvas(xpd=TRUE)
@@ -86,13 +83,14 @@
 #'           labels=rownames(mtcars), cex=0.6, border=FALSE, bg="grey90")
 #' 
 #' 
-
-#' @rdname boxedText
-
-#' @family graphics.utils  
+#' @seealso similar function in package \pkg{plotrix}
+#' [plotrix::boxed.labels] (lacking rotation option) 
+#' 
+#' @family graphics.annotation
 #' @concept annotation
 #'
 #'
+#' @rdname boxedText
 #' @export
 boxedText <- function(x, ...) 
   UseMethod("boxedText")

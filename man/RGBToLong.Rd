@@ -16,14 +16,7 @@ Integer vector.
 Encode RGB colors as long integers.
 }
 \seealso{
-Other color.conversion:
-\code{\link[=colToHSV]{colToHSV()}},
-\code{\link[=colToHex]{colToHex()}},
-\code{\link[=hexToCol]{hexToCol()}},
-\code{\link[=longToRGB]{longToRGB()}},
-\code{\link[=rgbToCol]{rgbToCol()}},
-\code{\link[=rgbToHex]{rgbToHex()}}
+\link{color-conversion-overview}
 }
 \concept{color-conversion}
-\concept{color.conversion}
 \concept{graphics}

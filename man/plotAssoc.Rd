@@ -11,7 +11,7 @@ plotAssoc(
   ylab = TRUE,
   space = 0.3,
   reorder = TRUE,
-  col = pal("RedWhiteBlue3", n = 100L),
+  col = pal("red-white-blue-3", n = 100L),
   border = NA,
   labels = FALSE,
   stamp = .useTheme,
@@ -44,7 +44,7 @@ reordered by the strength of the strongest association
 (\code{max(|residual|)}) in descending order.}
 
 \item{col}{character vector of colors for the diverging palette. Default
-uses \code{pal("RedWhiteBlue3", n = 100)} from the DescToolsX theme.
+uses \code{pal("red-white-blue-3", n = 100)} from the DescToolsX theme.
 Negative residuals map to the first color, zero to the middle, positive
 to the last.}
 
@@ -92,7 +92,7 @@ tab <- table(bedrock::Pizza$driver, bedrock::Pizza$area)
 plotAssoc(tab)
 
 # custom palette
-plotAssoc(tab, col = pal("RedWhiteGreen", n = 100))
+plotAssoc(tab, col = pal("red-white-green", n = 100))
 
 # with residual labels
 plotAssoc(tab, labels = TRUE)
@@ -126,8 +126,7 @@ Friendly, M. (1992). Graphical methods for categorical data.
 \emph{SAS User Group International Conference Proceedings}, 17, 190--200.
 }
 \seealso{
-\code{\link[graphics]{mosaicplot}}, \code{\link{plotMosaic}},
-\code{\link[DescToolsX]{conf}}
+\link[graphics:mosaicplot]{graphics::mosaicplot}, \link[DescToolsX:conf]{DescToolsX::conf}
 
 Other plot.bivariate:
 \code{\link[=plotBag]{plotBag()}},

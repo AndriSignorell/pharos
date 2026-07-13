@@ -20,8 +20,6 @@
 #' @return numeric vector of coordinate values at which axis tickmarks can be
 #' drawn. 
 #' 
-#' @seealso \code{\link{axTicks}}, \code{\link{axis.POSIXct}} 
-#' @keywords aplot chron
 #' @examples
 #' 
 #' with(beaver1, {
@@ -37,13 +35,14 @@
 #'          col="grey", lty="dotted")
 #' })
 #' 
-
-#' @rdname axTicks
-#' @family plot.utils
+#' @seealso \code{\link{axTicks}}, \code{\link{axis.POSIXct}} 
+#' 
+#' @family graphics.layout
 #' @concept graphics
 #' @concept date-handling
 #'
 #'
+#' @rdname axTicks
 #' @export
 axTicks.POSIXct <- function (side, x, at, format, labels = TRUE, ...) {
   

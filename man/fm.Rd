@@ -220,16 +220,19 @@ fm(1200, digits=2, bigMark = ".", decMark=",")
 
 }
 \seealso{
-\code{\link{format}}, \code{\link{formatC}},
-\code{\link{prettyNum}}, \code{\link{sprintf}}, \code{\link{symnum}},\cr
-\code{\link{Sys.setlocale}},\cr \code{\link[DescToolsX]{weekday}},
-\code{\link[DescToolsX]{month}},
-\code{\link[DescToolsX]{setDescToolsXOption}}, \code{\link{style}}, \code{\link{styles}}
+\link[base:format]{base::format}, \link[base:formatC]{base::formatC},
+\link[base:prettyNum]{base::prettyNum}, \link[base:sprintf]{base::sprintf}, \link[stats:symnum]{stats::symnum},\cr
+\link[base:Sys.setlocale]{base::Sys.setlocale},\cr \link[DescToolsX:weekday]{DescToolsX::weekday},
+\link[DescToolsX:month]{DescToolsX::month},
+\link{theme}
 
 Other format:
-\code{\link[=fmCI]{fmCI()}}
+\code{\link[=convUnit]{convUnit()}},
+\code{\link[=fmCI]{fmCI()}},
+\code{\link[=print.Unit]{print.Unit()}},
+\code{\link[=style]{style()}},
+\code{\link[=unit]{unit()}}
 }
 \concept{format}
 \concept{formatting}
 \concept{number-formatting}
-\keyword{IO}

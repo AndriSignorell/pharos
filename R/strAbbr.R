@@ -4,9 +4,9 @@
 #' Creates abbreviations of character strings such that they remain
 #' distinguishable within the input vector.
 #'
-#' @param x A character vector.
-#' @param minchar Integer; minimum number of characters to retain.
-#' @param method Character string specifying the abbreviation strategy:
+#' @param x a character vector
+#' @param minchar integer; minimum number of characters to retain
+#' @param method character string specifying the abbreviation strategy:
 #' \itemize{
 #'   \item \code{"left"}: abbreviate each string individually to the shortest
 #'     unique prefix
@@ -46,8 +46,11 @@
 
 
 
-#' @family string  
+#' @seealso
+#' [string-overview] for an overview of all string utilities in lyra.
+#'
 #' @concept string-manipulation
+#' @concept formatting
 #'
 #'
 #' @export

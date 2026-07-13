@@ -19,12 +19,7 @@
 #'
 #' All arguments are recycled as necessary.
 #'
-#' @seealso
-#' \code{\link{lighten}},
-#' \code{\link{darken}}
-#'
-
-#' @family color  
+#' @family color.manipulation
 #' @concept color
 #'
 #'

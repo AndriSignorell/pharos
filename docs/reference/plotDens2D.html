@@ -50,7 +50,7 @@ using contour, image, or perspective plots.</p>
 <span>  xlim <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  ylim <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"contour"</span>, <span class="st">"image"</span>, <span class="st">"persp"</span><span class="op">)</span>,</span>
-<span>  col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html" class="external-link">rev</a></span><span class="op">(</span><span class="fu"><a href="pal.html">pal</a></span><span class="op">(</span><span class="st">"RedToBlack"</span>, n <span class="op">=</span> <span class="fl">100</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html" class="external-link">rev</a></span><span class="op">(</span><span class="fu"><a href="pal.html">pal</a></span><span class="op">(</span><span class="st">"red-black"</span>, n <span class="op">=</span> <span class="fl">100</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  grid <span class="op">=</span> <span class="va">.useTheme</span>,</span>
 <span>  box <span class="op">=</span> <span class="va">.useTheme</span>,</span>
 <span>  <span class="va">...</span></span>
@@ -88,7 +88,7 @@ One of <code>"contour"</code>, <code>"image"</code>, or <code>"persp"</code>.</p
 
 <dt id="arg-col">col<a class="anchor" aria-label="anchor" href="#arg-col"></a></dt>
 <dd><p>Color specification used for <code>type = "image"</code>. Defaults
-to a reversed <code>"RedToBlack"</code> sequential ramp (<code><a href="pal.html">pal()</a></code>),
+to a reversed <code>"red-black"</code> sequential ramp (<code><a href="pal.html">pal()</a></code>),
 running from black (low density) to red (high density) - hardcoded
 rather than theme-driven, since this is a continuous, unidirectional
 gradient, unlike the active theme's categorical <code>palette</code> or

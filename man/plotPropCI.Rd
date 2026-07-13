@@ -11,7 +11,7 @@ plotPropCI(
   xlab = "",
   xlim = c(0, 1),
   col = .useTheme,
-  ci.col = addAlpha("grey80", 0.12),
+  ci.col = addOpacity("grey80", 0.12),
   border = NA,
   ciLevels = seq(0.99, 0.8, by = -0.01),
   grid = .useTheme,
@@ -48,7 +48,7 @@ negative sign convention here, since proportions of two arbitrary
 categories (e.g. "yes"/"no") have no inherent sign.}
 
 \item{ci.col}{Colour for the confidence interval bands. Default is a
-semi-transparent grey (\code{addAlpha("grey80", 0.12)}). Deliberately
+semi-transparent grey (\code{addOpacity("grey80", 0.12)}). Deliberately
 not theme-driven (like the sequential scales in
 \code{\link{plotDens2D}}/\code{\link{plotHeatmap}}): this is a
 structural mechanism (many overlapping translucent bands building a

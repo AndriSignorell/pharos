@@ -48,7 +48,7 @@
 
 
 
-#' @family geometry  
+#' @family geometry.transformation
 #' @concept geometry
 #'
 #'

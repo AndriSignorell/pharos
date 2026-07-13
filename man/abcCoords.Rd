@@ -43,6 +43,7 @@ positions such as \code{"topleft"}, \code{"center"}, etc., as used by
 consistent, region-aware positions.
 }
 \details{
+The positioning logic is adapted from \code{\link{legend}}.
 The inset is computed in character units via \code{\link{strwidth}} and
 \code{\link{strheight}}, making it robust to device resizing, font
 changes, and plot-range scaling.
@@ -54,9 +55,6 @@ Three regions are supported:
 for \code{par("fig")}.}
 \item{\code{"device"}}{The full device area.}
 }
-}
-\note{
-The positioning logic is adapted from \code{\link{legend}}.
 }
 \examples{
 plot(x = rnorm(10), type = "n", xlab = "", ylab = "")
@@ -81,26 +79,15 @@ sapply(c("topleft", "top", "topright",
 
 }
 \seealso{
-\code{\link{text}}, \code{\link{legend}},
-\code{\link{boxedText}}
+\code{\link{text}}, \code{\link{legend}}
 
-Other graphics.utils:
+Other graphics.layout:
+\code{\link{axTicks}},
 \code{\link[=axisBreak]{axisBreak()}},
-\code{\link[=barText]{barText()}},
-\code{\link[=boxedText]{boxedText()}},
-\code{\link[=colLegend]{colLegend()}},
-\code{\link[=degToRad]{degToRad()}},
-\code{\link[=errBars]{errBars()}},
-\code{\link[=lineSep]{lineSep()}},
+\code{\link[=isValidPlotRegion]{isValidPlotRegion()}},
 \code{\link[=lineToUser]{lineToUser()}},
-\code{\link[=lines.lm]{lines.lm()}},
 \code{\link[=mar]{mar()}},
-\code{\link[=preview]{preview()}},
-\code{\link[=spreadOut]{spreadOut()}},
-\code{\link[=stamp]{stamp()}},
-\code{\link[=textLegend]{textLegend()}},
-\code{\link[=titleRect]{titleRect()}},
-\code{\link[=unit]{unit()}}
+\code{\link[=spreadOut]{spreadOut()}}
 }
 \concept{annotation}
-\concept{graphics.utils}
+\concept{graphics.layout}

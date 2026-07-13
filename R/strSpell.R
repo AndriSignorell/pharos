@@ -3,10 +3,10 @@
 #' Converts characters in a string into their corresponding phonetic
 #' representations using either the NATO phonetic alphabet or Morse code.
 #'
-#' @param x A character vector (typically of length 1).
-#' @param upr Character string used as a prefix for uppercase letters.
+#' @param x a character vector (typically of length 1)
+#' @param upr character string used as a prefix for uppercase letters.
 #'   Default is \code{"CAP"}. If \code{NA}, no prefix is added.
-#' @param type Character string specifying the encoding system:
+#' @param type character string specifying the encoding system:
 #' \itemize{
 #'   \item \code{"NATO"}: NATO phonetic alphabet (default)
 #'   \item \code{"Morse"}: Morse code
@@ -44,8 +44,11 @@
 
 
 
-#' @family string  
+#' @seealso
+#' [string-overview] for an overview of all string utilities in lyra.
+#'
 #' @concept string-manipulation
+#' @concept phonetic-encoding
 #'
 #'
 #' @export

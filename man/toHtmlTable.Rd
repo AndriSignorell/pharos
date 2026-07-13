@@ -65,7 +65,9 @@ The result has class \code{c("html", "character")} (see
 
 Other html:
 \code{\link[=as.html]{as.html()}},
-\code{\link[=as.img]{as.img()}}
+\code{\link[=as.img]{as.img()}},
+\code{\link{htmlNotation}},
+\code{\link{htmlSubscript}}
 }
 \concept{frequency-table}
 \concept{html}

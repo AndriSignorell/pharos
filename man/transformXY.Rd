@@ -66,14 +66,8 @@ transformXY(m, scale = 0.5, theta = pi/6)
 \seealso{
 \code{\link{rotate}}
 
-Other geometry:
-\code{\link[=arc]{arc()}},
-\code{\link[=band]{band()}},
-\code{\link[=bezier]{bezier()}},
-\code{\link[=canvas]{canvas()}},
-\code{\link[=polarGrid]{polarGrid()}},
-\code{\link[=polygon]{polygon()}},
-\code{\link[=rotate]{rotate()}},
-\code{\link[=shade]{shade()}}
+Other geometry.transformation:
+\code{\link[=rotate]{rotate()}}
 }
 \concept{geometry}
+\concept{geometry.transformation}

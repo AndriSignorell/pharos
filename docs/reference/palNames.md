@@ -25,7 +25,7 @@ a character vector of palette names.
 [`pal`](https://andrisignorell.github.io/aurora/reference/pal.md)
 
 Other color:
-[`addAlpha()`](https://andrisignorell.github.io/aurora/reference/addAlpha.md),
+[`addOpacity()`](https://andrisignorell.github.io/aurora/reference/addOpacity.md),
 [`colToOpaque()`](https://andrisignorell.github.io/aurora/reference/colToOpaque.md),
 [`colToRGB()`](https://andrisignorell.github.io/aurora/reference/colToRGB.md),
 [`contrastColor()`](https://andrisignorell.github.io/aurora/reference/contrastColor.md),
@@ -43,7 +43,7 @@ Other color:
 
 ``` r
 palNames()
-#>  [1] "RedToBlack"     "RedBlackGreen"  "SteelblueWhite" "RedWhiteGreen" 
+#>  [1] "red-black"     "RedBlackGreen"  "SteelblueWhite" "RedWhiteGreen" 
 #>  [5] "RedWhiteBlue0"  "RedWhiteBlue1"  "RedWhiteBlue2"  "RedWhiteBlue3" 
 #>  [9] "RedGreen1"      "Helsana"        "Helsana1"       "Helsana2"      
 #> [13] "Tibco"          "Spring"         "Soap"           "Maiden"        
@@ -55,7 +55,7 @@ palNames()
 #> [37] "Tequila"        "Long"           "Night"          "Dawn"          
 #> [41] "Noon"           "Light"         
 palNames("continuous")
-#> [1] "RedToBlack"     "RedBlackGreen"  "SteelblueWhite" "RedWhiteGreen" 
+#> [1] "red-black"     "RedBlackGreen"  "SteelblueWhite" "RedWhiteGreen" 
 #> [5] "RedWhiteBlue0"  "RedWhiteBlue1"  "RedWhiteBlue2"  "RedWhiteBlue3" 
 #> [9] "RedGreen1"     
 palNames("discrete")

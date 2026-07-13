@@ -36,17 +36,14 @@
 #' @return No return value; called for its side effect.
 #'
 #' @seealso \code{\link{lines}}, \code{\link{lm}}
-#'
-#' @keywords aplot math
-#'
-#' @rdname linesLm
-#' @method lines lm
-
-#' @family graphics.utils  
+#' 
+#' @family graphics.trendlines  
 #' @concept regression  
 #' @concept annotation
 #'
 #'
+#' @rdname linesLm
+#' @method lines lm
 #' @export
 lines.lm <- function(
     x,
@@ -338,7 +335,7 @@ lines.lmlog <- function(
   
   bandArgs <- mergeArgs(
     defaults = list(
-      col = addAlpha(col, 0.12),
+      col = addOpacity(col, 0.12),
       border = NA
     ),
     user = list(...),

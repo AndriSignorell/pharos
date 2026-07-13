@@ -27,27 +27,18 @@ For the \code{lineToUser} function to work, there must be an open plot.
 plot(1:10)
 lineToUser(line=2, side=4)
 
+
 }
 \seealso{
 \code{\link{mtext}}
 
-Other graphics.utils:
+Other graphics.layout:
 \code{\link[=abcCoords]{abcCoords()}},
+\code{\link{axTicks}},
 \code{\link[=axisBreak]{axisBreak()}},
-\code{\link[=barText]{barText()}},
-\code{\link[=boxedText]{boxedText()}},
-\code{\link[=colLegend]{colLegend()}},
-\code{\link[=degToRad]{degToRad()}},
-\code{\link[=errBars]{errBars()}},
-\code{\link[=lineSep]{lineSep()}},
-\code{\link[=lines.lm]{lines.lm()}},
+\code{\link[=isValidPlotRegion]{isValidPlotRegion()}},
 \code{\link[=mar]{mar()}},
-\code{\link[=preview]{preview()}},
-\code{\link[=spreadOut]{spreadOut()}},
-\code{\link[=stamp]{stamp()}},
-\code{\link[=textLegend]{textLegend()}},
-\code{\link[=titleRect]{titleRect()}},
-\code{\link[=unit]{unit()}}
+\code{\link[=spreadOut]{spreadOut()}}
 }
 \concept{annotation}
-\concept{graphics.utils}
+\concept{graphics.layout}

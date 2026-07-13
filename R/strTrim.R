@@ -13,12 +13,14 @@
 #' replacement="", x=x)}\cr \code{right: gsub(
 #' pattern=gettextf("[\%s]+$",pattern), replacement="", x=x)} 
 #' 
-#' @param x the string to be trimmed. 
+#' @param x the string to be trimmed
 #' @param pattern the pattern of the whitespaces to be deleted, defaults to
-#' space, tab and newline: \code{" \t\n"}. 
+#' space, tab and newline: \code{" \t\n"}
 #' @param method one out of \code{"both"} (default), \code{"left"},
 #' \code{"right"}. Determines on which side the string should be trimmed.
 #' @return the string x without whitespaces
+#' 
+#' @seealso \code{\link[base]{trimws}}
 #' 
 #' @examples
 #' 
@@ -33,8 +35,11 @@
 
  
 
-#' @family string  
+#' @seealso
+#' [string-overview] for an overview of all string utilities in lyra.
+#'
 #' @concept string-manipulation
+#' @concept formatting
 #'
 #'
 #' @export

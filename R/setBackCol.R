@@ -12,7 +12,6 @@
 #' @param border color for rectangle border(s). Default is \code{NA} for no
 #' borders. 
 #' 
-#' @seealso \code{\link{rect}} 
 #' @examples
 #' 
 #' # use two different colors for the figure region and the plot region
@@ -20,10 +19,10 @@
 #'      panel.first={setBackCol(c("red", "lightyellow"))
 #'                   grid()})
 #' 
-
-
-
-#' @family color  
+#' 
+#' @seealso \code{\link{rect}} 
+#' 
+#' @family graphics.setup
 #' @concept color
 #'
 #'

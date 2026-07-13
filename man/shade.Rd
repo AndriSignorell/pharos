@@ -51,19 +51,14 @@ curve(dt(x, df=5), xlim=c(-6,6),
 shade(dt(x, df=5), breaks=c(-6, qt(0.025, df=5), qt(0.975, df=5), 6),
       col=c("deeppink4", "skyblue3"), density=c(20, 7))
 
+
 }
 \seealso{
 \code{\link{polygon}}, \code{\link{curve}}
 
-Other geometry:
-\code{\link[=arc]{arc()}},
-\code{\link[=band]{band()}},
-\code{\link[=bezier]{bezier()}},
-\code{\link[=canvas]{canvas()}},
-\code{\link[=polarGrid]{polarGrid()}},
-\code{\link[=polygon]{polygon()}},
-\code{\link[=rotate]{rotate()}},
-\code{\link[=transformXY]{transformXY()}}
+Other plot.distribution:
+\code{\link[=plotFun]{plotFun()}},
+\code{\link[=plotProbDist]{plotProbDist()}}
 }
 \concept{geometry}
-\keyword{aplot}
+\concept{plot.distribution}

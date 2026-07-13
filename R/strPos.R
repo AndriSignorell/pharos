@@ -7,7 +7,7 @@
 #' This is just a wrapper for the function \code{\link{regexpr}}. 
 #' 
 #' @param x a character vector in which to search for the pattern, or an object
-#' which can be coerced by as.character to a character vector. 
+#' which can be coerced by as.character to a character vector
 #' @param pattern character string (search string) containing the pattern to be
 #' matched in the given character vector. This can be a character string or a
 #' regular expression.
@@ -30,8 +30,11 @@
 
 
 
-#' @family string  
-#' @concept string-manipulation
+#' @seealso
+#' [string-overview] for an overview of all string utilities in lyra.
+#'
+#' @concept string-inspection
+#' @concept pattern-matching
 #'
 #'
 #' @export

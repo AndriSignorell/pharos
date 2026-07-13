@@ -30,7 +30,7 @@ lines(
 
   line color of the smoother. `.useTheme` (default) resolves to
   `getTheme()$twin[1]` - the first of the theme's two-color pair (see
-  [`getTheme`](https://andrisignorell.github.io/aurora/reference/getTheme.md)).
+  [`getTheme`](https://andrisignorell.github.io/lyra/reference/getTheme.md)).
 
 - lwd:
 
@@ -78,7 +78,7 @@ Loess can result in substantial computational load for large datasets.
 [`loess`](https://rdrr.io/r/stats/loess.html),
 [`scatter.smooth`](https://rdrr.io/r/stats/scatter.smooth.html),
 [`smooth.spline`](https://rdrr.io/r/stats/smooth.spline.html),
-[`getTheme`](https://andrisignorell.github.io/aurora/reference/getTheme.md)
+[`getTheme`](https://andrisignorell.github.io/lyra/reference/getTheme.md)
 
 ## Examples
 
@@ -95,7 +95,7 @@ lines(
   loess(dist ~ speed, cars),
   bandArgs = list(
     conf.level = 0.99,
-    col = addAlpha("red", 0.4),
+    col = addOpacity("red", 0.4),
     border = "black"
   )
 )

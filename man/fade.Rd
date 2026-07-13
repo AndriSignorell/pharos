@@ -4,18 +4,26 @@
 \alias{fade}
 \title{Fade Colors}
 \usage{
-fade(col, alpha = 0.5)
+fade(col, opacity = 0.5)
 }
 \arguments{
 \item{col}{Vector of valid R colors.}
 
-\item{alpha}{Alpha transparency values between 0 and 1.}
+\item{opacity}{Opacity value between 0 and 1.}
 }
 \value{
 Character vector of colors.
 }
 \description{
 Apply transparency and remove the alpha channel afterwards.
+}
+\seealso{
+Other color.manipulation:
+\code{\link[=addOpacity]{addOpacity()}},
+\code{\link[=colToOpaque]{colToOpaque()}},
+\code{\link[=darken]{darken()}},
+\code{\link[=lighten]{lighten()}},
+\code{\link[=mixColors]{mixColors()}}
 }
 \concept{color-manipulation}
 \concept{color.manipulation}

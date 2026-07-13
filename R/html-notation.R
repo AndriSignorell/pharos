@@ -13,16 +13,17 @@
 #' htmlHat("p")  # -> "p&#770;"   (renders as p with a circumflex)
 #' htmlBar("x")  # -> "x&#772;"   (renders as x with a macron)
 #'
-#' @name notation
+#' @name htmlNotation
+#' @family html
 NULL
 
-#' @rdname notation
+#' @rdname htmlNotation
 #' @export
 htmlHat <- function(x) {
   gettextf("%s&#770;", x)
 }
 
-#' @rdname notation
+#' @rdname htmlNotation
 #' @export
 htmlBar <- function(x) {
   gettextf("%s&#772;", x)
@@ -33,6 +34,8 @@ htmlBar <- function(x) {
 #'
 #' Infix operator producing an HTML subscript, e.g. for indexed symbols
 #' such as \eqn{x_i}.
+#' 
+#' @name htmlSubscript
 #'
 #' @param x a character vector (the base symbol)
 #' @param i a character vector (the subscript), recycled against \code{x}
@@ -42,6 +45,7 @@ htmlBar <- function(x) {
 #' @examples
 #' "x" %_% "i"  # -> "x<sub>i</sub>"
 #'
+#' @family html
 #' @export
 `%_%` <- function(x, i) {
   gettextf("%s<sub>%s</sub>", x, i)

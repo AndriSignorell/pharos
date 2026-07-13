@@ -11,11 +11,11 @@ strLeft(x, n)
 strRight(x, n)
 }
 \arguments{
-\item{x}{a vector of strings.}
+\item{x}{a vector of strings}
 
 \item{n}{a positive or a negative integer, the number of characters to cut.
 If n is negative, this number of characters will be cut off from the right
-with \code{strLeft} and from the right with \code{strRight}. \cr n will be
+with \code{strLeft} and from the left with \code{strRight}. \cr n will be
 recycled.}
 }
 \value{
@@ -42,10 +42,11 @@ strLeft(c("Lorem", "ipsum", "dolor","sit","amet"), n=2)
 
 strRight(c("Lorem", "ipsum", "dolor","sit","amet"), n=c(2,3))
 
+
+
 }
 \seealso{
-\code{\link{substr}}, \code{\link{strTrim}}
+\link{string-overview} for an overview of all string utilities in lyra.
 }
-\concept{data-manipulation}
+\concept{reshape}
 \concept{string-manipulation}
-\concept{string.manipulation}

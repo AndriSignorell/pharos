@@ -7,12 +7,12 @@
 strExtract(x, pattern, ...)
 }
 \arguments{
-\item{x}{A character vector.}
+\item{x}{a character vector}
 
-\item{pattern}{A character string containing a regular expression to match.}
+\item{pattern}{a character string containing a regular expression to match}
 
-\item{...}{Additional arguments passed to
-\code{\link[stringi]{stri_extract_first_regex}}.}
+\item{...}{additional arguments passed to
+\code{\link[stringi]{stri_extract_first_regex}}}
 }
 \value{
 A character vector containing the first match for each element of
@@ -41,25 +41,7 @@ strExtract("hello world", "\\\\w+")
 \code{\link[stringi]{stri_extract_first_regex}},
 \code{\link{strExtractBetween}}
 
-Other string:
-\code{\link[=mgsub]{mgsub()}},
-\code{\link[=strAbbr]{strAbbr()}},
-\code{\link[=strAlign]{strAlign()}},
-\code{\link[=strCap]{strCap()}},
-\code{\link[=strChop]{strChop()}},
-\code{\link[=strCountW]{strCountW()}},
-\code{\link[=strDist]{strDist()}},
-\code{\link[=strExtractBetween]{strExtractBetween()}},
-\code{\link[=strIsNumeric]{strIsNumeric()}},
-\code{\link[=strLen]{strLen()}},
-\code{\link[=strPad]{strPad()}},
-\code{\link[=strPos]{strPos()}},
-\code{\link[=strRev]{strRev()}},
-\code{\link[=strSpell]{strSpell()}},
-\code{\link[=strSplit]{strSplit()}},
-\code{\link[=strTrim]{strTrim()}},
-\code{\link[=strTrunc]{strTrunc()}},
-\code{\link[=strVal]{strVal()}}
+\link{string-overview} for an overview of all string utilities in lyra.
 }
-\concept{string}
+\concept{pattern-matching}
 \concept{string-manipulation}

@@ -110,10 +110,10 @@ Confidence and prediction bands are controlled via `cbandArgs` and
 [`lm`](https://rdrr.io/r/stats/lm.html)
 
 Other graphics.utils:
-[`abcCoords()`](https://andrisignorell.github.io/aurora/reference/abcCoords.md),
-[`axisBreak()`](https://andrisignorell.github.io/aurora/reference/axisBreak.md),
-[`barText()`](https://andrisignorell.github.io/aurora/reference/barText.md),
-[`boxedText()`](https://andrisignorell.github.io/aurora/reference/boxedText.md),
+[`abcCoords()`](https://andrisignorell.github.io/lyra/reference/abcCoords.md),
+[`axisBreak()`](https://andrisignorell.github.io/lyra/reference/axisBreak.md),
+[`barText()`](https://andrisignorell.github.io/lyra/reference/barText.md),
+[`boxedText()`](https://andrisignorell.github.io/lyra/reference/boxedText.md),
 [`colLegend()`](https://andrisignorell.github.io/aurora/reference/colLegend.md),
 [`degToRad()`](https://andrisignorell.github.io/aurora/reference/degToRad.md),
 [`errBars()`](https://andrisignorell.github.io/aurora/reference/errBars.md),

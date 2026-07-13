@@ -22,3 +22,15 @@ Create an elliptic geometry.
 \details{
 Use \code{\link{rotate}} to rotate the resulting geometry.
 }
+\seealso{
+Other geometry.structures:
+\code{\link[=arc]{arc()}},
+\code{\link[=band]{band()}},
+\code{\link[=bezier]{bezier()}},
+\code{\link[=circle]{circle()}},
+\code{\link[=polygon]{polygon()}},
+\code{\link[=regPolygon]{regPolygon()}},
+\code{\link[=ring]{ring()}}
+}
+\concept{geometry}
+\concept{geometry.structures}

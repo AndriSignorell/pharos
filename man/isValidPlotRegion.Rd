@@ -51,11 +51,18 @@ if (isValidPlotRegion()) {
 # require a larger region, e.g. for a wide correlation plot
 isValidPlotRegion(minPin = c(4, 3))
 
+
 }
 \seealso{
 \code{\link{par}} (entries \code{pin}, \code{fin}, \code{mar}),
 \code{\link{dev.cur}}
+
+Other graphics.layout:
+\code{\link[=abcCoords]{abcCoords()}},
+\code{\link{axTicks}},
+\code{\link[=axisBreak]{axisBreak()}},
+\code{\link[=lineToUser]{lineToUser()}},
+\code{\link[=mar]{mar()}},
+\code{\link[=spreadOut]{spreadOut()}}
 }
-\author{
-Andri Signorell \href{mailto:andri@signorell.net}{andri@signorell.net}
-}
+\concept{graphics.layout}

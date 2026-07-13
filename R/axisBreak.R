@@ -20,8 +20,9 @@
 #' to be that the reader will be misled by assuming continuous coordinates.
 #' The \samp{gap} style that clearly separates the two sections of the plot is
 #' probably best for avoiding this.
-#' @author Jim Lemon and Ben Bolker
-#' 
+#' @note Based on code by Jim Lemon and Ben Bolker, adapted to conform to package
+#' standards
+#'  
 #' @examples
 #' 
 #' plot(3:10, main="Axis break test")
@@ -30,10 +31,7 @@
 #' axisBreak()
 #' axisBreak(2, 2.9, style="zigzag")
 #' 
-
-
-
-#' @family graphics.utils  
+#' @family graphics.layout
 #' @concept annotation
 #'
 #'

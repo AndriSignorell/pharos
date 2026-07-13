@@ -120,7 +120,8 @@ for (a in 1:3)
 }
 \seealso{
 Other plot.distribution:
-\code{\link[=plotProbDist]{plotProbDist()}}
+\code{\link[=plotProbDist]{plotProbDist()}},
+\code{\link[=shade]{shade()}}
 }
 \concept{distribution-summary}
 \concept{plot.distribution}

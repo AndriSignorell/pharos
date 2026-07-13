@@ -65,7 +65,7 @@ lines(
   loess(dist ~ speed, cars),
   bandArgs = list(
     conf.level = 0.99,
-    col = addAlpha("red", 0.4),
+    col = addOpacity("red", 0.4),
     border = "black"
   )
 )
@@ -73,7 +73,10 @@ lines(
 }
 \seealso{
 \code{\link{loess}}, \code{\link{scatter.smooth}},
-\code{\link{smooth.spline}}, \code{\link{getTheme}}
+\code{\link{smooth.spline}}
+
+Other graphics.trendlines:
+\code{\link[=lines.lm]{lines.lm()}},
+\code{\link{splineCI}}
 }
-\keyword{aplot}
-\keyword{math}
+\concept{graphics.trendlines}

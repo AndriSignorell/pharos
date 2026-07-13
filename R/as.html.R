@@ -9,12 +9,9 @@
 #'
 #' @return \code{x}, with class \code{"html"} added
 #'
-#' @seealso \code{\link{preview.html}}, \code{\link{toHtmlTable}}
-#'
 #' @examples
 #' as.html("<b>bold</b>")
 #'
-
 #' @family html  
 #' @concept html
 #'

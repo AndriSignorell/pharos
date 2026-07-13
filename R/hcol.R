@@ -1,7 +1,7 @@
 
 #' Helsana Colors
 #'
-#' Retrieve one or more colors from the Helsana palette.
+#' Retrieve one or more colors from the helsana palette.
 #'
 #' @param ... Character strings naming the colors to retrieve. Valid names are:
 #'   \code{"blue"}, \code{"red"}, \code{"orange"}, \code{"yellow"},
@@ -18,7 +18,7 @@
 #' hcol()
 
 
-#' @family color  
+#' @family color.palettes
 #' @concept color  
 #' @concept palette
 #'
@@ -26,7 +26,7 @@
 #' @export
 hcol <- function(...) {
   nms <- c(...)
-  if (is.null(nms)) .pal_data$discrete$Helsana
-  else .pal_data$discrete$Helsana[nms]
+  if (is.null(nms)) .pal_data$discrete$helsana
+  else .pal_data$discrete$helsana[nms]
 }
 

@@ -17,27 +17,17 @@ If none are provided, the full palette is returned.}
 A named character vector of hex color codes.
 }
 \description{
-Retrieve one or more colors from the Helsana palette.
+Retrieve one or more colors from the helsana palette.
 }
 \examples{
 hcol("blue", "green")
 hcol()
 }
 \seealso{
-Other color:
-\code{\link[=addAlpha]{addAlpha()}},
-\code{\link[=colToOpaque]{colToOpaque()}},
-\code{\link[=colToRGB]{colToRGB()}},
-\code{\link[=contrastColor]{contrastColor()}},
-\code{\link[=darken]{darken()}},
-\code{\link[=findColor]{findColor()}},
-\code{\link[=grayscale]{grayscale()}},
-\code{\link[=hexToRGB]{hexToRGB()}},
-\code{\link[=lighten]{lighten()}},
-\code{\link[=mixColors]{mixColors()}},
+Other color.palettes:
 \code{\link[=pal]{pal()}},
-\code{\link[=palNames]{palNames()}},
-\code{\link[=setBackCol]{setBackCol()}}
+\code{\link[=palNames]{palNames()}}
 }
 \concept{color}
+\concept{color.palettes}
 \concept{palette}

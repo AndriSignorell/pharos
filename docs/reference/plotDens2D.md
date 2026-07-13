@@ -15,7 +15,7 @@ plotDens2D(
   xlim = NULL,
   ylim = NULL,
   type = c("contour", "image", "persp"),
-  col = rev(pal("RedToBlack", n = 100)),
+  col = rev(pal("red-black", n = 100)),
   grid = .useTheme,
   box = .useTheme,
   ...
@@ -52,7 +52,7 @@ plotDens2D(
 - col:
 
   Color specification used for `type = "image"`. Defaults to a reversed
-  `"RedToBlack"` sequential ramp
+  `"red-black"` sequential ramp
   ([`pal()`](https://andrisignorell.github.io/aurora/reference/pal.md)),
   running from black (low density) to red (high density) - hardcoded
   rather than theme-driven, since this is a continuous, unidirectional

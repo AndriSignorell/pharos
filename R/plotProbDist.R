@@ -15,7 +15,7 @@
 #' @param xlim Numeric vector of length 2. x-axis limits passed to
 #'   \code{\link{curve}()}.
 #' @param col Color(s) for the shaded areas. Recycled if shorter than the
-#'   number of areas. Defaults to the Helsana palette.
+#'   number of areas. Defaults to the "helsana" palette.
 #' @param density Density of shading lines passed to \code{\link{shade}()}.
 #'   Default is \code{7}.
 #' @param ylab Label for the y-axis. Default is \code{"density"}.
@@ -72,10 +72,9 @@
 #'              density = c(0, 20),
 #'              breakLabels = list(text="B"))
 #'
-
-#' @seealso \code{\link{shade}}, \code{\link{curve}}, \code{\link{boxedText}}
-
-
+#'
+#' @seealso \code{\link{curve}}
+#' 
 #' @family plot.distribution  
 #' @concept distribution-summary
 #'
@@ -104,7 +103,7 @@ plotProbDist <- function(breaks, FUN, main = "",
     FUN <- eval(parse(text = "fct"))
     
     if (is.null(col))
-      col <- pal("Helsana")[1:length(breaks)]
+      col <- pal("helsana")[1:length(breaks)]
     
     curve(FUN, xlim = xlim, main = main,
           type = "n", las = 1, ylab = ylab, ...)

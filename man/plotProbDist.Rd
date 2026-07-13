@@ -34,7 +34,7 @@ the title and reduces the top margin automatically.}
 \code{\link{curve}()}.}
 
 \item{col}{Color(s) for the shaded areas. Recycled if shorter than the
-number of areas. Defaults to the Helsana palette.}
+number of areas. Defaults to the "helsana" palette.}
 
 \item{density}{Density of shading lines passed to \code{\link{shade}()}.
 Default is \code{7}.}
@@ -104,12 +104,14 @@ plotProbDist(breaks  = c(0, 15, 35),
              density = c(0, 20),
              breakLabels = list(text="B"))
 
+
 }
 \seealso{
-\code{\link{shade}}, \code{\link{curve}}, \code{\link{boxedText}}
+\code{\link{curve}}
 
 Other plot.distribution:
-\code{\link[=plotFun]{plotFun()}}
+\code{\link[=plotFun]{plotFun()}},
+\code{\link[=shade]{shade()}}
 }
 \concept{distribution-summary}
 \concept{plot.distribution}

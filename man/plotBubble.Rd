@@ -108,7 +108,7 @@ US <- data.frame(state.x77, State=state.name,
                    Region=state.region, Abb=state.abb)
 plotBubble(Income ~ Population | Area , 
            data=US, 
-           grid=TRUE, col=addAlpha(pal("Helsana")[US$Region]), cex=1.2 )
+           grid=TRUE, col=addOpacity(pal("helsana")[US$Region]), cex=1.2 )
 
 text(Income ~ Population, US, labels=US$Abb, cex=0.8)
 
@@ -116,12 +116,6 @@ text(Income ~ Population, US, labels=US$Abb, cex=0.8)
 }
 \seealso{
 \code{\link{symbols}}
-
-Other topic.graphics:
-\code{\link[=plotDens]{plotDens()}},
-\code{\link[=plotDens2D]{plotDens2D()}},
-\code{\link[=plotRidge]{plotRidge()}}
 }
 \concept{base-graphics}
 \concept{plotting}
-\concept{topic.graphics}

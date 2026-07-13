@@ -7,12 +7,12 @@
 strSpell(x, upr = "CAP", type = c("NATO", "Morse"))
 }
 \arguments{
-\item{x}{A character vector (typically of length 1).}
+\item{x}{a character vector (typically of length 1)}
 
-\item{upr}{Character string used as a prefix for uppercase letters.
+\item{upr}{character string used as a prefix for uppercase letters.
 Default is \code{"CAP"}. If \code{NA}, no prefix is added.}
 
-\item{type}{Character string specifying the encoding system:
+\item{type}{character string specifying the encoding system:
 \itemize{
 \item \code{"NATO"}: NATO phonetic alphabet (default)
 \item \code{"Morse"}: Morse code
@@ -54,25 +54,7 @@ strSpell("ABC", upr = NA)
 \code{\link{strTrim}},
 \code{\link[stringi]{stri_split_boundaries}}
 
-Other string:
-\code{\link[=mgsub]{mgsub()}},
-\code{\link[=strAbbr]{strAbbr()}},
-\code{\link[=strAlign]{strAlign()}},
-\code{\link[=strCap]{strCap()}},
-\code{\link[=strChop]{strChop()}},
-\code{\link[=strCountW]{strCountW()}},
-\code{\link[=strDist]{strDist()}},
-\code{\link[=strExtract]{strExtract()}},
-\code{\link[=strExtractBetween]{strExtractBetween()}},
-\code{\link[=strIsNumeric]{strIsNumeric()}},
-\code{\link[=strLen]{strLen()}},
-\code{\link[=strPad]{strPad()}},
-\code{\link[=strPos]{strPos()}},
-\code{\link[=strRev]{strRev()}},
-\code{\link[=strSplit]{strSplit()}},
-\code{\link[=strTrim]{strTrim()}},
-\code{\link[=strTrunc]{strTrunc()}},
-\code{\link[=strVal]{strVal()}}
+\link{string-overview} for an overview of all string utilities in lyra.
 }
-\concept{string}
+\concept{phonetic-encoding}
 \concept{string-manipulation}

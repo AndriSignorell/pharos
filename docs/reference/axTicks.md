@@ -51,7 +51,7 @@ gap.
 [`axis.POSIXct`](https://rdrr.io/r/graphics/axis.POSIXct.html)
 
 Other plot.utils:
-[`splineCI`](https://andrisignorell.github.io/aurora/reference/splineCI.md)
+[`splineCI`](https://andrisignorell.github.io/lyra/reference/splineCI.md)
 
 ## Examples
 

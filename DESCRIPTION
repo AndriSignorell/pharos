@@ -1,6 +1,6 @@
 Package: lyra
 Title: Descriptive Statistics Graphics and Utilities
-Version: 0.0.0.931
+Version: 0.0.0.932
 Authors@R: 
     person("Andri", "Signorell", , "andri@signorell.net", role = c("aut", "cre"))
 Description: Provides plots and graphic routines used in DescToolsX.

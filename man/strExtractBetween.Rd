@@ -7,15 +7,15 @@
 strExtractBetween(x, left, right, greedy = FALSE)
 }
 \arguments{
-\item{x}{A character vector.}
+\item{x}{a character vector}
 
-\item{left}{A character string or regular expression marking the left
-boundary.}
+\item{left}{a character string or regular expression marking the left
+boundary}
 
-\item{right}{A character string or regular expression marking the right
-boundary.}
+\item{right}{a character string or regular expression marking the right
+boundary}
 
-\item{greedy}{Logical; if \code{TRUE}, the match is greedy (longest match).
+\item{greedy}{logical; if \code{TRUE}, the match is greedy (longest match).
 If \code{FALSE} (default), the match is non-greedy (shortest match).}
 }
 \value{
@@ -51,25 +51,7 @@ strExtractBetween("a[1]b[2]c", "\\\\[", "\\\\]", greedy = TRUE)
 \code{\link[stringi]{stri_match_first_regex}},
 \code{\link{strExtract}}
 
-Other string:
-\code{\link[=mgsub]{mgsub()}},
-\code{\link[=strAbbr]{strAbbr()}},
-\code{\link[=strAlign]{strAlign()}},
-\code{\link[=strCap]{strCap()}},
-\code{\link[=strChop]{strChop()}},
-\code{\link[=strCountW]{strCountW()}},
-\code{\link[=strDist]{strDist()}},
-\code{\link[=strExtract]{strExtract()}},
-\code{\link[=strIsNumeric]{strIsNumeric()}},
-\code{\link[=strLen]{strLen()}},
-\code{\link[=strPad]{strPad()}},
-\code{\link[=strPos]{strPos()}},
-\code{\link[=strRev]{strRev()}},
-\code{\link[=strSpell]{strSpell()}},
-\code{\link[=strSplit]{strSplit()}},
-\code{\link[=strTrim]{strTrim()}},
-\code{\link[=strTrunc]{strTrunc()}},
-\code{\link[=strVal]{strVal()}}
+\link{string-overview} for an overview of all string utilities in lyra.
 }
-\concept{string}
+\concept{pattern-matching}
 \concept{string-manipulation}

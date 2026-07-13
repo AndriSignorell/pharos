@@ -131,26 +131,16 @@ boxedText(mpg ~ hp, data=mtcars,
 
 }
 \seealso{
-\code{\link{spreadOut}}, similar function in package \pkg{plotrix}
-\code{\link[plotrix]{boxed.labels}} (lacking rotation option)
+similar function in package \pkg{plotrix}
+\link[plotrix:boxed.labels]{plotrix::boxed.labels} (lacking rotation option)
 
-Other graphics.utils:
-\code{\link[=abcCoords]{abcCoords()}},
-\code{\link[=axisBreak]{axisBreak()}},
+Other graphics.annotation:
 \code{\link[=barText]{barText()}},
 \code{\link[=colLegend]{colLegend()}},
-\code{\link[=degToRad]{degToRad()}},
 \code{\link[=errBars]{errBars()}},
-\code{\link[=lineSep]{lineSep()}},
-\code{\link[=lineToUser]{lineToUser()}},
-\code{\link[=lines.lm]{lines.lm()}},
-\code{\link[=mar]{mar()}},
-\code{\link[=preview]{preview()}},
-\code{\link[=spreadOut]{spreadOut()}},
 \code{\link[=stamp]{stamp()}},
 \code{\link[=textLegend]{textLegend()}},
-\code{\link[=titleRect]{titleRect()}},
-\code{\link[=unit]{unit()}}
+\code{\link[=titleRect]{titleRect()}}
 }
 \concept{annotation}
-\concept{graphics.utils}
+\concept{graphics.annotation}

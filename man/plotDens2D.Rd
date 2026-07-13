@@ -13,7 +13,7 @@ plotDens2D(
   xlim = NULL,
   ylim = NULL,
   type = c("contour", "image", "persp"),
-  col = rev(pal("RedToBlack", n = 100)),
+  col = rev(pal("red-black", n = 100)),
   grid = .useTheme,
   box = .useTheme,
   ...
@@ -34,7 +34,7 @@ plotDens2D(
 One of \code{"contour"}, \code{"image"}, or \code{"persp"}.}
 
 \item{col}{Color specification used for \code{type = "image"}. Defaults
-to a reversed \code{"RedToBlack"} sequential ramp (\code{pal()}),
+to a reversed \code{"red-black"} sequential ramp (\code{pal()}),
 running from black (low density) to red (high density) - hardcoded
 rather than theme-driven, since this is a continuous, unidirectional
 gradient, unlike the active theme's categorical \code{palette} or
@@ -92,11 +92,6 @@ plotDens2D(x, y, type = "image")
 
 }
 \seealso{
-Other topic.graphics:
-\code{\link[=plotBubble]{plotBubble()}},
-\code{\link[=plotDens]{plotDens()}},
-\code{\link[=plotRidge]{plotRidge()}}
-
 Other plot.bivariate:
 \code{\link[=plotAssoc]{plotAssoc()}},
 \code{\link[=plotBag]{plotBag()}},
@@ -113,4 +108,3 @@ Other plot.bivariate:
 \concept{graphics}
 \concept{kernel-methods}
 \concept{plot.bivariate}
-\concept{topic.graphics}

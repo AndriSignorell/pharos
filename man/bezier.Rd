@@ -39,17 +39,16 @@ Farin, G. (1993).
 Academic Press.
 }
 \seealso{
-\code{\link{arc}},
-\code{\link{lines}}
+\link[graphics:lines]{graphics::lines}
 
-Other geometry:
+Other geometry.structures:
 \code{\link[=arc]{arc()}},
 \code{\link[=band]{band()}},
-\code{\link[=canvas]{canvas()}},
-\code{\link[=polarGrid]{polarGrid()}},
+\code{\link[=circle]{circle()}},
+\code{\link[=ellipse]{ellipse()}},
 \code{\link[=polygon]{polygon()}},
-\code{\link[=rotate]{rotate()}},
-\code{\link[=shade]{shade()}},
-\code{\link[=transformXY]{transformXY()}}
+\code{\link[=regPolygon]{regPolygon()}},
+\code{\link[=ring]{ring()}}
 }
 \concept{geometry}
+\concept{geometry.structures}

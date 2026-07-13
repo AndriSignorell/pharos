@@ -116,8 +116,7 @@
 #' \code{\link[graphics]{plot}},
 #' \code{\link[stats]{lm}},
 #' \code{\link[stats]{loess}},
-#' \code{\link[bedrock]{callIf}},
-#' \code{\link{getTheme}}, \code{\link{setTheme}}
+#' \code{\link[bedrock]{callIf}}
 #'
 #' @examples
 #' \dontrun{
@@ -259,7 +258,7 @@ plotXY.default <- function(
                         legend   = leg_labels,
                         fill     = leg_fill,
                         text.col = "black", 
-                        bg       = addAlpha("white")
+                        bg       = addOpacity("white")
                       )),
                       forbidden = c("legend", "fill"))
       

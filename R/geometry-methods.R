@@ -19,14 +19,6 @@
 #' @return
 #' Invisibly returns \code{x}.
 #'
-#' @seealso
-#' \code{\link{arc}},
-#' \code{\link{circle}},
-#' \code{\link{ellipse}},
-#' \code{\link{regPolygon}},
-#' \code{\link{ring}},
-#' \code{\link[graphics]{polygon}}
-#'
 #' @examples
 #' canvas()
 #'
@@ -44,7 +36,7 @@
 #' )
 #'
 
-#' @family geometry  
+#' @family geometry.structures
 #' @concept geometry
 #'
 #'

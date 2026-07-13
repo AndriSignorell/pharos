@@ -4,13 +4,13 @@
 \alias{colToOpaque}
 \title{Equivalent Opaque Color for Transparent Color}
 \usage{
-colToOpaque(col, alpha = NULL, bg = NULL)
+colToOpaque(col, opacity = NULL, bg = NULL)
 }
 \arguments{
 \item{col}{the color as hex value (use converters below if it's not
-available). \code{col} and \code{alpha} are recycled.}
+available). \code{col} and \code{opacity} are recycled.}
 
-\item{alpha}{the alpha channel, if left to NULL the alpha channels of the
+\item{opacity}{the opacity value, if left to NULL the alpha channels of the
 colors are used}
 
 \item{bg}{the background color to be used to calculate against (default is
@@ -30,29 +30,19 @@ need to get the equivalent opaque color for the transparent color.
 }
 \examples{
 
-cols <- c(addAlpha("limegreen", 0.4), 
+cols <- c(addOpacity("limegreen", 0.4), 
           colToOpaque(colToHex("limegreen"), 0.4), 
           "limegreen")
 barplot(c(1, 1.2, 1.3), col=cols, panel.first=abline(h=0.4, lwd=10, col="grey35"))
 
 }
 \seealso{
-\code{\link[bedrock]{decToHex}},
-
-Other color:
-\code{\link[=addAlpha]{addAlpha()}},
-\code{\link[=colToRGB]{colToRGB()}},
-\code{\link[=contrastColor]{contrastColor()}},
+Other color.manipulation:
+\code{\link[=addOpacity]{addOpacity()}},
 \code{\link[=darken]{darken()}},
-\code{\link[=findColor]{findColor()}},
-\code{\link[=grayscale]{grayscale()}},
-\code{\link[=hcol]{hcol()}},
-\code{\link[=hexToRGB]{hexToRGB()}},
+\code{\link[=fade]{fade()}},
 \code{\link[=lighten]{lighten()}},
-\code{\link[=mixColors]{mixColors()}},
-\code{\link[=pal]{pal()}},
-\code{\link[=palNames]{palNames()}},
-\code{\link[=setBackCol]{setBackCol()}}
+\code{\link[=mixColors]{mixColors()}}
 }
 \concept{color}
-\concept{color-conversion}
+\concept{color.manipulation}

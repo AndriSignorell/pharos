@@ -71,7 +71,7 @@ design, to keep the unordered category fill neutral).}
 sized to the number of columns of \code{tab}, passed to
 \code{\link{plotMosaic}}.}
 \item{panel 3}{left at \code{\link{plotAssoc}}'s own default
-(\code{pal("RedWhiteBlue3", n = 100)}), a diverging palette - cell
+(\code{pal("red-white-blue-3", n = 100)}), a diverging palette - cell
 colors there encode the sign and strength of Pearson residuals, so
 a categorical or grey-ramp default would not be meaningful. Supplying
 \code{col} overrides this with the diverging palette of the user's
@@ -135,7 +135,7 @@ invisibly without drawing anything.
 \seealso{
 \code{\link[DescToolsX]{desc}}, \code{\link{plotAssoc}},
 \code{\link{plotHeatmap}}, \code{\link{plotMosaic}},
-\code{\link[graphics]{spineplot}}, \code{\link{getTheme}}
+\code{\link[graphics]{spineplot}}
 
 Other plot.s3:
 \code{\link[=plot.BlandAltman]{plot.BlandAltman()}},

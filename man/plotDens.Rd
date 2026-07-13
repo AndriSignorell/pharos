@@ -125,11 +125,6 @@ plotDens(y ~ x | g)
 \code{\link[stats]{density}}, \code{\link[graphics]{cdplot}},
 \code{\link[bedrock]{resolveFormula}}
 
-Other topic.graphics:
-\code{\link[=plotBubble]{plotBubble()}},
-\code{\link[=plotDens2D]{plotDens2D()}},
-\code{\link[=plotRidge]{plotRidge()}}
-
 Other plot.univariate:
 \code{\link[=plotArea]{plotArea()}},
 \code{\link[=plotBar]{plotBar()}},
@@ -148,4 +143,3 @@ Other plot.univariate:
 \concept{distribution-summary}
 \concept{plot.univariate}
 \concept{plotting}
-\concept{topic.graphics}

@@ -4,12 +4,12 @@
 #'
 #' Extracts substrings that occur between two delimiters.
 #'
-#' @param x A character vector.
-#' @param left A character string or regular expression marking the left
-#'   boundary.
-#' @param right A character string or regular expression marking the right
-#'   boundary.
-#' @param greedy Logical; if \code{TRUE}, the match is greedy (longest match).
+#' @param x a character vector
+#' @param left a character string or regular expression marking the left
+#'   boundary
+#' @param right a character string or regular expression marking the right
+#'   boundary
+#' @param greedy logical; if \code{TRUE}, the match is greedy (longest match).
 #'   If \code{FALSE} (default), the match is non-greedy (shortest match).
 #'
 #' @return A character vector containing the extracted substrings. If no match
@@ -42,8 +42,11 @@
 
 
 
-#' @family string  
+#' @seealso
+#' [string-overview] for an overview of all string utilities in lyra.
+#'
 #' @concept string-manipulation
+#' @concept pattern-matching
 #'
 #'
 #' @export

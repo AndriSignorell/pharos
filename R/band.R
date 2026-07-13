@@ -16,9 +16,6 @@
 #' An object inheriting from class
 #' \code{"bandGeometry"}.
 #'
-#' @seealso
-#' \code{\link{polygon}},
-#' \code{\link{ring}}
 #'
 #' @examples
 #' set.seed(18)
@@ -41,13 +38,15 @@
 #'     x = new,
 #'     y = pred[,2:3]
 #'   ),
-#'   col = addAlpha("grey80", 0.5),
+#'   col = addOpacity("grey80", 0.5),
 #'   border = NA
 #' )
 #'
-
-
-#' @family geometry  
+#'
+#'
+#' @seealso [graphics::polygon]
+#' 
+#' @family geometry.structures
 #' @concept geometry
 #'
 #'

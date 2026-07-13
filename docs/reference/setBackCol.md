@@ -30,7 +30,7 @@ setBackCol(col = "grey", region = c("plot", "figure"), border = NA)
 [`rect`](https://rdrr.io/r/graphics/rect.html)
 
 Other color:
-[`addAlpha()`](https://andrisignorell.github.io/aurora/reference/addAlpha.md),
+[`addOpacity()`](https://andrisignorell.github.io/aurora/reference/addOpacity.md),
 [`colToOpaque()`](https://andrisignorell.github.io/aurora/reference/colToOpaque.md),
 [`colToRGB()`](https://andrisignorell.github.io/aurora/reference/colToRGB.md),
 [`contrastColor()`](https://andrisignorell.github.io/aurora/reference/contrastColor.md),

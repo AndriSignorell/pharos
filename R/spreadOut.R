@@ -30,8 +30,6 @@
 #' 
 #' @note Based on code by Jim Lemon <jim@@bitwrit.com.au>
 #' 
-#' @seealso \code{\link{strheight}()}
-#' @keywords misc
 #' @examples
 #' 
 #' spreadOut(c(1, 3, 3, 3, 3, 5), 0.2)
@@ -41,10 +39,10 @@
 #' # this will almost always invoke the brute force second pass
 #' spreadOut(rnorm(10), 0.5)
 #' 
-
-
-
-#' @family graphics.utils  
+#' 
+#' @seealso \code{\link{strheight}()}
+#' 
+#' @family graphics.layout
 #' @concept annotation
 #'
 #'
@@ -110,3 +108,6 @@ spreadOut <- function(x, mindist = NULL, cex = 1.0) {
   return(x)
   
 }
+
+
+

@@ -35,8 +35,6 @@
 #' @seealso \code{\link{par}} (entries \code{pin}, \code{fin}, \code{mar}),
 #'   \code{\link{dev.cur}}
 #'
-#' @author Andri Signorell <andri@signorell.net>
-#'
 #' @examples
 #' # guard a plot against a degenerate region
 #' if (isValidPlotRegion()) {
@@ -48,8 +46,9 @@
 #' # require a larger region, e.g. for a wide correlation plot
 #' isValidPlotRegion(minPin = c(4, 3))
 #'
+#'
+#' @family graphics.layout 
 #' @export
-
 isValidPlotRegion <- function(minPin = .getOption("plot.minPin", c(0.5, 0.5))) {
   if (dev.cur() == 1L) return(TRUE)
   pin <- par("pin")

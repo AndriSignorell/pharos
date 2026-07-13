@@ -98,22 +98,14 @@
 #' plotDot(as.CI(xci))
 #' }
 #'
-#' @seealso
-#' \code{\link{plotDot}},
-#' \code{\link{is.CI}}
-#'
-#' @family confidence-intervals
-#' @concept confidence-intervals
+#' @seealso \code{\link{fmCI}}, \code{\link{plotDot}}
+#' @concept confidence-interval
 #'
 
 # ============================================================
 # CI objects
 # ============================================================
 
-#' @family ci.objects  
-#' @concept confidence-interval
-#'
-#'
 #' @export
 as.CI <- function(x, ...) {
   
@@ -252,7 +244,6 @@ as.CI.data.frame <- function(
 # list
 # ============================================================
 #' @export
-
 as.CI.list <- function(x, ...) {
   
   if (!all(vapply(x, length, integer(1)) == 3))
@@ -280,7 +271,6 @@ as.CI.list <- function(x, ...) {
 # already ci
 # ============================================================
 #' @export
-
 as.CI.CI <- function(x, ...) {
   x
 }
@@ -290,7 +280,6 @@ as.CI.CI <- function(x, ...) {
 # default
 # ============================================================
 #' @export
-
 as.CI.default <- function(x, ...) {
   
   stop(

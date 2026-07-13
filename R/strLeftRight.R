@@ -10,16 +10,12 @@
 #' 
 #' @name strLeftRight
 #' @aliases strRight strLeft
-#' @param x a vector of strings. 
+#' @param x a vector of strings
 #' @param n a positive or a negative integer, the number of characters to cut.
 #' If n is negative, this number of characters will be cut off from the right
-#' with \code{strLeft} and from the right with \code{strRight}. \cr n will be
+#' with \code{strLeft} and from the left with \code{strRight}. \cr n will be
 #' recycled. 
 #' @return the left (right) n characters of x 
-#' @seealso \code{\link{substr}}, \code{\link{strTrim}} 
-#' 
-
-
 #' @examples
 #' 
 #' strLeft("Hello world!", n=5)
@@ -32,13 +28,13 @@
 #' 
 #' strRight(c("Lorem", "ipsum", "dolor","sit","amet"), n=c(2,3))
 #' 
-
-
+#' 
+#' 
 #' @rdname strLeftRight
-#' @family string.manipulation
+#' @seealso
+#' [string-overview] for an overview of all string utilities in lyra.
 #' @concept string-manipulation
-#' @concept data-manipulation
-#'
+#' @concept reshape
 #'
 #' @export
 strLeft <- function(x, n) {

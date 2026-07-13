@@ -26,19 +26,12 @@ Colors are mixed linearly with black in RGB space:
 }
 }
 \seealso{
-Other color:
-\code{\link[=addAlpha]{addAlpha()}},
+Other color.manipulation:
+\code{\link[=addOpacity]{addOpacity()}},
 \code{\link[=colToOpaque]{colToOpaque()}},
-\code{\link[=colToRGB]{colToRGB()}},
-\code{\link[=contrastColor]{contrastColor()}},
-\code{\link[=findColor]{findColor()}},
-\code{\link[=grayscale]{grayscale()}},
-\code{\link[=hcol]{hcol()}},
-\code{\link[=hexToRGB]{hexToRGB()}},
+\code{\link[=fade]{fade()}},
 \code{\link[=lighten]{lighten()}},
-\code{\link[=mixColors]{mixColors()}},
-\code{\link[=pal]{pal()}},
-\code{\link[=palNames]{palNames()}},
-\code{\link[=setBackCol]{setBackCol()}}
+\code{\link[=mixColors]{mixColors()}}
 }
 \concept{color}
+\concept{color.manipulation}

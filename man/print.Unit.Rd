@@ -25,3 +25,13 @@ class(x) <- "Unit"
 print(x)
 
 }
+\seealso{
+Other format:
+\code{\link[=convUnit]{convUnit()}},
+\code{\link[=fm]{fm()}},
+\code{\link[=fmCI]{fmCI()}},
+\code{\link[=style]{style()}},
+\code{\link[=unit]{unit()}}
+}
+\concept{annotation}
+\concept{format}

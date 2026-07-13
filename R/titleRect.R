@@ -17,16 +17,15 @@
 #' can be used to change font and similar arguments.
 #' 
 #' @return nothing is returned
-#' @seealso \code{\link{title}}
-#' @keywords aplot
 #' @examples
 #' 
 #' plot(pressure)
 #' titleRect("pressure")
 #' 
-
-
-#' @family graphics.utils  
+#' 
+#' @seealso \code{\link{title}}
+#' 
+#' @family graphics.annotation
 #' @concept annotation
 #'
 #'

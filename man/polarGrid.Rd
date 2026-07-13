@@ -89,16 +89,14 @@ polarGrid(nr = 4, ntheta = 8, col = "gray")
 # suppress labels
 polarGrid(rlabels = NA, alabels = NA)
 
+
 }
 \seealso{
-Other geometry:
-\code{\link[=arc]{arc()}},
-\code{\link[=band]{band()}},
-\code{\link[=bezier]{bezier()}},
+\code{\link[=grid]{grid()}}
+
+Other graphics.setup:
 \code{\link[=canvas]{canvas()}},
-\code{\link[=polygon]{polygon()}},
-\code{\link[=rotate]{rotate()}},
-\code{\link[=shade]{shade()}},
-\code{\link[=transformXY]{transformXY()}}
+\code{\link[=setBackCol]{setBackCol()}}
 }
 \concept{geometry}
+\concept{graphics.setup}

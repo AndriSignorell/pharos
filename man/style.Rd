@@ -105,10 +105,12 @@ and easily change or modify them later.
 \code{style()} can be used to create new styles. It takes any of the
 arguments from \code{fm()} and combines them to an object of class
 \code{"Style"}, which then can be handed over to \code{fm()} as argument
-\code{fmt}. \cr Following will define a new format template named
+\code{fmt}. \cr
+Following will define a new format template named
 "\code{num.sty}".  Passed to \code{fm()} this will result in a number
-displayed with 2 fixed digits and a comma as big mark: \preformatted{num.sty
-<- style(digits=2, bigMark=",") fm(12222.89345, fmt=num.sty) = 12,222.89}
+displayed with 2 fixed digits and a comma as big mark:
+\preformatted{num.sty <- style(digits=2, bigMark=",") 
+fm(12222.89345, fmt=num.sty) = 12,222.89}
 This is the same result as if the arguments would have been supplied
 directly, but helps to avoid boilerplate code: \cr \code{fm(12222.89345,
 digits=2, bigMark=",")}.
@@ -159,13 +161,13 @@ fm(Sys.Date(), fmt=dat.sty)
 
 }
 \seealso{
-\code{\link{fm}()}
+\link{theme}
 
-Other theme:
-\code{\link[=getTheme]{getTheme()}}
+Other format:
+\code{\link[=convUnit]{convUnit()}},
+\code{\link[=fm]{fm()}},
+\code{\link[=fmCI]{fmCI()}},
+\code{\link[=print.Unit]{print.Unit()}},
+\code{\link[=unit]{unit()}}
 }
-\concept{graphics}
-\concept{string-formatting}
-\concept{string.format}
-\concept{theme}
-\keyword{IO}
+\concept{format}

@@ -5,8 +5,8 @@
 #' Unlike \code{as.numeric()}, this function performs a regex-based validation and
 #' does not produce warnings.
 #'
-#' @param x A character vector to be tested.
-#' @param scientific Logical; if \code{TRUE}, scientific notation (e.g., \code{"1e3"})
+#' @param x a character vector to be tested
+#' @param scientific logical; if \code{TRUE}, scientific notation (e.g., \code{"1e3"})
 #'   is allowed. Defaults to \code{FALSE}.
 #'
 #' @return A logical vector of the same length as \code{x}, indicating whether each
@@ -32,8 +32,11 @@
 
 #' @importFrom stringi stri_detect_regex
 
-#' @family string  
-#' @concept string-manipulation
+#' @seealso
+#' [string-overview] for an overview of all string utilities in lyra.
+#'
+#' @concept string-inspection
+#' @concept type-test
 #'
 #'
 #' @export

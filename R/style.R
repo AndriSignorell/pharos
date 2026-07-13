@@ -9,10 +9,12 @@
 #' \code{style()} can be used to create new styles. It takes any of the
 #' arguments from \code{fm()} and combines them to an object of class
 #' \code{"Style"}, which then can be handed over to \code{fm()} as argument
-#' \code{fmt}. \cr Following will define a new format template named
+#' \code{fmt}. \cr 
+#' Following will define a new format template named
 #' "\code{num.sty}".  Passed to \code{fm()} this will result in a number
-#' displayed with 2 fixed digits and a comma as big mark: \preformatted{num.sty
-#' <- style(digits=2, bigMark=",") fm(12222.89345, fmt=num.sty) = 12,222.89}
+#' displayed with 2 fixed digits and a comma as big mark: 
+#' \preformatted{num.sty <- style(digits=2, bigMark=",") 
+#' fm(12222.89345, fmt=num.sty) = 12,222.89}
 #' This is the same result as if the arguments would have been supplied
 #' directly, but helps to avoid boilerplate code: \cr \code{fm(12222.89345,
 #' digits=2, bigMark=",")}.
@@ -37,6 +39,7 @@
 #' 
 #' @name style
 #' @aliases style styles
+#' 
 #' @param x an object of class \code{Style} or a the name of a style, defined
 #' either in the global enviroment or in the options.
 #' @param digits integer, the desired (fixed) number of digits after the
@@ -84,10 +87,12 @@
 #' for and if not found \code{"local"} will be taken as default.
 #' @param label a description for the style
 #' @param \dots further arguments to be passed to or from methods.
+#' 
 #' @return \code{style()} returns an object of class \code{Style}\cr
 #' \code{styles()} returns a list of styles
-#' @seealso \code{\link{fm}()}
-#' @keywords IO
+#' 
+#' @seealso [theme]
+#' 
 #' @examples
 #' 
 #' # use style() to get and define new formats stored as option
@@ -116,11 +121,7 @@
 #' 
 
 #' @rdname style
-#' @family string.format
-#' @concept string-formatting
-#' @concept graphics
-#'
-#'
+#' @family format
 #' @export
 styles <- function(){
   
@@ -178,11 +179,6 @@ styles <- function(){
 
 
 #' @rdname style
-
-#' @family theme  
-#' @concept theme
-#'
-#'
 #' @export
 style <- function( x, digits = NULL, leadDigits = NULL, sci = NULL
                    , bigMark=NULL, decMark = NULL

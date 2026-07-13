@@ -30,7 +30,7 @@
 #' # and rotate
 #' sapply( (0:3) * pi/6, function(theta) {
 #'   xy <- rotate( x=x, theta=theta )
-#'   polygon(xy, col=addAlpha("blue", 0.2))
+#'   polygon(xy, col=addOpacity("blue", 0.2))
 #' } )
 #' 
 #' abline(v=0, h=0)
@@ -40,7 +40,7 @@
 
 
 
-#' @family geometry  
+#' @family geometry.transformation
 #' @concept geometry
 #'
 #'

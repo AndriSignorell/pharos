@@ -110,9 +110,6 @@ plotDot(as.CI(xci))
 
 }
 \seealso{
-\code{\link{plotDot}},
-\code{\link{is.CI}}
+\code{\link{fmCI}}, \code{\link{plotDot}}
 }
-\concept{ci.objects}
 \concept{confidence-interval}
-\concept{confidence-intervals}
