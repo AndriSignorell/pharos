@@ -7,13 +7,13 @@
 regPolygon(x = 0, y = 0, radius = 1, numVertices = 6, startAngle = 0)
 }
 \arguments{
-\item{x, y}{Centre coordinates.}
+\item{x, y}{centre coordinates.}
 
-\item{radius}{Circumradius.}
+\item{radius}{circumradius.}
 
-\item{numVertices}{Number of vertices.}
+\item{numVertices}{number of vertices.}
 
-\item{startAngle}{Staring angle in radians.}
+\item{startAngle}{staring angle in radians.}
 }
 \value{
 An object inheriting from class \code{"regPolygonGeometry"}.
@@ -33,3 +33,4 @@ Other geometry.structures:
 }
 \concept{geometry}
 \concept{geometry.structures}
+\concept{numerical-methods}

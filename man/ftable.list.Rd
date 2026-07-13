@@ -11,13 +11,13 @@
 \code{\link{tapply}}. Each element must be a vector of equal length and
 have identical names.}
 
-\item{row.vars}{Row variables passed to \code{\link{ftable}}.
+\item{row.vars}{row variables passed to \code{\link{ftable}}.
 Defaults to all dimensions except those specified in \code{col.vars}.}
 
-\item{col.vars}{Column variables passed to \code{\link{ftable}}.
+\item{col.vars}{column variables passed to \code{\link{ftable}}.
 Defaults to the dimension created from the names of the list elements.}
 
-\item{...}{Further arguments passed to \code{\link{ftable}}.}
+\item{...}{further arguments passed to \code{\link{ftable}}.}
 }
 \value{
 An object of class \code{"ftable"}.

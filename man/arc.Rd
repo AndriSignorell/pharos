@@ -15,13 +15,13 @@ arc(
 )
 }
 \arguments{
-\item{x, y}{Coordinates of the arc centre.}
+\item{x, y}{coordinates of the arc centre}
 
-\item{radiusX, radiusY}{Horizontal and vertical radius.}
+\item{radiusX, radiusY}{horizontal and vertical radius}
 
-\item{startAngle, endAngle}{Start and end angle in radians.}
+\item{startAngle, endAngle}{start and end angle in radians}
 
-\item{numPoints}{Number of points used to approximate the arc.}
+\item{numPoints}{number of points used to approximate the arc}
 }
 \value{
 An object inheriting from class \code{"arcGeometry"}.
@@ -41,3 +41,4 @@ Other geometry.structures:
 }
 \concept{geometry}
 \concept{geometry.structures}
+\concept{numerical-methods}

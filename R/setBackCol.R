@@ -24,6 +24,7 @@
 #' 
 #' @family graphics.setup
 #' @concept color
+#' @concept geometry
 #'
 #'
 #' @export

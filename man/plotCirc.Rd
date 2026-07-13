@@ -17,7 +17,7 @@ plotCirc(
 \arguments{
 \item{x}{A numeric matrix. Rows and columns define the connections between sectors.}
 
-\item{sector}{Sector styling. Can be:
+\item{sector}{sector styling. Can be:
 \itemize{
 \item a logical (\code{TRUE}/\code{FALSE}) to enable/disable sectors,
 \item a vector of colors,
@@ -25,7 +25,7 @@ plotCirc(
 }
 Colors are recycled to match the number of sectors (\code{nrow(x) + ncol(x)}).}
 
-\item{ribbon}{Ribbon styling. Can be:
+\item{ribbon}{ribbon styling. Can be:
 \itemize{
 \item a logical (\code{TRUE}/\code{FALSE}) to enable/disable ribbons,
 \item a vector of colors,
@@ -33,18 +33,18 @@ Colors are recycled to match the number of sectors (\code{nrow(x) + ncol(x)}).}
 }
 Colors are recycled to match the number of row categories (\code{nrow(x)}).}
 
-\item{labels}{Label styling. Can be:
+\item{labels}{label styling. Can be:
 \itemize{
 \item a logical (\code{TRUE}/\code{FALSE}) to enable/disable labels,
 \item a character vector of labels,
 \item or a list with parameters passed to internal label drawing.
 }}
 
-\item{gap}{Numeric. Gap between sectors in degrees.}
+\item{gap}{numeric. Gap between sectors in degrees.}
 
-\item{main}{Character. Main title of the plot.}
+\item{main}{character. Main title of the plot.}
 
-\item{...}{Additional graphical parameters passed to internal plotting functions.}
+\item{...}{additional graphical parameters passed to internal plotting functions.}
 }
 \value{
 Invisibly returns a list with label positions:

@@ -70,7 +70,7 @@
 #'   panel, analogous to \code{curve}. \code{FALSE} (default) suppresses
 #'   it.
 #'
-#' @param stamp Controls the corner stamp. \code{.useTheme} (default)
+#' @param stamp controls the corner stamp. \code{.useTheme} (default)
 #'   resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
 #'   \code{NULL}, a string, or a named list for \code{\link{stamp}()}.
 #' @param \dots further graphical parameters passed to \code{\link{par}}
@@ -78,7 +78,7 @@
 #'
 #' @seealso \code{\link{hist}}, \code{\link{boxplot}}, \code{\link{plotECDF}},
 #'   \code{\link{density}}, \code{\link{rug}}, \code{\link{layout}},
-#'   \code{\link{getTheme}}
+#'   [theme]
 #'
 #' @examples
 #' plotFdist(faithful$eruptions, na.rm = TRUE)

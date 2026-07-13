@@ -7,7 +7,7 @@
 grayscale(col)
 }
 \arguments{
-\item{col}{Vector of valid R colors.}
+\item{col}{vector of valid R colors.}
 }
 \value{
 Character vector of grayscale colors.
@@ -35,6 +35,8 @@ barplot(tmp, col=grayscale(c('red','#008100','#3636ff')))
 par(op)
 
 }
+\seealso{
+\link{color-conversion-overview}
+}
 \concept{color}
 \concept{color-conversion}
-\concept{color.conversion}

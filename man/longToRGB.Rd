@@ -7,7 +7,7 @@
 longToRGB(col)
 }
 \arguments{
-\item{col}{Integer vector.}
+\item{col}{integer vector.}
 }
 \value{
 RGB matrix.
@@ -18,4 +18,5 @@ Decode long integers into RGB values.
 \seealso{
 \link{color-conversion-overview}
 }
-\concept{color-manipulation}
+\concept{color}
+\concept{color-conversion}

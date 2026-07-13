@@ -59,3 +59,4 @@ Other graphics.annotation:
 }
 \concept{annotation}
 \concept{graphics.annotation}
+\concept{label}

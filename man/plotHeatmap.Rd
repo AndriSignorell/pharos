@@ -68,7 +68,7 @@ the tiles using \code{fm()} formatting.}
 \item{zlim}{numeric vector of length 2 specifying the range used for
 color scaling. If \code{NULL}, the range of the data is used.}
 
-\item{box}{Controls drawing of the outer frame around the tile grid,
+\item{box}{controls drawing of the outer frame around the tile grid,
 drawn via \code{rect()} at the exact cell boundaries rather than
 \code{\link[graphics]{box}()} (the initial plot suppresses the
 standard box via \code{frame.plot = FALSE}, since cell bounds differ
@@ -76,7 +76,7 @@ from the default plot region). \code{.useTheme} (default) resolves
 border color/width from \code{getTheme()$box}. \code{TRUE}/\code{FALSE},
 or a named list overriding \code{rect()} arguments for this call only.}
 
-\item{stamp}{Controls the corner stamp. \code{.useTheme} (default)
+\item{stamp}{controls the corner stamp. \code{.useTheme} (default)
 resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
 \code{NULL}, or an explicit string, as for
 \code{.withGraphicsState()} (internal).}
@@ -111,7 +111,7 @@ plotHeatmap(tab,
 }
 \seealso{
 \code{\link{plotAssoc}}, \code{\link[graphics]{image}},
-\code{\link{getTheme}}
+\link{theme}
 
 Other plot.bivariate:
 \code{\link[=plotAssoc]{plotAssoc()}},

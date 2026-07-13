@@ -15,7 +15,7 @@
 #' @param x a fitted \code{\link{loess}} object.
 #' @param col line color of the smoother. \code{.useTheme} (default)
 #'   resolves to \code{getTheme()$twin[1]} - the first of the theme's
-#'   two-color pair (see \code{\link{getTheme}}).
+#'   two-color pair (see [theme]).
 #' @param lwd line width.
 #' @param lty line type.
 #' @param type plotting type passed to \code{\link{lines}}.
@@ -50,6 +50,9 @@
 #' @family graphics.trendlines  
 #'
 #' @method lines loess
+#' @concept regression
+#' @concept annotation
+#'
 #' @export
 lines.loess <- function(
     x,

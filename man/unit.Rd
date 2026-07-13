@@ -10,7 +10,7 @@ unit(x)
 unit(x) <- value
 }
 \arguments{
-\item{x}{An R object.}
+\item{x}{an R object.}
 
 \item{value}{A single character string specifying the unit, or \code{NULL}
 to remove the unit attribute.}
@@ -55,5 +55,6 @@ Other format:
 \code{\link[=print.Unit]{print.Unit()}},
 \code{\link[=style]{style()}}
 }
-\concept{annotation}
+\concept{attribute}
 \concept{format}
+\concept{formatting}

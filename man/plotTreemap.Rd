@@ -16,12 +16,12 @@ plotTreemap(
 )
 }
 \arguments{
-\item{x}{Numeric vector of positive values determining the rectangle sizes.}
+\item{x}{numeric vector of positive values determining the rectangle sizes.}
 
-\item{groups}{Optional grouping variable. Values sharing the same group are
+\item{groups}{optional grouping variable. Values sharing the same group are
 placed within a common enclosing region.}
 
-\item{area}{Controls the appearance of individual rectangles.
+\item{area}{controls the appearance of individual rectangles.
 \itemize{
 \item \code{NULL} or \code{TRUE}: use defaults.
 \item \code{FALSE} or \code{NA}: suppress rectangle fill.
@@ -30,7 +30,7 @@ placed within a common enclosing region.}
 and \code{lwd}.
 }}
 
-\item{labels}{Controls the labels of individual rectangles.
+\item{labels}{controls the labels of individual rectangles.
 \itemize{
 \item \code{NULL} or \code{TRUE}: use default labels (\code{names(x)}).
 \item \code{FALSE} or \code{NA}: suppress labels.
@@ -39,16 +39,16 @@ and \code{lwd}.
 \code{cex}.
 }}
 
-\item{groupArea}{Controls the appearance of enclosing group regions.
+\item{groupArea}{controls the appearance of enclosing group regions.
 Uses the same conventions as \code{area}.}
 
-\item{groupLabels}{Controls the labels of enclosing group regions.
+\item{groupLabels}{controls the labels of enclosing group regions.
 Uses the same conventions as \code{labels}. By default, group names are
 used when more than one group is present.}
 
-\item{main}{Main title of the plot.}
+\item{main}{main title of the plot.}
 
-\item{...}{Additional graphical parameters passed to
+\item{...}{additional graphical parameters passed to
 \code{.applyParFromDots()}.}
 }
 \value{

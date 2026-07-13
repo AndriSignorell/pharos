@@ -67,3 +67,4 @@ Other geometry.structures:
 }
 \concept{geometry}
 \concept{geometry.structures}
+\concept{numerical-methods}

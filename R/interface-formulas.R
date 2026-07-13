@@ -9,12 +9,12 @@
 #'   gives the response values and \code{rhs} the corresponding groups
 #'   or explanatory variables.
 #'
-#' @param data An optional matrix or data frame (or similar; see
+#' @param data an optional matrix or data frame (or similar; see
 #'   \code{\link[stats]{model.frame}}) containing the variables in the
 #'   formula. By default the variables are taken from
 #'   \code{environment(formula)}.
 #'
-#' @param subset An optional vector specifying a subset of observations
+#' @param subset an optional vector specifying a subset of observations
 #'   to be used in the analysis.
 #'
 #' @param na.action A function which indicates what should happen when

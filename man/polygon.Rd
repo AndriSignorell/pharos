@@ -27,25 +27,25 @@ polygon(x, ...)
 \method{polygon}{polygonGeometry}(x, ...)
 }
 \arguments{
-\item{x}{An object to be drawn.}
+\item{x}{an object to be drawn.}
 
-\item{...}{Further arguments passed to the corresponding method.}
+\item{...}{further arguments passed to the corresponding method.}
 
-\item{y}{Numeric vector of y-coordinates.}
+\item{y}{numeric vector of y-coordinates.}
 
-\item{density}{Density of shading lines.}
+\item{density}{density of shading lines.}
 
-\item{angle}{Angle of shading lines in degrees.}
+\item{angle}{angle of shading lines in degrees.}
 
-\item{border}{Border colour.}
+\item{border}{border colour.}
 
-\item{col}{Fill colour.}
+\item{col}{fill colour.}
 
-\item{lty}{Line type.}
+\item{lty}{line type.}
 
-\item{fillOddEven}{Logical; should the odd-even rule be used for filling?}
+\item{fillOddEven}{logical; should the odd-even rule be used for filling?}
 
-\item{rule}{Character string specifying the filling rule passed to
+\item{rule}{character string specifying the filling rule passed to
 \code{\link[graphics]{polypath}}. One of \code{"evenodd"} or
 \code{"winding"}.}
 }
@@ -92,3 +92,4 @@ Other geometry.structures:
 }
 \concept{geometry}
 \concept{geometry.structures}
+\concept{numerical-methods}

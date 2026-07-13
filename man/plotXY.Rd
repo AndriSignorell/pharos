@@ -141,7 +141,7 @@ The legend is only drawn when at least one of \code{lm} or \code{loess}
 is active. \code{lm}/\code{loess} line colors are taken from the
 active theme's \code{twin} colors (\code{getTheme()$twin}).}
 
-\item{stamp}{Controls the corner stamp. \code{.useTheme} (default)
+\item{stamp}{controls the corner stamp. \code{.useTheme} (default)
 resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
 \code{NULL}, a string, or a named list for \code{\link{stamp}()}.}
 
@@ -173,7 +173,7 @@ semantics:
 
 \code{col}, \code{bg}, \code{pch}, \code{cex}, \code{grid}, and \code{box}
 default to \code{.useTheme}, deferring to the package's active theme
-(see \code{\link{getTheme}}) rather than a hardcoded value. This means
+(see \link{theme}) rather than a hardcoded value. This means
 \code{setTheme(list(points = list(col = "black")))} changes the point
 color for every call to \code{plotXY()} (and any other function using
 the same theme section) that doesn't override \code{col} explicitly.

@@ -27,37 +27,37 @@ colLegend(
 )
 }
 \arguments{
-\item{x}{Left x-coordinate of the legend or a keyword specifying
+\item{x}{left x-coordinate of the legend or a keyword specifying
 automatic placement:
 \code{"bottomright"}, \code{"bottom"}, \code{"bottomleft"},
 \code{"left"}, \code{"topleft"}, \code{"top"},
 \code{"topright"}, \code{"right"}, \code{"center"}.}
 
-\item{y}{Top y-coordinate of the legend when \code{x} is numeric.}
+\item{y}{top y-coordinate of the legend when \code{x} is numeric.}
 
-\item{col}{Vector of colors.}
+\item{col}{vector of colors.}
 
-\item{labels}{Optional vector of labels.}
+\item{labels}{optional vector of labels.}
 
-\item{width}{Width of the legend in user coordinates.}
+\item{width}{width of the legend in user coordinates.}
 
-\item{height}{Height of the legend in user coordinates.}
+\item{height}{height of the legend in user coordinates.}
 
-\item{horiz}{Logical; if \code{TRUE}, draw horizontally.}
+\item{horiz}{logical; if \code{TRUE}, draw horizontally.}
 
-\item{xjust}{Horizontal justification.}
+\item{xjust}{horizontal justification.}
 
-\item{yjust}{Vertical justification.}
+\item{yjust}{vertical justification.}
 
-\item{inset}{Inset distance(s) when keyword positioning is used.}
+\item{inset}{inset distance(s) when keyword positioning is used.}
 
-\item{region}{Character string specifying the reference region
+\item{region}{character string specifying the reference region
 used for keyword placement. One of:
 \code{"plot"}, \code{"figure"}, or \code{"device"}.}
 
-\item{border}{Border color of individual color rectangles.}
+\item{border}{border color of individual color rectangles.}
 
-\item{box}{Optional specification of an enclosing box around the
+\item{box}{optional specification of an enclosing box around the
 whole legend. Can be:
 \itemize{
 \item \code{FALSE}, \code{NULL}, or \code{NA}: no box
@@ -65,7 +65,7 @@ whole legend. Can be:
 \item named list of arguments passed to \code{\link{rect}}
 }}
 
-\item{labelAdj}{Placement of labels relative to the color blocks:
+\item{labelAdj}{placement of labels relative to the color blocks:
 \describe{
 \item{\code{"edge"}}{
 Labels are aligned with the strip edges.
@@ -75,15 +75,15 @@ Labels are centered within color blocks.
 }
 }}
 
-\item{adj}{Text alignment passed to \code{\link{text}}.}
+\item{adj}{text alignment passed to \code{\link{text}}.}
 
-\item{cex}{Character expansion for labels.}
+\item{cex}{character expansion for labels.}
 
-\item{title}{Optional title.}
+\item{title}{optional title.}
 
-\item{titleAdj}{Horizontal title adjustment.}
+\item{titleAdj}{horizontal title adjustment.}
 
-\item{...}{Additional arguments passed to \code{\link{text}}.}
+\item{...}{additional arguments passed to \code{\link{text}}.}
 }
 \value{
 Invisibly returns a list with components:
@@ -155,3 +155,4 @@ Other graphics.annotation:
 }
 \concept{annotation}
 \concept{graphics.annotation}
+\concept{label}

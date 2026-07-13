@@ -33,4 +33,5 @@ Other html:
 \code{\link{htmlSubscript}},
 \code{\link[=toHtmlTable]{toHtmlTable()}}
 }
+\concept{formatting}
 \concept{html}

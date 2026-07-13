@@ -7,9 +7,9 @@
 addOpacity(col, opacity = 0.5)
 }
 \arguments{
-\item{col}{Vector of valid R colors.}
+\item{col}{vector of valid R colors}
 
-\item{opacity}{Opacity value between 0 and 1.}
+\item{opacity}{opacity value between 0 and 1}
 }
 \value{
 Character vector of hexadecimal colors with alpha channel.
@@ -49,3 +49,4 @@ Other color.manipulation:
 }
 \concept{color}
 \concept{color.manipulation}
+\concept{transformation}

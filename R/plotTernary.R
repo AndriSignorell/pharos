@@ -17,23 +17,23 @@
 #' @param x A numeric vector, matrix, or data frame. If \code{y} and \code{z}
 #'   are provided, \code{x}, \code{y}, and \code{z} are combined into a matrix.
 #'   Otherwise, \code{x} must contain exactly three columns.
-#' @param y Optional numeric vector for the second component.
-#' @param z Optional numeric vector for the third component.
+#' @param y optional numeric vector for the second component.
+#' @param z optional numeric vector for the third component.
 #'
-#' @param ... Additional graphical parameters passed to \code{par()}.
+#' @param ... additional graphical parameters passed to \code{par()}.
 #'
-#' @param col Point color(s).
-#' @param pch Plotting symbol.
-#' @param cex Point size.
+#' @param col point color(s).
+#' @param pch plotting symbol.
+#' @param cex point size.
 #'
-#' @param grid Logical, \code{NA}, or list controlling the ternary grid.
+#' @param grid logical, \code{NA}, or list controlling the ternary grid.
 #'
-#' @param lbl Character vector of length 3 specifying axis labels.
-#' @param main Plot title.
+#' @param lbl character vector of length 3 specifying axis labels.
+#' @param main plot title.
 #'
-#' @param xlim,ylim Plot limits (usually left at defaults).
+#' @param xlim,ylim plot limits (usually left at defaults).
 #'
-#' @param add Logical; if \code{TRUE}, adds to an existing plot.
+#' @param add logical; if \code{TRUE}, adds to an existing plot.
 #'
 #' @return Invisibly returns \code{NULL}.
 #'

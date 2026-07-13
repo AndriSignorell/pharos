@@ -20,7 +20,7 @@ plotDot(
 )
 }
 \arguments{
-\item{x}{Numeric data. Can be
+\item{x}{numeric data. Can be
 \itemize{
 \item a numeric vector (estimates only),
 \item a matrix with 1 column (estimates) or 3 columns (estimate, lower,
@@ -29,40 +29,40 @@ upper),
 \code{items × (est, low, high) × groups}.
 }}
 
-\item{items}{Optional labels for the items (rows).
+\item{items}{optional labels for the items (rows).
 Defaults to \code{dimnames(x)[[1]]} if available.}
 
-\item{groups}{Optional group labels. Defaults to
+\item{groups}{optional group labels. Defaults to
 \code{dimnames(x)[[3]]} if present.}
 
-\item{main}{Main title of the plot.}
+\item{main}{main title of the plot.}
 
-\item{xlim}{Limits for the horizontal axis.}
+\item{xlim}{limits for the horizontal axis.}
 
-\item{gap}{Vertical spacing between groups.}
+\item{gap}{vertical spacing between groups.}
 
-\item{axes}{Logical; if \code{TRUE} axes are drawn.}
+\item{axes}{logical; if \code{TRUE} axes are drawn.}
 
-\item{xax}{Optional specification of the x-axis. Passed to
+\item{xax}{optional specification of the x-axis. Passed to
 (the internal function) \code{.drawAxis}.}
 
-\item{box}{Controls drawing of the plot box. \code{.useTheme} (default)
+\item{box}{controls drawing of the plot box. \code{.useTheme} (default)
 resolves to \code{getTheme()$box}. \code{TRUE}/\code{FALSE}/\code{NA},
 or a named list, as for \code{\link[graphics]{box}}.}
 
-\item{grid}{Controls drawing of the horizontal item/group grid lines.
+\item{grid}{controls drawing of the horizontal item/group grid lines.
 \code{.useTheme} (default) follows whether the active theme's grid
 section is enabled (\code{getTheme()$grid}); the line style itself
 (color/lty) stays \code{plotDot}'s own distinctive look unless
 overridden. \code{TRUE}/\code{FALSE}/\code{NA}, or a named list, as
 for \code{.drawDotGrid()} (internal).}
 
-\item{pch}{Plotting symbol specification for the points. \code{.useTheme}
+\item{pch}{plotting symbol specification for the points. \code{.useTheme}
 (default) resolves to \code{getTheme()$points} (\code{pch}/\code{col}/
 \code{bg}/\code{cex}). May also be a single value or a list of
 graphical parameters passed to \code{\link[graphics]{points}}.}
 
-\item{...}{Additional graphical parameters passed to \code{\link{par}} via
+\item{...}{additional graphical parameters passed to \code{\link{par}} via
 \code{.applyParFromDots()}.}
 }
 \value{
@@ -86,7 +86,7 @@ drawn with capped ends. Items are arranged vertically and may optionally be
 grouped.
 
 Graphical defaults for \code{box}, \code{grid}, and \code{pch} are drawn
-from the active theme (see \code{\link{getTheme}}/\code{\link{setTheme}})
+from the active theme (see \link{theme}/\code{\link{setTheme}})
 when left at their default value. Values supplied as arguments take
 precedence over theme settings.
 }

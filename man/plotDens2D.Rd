@@ -20,36 +20,36 @@ plotDens2D(
 )
 }
 \arguments{
-\item{x}{Numeric vector of x-coordinates.}
+\item{x}{numeric vector of x-coordinates.}
 
-\item{y}{Numeric vector of y-coordinates. Must have the same length as \code{x}.}
+\item{y}{numeric vector of y-coordinates. Must have the same length as \code{x}.}
 
-\item{main}{Optional main title of the plot.}
+\item{main}{optional main title of the plot.}
 
-\item{xlab, ylab}{Axis labels.}
+\item{xlab, ylab}{axis labels.}
 
-\item{xlim, ylim}{Numeric vectors of length two specifying axis limits.}
+\item{xlim, ylim}{numeric vectors of length two specifying axis limits.}
 
-\item{type}{Character string specifying the plot type.
+\item{type}{character string specifying the plot type.
 One of \code{"contour"}, \code{"image"}, or \code{"persp"}.}
 
-\item{col}{Color specification used for \code{type = "image"}. Defaults
+\item{col}{color specification used for \code{type = "image"}. Defaults
 to a reversed \code{"red-black"} sequential ramp (\code{pal()}),
 running from black (low density) to red (high density) - hardcoded
 rather than theme-driven, since this is a continuous, unidirectional
 gradient, unlike the active theme's categorical \code{palette} or
 diverging \code{twin} pair, neither of which fits a density surface.}
 
-\item{grid}{Controls drawing of the background grid. \code{.useTheme}
+\item{grid}{controls drawing of the background grid. \code{.useTheme}
 (default) follows the active theme (\code{getTheme()$grid}).
 \code{TRUE}/\code{FALSE}/\code{NA}, or a named list, as for
 \code{\link[graphics]{grid}}.}
 
-\item{box}{Controls drawing of the plot box. \code{.useTheme} (default)
+\item{box}{controls drawing of the plot box. \code{.useTheme} (default)
 resolves to \code{getTheme()$box}. \code{TRUE}/\code{FALSE}/\code{NA},
 or a named list, as for \code{\link[graphics]{box}}.}
 
-\item{...}{Additional graphical parameters passed to underlying plotting functions.}
+\item{...}{additional graphical parameters passed to underlying plotting functions.}
 }
 \value{
 Invisibly returns the result of the selected plotting call.

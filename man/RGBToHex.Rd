@@ -18,5 +18,5 @@ Convert RGB values to hexadecimal color strings.
 \seealso{
 \link{color-conversion-overview}
 }
+\concept{color}
 \concept{color-conversion}
-\concept{graphics}

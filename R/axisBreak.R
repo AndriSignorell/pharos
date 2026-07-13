@@ -6,13 +6,14 @@
 #' The \samp{pos} argument is not needed unless the user has specified a
 #' different position from the default for the axis to be broken.
 #' 
-#' @param axis which axis to break.
-#' @param breakpos where to place the break in user units.
-#' @param pos position of the axis (see \link{axis}).
-#' @param bgcol the color of the plot background.
-#' @param breakcol the color of the "break" marker.
-#' @param style Either \samp{gap}, \samp{slash} or \samp{zigzag}.
-#' @param brw break width relative to plot width.
+#' @param axis which axis to break
+#' @param breakpos where to place the break in user units
+#' @param pos position of the axis (see \link{axis})
+#' @param bgcol the color of the plot background
+#' @param breakcol the color of the "break" marker
+#' @param style either \samp{gap}, \samp{slash} or \samp{zigzag}
+#' @param brw break width relative to plot width
+#' 
 #' @note There is some controversy about the propriety of using discontinuous
 #' coordinates for plotting, and thus axis breaks. Discontinuous coordinates
 #' allow widely separated groups of values or outliers to appear without
@@ -33,6 +34,7 @@
 #' 
 #' @family graphics.layout
 #' @concept annotation
+#' @concept label
 #'
 #'
 #' @export

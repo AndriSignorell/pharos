@@ -15,19 +15,19 @@ axisBreak(
 )
 }
 \arguments{
-\item{axis}{which axis to break.}
+\item{axis}{which axis to break}
 
-\item{breakpos}{where to place the break in user units.}
+\item{breakpos}{where to place the break in user units}
 
-\item{pos}{position of the axis (see \link{axis}).}
+\item{pos}{position of the axis (see \link{axis})}
 
-\item{bgcol}{the color of the plot background.}
+\item{bgcol}{the color of the plot background}
 
-\item{breakcol}{the color of the "break" marker.}
+\item{breakcol}{the color of the "break" marker}
 
-\item{style}{Either \samp{gap}, \samp{slash} or \samp{zigzag}.}
+\item{style}{either \samp{gap}, \samp{slash} or \samp{zigzag}}
 
-\item{brw}{break width relative to plot width.}
+\item{brw}{break width relative to plot width}
 }
 \description{
 Places a break mark on an axis on an existing plot.
@@ -68,3 +68,4 @@ Other graphics.layout:
 }
 \concept{annotation}
 \concept{graphics.layout}
+\concept{label}

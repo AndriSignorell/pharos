@@ -7,9 +7,9 @@
 colToHex(col, opacity = 1)
 }
 \arguments{
-\item{col}{Vector of valid R colors.}
+\item{col}{vector of valid R colors.}
 
-\item{opacity}{Opacity value between 0 and 1.}
+\item{opacity}{opacity value between 0 and 1.}
 }
 \value{
 Character vector of hexadecimal colors.
@@ -20,5 +20,5 @@ Convert any valid R color specification to hexadecimal colors.
 \seealso{
 \link{color-conversion-overview}
 }
+\concept{color}
 \concept{color-conversion}
-\concept{graphics}

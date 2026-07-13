@@ -25,11 +25,11 @@
 #'   of \code{"bottomright"}, \code{"bottom"}, \code{"bottomleft"},
 #'   \code{"left"}, \code{"topleft"}, \code{"top"}, \code{"topright"},
 #'   \code{"right"}, or \code{"center"}.  Partial matching is supported.
-#' @param region  One of \code{"figure"} (default), \code{"plot"}, or
+#' @param region  one of \code{"figure"} (default), \code{"plot"}, or
 #'   \code{"device"}.  Determines the coordinate region used.
-#' @param cex Character expansion factor. If \code{NULL} (default),
+#' @param cex character expansion factor. If \code{NULL} (default),
 #'   the current \code{par("cex")} is used.
-#' @param inset   Inset distance from the boundary, specified in lines of
+#' @param inset   inset distance from the boundary, specified in lines of
 #'   text (character heights/widths).  May be a scalar (applied to both
 #'   x and y) or a length-2 vector (x inset, y inset).  Default \code{0}.
 #'
@@ -66,6 +66,8 @@
 #'
 #' @family graphics.layout
 #' @concept annotation
+#' @concept label
+#' @concept geometry
 #'
 #' @export
 abcCoords <- function(x       = "topleft",

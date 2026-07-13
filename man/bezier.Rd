@@ -7,11 +7,11 @@
 bezier(x, y = NULL, numPoints = 100)
 }
 \arguments{
-\item{x, y}{Numeric vectors of control points.
+\item{x, y}{numeric vectors of control points.
 Alternatively, \code{x} may be a list with components
 \code{x} and \code{y}.}
 
-\item{numPoints}{Number of points used to approximate the curve.}
+\item{numPoints}{number of points used to approximate the curve.}
 }
 \value{
 An object inheriting from class
@@ -52,3 +52,4 @@ Other geometry.structures:
 }
 \concept{geometry}
 \concept{geometry.structures}
+\concept{numerical-methods}

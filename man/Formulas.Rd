@@ -8,12 +8,12 @@
 gives the response values and \code{rhs} the corresponding groups
 or explanatory variables.}
 
-\item{data}{An optional matrix or data frame (or similar; see
+\item{data}{an optional matrix or data frame (or similar; see
 \code{\link[stats]{model.frame}}) containing the variables in the
 formula. By default the variables are taken from
 \code{environment(formula)}.}
 
-\item{subset}{An optional vector specifying a subset of observations
+\item{subset}{an optional vector specifying a subset of observations
 to be used in the analysis.}
 
 \item{na.action}{A function which indicates what should happen when

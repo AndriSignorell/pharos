@@ -65,4 +65,5 @@ Other graphics.layout:
 \code{\link[=mar]{mar()}},
 \code{\link[=spreadOut]{spreadOut()}}
 }
+\concept{geometry}
 \concept{graphics.layout}

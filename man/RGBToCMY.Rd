@@ -9,7 +9,7 @@ rgbToCmy(col, maxColorValue = 1)
 \arguments{
 \item{col}{RGB matrix or hexadecimal colors.}
 
-\item{maxColorValue}{Maximum channel value.}
+\item{maxColorValue}{maximum channel value.}
 }
 \value{
 Numeric CMY matrix.
@@ -20,6 +20,5 @@ Convert RGB colors to the CMY color space.
 \seealso{
 \link{color-conversion-overview}
 }
+\concept{color}
 \concept{color-conversion}
-\concept{color-space}
-\concept{graphics}

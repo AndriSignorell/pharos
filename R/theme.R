@@ -152,18 +152,55 @@
 #' nested value, supply the complete sub-list, e.g.
 #' \code{setTheme(list(grid = list(col = "red", lwd = 1, lty = "dotted")))}.
 #'
-#' \tabular{lll}{
-#'   \strong{component} \tab \strong{default}                          \tab \strong{used by / for} \cr
-#'   \code{par}          \tab \code{col.axis="grey40", las=1, cex=1.1}   \tab Global \code{par()} pass applied by every \code{.applyParFromDots()} call (axis label color, axis label orientation, global text scaling). \cr
-#'   \code{grid}         \tab \code{col="grey80", lwd=1, lty="dotted"}, plus \code{group.*} variants \tab Background grid lines, via \code{.drawGrid()}. The \code{group.*} entries style a subordinate/secondary grid (e.g. group separators) where a function draws one. \cr
-#'   \code{box}          \tab \code{col="grey50", lwd=1, lty="solid"}    \tab The frame drawn around a plot region, via \code{.drawBox()}. \cr
-#'   \code{points}       \tab \code{pch=21, col="grey50", bg=addOpacity("grey"), cex=1.1} \tab Default point styling for scatterplot-like functions (e.g. \code{plotXY()}, \code{plotDot()}). \cr
-#'   \code{twin}         \tab \code{pal("helsana")[c(6, 1)]}             \tab A fixed pair of colors for contexts that inherently need exactly two contrasting colors (e.g. a fit line and a smoother in \code{plotXY()}, the two poles of a diverging color ramp in \code{plotCor()}, a single accent color via \code{twin[1]} in \code{\link{lines.loess}}/\code{plotQQ()}'s confidence band). Never used as a substitute for \code{palette} when more than two colors are needed. \cr
-#'   \code{palette}      \tab \code{"helsana"}                          \tab Name of the qualitative (categorical) palette used whenever more than two unordered colors are needed (e.g. \code{plotMosaic()}'s fill colors), resolved via \code{\link{pal}()}. Deliberately not used for sequential or diverging numeric scales - see the next point. \cr
-#'   (none - by design) \tab -                                          \tab Sequential/diverging numeric color scales (e.g. \code{plotDens2D()}'s density heatmap, \code{plotHeatmap()}'s cell shading) are deliberately \emph{not} theme-driven; they use a hardcoded, purpose-built palette via \code{\link{pal}()} instead (e.g. \code{pal("red-black")}, \code{pal("Blues")}). Neither \code{palette} (categorical) nor \code{twin} (a fixed pair) is the right semantic fit for an ordered, continuous scale - see \code{\link{pal}} for the registry of named continuous palettes. \cr
-#'   \code{bar}          \tab \code{col="grey80", border=NA}             \tab Default bar fill/border in \code{plotBar()}. \cr
-#'   \code{sty}          \tab \code{abs="abs.sty", perc="per.sty", num="num.sty", pval="pval.sty"} \tab Names of \code{\link{fm}()} format styles (see \code{\link{styles}()}) used for absolute counts, percentages, plain numbers, and p-values respectively. \cr
-#'   \code{stamp}        \tab \code{expression(...)} - unevaluated         \tab The corner stamp text drawn by every \code{\link{stamp}()}/\code{.withGraphicsState()} call. Stored as an unevaluated \code{expression()} and \code{eval()}'d at draw time (not at theme-load or theme-set time), so it always reflects the current user and date rather than freezing whatever they were when the theme was defined or last changed. Default: \code{"<username> / <YYYY-MM-DD>"}. \cr
+#' \describe{
+#'   \item{\code{par}}{\code{col.axis="grey40", las=1, cex=1.1}. Global
+#'     \code{par()} pass applied by every \code{.applyParFromDots()} call
+#'     (axis label color, axis label orientation, global text scaling).}
+#'   \item{\code{grid}}{\code{col="grey80", lwd=1, lty="dotted"}, plus
+#'     \code{group.*} variants. Background grid lines, via
+#'     \code{.drawGrid()}. The \code{group.*} entries style a
+#'     subordinate/secondary grid (e.g. group separators) where a
+#'     function draws one.}
+#'   \item{\code{box}}{\code{col="grey50", lwd=1, lty="solid"}. The frame
+#'     drawn around a plot region, via \code{.drawBox()}.}
+#'   \item{\code{points}}{\code{pch=21, col="grey50",
+#'     bg=addOpacity("grey"), cex=1.1}. Default point styling for
+#'     scatterplot-like functions (e.g. \code{plotXY()}, \code{plotDot()}).}
+#'   \item{\code{twin}}{\code{pal("helsana")[c(6, 1)]}. A fixed pair of
+#'     colors for contexts that inherently need exactly two contrasting
+#'     colors (e.g. a fit line and a smoother in \code{plotXY()}, the two
+#'     poles of a diverging color ramp in \code{plotCor()}, a single
+#'     accent color via \code{twin[1]} in
+#'     \code{\link{lines.loess}}/\code{plotQQ()}'s confidence band). Never
+#'     used as a substitute for \code{palette} when more than two colors
+#'     are needed.}
+#'   \item{\code{palette}}{\code{"helsana"}. Name of the qualitative
+#'     (categorical) palette used whenever more than two unordered colors
+#'     are needed (e.g. \code{plotMosaic()}'s fill colors), resolved via
+#'     \code{\link{pal}()}. Deliberately not used for sequential or
+#'     diverging numeric scales -- see the next item.}
+#'   \item{(none -- by design)}{Sequential/diverging numeric color scales
+#'     (e.g. \code{plotDens2D()}'s density heatmap, \code{plotHeatmap()}'s
+#'     cell shading) are deliberately \emph{not} theme-driven; they use a
+#'     hardcoded, purpose-built palette via \code{\link{pal}()} instead
+#'     (e.g. \code{pal("red-black")}, \code{pal("Blues")}). Neither
+#'     \code{palette} (categorical) nor \code{twin} (a fixed pair) is the
+#'     right semantic fit for an ordered, continuous scale -- see
+#'     \code{\link{pal}} for the registry of named continuous palettes.}
+#'   \item{\code{bar}}{\code{col="grey80", border=NA}. Default bar
+#'     fill/border in \code{plotBar()}.}
+#'   \item{\code{sty}}{\code{abs="abs.sty", perc="per.sty", num="num.sty",
+#'     pval="pval.sty"}. Names of \code{\link{fm}()} format styles (see
+#'     \code{\link{styles}()}) used for absolute counts, percentages,
+#'     plain numbers, and p-values respectively.}
+#'   \item{\code{stamp}}{\code{expression(...)} -- unevaluated. The corner
+#'     stamp text drawn by every
+#'     \code{\link{stamp}()}/\code{.withGraphicsState()} call. Stored as
+#'     an unevaluated \code{expression()} and \code{eval()}'d at draw
+#'     time (not at theme-load or theme-set time), so it always reflects
+#'     the current user and date rather than freezing whatever they were
+#'     when the theme was defined or last changed. Default:
+#'     \code{"<username> / <YYYY-MM-DD>"}.}
 #' }
 #'
 #' @section The \code{.useTheme} sentinel:

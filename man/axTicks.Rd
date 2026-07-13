@@ -11,17 +11,17 @@ axTicks.POSIXct(side, x, at, format, labels = TRUE, ...)
 axTicks.Date(side = 1, x, ...)
 }
 \arguments{
-\item{side}{See \link{axis}.}
+\item{side}{see \link[graphics:axis]{graphics::axis}}
 
-\item{x, at}{A date-time or date object.}
+\item{x, at}{date-time or date object.}
 
-\item{format}{See strptime.}
+\item{format}{see \link[base:strptime]{base::strptime}}
 
-\item{labels}{Either a logical value specifying whether annotations are to
+\item{labels}{either a logical value specifying whether annotations are to
 be made at the tickmarks, or a vector of character strings to be placed at
-the tickpoints.}
+the tickpoints}
 
-\item{\dots}{Further arguments to be passed from or to other methods.}
+\item{\dots}{further arguments to be passed from or to other methods}
 }
 \value{
 numeric vector of coordinate values at which axis tickmarks can be
@@ -62,6 +62,6 @@ Other graphics.layout:
 \code{\link[=mar]{mar()}},
 \code{\link[=spreadOut]{spreadOut()}}
 }
-\concept{date-handling}
-\concept{graphics}
+\concept{date-time}
 \concept{graphics.layout}
+\concept{label}

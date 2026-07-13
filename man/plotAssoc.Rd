@@ -55,7 +55,7 @@ printed inside each cell. If \code{FALSE} (default), no labels are shown.
 A character format string (e.g. \code{"\%.1f"}) can also be passed for
 custom formatting.}
 
-\item{stamp}{Controls the corner stamp. \code{.useTheme} (default)
+\item{stamp}{controls the corner stamp. \code{.useTheme} (default)
 resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
 \code{NULL}, or an explicit string, as for
 \code{.withGraphicsState()} (internal).}
@@ -137,5 +137,6 @@ Other plot.bivariate:
 \code{\link[=plotMosaic]{plotMosaic()}},
 \code{\link[=plotXY]{plotXY()}}
 }
+\concept{bivariate}
 \concept{frequency-table}
 \concept{plot.bivariate}

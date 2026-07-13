@@ -20,7 +20,7 @@
 
 \item{col}{line color of the smoother. \code{.useTheme} (default)
 resolves to \code{getTheme()$twin[1]} - the first of the theme's
-two-color pair (see \code{\link{getTheme}}).}
+two-color pair (see \link{theme}).}
 
 \item{lwd}{line width.}
 
@@ -79,4 +79,6 @@ Other graphics.trendlines:
 \code{\link[=lines.lm]{lines.lm()}},
 \code{\link{splineCI}}
 }
+\concept{annotation}
 \concept{graphics.trendlines}
+\concept{regression}

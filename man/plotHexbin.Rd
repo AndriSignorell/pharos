@@ -20,30 +20,30 @@ plotHexbin(
 )
 }
 \arguments{
-\item{x}{Numeric vector of x-values.}
+\item{x}{numeric vector of x-values.}
 
-\item{y}{Numeric vector of y-values.}
+\item{y}{numeric vector of y-values.}
 
-\item{bins}{Number of hexagons across the x-axis.}
+\item{bins}{number of hexagons across the x-axis.}
 
-\item{col}{Colours used for the count scale. If \code{NULL}, a default
+\item{col}{colours used for the count scale. If \code{NULL}, a default
 sequential palette is used.}
 
-\item{border}{Border colour of the hexagons.}
+\item{border}{border colour of the hexagons.}
 
-\item{grid}{Logical or list controlling the background grid.}
+\item{grid}{logical or list controlling the background grid.}
 
-\item{xlim}{Limits for the x-axis.}
+\item{xlim}{limits for the x-axis.}
 
-\item{ylim}{Limits for the y-axis.}
+\item{ylim}{limits for the y-axis.}
 
-\item{main}{Main title.}
+\item{main}{main title.}
 
-\item{xlab}{Label for the x-axis.}
+\item{xlab}{label for the x-axis.}
 
-\item{ylab}{Label for the y-axis.}
+\item{ylab}{label for the y-axis.}
 
-\item{...}{Additional graphical parameters passed to
+\item{...}{additional graphical parameters passed to
 \code{.applyParFromDots()}.}
 }
 \value{

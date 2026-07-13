@@ -13,7 +13,7 @@ pal(name, n = NA, opacity = 1)
 \item{name}{character or integer. Palette name (full match via
 \code{\link[base]{match.arg}}) or index into \code{\link{palNames}()}.
 If missing, returns the palette named in the active theme
-(\code{getTheme()$palette}, see \code{\link{getTheme}}).}
+(\code{getTheme()$palette}, see \link{theme}).}
 
 \item{n}{integer, number of colors to return. Default \code{NA} returns
 the colors as contained in the palette.}
@@ -71,5 +71,6 @@ Other color.palettes:
 \code{\link[=hcol]{hcol()}},
 \code{\link[=palNames]{palNames()}}
 }
-\concept{color palette ramp discrete continuous}
+\concept{color}
 \concept{color.palettes}
+\concept{palette}

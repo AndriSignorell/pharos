@@ -17,13 +17,13 @@ of \code{"bottomright"}, \code{"bottom"}, \code{"bottomleft"},
 \code{"left"}, \code{"topleft"}, \code{"top"}, \code{"topright"},
 \code{"right"}, or \code{"center"}.  Partial matching is supported.}
 
-\item{region}{One of \code{"figure"} (default), \code{"plot"}, or
+\item{region}{one of \code{"figure"} (default), \code{"plot"}, or
 \code{"device"}.  Determines the coordinate region used.}
 
-\item{cex}{Character expansion factor. If \code{NULL} (default),
+\item{cex}{character expansion factor. If \code{NULL} (default),
 the current \code{par("cex")} is used.}
 
-\item{inset}{Inset distance from the boundary, specified in lines of
+\item{inset}{inset distance from the boundary, specified in lines of
 text (character heights/widths).  May be a scalar (applied to both
 x and y) or a length-2 vector (x inset, y inset).  Default \code{0}.}
 }
@@ -90,4 +90,6 @@ Other graphics.layout:
 \code{\link[=spreadOut]{spreadOut()}}
 }
 \concept{annotation}
+\concept{geometry}
 \concept{graphics.layout}
+\concept{label}

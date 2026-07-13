@@ -23,20 +23,20 @@
 #' }
 #' Groups are handled similarly to \code{boxplot()}.
 #'
-#' @param x Numeric vector, list of numeric vectors, or first group.
+#' @param x numeric vector, list of numeric vectors, or first group.
 #'
-#' @param ... Additional data vectors (unnamed) or graphical parameters
+#' @param ... additional data vectors (unnamed) or graphical parameters
 #'   passed to \code{par()}.
 #'
-#' @param main,xlab,ylab Plot labels.
-#' @param xlim,ylim Axis limits.
+#' @param main,xlab,ylab plot labels.
+#' @param xlim,ylim axis limits.
 #'
-#' @param horizontal Logical; if \code{TRUE}, draws horizontal violins.
-#' @param at Numeric positions of the groups.
-#' @param names Optional group labels.
-#' @param add Logical; if \code{TRUE}, adds to an existing plot.
-#' @param bw Bandwidth specification passed to \code{density()}.
-#' @param trim Logical. If \code{TRUE} (default), the kernel density
+#' @param horizontal logical; if \code{TRUE}, draws horizontal violins.
+#' @param at numeric positions of the groups.
+#' @param names optional group labels.
+#' @param add logical; if \code{TRUE}, adds to an existing plot.
+#' @param bw bandwidth specification passed to \code{density()}.
+#' @param trim logical. If \code{TRUE} (default), the kernel density
 #'   estimate of each group is restricted to the observed data range
 #'   (\code{from = min(x)}, \code{to = max(x)}), so the violin never
 #'   extends beyond the actual data — matching the default behavior of
@@ -45,20 +45,20 @@
 #'   \code{cut * bw} beyond \code{range(x)} and may produce violins that
 #'   reach into implausible values (e.g. scores above 100 or below 0).
 #'
-#' @param col Fill color(s) of the violins.
-#' @param border Border color(s) of the violins.
-#' @param lwd Line width for violin borders.
-#' @param box Logical or list controlling the boxplot overlay
+#' @param col fill color(s) of the violins.
+#' @param border border color(s) of the violins.
+#' @param lwd line width for violin borders.
+#' @param box logical or list controlling the boxplot overlay
 #'   (see Details).
-#' @param grid Logical, \code{NA}, or list controlling background grid.
+#' @param grid logical, \code{NA}, or list controlling background grid.
 #'
-#' @param quantiles Optional numeric vector of probabilities for drawing
+#' @param quantiles optional numeric vector of probabilities for drawing
 #'   quantile lines inside each violin.
 #'
 #' @param formula A formula of the form y ~ group.
-#' @param data Optional data frame.
-#' @param subset Optional subset expression.
-#' @param na.action Function to handle missing values.
+#' @param data optional data frame.
+#' @param subset optional subset expression.
+#' @param na.action function to handle missing values.
 #'
 #' @name plotViolin
 #'

@@ -64,6 +64,36 @@ usethis::use_data(d.prefix, d.units, internal = TRUE)
 
 
 
+## barplot für helpfile grafik
+{
+
+  bplot <- function(i, pos) {
+    b <- plotBar(unname(VADeaths[, i]), col="lightsteelblue", border=FALSE, yaxt="n", xlab="",
+                 mar=c(1,1,4,0.5), grid=FALSE, main=gettextf("pos=%s", dQuote(pos)), 
+                 cex.main=1, font.main=1, stamp=NA)
+    barText(VADeaths[, i], b=b, horiz = FALSE, cex=1.1, border=NA, xpd=NA, pos = pos)
+  }
+  
+  
+  
+  png(filename = "c:/temp/bartext.png", width=1000, height=1000/2, 
+      res=120)
+  {
+    par(mfrow=c(1,4), xpd=NA)
+    
+    bplot(1, "topout")
+    bplot(1, "topin")
+    bplot(1, "mid")
+    bplot(1, "bottomin")
+  }
+  dev.off()
+
+}
+
+
+
+
+
 
 
 x <- regPolygon(numVertices = 3)

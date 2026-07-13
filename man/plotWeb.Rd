@@ -108,7 +108,7 @@ plotWeb(m2, labels = list(las = 2))
 
 }
 \seealso{
-\code{\link{plotCor}}, \code{\link{getTheme}}
+\code{\link{plotCor}}, \link{theme}
 
 Other plot.special:
 \code{\link[=plotBinaryTree]{plotBinaryTree()}},

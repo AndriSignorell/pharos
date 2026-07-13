@@ -10,7 +10,7 @@
 #' drawn with capped ends. Items are arranged vertically and may optionally be
 #' grouped.
 #'
-#' @param x Numeric data. Can be
+#' @param x numeric data. Can be
 #'   \itemize{
 #'     \item a numeric vector (estimates only),
 #'     \item a matrix with 1 column (estimates) or 3 columns (estimate, lower,
@@ -18,36 +18,36 @@
 #'     \item a 3D array of dimension
 #'       \code{items × (est, low, high) × groups}.
 #'   }
-#' @param items Optional labels for the items (rows).
+#' @param items optional labels for the items (rows).
 #'   Defaults to \code{dimnames(x)[[1]]} if available.
-#' @param groups Optional group labels. Defaults to
+#' @param groups optional group labels. Defaults to
 #'   \code{dimnames(x)[[3]]} if present.
-#' @param main Main title of the plot.
-#' @param xlim Limits for the horizontal axis.
-#' @param gap Vertical spacing between groups.
-#' @param axes Logical; if \code{TRUE} axes are drawn.
-#' @param xax Optional specification of the x-axis. Passed to
+#' @param main main title of the plot.
+#' @param xlim limits for the horizontal axis.
+#' @param gap vertical spacing between groups.
+#' @param axes logical; if \code{TRUE} axes are drawn.
+#' @param xax optional specification of the x-axis. Passed to
 #'   (the internal function) \code{.drawAxis}.
-#' @param box Controls drawing of the plot box. \code{.useTheme} (default)
+#' @param box controls drawing of the plot box. \code{.useTheme} (default)
 #'   resolves to \code{getTheme()$box}. \code{TRUE}/\code{FALSE}/\code{NA},
 #'   or a named list, as for \code{\link[graphics]{box}}.
-#' @param grid Controls drawing of the horizontal item/group grid lines.
+#' @param grid controls drawing of the horizontal item/group grid lines.
 #'   \code{.useTheme} (default) follows whether the active theme's grid
 #'   section is enabled (\code{getTheme()$grid}); the line style itself
 #'   (color/lty) stays \code{plotDot}'s own distinctive look unless
 #'   overridden. \code{TRUE}/\code{FALSE}/\code{NA}, or a named list, as
 #'   for \code{.drawDotGrid()} (internal).
 #'   
-#' @param pch Plotting symbol specification for the points. \code{.useTheme}
+#' @param pch plotting symbol specification for the points. \code{.useTheme}
 #'   (default) resolves to \code{getTheme()$points} (\code{pch}/\code{col}/
 #'   \code{bg}/\code{cex}). May also be a single value or a list of
 #'   graphical parameters passed to \code{\link[graphics]{points}}.
-#' @param ... Additional graphical parameters passed to \code{\link{par}} via
+#' @param ... additional graphical parameters passed to \code{\link{par}} via
 #'   \code{.applyParFromDots()}.
 #'
 #' @details
 #' Graphical defaults for \code{box}, \code{grid}, and \code{pch} are drawn
-#' from the active theme (see \code{\link{getTheme}}/\code{\link{setTheme}})
+#' from the active theme (see [theme]/\code{\link{setTheme}})
 #' when left at their default value. Values supplied as arguments take
 #' precedence over theme settings.
 #'

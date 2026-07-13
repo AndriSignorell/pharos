@@ -37,4 +37,5 @@ Other graphics.setup:
 \code{\link[=polarGrid]{polarGrid()}}
 }
 \concept{color}
+\concept{geometry}
 \concept{graphics.setup}

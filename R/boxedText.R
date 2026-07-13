@@ -13,7 +13,7 @@
 #' calls) to expressions, and vectors and other classed objects to character
 #' vectors by as.character. If labels is longer than x and y, the coordinates
 #' are recycled to the length of labels. 
-#' @param adj The value of adj determines the way in which text strings are
+#' @param adj the value of adj determines the way in which text strings are
 #' justified.  A value of 0 produces left-justified text, 0.5 (the default)
 #' centered text and 1 right-justified text.  (Any value in \verb{[0, 1]} is allowed,
 #' and on most devices values outside that interval will also work.)  Note that
@@ -36,8 +36,8 @@
 #' @param col,font the color and (if vfont = NULL) font to be used, possibly
 #' vectors. These default to the values of the global graphical parameters in
 #' \code{par()}. 
-#' @param srt The string rotation in degrees.  
-#' @param xpad,ypad The proportion of the rectangles to the extent of the text
+#' @param srt the string rotation in degrees.  
+#' @param xpad,ypad the proportion of the rectangles to the extent of the text
 #' within. 
 #' @param density the density of shading lines, in lines per inch. The default
 #' value of \code{NULL} means that no shading lines are drawn.  A zero value of
@@ -60,12 +60,12 @@
 #'   gives the response values and \code{rhs} the corresponding groups
 #'   or explanatory variables.
 #'
-#' @param data An optional matrix or data frame (or similar; see
+#' @param data an optional matrix or data frame (or similar; see
 #'   \code{\link[stats]{model.frame}}) containing the variables in the
 #'   formula. By default the variables are taken from
 #'   \code{environment(formula)}.
 #'
-#' @param subset An optional vector specifying a subset of observations
+#' @param subset an optional vector specifying a subset of observations
 #'   to be used in the analysis.
 #'
 #' 
@@ -88,6 +88,7 @@
 #' 
 #' @family graphics.annotation
 #' @concept annotation
+#' @concept label
 #'
 #'
 #' @rdname boxedText

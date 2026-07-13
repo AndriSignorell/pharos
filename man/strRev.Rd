@@ -33,5 +33,4 @@ strRev("äöü")
 
 \link{string-overview} for an overview of all string utilities in lyra.
 }
-\concept{ordering}
 \concept{string-manipulation}

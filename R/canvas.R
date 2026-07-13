@@ -25,6 +25,9 @@
 #' 
 #' @family graphics.setup
 #'
+#' @concept geometry
+#' @concept numerical-methods
+#'
 #' @export
 canvas <- function(xlim=NULL, ylim=xlim, main=NULL, 
                    asp=1, usrbg="white", ...){

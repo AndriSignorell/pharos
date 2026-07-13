@@ -11,7 +11,7 @@
 #' 
 #' For \R results may not be satisfactory if \code{par(mfrow=)} is in effect.
 #' 
-#' @param text Character string, expression, or toggle controlling the
+#' @param text character string, expression, or toggle controlling the
 #'   stamp text. \code{.useTheme} (default) or \code{TRUE} resolve to
 #'   \code{getTheme()$stamp}, evaluated lazily at draw time. \code{FALSE},
 #'   \code{NULL}, or \code{NA} suppress the stamp. Any other string or
@@ -31,6 +31,7 @@
 #' 
 #' @family graphics.annotation
 #' @concept annotation
+#' @concept label
 #'
 #'
 #' @export

@@ -7,7 +7,7 @@
 hcol(...)
 }
 \arguments{
-\item{...}{Character strings naming the colors to retrieve. Valid names are:
+\item{...}{character strings naming the colors to retrieve. Valid names are:
 \code{"blue"}, \code{"red"}, \code{"orange"}, \code{"yellow"},
 \code{"ecru"}, \code{"green"}, \code{"pink"}, \code{"moss"},
 \code{"slate"}, \code{"sand"}, \code{"brown"}, \code{"plum"}.

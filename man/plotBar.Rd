@@ -26,10 +26,10 @@ plotBar(
 \item{height}{A vector or matrix of bar heights passed directly to
 \code{\link[graphics]{barplot}}.}
 
-\item{main, xlab, ylab}{Optional plot labels. Defaults follow
+\item{main, xlab, ylab}{optional plot labels. Defaults follow
 base graphics behaviour.}
 
-\item{yax}{Controls drawing of the numeric axis.
+\item{yax}{controls drawing of the numeric axis.
 
 Supported values are
 \describe{
@@ -39,19 +39,19 @@ Supported values are
 \item{\code{list(...)}}{custom axis parameters passed to the axis drawing routine}
 }}
 
-\item{beside}{Logical. If \code{TRUE}, bars are drawn side-by-side.
+\item{beside}{logical. If \code{TRUE}, bars are drawn side-by-side.
 If \code{FALSE} (default), bars are stacked.}
 
-\item{horiz}{Logical. If \code{TRUE}, bars are drawn horizontally.
+\item{horiz}{logical. If \code{TRUE}, bars are drawn horizontally.
 Defaults to \code{FALSE}.}
 
-\item{col}{Bar fill colours. \code{.useTheme} (default) resolves to
+\item{col}{bar fill colours. \code{.useTheme} (default) resolves to
 \code{getTheme()$bar$col}.}
 
-\item{border}{Bar border colour. \code{.useTheme} (default) resolves to
+\item{border}{bar border colour. \code{.useTheme} (default) resolves to
 \code{getTheme()$bar$border}.}
 
-\item{grid}{Controls drawing of grid lines.
+\item{grid}{controls drawing of grid lines.
 Can be:
 \itemize{
 \item \code{.useTheme} (default): follow the active theme
@@ -63,22 +63,22 @@ the value axis (e.g. horizontal lines only for vertical bars)
 overriding the theme/function defaults for this call only
 }}
 
-\item{box}{Controls drawing of the plot box. \code{.useTheme} (default)
+\item{box}{controls drawing of the plot box. \code{.useTheme} (default)
 resolves to \code{getTheme()$box}. \code{TRUE}/\code{FALSE}/\code{NA},
 or a named list, as for \code{grid}.}
 
-\item{text}{Optional list of arguments passed to \code{\link{barText}}
+\item{text}{optional list of arguments passed to \code{\link{barText}}
 to draw value labels on bars.}
 
-\item{connlines}{Optional list of arguments controlling connecting
+\item{connlines}{optional list of arguments controlling connecting
 lines between stacked bars. Only supported when
 \code{beside = FALSE}.}
 
-\item{stamp}{Controls the corner stamp. \code{.useTheme} (default)
+\item{stamp}{controls the corner stamp. \code{.useTheme} (default)
 resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/\code{NULL},
 or an explicit string, as for \code{.withGraphicsState()} (internal).}
 
-\item{...}{Additional arguments passed to \code{\link[graphics]{barplot}}
+\item{...}{additional arguments passed to \code{\link[graphics]{barplot}}
 and graphical parameters (via \code{\link[graphics]{par}}).}
 }
 \value{
@@ -176,8 +176,7 @@ plotBar(VADeaths/1e3,  box=FALSE, bg="lightyellow", main="VADeaths",
 
 }
 \seealso{
-\code{\link[graphics]{barplot}}, \code{\link{barText}},
-\code{\link{getTheme}}
+\link[graphics:barplot]{graphics::barplot}, \link{barText}, \link{theme}
 
 Other plot.univariate:
 \code{\link[=plotArea]{plotArea()}},

@@ -47,7 +47,7 @@ tiles, in plot-region units (\verb{[0, 1]}). Default \code{0.01}.}
 \item{col}{vector of colors for the fill/legend variable (the second
 table dimension, or first if \code{swap = TRUE}). \code{.useTheme} (default)
 resolves to \verb{pal(getTheme()$palette, n = <number of levels>)} - the
-active theme's qualitative palette (see \code{\link{getTheme}}),
+active theme's qualitative palette (see \link{theme}),
 sampled or interpolated to match the number of category levels.
 A diverging or sequential color ramp is deliberately not used here:
 the fill variable is an unordered categorical variable, and a ramp
@@ -69,7 +69,7 @@ Default \code{0.8}.}
 \item{labDigits}{integer. Number of decimal digits for percentage cell
 labels when \code{labels = "p"}. Default \code{1}.}
 
-\item{stamp}{Controls the corner stamp. \code{.useTheme} (default)
+\item{stamp}{controls the corner stamp. \code{.useTheme} (default)
 resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
 \code{NULL}, or an explicit string, as for
 \code{.withGraphicsState()} (internal).}

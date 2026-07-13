@@ -88,5 +88,6 @@ text(x=x, y = 0.3, labels = names(findColor(x, col=cols,
 Other color.lookup:
 \code{\link[=contrastColor]{contrastColor()}}
 }
+\concept{binning}
 \concept{color}
 \concept{color.lookup}

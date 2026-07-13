@@ -25,7 +25,8 @@
 #' barplot(c(1, 1.2, 1.3), col=cols, panel.first=abline(h=0.4, lwd=10, col="grey35"))
 #' 
 #' @family color.manipulation
-#' @concept color  
+#' @concept color
+#' @concept transformation
 #'
 #'
 #' @export
@@ -76,7 +77,8 @@ colToOpaque <- function(col, opacity=NULL, bg=NULL){
 #' @return Character vector of colors.
 #'
 #' @family color.manipulation
-#' @concept color-manipulation
+#' @concept color
+#' @concept transformation
 #'
 #' @export
 fade <- function(col, opacity = 0.5) {

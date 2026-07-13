@@ -80,7 +80,7 @@ single accent color, consistent with \code{\link{lines.loess}} and
 
 \item{lwd}{line width.}
 
-\item{grid}{Controls drawing of the background grid (vertical lines at
+\item{grid}{controls drawing of the background grid (vertical lines at
 default tick positions, plus a fixed set of horizontal reference
 lines at the probability ticks \code{0}/\code{.25}/\code{.5}/\code{.75}/\code{1}
 \itemize{
@@ -91,11 +91,11 @@ deliberately distinct look, not theme-driven). \code{.useTheme}
 named list, as for \code{\link[graphics]{grid}}.
 }}
 
-\item{box}{Controls drawing of the plot box. \code{.useTheme} (default)
+\item{box}{controls drawing of the plot box. \code{.useTheme} (default)
 resolves to \code{getTheme()$box}. \code{TRUE}/\code{FALSE}/\code{NA},
 or a named list, as for \code{\link[graphics]{box}}.}
 
-\item{stamp}{Controls the corner stamp. \code{.useTheme} (default)
+\item{stamp}{controls the corner stamp. \code{.useTheme} (default)
 resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/\code{NULL},
 a string, or a named list of arguments for \code{stamp()}.}
 
@@ -108,7 +108,7 @@ a string, or a named list of arguments for \code{stamp()}.}
 \item{na.action}{a function specifying how missing values are handled.
 Defaults to \code{na.omit}.}
 
-\item{legend}{Logical or list controlling the legend. If \code{TRUE}, a legend
+\item{legend}{logical or list controlling the legend. If \code{TRUE}, a legend
 is drawn using the column names of the data. If a list is supplied, its
 elements are passed to the internal legend drawing routine.}
 }
@@ -150,7 +150,7 @@ plotECDF(Sepal.Length ~ Species, data = iris)
 }
 \seealso{
 \code{\link{plot.ecdf}}, \code{\link{plotFdist}},
-\code{\link{getTheme}}
+\link{theme}
 
 Other plot.univariate:
 \code{\link[=plotArea]{plotArea()}},

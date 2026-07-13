@@ -23,12 +23,12 @@
 #'   \item Uses a graph search (Dijkstra) for non-SI conversions
 #' }
 #'
-#' @param x Numeric value(s) to convert.
-#' @param from Character string specifying the source unit.
-#' @param to Character string specifying the target unit.
-#' @param prefix Data frame of SI prefixes with columns
+#' @param x numeric value(s) to convert.
+#' @param from character string specifying the source unit.
+#' @param to character string specifying the target unit.
+#' @param prefix data frame of SI prefixes with columns
 #'   \code{abbr} and \code{mult}.
-#' @param units Data frame of unit conversion factors with columns
+#' @param units data frame of unit conversion factors with columns
 #'   \code{from}, \code{to}, and \code{fact}.
 #'
 #' @return Numeric value(s) converted to the target unit.
@@ -50,8 +50,6 @@
 #' convUnit(1, "Pa", "N/m^2")
 #' convUnit(25, "C", "F")
 #' convUnit(1, "ml", "l")
-#'
-#' @seealso [bedrock::label]
 #'
 #' @family format
 #' @concept unit-conversion

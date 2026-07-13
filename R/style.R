@@ -122,6 +122,9 @@
 
 #' @rdname style
 #' @family format
+#' @concept formatting
+#' @concept number-formatting
+#'
 #' @export
 styles <- function(){
   

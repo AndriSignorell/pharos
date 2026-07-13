@@ -7,9 +7,9 @@
 \method{print}{Unit}(x, ...)
 }
 \arguments{
-\item{x}{An object with class \code{"Unit"}.}
+\item{x}{an object with class \code{"Unit"}.}
 
-\item{...}{Additional arguments passed to \code{print()}.}
+\item{...}{additional arguments passed to \code{print()}.}
 }
 \value{
 Invisibly returns \code{x}.
@@ -26,6 +26,8 @@ print(x)
 
 }
 \seealso{
+\link[base:attr]{base::attr}, \link[bedrock:label]{bedrock::label}
+
 Other format:
 \code{\link[=convUnit]{convUnit()}},
 \code{\link[=fm]{fm()}},
@@ -33,5 +35,6 @@ Other format:
 \code{\link[=style]{style()}},
 \code{\link[=unit]{unit()}}
 }
-\concept{annotation}
+\concept{attribute}
 \concept{format}
+\concept{formatting}

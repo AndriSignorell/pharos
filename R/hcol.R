@@ -3,7 +3,7 @@
 #'
 #' Retrieve one or more colors from the helsana palette.
 #'
-#' @param ... Character strings naming the colors to retrieve. Valid names are:
+#' @param ... character strings naming the colors to retrieve. Valid names are:
 #'   \code{"blue"}, \code{"red"}, \code{"orange"}, \code{"yellow"},
 #'   \code{"ecru"}, \code{"green"}, \code{"pink"}, \code{"moss"},
 #'   \code{"slate"}, \code{"sand"}, \code{"brown"}, \code{"plum"}.
@@ -19,7 +19,7 @@
 
 
 #' @family color.palettes
-#' @concept color  
+#' @concept color
 #' @concept palette
 #'
 #'

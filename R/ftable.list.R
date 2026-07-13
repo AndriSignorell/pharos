@@ -15,11 +15,11 @@
 #' @param x A list with a \code{dim} attribute, typically produced by
 #'   \code{\link{tapply}}. Each element must be a vector of equal length and
 #'   have identical names.
-#' @param row.vars Row variables passed to \code{\link{ftable}}.
+#' @param row.vars row variables passed to \code{\link{ftable}}.
 #'   Defaults to all dimensions except those specified in \code{col.vars}.
-#' @param col.vars Column variables passed to \code{\link{ftable}}.
+#' @param col.vars column variables passed to \code{\link{ftable}}.
 #'   Defaults to the dimension created from the names of the list elements.
-#' @param ... Further arguments passed to \code{\link{ftable}}.
+#' @param ... further arguments passed to \code{\link{ftable}}.
 #'
 #' @details
 #' The names of the vectors stored in the list elements become an additional

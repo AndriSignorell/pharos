@@ -20,36 +20,36 @@ plotArea(
 )
 }
 \arguments{
-\item{x}{Numeric vector, matrix or data frame. If \code{y} is missing,
+\item{x}{numeric vector, matrix or data frame. If \code{y} is missing,
 \code{x} is interpreted as a matrix of series where rows correspond to
 x positions and columns to individual areas.}
 
-\item{y}{Optional numeric vector or matrix giving the y-values. If supplied,
+\item{y}{optional numeric vector or matrix giving the y-values. If supplied,
 \code{x} is interpreted as the x-coordinates.}
 
-\item{prop}{Logical indicating whether rows should be converted to
+\item{prop}{logical indicating whether rows should be converted to
 proportions so that stacked areas sum to one.}
 
-\item{col}{Fill colours used for the areas.}
+\item{col}{fill colours used for the areas.}
 
-\item{xlab}{Label for the x-axis.}
+\item{xlab}{label for the x-axis.}
 
-\item{ylab}{Label for the y-axis.}
+\item{ylab}{label for the y-axis.}
 
-\item{xlim}{Limits for the x-axis.}
+\item{xlim}{limits for the x-axis.}
 
-\item{ylim}{Limits for the y-axis.}
+\item{ylim}{limits for the y-axis.}
 
-\item{legend}{Logical or list controlling the legend. If \code{TRUE}, a legend
+\item{legend}{logical or list controlling the legend. If \code{TRUE}, a legend
 is drawn using the column names of the data. If a list is supplied, its
 elements are passed to the internal legend drawing routine.}
 
-\item{main}{Main title of the plot.}
+\item{main}{main title of the plot.}
 
-\item{grid}{Logical or list controlling the background grid. If \code{TRUE},
+\item{grid}{logical or list controlling the background grid. If \code{TRUE},
 a default grid is drawn.}
 
-\item{...}{Additional graphical parameters passed to \code{\link[graphics]{par}}
+\item{...}{additional graphical parameters passed to \code{\link[graphics]{par}}
 via \code{.applyParFromDots()} and to the plotting functions.}
 }
 \value{

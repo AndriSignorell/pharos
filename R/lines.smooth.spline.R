@@ -54,8 +54,8 @@
 #' @seealso \code{\link{loess}}, \code{\link{scatter.smooth}}
 #'
 #' @family graphics.trendlines  
-#' @concept graphics
 #' @concept regression
+#' @concept annotation
 #'
 #' @rdname splineCI
 #' @export

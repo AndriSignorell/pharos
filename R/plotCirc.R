@@ -7,7 +7,7 @@
 #'
 #' @param x A numeric matrix. Rows and columns define the connections between sectors.
 #'
-#' @param sector Sector styling. Can be:
+#' @param sector sector styling. Can be:
 #' \itemize{
 #'   \item a logical (`TRUE`/`FALSE`) to enable/disable sectors,
 #'   \item a vector of colors,
@@ -15,7 +15,7 @@
 #' }
 #' Colors are recycled to match the number of sectors (`nrow(x) + ncol(x)`).
 #'
-#' @param ribbon Ribbon styling. Can be:
+#' @param ribbon ribbon styling. Can be:
 #' \itemize{
 #'   \item a logical (`TRUE`/`FALSE`) to enable/disable ribbons,
 #'   \item a vector of colors,
@@ -23,18 +23,18 @@
 #' }
 #' Colors are recycled to match the number of row categories (`nrow(x)`).
 #'
-#' @param labels Label styling. Can be:
+#' @param labels label styling. Can be:
 #' \itemize{
 #'   \item a logical (`TRUE`/`FALSE`) to enable/disable labels,
 #'   \item a character vector of labels,
 #'   \item or a list with parameters passed to internal label drawing.
 #' }
 #'
-#' @param gap Numeric. Gap between sectors in degrees.
+#' @param gap numeric. Gap between sectors in degrees.
 #'
-#' @param main Character. Main title of the plot.
+#' @param main character. Main title of the plot.
 #'
-#' @param ... Additional graphical parameters passed to internal plotting functions.
+#' @param ... additional graphical parameters passed to internal plotting functions.
 #'
 #' @details
 #' The function constructs a circular layout where:

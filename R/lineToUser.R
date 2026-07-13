@@ -19,7 +19,8 @@
 #' 
 #' @seealso \code{\link{mtext}} 
 #' @family graphics.layout
-#' @concept annotation
+#' @concept geometry
+#' @concept numerical-methods
 #'
 #' @export 
 lineToUser <- function(line, side) {

@@ -24,7 +24,8 @@
 #' @rdname degree-radians-conversion
 
 #' @family geometry.conversion
-#' @concept annotation
+#' @concept geometry
+#' @concept numerical-methods
 #'
 #'
 #' @export

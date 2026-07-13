@@ -87,7 +87,7 @@
 #'       overriding the theme defaults for this call only
 #'   }
 #'
-#' @param stamp Controls the corner stamp. \code{.useTheme} (default)
+#' @param stamp controls the corner stamp. \code{.useTheme} (default)
 #'   resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
 #'   \code{NULL}, a string, or a named list for \code{\link{stamp}()}.
 #' @param ... further graphical parameters passed to \code{par()} via the
@@ -105,7 +105,7 @@
 #'
 #' \code{col}, \code{bg}, \code{pch}, \code{cex}, \code{grid}, and \code{box}
 #' default to \code{.useTheme}, deferring to the package's active theme
-#' (see \code{\link{getTheme}}) rather than a hardcoded value. This means
+#' (see [theme]) rather than a hardcoded value. This means
 #' \code{setTheme(list(points = list(col = "black")))} changes the point
 #' color for every call to \code{plotXY()} (and any other function using
 #' the same theme section) that doesn't override \code{col} explicitly.

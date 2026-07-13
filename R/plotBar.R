@@ -13,10 +13,10 @@
 #' @param height A vector or matrix of bar heights passed directly to
 #'   \code{\link[graphics]{barplot}}.
 #'
-#' @param main,xlab,ylab Optional plot labels. Defaults follow
+#' @param main,xlab,ylab optional plot labels. Defaults follow
 #'   base graphics behaviour.
 #'
-#' @param yax Controls drawing of the numeric axis.
+#' @param yax controls drawing of the numeric axis.
 #'
 #'   Supported values are
 #'   \describe{
@@ -26,18 +26,18 @@
 #'     \item{\code{list(...)}}{custom axis parameters passed to the axis drawing routine}
 #'   }
 #'
-#' @param beside Logical. If \code{TRUE}, bars are drawn side-by-side.
+#' @param beside logical. If \code{TRUE}, bars are drawn side-by-side.
 #'   If \code{FALSE} (default), bars are stacked.
 #'
-#' @param horiz Logical. If \code{TRUE}, bars are drawn horizontally.
+#' @param horiz logical. If \code{TRUE}, bars are drawn horizontally.
 #'   Defaults to \code{FALSE}.
 #'
-#' @param col Bar fill colours. \code{.useTheme} (default) resolves to
+#' @param col bar fill colours. \code{.useTheme} (default) resolves to
 #'   \code{getTheme()$bar$col}.
-#' @param border Bar border colour. \code{.useTheme} (default) resolves to
+#' @param border bar border colour. \code{.useTheme} (default) resolves to
 #'   \code{getTheme()$bar$border}.
 #'
-#' @param grid Controls drawing of grid lines.
+#' @param grid controls drawing of grid lines.
 #'   Can be:
 #'   \itemize{
 #'     \item \code{.useTheme} (default): follow the active theme
@@ -49,22 +49,22 @@
 #'       overriding the theme/function defaults for this call only
 #'   }
 #'
-#' @param box Controls drawing of the plot box. \code{.useTheme} (default)
+#' @param box controls drawing of the plot box. \code{.useTheme} (default)
 #'   resolves to \code{getTheme()$box}. \code{TRUE}/\code{FALSE}/\code{NA},
 #'   or a named list, as for \code{grid}.
 #'
-#' @param text Optional list of arguments passed to \code{\link{barText}}
+#' @param text optional list of arguments passed to \code{\link{barText}}
 #'   to draw value labels on bars.
 #'
-#' @param connlines Optional list of arguments controlling connecting
+#' @param connlines optional list of arguments controlling connecting
 #'   lines between stacked bars. Only supported when
 #'   \code{beside = FALSE}.
 #'
-#' @param stamp Controls the corner stamp. \code{.useTheme} (default)
+#' @param stamp controls the corner stamp. \code{.useTheme} (default)
 #'   resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/\code{NULL},
 #'   or an explicit string, as for \code{.withGraphicsState()} (internal).
 #'   
-#' @param ... Additional arguments passed to \code{\link[graphics]{barplot}}
+#' @param ... additional arguments passed to \code{\link[graphics]{barplot}}
 #'   and graphical parameters (via \code{\link[graphics]{par}}).
 #'
 #' @details
@@ -92,8 +92,7 @@
 #' @return Invisibly returns the midpoints of the bars as returned by
 #'   \code{\link[graphics]{barplot}}.
 #'
-#' @seealso \code{\link[graphics]{barplot}}, \code{\link{barText}},
-#'   \code{\link{getTheme}}
+#' @seealso [graphics::barplot], [barText], [theme]
 #' 
 #' @examples
 #' # Simple barplot

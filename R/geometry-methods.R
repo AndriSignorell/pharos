@@ -13,8 +13,8 @@
 
 #' @aliases polygon.ringGeometry polygon.polygonGeometry polygon.geometryCollection
 #'
-#' @param x An object to be drawn.
-#' @param ... Further arguments passed to the corresponding method.
+#' @param x an object to be drawn.
+#' @param ... further arguments passed to the corresponding method.
 #'
 #' @return
 #' Invisibly returns \code{x}.
@@ -38,6 +38,7 @@
 
 #' @family geometry.structures
 #' @concept geometry
+#' @concept numerical-methods
 #'
 #'
 #' @export
@@ -46,13 +47,13 @@ polygon <- function(x, ...) UseMethod("polygon")
 
 #' @rdname polygon
 #'
-#' @param y Numeric vector of y-coordinates.
-#' @param density Density of shading lines.
-#' @param angle Angle of shading lines in degrees.
-#' @param border Border colour.
-#' @param col Fill colour.
-#' @param lty Line type.
-#' @param fillOddEven Logical; should the odd-even rule be used for filling?
+#' @param y numeric vector of y-coordinates.
+#' @param density density of shading lines.
+#' @param angle angle of shading lines in degrees.
+#' @param border border colour.
+#' @param col fill colour.
+#' @param lty line type.
+#' @param fillOddEven logical; should the odd-even rule be used for filling?
 
 #' 
 #' @export
@@ -62,7 +63,7 @@ polygon.default <- graphics::polygon
 
 #' @rdname polygon
 #'
-#' @param rule Character string specifying the filling rule passed to
+#' @param rule character string specifying the filling rule passed to
 #'   \code{\link[graphics]{polypath}}. One of \code{"evenodd"} or
 #'   \code{"winding"}.
 #'

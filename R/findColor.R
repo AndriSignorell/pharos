@@ -74,6 +74,7 @@
 
 #' @family color.lookup
 #' @concept color
+#' @concept binning
 #'
 #'
 #' @export

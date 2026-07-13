@@ -52,39 +52,39 @@
 \arguments{
 \item{x}{A numeric vector, or a list of numeric vectors representing groups.}
 
-\item{...}{Additional graphical parameters passed to \code{par()}.}
+\item{...}{additional graphical parameters passed to \code{par()}.}
 
-\item{add}{Logical; if \code{TRUE}, adds to an existing plot.}
+\item{add}{logical; if \code{TRUE}, adds to an existing plot.}
 
-\item{bw}{Bandwidth for \code{\link[stats]{density}}.}
+\item{bw}{bandwidth for \code{\link[stats]{density}}.}
 
-\item{scale}{Scaling factor for density height.}
+\item{scale}{scaling factor for density height.}
 
-\item{spacing}{Vertical spacing between ridges.}
+\item{spacing}{vertical spacing between ridges.}
 
-\item{col}{Fill color(s).}
+\item{col}{fill color(s).}
 
-\item{border}{Border color(s).}
+\item{border}{border color(s).}
 
-\item{lwd}{Line width(s).}
+\item{lwd}{line width(s).}
 
-\item{lty}{Line type(s).}
+\item{lty}{line type(s).}
 
-\item{fill}{Logical; fill area under densities.}
+\item{fill}{logical; fill area under densities.}
 
-\item{grid}{Logical, \code{NA}, or list controlling grid.}
+\item{grid}{logical, \code{NA}, or list controlling grid.}
 
-\item{main, xlab, ylab}{Plot labels.}
+\item{main, xlab, ylab}{plot labels.}
 
-\item{xlim, ylim}{Axis limits.}
+\item{xlim, ylim}{axis limits.}
 
 \item{formula}{A formula of the form \code{y ~ group}.}
 
-\item{data}{Optional data frame.}
+\item{data}{optional data frame.}
 
-\item{subset}{Optional subset expression.}
+\item{subset}{optional subset expression.}
 
-\item{na.action}{Function to handle missing values.}
+\item{na.action}{function to handle missing values.}
 }
 \value{
 Invisibly returns \code{NULL}.

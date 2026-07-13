@@ -72,7 +72,7 @@ The x coordinates of the labels can be found by using
 \code{\link{barplot}()} result, if they are to be centered at the top of
 each bar. \code{barText()} calculates the rest.
 
-\figure{barText.png}{Positions for the text}
+\ifelse{html}{\figure{barText.png}{options: width="700" alt="Positions for the text"}}{\figure{barText.png}{Positions for the text}}
 
 Notice that when the labels are placed on top of the bars, they may be
 clipped. This can be avoided by setting \code{xpd=TRUE}.
@@ -111,3 +111,4 @@ Other graphics.annotation:
 }
 \concept{annotation}
 \concept{graphics.annotation}
+\concept{label}

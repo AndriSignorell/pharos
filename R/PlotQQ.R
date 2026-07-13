@@ -22,11 +22,11 @@
 #' @param add logical specifying if the points should be added to an already
 #' existing plot; defaults to \code{FALSE}.
 #' 
-#' @param grid Controls drawing of the background grid. \code{.useTheme}
+#' @param grid controls drawing of the background grid. \code{.useTheme}
 #'   (default) follows the active theme (\code{getTheme()$grid}).
 #'   \code{TRUE}/\code{FALSE}/\code{NA}, or a named list, as for
 #'   \code{\link[graphics]{grid}}.
-#' @param box Controls drawing of the plot box. \code{.useTheme} (default)
+#' @param box controls drawing of the plot box. \code{.useTheme} (default)
 #'   resolves to \code{getTheme()$box}. \code{TRUE}/\code{FALSE}/\code{NA},
 #'   or a named list, as for \code{\link[graphics]{box}}.
 #' 
@@ -47,7 +47,7 @@
 #' \code{col = par("fg")}, \code{lwd = par("lwd")} and \code{lty = par("lty")}.
 #' No line will be plotted if \code{args.qqline} is set to \code{NA}.
 #' 
-#' @param stamp Controls the corner stamp. \code{.useTheme} (default)
+#' @param stamp controls the corner stamp. \code{.useTheme} (default)
 #'   resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/\code{NULL},
 #'   a string, or a named list of arguments for \code{stamp()} (e.g.
 #'   \code{list(text = "...", las = 2)}).

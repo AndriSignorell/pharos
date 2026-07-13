@@ -6,7 +6,7 @@
 #' This provides a lightweight mechanism for attaching unit metadata to objects,
 #' without enforcing any automatic conversion or validation.
 #'
-#' @param x An R object.
+#' @param x an R object.
 #' @param value A single character string specifying the unit, or \code{NULL}
 #'   to remove the unit attribute.
 #'
@@ -37,7 +37,8 @@
 #' @name unit
 
 #' @family format
-#' @concept annotation
+#' @concept attribute
+#' @concept formatting
 #'
 #'
 #' @export
@@ -68,8 +69,8 @@ unit <- function(x) {
 #' S3 method for printing objects with a \code{"Unit"} class.
 #' Displays the value along with its associated unit.
 #'
-#' @param x An object with class \code{"Unit"}.
-#' @param ... Additional arguments passed to \code{print()}.
+#' @param x an object with class \code{"Unit"}.
+#' @param ... additional arguments passed to \code{print()}.
 #'
 #' @return Invisibly returns \code{x}.
 #'
@@ -80,8 +81,11 @@ unit <- function(x) {
 #' print(x)
 #'
 
+#' @seealso [base::attr], [bedrock::label]
+#'
 #' @family format
-#' @concept annotation
+#' @concept attribute
+#' @concept formatting
 #' 
 #' @export
 print.Unit <- function(x, ...) {

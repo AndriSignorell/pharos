@@ -27,7 +27,6 @@
 #' [string-overview] for an overview of all string utilities in lyra.
 #'
 #' @concept string-manipulation
-#' @concept ordering
 #'
 #'
 #' @export

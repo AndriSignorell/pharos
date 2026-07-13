@@ -3,8 +3,8 @@
 #'
 #' Add transparency to colors.
 #'
-#' @param col Vector of valid R colors.
-#' @param opacity Opacity value between 0 and 1.
+#' @param col vector of valid R colors
+#' @param opacity opacity value between 0 and 1
 #'
 #' @return Character vector of hexadecimal colors with alpha channel.
 #'
@@ -31,6 +31,7 @@
 #' 
 #' @family color.manipulation
 #' @concept color
+#' @concept transformation
 #'
 #' @export
 addOpacity <- function(col, opacity = 0.5) {

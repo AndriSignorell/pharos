@@ -42,4 +42,6 @@ Other graphics.setup:
 \code{\link[=polarGrid]{polarGrid()}},
 \code{\link[=setBackCol]{setBackCol()}}
 }
+\concept{geometry}
 \concept{graphics.setup}
+\concept{numerical-methods}

@@ -30,15 +30,10 @@
 #'
 #' @return an object of class \code{c("html", "character")}
 #'
-#' @seealso \code{\link{as.html}}, \code{\link[bedrock]{appendEnum}}
+#' @seealso [bedrock::appendEnum]
 #'
-
-
-
+#'
 #' @family html  
-#' @concept html  
-#' @concept frequency-table
-#'
 #'
 #' @export
 toHtmlTable <- function(m, sepCol = FALSE, caption = "", bodyAlign = "center",

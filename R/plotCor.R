@@ -16,9 +16,9 @@
 #'
 #' @param x A numeric correlation matrix.
 #'
-#' @param main,xlab,ylab Optional plot labels.
+#' @param main,xlab,ylab optional plot labels.
 #'
-#' @param xax,yax Controls drawing of the axes.
+#' @param xax,yax controls drawing of the axes.
 #'
 #'   Supported values are
 #'   \describe{
@@ -27,25 +27,25 @@
 #'     \item{\code{list(...)}}{custom axis parameters passed to \code{\link[graphics]{axis}}}
 #'   }
 #'
-#' @param cluster Logical; if \code{TRUE}, variables are reordered by
+#' @param cluster logical; if \code{TRUE}, variables are reordered by
 #'   hierarchical clustering to place similar correlations together.
 #'
-#' @param mincor Numeric threshold; correlations with absolute value
+#' @param mincor numeric threshold; correlations with absolute value
 #'   smaller than this are suppressed (set to \code{NA}).
 #'
-#' @param triangle Which part of the matrix to display.
+#' @param triangle which part of the matrix to display.
 #'   One of
 #'   \code{"full"}, \code{"upper"}, or \code{"lower"}.
 #'
-#' @param diag Logical; should the diagonal be displayed.
+#' @param diag logical; should the diagonal be displayed.
 #'
-#' @param col Color palette used for the correlation values. \code{.useTheme}
+#' @param col color palette used for the correlation values. \code{.useTheme}
 #'   (default) builds a diverging ramp from \code{getTheme()$twin} - the
 #'   active theme's two-color pair - through white: \code{twin[1]} at the
 #'   negative end (\eqn{-1}), white at zero, \code{twin[2]} at the positive
 #'   end (\eqn{+1}).
 #'
-#' @param grid Controls drawing of cell-separator grid lines at the
+#' @param grid controls drawing of cell-separator grid lines at the
 #'   half-integer matrix boundaries (clipped to the matrix extent, so they
 #'   never bleed into the margins). Can be:
 #'   \itemize{
@@ -56,13 +56,13 @@
 #'     \item a named list: override \code{col}/\code{lwd} for this call only
 #'   }
 #'
-#' @param box Controls drawing of the plot box. \code{.useTheme} (default)
+#' @param box controls drawing of the plot box. \code{.useTheme} (default)
 #'   resolves to \code{getTheme()$box}. \code{TRUE}/\code{FALSE}/\code{NA},
 #'   or a named list, as for \code{grid}.
 #'
-#' @param legend Logical; draw a color legend for the correlation scale.
+#' @param legend logical; draw a color legend for the correlation scale.
 #'
-#' @param text Controls numeric labels drawn inside the matrix cells.
+#' @param text controls numeric labels drawn inside the matrix cells.
 #'
 #'   Supported values are
 #'   \describe{
@@ -71,7 +71,7 @@
 #'     \item{\code{list(...)}}{custom parameters passed to the internal text drawing routine}
 #'   }
 #'
-#' @param ... Additional graphical parameters passed to
+#' @param ... additional graphical parameters passed to
 #'   \code{\link[graphics]{par}} and \code{\link[graphics]{image}}.
 #'
 #' @details
@@ -94,9 +94,6 @@
 #'
 #' @return Invisibly returns the (possibly reordered) matrix used for plotting.
 #'
-#' @seealso \code{\link[graphics]{image}}, \code{\link[stats]{cor}},
-#'   \code{\link{getTheme}}
-#' 
 #' @examples
 #' m <- cor(swiss)
 #'
@@ -166,10 +163,11 @@
 #'                                  width=ncol(m)))
 #' mtext(text = rev(rownames(m)), side = 4, at=1:ncol(m), las=1, line = -5, cex=0.8)
 #' 
-
-
-
+#' @seealso \code{\link[graphics]{image}}, \code{\link[stats]{cor}},
+#'   [theme]
+#' 
 #' @family plot.bivariate  
+#' @concept agreement  
 #' @concept correlation  
 #' @concept bivariate
 #'

@@ -27,32 +27,32 @@
 #'
 #' Missing or non-finite values are not allowed and will result in an error.
 #'
-#' @param x Numeric vector of x-coordinates.
-#' @param y Numeric vector of y-coordinates. Must have the same length as \code{x}.
+#' @param x numeric vector of x-coordinates.
+#' @param y numeric vector of y-coordinates. Must have the same length as \code{x}.
 #'
-#' @param main Optional main title of the plot.
-#' @param xlab,ylab Axis labels.
+#' @param main optional main title of the plot.
+#' @param xlab,ylab axis labels.
 #'
-#' @param xlim,ylim Numeric vectors of length two specifying axis limits.
+#' @param xlim,ylim numeric vectors of length two specifying axis limits.
 #'
-#' @param type Character string specifying the plot type.
+#' @param type character string specifying the plot type.
 #' One of \code{"contour"}, \code{"image"}, or \code{"persp"}.
 #'
-#' @param col Color specification used for \code{type = "image"}. Defaults
+#' @param col color specification used for \code{type = "image"}. Defaults
 #'   to a reversed \code{"red-black"} sequential ramp (\code{pal()}),
 #'   running from black (low density) to red (high density) - hardcoded
 #'   rather than theme-driven, since this is a continuous, unidirectional
 #'   gradient, unlike the active theme's categorical \code{palette} or
 #'   diverging \code{twin} pair, neither of which fits a density surface.
-#' @param grid Controls drawing of the background grid. \code{.useTheme}
+#' @param grid controls drawing of the background grid. \code{.useTheme}
 #'   (default) follows the active theme (\code{getTheme()$grid}).
 #'   \code{TRUE}/\code{FALSE}/\code{NA}, or a named list, as for
 #'   \code{\link[graphics]{grid}}.
-#' @param box Controls drawing of the plot box. \code{.useTheme} (default)
+#' @param box controls drawing of the plot box. \code{.useTheme} (default)
 #'   resolves to \code{getTheme()$box}. \code{TRUE}/\code{FALSE}/\code{NA},
 #'   or a named list, as for \code{\link[graphics]{box}}.
 #'
-#' @param ... Additional graphical parameters passed to underlying plotting functions.
+#' @param ... additional graphical parameters passed to underlying plotting functions.
 #'
 #' @return
 #' Invisibly returns the result of the selected plotting call.

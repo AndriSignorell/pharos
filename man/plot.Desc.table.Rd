@@ -17,10 +17,10 @@
 )
 }
 \arguments{
-\item{x}{An object of class \code{"Desc.table"}, as returned by
+\item{x}{an object of class \code{"Desc.table"}, as returned by
 \code{\link[DescToolsX]{desc}()} for a categorical-categorical pair.}
 
-\item{main}{Main title. \code{NULL} (default) derives a title per panel
+\item{main}{main title. \code{NULL} (default) derives a title per panel
 from \code{x$meta$xname} (the deparsed expression originally passed to
 \code{desc()}, e.g. \code{"table(Pizza$area, Pizza$driver)"}) combined
 with a panel-type label for context when multiple panels are shown
@@ -83,7 +83,7 @@ there encode magnitude only. Supplying \code{col} overrides this.}
 Supplying \code{col} explicitly overrides the default uniformly for
 every selected panel.}
 
-\item{box}{Controls the plot frame. \code{.useTheme} (default) follows
+\item{box}{controls the plot frame. \code{.useTheme} (default) follows
 the active theme (\code{getTheme()$box}); \code{FALSE}/\code{NA}
 suppress it; a named list overrides frame-drawing arguments.
 \describe{
@@ -100,7 +100,7 @@ has no effect.}
 \code{\link[graphics]{box}()}.}
 }}
 
-\item{stamp}{Controls the corner stamp. \code{.useTheme} (default)
+\item{stamp}{controls the corner stamp. \code{.useTheme} (default)
 resolves to \code{getTheme()$stamp}, drawn once after all selected
 panels. Panels 2-4 delegate to \code{\link{plotMosaic}}/
 \code{\link{plotAssoc}}/\code{\link{plotHeatmap}}, whose own

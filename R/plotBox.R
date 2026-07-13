@@ -43,7 +43,7 @@
 #'       \code{lcol}, \code{lty}, \code{lwd}.
 #'   }
 #'
-#' @param stamp Controls the corner stamp. \code{.useTheme} (default)
+#' @param stamp controls the corner stamp. \code{.useTheme} (default)
 #'   resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/\code{NULL},
 #'   or an explicit string, as for \code{.withGraphicsState()} (internal).
 #'   

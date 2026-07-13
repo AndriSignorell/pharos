@@ -3,10 +3,10 @@
 #'
 #' Create a Bézier curve from a set of control points.
 #'
-#' @param x,y Numeric vectors of control points.
+#' @param x,y numeric vectors of control points.
 #'   Alternatively, \code{x} may be a list with components
 #'   \code{x} and \code{y}.
-#' @param numPoints Number of points used to approximate the curve.
+#' @param numPoints number of points used to approximate the curve.
 #'
 #' @return
 #' An object inheriting from class
@@ -35,6 +35,7 @@
 
 #' @family geometry.structures
 #' @concept geometry
+#' @concept numerical-methods
 #'
 #'
 #' @export

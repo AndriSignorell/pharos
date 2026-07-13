@@ -34,7 +34,7 @@
 #'   printed inside each cell. If \code{FALSE} (default), no labels are shown.
 #'   A character format string (e.g. \code{"\%.1f"}) can also be passed for
 #'   custom formatting.
-#' @param stamp Controls the corner stamp. \code{.useTheme} (default)
+#' @param stamp controls the corner stamp. \code{.useTheme} (default)
 #'   resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
 #'   \code{NULL}, or an explicit string, as for
 #'   \code{.withGraphicsState()} (internal).
@@ -102,6 +102,7 @@
 
 #' @family plot.bivariate  
 #' @concept frequency-table
+#' @concept bivariate
 #'
 #'
 #' @export

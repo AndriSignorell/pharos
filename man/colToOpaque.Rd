@@ -46,3 +46,4 @@ Other color.manipulation:
 }
 \concept{color}
 \concept{color.manipulation}
+\concept{transformation}

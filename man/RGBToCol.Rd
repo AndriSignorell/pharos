@@ -9,9 +9,9 @@ rgbToCol(col, method = c("rgb", "hsv"), metric = c("euclidean", "manhattan"))
 \arguments{
 \item{col}{RGB matrix or hexadecimal colors.}
 
-\item{method}{Color space used for matching.}
+\item{method}{color space used for matching.}
 
-\item{metric}{Distance metric.}
+\item{metric}{distance metric.}
 }
 \value{
 Character vector of named R colors.
@@ -22,5 +22,5 @@ Match RGB colors to the nearest named R color.
 \seealso{
 \link{color-conversion-overview}
 }
+\concept{color}
 \concept{color-conversion}
-\concept{graphics}

@@ -18,5 +18,5 @@ Encode RGB colors as long integers.
 \seealso{
 \link{color-conversion-overview}
 }
+\concept{color}
 \concept{color-conversion}
-\concept{graphics}

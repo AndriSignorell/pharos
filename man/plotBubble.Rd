@@ -43,37 +43,37 @@
 )
 }
 \arguments{
-\item{x}{Numeric vector of x positions.}
+\item{x}{numeric vector of x positions.}
 
-\item{y}{Numeric vector of y positions.}
+\item{y}{numeric vector of y positions.}
 
-\item{area}{Numeric vector controlling bubble sizes (interpreted as area).}
+\item{area}{numeric vector controlling bubble sizes (interpreted as area).}
 
-\item{...}{Additional graphical parameters passed to \code{par()}.}
+\item{...}{additional graphical parameters passed to \code{par()}.}
 
-\item{add}{Logical; if \code{TRUE}, adds to an existing plot.}
+\item{add}{logical; if \code{TRUE}, adds to an existing plot.}
 
-\item{col}{Fill color(s) of the bubbles.}
+\item{col}{fill color(s) of the bubbles.}
 
-\item{border}{Border color(s) of the bubbles.}
+\item{border}{border color(s) of the bubbles.}
 
-\item{cex}{Scaling factor applied to bubble areas.}
+\item{cex}{scaling factor applied to bubble areas.}
 
-\item{grid}{Logical, \code{NA}, or list controlling background grid.}
+\item{grid}{logical, \code{NA}, or list controlling background grid.}
 
-\item{xlim, ylim}{Axis limits.}
+\item{xlim, ylim}{axis limits.}
 
-\item{na.rm}{Logical; remove missing values.}
+\item{na.rm}{logical; remove missing values.}
 
-\item{main, xlab, ylab}{Plot labels.}
+\item{main, xlab, ylab}{plot labels.}
 
 \item{formula}{A formula of the form \code{y ~ x | area}.}
 
-\item{data}{Optional data frame.}
+\item{data}{optional data frame.}
 
-\item{subset}{Optional subset expression.}
+\item{subset}{optional subset expression.}
 
-\item{na.action}{Function to handle missing values.}
+\item{na.action}{function to handle missing values.}
 }
 \value{
 Invisibly returns \code{NULL}.

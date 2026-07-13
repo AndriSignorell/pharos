@@ -61,7 +61,7 @@ The result has class \code{c("html", "character")} (see
 \code{\link{preview.html}}.
 }
 \seealso{
-\code{\link{as.html}}, \code{\link[bedrock]{appendEnum}}
+\link[bedrock:appendEnum]{bedrock::appendEnum}
 
 Other html:
 \code{\link[=as.html]{as.html()}},
@@ -69,5 +69,4 @@ Other html:
 \code{\link{htmlNotation}},
 \code{\link{htmlSubscript}}
 }
-\concept{frequency-table}
 \concept{html}

@@ -66,5 +66,6 @@ Other graphics.layout:
 \code{\link[=lineToUser]{lineToUser()}},
 \code{\link[=mar]{mar()}}
 }
-\concept{annotation}
 \concept{graphics.layout}
+\concept{label}
+\concept{numerical-methods}

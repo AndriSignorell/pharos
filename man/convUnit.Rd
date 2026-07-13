@@ -7,16 +7,16 @@
 convUnit(x, from, to, prefix = NULL, units = NULL)
 }
 \arguments{
-\item{x}{Numeric value(s) to convert.}
+\item{x}{numeric value(s) to convert.}
 
-\item{from}{Character string specifying the source unit.}
+\item{from}{character string specifying the source unit.}
 
-\item{to}{Character string specifying the target unit.}
+\item{to}{character string specifying the target unit.}
 
-\item{prefix}{Data frame of SI prefixes with columns
+\item{prefix}{data frame of SI prefixes with columns
 \code{abbr} and \code{mult}.}
 
-\item{units}{Data frame of unit conversion factors with columns
+\item{units}{data frame of unit conversion factors with columns
 \code{from}, \code{to}, and \code{fact}.}
 }
 \value{
@@ -65,8 +65,6 @@ convUnit(1, "ml", "l")
 
 }
 \seealso{
-\link[bedrock:label]{bedrock::label}
-
 Other format:
 \code{\link[=fm]{fm()}},
 \code{\link[=fmCI]{fmCI()}},

@@ -15,15 +15,15 @@ ring(
 )
 }
 \arguments{
-\item{x, y}{Centre coordinates.}
+\item{x, y}{centre coordinates.}
 
-\item{innerRadius}{Radius of the inner boundary.}
+\item{innerRadius}{radius of the inner boundary.}
 
-\item{outerRadius}{Radius of the outer boundary.}
+\item{outerRadius}{radius of the outer boundary.}
 
-\item{startAngle, endAngle}{Start and end angle in radians.}
+\item{startAngle, endAngle}{start and end angle in radians.}
 
-\item{numPoints}{Number of points used for each boundary.}
+\item{numPoints}{number of points used for each boundary.}
 }
 \value{
 An object inheriting from class \code{"ringGeometry"} or a
@@ -44,3 +44,4 @@ Other geometry.structures:
 }
 \concept{geometry}
 \concept{geometry.structures}
+\concept{numerical-methods}

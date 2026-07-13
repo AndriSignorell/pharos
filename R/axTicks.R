@@ -9,13 +9,13 @@
 #' 
 #' @name axTicks
 #' @aliases axTicks.POSIXct axTicks.Date
-#' @param side See \link{axis}. 
-#' @param x,at A date-time or date object. 
-#' @param format See strptime. 
-#' @param labels Either a logical value specifying whether annotations are to
+#' @param side see [graphics::axis] 
+#' @param x,at date-time or date object.
+#' @param format see [base::strptime]
+#' @param labels either a logical value specifying whether annotations are to
 #' be made at the tickmarks, or a vector of character strings to be placed at
-#' the tickpoints. 
-#' @param \dots Further arguments to be passed from or to other methods. 
+#' the tickpoints 
+#' @param \dots further arguments to be passed from or to other methods 
 #' 
 #' @return numeric vector of coordinate values at which axis tickmarks can be
 #' drawn. 
@@ -38,8 +38,8 @@
 #' @seealso \code{\link{axTicks}}, \code{\link{axis.POSIXct}} 
 #' 
 #' @family graphics.layout
-#' @concept graphics
-#' @concept date-handling
+#' @concept label
+#' @concept date-time
 #'
 #'
 #' @rdname axTicks

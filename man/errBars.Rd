@@ -7,7 +7,7 @@
 errBars(from, to = NULL, pos = NULL, horiz = TRUE, points = NULL, ...)
 }
 \arguments{
-\item{from}{Coordinates of the lower end of the error bars.
+\item{from}{coordinates of the lower end of the error bars.
 
 If \code{to = NULL} and \code{from} is a matrix:
 \itemize{
@@ -17,19 +17,19 @@ If \code{to = NULL} and \code{from} is a matrix:
 \code{cbind(point, from, to)}
 }}
 
-\item{to}{Coordinates of the upper end of the error bars.}
+\item{to}{coordinates of the upper end of the error bars.}
 
-\item{pos}{Position of the error bars.
+\item{pos}{position of the error bars.
 
 For vertical bars this corresponds to x-positions;
 for horizontal bars to y-positions.}
 
-\item{horiz}{Logical; if \code{TRUE}, horizontal error bars
+\item{horiz}{logical; if \code{TRUE}, horizontal error bars
 are drawn.}
 
-\item{points}{Optional point specification.}
+\item{points}{optional point specification.}
 
-\item{...}{Additional graphical arguments passed to
+\item{...}{additional graphical arguments passed to
 \code{\link{arrows}}.}
 }
 \value{

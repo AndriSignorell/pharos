@@ -154,7 +154,7 @@ palNames <- function(type = c("all", "continuous", "discrete")) {
 #' @param name character or integer. Palette name (full match via
 #'   \code{\link[base]{match.arg}}) or index into \code{\link{palNames}()}.
 #'   If missing, returns the palette named in the active theme
-#'   (\code{getTheme()$palette}, see \code{\link{getTheme}}).   
+#'   (\code{getTheme()$palette}, see [theme]).   
 #'   
 #' @param n integer, number of colors to return. Default \code{NA} returns 
 #' the colors as contained in the palette.
@@ -168,7 +168,8 @@ palNames <- function(type = c("all", "continuous", "discrete")) {
 #'   \code{\link[grDevices]{adjustcolor}}
 #'
 #' @family color.palettes
-#' @concept color palette ramp discrete continuous
+#' @concept color
+#' @concept palette
 #'
 #' @examples
 #' # default palette from options

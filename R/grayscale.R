@@ -3,7 +3,7 @@
 #'
 #' Convert colors to grayscale using luminance weighting.
 #'
-#' @param col Vector of valid R colors.
+#' @param col vector of valid R colors.
 #'
 #' @return Character vector of grayscale colors.
 #'
@@ -26,11 +26,8 @@
 #' barplot(tmp, col=grayscale(c('red','#008100','#3636ff')))
 #' 
 #' par(op)
-#'
-
-
-
-#' @family color.conversion
+#' 
+#' @seealso [color-conversion-overview]
 #' @concept color  
 #' @concept color-conversion
 #'

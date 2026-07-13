@@ -18,6 +18,9 @@
 NULL
 
 #' @rdname htmlNotation
+#' @concept html
+#' @concept formatting
+#'
 #' @export
 htmlHat <- function(x) {
   gettextf("%s&#770;", x)

@@ -42,7 +42,7 @@
 
 #' @family geometry.conversion
 #' @concept geometry
-#' @concept mathematics
+#' @concept numerical-methods
 #'
 #'
 #' @export

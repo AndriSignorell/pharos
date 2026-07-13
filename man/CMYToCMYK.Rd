@@ -7,7 +7,7 @@
 cmyToCmyk(col)
 }
 \arguments{
-\item{col}{Numeric CMY matrix.}
+\item{col}{numeric CMY matrix.}
 }
 \value{
 Numeric CMYK matrix.
@@ -18,6 +18,5 @@ Convert CMY colors to CMYK.
 \seealso{
 \link{color-conversion-overview}
 }
+\concept{color}
 \concept{color-conversion}
-\concept{color-space}
-\concept{graphics}

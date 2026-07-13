@@ -14,7 +14,7 @@
 #' Additional parameters fixed for the expression can be passed via
 #' \code{args}.
 #'
-#' @param expr Expression defining the function. Either a formula
+#' @param expr expression defining the function. Either a formula
 #'   (\code{y ~ f(x)}), a polar formula (\code{r ~ f(phi)}), or a list
 #'   of two formulas for parametric plots.
 #'

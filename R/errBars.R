@@ -45,7 +45,7 @@
 #' \code{\link{dotchart}}.  Set \code{horiz = FALSE} for vertical bars
 #' on barplots or similar.
 #'
-#' @param from Coordinates of the lower end of the error bars.
+#' @param from coordinates of the lower end of the error bars.
 #'
 #'   If \code{to = NULL} and \code{from} is a matrix:
 #'   \itemize{
@@ -55,19 +55,19 @@
 #'       \code{cbind(point, from, to)}
 #'   }
 #'
-#' @param to Coordinates of the upper end of the error bars.
+#' @param to coordinates of the upper end of the error bars.
 #'
-#' @param pos Position of the error bars.
+#' @param pos position of the error bars.
 #'
 #'   For vertical bars this corresponds to x-positions;
 #'   for horizontal bars to y-positions.
 #'
-#' @param horiz Logical; if \code{TRUE}, horizontal error bars
+#' @param horiz logical; if \code{TRUE}, horizontal error bars
 #'   are drawn.
 #'
-#' @param points Optional point specification.
+#' @param points optional point specification.
 #'
-#' @param ... Additional graphical arguments passed to
+#' @param ... additional graphical arguments passed to
 #'   \code{\link{arrows}}.
 #'
 #' @return

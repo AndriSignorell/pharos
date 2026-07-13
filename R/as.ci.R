@@ -15,8 +15,8 @@
 #' \code{as.CI()} explicitly declares that the structure should be treated
 #' as confidence interval data.
 #'
-#' @param x Object to convert.
-#' @param ... Further arguments passed to methods.
+#' @param x object to convert.
+#' @param ... further arguments passed to methods.
 #'
 #' @name as.CI
 #' @details

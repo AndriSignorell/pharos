@@ -32,37 +32,37 @@ plotDens(x, ...)
 \arguments{
 \item{x}{A numeric vector or list of numeric vectors.}
 
-\item{...}{Additional data vectors (unnamed, default method) or
+\item{...}{additional data vectors (unnamed, default method) or
 graphical parameters passed to \code{par()}.}
 
 \item{formula}{A formula of the form \code{y ~ group}, \code{y ~ x}
 (\code{x} numeric, conditional density), or \code{y ~ x | group}.}
 
-\item{data}{Optional data frame.}
+\item{data}{optional data frame.}
 
-\item{subset}{Optional subset expression.}
+\item{subset}{optional subset expression.}
 
-\item{na.action}{Function to handle missing values.}
+\item{na.action}{function to handle missing values.}
 
-\item{main, xlab, ylab}{Plot labels.}
+\item{main, xlab, ylab}{plot labels.}
 
-\item{xlim, ylim}{Axis limits.}
+\item{xlim, ylim}{axis limits.}
 
-\item{add}{Logical; if \code{TRUE}, adds to an existing plot.}
+\item{add}{logical; if \code{TRUE}, adds to an existing plot.}
 
-\item{bw}{Bandwidth passed to \code{\link[stats]{density}} or \code{cdplot}.}
+\item{bw}{bandwidth passed to \code{\link[stats]{density}} or \code{cdplot}.}
 
-\item{type}{Character string specifying the plot type. One of
+\item{type}{character string specifying the plot type. One of
 \code{"density"}, \code{"conditional"}, or \code{NULL} (default,
 determined by \code{resolveFormula()}'s design classification).}
 
-\item{col}{Line color(s).}
+\item{col}{line color(s).}
 
-\item{lwd}{Line width(s).}
+\item{lwd}{line width(s).}
 
-\item{lty}{Line type(s).}
+\item{lty}{line type(s).}
 
-\item{fill}{For \code{type = "density"}: \code{FALSE} (default, no
+\item{fill}{for \code{type = "density"}: \code{FALSE} (default, no
 fill), \code{TRUE} (translucent fill derived from each group's
 \code{col} via \code{adjustcolor(col, alpha.f = 0.3)}), or one or
 more explicit fill colors recycled over groups. For
@@ -70,9 +70,9 @@ more explicit fill colors recycled over groups. For
 \code{TRUE} for cdplot-style grey shading, or a vector of 2 colors for
 the regions below/above the boundary curve.}
 
-\item{grid}{Logical, \code{NA}, or list controlling background grid.}
+\item{grid}{logical, \code{NA}, or list controlling background grid.}
 
-\item{stamp}{Controls the corner stamp. \code{.useTheme} (default)
+\item{stamp}{controls the corner stamp. \code{.useTheme} (default)
 resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/\code{NULL},
 or an explicit string, as for \code{.withGraphicsState()} (internal).}
 }

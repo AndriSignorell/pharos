@@ -16,29 +16,29 @@
 #' Graphical elements such as grids are controlled via the unified plot
 #' design system using \code{bedrock::callIf()} and \code{.theme()}.
 #'
-#' @param x Numeric vector of x positions.
-#' @param y Numeric vector of y positions.
-#' @param area Numeric vector controlling bubble sizes (interpreted as area).
-#' @param ... Additional graphical parameters passed to \code{par()}.
+#' @param x numeric vector of x positions.
+#' @param y numeric vector of y positions.
+#' @param area numeric vector controlling bubble sizes (interpreted as area).
+#' @param ... additional graphical parameters passed to \code{par()}.
 #'
-#' @param col Fill color(s) of the bubbles.
-#' @param border Border color(s) of the bubbles.
-#' @param cex Scaling factor applied to bubble areas.
+#' @param col fill color(s) of the bubbles.
+#' @param border border color(s) of the bubbles.
+#' @param cex scaling factor applied to bubble areas.
 #'
-#' @param add Logical; if \code{TRUE}, adds to an existing plot.
+#' @param add logical; if \code{TRUE}, adds to an existing plot.
 #'
-#' @param grid Logical, \code{NA}, or list controlling background grid.
+#' @param grid logical, \code{NA}, or list controlling background grid.
 #'
-#' @param xlim,ylim Axis limits.
+#' @param xlim,ylim axis limits.
 #'
-#' @param main,xlab,ylab Plot labels.
+#' @param main,xlab,ylab plot labels.
 #'
-#' @param na.rm Logical; remove missing values.
+#' @param na.rm logical; remove missing values.
 #'
 #' @param formula A formula of the form \code{y ~ x | area}.
-#' @param data Optional data frame.
-#' @param subset Optional subset expression.
-#' @param na.action Function to handle missing values.
+#' @param data optional data frame.
+#' @param subset optional subset expression.
+#' @param na.action function to handle missing values.
 #'
 #' @return Invisibly returns \code{NULL}.
 #' 

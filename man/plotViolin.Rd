@@ -56,26 +56,26 @@ plotViolin(x, ...)
 )
 }
 \arguments{
-\item{x}{Numeric vector, list of numeric vectors, or first group.}
+\item{x}{numeric vector, list of numeric vectors, or first group.}
 
-\item{...}{Additional data vectors (unnamed) or graphical parameters
+\item{...}{additional data vectors (unnamed) or graphical parameters
 passed to \code{par()}.}
 
-\item{main, xlab, ylab}{Plot labels.}
+\item{main, xlab, ylab}{plot labels.}
 
-\item{xlim, ylim}{Axis limits.}
+\item{xlim, ylim}{axis limits.}
 
-\item{horizontal}{Logical; if \code{TRUE}, draws horizontal violins.}
+\item{horizontal}{logical; if \code{TRUE}, draws horizontal violins.}
 
-\item{at}{Numeric positions of the groups.}
+\item{at}{numeric positions of the groups.}
 
-\item{names}{Optional group labels.}
+\item{names}{optional group labels.}
 
-\item{add}{Logical; if \code{TRUE}, adds to an existing plot.}
+\item{add}{logical; if \code{TRUE}, adds to an existing plot.}
 
-\item{bw}{Bandwidth specification passed to \code{density()}.}
+\item{bw}{bandwidth specification passed to \code{density()}.}
 
-\item{trim}{Logical. If \code{TRUE} (default), the kernel density
+\item{trim}{logical. If \code{TRUE} (default), the kernel density
 estimate of each group is restricted to the observed data range
 (\code{from = min(x)}, \code{to = max(x)}), so the violin never
 extends beyond the actual data — matching the default behavior of
@@ -84,27 +84,27 @@ called with its own defaults, which extend the tails up to
 \code{cut * bw} beyond \code{range(x)} and may produce violins that
 reach into implausible values (e.g. scores above 100 or below 0).}
 
-\item{col}{Fill color(s) of the violins.}
+\item{col}{fill color(s) of the violins.}
 
-\item{border}{Border color(s) of the violins.}
+\item{border}{border color(s) of the violins.}
 
-\item{lwd}{Line width for violin borders.}
+\item{lwd}{line width for violin borders.}
 
-\item{box}{Logical or list controlling the boxplot overlay
+\item{box}{logical or list controlling the boxplot overlay
 (see Details).}
 
-\item{grid}{Logical, \code{NA}, or list controlling background grid.}
+\item{grid}{logical, \code{NA}, or list controlling background grid.}
 
-\item{quantiles}{Optional numeric vector of probabilities for drawing
+\item{quantiles}{optional numeric vector of probabilities for drawing
 quantile lines inside each violin.}
 
 \item{formula}{A formula of the form y ~ group.}
 
-\item{data}{Optional data frame.}
+\item{data}{optional data frame.}
 
-\item{subset}{Optional subset expression.}
+\item{subset}{optional subset expression.}
 
-\item{na.action}{Function to handle missing values.}
+\item{na.action}{function to handle missing values.}
 }
 \value{
 Invisibly returns \code{NULL}.

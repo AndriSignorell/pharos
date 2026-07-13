@@ -7,9 +7,9 @@
 colToRGB(col, useAlphaChannel = FALSE)
 }
 \arguments{
-\item{col}{Vector of valid R colors.}
+\item{col}{vector of valid R colors.}
 
-\item{useAlphaChannel}{Logical indicating whether the alpha
+\item{useAlphaChannel}{logical indicating whether the alpha
 channel should be included.}
 }
 \value{
@@ -36,3 +36,4 @@ colToRGB(1:8)
 \link[grDevices:col2rgb]{grDevices::col2rgb}, \link{color-conversion-overview}
 }
 \concept{color}
+\concept{color-conversion}

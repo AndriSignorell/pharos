@@ -64,7 +64,7 @@
 #' @return Invisibly returns a list of \code{x}/\code{y} coordinates of the
 #'   node points, useful for adding further annotations to the plot.
 #'
-#' @seealso \code{\link{plotCor}}, \code{\link{getTheme}}
+#' @seealso \code{\link{plotCor}}, [theme]
 #'
 #' @examples
 #' m <- cor(swiss)

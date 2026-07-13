@@ -3,8 +3,8 @@
 #'
 #' Lighten colors by mixing them with white.
 #'
-#' @param col Vector of valid R colors.
-#' @param amount Numeric value between 0 and 1 specifying the
+#' @param col vector of valid R colors.
+#' @param amount numeric value between 0 and 1 specifying the
 #'   amount of lightening. A value of 0 leaves the color unchanged,
 #'   while 1 returns white.
 #'
@@ -20,6 +20,7 @@
 
 #' @family color.manipulation
 #' @concept color
+#' @concept transformation
 #'
 #'
 #' @export

@@ -7,7 +7,7 @@
 hexToRGB(hex)
 }
 \arguments{
-\item{hex}{Character vector of hexadecimal colors.}
+\item{hex}{character vector of hexadecimal colors.}
 }
 \value{
 Integer matrix with RGB rows.

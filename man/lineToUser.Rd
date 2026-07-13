@@ -40,5 +40,6 @@ Other graphics.layout:
 \code{\link[=mar]{mar()}},
 \code{\link[=spreadOut]{spreadOut()}}
 }
-\concept{annotation}
+\concept{geometry}
 \concept{graphics.layout}
+\concept{numerical-methods}

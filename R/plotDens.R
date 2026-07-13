@@ -23,37 +23,37 @@
 #' Graphical elements such as grids are controlled via the unified plot
 #' design system using \code{bedrock::callIf()} and \code{.theme()}.
 #'
-#' @param ... Additional data vectors (unnamed, default method) or
+#' @param ... additional data vectors (unnamed, default method) or
 #'   graphical parameters passed to \code{par()}.
 #'
 #' @param formula A formula of the form \code{y ~ group}, \code{y ~ x}
 #'   (\code{x} numeric, conditional density), or \code{y ~ x | group}.
-#' @param data Optional data frame.
-#' @param subset Optional subset expression.
-#' @param na.action Function to handle missing values.
+#' @param data optional data frame.
+#' @param subset optional subset expression.
+#' @param na.action function to handle missing values.
 #'
-#' @param main,xlab,ylab Plot labels.
-#' @param xlim,ylim Axis limits.
+#' @param main,xlab,ylab plot labels.
+#' @param xlim,ylim axis limits.
 #'
-#' @param add Logical; if \code{TRUE}, adds to an existing plot.
-#' @param bw Bandwidth passed to \code{\link[stats]{density}} or \code{cdplot}.
-#' @param type Character string specifying the plot type. One of
+#' @param add logical; if \code{TRUE}, adds to an existing plot.
+#' @param bw bandwidth passed to \code{\link[stats]{density}} or \code{cdplot}.
+#' @param type character string specifying the plot type. One of
 #'   \code{"density"}, \code{"conditional"}, or \code{NULL} (default,
 #'   determined by \code{resolveFormula()}'s design classification).
 #'
-#' @param col Line color(s).
-#' @param lwd Line width(s).
-#' @param lty Line type(s).
-#' @param fill For \code{type = "density"}: \code{FALSE} (default, no
+#' @param col line color(s).
+#' @param lwd line width(s).
+#' @param lty line type(s).
+#' @param fill for \code{type = "density"}: \code{FALSE} (default, no
 #'   fill), \code{TRUE} (translucent fill derived from each group's
 #'   \code{col} via \code{adjustcolor(col, alpha.f = 0.3)}), or one or
 #'   more explicit fill colors recycled over groups. For
 #'   \code{type = "conditional"} on a single, unstratified, binary curve:
 #'   \code{TRUE} for cdplot-style grey shading, or a vector of 2 colors for
 #'   the regions below/above the boundary curve.
-#' @param grid Logical, \code{NA}, or list controlling background grid.
+#' @param grid logical, \code{NA}, or list controlling background grid.
 #'
-#' @param stamp Controls the corner stamp. \code{.useTheme} (default)
+#' @param stamp controls the corner stamp. \code{.useTheme} (default)
 #'   resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/\code{NULL},
 #'   or an explicit string, as for \code{.withGraphicsState()} (internal).
 #'   
@@ -237,14 +237,14 @@ plotDens.default <- function(
 #' g}, several groups) and the degenerate single-group case (\code{y ~ x},
 #' no \code{| g} block).
 #'
-#' @param y Response variable, coerced to a factor if not already one.
-#' @param x Continuous predictor.
-#' @param g Grouping/block factor. For the degenerate single-group case,
+#' @param y response variable, coerced to a factor if not already one.
+#' @param x continuous predictor.
+#' @param g grouping/block factor. For the degenerate single-group case,
 #'   pass a constant-level factor of the same length as \code{x} (e.g.
 #'   \code{factor(rep.int("", length(x)))}); no legend distinction is then
 #'   needed since there is only one curve.
-#' @param main,xlab,ylab Plot labels.
-#' @param xlim,ylim Axis limits.
+#' @param main,xlab,ylab plot labels.
+#' @param xlim,ylim axis limits.
 #' @param add,bw,col,lwd,lty,grid see \code{\link{plotDens}}.
 #' @param fill \code{FALSE} (default, no fill), \code{TRUE} (cdplot-style
 #'   grey shading), or a vector of 2 colors for the regions below/above the

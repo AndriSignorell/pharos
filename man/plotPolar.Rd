@@ -17,29 +17,29 @@ plotPolar(
 )
 }
 \arguments{
-\item{r}{Numeric vector or matrix of radial values. Each row represents one series.}
+\item{r}{numeric vector or matrix of radial values. Each row represents one series.}
 
-\item{theta}{Optional numeric vector or matrix of angles (in radians).
+\item{theta}{optional numeric vector or matrix of angles (in radians).
 Must match the dimensions of \code{r}. If \code{NULL}, equally spaced angles are used.}
 
-\item{main}{Optional plot title.}
+\item{main}{optional plot title.}
 
-\item{type}{Character vector specifying plot type for each series:
+\item{type}{character vector specifying plot type for each series:
 \describe{
 \item{"p"}{points}
 \item{"l"}{polygon (connected and optionally filled)}
 \item{"h"}{radial segments ("histogram"-style)}
 }}
 
-\item{rlim}{Numeric limit for radial axis. If \code{NULL}, determined automatically.}
+\item{rlim}{numeric limit for radial axis. If \code{NULL}, determined automatically.}
 
-\item{col}{Color for points/lines.}
+\item{col}{color for points/lines.}
 
-\item{border}{Color for border in case of type \code{polygon}.}
+\item{border}{color for border in case of type \code{polygon}.}
 
-\item{add}{Logical; if \code{TRUE}, adds to an existing plot.}
+\item{add}{logical; if \code{TRUE}, adds to an existing plot.}
 
-\item{...}{Additional graphical parameters passed to base plotting functions.}
+\item{...}{additional graphical parameters passed to base plotting functions.}
 }
 \value{
 Invisibly returns \code{NULL}.

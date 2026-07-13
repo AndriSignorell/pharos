@@ -6,28 +6,28 @@
 #' Objects of class \code{"blandAltman"} are typically created with
 #' \code{DescToolsX::blandAltmanData()}.
 #'
-#' @param x An object of class \code{"blandAltman"}.
+#' @param x an object of class \code{"blandAltman"}.
 #'
-#' @param main Plot title.
+#' @param main plot title.
 #' @param xlab X-axis label.
 #' @param ylab Y-axis label.
 #'
 #' @param xlim X-axis limits.
 #' @param ylim Y-axis limits.
 #'
-#' @param pch Plotting symbol.
-#' @param col Point colour.
+#' @param pch plotting symbol.
+#' @param col point colour.
 #'
-#' @param grid Logical; draw a background grid.
-#' @param meanLine Logical; draw the bias line.
-#' @param limits Logical; draw the limits of agreement.
-#' @param conf.band Logical; draw confidence bands.
-#' @param trend Logical; draw a regression line of
+#' @param grid logical; draw a background grid.
+#' @param meanLine logical; draw the bias line.
+#' @param limits logical; draw the limits of agreement.
+#' @param conf.band logical; draw confidence bands.
+#' @param trend logical; draw a regression line of
 #' differences versus means.
-#' @param showText Logical; annotate bias and limits.
+#' @param showText logical; annotate bias and limits.
 #'
-#' @param stamp Optional plot stamp.
-#' @param ... Further arguments passed to \code{plot()}.
+#' @param stamp optional plot stamp.
+#' @param ... further arguments passed to \code{plot()}.
 #'
 #' @return
 #' Invisibly returns \code{x}.

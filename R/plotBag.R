@@ -50,22 +50,22 @@
 #'
 #' @param x A numeric matrix or data frame with exactly two columns.
 #'
-#' @param main,xlab,ylab Character strings for plot annotations.
+#' @param main,xlab,ylab character strings for plot annotations.
 #'
-#' @param xlim,ylim Numeric vectors of length 2 specifying axis limits.
+#' @param xlim,ylim numeric vectors of length 2 specifying axis limits.
 #'
-#' @param factor Inflation factor for the loop (default: 3).
+#' @param factor inflation factor for the loop (default: 3).
 #'
-#' @param eps Numeric tolerance used in depth computation and geometry.
+#' @param eps numeric tolerance used in depth computation and geometry.
 #'
-#' @param dither Logical; whether to add small noise to break ties.
+#' @param dither logical; whether to add small noise to break ties.
 #'
 #' @param points,bag,loop,out,median,grid,box
 #' Object-oriented control of plot elements (see Details).
 #'
-#' @param stamp Optional stamp passed to \code{.withGraphicsState()}.
+#' @param stamp optional stamp passed to \code{.withGraphicsState()}.
 #'
-#' @param ... Additional graphical parameters passed to \code{par()}.
+#' @param ... additional graphical parameters passed to \code{par()}.
 #'
 #' @return Invisibly returns a list with components:
 #' \itemize{

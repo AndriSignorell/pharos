@@ -18,10 +18,10 @@
 )
 }
 \arguments{
-\item{x}{An object of class \code{"Desc.qn"}, as returned by
+\item{x}{an object of class \code{"Desc.qn"}, as returned by
 \code{\link[DescToolsX]{desc}()} for a numeric-categorical pair.}
 
-\item{main}{Main title. \code{NULL} (default) derives a title per panel
+\item{main}{main title. \code{NULL} (default) derives a title per panel
 from the variable names and the panel type (e.g.
 \code{"area ~ delivery_min (Spineplot)"}). \code{""}, \code{NA}, or
 \code{FALSE} suppress the title and compact the top margin. Any other
@@ -72,7 +72,7 @@ accent color.}
 Supplying \code{col} explicitly overrides the default uniformly for
 every selected panel.}
 
-\item{box}{Controls the plot frame for panels 4 and 5.
+\item{box}{controls the plot frame for panels 4 and 5.
 \code{.useTheme} (default) follows the active theme
 (\code{getTheme()$box}); \code{FALSE}/\code{NA} suppress it; a named
 list overrides \code{\link[graphics]{box}()} arguments. Panels 1/2
@@ -83,13 +83,13 @@ draws its own frame regardless of this argument. Panel 3
 (\code{\link{plotDens}}) never draws a frame, regardless of this
 argument.}
 
-\item{legend}{Controls the legend for panel 3 (grouped density curves).
+\item{legend}{controls the legend for panel 3 (grouped density curves).
 \code{TRUE} (default) draws a legend with the group levels.
 \code{FALSE}/\code{NA} suppresses it. A named list overrides arguments
 forwarded to \code{\link[graphics]{legend}}. Has no effect on the
 other panels.}
 
-\item{stamp}{Controls the corner stamp. \code{.useTheme} (default)
+\item{stamp}{controls the corner stamp. \code{.useTheme} (default)
 resolves to \code{getTheme()$stamp}, drawn once after all selected
 panels (panels 3/4 delegate to \code{\link{plotDens}}/
 \code{\link{plotBox}}, whose own stamp is suppressed internally to

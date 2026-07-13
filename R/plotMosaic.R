@@ -120,7 +120,7 @@
 #' @param col vector of colors for the fill/legend variable (the second
 #'   table dimension, or first if `swap = TRUE`). `.useTheme` (default)
 #'   resolves to `pal(getTheme()$palette, n = <number of levels>)` - the
-#'   active theme's qualitative palette (see \code{\link{getTheme}}),
+#'   active theme's qualitative palette (see [theme]),
 #'   sampled or interpolated to match the number of category levels.
 #'   A diverging or sequential color ramp is deliberately not used here:
 #'   the fill variable is an unordered categorical variable, and a ramp
@@ -136,7 +136,7 @@
 #'   Default `0.8`.
 #' @param labDigits integer. Number of decimal digits for percentage cell
 #'   labels when `labels = "p"`. Default `1`.
-#' @param stamp Controls the corner stamp. \code{.useTheme} (default)
+#' @param stamp controls the corner stamp. \code{.useTheme} (default)
 #'   resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
 #'   \code{NULL}, or an explicit string, as for
 #'   \code{.withGraphicsState()} (internal).

@@ -25,7 +25,7 @@ plotFun(
 )
 }
 \arguments{
-\item{expr}{Expression defining the function. Either a formula
+\item{expr}{expression defining the function. Either a formula
 (\code{y ~ f(x)}), a polar formula (\code{r ~ f(phi)}), or a list
 of two formulas for parametric plots.}
 

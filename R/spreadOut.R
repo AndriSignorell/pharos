@@ -43,7 +43,8 @@
 #' @seealso \code{\link{strheight}()}
 #' 
 #' @family graphics.layout
-#' @concept annotation
+#' @concept label
+#' @concept numerical-methods
 #'
 #'
 #' @export

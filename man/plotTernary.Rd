@@ -25,27 +25,27 @@ plotTernary(
 are provided, \code{x}, \code{y}, and \code{z} are combined into a matrix.
 Otherwise, \code{x} must contain exactly three columns.}
 
-\item{y}{Optional numeric vector for the second component.}
+\item{y}{optional numeric vector for the second component.}
 
-\item{z}{Optional numeric vector for the third component.}
+\item{z}{optional numeric vector for the third component.}
 
-\item{...}{Additional graphical parameters passed to \code{par()}.}
+\item{...}{additional graphical parameters passed to \code{par()}.}
 
-\item{add}{Logical; if \code{TRUE}, adds to an existing plot.}
+\item{add}{logical; if \code{TRUE}, adds to an existing plot.}
 
-\item{col}{Point color(s).}
+\item{col}{point color(s).}
 
-\item{pch}{Plotting symbol.}
+\item{pch}{plotting symbol.}
 
-\item{cex}{Point size.}
+\item{cex}{point size.}
 
-\item{grid}{Logical, \code{NA}, or list controlling the ternary grid.}
+\item{grid}{logical, \code{NA}, or list controlling the ternary grid.}
 
-\item{lbl}{Character vector of length 3 specifying axis labels.}
+\item{lbl}{character vector of length 3 specifying axis labels.}
 
-\item{main}{Plot title.}
+\item{main}{plot title.}
 
-\item{xlim, ylim}{Plot limits (usually left at defaults).}
+\item{xlim, ylim}{plot limits (usually left at defaults).}
 }
 \value{
 Invisibly returns \code{NULL}.

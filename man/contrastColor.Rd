@@ -7,13 +7,13 @@
 contrastColor(col, light = "white", dark = "black")
 }
 \arguments{
-\item{col}{Vector of colors. Can be any valid R color specification:
+\item{col}{vector of colors. Can be any valid R color specification:
 color names, hexadecimal strings (e.g. \code{"#RRGGBB"} or \code{"#RRGGBBAA"}),
 or palette indices.}
 
-\item{light}{Color used for dark backgrounds (default: \code{"white"}).}
+\item{light}{color used for dark backgrounds (default: \code{"white"}).}
 
-\item{dark}{Color used for light backgrounds (default: \code{"black"}).}
+\item{dark}{color used for light backgrounds (default: \code{"black"}).}
 }
 \value{
 A character vector of the same length as \code{col}, containing either
@@ -68,5 +68,6 @@ contrastColor(cols, light = "#FFFFFF", dark = "#222222")
 Other color.lookup:
 \code{\link[=findColor]{findColor()}}
 }
+\concept{classification}
 \concept{color}
 \concept{color.lookup}

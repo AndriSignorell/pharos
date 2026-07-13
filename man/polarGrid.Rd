@@ -20,7 +20,7 @@ polarGrid(
 )
 }
 \arguments{
-\item{nr}{Numeric or vector controlling radial grid lines:
+\item{nr}{numeric or vector controlling radial grid lines:
 \describe{
 \item{\code{NULL}}{Uses default "pretty" axis values.}
 \item{single numeric}{Number of radial grid lines.}
@@ -28,7 +28,7 @@ polarGrid(
 \item{all \code{NA}}{Suppress radial grid lines.}
 }}
 
-\item{ntheta}{Numeric or vector controlling angular grid lines:
+\item{ntheta}{numeric or vector controlling angular grid lines:
 \describe{
 \item{\code{NULL}}{Uses 12 equally spaced angles.}
 \item{single numeric}{Number of angular divisions.}
@@ -36,30 +36,30 @@ polarGrid(
 \item{all \code{NA}}{Suppress angular grid lines.}
 }}
 
-\item{col}{Color of grid lines.}
+\item{col}{color of grid lines.}
 
-\item{lty}{Line type for grid lines.}
+\item{lty}{line type for grid lines.}
 
-\item{lwd}{Line width for grid lines.}
+\item{lwd}{line width for grid lines.}
 
-\item{rlabels}{Optional labels for radial grid lines (excluding zero).
+\item{rlabels}{optional labels for radial grid lines (excluding zero).
 If \code{NULL}, labels are generated automatically.
 Use \code{NA} to suppress labels.}
 
-\item{alabels}{Optional labels for angular grid lines.
+\item{alabels}{optional labels for angular grid lines.
 If \code{NULL}, labels are generated automatically (degrees or radians).
 Use \code{NA} to suppress labels.}
 
-\item{lblradians}{Logical; if \code{TRUE}, angle labels are shown in radians,
+\item{lblradians}{logical; if \code{TRUE}, angle labels are shown in radians,
 otherwise in degrees.}
 
-\item{cex.lab}{Character expansion factor for labels.}
+\item{cex.lab}{character expansion factor for labels.}
 
-\item{las}{Integer controlling label orientation (as in \code{\link[graphics]{par}}).}
+\item{las}{integer controlling label orientation (as in \code{\link[graphics]{par}}).}
 
-\item{adj}{Numeric vector specifying text justification.}
+\item{adj}{numeric vector specifying text justification.}
 
-\item{dist}{Numeric distance from origin for angular labels.}
+\item{dist}{numeric distance from origin for angular labels.}
 }
 \value{
 Invisibly returns \code{NULL}.
@@ -98,5 +98,6 @@ Other graphics.setup:
 \code{\link[=canvas]{canvas()}},
 \code{\link[=setBackCol]{setBackCol()}}
 }
+\concept{annotation}
 \concept{geometry}
 \concept{graphics.setup}

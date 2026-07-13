@@ -7,7 +7,7 @@
 stamp(text = .useTheme, las = NULL, cex = 0.6, col = "grey40")
 }
 \arguments{
-\item{text}{Character string, expression, or toggle controlling the
+\item{text}{character string, expression, or toggle controlling the
 stamp text. \code{.useTheme} (default) or \code{TRUE} resolve to
 \code{getTheme()$stamp}, evaluated lazily at draw time. \code{FALSE},
 \code{NULL}, or \code{NA} suppress the stamp. Any other string or
@@ -51,3 +51,4 @@ Other graphics.annotation:
 }
 \concept{annotation}
 \concept{graphics.annotation}
+\concept{label}

@@ -26,9 +26,9 @@ plotCor(
 \arguments{
 \item{x}{A numeric correlation matrix.}
 
-\item{main, xlab, ylab}{Optional plot labels.}
+\item{main, xlab, ylab}{optional plot labels.}
 
-\item{xax, yax}{Controls drawing of the axes.
+\item{xax, yax}{controls drawing of the axes.
 
 Supported values are
 \describe{
@@ -37,25 +37,25 @@ Supported values are
 \item{\code{list(...)}}{custom axis parameters passed to \code{\link[graphics]{axis}}}
 }}
 
-\item{cluster}{Logical; if \code{TRUE}, variables are reordered by
+\item{cluster}{logical; if \code{TRUE}, variables are reordered by
 hierarchical clustering to place similar correlations together.}
 
-\item{mincor}{Numeric threshold; correlations with absolute value
+\item{mincor}{numeric threshold; correlations with absolute value
 smaller than this are suppressed (set to \code{NA}).}
 
-\item{triangle}{Which part of the matrix to display.
+\item{triangle}{which part of the matrix to display.
 One of
 \code{"full"}, \code{"upper"}, or \code{"lower"}.}
 
-\item{diag}{Logical; should the diagonal be displayed.}
+\item{diag}{logical; should the diagonal be displayed.}
 
-\item{col}{Color palette used for the correlation values. \code{.useTheme}
+\item{col}{color palette used for the correlation values. \code{.useTheme}
 (default) builds a diverging ramp from \code{getTheme()$twin} - the
 active theme's two-color pair - through white: \code{twin[1]} at the
 negative end (\eqn{-1}), white at zero, \code{twin[2]} at the positive
 end (\eqn{+1}).}
 
-\item{grid}{Controls drawing of cell-separator grid lines at the
+\item{grid}{controls drawing of cell-separator grid lines at the
 half-integer matrix boundaries (clipped to the matrix extent, so they
 never bleed into the margins). Can be:
 \itemize{
@@ -66,13 +66,13 @@ never bleed into the margins). Can be:
 \item a named list: override \code{col}/\code{lwd} for this call only
 }}
 
-\item{box}{Controls drawing of the plot box. \code{.useTheme} (default)
+\item{box}{controls drawing of the plot box. \code{.useTheme} (default)
 resolves to \code{getTheme()$box}. \code{TRUE}/\code{FALSE}/\code{NA},
 or a named list, as for \code{grid}.}
 
-\item{legend}{Logical; draw a color legend for the correlation scale.}
+\item{legend}{logical; draw a color legend for the correlation scale.}
 
-\item{text}{Controls numeric labels drawn inside the matrix cells.
+\item{text}{controls numeric labels drawn inside the matrix cells.
 
 Supported values are
 \describe{
@@ -81,7 +81,7 @@ Supported values are
 \item{\code{list(...)}}{custom parameters passed to the internal text drawing routine}
 }}
 
-\item{...}{Additional graphical parameters passed to
+\item{...}{additional graphical parameters passed to
 \code{\link[graphics]{par}} and \code{\link[graphics]{image}}.}
 }
 \value{
@@ -191,7 +191,7 @@ mtext(text = rev(rownames(m)), side = 4, at=1:ncol(m), las=1, line = -5, cex=0.8
 }
 \seealso{
 \code{\link[graphics]{image}}, \code{\link[stats]{cor}},
-\code{\link{getTheme}}
+\link{theme}
 
 Other plot.bivariate:
 \code{\link[=plotAssoc]{plotAssoc()}},
@@ -202,6 +202,7 @@ Other plot.bivariate:
 \code{\link[=plotMosaic]{plotMosaic()}},
 \code{\link[=plotXY]{plotXY()}}
 }
+\concept{agreement}
 \concept{bivariate}
 \concept{correlation}
 \concept{plot.bivariate}

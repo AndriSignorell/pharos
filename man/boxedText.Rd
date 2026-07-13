@@ -45,7 +45,7 @@ calls) to expressions, and vectors and other classed objects to character
 vectors by as.character. If labels is longer than x and y, the coordinates
 are recycled to the length of labels.}
 
-\item{adj}{The value of adj determines the way in which text strings are
+\item{adj}{the value of adj determines the way in which text strings are
 justified.  A value of 0 produces left-justified text, 0.5 (the default)
 centered text and 1 right-justified text.  (Any value in \verb{[0, 1]} is allowed,
 and on most devices values outside that interval will also work.)  Note that
@@ -73,9 +73,9 @@ are equivalent to 1.0.}
 vectors. These default to the values of the global graphical parameters in
 \code{par()}.}
 
-\item{srt}{The string rotation in degrees.}
+\item{srt}{the string rotation in degrees.}
 
-\item{xpad, ypad}{The proportion of the rectangles to the extent of the text
+\item{xpad, ypad}{the proportion of the rectangles to the extent of the text
 within.}
 
 \item{density}{the density of shading lines, in lines per inch. The default
@@ -103,12 +103,12 @@ same colour for the border as for the shading lines.}
 gives the response values and \code{rhs} the corresponding groups
 or explanatory variables.}
 
-\item{data}{An optional matrix or data frame (or similar; see
+\item{data}{an optional matrix or data frame (or similar; see
 \code{\link[stats]{model.frame}}) containing the variables in the
 formula. By default the variables are taken from
 \code{environment(formula)}.}
 
-\item{subset}{An optional vector specifying a subset of observations
+\item{subset}{an optional vector specifying a subset of observations
 to be used in the analysis.}
 }
 \description{
@@ -144,3 +144,4 @@ Other graphics.annotation:
 }
 \concept{annotation}
 \concept{graphics.annotation}
+\concept{label}

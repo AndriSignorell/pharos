@@ -7,9 +7,9 @@
 lighten(col, amount = 0.2)
 }
 \arguments{
-\item{col}{Vector of valid R colors.}
+\item{col}{vector of valid R colors.}
 
-\item{amount}{Numeric value between 0 and 1 specifying the
+\item{amount}{numeric value between 0 and 1 specifying the
 amount of lightening. A value of 0 leaves the color unchanged,
 while 1 returns white.}
 }
@@ -35,3 +35,4 @@ Other color.manipulation:
 }
 \concept{color}
 \concept{color.manipulation}
+\concept{transformation}

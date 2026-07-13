@@ -7,10 +7,10 @@
 mar(bottom = NULL, left = NULL, top = NULL, right = NULL, outer = FALSE)
 }
 \arguments{
-\item{bottom, left, top, right}{Numeric scalars specifying the margin size
+\item{bottom, left, top, right}{numeric scalars specifying the margin size
 (in lines) for each side. If \code{NULL}, the current value is retained.}
 
-\item{outer}{Logical; if \code{TRUE}, outer margins (\code{oma}) are used
+\item{outer}{logical; if \code{TRUE}, outer margins (\code{oma}) are used
 instead of inner margins (\code{mar}).}
 }
 \value{
@@ -55,5 +55,6 @@ Other graphics.layout:
 \code{\link[=lineToUser]{lineToUser()}},
 \code{\link[=spreadOut]{spreadOut()}}
 }
-\concept{annotation}
+\concept{geometry}
 \concept{graphics.layout}
+\concept{numerical-methods}

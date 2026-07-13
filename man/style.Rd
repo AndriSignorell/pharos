@@ -171,3 +171,5 @@ Other format:
 \code{\link[=unit]{unit()}}
 }
 \concept{format}
+\concept{formatting}
+\concept{number-formatting}

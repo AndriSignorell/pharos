@@ -14,6 +14,7 @@
 #'
 #' @family html  
 #' @concept html
+#' @concept formatting
 #'
 #'
 #' @export

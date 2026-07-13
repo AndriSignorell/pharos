@@ -24,9 +24,9 @@
 )
 }
 \arguments{
-\item{x}{An object of class \code{"blandAltman"}.}
+\item{x}{an object of class \code{"blandAltman"}.}
 
-\item{main}{Plot title.}
+\item{main}{plot title.}
 
 \item{xlab}{X-axis label.}
 
@@ -36,26 +36,26 @@
 
 \item{ylim}{Y-axis limits.}
 
-\item{pch}{Plotting symbol.}
+\item{pch}{plotting symbol.}
 
-\item{col}{Point colour.}
+\item{col}{point colour.}
 
-\item{grid}{Logical; draw a background grid.}
+\item{grid}{logical; draw a background grid.}
 
-\item{meanLine}{Logical; draw the bias line.}
+\item{meanLine}{logical; draw the bias line.}
 
-\item{limits}{Logical; draw the limits of agreement.}
+\item{limits}{logical; draw the limits of agreement.}
 
-\item{conf.band}{Logical; draw confidence bands.}
+\item{conf.band}{logical; draw confidence bands.}
 
-\item{trend}{Logical; draw a regression line of
+\item{trend}{logical; draw a regression line of
 differences versus means.}
 
-\item{showText}{Logical; annotate bias and limits.}
+\item{showText}{logical; annotate bias and limits.}
 
-\item{stamp}{Optional plot stamp.}
+\item{stamp}{optional plot stamp.}
 
-\item{...}{Further arguments passed to \code{plot()}.}
+\item{...}{further arguments passed to \code{plot()}.}
 }
 \value{
 Invisibly returns \code{x}.

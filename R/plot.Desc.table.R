@@ -7,10 +7,10 @@
 #' \code{which}. Higher-dimensional tables (more than two margins) are not
 #' supported; a message is issued and the call returns invisibly.
 #'
-#' @param x An object of class \code{"Desc.table"}, as returned by
+#' @param x an object of class \code{"Desc.table"}, as returned by
 #'   \code{\link[DescToolsX]{desc}()} for a categorical-categorical pair.
 #'
-#' @param main Main title. \code{NULL} (default) derives a title per panel
+#' @param main main title. \code{NULL} (default) derives a title per panel
 #'   from \code{x$meta$xname} (the deparsed expression originally passed to
 #'   \code{desc()}, e.g. \code{"table(Pizza$area, Pizza$driver)"}) combined
 #'   with a panel-type label for context when multiple panels are shown
@@ -70,7 +70,7 @@
 #'   }
 #'   Supplying \code{col} explicitly overrides the default uniformly for
 #'   every selected panel.
-#' @param box Controls the plot frame. \code{.useTheme} (default) follows
+#' @param box controls the plot frame. \code{.useTheme} (default) follows
 #'   the active theme (\code{getTheme()$box}); \code{FALSE}/\code{NA}
 #'   suppress it; a named list overrides frame-drawing arguments.
 #'   \describe{
@@ -87,7 +87,7 @@
 #'       \code{\link[graphics]{box}()}.}
 #'   }
 #'
-#' @param stamp Controls the corner stamp. \code{.useTheme} (default)
+#' @param stamp controls the corner stamp. \code{.useTheme} (default)
 #'   resolves to \code{getTheme()$stamp}, drawn once after all selected
 #'   panels. Panels 2-4 delegate to \code{\link{plotMosaic}}/
 #'   \code{\link{plotAssoc}}/\code{\link{plotHeatmap}}, whose own

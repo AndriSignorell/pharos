@@ -26,20 +26,20 @@ plotPropCI(
 the two columns contain counts for the two categories. A numeric vector
 of length 2 is also accepted and will be coerced to a one-row matrix.}
 
-\item{main}{Main title of the plot. \code{NULL} (default) derives a title
+\item{main}{main title of the plot. \code{NULL} (default) derives a title
 from \code{deparse(substitute(x))}. \code{""}, \code{NA}, or \code{FALSE}
 suppress the title and compact the top margin. Any other string is used
 as given.}
 
-\item{labels}{Character vector of length 2 with labels for the two
+\item{labels}{character vector of length 2 with labels for the two
 categories, displayed at the top of the plot. Default \code{c("", "")}.}
 
-\item{xlab}{Label for the x-axis. Default \code{""}.}
+\item{xlab}{label for the x-axis. Default \code{""}.}
 
-\item{xlim}{Numeric vector of length 2 for the x-axis limits.
+\item{xlim}{numeric vector of length 2 for the x-axis limits.
 Default \code{c(0, 1)}.}
 
-\item{col}{Character vector of length 2 specifying fill colours for the
+\item{col}{character vector of length 2 specifying fill colours for the
 stacked bar. \code{.useTheme} (default) resolves to
 \code{getTheme()$twin} - the active theme's two-color pair. Note this
 is purely "first label gets the first color"; unlike
@@ -47,42 +47,42 @@ is purely "first label gets the first color"; unlike
 negative sign convention here, since proportions of two arbitrary
 categories (e.g. "yes"/"no") have no inherent sign.}
 
-\item{ci.col}{Colour for the confidence interval bands. Default is a
+\item{ci.col}{colour for the confidence interval bands. Default is a
 semi-transparent grey (\code{addOpacity("grey80", 0.12)}). Deliberately
 not theme-driven (like the sequential scales in
 \code{\link{plotDens2D}}/\code{\link{plotHeatmap}}): this is a
 structural mechanism (many overlapping translucent bands building a
 gradient via overdraw), not a categorical or diverging color choice.}
 
-\item{border}{Border colour for the confidence interval bands and the
+\item{border}{border colour for the confidence interval bands and the
 stacked bar. Default \code{NA} (no border).}
 
-\item{ciLevels}{Numeric vector of confidence levels for the nested bands.
+\item{ciLevels}{numeric vector of confidence levels for the nested bands.
 Default \code{seq(0.99, 0.80, by = -0.01)} (20 bands, 99\\% down to
 80\\% in 1\\% steps). Draw order does not affect the result, since all
 bands share the same translucent color and no border.}
 
-\item{grid}{Controls drawing of the background grid (vertical lines at
+\item{grid}{controls drawing of the background grid (vertical lines at
 the proportion ticks only - there is no meaningful horizontal grid
 for the categorical group axis). \code{.useTheme} (default) follows
 the active theme (\code{getTheme()$grid}). \code{TRUE}/\code{FALSE}/
 \code{NA}, or a named list, as for \code{\link[graphics]{grid}}.}
 
-\item{box}{Controls drawing of the plot box. Default \code{FALSE} (no
+\item{box}{controls drawing of the plot box. Default \code{FALSE} (no
 frame, consistent with this chart's minimal "Few"-style appearance).
 \code{TRUE}/\code{NA}, or a named list, as for
 \code{\link[graphics]{box}}.}
 
-\item{legend}{Controls the legend explaining the CI band range.
+\item{legend}{controls the legend explaining the CI band range.
 \code{TRUE} (default) draws it. \code{FALSE}/\code{NA} suppresses it.
 A named list overrides arguments forwarded to
 \code{\link[graphics]{legend}}.}
 
-\item{stamp}{Controls the corner stamp. \code{.useTheme} (default)
+\item{stamp}{controls the corner stamp. \code{.useTheme} (default)
 resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
 \code{NULL}, a string, or a named list for \code{\link{stamp}()}.}
 
-\item{...}{Further arguments passed to \code{\link[graphics]{par}} via
+\item{...}{further arguments passed to \code{\link[graphics]{par}} via
 the internal framework, and to \code{\link[graphics]{barplot}}.}
 }
 \value{
@@ -113,7 +113,7 @@ plotPropCI(m[1, ], labels = c("yes", "no"))
 
 }
 \seealso{
-\code{\link[stats]{prop.test}}, \code{\link{getTheme}}
+\code{\link[stats]{prop.test}}, \link{theme}
 
 Other plot.special:
 \code{\link[=plotBinaryTree]{plotBinaryTree()}},

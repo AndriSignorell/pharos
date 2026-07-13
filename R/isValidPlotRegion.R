@@ -48,6 +48,8 @@
 #'
 #'
 #' @family graphics.layout 
+#' @concept geometry
+#'
 #' @export
 isValidPlotRegion <- function(minPin = .getOption("plot.minPin", c(0.5, 0.5))) {
   if (dev.cur() == 1L) return(TRUE)

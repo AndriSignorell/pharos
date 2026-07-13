@@ -9,10 +9,10 @@
 #' \code{area}, \code{labels}, \code{groupArea}, and \code{groupLabels}
 #' arguments. These accept logical values, vectors, or lists.
 #'
-#' @param x Numeric vector of positive values determining the rectangle sizes.
-#' @param groups Optional grouping variable. Values sharing the same group are
+#' @param x numeric vector of positive values determining the rectangle sizes.
+#' @param groups optional grouping variable. Values sharing the same group are
 #'   placed within a common enclosing region.
-#' @param area Controls the appearance of individual rectangles.
+#' @param area controls the appearance of individual rectangles.
 #'   \itemize{
 #'     \item \code{NULL} or \code{TRUE}: use defaults.
 #'     \item \code{FALSE} or \code{NA}: suppress rectangle fill.
@@ -20,7 +20,7 @@
 #'     \item List: graphical parameters such as \code{col}, \code{border},
 #'       and \code{lwd}.
 #'   }
-#' @param labels Controls the labels of individual rectangles.
+#' @param labels controls the labels of individual rectangles.
 #'   \itemize{
 #'     \item \code{NULL} or \code{TRUE}: use default labels (\code{names(x)}).
 #'     \item \code{FALSE} or \code{NA}: suppress labels.
@@ -28,13 +28,13 @@
 #'     \item List: label properties such as \code{text}, \code{col}, and
 #'       \code{cex}.
 #'   }
-#' @param groupArea Controls the appearance of enclosing group regions.
+#' @param groupArea controls the appearance of enclosing group regions.
 #'   Uses the same conventions as \code{area}.
-#' @param groupLabels Controls the labels of enclosing group regions.
+#' @param groupLabels controls the labels of enclosing group regions.
 #'   Uses the same conventions as \code{labels}. By default, group names are
 #'   used when more than one group is present.
-#' @param main Main title of the plot.
-#' @param ... Additional graphical parameters passed to
+#' @param main main title of the plot.
+#' @param ... additional graphical parameters passed to
 #'   \code{.applyParFromDots()}.
 #'
 #' @details

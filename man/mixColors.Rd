@@ -7,11 +7,11 @@
 mixColors(col1, col2, weights = 0.5)
 }
 \arguments{
-\item{col1}{First vector of colors.}
+\item{col1}{first vector of colors.}
 
-\item{col2}{Second vector of colors.}
+\item{col2}{second vector of colors.}
 
-\item{weights}{Numeric value between 0 and 1 specifying the
+\item{weights}{numeric value between 0 and 1 specifying the
 contribution of \code{col2}. A value of 0 returns \code{col1},
 while 1 returns \code{col2}.}
 }
@@ -39,3 +39,4 @@ Other color.manipulation:
 }
 \concept{color}
 \concept{color.manipulation}
+\concept{transformation}

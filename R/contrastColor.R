@@ -13,11 +13,11 @@
 #' perceptually more accurate and suitable for accessibility-critical
 #' applications.
 #'
-#' @param col Vector of colors. Can be any valid R color specification:
+#' @param col vector of colors. Can be any valid R color specification:
 #'   color names, hexadecimal strings (e.g. `"#RRGGBB"` or `"#RRGGBBAA"`),
 #'   or palette indices.
-#' @param light Color used for dark backgrounds (default: `"white"`).
-#' @param dark Color used for light backgrounds (default: `"black"`).
+#' @param light color used for dark backgrounds (default: `"white"`).
+#' @param dark color used for light backgrounds (default: `"black"`).
 #'
 #' @return A character vector of the same length as `col`, containing either
 #'   `light` or `dark`, depending on which yields the higher contrast ratio.
@@ -58,6 +58,7 @@
 
 #' @family color.lookup
 #' @concept color
+#' @concept classification
 #'
 #'
 #' @export

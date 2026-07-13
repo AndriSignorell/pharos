@@ -10,27 +10,27 @@
 #' compared to overlaid density plots.
 #'
 #' @param x A numeric vector, or a list of numeric vectors representing groups.
-#' @param ... Additional graphical parameters passed to \code{par()}.
+#' @param ... additional graphical parameters passed to \code{par()}.
 #'
 #' @param formula A formula of the form \code{y ~ group}.
-#' @param data Optional data frame.
-#' @param subset Optional subset expression.
-#' @param na.action Function to handle missing values.
+#' @param data optional data frame.
+#' @param subset optional subset expression.
+#' @param na.action function to handle missing values.
 #'
-#' @param add Logical; if \code{TRUE}, adds to an existing plot.
-#' @param bw Bandwidth for \code{\link[stats]{density}}.
-#' @param scale Scaling factor for density height.
-#' @param spacing Vertical spacing between ridges.
+#' @param add logical; if \code{TRUE}, adds to an existing plot.
+#' @param bw bandwidth for \code{\link[stats]{density}}.
+#' @param scale scaling factor for density height.
+#' @param spacing vertical spacing between ridges.
 #'
-#' @param col Fill color(s).
-#' @param border Border color(s).
-#' @param lwd Line width(s).
-#' @param lty Line type(s).
-#' @param fill Logical; fill area under densities.
-#' @param grid Logical, \code{NA}, or list controlling grid.
+#' @param col fill color(s).
+#' @param border border color(s).
+#' @param lwd line width(s).
+#' @param lty line type(s).
+#' @param fill logical; fill area under densities.
+#' @param grid logical, \code{NA}, or list controlling grid.
 #'
-#' @param main,xlab,ylab Plot labels.
-#' @param xlim,ylim Axis limits.
+#' @param main,xlab,ylab plot labels.
+#' @param xlim,ylim axis limits.
 #'
 #' @return Invisibly returns \code{NULL}.
 #'

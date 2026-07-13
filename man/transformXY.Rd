@@ -14,21 +14,21 @@ transformXY(
 )
 }
 \arguments{
-\item{x}{Numeric vector of x coordinates, or an object coercible by
+\item{x}{numeric vector of x coordinates, or an object coercible by
 \code{\link{xy.coords}}.}
 
-\item{y}{Numeric vector of y coordinates. Ignored if \code{x} already
+\item{y}{numeric vector of y coordinates. Ignored if \code{x} already
 contains both coordinates.}
 
-\item{translate}{Numeric vector of length 1 or 2 specifying translation
+\item{translate}{numeric vector of length 1 or 2 specifying translation
 in x and y direction. Recycled if necessary. Default is \code{c(0, 0)}.}
 
-\item{scale}{Numeric vector of length 1 or 2 specifying scaling factors
+\item{scale}{numeric vector of length 1 or 2 specifying scaling factors
 for x and y. Recycled if necessary. Default is \code{c(1, 1)}.}
 
-\item{theta}{Rotation angle in radians. Default is \code{0}.}
+\item{theta}{rotation angle in radians. Default is \code{0}.}
 
-\item{asp}{Aspect ratio adjustment passed to \code{\link{rotate}}.
+\item{asp}{aspect ratio adjustment passed to \code{\link{rotate}}.
 Default is \code{1}.}
 }
 \value{
@@ -62,12 +62,12 @@ transformXY(x, y,
 m <- cbind(x, y)
 transformXY(m, scale = 0.5, theta = pi/6)
 
+
 }
 \seealso{
-\code{\link{rotate}}
-
 Other geometry.transformation:
 \code{\link[=rotate]{rotate()}}
 }
 \concept{geometry}
 \concept{geometry.transformation}
+\concept{numerical-methods}

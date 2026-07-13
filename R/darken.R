@@ -3,8 +3,8 @@
 #'
 #' Darken colors by mixing them with black.
 #'
-#' @param col Vector of valid R colors.
-#' @param amount Numeric value between 0 and 1 specifying the
+#' @param col vector of valid R colors.
+#' @param amount numeric value between 0 and 1 specifying the
 #'   amount of darkening. A value of 0 leaves the color unchanged,
 #'   while 1 returns black.
 #'
@@ -21,6 +21,7 @@
 
 #' @family color.manipulation
 #' @concept color
+#' @concept transformation
 #'
 #'
 #' @export

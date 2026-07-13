@@ -10,9 +10,9 @@ as.CI(x, ...)
 is.CI(x)
 }
 \arguments{
-\item{x}{Object to convert.}
+\item{x}{object to convert.}
 
-\item{...}{Further arguments passed to methods.}
+\item{...}{further arguments passed to methods.}
 }
 \value{
 A data frame of class \code{"ci"} with columns:

@@ -17,52 +17,52 @@
 #'
 #' @name plot.Lc
 #'
-#' @param x Object of class \code{"Lc"} (for \code{plot.Lc()},
+#' @param x object of class \code{"Lc"} (for \code{plot.Lc()},
 #'   \code{lines.Lc()}, \code{points.Lc()}) or \code{"LcList"} (for the
 #'   \code{*.LcList()} methods).
-#' @param general Logical.  If \code{TRUE}, the generalized Lorenz curve
+#' @param general logical.  If \code{TRUE}, the generalized Lorenz curve
 #'   (scaled by the mean) is displayed instead of the standard curve.
 #'   Default is \code{FALSE}.  Used by \code{plot.Lc()}, \code{lines.Lc()},
 #'   and \code{points.Lc()}; for the \code{"LcList"} methods it is passed
 #'   through \code{...} to the underlying \code{Lc} method.
-#' @param main,xlab,ylab Main title and axis labels, used by
+#' @param main,xlab,ylab main title and axis labels, used by
 #'   \code{plot.Lc()} only.  Defaults are \code{NULL}, \code{"p"}, and
 #'   \code{"L(p)"}, respectively.
-#' @param xlim,ylim Numeric vectors of length 2 giving axis limits, used by
+#' @param xlim,ylim numeric vectors of length 2 giving axis limits, used by
 #'   \code{plot.Lc()} only.  Default \code{NULL}, which resolves to
 #'   \code{c(0, 1)}.
-#' @param line Logical or list, used by \code{plot.Lc()} to control drawing
+#' @param line logical or list, used by \code{plot.Lc()} to control drawing
 #'   of the Lorenz curve line.  \code{TRUE} (default) draws the line with
 #'   package defaults (\code{col = "black"}, \code{lty = 1}, \code{lwd = 2});
 #'   \code{FALSE} suppresses it; a list overrides individual defaults and is
 #'   forwarded to \code{\link[graphics]{lines}()}.
-#' @param points Logical or list, used by \code{plot.Lc()} to control drawing
+#' @param points logical or list, used by \code{plot.Lc()} to control drawing
 #'   of points on the Lorenz curve.  \code{TRUE} (default) draws points with
 #'   package defaults (\code{pch = 21}, \code{bg = "white"},
 #'   \code{col = "black"}, \code{cex = 1.4}); \code{FALSE} suppresses them; a
 #'   list overrides individual defaults and is forwarded to
 #'   \code{\link[graphics]{points}()}.
-#' @param grid Logical or list, used by \code{plot.Lc()} only.  If
+#' @param grid logical or list, used by \code{plot.Lc()} only.  If
 #'   \code{TRUE} (default) or a list, a grid is drawn before the curve via
 #'   \code{\link[graphics]{grid}()}; a list is forwarded as arguments to that
 #'   function.
-#' @param box Logical, used by \code{plot.Lc()} only.  If \code{TRUE}
+#' @param box logical, used by \code{plot.Lc()} only.  If \code{TRUE}
 #'   (default), a box is drawn around the plot area.
-#' @param col Color for the curve or points.  For \code{lines.Lc()} and
+#' @param col color for the curve or points.  For \code{lines.Lc()} and
 #'   \code{points.Lc()}, a single color (default \code{NULL}, i.e. the
 #'   current device default).  For the \code{"LcList"} methods, a vector
 #'   recycled over groups (default \code{NULL}, i.e. \code{seq_len(k)}).
-#' @param lwd Line width, used by \code{lines.Lc()} only.  Default is
+#' @param lwd line width, used by \code{lines.Lc()} only.  Default is
 #'   \code{2}.
-#' @param lty Line type, used by \code{lines.Lc()} only.  Default is
+#' @param lty line type, used by \code{lines.Lc()} only.  Default is
 #'   \code{1}.
-#' @param pch Plotting symbol, used by \code{points.Lc()} only.  Default is
+#' @param pch plotting symbol, used by \code{points.Lc()} only.  Default is
 #'   \code{16}.
-#' @param cbandArgs Used by \code{lines.Lc()} only.  \code{NA} to suppress
+#' @param cbandArgs used by \code{lines.Lc()} only.  \code{NA} to suppress
 #'   the confidence band (default), or a list of arguments passed to
 #'   \code{\link[DescToolsX]{predict.Lc}()} to control bootstrap confidence
 #'   intervals.
-#' @param ... Further arguments.  For \code{plot.Lc()}, graphical parameters
+#' @param ... further arguments.  For \code{plot.Lc()}, graphical parameters
 #'   passed to \code{\link[graphics]{par}()} via \code{.applyParFromDots()}
 #'   (e.g. \code{mar}, \code{cex.axis}, \code{las}).  For \code{lines.Lc()}
 #'   and \code{points.Lc()}, further arguments passed on to
@@ -77,17 +77,14 @@
 #'   \code{\link[DescToolsX]{predict.Lc}()} for bootstrap confidence
 #'   intervals, \code{\link[DescToolsX]{gini}()} for the Gini coefficient.
 #'
+#' @family plot.s3  
 #' @concept inequality
 #' @concept graphics
+#' 
 NULL
 
 
 #' @rdname plot.Lc
-
-#' @family plot.s3  
-#' @concept inequality
-#'
-#'
 #' @export
 plot.Lc <- function(
     

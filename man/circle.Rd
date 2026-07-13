@@ -7,11 +7,11 @@
 circle(x = 0, y = 0, radius = 1, numPoints = 100)
 }
 \arguments{
-\item{x, y}{Centre coordinates.}
+\item{x, y}{centre coordinates.}
 
-\item{radius}{Circle radius.}
+\item{radius}{circle radius.}
 
-\item{numPoints}{Number of points used to approximate the circle.}
+\item{numPoints}{number of points used to approximate the circle.}
 }
 \value{
 An object inheriting from class \code{"circleGeometry"}.
@@ -31,3 +31,4 @@ Other geometry.structures:
 }
 \concept{geometry}
 \concept{geometry.structures}
+\concept{numerical-methods}

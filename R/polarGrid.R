@@ -4,35 +4,35 @@
 #' Adds a polar coordinate grid (circles and radial lines) to an existing plot.
 #' Optionally includes labels for radii and angles.
 #'
-#' @param nr Numeric or vector controlling radial grid lines:
+#' @param nr numeric or vector controlling radial grid lines:
 #'   \describe{
 #'     \item{\code{NULL}}{Uses default "pretty" axis values.}
 #'     \item{single numeric}{Number of radial grid lines.}
 #'     \item{numeric vector}{Explicit radii at which to draw circles.}
 #'     \item{all \code{NA}}{Suppress radial grid lines.}
 #'   }
-#' @param ntheta Numeric or vector controlling angular grid lines:
+#' @param ntheta numeric or vector controlling angular grid lines:
 #'   \describe{
 #'     \item{\code{NULL}}{Uses 12 equally spaced angles.}
 #'     \item{single numeric}{Number of angular divisions.}
 #'     \item{numeric vector}{Explicit angles (in radians).}
 #'     \item{all \code{NA}}{Suppress angular grid lines.}
 #'   }
-#' @param col Color of grid lines.
-#' @param lty Line type for grid lines.
-#' @param lwd Line width for grid lines.
-#' @param rlabels Optional labels for radial grid lines (excluding zero).
+#' @param col color of grid lines.
+#' @param lty line type for grid lines.
+#' @param lwd line width for grid lines.
+#' @param rlabels optional labels for radial grid lines (excluding zero).
 #'   If \code{NULL}, labels are generated automatically.
 #'   Use \code{NA} to suppress labels.
-#' @param alabels Optional labels for angular grid lines.
+#' @param alabels optional labels for angular grid lines.
 #'   If \code{NULL}, labels are generated automatically (degrees or radians).
 #'   Use \code{NA} to suppress labels.
-#' @param lblradians Logical; if \code{TRUE}, angle labels are shown in radians,
+#' @param lblradians logical; if \code{TRUE}, angle labels are shown in radians,
 #'   otherwise in degrees.
-#' @param cex.lab Character expansion factor for labels.
-#' @param las Integer controlling label orientation (as in \code{\link[graphics]{par}}).
-#' @param adj Numeric vector specifying text justification.
-#' @param dist Numeric distance from origin for angular labels.
+#' @param cex.lab character expansion factor for labels.
+#' @param las integer controlling label orientation (as in \code{\link[graphics]{par}}).
+#' @param adj numeric vector specifying text justification.
+#' @param dist numeric distance from origin for angular labels.
 #'
 #' @details
 #' This function is intended to be used together with polar plotting functions
@@ -62,6 +62,7 @@
 #' @seealso [grid()]
 #' @family graphics.setup
 #' @concept geometry
+#' @concept annotation
 #'
 #'
 #' @export

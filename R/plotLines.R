@@ -6,41 +6,41 @@
 #' \code{y} coordinates and supports optional point symbols, grid lines,
 #' and an automatically positioned legend.
 #'
-#' @param x Numeric vector, matrix or data frame. If \code{y} is missing,
+#' @param x numeric vector, matrix or data frame. If \code{y} is missing,
 #'   \code{x} is interpreted as a matrix of series where rows correspond to
 #'   x positions and columns to individual lines.
-#' @param y Optional numeric vector or matrix giving the y-values. If supplied,
+#' @param y optional numeric vector or matrix giving the y-values. If supplied,
 #'   \code{x} is interpreted as the x-coordinates.
 #'
-#' @param main Main title of the plot. \code{NULL} (default) derives a title
+#' @param main main title of the plot. \code{NULL} (default) derives a title
 #'   from the input. \code{""}, \code{NA}, or \code{FALSE} suppress the title
 #'   and compact the top margin.
-#' @param xlab,ylab Labels for the axes.
+#' @param xlab,ylab labels for the axes.
 #'
-#' @param xlim,ylim Limits for the axes.
+#' @param xlim,ylim limits for the axes.
 #'
-#' @param lty Line type(s).
-#' @param lwd Line width(s).
-#' @param xaxt,yaxt Axis specification passed to \code{\link[graphics]{axis}}.
+#' @param lty line type(s).
+#' @param lwd line width(s).
+#' @param xaxt,yaxt axis specification passed to \code{\link[graphics]{axis}}.
 #'
-#' @param col Colours for the lines. \code{.useTheme} (default) resolves to
+#' @param col colours for the lines. \code{.useTheme} (default) resolves to
 #'   \code{pal(getTheme()$palette)}, the active theme's qualitative palette.
-#' @param points Controls drawing of points on the lines. \code{FALSE}
+#' @param points controls drawing of points on the lines. \code{FALSE}
 #'   (default) suppresses points; \code{TRUE} draws with theme defaults
 #'   (\code{getTheme()$points}); a named list overrides individual elements
 #'   (\code{pch}, \code{col}, \code{bg}, \code{cex}).
-#' @param grid Controls drawing of the background grid. \code{.useTheme}
+#' @param grid controls drawing of the background grid. \code{.useTheme}
 #'   (default) follows the active theme (\code{getTheme()$grid}).
 #'   \code{TRUE}/\code{FALSE}/\code{NA}, or a named list, as for
 #'   \code{\link[graphics]{grid}}.
-#' @param legend Controls the legend. \code{TRUE} (default) draws an
+#' @param legend controls the legend. \code{TRUE} (default) draws an
 #'   inline legend via \code{textLegend} at the last value of each series.
 #'   \code{FALSE}/\code{NA} suppresses it. A list overrides legend arguments.
 #'
-#' @param stamp Controls the corner stamp. \code{.useTheme} (default)
+#' @param stamp controls the corner stamp. \code{.useTheme} (default)
 #'   resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/\code{NULL},
 #'   a string, or a named list for \code{\link{stamp}()}.
-#' @param ... Additional graphical parameters passed to \code{\link[graphics]{par}}
+#' @param ... additional graphical parameters passed to \code{\link[graphics]{par}}
 #'   via \code{.applyParFromDots()} and to the plotting functions.
 #'
 #' @details

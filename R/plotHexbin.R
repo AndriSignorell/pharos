@@ -5,24 +5,24 @@
 #' Observations are aggregated into hexagons and coloured according to the
 #' number of observations falling into each cell.
 #'
-#' @param x Numeric vector of x-values.
-#' @param y Numeric vector of y-values.
+#' @param x numeric vector of x-values.
+#' @param y numeric vector of y-values.
 #'
-#' @param bins Number of hexagons across the x-axis.
+#' @param bins number of hexagons across the x-axis.
 #'
-#' @param col Colours used for the count scale. If \code{NULL}, a default
+#' @param col colours used for the count scale. If \code{NULL}, a default
 #'   sequential palette is used.
-#' @param border Border colour of the hexagons.
-#' @param grid Logical or list controlling the background grid.
+#' @param border border colour of the hexagons.
+#' @param grid logical or list controlling the background grid.
 #'
-#' @param xlim Limits for the x-axis.
-#' @param ylim Limits for the y-axis.
+#' @param xlim limits for the x-axis.
+#' @param ylim limits for the y-axis.
 #'
-#' @param main Main title.
-#' @param xlab Label for the x-axis.
-#' @param ylab Label for the y-axis.
+#' @param main main title.
+#' @param xlab label for the x-axis.
+#' @param ylab label for the y-axis.
 #'
-#' @param ... Additional graphical parameters passed to
+#' @param ... additional graphical parameters passed to
 #'   \code{.applyParFromDots()}.
 #'
 #' @return Invisibly returns a list containing the computed

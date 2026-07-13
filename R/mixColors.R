@@ -3,9 +3,9 @@
 #'
 #' Mix two sets of colors in RGB space.
 #'
-#' @param col1 First vector of colors.
-#' @param col2 Second vector of colors.
-#' @param weights Numeric value between 0 and 1 specifying the
+#' @param col1 first vector of colors.
+#' @param col2 second vector of colors.
+#' @param weights numeric value between 0 and 1 specifying the
 #'   contribution of \code{col2}. A value of 0 returns \code{col1},
 #'   while 1 returns \code{col2}.
 #'
@@ -21,6 +21,7 @@
 #'
 #' @family color.manipulation
 #' @concept color
+#' @concept transformation
 #'
 #'
 #' @export

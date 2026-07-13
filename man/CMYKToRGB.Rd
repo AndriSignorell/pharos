@@ -7,9 +7,9 @@
 cmykToRgb(col, maxColorValue = 1)
 }
 \arguments{
-\item{col}{Numeric CMYK matrix (columns C, M, Y, K).}
+\item{col}{numeric CMYK matrix (columns C, M, Y, K).}
 
-\item{maxColorValue}{Maximum channel value.}
+\item{maxColorValue}{maximum channel value.}
 }
 \value{
 Numeric RGB matrix.
@@ -20,6 +20,5 @@ Convert CMYK colors to RGB.
 \seealso{
 \link{color-conversion-overview}
 }
+\concept{color}
 \concept{color-conversion}
-\concept{color-space}
-\concept{graphics}

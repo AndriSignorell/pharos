@@ -66,4 +66,4 @@ Other geometry.conversion:
 }
 \concept{geometry}
 \concept{geometry.conversion}
-\concept{mathematics}
+\concept{numerical-methods}

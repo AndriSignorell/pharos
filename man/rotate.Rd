@@ -53,3 +53,4 @@ Other geometry.transformation:
 }
 \concept{geometry}
 \concept{geometry.transformation}
+\concept{numerical-methods}

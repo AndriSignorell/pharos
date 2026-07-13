@@ -5,9 +5,9 @@
 #' plot margins (\code{mar}) or outer margins (\code{oma}). Individual sides can
 #' be modified without affecting the others.
 #'
-#' @param bottom,left,top,right Numeric scalars specifying the margin size
+#' @param bottom,left,top,right numeric scalars specifying the margin size
 #'   (in lines) for each side. If \code{NULL}, the current value is retained.
-#' @param outer Logical; if \code{TRUE}, outer margins (\code{oma}) are used
+#' @param outer logical; if \code{TRUE}, outer margins (\code{oma}) are used
 #'   instead of inner margins (\code{mar}).
 #'
 #' @return
@@ -38,7 +38,8 @@
 #' mar(top = 1, outer = TRUE)
 #'
 #' @family graphics.layout
-#' @concept annotation
+#' @concept geometry
+#' @concept numerical-methods
 #'
 #'
 #' @export

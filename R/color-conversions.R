@@ -7,8 +7,8 @@
 #'
 #' Convert any valid R color specification to an RGB matrix.
 #'
-#' @param col Vector of valid R colors.
-#' @param useAlphaChannel Logical indicating whether the alpha
+#' @param col vector of valid R colors.
+#' @param useAlphaChannel logical indicating whether the alpha
 #'   channel should be included.
 #'
 #' @return Integer matrix with rows corresponding to RGB
@@ -27,7 +27,8 @@
 #' 
 #' 
 #' @seealso [grDevices::col2rgb], [color-conversion-overview]
-#' @concept color  
+#' @concept color
+#' @concept color-conversion
 #'
 #'
 #' @export
@@ -39,13 +40,13 @@ colToRGB <- function(col, useAlphaChannel = FALSE)
 #'
 #' Convert hexadecimal color strings to an RGB matrix.
 #'
-#' @param hex Character vector of hexadecimal colors.
+#' @param hex character vector of hexadecimal colors.
 #'
 #' @return Integer matrix with RGB rows.
 #'
 
 #' @seealso [color-conversion-overview]
-#' @concept color  
+#' @concept color
 #' @concept color-conversion
 #'
 #'
@@ -91,7 +92,7 @@ hexToRGB <- function(hex) {
 #' @return Character vector of hexadecimal colors.
 #'
 #' @seealso [color-conversion-overview]
-#' @concept graphics
+#' @concept color
 #' @concept color-conversion
 #'
 #' @export
@@ -105,13 +106,13 @@ rgbToHex <- function(col) {
 #'
 #' Convert any valid R color specification to hexadecimal colors.
 #'
-#' @param col Vector of valid R colors.
-#' @param opacity Opacity value between 0 and 1.
+#' @param col vector of valid R colors.
+#' @param opacity opacity value between 0 and 1.
 #'
 #' @return Character vector of hexadecimal colors.
 #'
 #' @seealso [color-conversion-overview]
-#' @concept graphics
+#' @concept color
 #' @concept color-conversion
 #'
 #' @export
@@ -138,13 +139,13 @@ colToHex <- function(col, opacity = 1) {
 #' Match RGB colors to the nearest named R color.
 #'
 #' @param col RGB matrix or hexadecimal colors.
-#' @param method Color space used for matching.
-#' @param metric Distance metric.
+#' @param method color space used for matching.
+#' @param metric distance metric.
 #'
 #' @return Character vector of named R colors.
 #'
 #' @seealso [color-conversion-overview]
-#' @concept graphics
+#' @concept color
 #' @concept color-conversion
 #'
 #' @export
@@ -195,12 +196,12 @@ rgbToCol <- function(col,
 #' Convert hexadecimal colors to the nearest named R colors.
 #'
 #' @inheritParams rgbToCol
-#' @param hex Character vector of hexadecimal colors.
+#' @param hex character vector of hexadecimal colors.
 #'
 #' @return Character vector of named R colors.
 #'
 #' @seealso [color-conversion-overview]
-#' @concept graphics
+#' @concept color
 #' @concept color-conversion
 #'
 #' @export
@@ -216,14 +217,14 @@ hexToCol <- function(hex,
 #'
 #' Convert any valid R color specification to HSV.
 #'
-#' @param col Vector of valid R colors.
-#' @param useAlphaChannel Logical indicating whether the alpha
+#' @param col vector of valid R colors.
+#' @param useAlphaChannel logical indicating whether the alpha
 #'   channel should be included.
 #'
 #' @return Numeric HSV matrix.
 #'
 #' @seealso [color-conversion-overview]
-#' @concept graphics
+#' @concept color
 #' @concept color-conversion
 #'
 #' @export
@@ -240,7 +241,7 @@ colToHSV <- function(col, useAlphaChannel = FALSE)
 #' @return Integer vector.
 #'
 #' @seealso [color-conversion-overview]
-#' @concept graphics
+#' @concept color
 #' @concept color-conversion
 #'
 #' @export
@@ -252,12 +253,13 @@ rgbToLong <- function(col)
 #'
 #' Decode long integers into RGB values.
 #'
-#' @param col Integer vector.
+#' @param col integer vector.
 #'
 #' @return RGB matrix.
 #'
 #' @seealso [color-conversion-overview]
-#' @concept color-manipulation
+#' @concept color
+#' @concept color-conversion
 #'
 #' @export
 longToRGB <- function(col)
@@ -281,13 +283,12 @@ longToRGB <- function(col)
 #' Convert RGB colors to the CMY color space.
 #'
 #' @param col RGB matrix or hexadecimal colors.
-#' @param maxColorValue Maximum channel value.
+#' @param maxColorValue maximum channel value.
 #'
 #' @return Numeric CMY matrix.
 #'
 #' @seealso [color-conversion-overview]
-#' @concept graphics
-#' @concept color-space
+#' @concept color
 #' @concept color-conversion
 #' 
 #' @export
@@ -318,13 +319,12 @@ rgbToCmy <- function(col, maxColorValue = 1) {
 #'
 #' Convert CMY colors to CMYK.
 #'
-#' @param col Numeric CMY matrix.
+#' @param col numeric CMY matrix.
 #'
 #' @return Numeric CMYK matrix.
 #'
 #' @seealso [color-conversion-overview]
-#' @concept graphics
-#' @concept color-space
+#' @concept color
 #' @concept color-conversion
 #'
 #' @export
@@ -350,13 +350,12 @@ cmyToCmyk <- function(col) {
 #'
 #' Convert CMYK colors to CMY.
 #'
-#' @param col Numeric CMYK matrix.
+#' @param col numeric CMYK matrix.
 #'
 #' @return Numeric CMY matrix.
 #'
 #' @seealso [color-conversion-overview]
-#' @concept graphics
-#' @concept color-space
+#' @concept color
 #' @concept color-conversion
 #'
 #' @export
@@ -377,14 +376,13 @@ cmykToCmy <- function(col) {
 #'
 #' Convert CMYK colors to RGB.
 #'
-#' @param col Numeric CMYK matrix (columns C, M, Y, K).
-#' @param maxColorValue Maximum channel value.
+#' @param col numeric CMYK matrix (columns C, M, Y, K).
+#' @param maxColorValue maximum channel value.
 #'
 #' @return Numeric RGB matrix.
 #'
 #' @seealso [color-conversion-overview]
-#' @concept graphics
-#' @concept color-space
+#' @concept color
 #' @concept color-conversion
 #'
 #' @export

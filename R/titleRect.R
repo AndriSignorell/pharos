@@ -27,6 +27,7 @@
 #' 
 #' @family graphics.annotation
 #' @concept annotation
+#' @concept label
 #'
 #'
 #' @export

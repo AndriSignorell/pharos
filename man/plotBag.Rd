@@ -28,21 +28,21 @@ plotBag(
 \arguments{
 \item{x}{A numeric matrix or data frame with exactly two columns.}
 
-\item{main, xlab, ylab}{Character strings for plot annotations.}
+\item{main, xlab, ylab}{character strings for plot annotations.}
 
-\item{xlim, ylim}{Numeric vectors of length 2 specifying axis limits.}
+\item{xlim, ylim}{numeric vectors of length 2 specifying axis limits.}
 
-\item{factor}{Inflation factor for the loop (default: 3).}
+\item{factor}{inflation factor for the loop (default: 3).}
 
-\item{eps}{Numeric tolerance used in depth computation and geometry.}
+\item{eps}{numeric tolerance used in depth computation and geometry.}
 
-\item{dither}{Logical; whether to add small noise to break ties.}
+\item{dither}{logical; whether to add small noise to break ties.}
 
 \item{points, bag, loop, out, median, grid, box}{Object-oriented control of plot elements (see Details).}
 
-\item{stamp}{Optional stamp passed to \code{.withGraphicsState()}.}
+\item{stamp}{optional stamp passed to \code{.withGraphicsState()}.}
 
-\item{...}{Additional graphical parameters passed to \code{par()}.}
+\item{...}{additional graphical parameters passed to \code{par()}.}
 }
 \value{
 Invisibly returns a list with components:

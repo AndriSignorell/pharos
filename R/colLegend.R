@@ -9,32 +9,32 @@
 #' Labels may either be aligned with the edges of the color strip or
 #' centered within the color blocks.
 #'
-#' @param x Left x-coordinate of the legend or a keyword specifying
+#' @param x left x-coordinate of the legend or a keyword specifying
 #'   automatic placement:
 #'   \code{"bottomright"}, \code{"bottom"}, \code{"bottomleft"},
 #'   \code{"left"}, \code{"topleft"}, \code{"top"},
 #'   \code{"topright"}, \code{"right"}, \code{"center"}.
-#' @param y Top y-coordinate of the legend when \code{x} is numeric.
-#' @param col Vector of colors.
-#' @param labels Optional vector of labels.
-#' @param width Width of the legend in user coordinates.
-#' @param height Height of the legend in user coordinates.
-#' @param horiz Logical; if \code{TRUE}, draw horizontally.
-#' @param xjust Horizontal justification.
-#' @param yjust Vertical justification.
-#' @param inset Inset distance(s) when keyword positioning is used.
-#' @param region Character string specifying the reference region
+#' @param y top y-coordinate of the legend when \code{x} is numeric.
+#' @param col vector of colors.
+#' @param labels optional vector of labels.
+#' @param width width of the legend in user coordinates.
+#' @param height height of the legend in user coordinates.
+#' @param horiz logical; if \code{TRUE}, draw horizontally.
+#' @param xjust horizontal justification.
+#' @param yjust vertical justification.
+#' @param inset inset distance(s) when keyword positioning is used.
+#' @param region character string specifying the reference region
 #'   used for keyword placement. One of:
 #'   \code{"plot"}, \code{"figure"}, or \code{"device"}.
-#' @param border Border color of individual color rectangles.
-#' @param box Optional specification of an enclosing box around the
+#' @param border border color of individual color rectangles.
+#' @param box optional specification of an enclosing box around the
 #'   whole legend. Can be:
 #'   \itemize{
 #'     \item \code{FALSE}, \code{NULL}, or \code{NA}: no box
 #'     \item \code{TRUE}: draw box with defaults
 #'     \item named list of arguments passed to \code{\link{rect}}
 #'   }
-#' @param labelAdj Placement of labels relative to the color blocks:
+#' @param labelAdj placement of labels relative to the color blocks:
 #'   \describe{
 #'     \item{\code{"edge"}}{
 #'       Labels are aligned with the strip edges.
@@ -43,11 +43,11 @@
 #'       Labels are centered within color blocks.
 #'     }
 #'   }
-#' @param adj Text alignment passed to \code{\link{text}}.
-#' @param cex Character expansion for labels.
-#' @param title Optional title.
-#' @param titleAdj Horizontal title adjustment.
-#' @param ... Additional arguments passed to \code{\link{text}}.
+#' @param adj text alignment passed to \code{\link{text}}.
+#' @param cex character expansion for labels.
+#' @param title optional title.
+#' @param titleAdj horizontal title adjustment.
+#' @param ... additional arguments passed to \code{\link{text}}.
 #'
 #' @return
 #' Invisibly returns a list with components:
@@ -101,6 +101,7 @@
 
 #' @family graphics.annotation
 #' @concept annotation
+#' @concept label
 #'
 #'
 #' @export

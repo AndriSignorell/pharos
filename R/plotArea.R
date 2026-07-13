@@ -5,25 +5,25 @@
 #' The function accepts either a matrix of values or separate \code{x} and
 #' \code{y} coordinates. Multiple series are displayed as stacked areas.
 #'
-#' @param x Numeric vector, matrix or data frame. If \code{y} is missing,
+#' @param x numeric vector, matrix or data frame. If \code{y} is missing,
 #'   \code{x} is interpreted as a matrix of series where rows correspond to
 #'   x positions and columns to individual areas.
-#' @param y Optional numeric vector or matrix giving the y-values. If supplied,
+#' @param y optional numeric vector or matrix giving the y-values. If supplied,
 #'   \code{x} is interpreted as the x-coordinates.
-#' @param prop Logical indicating whether rows should be converted to
+#' @param prop logical indicating whether rows should be converted to
 #'   proportions so that stacked areas sum to one.
-#' @param col Fill colours used for the areas.
-#' @param xlab Label for the x-axis.
-#' @param ylab Label for the y-axis.
-#' @param xlim Limits for the x-axis.
-#' @param ylim Limits for the y-axis.
-#' @param legend Logical or list controlling the legend. If \code{TRUE}, a legend
+#' @param col fill colours used for the areas.
+#' @param xlab label for the x-axis.
+#' @param ylab label for the y-axis.
+#' @param xlim limits for the x-axis.
+#' @param ylim limits for the y-axis.
+#' @param legend logical or list controlling the legend. If \code{TRUE}, a legend
 #'   is drawn using the column names of the data. If a list is supplied, its
 #'   elements are passed to the internal legend drawing routine.
-#' @param main Main title of the plot.
-#' @param grid Logical or list controlling the background grid. If \code{TRUE},
+#' @param main main title of the plot.
+#' @param grid logical or list controlling the background grid. If \code{TRUE},
 #'   a default grid is drawn.
-#' @param ... Additional graphical parameters passed to \code{\link[graphics]{par}}
+#' @param ... additional graphical parameters passed to \code{\link[graphics]{par}}
 #'   via \code{.applyParFromDots()} and to the plotting functions.
 #'
 #' @details

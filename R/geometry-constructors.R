@@ -4,16 +4,17 @@
 #'
 #' Create one or more circular or elliptic arcs.
 #'
-#' @param x,y Coordinates of the arc centre.
-#' @param radiusX,radiusY Horizontal and vertical radius.
-#' @param startAngle,endAngle Start and end angle in radians.
-#' @param numPoints Number of points used to approximate the arc.
+#' @param x,y coordinates of the arc centre
+#' @param radiusX,radiusY horizontal and vertical radius
+#' @param startAngle,endAngle start and end angle in radians
+#' @param numPoints number of points used to approximate the arc
 #'
 #' @return
 #' An object inheriting from class `"arcGeometry"`.
 #'
 #' @family geometry.structures
 #' @concept geometry
+#' @concept numerical-methods
 #'
 #' @export
 arc <- function(
@@ -69,15 +70,16 @@ arc <- function(
 #'
 #' Create a circular geometry.
 #'
-#' @param x,y Centre coordinates.
-#' @param radius Circle radius.
-#' @param numPoints Number of points used to approximate the circle.
+#' @param x,y centre coordinates.
+#' @param radius circle radius.
+#' @param numPoints number of points used to approximate the circle.
 #'
 #' @return
 #' An object inheriting from class `"circleGeometry"`.
 #'
 #' @family geometry.structures
 #' @concept geometry
+#' @concept numerical-methods
 #' 
 #' @export
 circle <- function(
@@ -113,15 +115,16 @@ circle <- function(
 #'
 #' Use \code{\link{rotate}} to rotate the resulting geometry.
 #'
-#' @param x,y Centre coordinates.
-#' @param radiusX,radiusY Horizontal and vertical radius.
-#' @param numPoints Number of points used to approximate the ellipse.
+#' @param x,y centre coordinates.
+#' @param radiusX,radiusY horizontal and vertical radius.
+#' @param numPoints number of points used to approximate the ellipse.
 #'
 #' @return
 #' An object inheriting from class `"ellipseGeometry"`.
 #'
 #' @family geometry.structures
 #' @concept geometry
+#' @concept numerical-methods
 #' 
 #' @export
 ellipse <- function(
@@ -155,16 +158,17 @@ ellipse <- function(
 #'
 #' Create a regular polygon.
 #'
-#' @param x,y Centre coordinates.
-#' @param radius Circumradius.
-#' @param numVertices Number of vertices.
-#' @param startAngle Staring angle in radians.
+#' @param x,y centre coordinates.
+#' @param radius circumradius.
+#' @param numVertices number of vertices.
+#' @param startAngle staring angle in radians.
 #'
 #' @return
 #' An object inheriting from class `"regPolygonGeometry"`.
 #'
 #' @family geometry.structures
 #' @concept geometry
+#' @concept numerical-methods
 #' 
 #' @export
 regPolygon <- function(
@@ -201,11 +205,11 @@ regPolygon <- function(
 #'
 #' Create one or more rings or ring segments.
 #'
-#' @param x,y Centre coordinates.
-#' @param innerRadius Radius of the inner boundary.
-#' @param outerRadius Radius of the outer boundary.
-#' @param startAngle,endAngle Start and end angle in radians.
-#' @param numPoints Number of points used for each boundary.
+#' @param x,y centre coordinates.
+#' @param innerRadius radius of the inner boundary.
+#' @param outerRadius radius of the outer boundary.
+#' @param startAngle,endAngle start and end angle in radians.
+#' @param numPoints number of points used for each boundary.
 #'
 #' @return
 #' An object inheriting from class \code{"ringGeometry"} or a
@@ -213,6 +217,7 @@ regPolygon <- function(
 #'
 #' @family geometry.structures
 #' @concept geometry
+#' @concept numerical-methods
 #' 
 #' @export
 ring <- function(

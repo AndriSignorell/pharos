@@ -48,6 +48,7 @@
 #' 
 #' @family geometry.structures
 #' @concept geometry
+#' @concept numerical-methods
 #'
 #'
 #' @export

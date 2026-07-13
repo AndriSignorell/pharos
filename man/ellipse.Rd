@@ -7,11 +7,11 @@
 ellipse(x = 0, y = 0, radiusX = 1, radiusY = radiusX, numPoints = 100)
 }
 \arguments{
-\item{x, y}{Centre coordinates.}
+\item{x, y}{centre coordinates.}
 
-\item{radiusX, radiusY}{Horizontal and vertical radius.}
+\item{radiusX, radiusY}{horizontal and vertical radius.}
 
-\item{numPoints}{Number of points used to approximate the ellipse.}
+\item{numPoints}{number of points used to approximate the ellipse.}
 }
 \value{
 An object inheriting from class \code{"ellipseGeometry"}.
@@ -34,3 +34,4 @@ Other geometry.structures:
 }
 \concept{geometry}
 \concept{geometry.structures}
+\concept{numerical-methods}

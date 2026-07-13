@@ -4,21 +4,21 @@
 #'
 #' Creates a polar coordinate plot for one or multiple radial series.
 #'
-#' @param r Numeric vector or matrix of radial values. Each row represents one series.
-#' @param theta Optional numeric vector or matrix of angles (in radians).
+#' @param r numeric vector or matrix of radial values. Each row represents one series.
+#' @param theta optional numeric vector or matrix of angles (in radians).
 #'   Must match the dimensions of \code{r}. If \code{NULL}, equally spaced angles are used.
-#' @param main Optional plot title.
-#' @param type Character vector specifying plot type for each series:
+#' @param main optional plot title.
+#' @param type character vector specifying plot type for each series:
 #'   \describe{
 #'     \item{"p"}{points}
 #'     \item{"l"}{polygon (connected and optionally filled)}
 #'     \item{"h"}{radial segments ("histogram"-style)}
 #'   }
-#' @param rlim Numeric limit for radial axis. If \code{NULL}, determined automatically.
-#' @param col Color for points/lines.
-#' @param border Color for border in case of type \code{polygon}.
-#' @param add Logical; if \code{TRUE}, adds to an existing plot.
-#' @param ... Additional graphical parameters passed to base plotting functions.
+#' @param rlim numeric limit for radial axis. If \code{NULL}, determined automatically.
+#' @param col color for points/lines.
+#' @param border color for border in case of type \code{polygon}.
+#' @param add logical; if \code{TRUE}, adds to an existing plot.
+#' @param ... additional graphical parameters passed to base plotting functions.
 #'
 #' @details
 #' The function supports plotting multiple radial series simultaneously.

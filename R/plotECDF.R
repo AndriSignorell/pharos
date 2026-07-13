@@ -54,7 +54,7 @@
 #'   single accent color, consistent with \code{\link{lines.loess}} and
 #'   \code{plotQQ()}'s confidence band.
 #' @param lwd line width.
-#' @param grid Controls drawing of the background grid (vertical lines at
+#' @param grid controls drawing of the background grid (vertical lines at
 #'   default tick positions, plus a fixed set of horizontal reference
 #'   lines at the probability ticks \code{0}/\code{.25}/\code{.5}/\code{.75}/\code{1}
 #'   - the latter always grey regardless of the active theme, a
@@ -62,15 +62,15 @@
 #'   (default) follows the active theme's grid on/off state
 #'   (\code{getTheme()$grid}). \code{TRUE}/\code{FALSE}/\code{NA}, or a
 #'   named list, as for \code{\link[graphics]{grid}}.
-#' @param box Controls drawing of the plot box. \code{.useTheme} (default)
+#' @param box controls drawing of the plot box. \code{.useTheme} (default)
 #'   resolves to \code{getTheme()$box}. \code{TRUE}/\code{FALSE}/\code{NA},
 #'   or a named list, as for \code{\link[graphics]{box}}.
 #'
-#' @param stamp Controls the corner stamp. \code{.useTheme} (default)
+#' @param stamp controls the corner stamp. \code{.useTheme} (default)
 #'   resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/\code{NULL},
 #'   a string, or a named list of arguments for \code{stamp()}.
 #'
-#' @param legend Logical or list controlling the legend. If \code{TRUE}, a legend
+#' @param legend logical or list controlling the legend. If \code{TRUE}, a legend
 #'   is drawn using the column names of the data. If a list is supplied, its
 #'   elements are passed to the internal legend drawing routine.
 #'   
@@ -80,7 +80,7 @@
 #' @return Invisibly returns \code{NULL}.
 #' 
 #' @seealso \code{\link{plot.ecdf}}, \code{\link{plotFdist}},
-#'   \code{\link{getTheme}}
+#'   [theme]
 #' 
 #' @examples
 #' plotECDF(faithful$eruptions)
