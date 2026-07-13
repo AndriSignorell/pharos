@@ -12,7 +12,7 @@ cmykToCmy(col)
 
 - col:
 
-  Numeric CMYK matrix.
+  numeric CMYK matrix.
 
 ## Value
 
@@ -20,7 +20,4 @@ Numeric CMY matrix.
 
 ## See also
 
-Other color.space:
-[`cmyToCmyk()`](https://andrisignorell.github.io/lyra/reference/cmyToCmyk.md),
-[`cmykToRgb()`](https://andrisignorell.github.io/lyra/reference/cmykToRgb.md),
-[`rgbToCmy()`](https://andrisignorell.github.io/lyra/reference/rgbToCmy.md)
+[color-conversion-overview](https://andrisignorell.github.io/aurora/reference/color-conversion-overview.md)

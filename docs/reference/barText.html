@@ -13,7 +13,7 @@ the bottom. Determining the required geometry - although not difficult - is
 cumbersome and the code is distractingly long within an analysis code. The
 present function offers a short way to solve the task. It can place text
 either in the middle of the stacked bars, on top or on the bottom of a
-barplot (side by side or stacked)."><meta property="og:image" content="https://andrisignorell.github.io/lyra/logo.png"></head><body>
+barplot (side by side or stacked)."><meta property="og:image" content="https://andrisignorell.github.io/aurora/logo.png"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -21,7 +21,7 @@ barplot (side by side or stacked)."><meta property="og:image" content="https://a
 
     <a class="navbar-brand me-2" href="../index.html">lyra</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.930</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.933</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -144,30 +144,19 @@ relative to the x axis.</p></dd>
     <p>The x coordinates of the labels can be found by using
 <code><a href="https://rdrr.io/r/graphics/barplot.html" class="external-link">barplot()</a></code> result, if they are to be centered at the top of
 each bar. <code>barText()</code> calculates the rest.</p>
-<p><img src="figures/barText.png" alt="Positions for the text"></p>
+<p><img src="figures/barText.png" width="700" alt="Positions for the text"></p>
 <p>Notice that when the labels are placed on top of the bars, they may be
 clipped. This can be avoided by setting <code>xpd=TRUE</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="boxedText.html">boxedText</a></code></p>
-<p>Other graphics.utils:
-<code><a href="abcCoords.html">abcCoords()</a></code>,
-<code><a href="axisBreak.html">axisBreak()</a></code>,
+    <div class="dont-index"><p>Other graphics.annotation:
 <code><a href="boxedText.html">boxedText()</a></code>,
 <code><a href="colLegend.html">colLegend()</a></code>,
-<code><a href="degToRad.html">degToRad()</a></code>,
 <code><a href="errBars.html">errBars()</a></code>,
-<code><a href="lineSep.html">lineSep()</a></code>,
-<code><a href="lineToUser.html">lineToUser()</a></code>,
-<code><a href="linesLm.html">lines.lm()</a></code>,
-<code><a href="mar.html">mar()</a></code>,
-<code><a href="preview.html">preview()</a></code>,
-<code><a href="spreadOut.html">spreadOut()</a></code>,
 <code><a href="stamp.html">stamp()</a></code>,
 <code><a href="textLegend.html">textLegend()</a></code>,
-<code><a href="titleRect.html">titleRect()</a></code>,
-<code><a href="unit.html">unit()</a></code></p></div>
+<code><a href="titleRect.html">titleRect()</a></code></p></div>
     </div>
 
     <div class="section level2">
@@ -197,8 +186,6 @@ clipped. This can be avoided by setting <code>xpd=TRUE</code>.</p>
 <span class="r-in"><span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/barplot.html" class="external-link">barplot</a></span><span class="op">(</span><span class="va">VADeaths</span>, horiz <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">barText</span><span class="op">(</span><span class="va">VADeaths</span>, b<span class="op">=</span><span class="va">b</span>, horiz <span class="op">=</span> <span class="cn">TRUE</span>, col<span class="op">=</span><span class="st">"red"</span>, cex<span class="op">=</span><span class="fl">1.5</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="barText-5.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

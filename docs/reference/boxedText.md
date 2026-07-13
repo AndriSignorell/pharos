@@ -58,7 +58,7 @@ boxedText(formula, data = parent.frame(), ..., subset)
 
 - adj:
 
-  The value of adj determines the way in which text strings are
+  the value of adj determines the way in which text strings are
   justified. A value of 0 produces left-justified text, 0.5 (the
   default) centered text and 1 right-justified text. (Any value in
   `[0, 1]` is allowed, and on most devices values outside that interval
@@ -97,11 +97,11 @@ boxedText(formula, data = parent.frame(), ..., subset)
 
 - srt:
 
-  The string rotation in degrees.
+  the string rotation in degrees.
 
 - xpad, ypad:
 
-  The proportion of the rectangles to the extent of the text within.
+  the proportion of the rectangles to the extent of the text within.
 
 - density:
 
@@ -143,40 +143,29 @@ boxedText(formula, data = parent.frame(), ..., subset)
 
 - data:
 
-  An optional matrix or data frame (or similar; see
+  an optional matrix or data frame (or similar; see
   [`model.frame`](https://rdrr.io/r/stats/model.frame.html)) containing
   the variables in the formula. By default the variables are taken from
   `environment(formula)`.
 
 - subset:
 
-  An optional vector specifying a subset of observations to be used in
+  an optional vector specifying a subset of observations to be used in
   the analysis.
 
 ## See also
 
-[`spreadOut`](https://andrisignorell.github.io/lyra/reference/spreadOut.md),
 similar function in package plotrix
-[`boxed.labels`](https://plotrix.github.io/plotrix/reference/boxed.labels.html)
+[plotrix::boxed.labels](https://plotrix.github.io/plotrix/reference/boxed.labels.html)
 (lacking rotation option)
 
-Other graphics.utils:
-[`abcCoords()`](https://andrisignorell.github.io/lyra/reference/abcCoords.md),
-[`axisBreak()`](https://andrisignorell.github.io/lyra/reference/axisBreak.md),
-[`barText()`](https://andrisignorell.github.io/lyra/reference/barText.md),
-[`colLegend()`](https://andrisignorell.github.io/lyra/reference/colLegend.md),
-[`degToRad()`](https://andrisignorell.github.io/lyra/reference/degToRad.md),
-[`errBars()`](https://andrisignorell.github.io/lyra/reference/errBars.md),
-[`lineSep()`](https://andrisignorell.github.io/lyra/reference/lineSep.md),
-[`lineToUser()`](https://andrisignorell.github.io/lyra/reference/lineToUser.md),
-[`lines.lm()`](https://andrisignorell.github.io/lyra/reference/linesLm.md),
-[`mar()`](https://andrisignorell.github.io/lyra/reference/mar.md),
-[`preview()`](https://andrisignorell.github.io/lyra/reference/preview.md),
-[`spreadOut()`](https://andrisignorell.github.io/lyra/reference/spreadOut.md),
-[`stamp()`](https://andrisignorell.github.io/lyra/reference/stamp.md),
-[`textLegend()`](https://andrisignorell.github.io/lyra/reference/textLegend.md),
-[`titleRect()`](https://andrisignorell.github.io/lyra/reference/titleRect.md),
-[`unit()`](https://andrisignorell.github.io/lyra/reference/unit.md)
+Other graphics.annotation:
+[`barText()`](https://andrisignorell.github.io/aurora/reference/barText.md),
+[`colLegend()`](https://andrisignorell.github.io/aurora/reference/colLegend.md),
+[`errBars()`](https://andrisignorell.github.io/aurora/reference/errBars.md),
+[`stamp()`](https://andrisignorell.github.io/aurora/reference/stamp.md),
+[`textLegend()`](https://andrisignorell.github.io/aurora/reference/textLegend.md),
+[`titleRect()`](https://andrisignorell.github.io/aurora/reference/titleRect.md)
 
 ## Examples
 

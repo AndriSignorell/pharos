@@ -11,7 +11,7 @@ y coordinates. Multiple series are displayed as stacked areas."><meta property="
 
     <a class="navbar-brand me-2" href="../index.html">lyra</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.930</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.933</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,58 +65,58 @@ The function accepts either a matrix of values or separate <code>x</code> and
 
 
 <dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
-<dd><p>Numeric vector, matrix or data frame. If <code>y</code> is missing,
+<dd><p>numeric vector, matrix or data frame. If <code>y</code> is missing,
 <code>x</code> is interpreted as a matrix of series where rows correspond to
 x positions and columns to individual areas.</p></dd>
 
 
 <dt id="arg-y">y<a class="anchor" aria-label="anchor" href="#arg-y"></a></dt>
-<dd><p>Optional numeric vector or matrix giving the y-values. If supplied,
+<dd><p>optional numeric vector or matrix giving the y-values. If supplied,
 <code>x</code> is interpreted as the x-coordinates.</p></dd>
 
 
 <dt id="arg-prop">prop<a class="anchor" aria-label="anchor" href="#arg-prop"></a></dt>
-<dd><p>Logical indicating whether rows should be converted to
+<dd><p>logical indicating whether rows should be converted to
 proportions so that stacked areas sum to one.</p></dd>
 
 
 <dt id="arg-col">col<a class="anchor" aria-label="anchor" href="#arg-col"></a></dt>
-<dd><p>Fill colours used for the areas.</p></dd>
+<dd><p>fill colours used for the areas.</p></dd>
 
 
 <dt id="arg-xlab">xlab<a class="anchor" aria-label="anchor" href="#arg-xlab"></a></dt>
-<dd><p>Label for the x-axis.</p></dd>
+<dd><p>label for the x-axis.</p></dd>
 
 
 <dt id="arg-ylab">ylab<a class="anchor" aria-label="anchor" href="#arg-ylab"></a></dt>
-<dd><p>Label for the y-axis.</p></dd>
+<dd><p>label for the y-axis.</p></dd>
 
 
 <dt id="arg-xlim">xlim<a class="anchor" aria-label="anchor" href="#arg-xlim"></a></dt>
-<dd><p>Limits for the x-axis.</p></dd>
+<dd><p>limits for the x-axis.</p></dd>
 
 
 <dt id="arg-ylim">ylim<a class="anchor" aria-label="anchor" href="#arg-ylim"></a></dt>
-<dd><p>Limits for the y-axis.</p></dd>
+<dd><p>limits for the y-axis.</p></dd>
 
 
 <dt id="arg-legend">legend<a class="anchor" aria-label="anchor" href="#arg-legend"></a></dt>
-<dd><p>Logical or list controlling the legend. If <code>TRUE</code>, a legend
+<dd><p>logical or list controlling the legend. If <code>TRUE</code>, a legend
 is drawn using the column names of the data. If a list is supplied, its
 elements are passed to the internal legend drawing routine.</p></dd>
 
 
 <dt id="arg-main">main<a class="anchor" aria-label="anchor" href="#arg-main"></a></dt>
-<dd><p>Main title of the plot.</p></dd>
+<dd><p>main title of the plot.</p></dd>
 
 
 <dt id="arg-grid">grid<a class="anchor" aria-label="anchor" href="#arg-grid"></a></dt>
-<dd><p>Logical or list controlling the background grid. If <code>TRUE</code>,
+<dd><p>logical or list controlling the background grid. If <code>TRUE</code>,
 a default grid is drawn.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>Additional graphical parameters passed to <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code>
+<dd><p>additional graphical parameters passed to <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code>
 via <code>.applyParFromDots()</code> and to the plotting functions.</p></dd>
 
 </dl></div>
@@ -160,7 +160,7 @@ so the stacked areas sum to one.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">plotArea</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="va">WorldPhones</span>,</span></span>
-<span class="r-in"><span>  col <span class="op">=</span> <span class="fu"><a href="pal.html">pal</a></span><span class="op">(</span><span class="st">"Helsana"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  col <span class="op">=</span> <span class="fu"><a href="pal.html">pal</a></span><span class="op">(</span><span class="st">"helsana"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plotArea-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>

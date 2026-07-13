@@ -59,23 +59,13 @@ nothing is returned
 
 [`title`](https://rdrr.io/r/graphics/title.html)
 
-Other graphics.utils:
-[`abcCoords()`](https://andrisignorell.github.io/aurora/reference/abcCoords.md),
-[`axisBreak()`](https://andrisignorell.github.io/aurora/reference/axisBreak.md),
+Other graphics.annotation:
 [`barText()`](https://andrisignorell.github.io/aurora/reference/barText.md),
 [`boxedText()`](https://andrisignorell.github.io/aurora/reference/boxedText.md),
 [`colLegend()`](https://andrisignorell.github.io/aurora/reference/colLegend.md),
-[`degToRad()`](https://andrisignorell.github.io/aurora/reference/degToRad.md),
 [`errBars()`](https://andrisignorell.github.io/aurora/reference/errBars.md),
-[`lineSep()`](https://andrisignorell.github.io/aurora/reference/lineSep.md),
-[`lineToUser()`](https://andrisignorell.github.io/aurora/reference/lineToUser.md),
-[`lines.lm()`](https://andrisignorell.github.io/aurora/reference/linesLm.md),
-[`mar()`](https://andrisignorell.github.io/aurora/reference/mar.md),
-[`preview()`](https://andrisignorell.github.io/aurora/reference/preview.md),
-[`spreadOut()`](https://andrisignorell.github.io/aurora/reference/spreadOut.md),
 [`stamp()`](https://andrisignorell.github.io/aurora/reference/stamp.md),
-[`textLegend()`](https://andrisignorell.github.io/aurora/reference/textLegend.md),
-[`unit()`](https://andrisignorell.github.io/aurora/reference/unit.md)
+[`textLegend()`](https://andrisignorell.github.io/aurora/reference/textLegend.md)
 
 ## Examples
 
@@ -83,5 +73,6 @@ Other graphics.utils:
 
 plot(pressure)
 titleRect("pressure")
+
 
 ```

@@ -5,38 +5,23 @@ Convert CMYK colors to RGB.
 ## Usage
 
 ``` r
-cmykToRgb(cyan, magenta, yellow, black, maxColorValue = 1)
+cmykToRgb(col, maxColorValue = 1)
 ```
 
 ## Arguments
 
-- cyan:
+- col:
 
-  Cyan values.
-
-- magenta:
-
-  Magenta values.
-
-- yellow:
-
-  Yellow values.
-
-- black:
-
-  Black values.
+  numeric CMYK matrix (columns C, M, Y, K).
 
 - maxColorValue:
 
-  Maximum channel value.
+  maximum channel value.
 
 ## Value
 
-Hexadecimal RGB colors.
+Numeric RGB matrix.
 
 ## See also
 
-Other color.space:
-[`cmyToCmyk()`](https://andrisignorell.github.io/lyra/reference/cmyToCmyk.md),
-[`cmykToCmy()`](https://andrisignorell.github.io/lyra/reference/cmykToCmy.md),
-[`rgbToCmy()`](https://andrisignorell.github.io/lyra/reference/rgbToCmy.md)
+[color-conversion-overview](https://andrisignorell.github.io/aurora/reference/color-conversion-overview.md)

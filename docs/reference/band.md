@@ -32,18 +32,16 @@ Typically used to represent confidence or prediction bands.
 
 ## See also
 
-[`polygon`](https://andrisignorell.github.io/lyra/reference/polygon.md),
-[`ring`](https://andrisignorell.github.io/lyra/reference/ring.md)
+[graphics::polygon](https://rdrr.io/r/graphics/polygon.html)
 
-Other geometry:
-[`arc()`](https://andrisignorell.github.io/lyra/reference/arc.md),
-[`bezier()`](https://andrisignorell.github.io/lyra/reference/bezier.md),
-[`canvas()`](https://andrisignorell.github.io/lyra/reference/canvas.md),
-[`polarGrid()`](https://andrisignorell.github.io/lyra/reference/polarGrid.md),
-[`polygon()`](https://andrisignorell.github.io/lyra/reference/polygon.md),
-[`rotate()`](https://andrisignorell.github.io/lyra/reference/rotate.md),
-[`shade()`](https://andrisignorell.github.io/lyra/reference/shade.md),
-[`transformXY()`](https://andrisignorell.github.io/lyra/reference/transformXY.md)
+Other geometry.structures:
+[`arc()`](https://andrisignorell.github.io/aurora/reference/arc.md),
+[`bezier()`](https://andrisignorell.github.io/aurora/reference/bezier.md),
+[`circle()`](https://andrisignorell.github.io/aurora/reference/circle.md),
+[`ellipse()`](https://andrisignorell.github.io/aurora/reference/ellipse.md),
+[`polygon()`](https://andrisignorell.github.io/aurora/reference/polygon.md),
+[`regPolygon()`](https://andrisignorell.github.io/aurora/reference/regPolygon.md),
+[`ring()`](https://andrisignorell.github.io/aurora/reference/ring.md)
 
 ## Examples
 
@@ -71,5 +69,7 @@ polygon(
   col = addOpacity("grey80", 0.5),
   border = NA
 )
+
+
 
 ```

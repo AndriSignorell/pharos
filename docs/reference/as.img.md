@@ -3,7 +3,7 @@
 Evaluates a plotting expression in a temporary PNG device and returns
 the resulting image as a self-contained, base64-encoded `<img>` tag
 (class `"html"`, see
-[`as.html`](https://andrisignorell.github.io/lyra/reference/as.html.md))
+[`as.html`](https://andrisignorell.github.io/aurora/reference/as.html.md))
 suitable for embedding directly in HTML text.
 
 ## Usage
@@ -32,5 +32,7 @@ an object of class `"html"` containing an `<img>` tag with a
 ## See also
 
 Other html:
-[`as.html()`](https://andrisignorell.github.io/lyra/reference/as.html.md),
-[`toHtmlTable()`](https://andrisignorell.github.io/lyra/reference/toHtmlTable.md)
+[`as.html()`](https://andrisignorell.github.io/aurora/reference/as.html.md),
+[`htmlNotation`](https://andrisignorell.github.io/aurora/reference/htmlNotation.md),
+[`htmlSubscript`](https://andrisignorell.github.io/aurora/reference/htmlSubscript.md),
+[`toHtmlTable()`](https://andrisignorell.github.io/aurora/reference/toHtmlTable.md)

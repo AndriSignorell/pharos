@@ -84,9 +84,10 @@ an object of class `c("html", "character")`
 
 ## See also
 
-[`as.html`](https://andrisignorell.github.io/aurora/reference/as.html.md),
-[`appendEnum`](https://rdrr.io/pkg/bedrock/man/appendEnum.html)
+[bedrock::appendEnum](https://rdrr.io/pkg/bedrock/man/appendEnum.html)
 
 Other html:
 [`as.html()`](https://andrisignorell.github.io/aurora/reference/as.html.md),
-[`as.img()`](https://andrisignorell.github.io/aurora/reference/as.img.md)
+[`as.img()`](https://andrisignorell.github.io/aurora/reference/as.img.md),
+[`htmlNotation`](https://andrisignorell.github.io/aurora/reference/htmlNotation.md),
+[`htmlSubscript`](https://andrisignorell.github.io/aurora/reference/htmlSubscript.md)

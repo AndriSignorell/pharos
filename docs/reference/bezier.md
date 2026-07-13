@@ -12,12 +12,12 @@ bezier(x, y = NULL, numPoints = 100)
 
 - x, y:
 
-  Numeric vectors of control points. Alternatively, `x` may be a list
+  numeric vectors of control points. Alternatively, `x` may be a list
   with components `x` and `y`.
 
 - numPoints:
 
-  Number of points used to approximate the curve.
+  number of points used to approximate the curve.
 
 ## Value
 
@@ -30,18 +30,16 @@ Design*. Academic Press.
 
 ## See also
 
-[`arc`](https://andrisignorell.github.io/lyra/reference/arc.md),
-[`lines`](https://rdrr.io/r/graphics/lines.html)
+[graphics::lines](https://rdrr.io/r/graphics/lines.html)
 
-Other geometry:
-[`arc()`](https://andrisignorell.github.io/lyra/reference/arc.md),
-[`band()`](https://andrisignorell.github.io/lyra/reference/band.md),
-[`canvas()`](https://andrisignorell.github.io/lyra/reference/canvas.md),
-[`polarGrid()`](https://andrisignorell.github.io/lyra/reference/polarGrid.md),
-[`polygon()`](https://andrisignorell.github.io/lyra/reference/polygon.md),
-[`rotate()`](https://andrisignorell.github.io/lyra/reference/rotate.md),
-[`shade()`](https://andrisignorell.github.io/lyra/reference/shade.md),
-[`transformXY()`](https://andrisignorell.github.io/lyra/reference/transformXY.md)
+Other geometry.structures:
+[`arc()`](https://andrisignorell.github.io/aurora/reference/arc.md),
+[`band()`](https://andrisignorell.github.io/aurora/reference/band.md),
+[`circle()`](https://andrisignorell.github.io/aurora/reference/circle.md),
+[`ellipse()`](https://andrisignorell.github.io/aurora/reference/ellipse.md),
+[`polygon()`](https://andrisignorell.github.io/aurora/reference/polygon.md),
+[`regPolygon()`](https://andrisignorell.github.io/aurora/reference/regPolygon.md),
+[`ring()`](https://andrisignorell.github.io/aurora/reference/ring.md)
 
 ## Examples
 

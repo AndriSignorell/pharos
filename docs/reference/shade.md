@@ -65,15 +65,9 @@ significance tests.
 [`polygon`](https://andrisignorell.github.io/aurora/reference/polygon.md),
 [`curve`](https://rdrr.io/r/graphics/curve.html)
 
-Other geometry:
-[`arc()`](https://andrisignorell.github.io/aurora/reference/arc.md),
-[`band()`](https://andrisignorell.github.io/aurora/reference/band.md),
-[`bezier()`](https://andrisignorell.github.io/aurora/reference/bezier.md),
-[`canvas()`](https://andrisignorell.github.io/aurora/reference/canvas.md),
-[`polarGrid()`](https://andrisignorell.github.io/aurora/reference/polarGrid.md),
-[`polygon()`](https://andrisignorell.github.io/aurora/reference/polygon.md),
-[`rotate()`](https://andrisignorell.github.io/aurora/reference/rotate.md),
-[`transformXY()`](https://andrisignorell.github.io/aurora/reference/transformXY.md)
+Other plot.distribution:
+[`plotFun()`](https://andrisignorell.github.io/aurora/reference/plotFun.md),
+[`plotProbDist()`](https://andrisignorell.github.io/aurora/reference/plotProbDist.md)
 
 ## Examples
 
@@ -85,5 +79,6 @@ curve(dt(x, df=5), xlim=c(-6,6),
 
 shade(dt(x, df=5), breaks=c(-6, qt(0.025, df=5), qt(0.975, df=5), 6),
       col=c("deeppink4", "skyblue3"), density=c(20, 7))
+
 
 ```

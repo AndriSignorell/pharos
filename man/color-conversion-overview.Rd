@@ -44,7 +44,7 @@ Two related functions transform a color without changing its
 representation, so they don't fit a row/column slot above:\tabular{ll}{
    Function \tab Purpose \cr
    \code{\link[=colToOpaque]{colToOpaque()}} \tab Computes the equivalent opaque color for a transparent color against a background -- Hex stays Hex \cr
-   \code{\link[=grayscale]{grayscale()}} \tab Converts colors to grayscale using luminance weighting -- Col stays Col \cr
+   \code{\link[=grayScale]{grayScale()}} \tab Converts colors to grayscale using luminance weighting -- Col stays Col \cr
 }
 }
 
@@ -63,13 +63,13 @@ chain \code{hsv()} into \code{\link{colToRGB}()} or
 # (usually RGB or Col), not a missing feature.
 
 # CMY -> RGB: no direct function: CMY -> CMYK -> RGB
-cmykToRgb(cmyToCmyk(c(0.2, 0.6, 0.9)))
+c(0.2, 0.6, 0.9) |> cmyToCmyk() |> cmykToRgb()
 
 # Long integer -> R color name: Long -> RGB -> Col
-rgbToCol(longToRGB(255))
+255 |> longToRGB() |> rgbToCol()
 
 # HSV -> RGB: base R's hsv() bridges the gap noted above
-colToRGB(hsv(h = 0.6, s = 0.8, v = 0.9))
+hsv(h = 0.6, s = 0.8, v = 0.9) |> colToRGB()
 
 }
 \seealso{

@@ -150,8 +150,8 @@ Following will define a new format template named "`num.sty`". Passed to
 will result in a number displayed with 2 fixed digits and a comma as big
 mark:
 
-    num.sty
-    <- style(digits=2, bigMark=",") fm(12222.89345, fmt=num.sty) = 12,222.89
+    num.sty <- style(digits=2, bigMark=",")
+    fm(12222.89345, fmt=num.sty) = 12,222.89
 
 This is the same result as if the arguments would have been supplied
 directly, but helps to avoid boilerplate code:  
@@ -181,10 +181,14 @@ numeric values (`"num.sty"`) and percentages (`"per.sty"`).
 
 ## See also
 
-[`fm()`](https://andrisignorell.github.io/aurora/reference/fm.md)
+[theme](https://andrisignorell.github.io/aurora/reference/theme.md)
 
-Other theme:
-[`getTheme()`](https://andrisignorell.github.io/aurora/reference/getTheme.md)
+Other format:
+[`convUnit()`](https://andrisignorell.github.io/aurora/reference/convUnit.md),
+[`fm()`](https://andrisignorell.github.io/aurora/reference/fm.md),
+[`fmCI()`](https://andrisignorell.github.io/aurora/reference/fmCI.md),
+[`print.Unit()`](https://andrisignorell.github.io/aurora/reference/print.Unit.md),
+[`unit()`](https://andrisignorell.github.io/aurora/reference/unit.md)
 
 ## Examples
 
@@ -259,5 +263,5 @@ fm(314.1563, fmt=num.sty)
 #> [1] 314.16
 
 fm(Sys.Date(), fmt=dat.sty)
-#> [1] 07, 11 2026
+#> [1] 07, 13 2026
 ```

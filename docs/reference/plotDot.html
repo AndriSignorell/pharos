@@ -13,7 +13,7 @@ items × (est, low, high) × groups."><meta property="og:image" content="https:/
 
     <a class="navbar-brand me-2" href="../index.html">lyra</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.930</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.933</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,7 +68,7 @@ the data are normalized to an array of dimension
 
 
 <dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
-<dd><p>Numeric data. Can be</p><ul><li><p>a numeric vector (estimates only),</p></li>
+<dd><p>numeric data. Can be</p><ul><li><p>a numeric vector (estimates only),</p></li>
 <li><p>a matrix with 1 column (estimates) or 3 columns (estimate, lower,
 upper),</p></li>
 <li><p>a 3D array of dimension
@@ -77,44 +77,44 @@ upper),</p></li>
 
 
 <dt id="arg-items">items<a class="anchor" aria-label="anchor" href="#arg-items"></a></dt>
-<dd><p>Optional labels for the items (rows).
+<dd><p>optional labels for the items (rows).
 Defaults to <code>dimnames(x)[[1]]</code> if available.</p></dd>
 
 
 <dt id="arg-groups">groups<a class="anchor" aria-label="anchor" href="#arg-groups"></a></dt>
-<dd><p>Optional group labels. Defaults to
+<dd><p>optional group labels. Defaults to
 <code>dimnames(x)[[3]]</code> if present.</p></dd>
 
 
 <dt id="arg-main">main<a class="anchor" aria-label="anchor" href="#arg-main"></a></dt>
-<dd><p>Main title of the plot.</p></dd>
+<dd><p>main title of the plot.</p></dd>
 
 
 <dt id="arg-xlim">xlim<a class="anchor" aria-label="anchor" href="#arg-xlim"></a></dt>
-<dd><p>Limits for the horizontal axis.</p></dd>
+<dd><p>limits for the horizontal axis.</p></dd>
 
 
 <dt id="arg-gap">gap<a class="anchor" aria-label="anchor" href="#arg-gap"></a></dt>
-<dd><p>Vertical spacing between groups.</p></dd>
+<dd><p>vertical spacing between groups.</p></dd>
 
 
 <dt id="arg-axes">axes<a class="anchor" aria-label="anchor" href="#arg-axes"></a></dt>
-<dd><p>Logical; if <code>TRUE</code> axes are drawn.</p></dd>
+<dd><p>logical; if <code>TRUE</code> axes are drawn.</p></dd>
 
 
 <dt id="arg-xax">xax<a class="anchor" aria-label="anchor" href="#arg-xax"></a></dt>
-<dd><p>Optional specification of the x-axis. Passed to
+<dd><p>optional specification of the x-axis. Passed to
 (the internal function) <code>.drawAxis</code>.</p></dd>
 
 
 <dt id="arg-box">box<a class="anchor" aria-label="anchor" href="#arg-box"></a></dt>
-<dd><p>Controls drawing of the plot box. <code>.useTheme</code> (default)
+<dd><p>controls drawing of the plot box. <code>.useTheme</code> (default)
 resolves to <code>getTheme()$box</code>. <code>TRUE</code>/<code>FALSE</code>/<code>NA</code>,
 or a named list, as for <code><a href="https://rdrr.io/r/graphics/box.html" class="external-link">box</a></code>.</p></dd>
 
 
 <dt id="arg-grid">grid<a class="anchor" aria-label="anchor" href="#arg-grid"></a></dt>
-<dd><p>Controls drawing of the horizontal item/group grid lines.
+<dd><p>controls drawing of the horizontal item/group grid lines.
 <code>.useTheme</code> (default) follows whether the active theme's grid
 section is enabled (<code>getTheme()$grid</code>); the line style itself
 (color/lty) stays <code>plotDot</code>'s own distinctive look unless
@@ -123,14 +123,14 @@ for <code>.drawDotGrid()</code> (internal).</p></dd>
 
 
 <dt id="arg-pch">pch<a class="anchor" aria-label="anchor" href="#arg-pch"></a></dt>
-<dd><p>Plotting symbol specification for the points. <code>.useTheme</code>
+<dd><p>plotting symbol specification for the points. <code>.useTheme</code>
 (default) resolves to <code>getTheme()$points</code> (<code>pch</code>/<code>col</code>/
 <code>bg</code>/<code>cex</code>). May also be a single value or a list of
 graphical parameters passed to <code><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></code>.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>Additional graphical parameters passed to <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> via
+<dd><p>additional graphical parameters passed to <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> via
 <code>.applyParFromDots()</code>.</p></dd>
 
 </dl></div>
@@ -147,7 +147,7 @@ the plot:</p><ul><li><p><code>ypos</code> positions of items,</p></li>
 drawn with capped ends. Items are arranged vertically and may optionally be
 grouped.</p>
 <p>Graphical defaults for <code>box</code>, <code>grid</code>, and <code>pch</code> are drawn
-from the active theme (see <code><a href="getTheme.html">getTheme</a></code>/<code><a href="getTheme.html">setTheme</a></code>)
+from the active theme (see <a href="theme.html">theme</a>/<code><a href="theme.html">setTheme</a></code>)
 when left at their default value. Values supplied as arguments take
 precedence over theme settings.</p>
     </div>

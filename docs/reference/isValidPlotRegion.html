@@ -7,7 +7,7 @@ with the rather cryptic error "figure margins too large".'><meta property="og:de
 minimal size requirement. This is useful before drawing into small
 devices or heavily subdivided layouts (mfrow, layout(),
 Shiny render panes), where an undersized region would otherwise fail
-with the rather cryptic error "figure margins too large".'><meta property="og:image" content="https://andrisignorell.github.io/lyra/logo.png"></head><body>
+with the rather cryptic error "figure margins too large".'><meta property="og:image" content="https://andrisignorell.github.io/aurora/logo.png"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -15,7 +15,7 @@ with the rather cryptic error "figure margins too large".'><meta property="og:im
 
     <a class="navbar-brand me-2" href="../index.html">lyra</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.930</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.933</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -88,11 +88,14 @@ guard for conditional plotting, e.g.
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> (entries <code>pin</code>, <code>fin</code>, <code>mar</code>),
-<code><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.cur</a></code></p></div>
-    </div>
-    <div class="section level2">
-    <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>
-    <p>Andri Signorell <a href="mailto:andri@signorell.net">andri@signorell.net</a></p>
+<code><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.cur</a></code></p>
+<p>Other graphics.layout:
+<code><a href="abcCoords.html">abcCoords()</a></code>,
+<code><a href="axTicks.html">axTicks</a></code>,
+<code><a href="axisBreak.html">axisBreak()</a></code>,
+<code><a href="lineToUser.html">lineToUser()</a></code>,
+<code><a href="mar.html">mar()</a></code>,
+<code><a href="spreadOut.html">spreadOut()</a></code></p></div>
     </div>
 
     <div class="section level2">
@@ -108,6 +111,7 @@ guard for conditional plotting, e.g.
 <span class="r-in"><span><span class="co"># require a larger region, e.g. for a wide correlation plot</span></span></span>
 <span class="r-in"><span><span class="fu">isValidPlotRegion</span><span class="op">(</span>minPin <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

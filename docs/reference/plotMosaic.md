@@ -68,7 +68,7 @@ plotMosaic(
   dimension, or first if `swap = TRUE`). `.useTheme` (default) resolves
   to `pal(getTheme()$palette, n = <number of levels>)` - the active
   theme's qualitative palette (see
-  [`getTheme`](https://andrisignorell.github.io/aurora/reference/getTheme.md)),
+  [theme](https://andrisignorell.github.io/aurora/reference/theme.md)),
   sampled or interpolated to match the number of category levels. A
   diverging or sequential color ramp is deliberately not used here: the
   fill variable is an unordered categorical variable, and a ramp would
@@ -100,7 +100,7 @@ plotMosaic(
 
 - stamp:
 
-  Controls the corner stamp. `.useTheme` (default) resolves to
+  controls the corner stamp. `.useTheme` (default) resolves to
   `getTheme()$stamp`. `TRUE`/`FALSE`/ `NULL`, or an explicit string, as
   for `.withGraphicsState()` (internal).
 
@@ -134,7 +134,7 @@ is represented via the legend only.
 
 [`plotCatDist()`](https://andrisignorell.github.io/aurora/reference/plotCatDist.md),
 [`plotBar()`](https://andrisignorell.github.io/aurora/reference/plotBar.md),
-[`getTheme()`](https://andrisignorell.github.io/aurora/reference/getTheme.md)
+[`getTheme()`](https://andrisignorell.github.io/aurora/reference/theme.md)
 
 Other plot.bivariate:
 [`plotAssoc()`](https://andrisignorell.github.io/aurora/reference/plotAssoc.md),

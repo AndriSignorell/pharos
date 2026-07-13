@@ -21,19 +21,19 @@ ftable(x, row.vars = NULL, col.vars = NULL, ...)
 
 - row.vars:
 
-  Row variables passed to
+  row variables passed to
   [`ftable`](https://rdrr.io/r/stats/ftable.html). Defaults to all
   dimensions except those specified in `col.vars`.
 
 - col.vars:
 
-  Column variables passed to
+  column variables passed to
   [`ftable`](https://rdrr.io/r/stats/ftable.html). Defaults to the
   dimension created from the names of the list elements.
 
 - ...:
 
-  Further arguments passed to
+  further arguments passed to
   [`ftable`](https://rdrr.io/r/stats/ftable.html).
 
 ## Value

@@ -11,7 +11,7 @@ and easily change or modify them later."><meta property="og:image" content="http
 
     <a class="navbar-brand me-2" href="../index.html">lyra</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.930</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.933</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -174,10 +174,11 @@ for and if not found <code>"local"</code> will be taken as default.</p></dd>
 <code>style()</code> can be used to create new styles. It takes any of the
 arguments from <code><a href="fm.html">fm()</a></code> and combines them to an object of class
 <code>"Style"</code>, which then can be handed over to <code><a href="fm.html">fm()</a></code> as argument
-<code>fmt</code>. <br> Following will define a new format template named
+<code>fmt</code>. <br>
+Following will define a new format template named
 "<code>num.sty</code>".  Passed to <code><a href="fm.html">fm()</a></code> this will result in a number
-displayed with 2 fixed digits and a comma as big mark:</p><div class="sourceCode"><pre><code>num.sty
-&lt;- style(digits=2, bigMark=",") fm(12222.89345, fmt=num.sty) = 12,222.89</code></pre></div><p>This is the same result as if the arguments would have been supplied
+displayed with 2 fixed digits and a comma as big mark:</p><div class="sourceCode"><pre><code>num.sty &lt;- style(digits=2, bigMark=",")
+fm(12222.89345, fmt=num.sty) = 12,222.89</code></pre></div><p>This is the same result as if the arguments would have been supplied
 directly, but helps to avoid boilerplate code: <br><code>fm(12222.89345,
 digits=2, bigMark=",")</code>.</p>
 <p>To edit a style we can provide <code>style()</code> with its name and overwrite,
@@ -197,9 +198,13 @@ three default formats for counts (named <code>"abs.sty"</code>), numeric values
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="fm.html">fm()</a></code></p>
-<p>Other theme:
-<code><a href="getTheme.html">getTheme()</a></code></p></div>
+    <div class="dont-index"><p><a href="theme.html">theme</a></p>
+<p>Other format:
+<code><a href="convUnit.html">convUnit()</a></code>,
+<code><a href="fm.html">fm()</a></code>,
+<code><a href="fmCI.html">fmCI()</a></code>,
+<code><a href="print.Unit.html">print.Unit()</a></code>,
+<code><a href="unit.html">unit()</a></code></p></div>
     </div>
 
     <div class="section level2">
@@ -274,7 +279,7 @@ three default formats for counts (named <code>"abs.sty"</code>), numeric values
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 314.16</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="fm.html">fm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.Date</a></span><span class="op">(</span><span class="op">)</span>, fmt<span class="op">=</span><span class="va">dat.sty</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 07, 11 2026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 07, 13 2026</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

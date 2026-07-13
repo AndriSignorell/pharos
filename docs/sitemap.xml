@@ -4,6 +4,7 @@
 <url><loc>https://andrisignorell.github.io/aurora/index.html</loc></url>
 <url><loc>https://andrisignorell.github.io/aurora/news/index.html</loc></url>
 <url><loc>https://andrisignorell.github.io/aurora/reference/abcCoords.html</loc></url>
+<url><loc>https://andrisignorell.github.io/aurora/reference/addAlpha.html</loc></url>
 <url><loc>https://andrisignorell.github.io/aurora/reference/addOpacity.html</loc></url>
 <url><loc>https://andrisignorell.github.io/aurora/reference/arc.html</loc></url>
 <url><loc>https://andrisignorell.github.io/aurora/reference/as.CI.html</loc></url>
@@ -22,6 +23,7 @@
 <url><loc>https://andrisignorell.github.io/aurora/reference/cmykToRgb.html</loc></url>
 <url><loc>https://andrisignorell.github.io/aurora/reference/cmyToCmyk.html</loc></url>
 <url><loc>https://andrisignorell.github.io/aurora/reference/colLegend.html</loc></url>
+<url><loc>https://andrisignorell.github.io/aurora/reference/color-conversion-overview.html</loc></url>
 <url><loc>https://andrisignorell.github.io/aurora/reference/colToHex.html</loc></url>
 <url><loc>https://andrisignorell.github.io/aurora/reference/colToHSV.html</loc></url>
 <url><loc>https://andrisignorell.github.io/aurora/reference/colToOpaque.html</loc></url>
@@ -31,7 +33,7 @@
 <url><loc>https://andrisignorell.github.io/aurora/reference/convUnit.html</loc></url>
 <url><loc>https://andrisignorell.github.io/aurora/reference/coordinate-conversions.html</loc></url>
 <url><loc>https://andrisignorell.github.io/aurora/reference/darken.html</loc></url>
-<url><loc>https://andrisignorell.github.io/aurora/reference/degToRad.html</loc></url>
+<url><loc>https://andrisignorell.github.io/aurora/reference/degree-radians-conversion.html</loc></url>
 <url><loc>https://andrisignorell.github.io/aurora/reference/ellipse.html</loc></url>
 <url><loc>https://andrisignorell.github.io/aurora/reference/errBars.html</loc></url>
 <url><loc>https://andrisignorell.github.io/aurora/reference/fade.html</loc></url>
@@ -40,12 +42,13 @@
 <url><loc>https://andrisignorell.github.io/aurora/reference/fmCI.html</loc></url>
 <url><loc>https://andrisignorell.github.io/aurora/reference/Formulas.html</loc></url>
 <url><loc>https://andrisignorell.github.io/aurora/reference/ftable.list.html</loc></url>
-<url><loc>https://andrisignorell.github.io/aurora/reference/getTheme.html</loc></url>
 <url><loc>https://andrisignorell.github.io/aurora/reference/grapes-_-grapes.html</loc></url>
 <url><loc>https://andrisignorell.github.io/aurora/reference/grayscale.html</loc></url>
 <url><loc>https://andrisignorell.github.io/aurora/reference/hcol.html</loc></url>
 <url><loc>https://andrisignorell.github.io/aurora/reference/hexToCol.html</loc></url>
 <url><loc>https://andrisignorell.github.io/aurora/reference/hexToRGB.html</loc></url>
+<url><loc>https://andrisignorell.github.io/aurora/reference/htmlNotation.html</loc></url>
+<url><loc>https://andrisignorell.github.io/aurora/reference/htmlSubscript.html</loc></url>
 <url><loc>https://andrisignorell.github.io/aurora/reference/index.html</loc></url>
 <url><loc>https://andrisignorell.github.io/aurora/reference/isValidPlotRegion.html</loc></url>
 <url><loc>https://andrisignorell.github.io/aurora/reference/lighten.html</loc></url>
@@ -121,6 +124,7 @@
 <url><loc>https://andrisignorell.github.io/aurora/reference/strDist.html</loc></url>
 <url><loc>https://andrisignorell.github.io/aurora/reference/strExtract.html</loc></url>
 <url><loc>https://andrisignorell.github.io/aurora/reference/strExtractBetween.html</loc></url>
+<url><loc>https://andrisignorell.github.io/aurora/reference/string-overview.html</loc></url>
 <url><loc>https://andrisignorell.github.io/aurora/reference/strIsNumeric.html</loc></url>
 <url><loc>https://andrisignorell.github.io/aurora/reference/strLeftRight.html</loc></url>
 <url><loc>https://andrisignorell.github.io/aurora/reference/strLen.html</loc></url>
@@ -134,6 +138,7 @@
 <url><loc>https://andrisignorell.github.io/aurora/reference/strVal.html</loc></url>
 <url><loc>https://andrisignorell.github.io/aurora/reference/style.html</loc></url>
 <url><loc>https://andrisignorell.github.io/aurora/reference/textLegend.html</loc></url>
+<url><loc>https://andrisignorell.github.io/aurora/reference/theme.html</loc></url>
 <url><loc>https://andrisignorell.github.io/aurora/reference/titleRect.html</loc></url>
 <url><loc>https://andrisignorell.github.io/aurora/reference/toHtmlTable.html</loc></url>
 <url><loc>https://andrisignorell.github.io/aurora/reference/transformXY.html</loc></url>

@@ -27,31 +27,31 @@ transformXY(
 
 - x:
 
-  Numeric vector of x coordinates, or an object coercible by
+  numeric vector of x coordinates, or an object coercible by
   [`xy.coords`](https://rdrr.io/r/grDevices/xy.coords.html).
 
 - y:
 
-  Numeric vector of y coordinates. Ignored if `x` already contains both
+  numeric vector of y coordinates. Ignored if `x` already contains both
   coordinates.
 
 - translate:
 
-  Numeric vector of length 1 or 2 specifying translation in x and y
+  numeric vector of length 1 or 2 specifying translation in x and y
   direction. Recycled if necessary. Default is `c(0, 0)`.
 
 - scale:
 
-  Numeric vector of length 1 or 2 specifying scaling factors for x
+  numeric vector of length 1 or 2 specifying scaling factors for x
   and y. Recycled if necessary. Default is `c(1, 1)`.
 
 - theta:
 
-  Rotation angle in radians. Default is `0`.
+  rotation angle in radians. Default is `0`.
 
 - asp:
 
-  Aspect ratio adjustment passed to
+  aspect ratio adjustment passed to
   [`rotate`](https://andrisignorell.github.io/aurora/reference/rotate.md).
   Default is `1`.
 
@@ -69,17 +69,8 @@ for rotation.
 
 ## See also
 
-[`rotate`](https://andrisignorell.github.io/aurora/reference/rotate.md)
-
-Other geometry:
-[`arc()`](https://andrisignorell.github.io/aurora/reference/arc.md),
-[`band()`](https://andrisignorell.github.io/aurora/reference/band.md),
-[`bezier()`](https://andrisignorell.github.io/aurora/reference/bezier.md),
-[`canvas()`](https://andrisignorell.github.io/aurora/reference/canvas.md),
-[`polarGrid()`](https://andrisignorell.github.io/aurora/reference/polarGrid.md),
-[`polygon()`](https://andrisignorell.github.io/aurora/reference/polygon.md),
-[`rotate()`](https://andrisignorell.github.io/aurora/reference/rotate.md),
-[`shade()`](https://andrisignorell.github.io/aurora/reference/shade.md)
+Other geometry.transformation:
+[`rotate()`](https://andrisignorell.github.io/aurora/reference/rotate.md)
 
 ## Examples
 
@@ -120,4 +111,5 @@ transformXY(m, scale = 0.5, theta = pi/6)
 #> $ylab
 #> NULL
 #> 
+
 ```

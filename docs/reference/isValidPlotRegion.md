@@ -50,9 +50,13 @@ guard for conditional plotting, e.g.
 [`par`](https://rdrr.io/r/graphics/par.html) (entries `pin`, `fin`,
 `mar`), [`dev.cur`](https://rdrr.io/r/grDevices/dev.html)
 
-## Author
-
-Andri Signorell <andri@signorell.net>
+Other graphics.layout:
+[`abcCoords()`](https://andrisignorell.github.io/aurora/reference/abcCoords.md),
+[`axTicks`](https://andrisignorell.github.io/aurora/reference/axTicks.md),
+[`axisBreak()`](https://andrisignorell.github.io/aurora/reference/axisBreak.md),
+[`lineToUser()`](https://andrisignorell.github.io/aurora/reference/lineToUser.md),
+[`mar()`](https://andrisignorell.github.io/aurora/reference/mar.md),
+[`spreadOut()`](https://andrisignorell.github.io/aurora/reference/spreadOut.md)
 
 ## Examples
 
@@ -68,4 +72,5 @@ if (isValidPlotRegion()) {
 # require a larger region, e.g. for a wide correlation plot
 isValidPlotRegion(minPin = c(4, 3))
 #> [1] TRUE
+
 ```

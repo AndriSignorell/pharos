@@ -34,48 +34,48 @@ plotTernary(
 
 - y:
 
-  Optional numeric vector for the second component.
+  optional numeric vector for the second component.
 
 - z:
 
-  Optional numeric vector for the third component.
+  optional numeric vector for the third component.
 
 - ...:
 
-  Additional graphical parameters passed to
+  additional graphical parameters passed to
   [`par()`](https://rdrr.io/r/graphics/par.html).
 
 - add:
 
-  Logical; if `TRUE`, adds to an existing plot.
+  logical; if `TRUE`, adds to an existing plot.
 
 - col:
 
-  Point color(s).
+  point color(s).
 
 - pch:
 
-  Plotting symbol.
+  plotting symbol.
 
 - cex:
 
-  Point size.
+  point size.
 
 - grid:
 
-  Logical, `NA`, or list controlling the ternary grid.
+  logical, `NA`, or list controlling the ternary grid.
 
 - lbl:
 
-  Character vector of length 3 specifying axis labels.
+  character vector of length 3 specifying axis labels.
 
 - main:
 
-  Plot title.
+  plot title.
 
 - xlim, ylim:
 
-  Plot limits (usually left at defaults).
+  plot limits (usually left at defaults).
 
 ## Value
 

@@ -423,6 +423,6 @@ cmykToRgb <- function(col, maxColorValue = 1) {
 # 
 # alpha     <- addOpacity
 # 
-# colToGrey <- grayscale
-# colToGray <- grayscale
+# colToGrey <- grayScale
+# colToGray <- grayScale
 

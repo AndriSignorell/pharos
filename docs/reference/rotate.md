@@ -43,14 +43,7 @@ shape(s).
 [`ellipse`](https://andrisignorell.github.io/aurora/reference/ellipse.md),
 [`arc`](https://andrisignorell.github.io/aurora/reference/arc.md)
 
-Other geometry:
-[`arc()`](https://andrisignorell.github.io/aurora/reference/arc.md),
-[`band()`](https://andrisignorell.github.io/aurora/reference/band.md),
-[`bezier()`](https://andrisignorell.github.io/aurora/reference/bezier.md),
-[`canvas()`](https://andrisignorell.github.io/aurora/reference/canvas.md),
-[`polarGrid()`](https://andrisignorell.github.io/aurora/reference/polarGrid.md),
-[`polygon()`](https://andrisignorell.github.io/aurora/reference/polygon.md),
-[`shade()`](https://andrisignorell.github.io/aurora/reference/shade.md),
+Other geometry.transformation:
 [`transformXY()`](https://andrisignorell.github.io/aurora/reference/transformXY.md)
 
 ## Examples

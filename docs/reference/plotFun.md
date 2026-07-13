@@ -31,7 +31,7 @@ plotFun(
 
 - expr:
 
-  Expression defining the function. Either a formula (`y ~ f(x)`), a
+  expression defining the function. Either a formula (`y ~ f(x)`), a
   polar formula (`r ~ f(phi)`), or a list of two formulas for parametric
   plots.
 
@@ -126,7 +126,8 @@ Additional parameters fixed for the expression can be passed via `args`.
 ## See also
 
 Other plot.distribution:
-[`plotProbDist()`](https://andrisignorell.github.io/aurora/reference/plotProbDist.md)
+[`plotProbDist()`](https://andrisignorell.github.io/aurora/reference/plotProbDist.md),
+[`shade()`](https://andrisignorell.github.io/aurora/reference/shade.md)
 
 ## Examples
 

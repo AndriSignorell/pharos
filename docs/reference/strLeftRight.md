@@ -16,13 +16,13 @@ strRight(x, n)
 
 - x:
 
-  a vector of strings.
+  a vector of strings
 
 - n:
 
   a positive or a negative integer, the number of characters to cut. If
   n is negative, this number of characters will be cut off from the
-  right with `strLeft` and from the right with `strRight`.  
+  right with `strLeft` and from the left with `strRight`.  
   n will be recycled.
 
 ## Value
@@ -35,8 +35,8 @@ The functions `strLeft` and `strRight` are simple wrappers to `substr`.
 
 ## See also
 
-[`substr`](https://rdrr.io/r/base/substr.html),
-[`strTrim`](https://andrisignorell.github.io/aurora/reference/strTrim.md)
+[string-overview](https://andrisignorell.github.io/aurora/reference/string-overview.md)
+for an overview of all string utilities in lyra.
 
 ## Examples
 
@@ -57,4 +57,6 @@ strLeft(c("Lorem", "ipsum", "dolor","sit","amet"), n=2)
 
 strRight(c("Lorem", "ipsum", "dolor","sit","amet"), n=c(2,3))
 #> [1] "em"  "sum" "or"  "sit" "et" 
+
+
 ```

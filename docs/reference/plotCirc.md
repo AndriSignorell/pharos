@@ -27,7 +27,7 @@ plotCirc(
 
 - sector:
 
-  Sector styling. Can be:
+  sector styling. Can be:
 
   - a logical (`TRUE`/`FALSE`) to enable/disable sectors,
 
@@ -40,7 +40,7 @@ plotCirc(
 
 - ribbon:
 
-  Ribbon styling. Can be:
+  ribbon styling. Can be:
 
   - a logical (`TRUE`/`FALSE`) to enable/disable ribbons,
 
@@ -52,7 +52,7 @@ plotCirc(
 
 - labels:
 
-  Label styling. Can be:
+  label styling. Can be:
 
   - a logical (`TRUE`/`FALSE`) to enable/disable labels,
 
@@ -62,15 +62,15 @@ plotCirc(
 
 - gap:
 
-  Numeric. Gap between sectors in degrees.
+  numeric. Gap between sectors in degrees.
 
 - main:
 
-  Character. Main title of the plot.
+  character. Main title of the plot.
 
 - ...:
 
-  Additional graphical parameters passed to internal plotting functions.
+  additional graphical parameters passed to internal plotting functions.
 
 ## Value
 

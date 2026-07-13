@@ -60,56 +60,56 @@ plotRidge(
 
 - ...:
 
-  Additional graphical parameters passed to
+  additional graphical parameters passed to
   [`par()`](https://rdrr.io/r/graphics/par.html).
 
 - add:
 
-  Logical; if `TRUE`, adds to an existing plot.
+  logical; if `TRUE`, adds to an existing plot.
 
 - bw:
 
-  Bandwidth for [`density`](https://rdrr.io/r/stats/density.html).
+  bandwidth for [`density`](https://rdrr.io/r/stats/density.html).
 
 - scale:
 
-  Scaling factor for density height.
+  scaling factor for density height.
 
 - spacing:
 
-  Vertical spacing between ridges.
+  vertical spacing between ridges.
 
 - col:
 
-  Fill color(s).
+  fill color(s).
 
 - border:
 
-  Border color(s).
+  border color(s).
 
 - lwd:
 
-  Line width(s).
+  line width(s).
 
 - lty:
 
-  Line type(s).
+  line type(s).
 
 - fill:
 
-  Logical; fill area under densities.
+  logical; fill area under densities.
 
 - grid:
 
-  Logical, `NA`, or list controlling grid.
+  logical, `NA`, or list controlling grid.
 
 - main, xlab, ylab:
 
-  Plot labels.
+  plot labels.
 
 - xlim, ylim:
 
-  Axis limits.
+  axis limits.
 
 - formula:
 
@@ -117,15 +117,15 @@ plotRidge(
 
 - data:
 
-  Optional data frame.
+  optional data frame.
 
 - subset:
 
-  Optional subset expression.
+  optional subset expression.
 
 - na.action:
 
-  Function to handle missing values.
+  function to handle missing values.
 
 ## Value
 
@@ -140,11 +140,6 @@ readability compared to overlaid density plots.
 ## See also
 
 [`plotDens`](https://andrisignorell.github.io/aurora/reference/plotDens.md)
-
-Other topic.graphics:
-[`plotBubble()`](https://andrisignorell.github.io/aurora/reference/plotBubble.md),
-[`plotDens()`](https://andrisignorell.github.io/aurora/reference/plotDens.md),
-[`plotDens2D()`](https://andrisignorell.github.io/aurora/reference/plotDens2D.md)
 
 ## Examples
 

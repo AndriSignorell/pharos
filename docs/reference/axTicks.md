@@ -15,25 +15,25 @@ axTicks.Date(side = 1, x, ...)
 
 - side:
 
-  See [axis](https://rdrr.io/r/graphics/axis.html).
+  see [graphics::axis](https://rdrr.io/r/graphics/axis.html)
 
 - x, at:
 
-  A date-time or date object.
+  date-time or date object.
 
 - format:
 
-  See strptime.
+  see [base::strptime](https://rdrr.io/r/base/strptime.html)
 
 - labels:
 
-  Either a logical value specifying whether annotations are to be made
+  either a logical value specifying whether annotations are to be made
   at the tickmarks, or a vector of character strings to be placed at the
-  tickpoints.
+  tickpoints
 
 - ...:
 
-  Further arguments to be passed from or to other methods.
+  further arguments to be passed from or to other methods
 
 ## Value
 
@@ -50,8 +50,13 @@ gap.
 `axTicks`,
 [`axis.POSIXct`](https://rdrr.io/r/graphics/axis.POSIXct.html)
 
-Other plot.utils:
-[`splineCI`](https://andrisignorell.github.io/lyra/reference/splineCI.md)
+Other graphics.layout:
+[`abcCoords()`](https://andrisignorell.github.io/aurora/reference/abcCoords.md),
+[`axisBreak()`](https://andrisignorell.github.io/aurora/reference/axisBreak.md),
+[`isValidPlotRegion()`](https://andrisignorell.github.io/aurora/reference/isValidPlotRegion.md),
+[`lineToUser()`](https://andrisignorell.github.io/aurora/reference/lineToUser.md),
+[`mar()`](https://andrisignorell.github.io/aurora/reference/mar.md),
+[`spreadOut()`](https://andrisignorell.github.io/aurora/reference/spreadOut.md)
 
 ## Examples
 

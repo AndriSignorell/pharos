@@ -6,7 +6,7 @@ transparent RGB color against a background of any color.
 ## Usage
 
 ``` r
-colToOpaque(col, alpha = NULL, bg = NULL)
+colToOpaque(col, opacity = NULL, bg = NULL)
 ```
 
 ## Arguments
@@ -14,11 +14,11 @@ colToOpaque(col, alpha = NULL, bg = NULL)
 - col:
 
   the color as hex value (use converters below if it's not available).
-  `col` and `alpha` are recycled.
+  `col` and `opacity` are recycled.
 
-- alpha:
+- opacity:
 
-  the alpha channel, if left to NULL the alpha channels of the colors
+  the opacity value, if left to NULL the alpha channels of the colors
   are used
 
 - bg:
@@ -39,22 +39,12 @@ color.
 
 ## See also
 
-[`decToHex`](https://rdrr.io/pkg/bedrock/man/numeric-conversions.html),
-
-Other color:
-[`addOpacity()`](https://andrisignorell.github.io/lyra/reference/addOpacity.md),
-[`colToRGB()`](https://andrisignorell.github.io/lyra/reference/colToRGB.md),
-[`contrastColor()`](https://andrisignorell.github.io/lyra/reference/contrastColor.md),
-[`darken()`](https://andrisignorell.github.io/lyra/reference/darken.md),
-[`findColor()`](https://andrisignorell.github.io/lyra/reference/findColor.md),
-[`grayscale()`](https://andrisignorell.github.io/lyra/reference/grayscale.md),
-[`hcol()`](https://andrisignorell.github.io/lyra/reference/hcol.md),
-[`hexToRGB()`](https://andrisignorell.github.io/lyra/reference/hexToRGB.md),
-[`lighten()`](https://andrisignorell.github.io/lyra/reference/lighten.md),
-[`mixColors()`](https://andrisignorell.github.io/lyra/reference/mixColors.md),
-[`pal()`](https://andrisignorell.github.io/lyra/reference/pal.md),
-[`palNames()`](https://andrisignorell.github.io/lyra/reference/palNames.md),
-[`setBackCol()`](https://andrisignorell.github.io/lyra/reference/setBackCol.md)
+Other color.manipulation:
+[`addOpacity()`](https://andrisignorell.github.io/aurora/reference/addOpacity.md),
+[`darken()`](https://andrisignorell.github.io/aurora/reference/darken.md),
+[`fade()`](https://andrisignorell.github.io/aurora/reference/fade.md),
+[`lighten()`](https://andrisignorell.github.io/aurora/reference/lighten.md),
+[`mixColors()`](https://andrisignorell.github.io/aurora/reference/mixColors.md)
 
 ## Examples
 

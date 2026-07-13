@@ -5,7 +5,7 @@ legend.  Useful for placing text or other annotations at
 consistent, region-aware positions.'><meta property="og:description" content='Returns the xy-coordinates and text-adjustment values for named anchor
 positions such as "topleft", "center", etc., as used by
 legend.  Useful for placing text or other annotations at
-consistent, region-aware positions.'><meta property="og:image" content="https://andrisignorell.github.io/lyra/logo.png"></head><body>
+consistent, region-aware positions.'><meta property="og:image" content="https://andrisignorell.github.io/aurora/logo.png"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -13,7 +13,7 @@ consistent, region-aware positions.'><meta property="og:image" content="https://
 
     <a class="navbar-brand me-2" href="../index.html">lyra</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.930</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.933</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,17 +67,17 @@ of <code>"bottomright"</code>, <code>"bottom"</code>, <code>"bottomleft"</code>,
 
 
 <dt id="arg-region">region<a class="anchor" aria-label="anchor" href="#arg-region"></a></dt>
-<dd><p>One of <code>"figure"</code> (default), <code>"plot"</code>, or
+<dd><p>one of <code>"figure"</code> (default), <code>"plot"</code>, or
 <code>"device"</code>.  Determines the coordinate region used.</p></dd>
 
 
 <dt id="arg-cex">cex<a class="anchor" aria-label="anchor" href="#arg-cex"></a></dt>
-<dd><p>Character expansion factor. If <code>NULL</code> (default),
+<dd><p>character expansion factor. If <code>NULL</code> (default),
 the current <code>par("cex")</code> is used.</p></dd>
 
 
 <dt id="arg-inset">inset<a class="anchor" aria-label="anchor" href="#arg-inset"></a></dt>
-<dd><p>Inset distance from the boundary, specified in lines of
+<dd><p>inset distance from the boundary, specified in lines of
 text (character heights/widths).  May be a scalar (applied to both
 x and y) or a length-2 vector (x inset, y inset).  Default <code>0</code>.</p></dd>
 
@@ -96,7 +96,8 @@ the anchor coordinates in user space.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>The inset is computed in character units via <code><a href="https://rdrr.io/r/graphics/strwidth.html" class="external-link">strwidth</a></code> and
+    <p>The positioning logic is adapted from <code><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></code>.
+The inset is computed in character units via <code><a href="https://rdrr.io/r/graphics/strwidth.html" class="external-link">strwidth</a></code> and
 <code><a href="https://rdrr.io/r/graphics/strwidth.html" class="external-link">strheight</a></code>, making it robust to device resizing, font
 changes, and plot-range scaling.</p>
 <p>Three regions are supported:</p><dl><dt><code>"plot"</code></dt>
@@ -112,30 +113,15 @@ for <code>par("fig")</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
-    <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
-    <p>The positioning logic is adapted from <code><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></code>.</p>
-    </div>
-    <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></code>, <code><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></code>,
-<code><a href="boxedText.html">boxedText</a></code></p>
-<p>Other graphics.utils:
+    <div class="dont-index"><p><code><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></code>, <code><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></code></p>
+<p>Other graphics.layout:
+<code><a href="axTicks.html">axTicks</a></code>,
 <code><a href="axisBreak.html">axisBreak()</a></code>,
-<code><a href="barText.html">barText()</a></code>,
-<code><a href="boxedText.html">boxedText()</a></code>,
-<code><a href="colLegend.html">colLegend()</a></code>,
-<code><a href="degToRad.html">degToRad()</a></code>,
-<code><a href="errBars.html">errBars()</a></code>,
-<code><a href="lineSep.html">lineSep()</a></code>,
+<code><a href="isValidPlotRegion.html">isValidPlotRegion()</a></code>,
 <code><a href="lineToUser.html">lineToUser()</a></code>,
-<code><a href="linesLm.html">lines.lm()</a></code>,
 <code><a href="mar.html">mar()</a></code>,
-<code><a href="preview.html">preview()</a></code>,
-<code><a href="spreadOut.html">spreadOut()</a></code>,
-<code><a href="stamp.html">stamp()</a></code>,
-<code><a href="textLegend.html">textLegend()</a></code>,
-<code><a href="titleRect.html">titleRect()</a></code>,
-<code><a href="unit.html">unit()</a></code></p></div>
+<code><a href="spreadOut.html">spreadOut()</a></code></p></div>
     </div>
 
     <div class="section level2">

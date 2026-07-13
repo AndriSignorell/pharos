@@ -105,7 +105,7 @@ plotBox(
 
 - stamp:
 
-  Controls the corner stamp. `.useTheme` (default) resolves to
+  controls the corner stamp. `.useTheme` (default) resolves to
   `getTheme()$stamp`. `TRUE`/`FALSE`/`NULL`, or an explicit string, as
   for `.withGraphicsState()` (internal).
 

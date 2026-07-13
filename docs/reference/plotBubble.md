@@ -49,52 +49,52 @@ plotBubble(
 
 - x:
 
-  Numeric vector of x positions.
+  numeric vector of x positions.
 
 - y:
 
-  Numeric vector of y positions.
+  numeric vector of y positions.
 
 - area:
 
-  Numeric vector controlling bubble sizes (interpreted as area).
+  numeric vector controlling bubble sizes (interpreted as area).
 
 - ...:
 
-  Additional graphical parameters passed to
+  additional graphical parameters passed to
   [`par()`](https://rdrr.io/r/graphics/par.html).
 
 - add:
 
-  Logical; if `TRUE`, adds to an existing plot.
+  logical; if `TRUE`, adds to an existing plot.
 
 - col:
 
-  Fill color(s) of the bubbles.
+  fill color(s) of the bubbles.
 
 - border:
 
-  Border color(s) of the bubbles.
+  border color(s) of the bubbles.
 
 - cex:
 
-  Scaling factor applied to bubble areas.
+  scaling factor applied to bubble areas.
 
 - grid:
 
-  Logical, `NA`, or list controlling background grid.
+  logical, `NA`, or list controlling background grid.
 
 - xlim, ylim:
 
-  Axis limits.
+  axis limits.
 
 - na.rm:
 
-  Logical; remove missing values.
+  logical; remove missing values.
 
 - main, xlab, ylab:
 
-  Plot labels.
+  plot labels.
 
 - formula:
 
@@ -102,15 +102,15 @@ plotBubble(
 
 - data:
 
-  Optional data frame.
+  optional data frame.
 
 - subset:
 
-  Optional subset expression.
+  optional subset expression.
 
 - na.action:
 
-  Function to handle missing values.
+  function to handle missing values.
 
 ## Value
 
@@ -134,11 +134,6 @@ design system using
 
 [`symbols`](https://rdrr.io/r/graphics/symbols.html)
 
-Other topic.graphics:
-[`plotDens()`](https://andrisignorell.github.io/aurora/reference/plotDens.md),
-[`plotDens2D()`](https://andrisignorell.github.io/aurora/reference/plotDens2D.md),
-[`plotRidge()`](https://andrisignorell.github.io/aurora/reference/plotRidge.md)
-
 ## Examples
 
 ``` r
@@ -158,7 +153,7 @@ US <- data.frame(state.x77, State=state.name,
                    Region=state.region, Abb=state.abb)
 plotBubble(Income ~ Population | Area , 
            data=US, 
-           grid=TRUE, col=addOpacity(pal("Helsana")[US$Region]), cex=1.2 )
+           grid=TRUE, col=addOpacity(pal("helsana")[US$Region]), cex=1.2 )
 
 text(Income ~ Population, US, labels=US$Abb, cex=0.8)
 

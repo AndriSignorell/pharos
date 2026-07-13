@@ -26,32 +26,32 @@ plotDens2D(
 
 - x:
 
-  Numeric vector of x-coordinates.
+  numeric vector of x-coordinates.
 
 - y:
 
-  Numeric vector of y-coordinates. Must have the same length as `x`.
+  numeric vector of y-coordinates. Must have the same length as `x`.
 
 - main:
 
-  Optional main title of the plot.
+  optional main title of the plot.
 
 - xlab, ylab:
 
-  Axis labels.
+  axis labels.
 
 - xlim, ylim:
 
-  Numeric vectors of length two specifying axis limits.
+  numeric vectors of length two specifying axis limits.
 
 - type:
 
-  Character string specifying the plot type. One of `"contour"`,
+  character string specifying the plot type. One of `"contour"`,
   `"image"`, or `"persp"`.
 
 - col:
 
-  Color specification used for `type = "image"`. Defaults to a reversed
+  color specification used for `type = "image"`. Defaults to a reversed
   `"red-black"` sequential ramp
   ([`pal()`](https://andrisignorell.github.io/aurora/reference/pal.md)),
   running from black (low density) to red (high density) - hardcoded
@@ -61,19 +61,19 @@ plotDens2D(
 
 - grid:
 
-  Controls drawing of the background grid. `.useTheme` (default) follows
+  controls drawing of the background grid. `.useTheme` (default) follows
   the active theme (`getTheme()$grid`). `TRUE`/`FALSE`/`NA`, or a named
   list, as for [`grid`](https://rdrr.io/r/graphics/grid.html).
 
 - box:
 
-  Controls drawing of the plot box. `.useTheme` (default) resolves to
+  controls drawing of the plot box. `.useTheme` (default) resolves to
   `getTheme()$box`. `TRUE`/`FALSE`/`NA`, or a named list, as for
   [`box`](https://rdrr.io/r/graphics/box.html).
 
 - ...:
 
-  Additional graphical parameters passed to underlying plotting
+  additional graphical parameters passed to underlying plotting
   functions.
 
 ## Value
@@ -106,11 +106,6 @@ Missing or non-finite values are not allowed and will result in an
 error.
 
 ## See also
-
-Other topic.graphics:
-[`plotBubble()`](https://andrisignorell.github.io/aurora/reference/plotBubble.md),
-[`plotDens()`](https://andrisignorell.github.io/aurora/reference/plotDens.md),
-[`plotRidge()`](https://andrisignorell.github.io/aurora/reference/plotRidge.md)
 
 Other plot.bivariate:
 [`plotAssoc()`](https://andrisignorell.github.io/aurora/reference/plotAssoc.md),

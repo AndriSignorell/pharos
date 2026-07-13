@@ -57,23 +57,13 @@ Based on code by Jim Lemon <jim@bitwrit.com.au>
 
 [`strheight()`](https://rdrr.io/r/graphics/strwidth.html)
 
-Other graphics.utils:
+Other graphics.layout:
 [`abcCoords()`](https://andrisignorell.github.io/aurora/reference/abcCoords.md),
+[`axTicks`](https://andrisignorell.github.io/aurora/reference/axTicks.md),
 [`axisBreak()`](https://andrisignorell.github.io/aurora/reference/axisBreak.md),
-[`barText()`](https://andrisignorell.github.io/aurora/reference/barText.md),
-[`boxedText()`](https://andrisignorell.github.io/aurora/reference/boxedText.md),
-[`colLegend()`](https://andrisignorell.github.io/aurora/reference/colLegend.md),
-[`degToRad()`](https://andrisignorell.github.io/aurora/reference/degToRad.md),
-[`errBars()`](https://andrisignorell.github.io/aurora/reference/errBars.md),
-[`lineSep()`](https://andrisignorell.github.io/aurora/reference/lineSep.md),
+[`isValidPlotRegion()`](https://andrisignorell.github.io/aurora/reference/isValidPlotRegion.md),
 [`lineToUser()`](https://andrisignorell.github.io/aurora/reference/lineToUser.md),
-[`lines.lm()`](https://andrisignorell.github.io/aurora/reference/linesLm.md),
-[`mar()`](https://andrisignorell.github.io/aurora/reference/mar.md),
-[`preview()`](https://andrisignorell.github.io/aurora/reference/preview.md),
-[`stamp()`](https://andrisignorell.github.io/aurora/reference/stamp.md),
-[`textLegend()`](https://andrisignorell.github.io/aurora/reference/textLegend.md),
-[`titleRect()`](https://andrisignorell.github.io/aurora/reference/titleRect.md),
-[`unit()`](https://andrisignorell.github.io/aurora/reference/unit.md)
+[`mar()`](https://andrisignorell.github.io/aurora/reference/mar.md)
 
 ## Examples
 
@@ -90,4 +80,5 @@ spreadOut(c(5, 2.5, 2.5, NA, 3.5, 1, 3.5, NA), 0.2)
 spreadOut(rnorm(10), 0.5)
 #>  [1]  0.02423061 -0.97576939  2.02423061 -1.97576939  0.52423061 -2.93977370
 #>  [7] -0.47576939  1.02423061 -1.47576939  1.52423061
+
 ```

@@ -36,11 +36,11 @@ plotCor(
 
 - main, xlab, ylab:
 
-  Optional plot labels.
+  optional plot labels.
 
 - xax, yax:
 
-  Controls drawing of the axes.
+  controls drawing of the axes.
 
   Supported values are
 
@@ -59,33 +59,33 @@ plotCor(
 
 - cluster:
 
-  Logical; if `TRUE`, variables are reordered by hierarchical clustering
+  logical; if `TRUE`, variables are reordered by hierarchical clustering
   to place similar correlations together.
 
 - mincor:
 
-  Numeric threshold; correlations with absolute value smaller than this
+  numeric threshold; correlations with absolute value smaller than this
   are suppressed (set to `NA`).
 
 - triangle:
 
-  Which part of the matrix to display. One of `"full"`, `"upper"`, or
+  which part of the matrix to display. One of `"full"`, `"upper"`, or
   `"lower"`.
 
 - diag:
 
-  Logical; should the diagonal be displayed.
+  logical; should the diagonal be displayed.
 
 - col:
 
-  Color palette used for the correlation values. `.useTheme` (default)
+  color palette used for the correlation values. `.useTheme` (default)
   builds a diverging ramp from `getTheme()$twin` - the active theme's
   two-color pair - through white: `twin[1]` at the negative end
   (\\-1\\), white at zero, `twin[2]` at the positive end (\\+1\\).
 
 - grid:
 
-  Controls drawing of cell-separator grid lines at the half-integer
+  controls drawing of cell-separator grid lines at the half-integer
   matrix boundaries (clipped to the matrix extent, so they never bleed
   into the margins). Can be:
 
@@ -100,16 +100,16 @@ plotCor(
 
 - box:
 
-  Controls drawing of the plot box. `.useTheme` (default) resolves to
+  controls drawing of the plot box. `.useTheme` (default) resolves to
   `getTheme()$box`. `TRUE`/`FALSE`/`NA`, or a named list, as for `grid`.
 
 - legend:
 
-  Logical; draw a color legend for the correlation scale.
+  logical; draw a color legend for the correlation scale.
 
 - text:
 
-  Controls numeric labels drawn inside the matrix cells.
+  controls numeric labels drawn inside the matrix cells.
 
   Supported values are
 
@@ -127,7 +127,7 @@ plotCor(
 
 - ...:
 
-  Additional graphical parameters passed to
+  additional graphical parameters passed to
   [`par`](https://rdrr.io/r/graphics/par.html) and
   [`image`](https://rdrr.io/r/graphics/image.html).
 
@@ -174,7 +174,7 @@ padding.
 
 [`image`](https://rdrr.io/r/graphics/image.html),
 [`cor`](https://rdrr.io/r/stats/cor.html),
-[`getTheme`](https://andrisignorell.github.io/aurora/reference/getTheme.md)
+[theme](https://andrisignorell.github.io/aurora/reference/theme.md)
 
 Other plot.bivariate:
 [`plotAssoc()`](https://andrisignorell.github.io/aurora/reference/plotAssoc.md),
@@ -221,7 +221,7 @@ plotCor(m, cols=colorRampPalette(c("red", "black", "green"), space = "rgb")(20),
          args.colLegend=NA)
 
 m <- cor(mtcars)
-plotCor(m, col=pal("RedWhiteBlue1", 100), border="grey",
+plotCor(m, col=pal("red-white-blue-1", 100), border="grey",
          args.colLegend=list(labels=format(seq(-1,1,.25), digits=2), frame="grey"))
 
 

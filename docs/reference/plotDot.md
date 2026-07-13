@@ -28,7 +28,7 @@ plotDot(
 
 - x:
 
-  Numeric data. Can be
+  numeric data. Can be
 
   - a numeric vector (estimates only),
 
@@ -39,43 +39,43 @@ plotDot(
 
 - items:
 
-  Optional labels for the items (rows). Defaults to `dimnames(x)[[1]]`
+  optional labels for the items (rows). Defaults to `dimnames(x)[[1]]`
   if available.
 
 - groups:
 
-  Optional group labels. Defaults to `dimnames(x)[[3]]` if present.
+  optional group labels. Defaults to `dimnames(x)[[3]]` if present.
 
 - main:
 
-  Main title of the plot.
+  main title of the plot.
 
 - xlim:
 
-  Limits for the horizontal axis.
+  limits for the horizontal axis.
 
 - gap:
 
-  Vertical spacing between groups.
+  vertical spacing between groups.
 
 - axes:
 
-  Logical; if `TRUE` axes are drawn.
+  logical; if `TRUE` axes are drawn.
 
 - xax:
 
-  Optional specification of the x-axis. Passed to (the internal
+  optional specification of the x-axis. Passed to (the internal
   function) `.drawAxis`.
 
 - box:
 
-  Controls drawing of the plot box. `.useTheme` (default) resolves to
+  controls drawing of the plot box. `.useTheme` (default) resolves to
   `getTheme()$box`. `TRUE`/`FALSE`/`NA`, or a named list, as for
   [`box`](https://rdrr.io/r/graphics/box.html).
 
 - grid:
 
-  Controls drawing of the horizontal item/group grid lines. `.useTheme`
+  controls drawing of the horizontal item/group grid lines. `.useTheme`
   (default) follows whether the active theme's grid section is enabled
   (`getTheme()$grid`); the line style itself (color/lty) stays
   `plotDot`'s own distinctive look unless overridden.
@@ -84,14 +84,14 @@ plotDot(
 
 - pch:
 
-  Plotting symbol specification for the points. `.useTheme` (default)
+  plotting symbol specification for the points. `.useTheme` (default)
   resolves to `getTheme()$points` (`pch`/`col`/ `bg`/`cex`). May also be
   a single value or a list of graphical parameters passed to
   [`points`](https://rdrr.io/r/graphics/points.html).
 
 - ...:
 
-  Additional graphical parameters passed to
+  additional graphical parameters passed to
   [`par`](https://rdrr.io/r/graphics/par.html) via
   `.applyParFromDots()`.
 
@@ -114,7 +114,7 @@ optionally be grouped.
 
 Graphical defaults for `box`, `grid`, and `pch` are drawn from the
 active theme (see
-[`getTheme`](https://andrisignorell.github.io/aurora/reference/getTheme.md)/[`setTheme`](https://andrisignorell.github.io/aurora/reference/getTheme.md))
+[theme](https://andrisignorell.github.io/aurora/reference/theme.md)/[`setTheme`](https://andrisignorell.github.io/aurora/reference/theme.md))
 when left at their default value. Values supplied as arguments take
 precedence over theme settings.
 

@@ -188,7 +188,7 @@ plotXY(
 
 - stamp:
 
-  Controls the corner stamp. `.useTheme` (default) resolves to
+  controls the corner stamp. `.useTheme` (default) resolves to
   `getTheme()$stamp`. `TRUE`/`FALSE`/ `NULL`, a string, or a named list
   for
   [`stamp()`](https://andrisignorell.github.io/aurora/reference/stamp.md).
@@ -227,7 +227,7 @@ Optional plot components (`grid`, `box`, `lm`, `loess`, `legend`) follow
 
 `col`, `bg`, `pch`, `cex`, `grid`, and `box` default to `.useTheme`,
 deferring to the package's active theme (see
-[`getTheme`](https://andrisignorell.github.io/aurora/reference/getTheme.md))
+[theme](https://andrisignorell.github.io/aurora/reference/theme.md))
 rather than a hardcoded value. This means
 `setTheme(list(points = list(col = "black")))` changes the point color
 for every call to `plotXY()` (and any other function using the same
@@ -238,9 +238,7 @@ theme section) that doesn't override `col` explicitly.
 [`plot`](https://rdrr.io/r/graphics/plot.default.html),
 [`lm`](https://rdrr.io/r/stats/lm.html),
 [`loess`](https://rdrr.io/r/stats/loess.html),
-[`callIf`](https://rdrr.io/pkg/bedrock/man/callIf.html),
-[`getTheme`](https://andrisignorell.github.io/aurora/reference/getTheme.md),
-[`setTheme`](https://andrisignorell.github.io/aurora/reference/getTheme.md)
+[`callIf`](https://rdrr.io/pkg/bedrock/man/callIf.html)
 
 Other plot.bivariate:
 [`plotAssoc()`](https://andrisignorell.github.io/aurora/reference/plotAssoc.md),

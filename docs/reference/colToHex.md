@@ -5,18 +5,18 @@ Convert any valid R color specification to hexadecimal colors.
 ## Usage
 
 ``` r
-colToHex(col, alpha = 1)
+colToHex(col, opacity = 1)
 ```
 
 ## Arguments
 
 - col:
 
-  Vector of valid R colors.
+  vector of valid R colors.
 
-- alpha:
+- opacity:
 
-  Alpha transparency value.
+  opacity value between 0 and 1.
 
 ## Value
 
@@ -24,10 +24,4 @@ Character vector of hexadecimal colors.
 
 ## See also
 
-Other color.conversion:
-[`colToHSV()`](https://andrisignorell.github.io/lyra/reference/colToHSV.md),
-[`hexToCol()`](https://andrisignorell.github.io/lyra/reference/hexToCol.md),
-[`longToRGB()`](https://andrisignorell.github.io/lyra/reference/longToRGB.md),
-[`rgbToCol()`](https://andrisignorell.github.io/lyra/reference/rgbToCol.md),
-[`rgbToHex()`](https://andrisignorell.github.io/lyra/reference/rgbToHex.md),
-[`rgbToLong()`](https://andrisignorell.github.io/lyra/reference/rgbToLong.md)
+[color-conversion-overview](https://andrisignorell.github.io/aurora/reference/color-conversion-overview.md)

@@ -28,13 +28,13 @@ plot(
 
 - x:
 
-  An object of class `"Desc.qn"`, as returned by
+  an object of class `"Desc.qn"`, as returned by
   [`desc()`](https://rdrr.io/pkg/DescToolsX/man/desc.html) for a
   numeric-categorical pair.
 
 - main:
 
-  Main title. `NULL` (default) derives a title per panel from the
+  main title. `NULL` (default) derives a title per panel from the
   variable names and the panel type (e.g.
   `"area ~ delivery_min (Spineplot)"`). `""`, `NA`, or `FALSE` suppress
   the title and compact the top margin. Any other string is used as-is,
@@ -119,7 +119,7 @@ plot(
 
 - box:
 
-  Controls the plot frame for panels 4 and 5. `.useTheme` (default)
+  controls the plot frame for panels 4 and 5. `.useTheme` (default)
   follows the active theme (`getTheme()$box`); `FALSE`/`NA` suppress it;
   a named list overrides [`box()`](https://rdrr.io/r/graphics/box.html)
   arguments. Panels 1/2
@@ -133,7 +133,7 @@ plot(
 
 - legend:
 
-  Controls the legend for panel 3 (grouped density curves). `TRUE`
+  controls the legend for panel 3 (grouped density curves). `TRUE`
   (default) draws a legend with the group levels. `FALSE`/`NA`
   suppresses it. A named list overrides arguments forwarded to
   [`legend`](https://rdrr.io/r/graphics/legend.html). Has no effect on
@@ -141,7 +141,7 @@ plot(
 
 - stamp:
 
-  Controls the corner stamp. `.useTheme` (default) resolves to
+  controls the corner stamp. `.useTheme` (default) resolves to
   `getTheme()$stamp`, drawn once after all selected panels (panels 3/4
   delegate to
   [`plotDens`](https://andrisignorell.github.io/aurora/reference/plotDens.md)/
@@ -179,8 +179,7 @@ clipped regardless of `which`.
 [`plotDens`](https://andrisignorell.github.io/aurora/reference/plotDens.md),
 [`plotBox`](https://andrisignorell.github.io/aurora/reference/plotBox.md),
 [`cdplot`](https://rdrr.io/r/graphics/cdplot.html),
-[`spineplot`](https://rdrr.io/r/graphics/spineplot.html),
-[`getTheme`](https://andrisignorell.github.io/aurora/reference/getTheme.md)
+[`spineplot`](https://rdrr.io/r/graphics/spineplot.html)
 
 Other plot.s3:
 [`plot.BlandAltman()`](https://andrisignorell.github.io/aurora/reference/plot.BlandAltman.md),

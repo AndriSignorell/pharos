@@ -13,17 +13,17 @@ contrastColor(col, light = "white", dark = "black")
 
 - col:
 
-  Vector of colors. Can be any valid R color specification: color names,
+  vector of colors. Can be any valid R color specification: color names,
   hexadecimal strings (e.g. `"#RRGGBB"` or `"#RRGGBBAA"`), or palette
   indices.
 
 - light:
 
-  Color used for dark backgrounds (default: `"white"`).
+  color used for dark backgrounds (default: `"white"`).
 
 - dark:
 
-  Color used for light backgrounds (default: `"black"`).
+  color used for light backgrounds (default: `"black"`).
 
 ## Value
 
@@ -60,20 +60,8 @@ returns the better option.
 
 ## See also
 
-Other color:
-[`addOpacity()`](https://andrisignorell.github.io/lyra/reference/addOpacity.md),
-[`colToOpaque()`](https://andrisignorell.github.io/lyra/reference/colToOpaque.md),
-[`colToRGB()`](https://andrisignorell.github.io/lyra/reference/colToRGB.md),
-[`darken()`](https://andrisignorell.github.io/lyra/reference/darken.md),
-[`findColor()`](https://andrisignorell.github.io/lyra/reference/findColor.md),
-[`grayscale()`](https://andrisignorell.github.io/lyra/reference/grayscale.md),
-[`hcol()`](https://andrisignorell.github.io/lyra/reference/hcol.md),
-[`hexToRGB()`](https://andrisignorell.github.io/lyra/reference/hexToRGB.md),
-[`lighten()`](https://andrisignorell.github.io/lyra/reference/lighten.md),
-[`mixColors()`](https://andrisignorell.github.io/lyra/reference/mixColors.md),
-[`pal()`](https://andrisignorell.github.io/lyra/reference/pal.md),
-[`palNames()`](https://andrisignorell.github.io/lyra/reference/palNames.md),
-[`setBackCol()`](https://andrisignorell.github.io/lyra/reference/setBackCol.md)
+Other color.lookup:
+[`findColor()`](https://andrisignorell.github.io/aurora/reference/findColor.md)
 
 ## Examples
 

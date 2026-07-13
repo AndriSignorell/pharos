@@ -108,7 +108,7 @@ plotHeatmap(
 
 - box:
 
-  Controls drawing of the outer frame around the tile grid, drawn via
+  controls drawing of the outer frame around the tile grid, drawn via
   [`rect()`](https://rdrr.io/r/graphics/rect.html) at the exact cell
   boundaries rather than [`box()`](https://rdrr.io/r/graphics/box.html)
   (the initial plot suppresses the standard box via
@@ -120,7 +120,7 @@ plotHeatmap(
 
 - stamp:
 
-  Controls the corner stamp. `.useTheme` (default) resolves to
+  controls the corner stamp. `.useTheme` (default) resolves to
   `getTheme()$stamp`. `TRUE`/`FALSE`/ `NULL`, or an explicit string, as
   for `.withGraphicsState()` (internal).
 
@@ -146,7 +146,7 @@ distributions or statistical inference.
 
 [`plotAssoc`](https://andrisignorell.github.io/aurora/reference/plotAssoc.md),
 [`image`](https://rdrr.io/r/graphics/image.html),
-[`getTheme`](https://andrisignorell.github.io/aurora/reference/getTheme.md)
+[theme](https://andrisignorell.github.io/aurora/reference/theme.md)
 
 Other plot.bivariate:
 [`plotAssoc()`](https://andrisignorell.github.io/aurora/reference/plotAssoc.md),

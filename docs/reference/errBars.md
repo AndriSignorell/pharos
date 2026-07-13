@@ -12,7 +12,7 @@ errBars(from, to = NULL, pos = NULL, horiz = TRUE, points = NULL, ...)
 
 - from:
 
-  Coordinates of the lower end of the error bars.
+  coordinates of the lower end of the error bars.
 
   If `to = NULL` and `from` is a matrix:
 
@@ -22,26 +22,26 @@ errBars(from, to = NULL, pos = NULL, horiz = TRUE, points = NULL, ...)
 
 - to:
 
-  Coordinates of the upper end of the error bars.
+  coordinates of the upper end of the error bars.
 
 - pos:
 
-  Position of the error bars.
+  position of the error bars.
 
   For vertical bars this corresponds to x-positions; for horizontal bars
   to y-positions.
 
 - horiz:
 
-  Logical; if `TRUE`, horizontal error bars are drawn.
+  logical; if `TRUE`, horizontal error bars are drawn.
 
 - points:
 
-  Optional point specification.
+  optional point specification.
 
 - ...:
 
-  Additional graphical arguments passed to
+  additional graphical arguments passed to
   [`arrows`](https://rdrr.io/r/graphics/arrows.html).
 
 ## Value
@@ -116,23 +116,13 @@ typical use case of adding confidence intervals to a
 [`arrows`](https://rdrr.io/r/graphics/arrows.html),
 [`points`](https://rdrr.io/r/graphics/points.html)
 
-Other graphics.utils:
-[`abcCoords()`](https://andrisignorell.github.io/lyra/reference/abcCoords.md),
-[`axisBreak()`](https://andrisignorell.github.io/lyra/reference/axisBreak.md),
-[`barText()`](https://andrisignorell.github.io/lyra/reference/barText.md),
-[`boxedText()`](https://andrisignorell.github.io/lyra/reference/boxedText.md),
-[`colLegend()`](https://andrisignorell.github.io/lyra/reference/colLegend.md),
-[`degToRad()`](https://andrisignorell.github.io/lyra/reference/degToRad.md),
-[`lineSep()`](https://andrisignorell.github.io/lyra/reference/lineSep.md),
-[`lineToUser()`](https://andrisignorell.github.io/lyra/reference/lineToUser.md),
-[`lines.lm()`](https://andrisignorell.github.io/lyra/reference/linesLm.md),
-[`mar()`](https://andrisignorell.github.io/lyra/reference/mar.md),
-[`preview()`](https://andrisignorell.github.io/lyra/reference/preview.md),
-[`spreadOut()`](https://andrisignorell.github.io/lyra/reference/spreadOut.md),
-[`stamp()`](https://andrisignorell.github.io/lyra/reference/stamp.md),
-[`textLegend()`](https://andrisignorell.github.io/lyra/reference/textLegend.md),
-[`titleRect()`](https://andrisignorell.github.io/lyra/reference/titleRect.md),
-[`unit()`](https://andrisignorell.github.io/lyra/reference/unit.md)
+Other graphics.annotation:
+[`barText()`](https://andrisignorell.github.io/aurora/reference/barText.md),
+[`boxedText()`](https://andrisignorell.github.io/aurora/reference/boxedText.md),
+[`colLegend()`](https://andrisignorell.github.io/aurora/reference/colLegend.md),
+[`stamp()`](https://andrisignorell.github.io/aurora/reference/stamp.md),
+[`textLegend()`](https://andrisignorell.github.io/aurora/reference/textLegend.md),
+[`titleRect()`](https://andrisignorell.github.io/aurora/reference/titleRect.md)
 
 ## Examples
 

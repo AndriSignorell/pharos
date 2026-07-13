@@ -117,7 +117,7 @@ plotFdist(
 
 - stamp:
 
-  Controls the corner stamp. `.useTheme` (default) resolves to
+  controls the corner stamp. `.useTheme` (default) resolves to
   `getTheme()$stamp`. `TRUE`/`FALSE`/ `NULL`, a string, or a named list
   for
   [`stamp()`](https://andrisignorell.github.io/aurora/reference/stamp.md).
@@ -152,7 +152,7 @@ For exploratory work on very large data, consider sampling first:
 [`density`](https://rdrr.io/r/stats/density.html),
 [`rug`](https://rdrr.io/r/graphics/rug.html),
 [`layout`](https://rdrr.io/r/graphics/layout.html),
-[`getTheme`](https://andrisignorell.github.io/aurora/reference/getTheme.md)
+[theme](https://andrisignorell.github.io/aurora/reference/theme.md)
 
 Other plot.univariate:
 [`plotArea()`](https://andrisignorell.github.io/aurora/reference/plotArea.md),

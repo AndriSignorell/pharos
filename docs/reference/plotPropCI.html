@@ -15,7 +15,7 @@ centre, lighter at the edges."><meta property="og:image" content="https://andris
 
     <a class="navbar-brand me-2" href="../index.html">lyra</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.930</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.933</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -79,28 +79,28 @@ of length 2 is also accepted and will be coerced to a one-row matrix.</p></dd>
 
 
 <dt id="arg-main">main<a class="anchor" aria-label="anchor" href="#arg-main"></a></dt>
-<dd><p>Main title of the plot. <code>NULL</code> (default) derives a title
+<dd><p>main title of the plot. <code>NULL</code> (default) derives a title
 from <code>deparse(substitute(x))</code>. <code>""</code>, <code>NA</code>, or <code>FALSE</code>
 suppress the title and compact the top margin. Any other string is used
 as given.</p></dd>
 
 
 <dt id="arg-labels">labels<a class="anchor" aria-label="anchor" href="#arg-labels"></a></dt>
-<dd><p>Character vector of length 2 with labels for the two
+<dd><p>character vector of length 2 with labels for the two
 categories, displayed at the top of the plot. Default <code>c("", "")</code>.</p></dd>
 
 
 <dt id="arg-xlab">xlab<a class="anchor" aria-label="anchor" href="#arg-xlab"></a></dt>
-<dd><p>Label for the x-axis. Default <code>""</code>.</p></dd>
+<dd><p>label for the x-axis. Default <code>""</code>.</p></dd>
 
 
 <dt id="arg-xlim">xlim<a class="anchor" aria-label="anchor" href="#arg-xlim"></a></dt>
-<dd><p>Numeric vector of length 2 for the x-axis limits.
+<dd><p>numeric vector of length 2 for the x-axis limits.
 Default <code>c(0, 1)</code>.</p></dd>
 
 
 <dt id="arg-col">col<a class="anchor" aria-label="anchor" href="#arg-col"></a></dt>
-<dd><p>Character vector of length 2 specifying fill colours for the
+<dd><p>character vector of length 2 specifying fill colours for the
 stacked bar. <code>.useTheme</code> (default) resolves to
 <code>getTheme()$twin</code> - the active theme's two-color pair. Note this
 is purely "first label gets the first color"; unlike
@@ -110,7 +110,7 @@ categories (e.g. "yes"/"no") have no inherent sign.</p></dd>
 
 
 <dt id="arg-ci-col">ci.col<a class="anchor" aria-label="anchor" href="#arg-ci-col"></a></dt>
-<dd><p>Colour for the confidence interval bands. Default is a
+<dd><p>colour for the confidence interval bands. Default is a
 semi-transparent grey (<code>addOpacity("grey80", 0.12)</code>). Deliberately
 not theme-driven (like the sequential scales in
 <code><a href="plotDens2D.html">plotDens2D</a></code>/<code><a href="plotHeatmap.html">plotHeatmap</a></code>): this is a
@@ -119,19 +119,19 @@ gradient via overdraw), not a categorical or diverging color choice.</p></dd>
 
 
 <dt id="arg-border">border<a class="anchor" aria-label="anchor" href="#arg-border"></a></dt>
-<dd><p>Border colour for the confidence interval bands and the
+<dd><p>border colour for the confidence interval bands and the
 stacked bar. Default <code>NA</code> (no border).</p></dd>
 
 
 <dt id="arg-cilevels">ciLevels<a class="anchor" aria-label="anchor" href="#arg-cilevels"></a></dt>
-<dd><p>Numeric vector of confidence levels for the nested bands.
+<dd><p>numeric vector of confidence levels for the nested bands.
 Default <code>seq(0.99, 0.80, by = -0.01)</code> (20 bands, 99\<!-- % down to -->
 80\<!-- % in 1\\% steps). Draw order does not affect the result, since all -->
 bands share the same translucent color and no border.</p></dd>
 
 
 <dt id="arg-grid">grid<a class="anchor" aria-label="anchor" href="#arg-grid"></a></dt>
-<dd><p>Controls drawing of the background grid (vertical lines at
+<dd><p>controls drawing of the background grid (vertical lines at
 the proportion ticks only - there is no meaningful horizontal grid
 for the categorical group axis). <code>.useTheme</code> (default) follows
 the active theme (<code>getTheme()$grid</code>). <code>TRUE</code>/<code>FALSE</code>/
@@ -139,27 +139,27 @@ the active theme (<code>getTheme()$grid</code>). <code>TRUE</code>/<code>FALSE</
 
 
 <dt id="arg-box">box<a class="anchor" aria-label="anchor" href="#arg-box"></a></dt>
-<dd><p>Controls drawing of the plot box. Default <code>FALSE</code> (no
+<dd><p>controls drawing of the plot box. Default <code>FALSE</code> (no
 frame, consistent with this chart's minimal "Few"-style appearance).
 <code>TRUE</code>/<code>NA</code>, or a named list, as for
 <code><a href="https://rdrr.io/r/graphics/box.html" class="external-link">box</a></code>.</p></dd>
 
 
 <dt id="arg-legend">legend<a class="anchor" aria-label="anchor" href="#arg-legend"></a></dt>
-<dd><p>Controls the legend explaining the CI band range.
+<dd><p>controls the legend explaining the CI band range.
 <code>TRUE</code> (default) draws it. <code>FALSE</code>/<code>NA</code> suppresses it.
 A named list overrides arguments forwarded to
 <code><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></code>.</p></dd>
 
 
 <dt id="arg-stamp">stamp<a class="anchor" aria-label="anchor" href="#arg-stamp"></a></dt>
-<dd><p>Controls the corner stamp. <code>.useTheme</code> (default)
+<dd><p>controls the corner stamp. <code>.useTheme</code> (default)
 resolves to <code>getTheme()$stamp</code>. <code>TRUE</code>/<code>FALSE</code>/
 <code>NULL</code>, a string, or a named list for <code><a href="stamp.html">stamp()</a></code>.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>Further arguments passed to <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> via
+<dd><p>further arguments passed to <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> via
 the internal framework, and to <code><a href="https://rdrr.io/r/graphics/barplot.html" class="external-link">barplot</a></code>.</p></dd>
 
 </dl></div>
@@ -179,7 +179,7 @@ segment marks the observed proportion.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="https://rdrr.io/r/stats/prop.test.html" class="external-link">prop.test</a></code>, <code><a href="getTheme.html">getTheme</a></code></p>
+    <div class="dont-index"><p><code><a href="https://rdrr.io/r/stats/prop.test.html" class="external-link">prop.test</a></code>, <a href="theme.html">theme</a></p>
 <p>Other plot.special:
 <code><a href="binaryTree.html">plotBinaryTree()</a></code>,
 <code><a href="plotCirc.html">plotCirc()</a></code>,

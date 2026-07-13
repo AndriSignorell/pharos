@@ -22,21 +22,21 @@ plotPolar(
 
 - r:
 
-  Numeric vector or matrix of radial values. Each row represents one
+  numeric vector or matrix of radial values. Each row represents one
   series.
 
 - theta:
 
-  Optional numeric vector or matrix of angles (in radians). Must match
+  optional numeric vector or matrix of angles (in radians). Must match
   the dimensions of `r`. If `NULL`, equally spaced angles are used.
 
 - main:
 
-  Optional plot title.
+  optional plot title.
 
 - type:
 
-  Character vector specifying plot type for each series:
+  character vector specifying plot type for each series:
 
   "p"
 
@@ -52,23 +52,23 @@ plotPolar(
 
 - rlim:
 
-  Numeric limit for radial axis. If `NULL`, determined automatically.
+  numeric limit for radial axis. If `NULL`, determined automatically.
 
 - col:
 
-  Color for points/lines.
+  color for points/lines.
 
 - border:
 
-  Color for border in case of type `polygon`.
+  color for border in case of type `polygon`.
 
 - add:
 
-  Logical; if `TRUE`, adds to an existing plot.
+  logical; if `TRUE`, adds to an existing plot.
 
 - ...:
 
-  Additional graphical parameters passed to base plotting functions.
+  additional graphical parameters passed to base plotting functions.
 
 ## Value
 

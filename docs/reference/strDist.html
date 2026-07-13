@@ -9,7 +9,7 @@ or Hamming method."><meta property="og:image" content="https://andrisignorell.gi
 
     <a class="navbar-brand me-2" href="../index.html">lyra</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.930</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.933</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,11 +56,11 @@ or Hamming method.</p>
 
 
 <dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
-<dd><p>character vector, first string.</p></dd>
+<dd><p>character vector, first string</p></dd>
 
 
 <dt id="arg-y">y<a class="anchor" aria-label="anchor" href="#arg-y"></a></dt>
-<dd><p>character vector, second string.</p></dd>
+<dd><p>character vector, second string</p></dd>
 
 
 <dt id="arg-method">method<a class="anchor" aria-label="anchor" href="#arg-method"></a></dt>
@@ -70,16 +70,16 @@ is <code>"levenshtein"</code>, the classical Levenshtein distance.</p></dd>
 
 
 <dt id="arg-mismatch">mismatch<a class="anchor" aria-label="anchor" href="#arg-mismatch"></a></dt>
-<dd><p>numeric, distance value for a mismatch between symbols.</p></dd>
+<dd><p>numeric, distance value for a mismatch between symbols</p></dd>
 
 
 <dt id="arg-gap">gap<a class="anchor" aria-label="anchor" href="#arg-gap"></a></dt>
-<dd><p>numeric, distance value for inserting a gap.</p></dd>
+<dd><p>numeric, distance value for inserting a gap</p></dd>
 
 
 <dt id="arg-ignorecase">ignoreCase<a class="anchor" aria-label="anchor" href="#arg-ignorecase"></a></dt>
 <dd><p>if <code>FALSE</code> (default), the distance measure will be
-case sensitive and if <code>TRUE</code>, case is ignored.</p></dd>
+case sensitive and if <code>TRUE</code>, case is ignored</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -91,15 +91,15 @@ case sensitive and if <code>TRUE</code>, case is ignored.</p></dd>
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>The function computes the Hamming and the Levenshtein (edit) distance of two
 given strings (sequences). The Hamming distance between two vectors is the
-number mismatches between corresponding entries.</p>
+number of mismatches between corresponding entries.</p>
 <p>In case of the Hamming distance the two strings must have the same length.</p>
 <p>In case of the Levenshtein (edit) distance a scoring and a trace-back matrix
 are computed and are saved as attributes <code>"ScoringMatrix"</code> and
 <code>"TraceBackMatrix"</code>.  The numbers in the trace-back matrix reflect
-insertion of a gap in string <code>y</code> (1), match/missmatch (2), and
+insertion of a gap in string <code>y</code> (1), match/mismatch (2), and
 insertion of a gap in string <code>x</code> (3).</p>
 <p>The edit distance is useful, but normalizing the distance to fall within the
-interval <code>[0,1]</code> is preferred because it is somewhat diffcult to judge whether
+interval <code>[0,1]</code> is preferred because it is somewhat difficult to judge whether
 an LD of for example 4 suggests a high or low degree of similarity.  The
 method <code>"normlevenshtein"</code> for normalizing the LD is sensitive to this
 scenario. In this implementation, the Levenshtein distance is transformed to
@@ -117,6 +117,7 @@ same; the closer to 0, the less certain.</p>
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
     <p>For distances between strings and for string alignments see also
 Bioconductor package <span class="pkg">Biostrings</span></p>
+<p>Based on code by Matthias Kohl, adapted to conform to package standards.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
@@ -128,29 +129,7 @@ Psychometric Analyses</em></p>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="https://rdrr.io/r/utils/adist.html" class="external-link">adist</a></code>, <code><a href="https://rdrr.io/r/stats/dist.html" class="external-link">dist</a></code></p>
-<p>Other string:
-<code><a href="mgsub.html">mgsub()</a></code>,
-<code><a href="strAbbr.html">strAbbr()</a></code>,
-<code><a href="strAlign.html">strAlign()</a></code>,
-<code><a href="strCap.html">strCap()</a></code>,
-<code><a href="strChop.html">strChop()</a></code>,
-<code><a href="strCountW.html">strCountW()</a></code>,
-<code><a href="strExtract.html">strExtract()</a></code>,
-<code><a href="strExtractBetween.html">strExtractBetween()</a></code>,
-<code><a href="strIsNumeric.html">strIsNumeric()</a></code>,
-<code><a href="strLen.html">strLen()</a></code>,
-<code><a href="strPad.html">strPad()</a></code>,
-<code><a href="strPos.html">strPos()</a></code>,
-<code><a href="strRev.html">strRev()</a></code>,
-<code><a href="strSpell.html">strSpell()</a></code>,
-<code><a href="strSplit.html">strSplit()</a></code>,
-<code><a href="strTrim.html">strTrim()</a></code>,
-<code><a href="strTrunc.html">strTrunc()</a></code>,
-<code><a href="strVal.html">strVal()</a></code></p></div>
-    </div>
-    <div class="section level2">
-    <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>
-    <p>Matthias Kohl <a href="mailto:Matthias.Kohl@stamats.de">Matthias.Kohl@stamats.de</a></p>
+<p><a href="string-overview.html">string-overview</a> for an overview of all string utilities in lyra.</p></div>
     </div>
 
     <div class="section level2">

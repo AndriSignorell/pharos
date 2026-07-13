@@ -28,13 +28,13 @@ plot(
 
 - x:
 
-  An object of class `"Desc.table"`, as returned by
+  an object of class `"Desc.table"`, as returned by
   [`desc()`](https://rdrr.io/pkg/DescToolsX/man/desc.html) for a
   categorical-categorical pair.
 
 - main:
 
-  Main title. `NULL` (default) derives a title per panel from
+  main title. `NULL` (default) derives a title per panel from
   `x$meta$xname` (the deparsed expression originally passed to `desc()`,
   e.g. `"table(Pizza$area, Pizza$driver)"`) combined with a panel-type
   label for context when multiple panels are shown (e.g.
@@ -118,7 +118,7 @@ plot(
 
   :   left at
       [`plotAssoc`](https://andrisignorell.github.io/aurora/reference/plotAssoc.md)'s
-      own default (`pal("RedWhiteBlue3", n = 100)`), a diverging
+      own default (`pal("red-white-blue-3", n = 100)`), a diverging
       palette - cell colors there encode the sign and strength of
       Pearson residuals, so a categorical or grey-ramp default would not
       be meaningful. Supplying `col` overrides this with the diverging
@@ -137,7 +137,7 @@ plot(
 
 - box:
 
-  Controls the plot frame. `.useTheme` (default) follows the active
+  controls the plot frame. `.useTheme` (default) follows the active
   theme (`getTheme()$box`); `FALSE`/`NA` suppress it; a named list
   overrides frame-drawing arguments.
 
@@ -170,7 +170,7 @@ plot(
 
 - stamp:
 
-  Controls the corner stamp. `.useTheme` (default) resolves to
+  controls the corner stamp. `.useTheme` (default) resolves to
   `getTheme()$stamp`, drawn once after all selected panels. Panels 2-4
   delegate to
   [`plotMosaic`](https://andrisignorell.github.io/aurora/reference/plotMosaic.md)/
@@ -211,8 +211,7 @@ invisibly without drawing anything.
 [`plotAssoc`](https://andrisignorell.github.io/aurora/reference/plotAssoc.md),
 [`plotHeatmap`](https://andrisignorell.github.io/aurora/reference/plotHeatmap.md),
 [`plotMosaic`](https://andrisignorell.github.io/aurora/reference/plotMosaic.md),
-[`spineplot`](https://rdrr.io/r/graphics/spineplot.html),
-[`getTheme`](https://andrisignorell.github.io/aurora/reference/getTheme.md)
+[`spineplot`](https://rdrr.io/r/graphics/spineplot.html)
 
 Other plot.s3:
 [`plot.BlandAltman()`](https://andrisignorell.github.io/aurora/reference/plot.BlandAltman.md),

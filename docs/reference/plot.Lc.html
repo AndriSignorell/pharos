@@ -13,7 +13,7 @@ and points() add to an existing plot.'><meta property="og:image" content="https:
 
     <a class="navbar-brand me-2" href="../index.html">lyra</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.930</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.933</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -84,25 +84,25 @@ and <code><a href="https://rdrr.io/r/graphics/points.html" class="external-link"
 
 
 <dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
-<dd><p>Object of class <code>"Lc"</code> (for <code>plot.Lc()</code>,
+<dd><p>object of class <code>"Lc"</code> (for <code>plot.Lc()</code>,
 <code>lines.Lc()</code>, <code>points.Lc()</code>) or <code>"LcList"</code> (for the
 <code>*.LcList()</code> methods).</p></dd>
 
 
 <dt id="arg-main-xlab-ylab">main, xlab, ylab<a class="anchor" aria-label="anchor" href="#arg-main-xlab-ylab"></a></dt>
-<dd><p>Main title and axis labels, used by
+<dd><p>main title and axis labels, used by
 <code>plot.Lc()</code> only.  Defaults are <code>NULL</code>, <code>"p"</code>, and
 <code>"L(p)"</code>, respectively.</p></dd>
 
 
 <dt id="arg-xlim-ylim">xlim, ylim<a class="anchor" aria-label="anchor" href="#arg-xlim-ylim"></a></dt>
-<dd><p>Numeric vectors of length 2 giving axis limits, used by
+<dd><p>numeric vectors of length 2 giving axis limits, used by
 <code>plot.Lc()</code> only.  Default <code>NULL</code>, which resolves to
 <code>c(0, 1)</code>.</p></dd>
 
 
 <dt id="arg-general">general<a class="anchor" aria-label="anchor" href="#arg-general"></a></dt>
-<dd><p>Logical.  If <code>TRUE</code>, the generalized Lorenz curve
+<dd><p>logical.  If <code>TRUE</code>, the generalized Lorenz curve
 (scaled by the mean) is displayed instead of the standard curve.
 Default is <code>FALSE</code>.  Used by <code>plot.Lc()</code>, <code>lines.Lc()</code>,
 and <code>points.Lc()</code>; for the <code>"LcList"</code> methods it is passed
@@ -110,7 +110,7 @@ through <code>...</code> to the underlying <code>Lc</code> method.</p></dd>
 
 
 <dt id="arg-line">line<a class="anchor" aria-label="anchor" href="#arg-line"></a></dt>
-<dd><p>Logical or list, used by <code>plot.Lc()</code> to control drawing
+<dd><p>logical or list, used by <code>plot.Lc()</code> to control drawing
 of the Lorenz curve line.  <code>TRUE</code> (default) draws the line with
 package defaults (<code>col = "black"</code>, <code>lty = 1</code>, <code>lwd = 2</code>);
 <code>FALSE</code> suppresses it; a list overrides individual defaults and is
@@ -118,7 +118,7 @@ forwarded to <code><a href="https://rdrr.io/r/graphics/lines.html" class="extern
 
 
 <dt id="arg-points">points<a class="anchor" aria-label="anchor" href="#arg-points"></a></dt>
-<dd><p>Logical or list, used by <code>plot.Lc()</code> to control drawing
+<dd><p>logical or list, used by <code>plot.Lc()</code> to control drawing
 of points on the Lorenz curve.  <code>TRUE</code> (default) draws points with
 package defaults (<code>pch = 21</code>, <code>bg = "white"</code>,
 <code>col = "black"</code>, <code>cex = 1.4</code>); <code>FALSE</code> suppresses them; a
@@ -127,19 +127,19 @@ list overrides individual defaults and is forwarded to
 
 
 <dt id="arg-grid">grid<a class="anchor" aria-label="anchor" href="#arg-grid"></a></dt>
-<dd><p>Logical or list, used by <code>plot.Lc()</code> only.  If
+<dd><p>logical or list, used by <code>plot.Lc()</code> only.  If
 <code>TRUE</code> (default) or a list, a grid is drawn before the curve via
 <code><a href="https://rdrr.io/r/graphics/grid.html" class="external-link">grid()</a></code>; a list is forwarded as arguments to that
 function.</p></dd>
 
 
 <dt id="arg-box">box<a class="anchor" aria-label="anchor" href="#arg-box"></a></dt>
-<dd><p>Logical, used by <code>plot.Lc()</code> only.  If <code>TRUE</code>
+<dd><p>logical, used by <code>plot.Lc()</code> only.  If <code>TRUE</code>
 (default), a box is drawn around the plot area.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>Further arguments.  For <code>plot.Lc()</code>, graphical parameters
+<dd><p>further arguments.  For <code>plot.Lc()</code>, graphical parameters
 passed to <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par()</a></code> via <code>.applyParFromDots()</code>
 (e.g. <code>mar</code>, <code>cex.axis</code>, <code>las</code>).  For <code>lines.Lc()</code>
 and <code>points.Lc()</code>, further arguments passed on to
@@ -149,31 +149,31 @@ to the corresponding <code>Lc</code> method for each group.</p></dd>
 
 
 <dt id="arg-col">col<a class="anchor" aria-label="anchor" href="#arg-col"></a></dt>
-<dd><p>Color for the curve or points.  For <code>lines.Lc()</code> and
+<dd><p>color for the curve or points.  For <code>lines.Lc()</code> and
 <code>points.Lc()</code>, a single color (default <code>NULL</code>, i.e. the
 current device default).  For the <code>"LcList"</code> methods, a vector
 recycled over groups (default <code>NULL</code>, i.e. <code>seq_len(k)</code>).</p></dd>
 
 
 <dt id="arg-lwd">lwd<a class="anchor" aria-label="anchor" href="#arg-lwd"></a></dt>
-<dd><p>Line width, used by <code>lines.Lc()</code> only.  Default is
+<dd><p>line width, used by <code>lines.Lc()</code> only.  Default is
 <code>2</code>.</p></dd>
 
 
 <dt id="arg-lty">lty<a class="anchor" aria-label="anchor" href="#arg-lty"></a></dt>
-<dd><p>Line type, used by <code>lines.Lc()</code> only.  Default is
+<dd><p>line type, used by <code>lines.Lc()</code> only.  Default is
 <code>1</code>.</p></dd>
 
 
 <dt id="arg-cbandargs">cbandArgs<a class="anchor" aria-label="anchor" href="#arg-cbandargs"></a></dt>
-<dd><p>Used by <code>lines.Lc()</code> only.  <code>NA</code> to suppress
+<dd><p>used by <code>lines.Lc()</code> only.  <code>NA</code> to suppress
 the confidence band (default), or a list of arguments passed to
 <code><a href="https://rdrr.io/pkg/DescToolsX/man/lc.html" class="external-link">predict.Lc()</a></code> to control bootstrap confidence
 intervals.</p></dd>
 
 
 <dt id="arg-pch">pch<a class="anchor" aria-label="anchor" href="#arg-pch"></a></dt>
-<dd><p>Plotting symbol, used by <code>points.Lc()</code> only.  Default is
+<dd><p>plotting symbol, used by <code>points.Lc()</code> only.  Default is
 <code>16</code>.</p></dd>
 
 </dl></div>

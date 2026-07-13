@@ -16,7 +16,7 @@ rgbToCmy(col, maxColorValue = 1)
 
 - maxColorValue:
 
-  Maximum channel value.
+  maximum channel value.
 
 ## Value
 
@@ -24,7 +24,4 @@ Numeric CMY matrix.
 
 ## See also
 
-Other color.space:
-[`cmyToCmyk()`](https://andrisignorell.github.io/aurora/reference/cmyToCmyk.md),
-[`cmykToCmy()`](https://andrisignorell.github.io/aurora/reference/cmykToCmy.md),
-[`cmykToRgb()`](https://andrisignorell.github.io/aurora/reference/cmykToRgb.md)
+[color-conversion-overview](https://andrisignorell.github.io/aurora/reference/color-conversion-overview.md)

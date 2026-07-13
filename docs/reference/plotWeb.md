@@ -122,7 +122,7 @@ The function uses the lower triangular matrix of `m`; when overriding
 ## See also
 
 [`plotCor`](https://andrisignorell.github.io/aurora/reference/plotCor.md),
-[`getTheme`](https://andrisignorell.github.io/aurora/reference/getTheme.md)
+[theme](https://andrisignorell.github.io/aurora/reference/theme.md)
 
 Other plot.special:
 [`plotBinaryTree()`](https://andrisignorell.github.io/aurora/reference/binaryTree.md),

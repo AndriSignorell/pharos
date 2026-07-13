@@ -20,19 +20,19 @@ arc(
 
 - x, y:
 
-  Coordinates of the arc centre.
+  coordinates of the arc centre
 
 - radiusX, radiusY:
 
-  Horizontal and vertical radius.
+  horizontal and vertical radius
 
 - startAngle, endAngle:
 
-  Start and end angle in radians.
+  start and end angle in radians
 
 - numPoints:
 
-  Number of points used to approximate the arc.
+  number of points used to approximate the arc
 
 ## Value
 
@@ -40,12 +40,11 @@ An object inheriting from class `"arcGeometry"`.
 
 ## See also
 
-Other geometry:
-[`band()`](https://andrisignorell.github.io/lyra/reference/band.md),
-[`bezier()`](https://andrisignorell.github.io/lyra/reference/bezier.md),
-[`canvas()`](https://andrisignorell.github.io/lyra/reference/canvas.md),
-[`polarGrid()`](https://andrisignorell.github.io/lyra/reference/polarGrid.md),
-[`polygon()`](https://andrisignorell.github.io/lyra/reference/polygon.md),
-[`rotate()`](https://andrisignorell.github.io/lyra/reference/rotate.md),
-[`shade()`](https://andrisignorell.github.io/lyra/reference/shade.md),
-[`transformXY()`](https://andrisignorell.github.io/lyra/reference/transformXY.md)
+Other geometry.structures:
+[`band()`](https://andrisignorell.github.io/aurora/reference/band.md),
+[`bezier()`](https://andrisignorell.github.io/aurora/reference/bezier.md),
+[`circle()`](https://andrisignorell.github.io/aurora/reference/circle.md),
+[`ellipse()`](https://andrisignorell.github.io/aurora/reference/ellipse.md),
+[`polygon()`](https://andrisignorell.github.io/aurora/reference/polygon.md),
+[`regPolygon()`](https://andrisignorell.github.io/aurora/reference/regPolygon.md),
+[`ring()`](https://andrisignorell.github.io/aurora/reference/ring.md)

@@ -32,23 +32,13 @@ For the `lineToUser` function to work, there must be an open plot.
 
 [`mtext`](https://rdrr.io/r/graphics/mtext.html)
 
-Other graphics.utils:
-[`abcCoords()`](https://andrisignorell.github.io/lyra/reference/abcCoords.md),
-[`axisBreak()`](https://andrisignorell.github.io/lyra/reference/axisBreak.md),
-[`barText()`](https://andrisignorell.github.io/lyra/reference/barText.md),
-[`boxedText()`](https://andrisignorell.github.io/lyra/reference/boxedText.md),
-[`colLegend()`](https://andrisignorell.github.io/lyra/reference/colLegend.md),
-[`degToRad()`](https://andrisignorell.github.io/lyra/reference/degToRad.md),
-[`errBars()`](https://andrisignorell.github.io/lyra/reference/errBars.md),
-[`lineSep()`](https://andrisignorell.github.io/lyra/reference/lineSep.md),
-[`lines.lm()`](https://andrisignorell.github.io/lyra/reference/linesLm.md),
-[`mar()`](https://andrisignorell.github.io/lyra/reference/mar.md),
-[`preview()`](https://andrisignorell.github.io/lyra/reference/preview.md),
-[`spreadOut()`](https://andrisignorell.github.io/lyra/reference/spreadOut.md),
-[`stamp()`](https://andrisignorell.github.io/lyra/reference/stamp.md),
-[`textLegend()`](https://andrisignorell.github.io/lyra/reference/textLegend.md),
-[`titleRect()`](https://andrisignorell.github.io/lyra/reference/titleRect.md),
-[`unit()`](https://andrisignorell.github.io/lyra/reference/unit.md)
+Other graphics.layout:
+[`abcCoords()`](https://andrisignorell.github.io/aurora/reference/abcCoords.md),
+[`axTicks`](https://andrisignorell.github.io/aurora/reference/axTicks.md),
+[`axisBreak()`](https://andrisignorell.github.io/aurora/reference/axisBreak.md),
+[`isValidPlotRegion()`](https://andrisignorell.github.io/aurora/reference/isValidPlotRegion.md),
+[`mar()`](https://andrisignorell.github.io/aurora/reference/mar.md),
+[`spreadOut()`](https://andrisignorell.github.io/aurora/reference/spreadOut.md)
 
 ## Examples
 
@@ -58,4 +48,5 @@ plot(1:10)
 
 lineToUser(line=2, side=4)
 #> [1] 11.07646
+
 ```

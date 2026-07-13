@@ -15,7 +15,7 @@ diverging palette."><meta property="og:image" content="https://andrisignorell.gi
 
     <a class="navbar-brand me-2" href="../index.html">lyra</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.930</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.933</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,7 +57,7 @@ diverging palette.</p>
 <span>  ylab <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  space <span class="op">=</span> <span class="fl">0.3</span>,</span>
 <span>  reorder <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  col <span class="op">=</span> <span class="fu"><a href="pal.html">pal</a></span><span class="op">(</span><span class="st">"RedWhiteBlue3"</span>, n <span class="op">=</span> <span class="fl">100L</span><span class="op">)</span>,</span>
+<span>  col <span class="op">=</span> <span class="fu"><a href="pal.html">pal</a></span><span class="op">(</span><span class="st">"red-white-blue-3"</span>, n <span class="op">=</span> <span class="fl">100L</span><span class="op">)</span>,</span>
 <span>  border <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  labels <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  stamp <span class="op">=</span> <span class="va">.useTheme</span>,</span>
@@ -107,7 +107,7 @@ reordered by the strength of the strongest association
 
 <dt id="arg-col">col<a class="anchor" aria-label="anchor" href="#arg-col"></a></dt>
 <dd><p>character vector of colors for the diverging palette. Default
-uses <code>pal("RedWhiteBlue3", n = 100)</code> from the DescToolsX theme.
+uses <code>pal("red-white-blue-3", n = 100)</code> from the DescToolsX theme.
 Negative residuals map to the first color, zero to the middle, positive
 to the last.</p></dd>
 
@@ -124,7 +124,7 @@ custom formatting.</p></dd>
 
 
 <dt id="arg-stamp">stamp<a class="anchor" aria-label="anchor" href="#arg-stamp"></a></dt>
-<dd><p>Controls the corner stamp. <code>.useTheme</code> (default)
+<dd><p>controls the corner stamp. <code>.useTheme</code> (default)
 resolves to <code>getTheme()$stamp</code>. <code>TRUE</code>/<code>FALSE</code>/
 <code>NULL</code>, or an explicit string, as for
 <code>.withGraphicsState()</code> (internal).</p></dd>
@@ -157,8 +157,7 @@ Theory and Methods</em>, 9, 1025–1041.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="https://rdrr.io/r/graphics/mosaicplot.html" class="external-link">mosaicplot</a></code>, <code><a href="plotMosaic.html">plotMosaic</a></code>,
-<code><a href="https://rdrr.io/pkg/DescToolsX/man/conf.html" class="external-link">conf</a></code></p>
+    <div class="dont-index"><p><a href="https://rdrr.io/r/graphics/mosaicplot.html" class="external-link">graphics::mosaicplot</a>, <a href="https://rdrr.io/pkg/DescToolsX/man/conf.html" class="external-link">DescToolsX::conf</a></p>
 <p>Other plot.bivariate:
 <code><a href="plotBag.html">plotBag()</a></code>,
 <code><a href="plotCor.html">plotCor()</a></code>,
@@ -178,7 +177,7 @@ Theory and Methods</em>, 9, 1025–1041.</p>
 <span class="r-plt img"><img src="plotAssoc-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># custom palette</span></span></span>
-<span class="r-in"><span><span class="fu">plotAssoc</span><span class="op">(</span><span class="va">tab</span>, col <span class="op">=</span> <span class="fu"><a href="pal.html">pal</a></span><span class="op">(</span><span class="st">"RedWhiteGreen"</span>, n <span class="op">=</span> <span class="fl">100</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">plotAssoc</span><span class="op">(</span><span class="va">tab</span>, col <span class="op">=</span> <span class="fu"><a href="pal.html">pal</a></span><span class="op">(</span><span class="st">"red-white-green"</span>, n <span class="op">=</span> <span class="fl">100</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plotAssoc-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># with residual labels</span></span></span>

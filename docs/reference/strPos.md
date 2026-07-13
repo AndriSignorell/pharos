@@ -15,7 +15,7 @@ strPos(x, pattern, pos = 1)
 - x:
 
   a character vector in which to search for the pattern, or an object
-  which can be coerced by as.character to a character vector.
+  which can be coerced by as.character to a character vector
 
 - pattern:
 
@@ -43,25 +43,8 @@ This is just a wrapper for the function
 [`strChop`](https://andrisignorell.github.io/aurora/reference/strChop.md),
 [`regexpr`](https://rdrr.io/r/base/grep.html)
 
-Other string:
-[`mgsub()`](https://andrisignorell.github.io/aurora/reference/mgsub.md),
-[`strAbbr()`](https://andrisignorell.github.io/aurora/reference/strAbbr.md),
-[`strAlign()`](https://andrisignorell.github.io/aurora/reference/strAlign.md),
-[`strCap()`](https://andrisignorell.github.io/aurora/reference/strCap.md),
-[`strChop()`](https://andrisignorell.github.io/aurora/reference/strChop.md),
-[`strCountW()`](https://andrisignorell.github.io/aurora/reference/strCountW.md),
-[`strDist()`](https://andrisignorell.github.io/aurora/reference/strDist.md),
-[`strExtract()`](https://andrisignorell.github.io/aurora/reference/strExtract.md),
-[`strExtractBetween()`](https://andrisignorell.github.io/aurora/reference/strExtractBetween.md),
-[`strIsNumeric()`](https://andrisignorell.github.io/aurora/reference/strIsNumeric.md),
-[`strLen()`](https://andrisignorell.github.io/aurora/reference/strLen.md),
-[`strPad()`](https://andrisignorell.github.io/aurora/reference/strPad.md),
-[`strRev()`](https://andrisignorell.github.io/aurora/reference/strRev.md),
-[`strSpell()`](https://andrisignorell.github.io/aurora/reference/strSpell.md),
-[`strSplit()`](https://andrisignorell.github.io/aurora/reference/strSplit.md),
-[`strTrim()`](https://andrisignorell.github.io/aurora/reference/strTrim.md),
-[`strTrunc()`](https://andrisignorell.github.io/aurora/reference/strTrunc.md),
-[`strVal()`](https://andrisignorell.github.io/aurora/reference/strVal.md)
+[string-overview](https://andrisignorell.github.io/aurora/reference/string-overview.md)
+for an overview of all string utilities in lyra.
 
 ## Examples
 

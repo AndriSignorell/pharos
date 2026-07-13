@@ -9,7 +9,7 @@ using contour, image, or perspective plots."><meta property="og:image" content="
 
     <a class="navbar-brand me-2" href="../index.html">lyra</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.930</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.933</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,32 +62,32 @@ using contour, image, or perspective plots.</p>
 
 
 <dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
-<dd><p>Numeric vector of x-coordinates.</p></dd>
+<dd><p>numeric vector of x-coordinates.</p></dd>
 
 
 <dt id="arg-y">y<a class="anchor" aria-label="anchor" href="#arg-y"></a></dt>
-<dd><p>Numeric vector of y-coordinates. Must have the same length as <code>x</code>.</p></dd>
+<dd><p>numeric vector of y-coordinates. Must have the same length as <code>x</code>.</p></dd>
 
 
 <dt id="arg-main">main<a class="anchor" aria-label="anchor" href="#arg-main"></a></dt>
-<dd><p>Optional main title of the plot.</p></dd>
+<dd><p>optional main title of the plot.</p></dd>
 
 
 <dt id="arg-xlab-ylab">xlab, ylab<a class="anchor" aria-label="anchor" href="#arg-xlab-ylab"></a></dt>
-<dd><p>Axis labels.</p></dd>
+<dd><p>axis labels.</p></dd>
 
 
 <dt id="arg-xlim-ylim">xlim, ylim<a class="anchor" aria-label="anchor" href="#arg-xlim-ylim"></a></dt>
-<dd><p>Numeric vectors of length two specifying axis limits.</p></dd>
+<dd><p>numeric vectors of length two specifying axis limits.</p></dd>
 
 
 <dt id="arg-type">type<a class="anchor" aria-label="anchor" href="#arg-type"></a></dt>
-<dd><p>Character string specifying the plot type.
+<dd><p>character string specifying the plot type.
 One of <code>"contour"</code>, <code>"image"</code>, or <code>"persp"</code>.</p></dd>
 
 
 <dt id="arg-col">col<a class="anchor" aria-label="anchor" href="#arg-col"></a></dt>
-<dd><p>Color specification used for <code>type = "image"</code>. Defaults
+<dd><p>color specification used for <code>type = "image"</code>. Defaults
 to a reversed <code>"red-black"</code> sequential ramp (<code><a href="pal.html">pal()</a></code>),
 running from black (low density) to red (high density) - hardcoded
 rather than theme-driven, since this is a continuous, unidirectional
@@ -96,20 +96,20 @@ diverging <code>twin</code> pair, neither of which fits a density surface.</p></
 
 
 <dt id="arg-grid">grid<a class="anchor" aria-label="anchor" href="#arg-grid"></a></dt>
-<dd><p>Controls drawing of the background grid. <code>.useTheme</code>
+<dd><p>controls drawing of the background grid. <code>.useTheme</code>
 (default) follows the active theme (<code>getTheme()$grid</code>).
 <code>TRUE</code>/<code>FALSE</code>/<code>NA</code>, or a named list, as for
 <code><a href="https://rdrr.io/r/graphics/grid.html" class="external-link">grid</a></code>.</p></dd>
 
 
 <dt id="arg-box">box<a class="anchor" aria-label="anchor" href="#arg-box"></a></dt>
-<dd><p>Controls drawing of the plot box. <code>.useTheme</code> (default)
+<dd><p>controls drawing of the plot box. <code>.useTheme</code> (default)
 resolves to <code>getTheme()$box</code>. <code>TRUE</code>/<code>FALSE</code>/<code>NA</code>,
 or a named list, as for <code><a href="https://rdrr.io/r/graphics/box.html" class="external-link">box</a></code>.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>Additional graphical parameters passed to underlying plotting functions.</p></dd>
+<dd><p>additional graphical parameters passed to underlying plotting functions.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -136,11 +136,7 @@ for unimodal distributions but may oversmooth multimodal structures.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p>Other topic.graphics:
-<code><a href="plotBubble.html">plotBubble()</a></code>,
-<code><a href="plotDens.html">plotDens()</a></code>,
-<code><a href="plotRidge.html">plotRidge()</a></code></p>
-<p>Other plot.bivariate:
+    <div class="dont-index"><p>Other plot.bivariate:
 <code><a href="plotAssoc.html">plotAssoc()</a></code>,
 <code><a href="plotBag.html">plotBag()</a></code>,
 <code><a href="plotCor.html">plotCor()</a></code>,

@@ -11,7 +11,7 @@ in statistics teaching materials."><meta property="og:image" content="https://an
 
     <a class="navbar-brand me-2" href="../index.html">lyra</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.930</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.933</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,42 +65,42 @@ in statistics teaching materials.</p>
 
 
 <dl><dt id="arg-breaks">breaks<a class="anchor" aria-label="anchor" href="#arg-breaks"></a></dt>
-<dd><p>Numeric vector of break points defining the boundaries between
+<dd><p>numeric vector of break points defining the boundaries between
 shaded areas. The first and last value define the plot range passed to
 <code><a href="shade.html">shade()</a></code>; interior values are the actual boundaries.</p></dd>
 
 
 <dt id="arg-fun">FUN<a class="anchor" aria-label="anchor" href="#arg-fun"></a></dt>
-<dd><p>The distribution density function to plot, typically of the form
+<dd><p>the distribution density function to plot, typically of the form
 <code>function(x) dnorm(x, mean=0, sd=1)</code>.</p></dd>
 
 
 <dt id="arg-main">main<a class="anchor" aria-label="anchor" href="#arg-main"></a></dt>
-<dd><p>Main title for the plot. <code>NULL</code> or <code>""</code> suppresses
+<dd><p>main title for the plot. <code>NULL</code> or <code>""</code> suppresses
 the title and reduces the top margin automatically.</p></dd>
 
 
 <dt id="arg-xlim">xlim<a class="anchor" aria-label="anchor" href="#arg-xlim"></a></dt>
-<dd><p>Numeric vector of length 2. x-axis limits passed to
+<dd><p>numeric vector of length 2. x-axis limits passed to
 <code><a href="https://rdrr.io/r/graphics/curve.html" class="external-link">curve()</a></code>.</p></dd>
 
 
 <dt id="arg-col">col<a class="anchor" aria-label="anchor" href="#arg-col"></a></dt>
-<dd><p>Color(s) for the shaded areas. Recycled if shorter than the
-number of areas. Defaults to the Helsana palette.</p></dd>
+<dd><p>color(s) for the shaded areas. Recycled if shorter than the
+number of areas. Defaults to the "helsana" palette.</p></dd>
 
 
 <dt id="arg-density">density<a class="anchor" aria-label="anchor" href="#arg-density"></a></dt>
-<dd><p>Density of shading lines passed to <code><a href="shade.html">shade()</a></code>.
+<dd><p>density of shading lines passed to <code><a href="shade.html">shade()</a></code>.
 Default is <code>7</code>.</p></dd>
 
 
 <dt id="arg-ylab">ylab<a class="anchor" aria-label="anchor" href="#arg-ylab"></a></dt>
-<dd><p>Label for the y-axis. Default is <code>"density"</code>.</p></dd>
+<dd><p>label for the y-axis. Default is <code>"density"</code>.</p></dd>
 
 
 <dt id="arg-arealabels">areaLabels<a class="anchor" aria-label="anchor" href="#arg-arealabels"></a></dt>
-<dd><p>Controls labels placed in the centre of each shaded area.
+<dd><p>controls labels placed in the centre of each shaded area.
 <code>NULL</code> (default) suppresses labels. <code>TRUE</code> uses
 <code>LETTERS</code> as default labels. A character vector sets explicit labels.
 A named list overrides individual arguments passed to
@@ -109,7 +109,7 @@ A named list overrides individual arguments passed to
 
 
 <dt id="arg-breaklabels">breakLabels<a class="anchor" aria-label="anchor" href="#arg-breaklabels"></a></dt>
-<dd><p>Controls labels placed on the x-axis at interior break
+<dd><p>controls labels placed on the x-axis at interior break
 points via <code><a href="https://rdrr.io/r/graphics/mtext.html" class="external-link">mtext()</a></code>. <code>NULL</code> (default) suppresses labels.
 <code>TRUE</code> uses <code>LETTERS</code> as default labels. A character vector
 sets explicit labels. A named list overrides individual arguments
@@ -117,21 +117,21 @@ sets explicit labels. A named list overrides individual arguments
 
 
 <dt id="arg-grid">grid<a class="anchor" aria-label="anchor" href="#arg-grid"></a></dt>
-<dd><p>Controls background grid. <code>FALSE</code> (default) suppresses the
+<dd><p>controls background grid. <code>FALSE</code> (default) suppresses the
 grid. <code>TRUE</code> or <code>.useTheme</code> draws a grid according to the
 current theme. A named list overrides individual arguments passed to
 <code><a href="https://rdrr.io/r/graphics/grid.html" class="external-link">grid()</a></code>.</p></dd>
 
 
 <dt id="arg-box">box<a class="anchor" aria-label="anchor" href="#arg-box"></a></dt>
-<dd><p>Controls the plot box. <code>.useTheme</code> (default) uses the
+<dd><p>controls the plot box. <code>.useTheme</code> (default) uses the
 current theme setting. <code>TRUE</code>/<code>FALSE</code> forces the box on or off.
 A named list overrides individual arguments passed to
 <code><a href="https://rdrr.io/r/graphics/box.html" class="external-link">box()</a></code>.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>Further graphical parameters passed to <code><a href="https://rdrr.io/r/graphics/curve.html" class="external-link">curve()</a></code>
+<dd><p>further graphical parameters passed to <code><a href="https://rdrr.io/r/graphics/curve.html" class="external-link">curve()</a></code>
 and <code>.applyParFromDots()</code>, e.g. <code>las</code>, <code>col.axis</code>.</p></dd>
 
 </dl></div>
@@ -141,9 +141,10 @@ and <code>.applyParFromDots()</code>, e.g. <code>las</code>, <code>col.axis</cod
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="shade.html">shade</a></code>, <code><a href="https://rdrr.io/r/graphics/curve.html" class="external-link">curve</a></code>, <code><a href="boxedText.html">boxedText</a></code></p>
+    <div class="dont-index"><p><code><a href="https://rdrr.io/r/graphics/curve.html" class="external-link">curve</a></code></p>
 <p>Other plot.distribution:
-<code><a href="plotFun.html">plotFun()</a></code></p></div>
+<code><a href="plotFun.html">plotFun()</a></code>,
+<code><a href="shade.html">shade()</a></code></p></div>
     </div>
 
     <div class="section level2">
@@ -179,6 +180,7 @@ and <code>.applyParFromDots()</code>, e.g. <code>las</code>, <code>col.axis</cod
 <span class="r-in"><span>             breakLabels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>text<span class="op">=</span><span class="st">"B"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>is.na() applied to non-(list or vector) of type 'expression'</span>
 <span class="r-plt img"><img src="plotProbDist-3.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

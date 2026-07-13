@@ -16,11 +16,11 @@ rgbToCol(col, method = c("rgb", "hsv"), metric = c("euclidean", "manhattan"))
 
 - method:
 
-  Color space used for matching.
+  color space used for matching.
 
 - metric:
 
-  Distance metric.
+  distance metric.
 
 ## Value
 
@@ -28,10 +28,4 @@ Character vector of named R colors.
 
 ## See also
 
-Other color.conversion:
-[`colToHSV()`](https://andrisignorell.github.io/aurora/reference/colToHSV.md),
-[`colToHex()`](https://andrisignorell.github.io/aurora/reference/colToHex.md),
-[`hexToCol()`](https://andrisignorell.github.io/aurora/reference/hexToCol.md),
-[`longToRGB()`](https://andrisignorell.github.io/aurora/reference/longToRGB.md),
-[`rgbToHex()`](https://andrisignorell.github.io/aurora/reference/rgbToHex.md),
-[`rgbToLong()`](https://andrisignorell.github.io/aurora/reference/rgbToLong.md)
+[color-conversion-overview](https://andrisignorell.github.io/aurora/reference/color-conversion-overview.md)

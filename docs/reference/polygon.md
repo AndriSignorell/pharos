@@ -42,43 +42,43 @@ polygon(x, ...)
 
 - x:
 
-  An object to be drawn.
+  an object to be drawn.
 
 - ...:
 
-  Further arguments passed to the corresponding method.
+  further arguments passed to the corresponding method.
 
 - y:
 
-  Numeric vector of y-coordinates.
+  numeric vector of y-coordinates.
 
 - density:
 
-  Density of shading lines.
+  density of shading lines.
 
 - angle:
 
-  Angle of shading lines in degrees.
+  angle of shading lines in degrees.
 
 - border:
 
-  Border colour.
+  border colour.
 
 - col:
 
-  Fill colour.
+  fill colour.
 
 - lty:
 
-  Line type.
+  line type.
 
 - fillOddEven:
 
-  Logical; should the odd-even rule be used for filling?
+  logical; should the odd-even rule be used for filling?
 
 - rule:
 
-  Character string specifying the filling rule passed to
+  character string specifying the filling rule passed to
   [`polypath`](https://rdrr.io/r/graphics/polypath.html). One of
   `"evenodd"` or `"winding"`.
 
@@ -88,22 +88,14 @@ Invisibly returns `x`.
 
 ## See also
 
-[`arc`](https://andrisignorell.github.io/aurora/reference/arc.md),
-[`circle`](https://andrisignorell.github.io/aurora/reference/circle.md),
-[`ellipse`](https://andrisignorell.github.io/aurora/reference/ellipse.md),
-[`regPolygon`](https://andrisignorell.github.io/aurora/reference/regPolygon.md),
-[`ring`](https://andrisignorell.github.io/aurora/reference/ring.md),
-[`polygon`](https://rdrr.io/r/graphics/polygon.html)
-
-Other geometry:
+Other geometry.structures:
 [`arc()`](https://andrisignorell.github.io/aurora/reference/arc.md),
 [`band()`](https://andrisignorell.github.io/aurora/reference/band.md),
 [`bezier()`](https://andrisignorell.github.io/aurora/reference/bezier.md),
-[`canvas()`](https://andrisignorell.github.io/aurora/reference/canvas.md),
-[`polarGrid()`](https://andrisignorell.github.io/aurora/reference/polarGrid.md),
-[`rotate()`](https://andrisignorell.github.io/aurora/reference/rotate.md),
-[`shade()`](https://andrisignorell.github.io/aurora/reference/shade.md),
-[`transformXY()`](https://andrisignorell.github.io/aurora/reference/transformXY.md)
+[`circle()`](https://andrisignorell.github.io/aurora/reference/circle.md),
+[`ellipse()`](https://andrisignorell.github.io/aurora/reference/ellipse.md),
+[`regPolygon()`](https://andrisignorell.github.io/aurora/reference/regPolygon.md),
+[`ring()`](https://andrisignorell.github.io/aurora/reference/ring.md)
 
 ## Examples
 

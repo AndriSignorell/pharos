@@ -47,29 +47,29 @@ plot(x, col = NULL, ...)
 
 - x:
 
-  Object of class `"Lc"` (for `plot.Lc()`, `lines.Lc()`, `points.Lc()`)
+  object of class `"Lc"` (for `plot.Lc()`, `lines.Lc()`, `points.Lc()`)
   or `"LcList"` (for the `*.LcList()` methods).
 
 - main, xlab, ylab:
 
-  Main title and axis labels, used by `plot.Lc()` only. Defaults are
+  main title and axis labels, used by `plot.Lc()` only. Defaults are
   `NULL`, `"p"`, and `"L(p)"`, respectively.
 
 - xlim, ylim:
 
-  Numeric vectors of length 2 giving axis limits, used by `plot.Lc()`
+  numeric vectors of length 2 giving axis limits, used by `plot.Lc()`
   only. Default `NULL`, which resolves to `c(0, 1)`.
 
 - general:
 
-  Logical. If `TRUE`, the generalized Lorenz curve (scaled by the mean)
+  logical. If `TRUE`, the generalized Lorenz curve (scaled by the mean)
   is displayed instead of the standard curve. Default is `FALSE`. Used
   by `plot.Lc()`, `lines.Lc()`, and `points.Lc()`; for the `"LcList"`
   methods it is passed through `...` to the underlying `Lc` method.
 
 - line:
 
-  Logical or list, used by `plot.Lc()` to control drawing of the Lorenz
+  logical or list, used by `plot.Lc()` to control drawing of the Lorenz
   curve line. `TRUE` (default) draws the line with package defaults
   (`col = "black"`, `lty = 1`, `lwd = 2`); `FALSE` suppresses it; a list
   overrides individual defaults and is forwarded to
@@ -77,7 +77,7 @@ plot(x, col = NULL, ...)
 
 - points:
 
-  Logical or list, used by `plot.Lc()` to control drawing of points on
+  logical or list, used by `plot.Lc()` to control drawing of points on
   the Lorenz curve. `TRUE` (default) draws points with package defaults
   (`pch = 21`, `bg = "white"`, `col = "black"`, `cex = 1.4`); `FALSE`
   suppresses them; a list overrides individual defaults and is forwarded
@@ -85,19 +85,19 @@ plot(x, col = NULL, ...)
 
 - grid:
 
-  Logical or list, used by `plot.Lc()` only. If `TRUE` (default) or a
+  logical or list, used by `plot.Lc()` only. If `TRUE` (default) or a
   list, a grid is drawn before the curve via
   [`grid()`](https://rdrr.io/r/graphics/grid.html); a list is forwarded
   as arguments to that function.
 
 - box:
 
-  Logical, used by `plot.Lc()` only. If `TRUE` (default), a box is drawn
+  logical, used by `plot.Lc()` only. If `TRUE` (default), a box is drawn
   around the plot area.
 
 - ...:
 
-  Further arguments. For `plot.Lc()`, graphical parameters passed to
+  further arguments. For `plot.Lc()`, graphical parameters passed to
   [`par()`](https://rdrr.io/r/graphics/par.html) via
   `.applyParFromDots()` (e.g. `mar`, `cex.axis`, `las`). For
   `lines.Lc()` and `points.Lc()`, further arguments passed on to
@@ -108,29 +108,29 @@ plot(x, col = NULL, ...)
 
 - col:
 
-  Color for the curve or points. For `lines.Lc()` and `points.Lc()`, a
+  color for the curve or points. For `lines.Lc()` and `points.Lc()`, a
   single color (default `NULL`, i.e. the current device default). For
   the `"LcList"` methods, a vector recycled over groups (default `NULL`,
   i.e. `seq_len(k)`).
 
 - lwd:
 
-  Line width, used by `lines.Lc()` only. Default is `2`.
+  line width, used by `lines.Lc()` only. Default is `2`.
 
 - lty:
 
-  Line type, used by `lines.Lc()` only. Default is `1`.
+  line type, used by `lines.Lc()` only. Default is `1`.
 
 - cbandArgs:
 
-  Used by `lines.Lc()` only. `NA` to suppress the confidence band
+  used by `lines.Lc()` only. `NA` to suppress the confidence band
   (default), or a list of arguments passed to
   [`predict.Lc()`](https://rdrr.io/pkg/DescToolsX/man/lc.html) to
   control bootstrap confidence intervals.
 
 - pch:
 
-  Plotting symbol, used by `points.Lc()` only. Default is `16`.
+  plotting symbol, used by `points.Lc()` only. Default is `16`.
 
 ## Value
 

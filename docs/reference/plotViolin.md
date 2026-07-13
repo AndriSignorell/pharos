@@ -63,45 +63,45 @@ plotViolin(
 
 - x:
 
-  Numeric vector, list of numeric vectors, or first group.
+  numeric vector, list of numeric vectors, or first group.
 
 - ...:
 
-  Additional data vectors (unnamed) or graphical parameters passed to
+  additional data vectors (unnamed) or graphical parameters passed to
   [`par()`](https://rdrr.io/r/graphics/par.html).
 
 - main, xlab, ylab:
 
-  Plot labels.
+  plot labels.
 
 - xlim, ylim:
 
-  Axis limits.
+  axis limits.
 
 - horizontal:
 
-  Logical; if `TRUE`, draws horizontal violins.
+  logical; if `TRUE`, draws horizontal violins.
 
 - at:
 
-  Numeric positions of the groups.
+  numeric positions of the groups.
 
 - names:
 
-  Optional group labels.
+  optional group labels.
 
 - add:
 
-  Logical; if `TRUE`, adds to an existing plot.
+  logical; if `TRUE`, adds to an existing plot.
 
 - bw:
 
-  Bandwidth specification passed to
+  bandwidth specification passed to
   [`density()`](https://rdrr.io/r/stats/density.html).
 
 - trim:
 
-  Logical. If `TRUE` (default), the kernel density estimate of each
+  logical. If `TRUE` (default), the kernel density estimate of each
   group is restricted to the observed data range (`from = min(x)`,
   `to = max(x)`), so the violin never extends beyond the actual data —
   matching the default behavior of
@@ -113,27 +113,27 @@ plotViolin(
 
 - col:
 
-  Fill color(s) of the violins.
+  fill color(s) of the violins.
 
 - border:
 
-  Border color(s) of the violins.
+  border color(s) of the violins.
 
 - lwd:
 
-  Line width for violin borders.
+  line width for violin borders.
 
 - box:
 
-  Logical or list controlling the boxplot overlay (see Details).
+  logical or list controlling the boxplot overlay (see Details).
 
 - grid:
 
-  Logical, `NA`, or list controlling background grid.
+  logical, `NA`, or list controlling background grid.
 
 - quantiles:
 
-  Optional numeric vector of probabilities for drawing quantile lines
+  optional numeric vector of probabilities for drawing quantile lines
   inside each violin.
 
 - formula:
@@ -142,15 +142,15 @@ plotViolin(
 
 - data:
 
-  Optional data frame.
+  optional data frame.
 
 - subset:
 
-  Optional subset expression.
+  optional subset expression.
 
 - na.action:
 
-  Function to handle missing values.
+  function to handle missing values.
 
 ## Value
 

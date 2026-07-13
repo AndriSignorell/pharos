@@ -108,7 +108,7 @@ fm(
   or c respectively. The default is `NULL` which would just leave the
   strings as they are.  
   This argument is send directly to the function
-  [`strAlign()`](https://andrisignorell.github.io/lyra/reference/strAlign.md)
+  [`strAlign()`](https://andrisignorell.github.io/aurora/reference/strAlign.md)
   as argument `sep`.
 
 - lang:
@@ -199,7 +199,7 @@ frequently used formats there are the following special codes available:
 
 `fmt` can as well be an object of class "`Style`" consisting of a list
 out of the arguments above (as created by
-[`style()`](https://andrisignorell.github.io/lyra/reference/style.md)).
+[`style()`](https://andrisignorell.github.io/aurora/reference/style.md)).
 This allows to store and manage the full format in variables or as
 options and use it as format template subsequently.
 
@@ -208,20 +208,22 @@ flexible.
 
 ## See also
 
-[`format`](https://rdrr.io/r/base/format.html),
-[`formatC`](https://rdrr.io/r/base/formatc.html),
-[`prettyNum`](https://rdrr.io/r/base/formatc.html),
-[`sprintf`](https://rdrr.io/r/base/sprintf.html),
-[`symnum`](https://rdrr.io/r/stats/symnum.html),  
-[`Sys.setlocale`](https://rdrr.io/r/base/locales.html),  
-[`weekday`](https://rdrr.io/pkg/DescToolsX/man/date_functions.html),
-[`month`](https://rdrr.io/pkg/DescToolsX/man/date_functions.html),
-[`setDescToolsXOption`](https://rdrr.io/pkg/DescToolsX/man/setDescToolsXOption.html),
-[`style`](https://andrisignorell.github.io/lyra/reference/style.md),
-[`styles`](https://andrisignorell.github.io/lyra/reference/style.md)
+[base::format](https://rdrr.io/r/base/format.html),
+[base::formatC](https://rdrr.io/r/base/formatc.html),
+[base::prettyNum](https://rdrr.io/r/base/formatc.html),
+[base::sprintf](https://rdrr.io/r/base/sprintf.html),
+[stats::symnum](https://rdrr.io/r/stats/symnum.html),  
+[base::Sys.setlocale](https://rdrr.io/r/base/locales.html),  
+[DescToolsX::weekday](https://rdrr.io/pkg/DescToolsX/man/date_functions.html),
+[DescToolsX::month](https://rdrr.io/pkg/DescToolsX/man/date_functions.html),
+[theme](https://andrisignorell.github.io/aurora/reference/theme.md)
 
 Other format:
-[`fmCI()`](https://andrisignorell.github.io/lyra/reference/fmCI.md)
+[`convUnit()`](https://andrisignorell.github.io/aurora/reference/convUnit.md),
+[`fmCI()`](https://andrisignorell.github.io/aurora/reference/fmCI.md),
+[`print.Unit()`](https://andrisignorell.github.io/aurora/reference/print.Unit.md),
+[`style()`](https://andrisignorell.github.io/aurora/reference/style.md),
+[`unit()`](https://andrisignorell.github.io/aurora/reference/unit.md)
 
 ## Examples
 

@@ -39,7 +39,7 @@
 #' | Function | Purpose |
 #' |---|---|
 #' | [colToOpaque()] | Computes the equivalent opaque color for a transparent color against a background -- Hex stays Hex |
-#' | [grayscale()] | Converts colors to grayscale using luminance weighting -- Col stays Col |
+#' | [grayScale()] | Converts colors to grayscale using luminance weighting -- Col stays Col |
 #'
 #' @section Why HSV has no source functions:
 #' Base R already provides the HSV -> Col/Hex direction via
@@ -54,13 +54,13 @@
 #' # (usually RGB or Col), not a missing feature.
 #'
 #' # CMY -> RGB: no direct function: CMY -> CMYK -> RGB
-#' cmykToRgb(cmyToCmyk(c(0.2, 0.6, 0.9)))
+#' c(0.2, 0.6, 0.9) |> cmyToCmyk() |> cmykToRgb()
 #'
 #' # Long integer -> R color name: Long -> RGB -> Col
-#' rgbToCol(longToRGB(255))
+#' 255 |> longToRGB() |> rgbToCol()
 #'
 #' # HSV -> RGB: base R's hsv() bridges the gap noted above
-#' colToRGB(hsv(h = 0.6, s = 0.8, v = 0.9))
+#' hsv(h = 0.6, s = 0.8, v = 0.9) |> colToRGB()
 #'
 #' @name color-conversion-overview
 #' @seealso [grDevices::col2rgb()], [grDevices::hsv()]

@@ -1,6 +1,6 @@
 # Helsana Colors
 
-Retrieve one or more colors from the Helsana palette.
+Retrieve one or more colors from the helsana palette.
 
 ## Usage
 
@@ -12,7 +12,7 @@ hcol(...)
 
 - ...:
 
-  Character strings naming the colors to retrieve. Valid names are:
+  character strings naming the colors to retrieve. Valid names are:
   `"blue"`, `"red"`, `"orange"`, `"yellow"`, `"ecru"`, `"green"`,
   `"pink"`, `"moss"`, `"slate"`, `"sand"`, `"brown"`, `"plum"`. If none
   are provided, the full palette is returned.
@@ -23,20 +23,9 @@ A named character vector of hex color codes.
 
 ## See also
 
-Other color:
-[`addOpacity()`](https://andrisignorell.github.io/lyra/reference/addOpacity.md),
-[`colToOpaque()`](https://andrisignorell.github.io/lyra/reference/colToOpaque.md),
-[`colToRGB()`](https://andrisignorell.github.io/lyra/reference/colToRGB.md),
-[`contrastColor()`](https://andrisignorell.github.io/lyra/reference/contrastColor.md),
-[`darken()`](https://andrisignorell.github.io/lyra/reference/darken.md),
-[`findColor()`](https://andrisignorell.github.io/lyra/reference/findColor.md),
-[`grayscale()`](https://andrisignorell.github.io/lyra/reference/grayscale.md),
-[`hexToRGB()`](https://andrisignorell.github.io/lyra/reference/hexToRGB.md),
-[`lighten()`](https://andrisignorell.github.io/lyra/reference/lighten.md),
-[`mixColors()`](https://andrisignorell.github.io/lyra/reference/mixColors.md),
-[`pal()`](https://andrisignorell.github.io/lyra/reference/pal.md),
-[`palNames()`](https://andrisignorell.github.io/lyra/reference/palNames.md),
-[`setBackCol()`](https://andrisignorell.github.io/lyra/reference/setBackCol.md)
+Other color.palettes:
+[`pal()`](https://andrisignorell.github.io/aurora/reference/pal.md),
+[`palNames()`](https://andrisignorell.github.io/aurora/reference/palNames.md)
 
 ## Examples
 

@@ -9,7 +9,7 @@ locally weighted regression lines, and an optional legend."><meta property="og:i
 
     <a class="navbar-brand me-2" href="../index.html">lyra</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.930</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.933</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -206,7 +206,7 @@ active theme's <code>twin</code> colors (<code>getTheme()$twin</code>).</p></dd>
 
 
 <dt id="arg-stamp">stamp<a class="anchor" aria-label="anchor" href="#arg-stamp"></a></dt>
-<dd><p>Controls the corner stamp. <code>.useTheme</code> (default)
+<dd><p>controls the corner stamp. <code>.useTheme</code> (default)
 resolves to <code>getTheme()$stamp</code>. <code>TRUE</code>/<code>FALSE</code>/
 <code>NULL</code>, a string, or a named list for <code><a href="stamp.html">stamp()</a></code>.</p></dd>
 
@@ -241,7 +241,7 @@ semantics:</p><ul><li><p><code>TRUE</code>: draw with defaults</p></li>
 <li><p>named list: customize component arguments</p></li>
 </ul><p><code>col</code>, <code>bg</code>, <code>pch</code>, <code>cex</code>, <code>grid</code>, and <code>box</code>
 default to <code>.useTheme</code>, deferring to the package's active theme
-(see <code><a href="getTheme.html">getTheme</a></code>) rather than a hardcoded value. This means
+(see <a href="theme.html">theme</a>) rather than a hardcoded value. This means
 <code>setTheme(list(points = list(col = "black")))</code> changes the point
 color for every call to <code>plotXY()</code> (and any other function using
 the same theme section) that doesn't override <code>col</code> explicitly.</p>
@@ -251,8 +251,7 @@ the same theme section) that doesn't override <code>col</code> explicitly.</p>
     <div class="dont-index"><p><code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></code>,
 <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></code>,
 <code><a href="https://rdrr.io/r/stats/loess.html" class="external-link">loess</a></code>,
-<code><a href="https://rdrr.io/pkg/bedrock/man/callIf.html" class="external-link">callIf</a></code>,
-<code><a href="getTheme.html">getTheme</a></code>, <code><a href="getTheme.html">setTheme</a></code></p>
+<code><a href="https://rdrr.io/pkg/bedrock/man/callIf.html" class="external-link">callIf</a></code></p>
 <p>Other plot.bivariate:
 <code><a href="plotAssoc.html">plotAssoc()</a></code>,
 <code><a href="plotBag.html">plotBag()</a></code>,

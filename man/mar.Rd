@@ -53,6 +53,7 @@ Other graphics.layout:
 \code{\link[=axisBreak]{axisBreak()}},
 \code{\link[=isValidPlotRegion]{isValidPlotRegion()}},
 \code{\link[=lineToUser]{lineToUser()}},
+\code{\link[=plotFacet]{plotFacet()}},
 \code{\link[=spreadOut]{spreadOut()}}
 }
 \concept{geometry}

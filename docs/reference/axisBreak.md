@@ -20,32 +20,32 @@ axisBreak(
 
 - axis:
 
-  which axis to break.
+  which axis to break
 
 - breakpos:
 
-  where to place the break in user units.
+  where to place the break in user units
 
 - pos:
 
   position of the axis (see
-  [axis](https://rdrr.io/r/graphics/axis.html)).
+  [axis](https://rdrr.io/r/graphics/axis.html))
 
 - bgcol:
 
-  the color of the plot background.
+  the color of the plot background
 
 - breakcol:
 
-  the color of the "break" marker.
+  the color of the "break" marker
 
 - style:
 
-  Either `gap`, `slash` or `zigzag`.
+  either `gap`, `slash` or `zigzag`
 
 - brw:
 
-  break width relative to plot width.
+  break width relative to plot width
 
 ## Details
 
@@ -62,29 +62,18 @@ The major objection seems to be that the reader will be misled by
 assuming continuous coordinates. The `gap` style that clearly separates
 the two sections of the plot is probably best for avoiding this.
 
+Based on code by Jim Lemon and Ben Bolker, adapted to conform to package
+standards
+
 ## See also
 
-Other graphics.utils:
-[`abcCoords()`](https://andrisignorell.github.io/lyra/reference/abcCoords.md),
-[`barText()`](https://andrisignorell.github.io/lyra/reference/barText.md),
-[`boxedText()`](https://andrisignorell.github.io/lyra/reference/boxedText.md),
-[`colLegend()`](https://andrisignorell.github.io/lyra/reference/colLegend.md),
-[`degToRad()`](https://andrisignorell.github.io/lyra/reference/degToRad.md),
-[`errBars()`](https://andrisignorell.github.io/lyra/reference/errBars.md),
-[`lineSep()`](https://andrisignorell.github.io/lyra/reference/lineSep.md),
-[`lineToUser()`](https://andrisignorell.github.io/lyra/reference/lineToUser.md),
-[`lines.lm()`](https://andrisignorell.github.io/lyra/reference/linesLm.md),
-[`mar()`](https://andrisignorell.github.io/lyra/reference/mar.md),
-[`preview()`](https://andrisignorell.github.io/lyra/reference/preview.md),
-[`spreadOut()`](https://andrisignorell.github.io/lyra/reference/spreadOut.md),
-[`stamp()`](https://andrisignorell.github.io/lyra/reference/stamp.md),
-[`textLegend()`](https://andrisignorell.github.io/lyra/reference/textLegend.md),
-[`titleRect()`](https://andrisignorell.github.io/lyra/reference/titleRect.md),
-[`unit()`](https://andrisignorell.github.io/lyra/reference/unit.md)
-
-## Author
-
-Jim Lemon and Ben Bolker
+Other graphics.layout:
+[`abcCoords()`](https://andrisignorell.github.io/aurora/reference/abcCoords.md),
+[`axTicks`](https://andrisignorell.github.io/aurora/reference/axTicks.md),
+[`isValidPlotRegion()`](https://andrisignorell.github.io/aurora/reference/isValidPlotRegion.md),
+[`lineToUser()`](https://andrisignorell.github.io/aurora/reference/lineToUser.md),
+[`mar()`](https://andrisignorell.github.io/aurora/reference/mar.md),
+[`spreadOut()`](https://andrisignorell.github.io/aurora/reference/spreadOut.md)
 
 ## Examples
 

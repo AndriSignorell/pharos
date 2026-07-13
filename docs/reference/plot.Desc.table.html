@@ -15,7 +15,7 @@ supported; a message is issued and the call returns invisibly."><meta property="
 
     <a class="navbar-brand me-2" href="../index.html">lyra</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.930</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.933</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,12 +69,12 @@ supported; a message is issued and the call returns invisibly.</p>
 
 
 <dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
-<dd><p>An object of class <code>"Desc.table"</code>, as returned by
+<dd><p>an object of class <code>"Desc.table"</code>, as returned by
 <code><a href="https://rdrr.io/pkg/DescToolsX/man/desc.html" class="external-link">desc()</a></code> for a categorical-categorical pair.</p></dd>
 
 
 <dt id="arg-main">main<a class="anchor" aria-label="anchor" href="#arg-main"></a></dt>
-<dd><p>Main title. <code>NULL</code> (default) derives a title per panel
+<dd><p>main title. <code>NULL</code> (default) derives a title per panel
 from <code>x$meta$xname</code> (the deparsed expression originally passed to
 <code>desc()</code>, e.g. <code>"table(Pizza$area, Pizza$driver)"</code>) combined
 with a panel-type label for context when multiple panels are shown
@@ -144,7 +144,7 @@ sized to the number of columns of <code>tab</code>, passed to
 
 <dt>panel 3</dt>
 <dd><p>left at <code><a href="plotAssoc.html">plotAssoc</a></code>'s own default
-(<code>pal("RedWhiteBlue3", n = 100)</code>), a diverging palette - cell
+(<code>pal("red-white-blue-3", n = 100)</code>), a diverging palette - cell
 colors there encode the sign and strength of Pearson residuals, so
 a categorical or grey-ramp default would not be meaningful. Supplying
 <code>col</code> overrides this with the diverging palette of the user's
@@ -161,7 +161,7 @@ every selected panel.</p></dd>
 
 
 <dt id="arg-box">box<a class="anchor" aria-label="anchor" href="#arg-box"></a></dt>
-<dd><p>Controls the plot frame. <code>.useTheme</code> (default) follows
+<dd><p>controls the plot frame. <code>.useTheme</code> (default) follows
 the active theme (<code>getTheme()$box</code>); <code>FALSE</code>/<code>NA</code>
 suppress it; a named list overrides frame-drawing arguments.</p><dl><dt>panel 1</dt>
 <dd><p>has no effect - <code><a href="https://rdrr.io/r/graphics/spineplot.html" class="external-link">spineplot()</a></code> always draws its
@@ -187,7 +187,7 @@ has no effect.</p></dd>
 
 
 <dt id="arg-stamp">stamp<a class="anchor" aria-label="anchor" href="#arg-stamp"></a></dt>
-<dd><p>Controls the corner stamp. <code>.useTheme</code> (default)
+<dd><p>controls the corner stamp. <code>.useTheme</code> (default)
 resolves to <code>getTheme()$stamp</code>, drawn once after all selected
 panels. Panels 2-4 delegate to <code><a href="plotMosaic.html">plotMosaic</a></code>/
 <code><a href="plotAssoc.html">plotAssoc</a></code>/<code><a href="plotHeatmap.html">plotHeatmap</a></code>, whose own
@@ -220,7 +220,7 @@ invisibly without drawing anything.</p>
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="https://rdrr.io/pkg/DescToolsX/man/desc.html" class="external-link">desc</a></code>, <code><a href="plotAssoc.html">plotAssoc</a></code>,
 <code><a href="plotHeatmap.html">plotHeatmap</a></code>, <code><a href="plotMosaic.html">plotMosaic</a></code>,
-<code><a href="https://rdrr.io/r/graphics/spineplot.html" class="external-link">spineplot</a></code>, <code><a href="getTheme.html">getTheme</a></code></p>
+<code><a href="https://rdrr.io/r/graphics/spineplot.html" class="external-link">spineplot</a></code></p>
 <p>Other plot.s3:
 <code><a href="plot.BlandAltman.html">plot.BlandAltman()</a></code>,
 <code><a href="plot.Desc.qn.html">plot.Desc.qn()</a></code>,

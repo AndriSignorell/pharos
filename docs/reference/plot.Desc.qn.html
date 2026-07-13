@@ -13,7 +13,7 @@ a numeric/categorical pair. Five panel types are available, selectable
 
     <a class="navbar-brand me-2" href="../index.html">lyra</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.930</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.933</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,12 +67,12 @@ a numeric/categorical pair. Five panel types are available, selectable
 
 
 <dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
-<dd><p>An object of class <code>"Desc.qn"</code>, as returned by
+<dd><p>an object of class <code>"Desc.qn"</code>, as returned by
 <code><a href="https://rdrr.io/pkg/DescToolsX/man/desc.html" class="external-link">desc()</a></code> for a numeric-categorical pair.</p></dd>
 
 
 <dt id="arg-main">main<a class="anchor" aria-label="anchor" href="#arg-main"></a></dt>
-<dd><p>Main title. <code>NULL</code> (default) derives a title per panel
+<dd><p>main title. <code>NULL</code> (default) derives a title per panel
 from the variable names and the panel type (e.g.
 <code>"area ~ delivery_min (Spineplot)"</code>). <code>""</code>, <code>NA</code>, or
 <code>FALSE</code> suppress the title and compact the top margin. Any other
@@ -145,7 +145,7 @@ every selected panel.</p></dd>
 
 
 <dt id="arg-box">box<a class="anchor" aria-label="anchor" href="#arg-box"></a></dt>
-<dd><p>Controls the plot frame for panels 4 and 5.
+<dd><p>controls the plot frame for panels 4 and 5.
 <code>.useTheme</code> (default) follows the active theme
 (<code>getTheme()$box</code>); <code>FALSE</code>/<code>NA</code> suppress it; a named
 list overrides <code><a href="https://rdrr.io/r/graphics/box.html" class="external-link">box()</a></code> arguments. Panels 1/2
@@ -158,7 +158,7 @@ argument.</p></dd>
 
 
 <dt id="arg-legend">legend<a class="anchor" aria-label="anchor" href="#arg-legend"></a></dt>
-<dd><p>Controls the legend for panel 3 (grouped density curves).
+<dd><p>controls the legend for panel 3 (grouped density curves).
 <code>TRUE</code> (default) draws a legend with the group levels.
 <code>FALSE</code>/<code>NA</code> suppresses it. A named list overrides arguments
 forwarded to <code><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></code>. Has no effect on the
@@ -166,7 +166,7 @@ other panels.</p></dd>
 
 
 <dt id="arg-stamp">stamp<a class="anchor" aria-label="anchor" href="#arg-stamp"></a></dt>
-<dd><p>Controls the corner stamp. <code>.useTheme</code> (default)
+<dd><p>controls the corner stamp. <code>.useTheme</code> (default)
 resolves to <code>getTheme()$stamp</code>, drawn once after all selected
 panels (panels 3/4 delegate to <code><a href="plotDens.html">plotDens</a></code>/
 <code><a href="plotBox.html">plotBox</a></code>, whose own stamp is suppressed internally to
@@ -196,8 +196,7 @@ clipped regardless of <code>which</code>.</p>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="https://rdrr.io/pkg/DescToolsX/man/desc.html" class="external-link">desc</a></code>, <code><a href="plotDens.html">plotDens</a></code>, <code><a href="plotBox.html">plotBox</a></code>,
-<code><a href="https://rdrr.io/r/graphics/cdplot.html" class="external-link">cdplot</a></code>, <code><a href="https://rdrr.io/r/graphics/spineplot.html" class="external-link">spineplot</a></code>,
-<code><a href="getTheme.html">getTheme</a></code></p>
+<code><a href="https://rdrr.io/r/graphics/cdplot.html" class="external-link">cdplot</a></code>, <code><a href="https://rdrr.io/r/graphics/spineplot.html" class="external-link">spineplot</a></code></p>
 <p>Other plot.s3:
 <code><a href="plot.BlandAltman.html">plot.BlandAltman()</a></code>,
 <code><a href="plot.Desc.table.html">plot.Desc.table()</a></code>,

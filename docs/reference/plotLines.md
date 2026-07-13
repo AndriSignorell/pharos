@@ -34,75 +34,75 @@ plotLines(
 
 - x:
 
-  Numeric vector, matrix or data frame. If `y` is missing, `x` is
+  numeric vector, matrix or data frame. If `y` is missing, `x` is
   interpreted as a matrix of series where rows correspond to x positions
   and columns to individual lines.
 
 - y:
 
-  Optional numeric vector or matrix giving the y-values. If supplied,
+  optional numeric vector or matrix giving the y-values. If supplied,
   `x` is interpreted as the x-coordinates.
 
 - main:
 
-  Main title of the plot. `NULL` (default) derives a title from the
+  main title of the plot. `NULL` (default) derives a title from the
   input. `""`, `NA`, or `FALSE` suppress the title and compact the top
   margin.
 
 - xlab, ylab:
 
-  Labels for the axes.
+  labels for the axes.
 
 - xlim, ylim:
 
-  Limits for the axes.
+  limits for the axes.
 
 - xaxt, yaxt:
 
-  Axis specification passed to
+  axis specification passed to
   [`axis`](https://rdrr.io/r/graphics/axis.html).
 
 - lty:
 
-  Line type(s).
+  line type(s).
 
 - lwd:
 
-  Line width(s).
+  line width(s).
 
 - col:
 
-  Colours for the lines. `.useTheme` (default) resolves to
+  colours for the lines. `.useTheme` (default) resolves to
   `pal(getTheme()$palette)`, the active theme's qualitative palette.
 
 - points:
 
-  Controls drawing of points on the lines. `FALSE` (default) suppresses
+  controls drawing of points on the lines. `FALSE` (default) suppresses
   points; `TRUE` draws with theme defaults (`getTheme()$points`); a
   named list overrides individual elements (`pch`, `col`, `bg`, `cex`).
 
 - grid:
 
-  Controls drawing of the background grid. `.useTheme` (default) follows
+  controls drawing of the background grid. `.useTheme` (default) follows
   the active theme (`getTheme()$grid`). `TRUE`/`FALSE`/`NA`, or a named
   list, as for [`grid`](https://rdrr.io/r/graphics/grid.html).
 
 - legend:
 
-  Controls the legend. `TRUE` (default) draws an inline legend via
+  controls the legend. `TRUE` (default) draws an inline legend via
   `textLegend` at the last value of each series. `FALSE`/`NA` suppresses
   it. A list overrides legend arguments.
 
 - stamp:
 
-  Controls the corner stamp. `.useTheme` (default) resolves to
+  controls the corner stamp. `.useTheme` (default) resolves to
   `getTheme()$stamp`. `TRUE`/`FALSE`/`NULL`, a string, or a named list
   for
   [`stamp()`](https://andrisignorell.github.io/aurora/reference/stamp.md).
 
 - ...:
 
-  Additional graphical parameters passed to
+  additional graphical parameters passed to
   [`par`](https://rdrr.io/r/graphics/par.html) via `.applyParFromDots()`
   and to the plotting functions.
 

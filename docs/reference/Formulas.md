@@ -11,14 +11,14 @@ Common formula-based interface shared by multiple functions.
 
 - data:
 
-  An optional matrix or data frame (or similar; see
+  an optional matrix or data frame (or similar; see
   [`model.frame`](https://rdrr.io/r/stats/model.frame.html)) containing
   the variables in the formula. By default the variables are taken from
   `environment(formula)`.
 
 - subset:
 
-  An optional vector specifying a subset of observations to be used in
+  an optional vector specifying a subset of observations to be used in
   the analysis.
 
 - na.action:

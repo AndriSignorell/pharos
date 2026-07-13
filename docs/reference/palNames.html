@@ -9,7 +9,7 @@ optionally filtered by type."><meta property="og:image" content="https://andrisi
 
     <a class="navbar-brand me-2" href="../index.html">lyra</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.930</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.933</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,7 +30,7 @@ optionally filtered by type."><meta property="og:image" content="https://andrisi
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>List Available Palette Names</h1>
-      <small class="dont-index">Source: <a href="https://github.com/AndriSignorell/lyra/blob/HEAD/R/Pal.R" class="external-link"><code>R/Pal.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/AndriSignorell/lyra/blob/HEAD/R/pal.R" class="external-link"><code>R/pal.R</code></a></small>
       <div class="d-none name"><code>palNames.Rd</code></div>
     </div>
 
@@ -60,50 +60,39 @@ or <code>"discrete"</code>.</p></dd>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="pal.html">pal</a></code></p>
-<p>Other color:
-<code><a href="addOpacity.html">addOpacity()</a></code>,
-<code><a href="colToOpaque.html">colToOpaque()</a></code>,
-<code><a href="colToRGB.html">colToRGB()</a></code>,
-<code><a href="contrastColor.html">contrastColor()</a></code>,
-<code><a href="darken.html">darken()</a></code>,
-<code><a href="findColor.html">findColor()</a></code>,
-<code><a href="grayscale.html">grayscale()</a></code>,
+<p>Other color.palettes:
 <code><a href="hcol.html">hcol()</a></code>,
-<code><a href="hexToRGB.html">hexToRGB()</a></code>,
-<code><a href="lighten.html">lighten()</a></code>,
-<code><a href="mixColors.html">mixColors()</a></code>,
-<code><a href="pal.html">pal()</a></code>,
-<code><a href="setBackCol.html">setBackCol()</a></code></p></div>
+<code><a href="pal.html">pal()</a></code></p></div>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">palNames</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "red-black"     "RedBlackGreen"  "SteelblueWhite" "RedWhiteGreen" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "RedWhiteBlue0"  "RedWhiteBlue1"  "RedWhiteBlue2"  "RedWhiteBlue3" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "RedGreen1"      "Helsana"        "Helsana1"       "Helsana2"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "Tibco"          "Spring"         "Soap"           "Maiden"        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [17] "Dark"           "Accent"         "Pastel"         "Fragile"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [21] "Big"            "GrandBudapest"  "Moonrise1"      "Royal1"        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [25] "Moonrise2"      "Cavalcanti"     "Royal2"         "GrandBudapest2"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [29] "Moonrise3"      "Chevalier"      "Zissou"         "FantasticFox"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [33] "Darjeeling"     "Rushmore"       "BottleRocket"   "Darjeeling2"   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [37] "Tequila"        "Long"           "Night"          "Dawn"          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [41] "Noon"           "Light"         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "red-black"        "red-black-green"  "steelblue-white"  "red-white-green" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "red-white-blue-1" "red-white-blue-2" "red-white-blue-3" "red-white-blue-4"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "red-green-1"      "helsana"          "helsana-1"        "helsana-2"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "tibco"            "spring"           "soap"             "maiden"          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [17] "dark"             "accent"           "pastel"           "fragile"         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [21] "big"              "grand-budapest"   "moonrise-1"       "royal-1"         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [25] "moonrise-2"       "cavalcanti"       "royal-2"          "grand-budapest-2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [29] "moonrise-3"       "chevalier"        "zissou"           "fantastic-fox"   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [33] "darjeeling"       "rushmore"         "bottle-rocket"    "darjeeling-2"    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [37] "tequila"          "long"             "night"            "dawn"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [41] "noon"             "light"           </span>
 <span class="r-in"><span><span class="fu">palNames</span><span class="op">(</span><span class="st">"continuous"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "red-black"     "RedBlackGreen"  "SteelblueWhite" "RedWhiteGreen" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5] "RedWhiteBlue0"  "RedWhiteBlue1"  "RedWhiteBlue2"  "RedWhiteBlue3" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [9] "RedGreen1"     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "red-black"        "red-black-green"  "steelblue-white"  "red-white-green" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5] "red-white-blue-1" "red-white-blue-2" "red-white-blue-3" "red-white-blue-4"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [9] "red-green-1"     </span>
 <span class="r-in"><span><span class="fu">palNames</span><span class="op">(</span><span class="st">"discrete"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "Helsana"        "Helsana1"       "Helsana2"       "Tibco"         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "Spring"         "Soap"           "Maiden"         "Dark"          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "Accent"         "Pastel"         "Fragile"        "Big"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "GrandBudapest"  "Moonrise1"      "Royal1"         "Moonrise2"     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [17] "Cavalcanti"     "Royal2"         "GrandBudapest2" "Moonrise3"     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [21] "Chevalier"      "Zissou"         "FantasticFox"   "Darjeeling"    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [25] "Rushmore"       "BottleRocket"   "Darjeeling2"    "Tequila"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [29] "Long"           "Night"          "Dawn"           "Noon"          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [33] "Light"         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "helsana"          "helsana-1"        "helsana-2"        "tibco"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "spring"           "soap"             "maiden"           "dark"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "accent"           "pastel"           "fragile"          "big"             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "grand-budapest"   "moonrise-1"       "royal-1"          "moonrise-2"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [17] "cavalcanti"       "royal-2"          "grand-budapest-2" "moonrise-3"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [21] "chevalier"        "zissou"           "fantastic-fox"    "darjeeling"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [25] "rushmore"         "bottle-rocket"    "darjeeling-2"     "tequila"         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [29] "long"             "night"            "dawn"             "noon"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [33] "light"           </span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

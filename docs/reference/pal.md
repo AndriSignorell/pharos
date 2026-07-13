@@ -13,7 +13,7 @@ exactly `n` colors regardless of their base size:
 ## Usage
 
 ``` r
-pal(name, n = NA, alpha = 1)
+pal(name, n = NA, opacity = 1)
 
 # S3 method for class 'Palette'
 plot(x, cex = 2.5, border = "grey70", ...)
@@ -28,14 +28,14 @@ plot(x, cex = 2.5, border = "grey70", ...)
   [`palNames()`](https://andrisignorell.github.io/aurora/reference/palNames.md).
   If missing, returns the palette named in the active theme
   (`getTheme()$palette`, see
-  [`getTheme`](https://andrisignorell.github.io/aurora/reference/getTheme.md)).
+  [theme](https://andrisignorell.github.io/aurora/reference/theme.md)).
 
 - n:
 
   integer, number of colors to return. Default `NA` returns the colors
   as contained in the palette.
 
-- alpha:
+- opacity:
 
   numeric in \\\[0, 1\]\\, opacity. Default `1` (opaque). Applied via
   [`adjustcolor`](https://rdrr.io/r/grDevices/adjustcolor.html).
@@ -67,20 +67,9 @@ a character vector of `n` hex color codes of class
 [`colorRampPalette`](https://rdrr.io/r/grDevices/colorRamp.html),
 [`adjustcolor`](https://rdrr.io/r/grDevices/adjustcolor.html)
 
-Other color:
-[`addOpacity()`](https://andrisignorell.github.io/aurora/reference/addOpacity.md),
-[`colToOpaque()`](https://andrisignorell.github.io/aurora/reference/colToOpaque.md),
-[`colToRGB()`](https://andrisignorell.github.io/aurora/reference/colToRGB.md),
-[`contrastColor()`](https://andrisignorell.github.io/aurora/reference/contrastColor.md),
-[`darken()`](https://andrisignorell.github.io/aurora/reference/darken.md),
-[`findColor()`](https://andrisignorell.github.io/aurora/reference/findColor.md),
-[`grayscale()`](https://andrisignorell.github.io/aurora/reference/grayscale.md),
+Other color.palettes:
 [`hcol()`](https://andrisignorell.github.io/aurora/reference/hcol.md),
-[`hexToRGB()`](https://andrisignorell.github.io/aurora/reference/hexToRGB.md),
-[`lighten()`](https://andrisignorell.github.io/aurora/reference/lighten.md),
-[`mixColors()`](https://andrisignorell.github.io/aurora/reference/mixColors.md),
-[`palNames()`](https://andrisignorell.github.io/aurora/reference/palNames.md),
-[`setBackCol()`](https://andrisignorell.github.io/aurora/reference/setBackCol.md)
+[`palNames()`](https://andrisignorell.github.io/aurora/reference/palNames.md)
 
 ## Examples
 
@@ -92,20 +81,20 @@ pal()
 #>     slate      sand     brown      plum 
 #> "#5F6F9A" "#E6E2D3" "#6E5A3C" "#5B2A45" 
 #> attr(,"name")
-#> [1] "Helsana"
+#> [1] "helsana"
 #> attr(,"class")
 #> [1] "Palette"   "character"
 
 # discrete palette — 3 maximally contrasting colors
-pal("Dark", n = 3)
+pal("dark", n = 3)
 #> [1] "#1B9E77" "#E7298A" "#666666"
 #> attr(,"name")
-#> [1] "Dark"
+#> [1] "dark"
 #> attr(,"class")
 #> [1] "Palette"   "character"
 
 # continuous gradient — 50 colors
-pal("RedWhiteBlue1", n = 50)
+pal("red-white-blue-2", n = 50)
 #>  [1] "#67001F" "#760421" "#850923" "#940E26" "#A41328" "#B2192B" "#BA2832"
 #>  [8] "#C13639" "#C84540" "#D05447" "#D7624F" "#DD7059" "#E37E64" "#E98D6F"
 #> [15] "#EF9B7A" "#F4A886" "#F6B394" "#F8BEA2" "#FAC9B0" "#FBD4BE" "#FDDDCB"
@@ -115,7 +104,7 @@ pal("RedWhiteBlue1", n = 50)
 #> [43] "#2F79B5" "#2870B1" "#2166AC" "#1B5C9E" "#16518E" "#10467F" "#0A3B70"
 #> [50] "#053061"
 #> attr(,"name")
-#> [1] "RedWhiteBlue1"
+#> [1] "red-white-blue-2"
 #> attr(,"class")
 #> [1] "Palette"   "character"
 
@@ -129,24 +118,24 @@ pal(1, n = 10)
 #> [1] "Palette"   "character"
 
 # with transparency
-pal("Helsana", n = 5, alpha = 0.5)
+pal("helsana", n = 5, opacity = 0.5)
 #> [1] "#8296C480" "#FED03780" "#B3BA1280" "#5F6F9A80" "#5B2A4580"
 #> attr(,"name")
-#> [1] "Helsana"
+#> [1] "helsana"
 #> attr(,"class")
 #> [1] "Palette"   "character"
 
 # show all names
 palNames()
-#>  [1] "red-black"     "RedBlackGreen"  "SteelblueWhite" "RedWhiteGreen" 
-#>  [5] "RedWhiteBlue0"  "RedWhiteBlue1"  "RedWhiteBlue2"  "RedWhiteBlue3" 
-#>  [9] "RedGreen1"      "Helsana"        "Helsana1"       "Helsana2"      
-#> [13] "Tibco"          "Spring"         "Soap"           "Maiden"        
-#> [17] "Dark"           "Accent"         "Pastel"         "Fragile"       
-#> [21] "Big"            "GrandBudapest"  "Moonrise1"      "Royal1"        
-#> [25] "Moonrise2"      "Cavalcanti"     "Royal2"         "GrandBudapest2"
-#> [29] "Moonrise3"      "Chevalier"      "Zissou"         "FantasticFox"  
-#> [33] "Darjeeling"     "Rushmore"       "BottleRocket"   "Darjeeling2"   
-#> [37] "Tequila"        "Long"           "Night"          "Dawn"          
-#> [41] "Noon"           "Light"         
+#>  [1] "red-black"        "red-black-green"  "steelblue-white"  "red-white-green" 
+#>  [5] "red-white-blue-1" "red-white-blue-2" "red-white-blue-3" "red-white-blue-4"
+#>  [9] "red-green-1"      "helsana"          "helsana-1"        "helsana-2"       
+#> [13] "tibco"            "spring"           "soap"             "maiden"          
+#> [17] "dark"             "accent"           "pastel"           "fragile"         
+#> [21] "big"              "grand-budapest"   "moonrise-1"       "royal-1"         
+#> [25] "moonrise-2"       "cavalcanti"       "royal-2"          "grand-budapest-2"
+#> [29] "moonrise-3"       "chevalier"        "zissou"           "fantastic-fox"   
+#> [33] "darjeeling"       "rushmore"         "bottle-rocket"    "darjeeling-2"    
+#> [37] "tequila"          "long"             "night"            "dawn"            
+#> [41] "noon"             "light"           
 ```

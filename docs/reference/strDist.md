@@ -20,11 +20,11 @@ strDist(
 
 - x:
 
-  character vector, first string.
+  character vector, first string
 
 - y:
 
-  character vector, second string.
+  character vector, second string
 
 - method:
 
@@ -34,16 +34,16 @@ strDist(
 
 - mismatch:
 
-  numeric, distance value for a mismatch between symbols.
+  numeric, distance value for a mismatch between symbols
 
 - gap:
 
-  numeric, distance value for inserting a gap.
+  numeric, distance value for inserting a gap
 
 - ignoreCase:
 
   if `FALSE` (default), the distance measure will be case sensitive and
-  if `TRUE`, case is ignored.
+  if `TRUE`, case is ignored
 
 ## Value
 
@@ -54,7 +54,7 @@ strDist(
 
 The function computes the Hamming and the Levenshtein (edit) distance of
 two given strings (sequences). The Hamming distance between two vectors
-is the number mismatches between corresponding entries.
+is the number of mismatches between corresponding entries.
 
 In case of the Hamming distance the two strings must have the same
 length.
@@ -62,11 +62,11 @@ length.
 In case of the Levenshtein (edit) distance a scoring and a trace-back
 matrix are computed and are saved as attributes `"ScoringMatrix"` and
 `"TraceBackMatrix"`. The numbers in the trace-back matrix reflect
-insertion of a gap in string `y` (1), match/missmatch (2), and insertion
+insertion of a gap in string `y` (1), match/mismatch (2), and insertion
 of a gap in string `x` (3).
 
 The edit distance is useful, but normalizing the distance to fall within
-the interval `[0,1]` is preferred because it is somewhat diffcult to
+the interval `[0,1]` is preferred because it is somewhat difficult to
 judge whether an LD of for example 4 suggests a high or low degree of
 similarity. The method `"normlevenshtein"` for normalizing the LD is
 sensitive to this scenario. In this implementation, the Levenshtein
@@ -86,6 +86,8 @@ same; the closer to 0, the less certain.
 For distances between strings and for string alignments see also
 Bioconductor package Biostrings
 
+Based on code by Matthias Kohl, adapted to conform to package standards.
+
 ## References
 
 R. Merkl and S. Waack (2009) *Bioinformatik Interaktiv*. Wiley.
@@ -98,29 +100,8 @@ Psychometric Analyses*
 [`adist`](https://rdrr.io/r/utils/adist.html),
 [`dist`](https://rdrr.io/r/stats/dist.html)
 
-Other string:
-[`mgsub()`](https://andrisignorell.github.io/aurora/reference/mgsub.md),
-[`strAbbr()`](https://andrisignorell.github.io/aurora/reference/strAbbr.md),
-[`strAlign()`](https://andrisignorell.github.io/aurora/reference/strAlign.md),
-[`strCap()`](https://andrisignorell.github.io/aurora/reference/strCap.md),
-[`strChop()`](https://andrisignorell.github.io/aurora/reference/strChop.md),
-[`strCountW()`](https://andrisignorell.github.io/aurora/reference/strCountW.md),
-[`strExtract()`](https://andrisignorell.github.io/aurora/reference/strExtract.md),
-[`strExtractBetween()`](https://andrisignorell.github.io/aurora/reference/strExtractBetween.md),
-[`strIsNumeric()`](https://andrisignorell.github.io/aurora/reference/strIsNumeric.md),
-[`strLen()`](https://andrisignorell.github.io/aurora/reference/strLen.md),
-[`strPad()`](https://andrisignorell.github.io/aurora/reference/strPad.md),
-[`strPos()`](https://andrisignorell.github.io/aurora/reference/strPos.md),
-[`strRev()`](https://andrisignorell.github.io/aurora/reference/strRev.md),
-[`strSpell()`](https://andrisignorell.github.io/aurora/reference/strSpell.md),
-[`strSplit()`](https://andrisignorell.github.io/aurora/reference/strSplit.md),
-[`strTrim()`](https://andrisignorell.github.io/aurora/reference/strTrim.md),
-[`strTrunc()`](https://andrisignorell.github.io/aurora/reference/strTrunc.md),
-[`strVal()`](https://andrisignorell.github.io/aurora/reference/strVal.md)
-
-## Author
-
-Matthias Kohl <Matthias.Kohl@stamats.de>
+[string-overview](https://andrisignorell.github.io/aurora/reference/string-overview.md)
+for an overview of all string utilities in lyra.
 
 ## Examples
 

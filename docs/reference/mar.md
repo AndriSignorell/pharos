@@ -14,12 +14,12 @@ mar(bottom = NULL, left = NULL, top = NULL, right = NULL, outer = FALSE)
 
 - bottom, left, top, right:
 
-  Numeric scalars specifying the margin size (in lines) for each side.
+  numeric scalars specifying the margin size (in lines) for each side.
   If `NULL`, the current value is retained.
 
 - outer:
 
-  Logical; if `TRUE`, outer margins (`oma`) are used instead of inner
+  logical; if `TRUE`, outer margins (`oma`) are used instead of inner
   margins (`mar`).
 
 ## Value
@@ -42,23 +42,13 @@ For restoring graphical parameters, the recommended base R approach is:
 
 ## See also
 
-Other graphics.utils:
+Other graphics.layout:
 [`abcCoords()`](https://andrisignorell.github.io/aurora/reference/abcCoords.md),
+[`axTicks`](https://andrisignorell.github.io/aurora/reference/axTicks.md),
 [`axisBreak()`](https://andrisignorell.github.io/aurora/reference/axisBreak.md),
-[`barText()`](https://andrisignorell.github.io/aurora/reference/barText.md),
-[`boxedText()`](https://andrisignorell.github.io/aurora/reference/boxedText.md),
-[`colLegend()`](https://andrisignorell.github.io/aurora/reference/colLegend.md),
-[`degToRad()`](https://andrisignorell.github.io/aurora/reference/degToRad.md),
-[`errBars()`](https://andrisignorell.github.io/aurora/reference/errBars.md),
-[`lineSep()`](https://andrisignorell.github.io/aurora/reference/lineSep.md),
+[`isValidPlotRegion()`](https://andrisignorell.github.io/aurora/reference/isValidPlotRegion.md),
 [`lineToUser()`](https://andrisignorell.github.io/aurora/reference/lineToUser.md),
-[`lines.lm()`](https://andrisignorell.github.io/aurora/reference/linesLm.md),
-[`preview()`](https://andrisignorell.github.io/aurora/reference/preview.md),
-[`spreadOut()`](https://andrisignorell.github.io/aurora/reference/spreadOut.md),
-[`stamp()`](https://andrisignorell.github.io/aurora/reference/stamp.md),
-[`textLegend()`](https://andrisignorell.github.io/aurora/reference/textLegend.md),
-[`titleRect()`](https://andrisignorell.github.io/aurora/reference/titleRect.md),
-[`unit()`](https://andrisignorell.github.io/aurora/reference/unit.md)
+[`spreadOut()`](https://andrisignorell.github.io/aurora/reference/spreadOut.md)
 
 ## Examples
 

@@ -37,23 +37,23 @@ plotBag(
 
 - main, xlab, ylab:
 
-  Character strings for plot annotations.
+  character strings for plot annotations.
 
 - xlim, ylim:
 
-  Numeric vectors of length 2 specifying axis limits.
+  numeric vectors of length 2 specifying axis limits.
 
 - factor:
 
-  Inflation factor for the loop (default: 3).
+  inflation factor for the loop (default: 3).
 
 - eps:
 
-  Numeric tolerance used in depth computation and geometry.
+  numeric tolerance used in depth computation and geometry.
 
 - dither:
 
-  Logical; whether to add small noise to break ties.
+  logical; whether to add small noise to break ties.
 
 - points, bag, loop, out, median, grid, box:
 
@@ -61,11 +61,11 @@ plotBag(
 
 - stamp:
 
-  Optional stamp passed to `.withGraphicsState()`.
+  optional stamp passed to `.withGraphicsState()`.
 
 - ...:
 
-  Additional graphical parameters passed to
+  additional graphical parameters passed to
   [`par()`](https://rdrr.io/r/graphics/par.html).
 
 ## Value

@@ -1,7 +1,7 @@
 # Mark a character vector as HTML
 
 Tags a character vector with the S3 class `"html"` so that it prints via
-[`preview.html`](https://andrisignorell.github.io/lyra/reference/preview.html.md)
+[`preview.html`](https://andrisignorell.github.io/aurora/reference/preview.html.md)
 as readable text instead of as a raw character vector.
 
 ## Usage
@@ -22,12 +22,11 @@ as.html(x)
 
 ## See also
 
-[`preview.html`](https://andrisignorell.github.io/lyra/reference/preview.html.md),
-[`toHtmlTable`](https://andrisignorell.github.io/lyra/reference/toHtmlTable.md)
-
 Other html:
-[`as.img()`](https://andrisignorell.github.io/lyra/reference/as.img.md),
-[`toHtmlTable()`](https://andrisignorell.github.io/lyra/reference/toHtmlTable.md)
+[`as.img()`](https://andrisignorell.github.io/aurora/reference/as.img.md),
+[`htmlNotation`](https://andrisignorell.github.io/aurora/reference/htmlNotation.md),
+[`htmlSubscript`](https://andrisignorell.github.io/aurora/reference/htmlSubscript.md),
+[`toHtmlTable()`](https://andrisignorell.github.io/aurora/reference/toHtmlTable.md)
 
 ## Examples
 

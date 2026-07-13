@@ -9,7 +9,7 @@ Optionally includes labels for radii and angles."><meta property="og:image" cont
 
     <a class="navbar-brand me-2" href="../index.html">lyra</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.930</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.933</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,7 +62,7 @@ Optionally includes labels for radii and angles.</p>
 
 
 <dl><dt id="arg-nr">nr<a class="anchor" aria-label="anchor" href="#arg-nr"></a></dt>
-<dd><p>Numeric or vector controlling radial grid lines:</p><dl><dt><code>NULL</code></dt>
+<dd><p>numeric or vector controlling radial grid lines:</p><dl><dt><code>NULL</code></dt>
 <dd><p>Uses default "pretty" axis values.</p></dd>
 
 <dt>single numeric</dt>
@@ -79,7 +79,7 @@ Optionally includes labels for radii and angles.</p>
 
 
 <dt id="arg-ntheta">ntheta<a class="anchor" aria-label="anchor" href="#arg-ntheta"></a></dt>
-<dd><p>Numeric or vector controlling angular grid lines:</p><dl><dt><code>NULL</code></dt>
+<dd><p>numeric or vector controlling angular grid lines:</p><dl><dt><code>NULL</code></dt>
 <dd><p>Uses 12 equally spaced angles.</p></dd>
 
 <dt>single numeric</dt>
@@ -96,48 +96,48 @@ Optionally includes labels for radii and angles.</p>
 
 
 <dt id="arg-col">col<a class="anchor" aria-label="anchor" href="#arg-col"></a></dt>
-<dd><p>Color of grid lines.</p></dd>
+<dd><p>color of grid lines.</p></dd>
 
 
 <dt id="arg-lty">lty<a class="anchor" aria-label="anchor" href="#arg-lty"></a></dt>
-<dd><p>Line type for grid lines.</p></dd>
+<dd><p>line type for grid lines.</p></dd>
 
 
 <dt id="arg-lwd">lwd<a class="anchor" aria-label="anchor" href="#arg-lwd"></a></dt>
-<dd><p>Line width for grid lines.</p></dd>
+<dd><p>line width for grid lines.</p></dd>
 
 
 <dt id="arg-rlabels">rlabels<a class="anchor" aria-label="anchor" href="#arg-rlabels"></a></dt>
-<dd><p>Optional labels for radial grid lines (excluding zero).
+<dd><p>optional labels for radial grid lines (excluding zero).
 If <code>NULL</code>, labels are generated automatically.
 Use <code>NA</code> to suppress labels.</p></dd>
 
 
 <dt id="arg-alabels">alabels<a class="anchor" aria-label="anchor" href="#arg-alabels"></a></dt>
-<dd><p>Optional labels for angular grid lines.
+<dd><p>optional labels for angular grid lines.
 If <code>NULL</code>, labels are generated automatically (degrees or radians).
 Use <code>NA</code> to suppress labels.</p></dd>
 
 
 <dt id="arg-lblradians">lblradians<a class="anchor" aria-label="anchor" href="#arg-lblradians"></a></dt>
-<dd><p>Logical; if <code>TRUE</code>, angle labels are shown in radians,
+<dd><p>logical; if <code>TRUE</code>, angle labels are shown in radians,
 otherwise in degrees.</p></dd>
 
 
 <dt id="arg-cex-lab">cex.lab<a class="anchor" aria-label="anchor" href="#arg-cex-lab"></a></dt>
-<dd><p>Character expansion factor for labels.</p></dd>
+<dd><p>character expansion factor for labels.</p></dd>
 
 
 <dt id="arg-las">las<a class="anchor" aria-label="anchor" href="#arg-las"></a></dt>
-<dd><p>Integer controlling label orientation (as in <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code>).</p></dd>
+<dd><p>integer controlling label orientation (as in <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code>).</p></dd>
 
 
 <dt id="arg-adj">adj<a class="anchor" aria-label="anchor" href="#arg-adj"></a></dt>
-<dd><p>Numeric vector specifying text justification.</p></dd>
+<dd><p>numeric vector specifying text justification.</p></dd>
 
 
 <dt id="arg-dist">dist<a class="anchor" aria-label="anchor" href="#arg-dist"></a></dt>
-<dd><p>Numeric distance from origin for angular labels.</p></dd>
+<dd><p>numeric distance from origin for angular labels.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -155,15 +155,10 @@ and <code>dist</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p>Other geometry:
-<code><a href="arc.html">arc()</a></code>,
-<code><a href="band.html">band()</a></code>,
-<code><a href="bezier.html">bezier()</a></code>,
+    <div class="dont-index"><p><code><a href="https://rdrr.io/r/graphics/grid.html" class="external-link">grid()</a></code></p>
+<p>Other graphics.setup:
 <code><a href="canvas.html">canvas()</a></code>,
-<code><a href="polygon.html">polygon()</a></code>,
-<code><a href="rotate.html">rotate()</a></code>,
-<code><a href="shade.html">shade()</a></code>,
-<code><a href="transformXY.html">transformXY()</a></code></p></div>
+<code><a href="setBackCol.html">setBackCol()</a></code></p></div>
     </div>
 
     <div class="section level2">
@@ -179,6 +174,7 @@ and <code>dist</code>.</p>
 <span class="r-in"><span><span class="co"># suppress labels</span></span></span>
 <span class="r-in"><span><span class="fu">polarGrid</span><span class="op">(</span>rlabels <span class="op">=</span> <span class="cn">NA</span>, alabels <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="polarGrid-2.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

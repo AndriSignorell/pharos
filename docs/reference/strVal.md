@@ -19,23 +19,23 @@ strVal(
 
 - x:
 
-  A character vector.
+  a character vector
 
 - collapse:
 
-  Logical; if `TRUE`, all extracted numbers per element of `x` are
+  logical; if `TRUE`, all extracted numbers per element of `x` are
   concatenated into a single string. Otherwise, a list of character
   vectors is returned.
 
 - output:
 
-  Character; controls the type of the returned values. `"character"`
+  character; controls the type of the returned values. `"character"`
   (default) returns strings; `"numeric"` coerces extracted values to
   numeric.
 
 - dec:
 
-  Character; decimal separator used in the input. Defaults to
+  character; decimal separator used in the input. Defaults to
   `getOption("OutDec")`.
 
 ## Value
@@ -61,25 +61,8 @@ accordingly before coercion.
 [`as.numeric`](https://rdrr.io/r/base/numeric.html),
 [`stri_extract_all_regex`](https://rdrr.io/pkg/stringi/man/stri_extract.html)
 
-Other string:
-[`mgsub()`](https://andrisignorell.github.io/aurora/reference/mgsub.md),
-[`strAbbr()`](https://andrisignorell.github.io/aurora/reference/strAbbr.md),
-[`strAlign()`](https://andrisignorell.github.io/aurora/reference/strAlign.md),
-[`strCap()`](https://andrisignorell.github.io/aurora/reference/strCap.md),
-[`strChop()`](https://andrisignorell.github.io/aurora/reference/strChop.md),
-[`strCountW()`](https://andrisignorell.github.io/aurora/reference/strCountW.md),
-[`strDist()`](https://andrisignorell.github.io/aurora/reference/strDist.md),
-[`strExtract()`](https://andrisignorell.github.io/aurora/reference/strExtract.md),
-[`strExtractBetween()`](https://andrisignorell.github.io/aurora/reference/strExtractBetween.md),
-[`strIsNumeric()`](https://andrisignorell.github.io/aurora/reference/strIsNumeric.md),
-[`strLen()`](https://andrisignorell.github.io/aurora/reference/strLen.md),
-[`strPad()`](https://andrisignorell.github.io/aurora/reference/strPad.md),
-[`strPos()`](https://andrisignorell.github.io/aurora/reference/strPos.md),
-[`strRev()`](https://andrisignorell.github.io/aurora/reference/strRev.md),
-[`strSpell()`](https://andrisignorell.github.io/aurora/reference/strSpell.md),
-[`strSplit()`](https://andrisignorell.github.io/aurora/reference/strSplit.md),
-[`strTrim()`](https://andrisignorell.github.io/aurora/reference/strTrim.md),
-[`strTrunc()`](https://andrisignorell.github.io/aurora/reference/strTrunc.md)
+[string-overview](https://andrisignorell.github.io/aurora/reference/string-overview.md)
+for an overview of all string utilities in lyra.
 
 ## Examples
 

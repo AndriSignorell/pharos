@@ -26,10 +26,7 @@ available::available("playfair", browse = FALSE)
 available::available("clarity", browse = FALSE)
 
 pkgdown::build_site()
-lyra::mgsub()
-bedrock::mg
 
-par()
 
 rename_rda <- function(old_file, old_name, new_name, data_dir = "C:/temp/bedrock/data/") {
   e <- new.env()

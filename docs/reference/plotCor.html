@@ -11,7 +11,7 @@ and numeric labels inside the cells."><meta property="og:image" content="https:/
 
     <a class="navbar-brand me-2" href="../index.html">lyra</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.930</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.933</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,11 +73,11 @@ and numeric labels inside the cells.</p>
 
 
 <dt id="arg-main-xlab-ylab">main, xlab, ylab<a class="anchor" aria-label="anchor" href="#arg-main-xlab-ylab"></a></dt>
-<dd><p>Optional plot labels.</p></dd>
+<dd><p>optional plot labels.</p></dd>
 
 
 <dt id="arg-xax-yax">xax, yax<a class="anchor" aria-label="anchor" href="#arg-xax-yax"></a></dt>
-<dd><p>Controls drawing of the axes.</p>
+<dd><p>controls drawing of the axes.</p>
 <p>Supported values are</p><dl><dt><code>TRUE</code></dt>
 <dd><p>draw axis using default settings</p></dd>
 
@@ -92,27 +92,27 @@ and numeric labels inside the cells.</p>
 
 
 <dt id="arg-cluster">cluster<a class="anchor" aria-label="anchor" href="#arg-cluster"></a></dt>
-<dd><p>Logical; if <code>TRUE</code>, variables are reordered by
+<dd><p>logical; if <code>TRUE</code>, variables are reordered by
 hierarchical clustering to place similar correlations together.</p></dd>
 
 
 <dt id="arg-mincor">mincor<a class="anchor" aria-label="anchor" href="#arg-mincor"></a></dt>
-<dd><p>Numeric threshold; correlations with absolute value
+<dd><p>numeric threshold; correlations with absolute value
 smaller than this are suppressed (set to <code>NA</code>).</p></dd>
 
 
 <dt id="arg-triangle">triangle<a class="anchor" aria-label="anchor" href="#arg-triangle"></a></dt>
-<dd><p>Which part of the matrix to display.
+<dd><p>which part of the matrix to display.
 One of
 <code>"full"</code>, <code>"upper"</code>, or <code>"lower"</code>.</p></dd>
 
 
 <dt id="arg-diag">diag<a class="anchor" aria-label="anchor" href="#arg-diag"></a></dt>
-<dd><p>Logical; should the diagonal be displayed.</p></dd>
+<dd><p>logical; should the diagonal be displayed.</p></dd>
 
 
 <dt id="arg-col">col<a class="anchor" aria-label="anchor" href="#arg-col"></a></dt>
-<dd><p>Color palette used for the correlation values. <code>.useTheme</code>
+<dd><p>color palette used for the correlation values. <code>.useTheme</code>
 (default) builds a diverging ramp from <code>getTheme()$twin</code> - the
 active theme's two-color pair - through white: <code>twin[1]</code> at the
 negative end (\(-1\)), white at zero, <code>twin[2]</code> at the positive
@@ -120,7 +120,7 @@ end (\(+1\)).</p></dd>
 
 
 <dt id="arg-grid">grid<a class="anchor" aria-label="anchor" href="#arg-grid"></a></dt>
-<dd><p>Controls drawing of cell-separator grid lines at the
+<dd><p>controls drawing of cell-separator grid lines at the
 half-integer matrix boundaries (clipped to the matrix extent, so they
 never bleed into the margins). Can be:</p><ul><li><p><code>.useTheme</code> (default): follow the active theme
 (<code>getTheme()$grid$col</code>/<code>$lwd</code>)</p></li>
@@ -131,17 +131,17 @@ never bleed into the margins). Can be:</p><ul><li><p><code>.useTheme</code> (def
 
 
 <dt id="arg-box">box<a class="anchor" aria-label="anchor" href="#arg-box"></a></dt>
-<dd><p>Controls drawing of the plot box. <code>.useTheme</code> (default)
+<dd><p>controls drawing of the plot box. <code>.useTheme</code> (default)
 resolves to <code>getTheme()$box</code>. <code>TRUE</code>/<code>FALSE</code>/<code>NA</code>,
 or a named list, as for <code>grid</code>.</p></dd>
 
 
 <dt id="arg-legend">legend<a class="anchor" aria-label="anchor" href="#arg-legend"></a></dt>
-<dd><p>Logical; draw a color legend for the correlation scale.</p></dd>
+<dd><p>logical; draw a color legend for the correlation scale.</p></dd>
 
 
 <dt id="arg-text">text<a class="anchor" aria-label="anchor" href="#arg-text"></a></dt>
-<dd><p>Controls numeric labels drawn inside the matrix cells.</p>
+<dd><p>controls numeric labels drawn inside the matrix cells.</p>
 <p>Supported values are</p><dl><dt><code>FALSE</code></dt>
 <dd><p>no labels</p></dd>
 
@@ -156,7 +156,7 @@ or a named list, as for <code>grid</code>.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>Additional graphical parameters passed to
+<dd><p>additional graphical parameters passed to
 <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> and <code><a href="https://rdrr.io/r/graphics/image.html" class="external-link">image</a></code>.</p></dd>
 
 </dl></div>
@@ -187,7 +187,7 @@ clipped approach stays exact regardless of that padding.</p>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="https://rdrr.io/r/graphics/image.html" class="external-link">image</a></code>, <code><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></code>,
-<code><a href="getTheme.html">getTheme</a></code></p>
+<a href="theme.html">theme</a></p>
 <p>Other plot.bivariate:
 <code><a href="plotAssoc.html">plotAssoc()</a></code>,
 <code><a href="plotBag.html">plotBag()</a></code>,
@@ -233,7 +233,7 @@ clipped approach stays exact regardless of that padding.</p>
 <span class="r-in"><span>         args.colLegend<span class="op">=</span><span class="cn">NA</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">plotCor</span><span class="op">(</span><span class="va">m</span>, col<span class="op">=</span><span class="fu"><a href="pal.html">pal</a></span><span class="op">(</span><span class="st">"RedWhiteBlue1"</span>, <span class="fl">100</span><span class="op">)</span>, border<span class="op">=</span><span class="st">"grey"</span>,</span></span>
+<span class="r-in"><span><span class="fu">plotCor</span><span class="op">(</span><span class="va">m</span>, col<span class="op">=</span><span class="fu"><a href="pal.html">pal</a></span><span class="op">(</span><span class="st">"red-white-blue-1"</span>, <span class="fl">100</span><span class="op">)</span>, border<span class="op">=</span><span class="st">"grey"</span>,</span></span>
 <span class="r-in"><span>         args.colLegend<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>labels<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">.25</span><span class="op">)</span>, digits<span class="op">=</span><span class="fl">2</span><span class="op">)</span>, frame<span class="op">=</span><span class="st">"grey"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plotCor-8.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>

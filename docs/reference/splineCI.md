@@ -43,14 +43,14 @@ lines(
 
 - data:
 
-  An optional matrix or data frame (or similar; see
+  an optional matrix or data frame (or similar; see
   [`model.frame`](https://rdrr.io/r/stats/model.frame.html)) containing
   the variables in the formula. By default the variables are taken from
   `environment(formula)`.
 
 - subset:
 
-  An optional vector specifying a subset of observations to be used in
+  an optional vector specifying a subset of observations to be used in
   the analysis.
 
 - na.action:
@@ -100,8 +100,9 @@ Confidence bands are controlled via `bandArgs`. These arguments can be:
 [`loess`](https://rdrr.io/r/stats/loess.html),
 [`scatter.smooth`](https://rdrr.io/r/stats/scatter.smooth.html)
 
-Other plot.utils:
-[`axTicks`](https://andrisignorell.github.io/aurora/reference/axTicks.md)
+Other graphics.trendlines:
+[`lines.lm()`](https://andrisignorell.github.io/aurora/reference/linesLm.md),
+[`lines.loess()`](https://andrisignorell.github.io/aurora/reference/lines.loess.md)
 
 ## Examples
 

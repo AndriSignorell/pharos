@@ -13,11 +13,11 @@ strCap(x, method = c("first", "word", "title"))
 
 - x:
 
-  A character vector.
+  a character vector
 
 - method:
 
-  Character string specifying the capitalization method:
+  character string specifying the capitalization method:
 
   - `"first"`: capitalize the first letter of the string
 
@@ -42,25 +42,8 @@ remain lowercase unless they appear as part of another word.
 [`stri_trans_totitle`](https://rdrr.io/pkg/stringi/man/stri_trans_casemap.html),
 [`stri_split_boundaries`](https://rdrr.io/pkg/stringi/man/stri_split_boundaries.html)
 
-Other string:
-[`mgsub()`](https://andrisignorell.github.io/aurora/reference/mgsub.md),
-[`strAbbr()`](https://andrisignorell.github.io/aurora/reference/strAbbr.md),
-[`strAlign()`](https://andrisignorell.github.io/aurora/reference/strAlign.md),
-[`strChop()`](https://andrisignorell.github.io/aurora/reference/strChop.md),
-[`strCountW()`](https://andrisignorell.github.io/aurora/reference/strCountW.md),
-[`strDist()`](https://andrisignorell.github.io/aurora/reference/strDist.md),
-[`strExtract()`](https://andrisignorell.github.io/aurora/reference/strExtract.md),
-[`strExtractBetween()`](https://andrisignorell.github.io/aurora/reference/strExtractBetween.md),
-[`strIsNumeric()`](https://andrisignorell.github.io/aurora/reference/strIsNumeric.md),
-[`strLen()`](https://andrisignorell.github.io/aurora/reference/strLen.md),
-[`strPad()`](https://andrisignorell.github.io/aurora/reference/strPad.md),
-[`strPos()`](https://andrisignorell.github.io/aurora/reference/strPos.md),
-[`strRev()`](https://andrisignorell.github.io/aurora/reference/strRev.md),
-[`strSpell()`](https://andrisignorell.github.io/aurora/reference/strSpell.md),
-[`strSplit()`](https://andrisignorell.github.io/aurora/reference/strSplit.md),
-[`strTrim()`](https://andrisignorell.github.io/aurora/reference/strTrim.md),
-[`strTrunc()`](https://andrisignorell.github.io/aurora/reference/strTrunc.md),
-[`strVal()`](https://andrisignorell.github.io/aurora/reference/strVal.md)
+[string-overview](https://andrisignorell.github.io/aurora/reference/string-overview.md)
+for an overview of all string utilities in lyra.
 
 ## Examples
 

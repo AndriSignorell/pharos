@@ -46,15 +46,9 @@ The plot is created with these settings:
 
 ## See also
 
-Other geometry:
-[`arc()`](https://andrisignorell.github.io/lyra/reference/arc.md),
-[`band()`](https://andrisignorell.github.io/lyra/reference/band.md),
-[`bezier()`](https://andrisignorell.github.io/lyra/reference/bezier.md),
-[`polarGrid()`](https://andrisignorell.github.io/lyra/reference/polarGrid.md),
-[`polygon()`](https://andrisignorell.github.io/lyra/reference/polygon.md),
-[`rotate()`](https://andrisignorell.github.io/lyra/reference/rotate.md),
-[`shade()`](https://andrisignorell.github.io/lyra/reference/shade.md),
-[`transformXY()`](https://andrisignorell.github.io/lyra/reference/transformXY.md)
+Other graphics.setup:
+[`polarGrid()`](https://andrisignorell.github.io/aurora/reference/polarGrid.md),
+[`setBackCol()`](https://andrisignorell.github.io/aurora/reference/setBackCol.md)
 
 ## Examples
 
@@ -62,5 +56,6 @@ Other geometry:
 
 canvas(7)
 text(0, 0, "Hello world!", cex=5)
+
 
 ```

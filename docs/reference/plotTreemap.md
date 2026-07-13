@@ -23,16 +23,16 @@ plotTreemap(
 
 - x:
 
-  Numeric vector of positive values determining the rectangle sizes.
+  numeric vector of positive values determining the rectangle sizes.
 
 - groups:
 
-  Optional grouping variable. Values sharing the same group are placed
+  optional grouping variable. Values sharing the same group are placed
   within a common enclosing region.
 
 - area:
 
-  Controls the appearance of individual rectangles.
+  controls the appearance of individual rectangles.
 
   - `NULL` or `TRUE`: use defaults.
 
@@ -44,7 +44,7 @@ plotTreemap(
 
 - labels:
 
-  Controls the labels of individual rectangles.
+  controls the labels of individual rectangles.
 
   - `NULL` or `TRUE`: use default labels (`names(x)`).
 
@@ -56,22 +56,22 @@ plotTreemap(
 
 - groupArea:
 
-  Controls the appearance of enclosing group regions. Uses the same
+  controls the appearance of enclosing group regions. Uses the same
   conventions as `area`.
 
 - groupLabels:
 
-  Controls the labels of enclosing group regions. Uses the same
+  controls the labels of enclosing group regions. Uses the same
   conventions as `labels`. By default, group names are used when more
   than one group is present.
 
 - main:
 
-  Main title of the plot.
+  main title of the plot.
 
 - ...:
 
-  Additional graphical parameters passed to `.applyParFromDots()`.
+  additional graphical parameters passed to `.applyParFromDots()`.
 
 ## Value
 

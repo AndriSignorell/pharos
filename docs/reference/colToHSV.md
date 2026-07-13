@@ -5,18 +5,18 @@ Convert any valid R color specification to HSV.
 ## Usage
 
 ``` r
-colToHSV(col, alpha = FALSE)
+colToHSV(col, useAlphaChannel = FALSE)
 ```
 
 ## Arguments
 
 - col:
 
-  Vector of valid R colors.
+  vector of valid R colors.
 
-- alpha:
+- useAlphaChannel:
 
-  Logical indicating whether alpha values should be returned.
+  logical indicating whether the alpha channel should be included.
 
 ## Value
 
@@ -24,10 +24,4 @@ Numeric HSV matrix.
 
 ## See also
 
-Other color.conversion:
-[`colToHex()`](https://andrisignorell.github.io/lyra/reference/colToHex.md),
-[`hexToCol()`](https://andrisignorell.github.io/lyra/reference/hexToCol.md),
-[`longToRGB()`](https://andrisignorell.github.io/lyra/reference/longToRGB.md),
-[`rgbToCol()`](https://andrisignorell.github.io/lyra/reference/rgbToCol.md),
-[`rgbToHex()`](https://andrisignorell.github.io/lyra/reference/rgbToHex.md),
-[`rgbToLong()`](https://andrisignorell.github.io/lyra/reference/rgbToLong.md)
+[color-conversion-overview](https://andrisignorell.github.io/aurora/reference/color-conversion-overview.md)

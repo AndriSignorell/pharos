@@ -16,7 +16,7 @@ plotAssoc(
   ylab = TRUE,
   space = 0.3,
   reorder = TRUE,
-  col = pal("RedWhiteBlue3", n = 100L),
+  col = pal("red-white-blue-3", n = 100L),
   border = NA,
   labels = FALSE,
   stamp = .useTheme,
@@ -64,7 +64,7 @@ plotAssoc(
 - col:
 
   character vector of colors for the diverging palette. Default uses
-  `pal("RedWhiteBlue3", n = 100)` from the DescToolsX theme. Negative
+  `pal("red-white-blue-3", n = 100)` from the DescToolsX theme. Negative
   residuals map to the first color, zero to the middle, positive to the
   last.
 
@@ -81,7 +81,7 @@ plotAssoc(
 
 - stamp:
 
-  Controls the corner stamp. `.useTheme` (default) resolves to
+  controls the corner stamp. `.useTheme` (default) resolves to
   `getTheme()$stamp`. `TRUE`/`FALSE`/ `NULL`, or an explicit string, as
   for `.withGraphicsState()` (internal).
 
@@ -120,9 +120,8 @@ Group International Conference Proceedings*, 17, 190–200.
 
 ## See also
 
-[`mosaicplot`](https://rdrr.io/r/graphics/mosaicplot.html),
-[`plotMosaic`](https://andrisignorell.github.io/aurora/reference/plotMosaic.md),
-[`conf`](https://rdrr.io/pkg/DescToolsX/man/conf.html)
+[graphics::mosaicplot](https://rdrr.io/r/graphics/mosaicplot.html),
+[DescToolsX::conf](https://rdrr.io/pkg/DescToolsX/man/conf.html)
 
 Other plot.bivariate:
 [`plotBag()`](https://andrisignorell.github.io/aurora/reference/plotBag.md),
@@ -143,7 +142,7 @@ plotAssoc(tab)
 
 
 # custom palette
-plotAssoc(tab, col = pal("RedWhiteGreen", n = 100))
+plotAssoc(tab, col = pal("red-white-green", n = 100))
 
 
 # with residual labels

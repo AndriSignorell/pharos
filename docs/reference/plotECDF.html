@@ -9,7 +9,7 @@ designed to stay performant even for very large vectors (n ~ 1e6-1e7)."><meta pr
 
     <a class="navbar-brand me-2" href="../index.html">lyra</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.930</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.933</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -142,7 +142,7 @@ single accent color, consistent with <code><a href="lines.loess.html">lines.loes
 
 
 <dt id="arg-grid">grid<a class="anchor" aria-label="anchor" href="#arg-grid"></a></dt>
-<dd><p>Controls drawing of the background grid (vertical lines at
+<dd><p>controls drawing of the background grid (vertical lines at
 default tick positions, plus a fixed set of horizontal reference
 lines at the probability ticks <code>0</code>/<code>.25</code>/<code>.5</code>/<code>.75</code>/<code>1</code></p><ul><li><p>the latter always grey regardless of the active theme, a
 deliberately distinct look, not theme-driven). <code>.useTheme</code>
@@ -153,13 +153,13 @@ named list, as for <code><a href="https://rdrr.io/r/graphics/grid.html" class="e
 
 
 <dt id="arg-box">box<a class="anchor" aria-label="anchor" href="#arg-box"></a></dt>
-<dd><p>Controls drawing of the plot box. <code>.useTheme</code> (default)
+<dd><p>controls drawing of the plot box. <code>.useTheme</code> (default)
 resolves to <code>getTheme()$box</code>. <code>TRUE</code>/<code>FALSE</code>/<code>NA</code>,
 or a named list, as for <code><a href="https://rdrr.io/r/graphics/box.html" class="external-link">box</a></code>.</p></dd>
 
 
 <dt id="arg-stamp">stamp<a class="anchor" aria-label="anchor" href="#arg-stamp"></a></dt>
-<dd><p>Controls the corner stamp. <code>.useTheme</code> (default)
+<dd><p>controls the corner stamp. <code>.useTheme</code> (default)
 resolves to <code>getTheme()$stamp</code>. <code>TRUE</code>/<code>FALSE</code>/<code>NULL</code>,
 a string, or a named list of arguments for <code><a href="stamp.html">stamp()</a></code>.</p></dd>
 
@@ -182,7 +182,7 @@ Defaults to <code>na.omit</code>.</p></dd>
 
 
 <dt id="arg-legend">legend<a class="anchor" aria-label="anchor" href="#arg-legend"></a></dt>
-<dd><p>Logical or list controlling the legend. If <code>TRUE</code>, a legend
+<dd><p>logical or list controlling the legend. If <code>TRUE</code>, a legend
 is drawn using the column names of the data. If a list is supplied, its
 elements are passed to the internal legend drawing routine.</p></dd>
 
@@ -209,7 +209,7 @@ a skewed or heavy-tailed distribution, nor lost in the tails).</p>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="https://rdrr.io/r/stats/ecdf.html" class="external-link">plot.ecdf</a></code>, <code><a href="plotFdist.html">plotFdist</a></code>,
-<code><a href="getTheme.html">getTheme</a></code></p>
+<a href="theme.html">theme</a></p>
 <p>Other plot.univariate:
 <code><a href="plotArea.html">plotArea()</a></code>,
 <code><a href="plotBar.html">plotBar()</a></code>,

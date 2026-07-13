@@ -63,6 +63,7 @@ Other graphics.layout:
 \code{\link[=axisBreak]{axisBreak()}},
 \code{\link[=lineToUser]{lineToUser()}},
 \code{\link[=mar]{mar()}},
+\code{\link[=plotFacet]{plotFacet()}},
 \code{\link[=spreadOut]{spreadOut()}}
 }
 \concept{geometry}

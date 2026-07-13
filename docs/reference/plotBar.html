@@ -11,7 +11,7 @@ and connecting lines for stacked barplots."><meta property="og:image" content="h
 
     <a class="navbar-brand me-2" href="../index.html">lyra</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.930</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.933</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,12 +73,12 @@ and connecting lines for stacked barplots.</p>
 
 
 <dt id="arg-main-xlab-ylab">main, xlab, ylab<a class="anchor" aria-label="anchor" href="#arg-main-xlab-ylab"></a></dt>
-<dd><p>Optional plot labels. Defaults follow
+<dd><p>optional plot labels. Defaults follow
 base graphics behaviour.</p></dd>
 
 
 <dt id="arg-yax">yax<a class="anchor" aria-label="anchor" href="#arg-yax"></a></dt>
-<dd><p>Controls drawing of the numeric axis.</p>
+<dd><p>controls drawing of the numeric axis.</p>
 <p>Supported values are</p><dl><dt><code>TRUE</code></dt>
 <dd><p>draw axis using package defaults</p></dd>
 
@@ -96,27 +96,27 @@ base graphics behaviour.</p></dd>
 
 
 <dt id="arg-beside">beside<a class="anchor" aria-label="anchor" href="#arg-beside"></a></dt>
-<dd><p>Logical. If <code>TRUE</code>, bars are drawn side-by-side.
+<dd><p>logical. If <code>TRUE</code>, bars are drawn side-by-side.
 If <code>FALSE</code> (default), bars are stacked.</p></dd>
 
 
 <dt id="arg-horiz">horiz<a class="anchor" aria-label="anchor" href="#arg-horiz"></a></dt>
-<dd><p>Logical. If <code>TRUE</code>, bars are drawn horizontally.
+<dd><p>logical. If <code>TRUE</code>, bars are drawn horizontally.
 Defaults to <code>FALSE</code>.</p></dd>
 
 
 <dt id="arg-col">col<a class="anchor" aria-label="anchor" href="#arg-col"></a></dt>
-<dd><p>Bar fill colours. <code>.useTheme</code> (default) resolves to
+<dd><p>bar fill colours. <code>.useTheme</code> (default) resolves to
 <code>getTheme()$bar$col</code>.</p></dd>
 
 
 <dt id="arg-border">border<a class="anchor" aria-label="anchor" href="#arg-border"></a></dt>
-<dd><p>Bar border colour. <code>.useTheme</code> (default) resolves to
+<dd><p>bar border colour. <code>.useTheme</code> (default) resolves to
 <code>getTheme()$bar$border</code>.</p></dd>
 
 
 <dt id="arg-grid">grid<a class="anchor" aria-label="anchor" href="#arg-grid"></a></dt>
-<dd><p>Controls drawing of grid lines.
+<dd><p>controls drawing of grid lines.
 Can be:</p><ul><li><p><code>.useTheme</code> (default): follow the active theme
 (<code>getTheme()$grid</code>), restricted to the axis perpendicular to
 the value axis (e.g. horizontal lines only for vertical bars)</p></li>
@@ -128,30 +128,30 @@ overriding the theme/function defaults for this call only</p></li>
 
 
 <dt id="arg-box">box<a class="anchor" aria-label="anchor" href="#arg-box"></a></dt>
-<dd><p>Controls drawing of the plot box. <code>.useTheme</code> (default)
+<dd><p>controls drawing of the plot box. <code>.useTheme</code> (default)
 resolves to <code>getTheme()$box</code>. <code>TRUE</code>/<code>FALSE</code>/<code>NA</code>,
 or a named list, as for <code>grid</code>.</p></dd>
 
 
 <dt id="arg-text">text<a class="anchor" aria-label="anchor" href="#arg-text"></a></dt>
-<dd><p>Optional list of arguments passed to <code><a href="barText.html">barText</a></code>
+<dd><p>optional list of arguments passed to <code><a href="barText.html">barText</a></code>
 to draw value labels on bars.</p></dd>
 
 
 <dt id="arg-connlines">connlines<a class="anchor" aria-label="anchor" href="#arg-connlines"></a></dt>
-<dd><p>Optional list of arguments controlling connecting
+<dd><p>optional list of arguments controlling connecting
 lines between stacked bars. Only supported when
 <code>beside = FALSE</code>.</p></dd>
 
 
 <dt id="arg-stamp">stamp<a class="anchor" aria-label="anchor" href="#arg-stamp"></a></dt>
-<dd><p>Controls the corner stamp. <code>.useTheme</code> (default)
+<dd><p>controls the corner stamp. <code>.useTheme</code> (default)
 resolves to <code>getTheme()$stamp</code>. <code>TRUE</code>/<code>FALSE</code>/<code>NULL</code>,
 or an explicit string, as for <code>.withGraphicsState()</code> (internal).</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>Additional arguments passed to <code><a href="https://rdrr.io/r/graphics/barplot.html" class="external-link">barplot</a></code>
+<dd><p>additional arguments passed to <code><a href="https://rdrr.io/r/graphics/barplot.html" class="external-link">barplot</a></code>
 and graphical parameters (via <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code>).</p></dd>
 
 </dl></div>
@@ -184,8 +184,7 @@ explicit argument  &gt;  function-specific default  &gt;  active theme (getTheme
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="https://rdrr.io/r/graphics/barplot.html" class="external-link">barplot</a></code>, <code><a href="barText.html">barText</a></code>,
-<code><a href="getTheme.html">getTheme</a></code></p>
+    <div class="dont-index"><p><a href="https://rdrr.io/r/graphics/barplot.html" class="external-link">graphics::barplot</a>, <a href="barText.html">barText</a>, <a href="theme.html">theme</a></p>
 <p>Other plot.univariate:
 <code><a href="plotArea.html">plotArea()</a></code>,
 <code><a href="plotBox.html">plotBox()</a></code>,

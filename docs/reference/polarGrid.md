@@ -26,7 +26,7 @@ polarGrid(
 
 - nr:
 
-  Numeric or vector controlling radial grid lines:
+  numeric or vector controlling radial grid lines:
 
   `NULL`
 
@@ -46,7 +46,7 @@ polarGrid(
 
 - ntheta:
 
-  Numeric or vector controlling angular grid lines:
+  numeric or vector controlling angular grid lines:
 
   `NULL`
 
@@ -66,48 +66,48 @@ polarGrid(
 
 - col:
 
-  Color of grid lines.
+  color of grid lines.
 
 - lty:
 
-  Line type for grid lines.
+  line type for grid lines.
 
 - lwd:
 
-  Line width for grid lines.
+  line width for grid lines.
 
 - rlabels:
 
-  Optional labels for radial grid lines (excluding zero). If `NULL`,
+  optional labels for radial grid lines (excluding zero). If `NULL`,
   labels are generated automatically. Use `NA` to suppress labels.
 
 - alabels:
 
-  Optional labels for angular grid lines. If `NULL`, labels are
+  optional labels for angular grid lines. If `NULL`, labels are
   generated automatically (degrees or radians). Use `NA` to suppress
   labels.
 
 - lblradians:
 
-  Logical; if `TRUE`, angle labels are shown in radians, otherwise in
+  logical; if `TRUE`, angle labels are shown in radians, otherwise in
   degrees.
 
 - cex.lab:
 
-  Character expansion factor for labels.
+  character expansion factor for labels.
 
 - las:
 
-  Integer controlling label orientation (as in
+  integer controlling label orientation (as in
   [`par`](https://rdrr.io/r/graphics/par.html)).
 
 - adj:
 
-  Numeric vector specifying text justification.
+  numeric vector specifying text justification.
 
 - dist:
 
-  Numeric distance from origin for angular labels.
+  numeric distance from origin for angular labels.
 
 ## Value
 
@@ -127,15 +127,11 @@ Label placement and formatting can be customized via `adj`, `las`, and
 
 ## See also
 
-Other geometry:
-[`arc()`](https://andrisignorell.github.io/aurora/reference/arc.md),
-[`band()`](https://andrisignorell.github.io/aurora/reference/band.md),
-[`bezier()`](https://andrisignorell.github.io/aurora/reference/bezier.md),
+[`grid()`](https://rdrr.io/r/graphics/grid.html)
+
+Other graphics.setup:
 [`canvas()`](https://andrisignorell.github.io/aurora/reference/canvas.md),
-[`polygon()`](https://andrisignorell.github.io/aurora/reference/polygon.md),
-[`rotate()`](https://andrisignorell.github.io/aurora/reference/rotate.md),
-[`shade()`](https://andrisignorell.github.io/aurora/reference/shade.md),
-[`transformXY()`](https://andrisignorell.github.io/aurora/reference/transformXY.md)
+[`setBackCol()`](https://andrisignorell.github.io/aurora/reference/setBackCol.md)
 
 ## Examples
 
@@ -150,5 +146,6 @@ polarGrid(nr = 4, ntheta = 8, col = "gray")
 
 # suppress labels
 polarGrid(rlabels = NA, alabels = NA)
+
 
 ```

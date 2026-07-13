@@ -36,11 +36,11 @@ plotBar(
 
 - main, xlab, ylab:
 
-  Optional plot labels. Defaults follow base graphics behaviour.
+  optional plot labels. Defaults follow base graphics behaviour.
 
 - yax:
 
-  Controls drawing of the numeric axis.
+  controls drawing of the numeric axis.
 
   Supported values are
 
@@ -62,26 +62,26 @@ plotBar(
 
 - beside:
 
-  Logical. If `TRUE`, bars are drawn side-by-side. If `FALSE` (default),
+  logical. If `TRUE`, bars are drawn side-by-side. If `FALSE` (default),
   bars are stacked.
 
 - horiz:
 
-  Logical. If `TRUE`, bars are drawn horizontally. Defaults to `FALSE`.
+  logical. If `TRUE`, bars are drawn horizontally. Defaults to `FALSE`.
 
 - col:
 
-  Bar fill colours. `.useTheme` (default) resolves to
+  bar fill colours. `.useTheme` (default) resolves to
   `getTheme()$bar$col`.
 
 - border:
 
-  Bar border colour. `.useTheme` (default) resolves to
+  bar border colour. `.useTheme` (default) resolves to
   `getTheme()$bar$border`.
 
 - grid:
 
-  Controls drawing of grid lines. Can be:
+  controls drawing of grid lines. Can be:
 
   - `.useTheme` (default): follow the active theme (`getTheme()$grid`),
     restricted to the axis perpendicular to the value axis (e.g.
@@ -97,29 +97,29 @@ plotBar(
 
 - box:
 
-  Controls drawing of the plot box. `.useTheme` (default) resolves to
+  controls drawing of the plot box. `.useTheme` (default) resolves to
   `getTheme()$box`. `TRUE`/`FALSE`/`NA`, or a named list, as for `grid`.
 
 - text:
 
-  Optional list of arguments passed to
+  optional list of arguments passed to
   [`barText`](https://andrisignorell.github.io/aurora/reference/barText.md)
   to draw value labels on bars.
 
 - connlines:
 
-  Optional list of arguments controlling connecting lines between
+  optional list of arguments controlling connecting lines between
   stacked bars. Only supported when `beside = FALSE`.
 
 - stamp:
 
-  Controls the corner stamp. `.useTheme` (default) resolves to
+  controls the corner stamp. `.useTheme` (default) resolves to
   `getTheme()$stamp`. `TRUE`/`FALSE`/`NULL`, or an explicit string, as
   for `.withGraphicsState()` (internal).
 
 - ...:
 
-  Additional arguments passed to
+  additional arguments passed to
   [`barplot`](https://rdrr.io/r/graphics/barplot.html) and graphical
   parameters (via [`par`](https://rdrr.io/r/graphics/par.html)).
 
@@ -163,9 +163,9 @@ The precedence of theme-aware settings (`col`, `border`, `grid`, `box`,
 
 ## See also
 
-[`barplot`](https://rdrr.io/r/graphics/barplot.html),
-[`barText`](https://andrisignorell.github.io/aurora/reference/barText.md),
-[`getTheme`](https://andrisignorell.github.io/aurora/reference/getTheme.md)
+[graphics::barplot](https://rdrr.io/r/graphics/barplot.html),
+[barText](https://andrisignorell.github.io/aurora/reference/barText.md),
+[theme](https://andrisignorell.github.io/aurora/reference/theme.md)
 
 Other plot.univariate:
 [`plotArea()`](https://andrisignorell.github.io/aurora/reference/plotArea.md),

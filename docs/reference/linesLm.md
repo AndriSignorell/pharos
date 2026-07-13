@@ -109,20 +109,6 @@ Confidence and prediction bands are controlled via `cbandArgs` and
 [`lines`](https://rdrr.io/r/graphics/lines.html),
 [`lm`](https://rdrr.io/r/stats/lm.html)
 
-Other graphics.utils:
-[`abcCoords()`](https://andrisignorell.github.io/lyra/reference/abcCoords.md),
-[`axisBreak()`](https://andrisignorell.github.io/lyra/reference/axisBreak.md),
-[`barText()`](https://andrisignorell.github.io/lyra/reference/barText.md),
-[`boxedText()`](https://andrisignorell.github.io/lyra/reference/boxedText.md),
-[`colLegend()`](https://andrisignorell.github.io/aurora/reference/colLegend.md),
-[`degToRad()`](https://andrisignorell.github.io/aurora/reference/degToRad.md),
-[`errBars()`](https://andrisignorell.github.io/aurora/reference/errBars.md),
-[`lineSep()`](https://andrisignorell.github.io/aurora/reference/lineSep.md),
-[`lineToUser()`](https://andrisignorell.github.io/aurora/reference/lineToUser.md),
-[`mar()`](https://andrisignorell.github.io/aurora/reference/mar.md),
-[`preview()`](https://andrisignorell.github.io/aurora/reference/preview.md),
-[`spreadOut()`](https://andrisignorell.github.io/aurora/reference/spreadOut.md),
-[`stamp()`](https://andrisignorell.github.io/aurora/reference/stamp.md),
-[`textLegend()`](https://andrisignorell.github.io/aurora/reference/textLegend.md),
-[`titleRect()`](https://andrisignorell.github.io/aurora/reference/titleRect.md),
-[`unit()`](https://andrisignorell.github.io/aurora/reference/unit.md)
+Other graphics.trendlines:
+[`lines.loess()`](https://andrisignorell.github.io/aurora/reference/lines.loess.md),
+[`splineCI`](https://andrisignorell.github.io/aurora/reference/splineCI.md)

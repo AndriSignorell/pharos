@@ -27,58 +27,58 @@ plotArea(
 
 - x:
 
-  Numeric vector, matrix or data frame. If `y` is missing, `x` is
+  numeric vector, matrix or data frame. If `y` is missing, `x` is
   interpreted as a matrix of series where rows correspond to x positions
   and columns to individual areas.
 
 - y:
 
-  Optional numeric vector or matrix giving the y-values. If supplied,
+  optional numeric vector or matrix giving the y-values. If supplied,
   `x` is interpreted as the x-coordinates.
 
 - prop:
 
-  Logical indicating whether rows should be converted to proportions so
+  logical indicating whether rows should be converted to proportions so
   that stacked areas sum to one.
 
 - col:
 
-  Fill colours used for the areas.
+  fill colours used for the areas.
 
 - xlab:
 
-  Label for the x-axis.
+  label for the x-axis.
 
 - ylab:
 
-  Label for the y-axis.
+  label for the y-axis.
 
 - xlim:
 
-  Limits for the x-axis.
+  limits for the x-axis.
 
 - ylim:
 
-  Limits for the y-axis.
+  limits for the y-axis.
 
 - legend:
 
-  Logical or list controlling the legend. If `TRUE`, a legend is drawn
+  logical or list controlling the legend. If `TRUE`, a legend is drawn
   using the column names of the data. If a list is supplied, its
   elements are passed to the internal legend drawing routine.
 
 - main:
 
-  Main title of the plot.
+  main title of the plot.
 
 - grid:
 
-  Logical or list controlling the background grid. If `TRUE`, a default
+  logical or list controlling the background grid. If `TRUE`, a default
   grid is drawn.
 
 - ...:
 
-  Additional graphical parameters passed to
+  additional graphical parameters passed to
   [`par`](https://rdrr.io/r/graphics/par.html) via `.applyParFromDots()`
   and to the plotting functions.
 
@@ -130,7 +130,7 @@ plotArea(VADeaths)
 
 plotArea(
   WorldPhones,
-  col = pal("Helsana")
+  col = pal("helsana")
 )
 
 

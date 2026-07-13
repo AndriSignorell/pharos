@@ -17,16 +17,16 @@ strSplit(x, split = "", fixed = FALSE)
 
 - x:
 
-  A character vector to be split.
+  a character vector to be split
 
 - split:
 
-  A character string specifying the delimiter (if `fixed = TRUE`) or a
-  regular expression (if `fixed = FALSE`).
+  a character string specifying the delimiter (if `fixed = TRUE`) or a
+  regular expression (if `fixed = FALSE`)
 
 - fixed:
 
-  Logical; if `TRUE`, `split` is treated as a fixed string. Otherwise,
+  logical; if `TRUE`, `split` is treated as a fixed string. Otherwise,
   it is interpreted as a regular expression.
 
 ## Value
@@ -40,33 +40,18 @@ If the input `x` has length 1, the result is returned as a character
 vector instead of a list for convenience.
 
 This function provides a simplified interface to string splitting using
-the stringi package. It avoids some of the complexity of `strSplit`
-while providing consistent and Unicode-aware behavior.
+the stringi package. It avoids some of the complexity of
+[`strsplit`](https://rdrr.io/r/base/strsplit.html) while providing
+consistent and Unicode-aware behavior.
 
 ## See also
 
 [`stri_split_fixed`](https://rdrr.io/pkg/stringi/man/stri_split.html),
-[`stri_split_regex`](https://rdrr.io/pkg/stringi/man/stri_split.html)
+[`stri_split_regex`](https://rdrr.io/pkg/stringi/man/stri_split.html),
+[`strsplit`](https://rdrr.io/r/base/strsplit.html)
 
-Other string:
-[`mgsub()`](https://andrisignorell.github.io/aurora/reference/mgsub.md),
-[`strAbbr()`](https://andrisignorell.github.io/aurora/reference/strAbbr.md),
-[`strAlign()`](https://andrisignorell.github.io/aurora/reference/strAlign.md),
-[`strCap()`](https://andrisignorell.github.io/aurora/reference/strCap.md),
-[`strChop()`](https://andrisignorell.github.io/aurora/reference/strChop.md),
-[`strCountW()`](https://andrisignorell.github.io/aurora/reference/strCountW.md),
-[`strDist()`](https://andrisignorell.github.io/aurora/reference/strDist.md),
-[`strExtract()`](https://andrisignorell.github.io/aurora/reference/strExtract.md),
-[`strExtractBetween()`](https://andrisignorell.github.io/aurora/reference/strExtractBetween.md),
-[`strIsNumeric()`](https://andrisignorell.github.io/aurora/reference/strIsNumeric.md),
-[`strLen()`](https://andrisignorell.github.io/aurora/reference/strLen.md),
-[`strPad()`](https://andrisignorell.github.io/aurora/reference/strPad.md),
-[`strPos()`](https://andrisignorell.github.io/aurora/reference/strPos.md),
-[`strRev()`](https://andrisignorell.github.io/aurora/reference/strRev.md),
-[`strSpell()`](https://andrisignorell.github.io/aurora/reference/strSpell.md),
-[`strTrim()`](https://andrisignorell.github.io/aurora/reference/strTrim.md),
-[`strTrunc()`](https://andrisignorell.github.io/aurora/reference/strTrunc.md),
-[`strVal()`](https://andrisignorell.github.io/aurora/reference/strVal.md)
+[string-overview](https://andrisignorell.github.io/aurora/reference/string-overview.md)
+for an overview of all string utilities in lyra.
 
 ## Examples
 

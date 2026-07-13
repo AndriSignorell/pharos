@@ -64,7 +64,8 @@ Other graphics.layout:
 \code{\link[=axisBreak]{axisBreak()}},
 \code{\link[=isValidPlotRegion]{isValidPlotRegion()}},
 \code{\link[=lineToUser]{lineToUser()}},
-\code{\link[=mar]{mar()}}
+\code{\link[=mar]{mar()}},
+\code{\link[=plotFacet]{plotFacet()}}
 }
 \concept{graphics.layout}
 \concept{label}

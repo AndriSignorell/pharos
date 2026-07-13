@@ -27,44 +27,44 @@ plotProbDist(
 
 - breaks:
 
-  Numeric vector of break points defining the boundaries between shaded
+  numeric vector of break points defining the boundaries between shaded
   areas. The first and last value define the plot range passed to
   [`shade()`](https://andrisignorell.github.io/aurora/reference/shade.md);
   interior values are the actual boundaries.
 
 - FUN:
 
-  The distribution density function to plot, typically of the form
+  the distribution density function to plot, typically of the form
   `function(x) dnorm(x, mean=0, sd=1)`.
 
 - main:
 
-  Main title for the plot. `NULL` or `""` suppresses the title and
+  main title for the plot. `NULL` or `""` suppresses the title and
   reduces the top margin automatically.
 
 - xlim:
 
-  Numeric vector of length 2. x-axis limits passed to
+  numeric vector of length 2. x-axis limits passed to
   [`curve()`](https://rdrr.io/r/graphics/curve.html).
 
 - col:
 
-  Color(s) for the shaded areas. Recycled if shorter than the number of
-  areas. Defaults to the Helsana palette.
+  color(s) for the shaded areas. Recycled if shorter than the number of
+  areas. Defaults to the "helsana" palette.
 
 - density:
 
-  Density of shading lines passed to
+  density of shading lines passed to
   [`shade()`](https://andrisignorell.github.io/aurora/reference/shade.md).
   Default is `7`.
 
 - ylab:
 
-  Label for the y-axis. Default is `"density"`.
+  label for the y-axis. Default is `"density"`.
 
 - areaLabels:
 
-  Controls labels placed in the centre of each shaded area. `NULL`
+  controls labels placed in the centre of each shaded area. `NULL`
   (default) suppresses labels. `TRUE` uses `LETTERS` as default labels.
   A character vector sets explicit labels. A named list overrides
   individual arguments passed to
@@ -74,7 +74,7 @@ plotProbDist(
 
 - breakLabels:
 
-  Controls labels placed on the x-axis at interior break points via
+  controls labels placed on the x-axis at interior break points via
   [`mtext()`](https://rdrr.io/r/graphics/mtext.html). `NULL` (default)
   suppresses labels. `TRUE` uses `LETTERS` as default labels. A
   character vector sets explicit labels. A named list overrides
@@ -82,21 +82,21 @@ plotProbDist(
 
 - grid:
 
-  Controls background grid. `FALSE` (default) suppresses the grid.
+  controls background grid. `FALSE` (default) suppresses the grid.
   `TRUE` or `.useTheme` draws a grid according to the current theme. A
   named list overrides individual arguments passed to
   [`grid()`](https://rdrr.io/r/graphics/grid.html).
 
 - box:
 
-  Controls the plot box. `.useTheme` (default) uses the current theme
+  controls the plot box. `.useTheme` (default) uses the current theme
   setting. `TRUE`/`FALSE` forces the box on or off. A named list
   overrides individual arguments passed to
   [`box()`](https://rdrr.io/r/graphics/box.html).
 
 - ...:
 
-  Further graphical parameters passed to
+  further graphical parameters passed to
   [`curve()`](https://rdrr.io/r/graphics/curve.html) and
   `.applyParFromDots()`, e.g. `las`, `col.axis`.
 
@@ -106,12 +106,11 @@ plotProbDist(
 
 ## See also
 
-[`shade`](https://andrisignorell.github.io/aurora/reference/shade.md),
-[`curve`](https://rdrr.io/r/graphics/curve.html),
-[`boxedText`](https://andrisignorell.github.io/aurora/reference/boxedText.md)
+[`curve`](https://rdrr.io/r/graphics/curve.html)
 
 Other plot.distribution:
-[`plotFun()`](https://andrisignorell.github.io/aurora/reference/plotFun.md)
+[`plotFun()`](https://andrisignorell.github.io/aurora/reference/plotFun.md),
+[`shade()`](https://andrisignorell.github.io/aurora/reference/shade.md)
 
 ## Examples
 
@@ -146,5 +145,6 @@ plotProbDist(breaks  = c(0, 15, 35),
              density = c(0, 20),
              breakLabels = list(text="B"))
 #> Warning: is.na() applied to non-(list or vector) of type 'expression'
+
 
 ```

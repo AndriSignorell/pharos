@@ -60,13 +60,13 @@ plotQQ(
 
 - grid:
 
-  Controls drawing of the background grid. `.useTheme` (default) follows
+  controls drawing of the background grid. `.useTheme` (default) follows
   the active theme (`getTheme()$grid`). `TRUE`/`FALSE`/`NA`, or a named
   list, as for [`grid`](https://rdrr.io/r/graphics/grid.html).
 
 - box:
 
-  Controls drawing of the plot box. `.useTheme` (default) resolves to
+  controls drawing of the plot box. `.useTheme` (default) resolves to
   `getTheme()$box`. `TRUE`/`FALSE`/`NA`, or a named list, as for
   [`box`](https://rdrr.io/r/graphics/box.html).
 
@@ -94,7 +94,7 @@ plotQQ(
 
 - stamp:
 
-  Controls the corner stamp. `.useTheme` (default) resolves to
+  controls the corner stamp. `.useTheme` (default) resolves to
   `getTheme()$stamp`. `TRUE`/`FALSE`/`NULL`, a string, or a named list
   of arguments for
   [`stamp()`](https://andrisignorell.github.io/aurora/reference/stamp.md)
@@ -125,11 +125,11 @@ Teetor, P. (2011) *R Cookbook*. O'Reilly, pp. 254-255.
 
 ## See also
 
-[`qqnorm`](https://rdrr.io/r/stats/qqnorm.html),
-[`qqline`](https://rdrr.io/r/stats/qqnorm.html),
-[`qqplot`](https://rdrr.io/r/stats/qqnorm.html),
-[`getTheme`](https://andrisignorell.github.io/aurora/reference/getTheme.md),
-[`lines.loess`](https://andrisignorell.github.io/aurora/reference/lines.loess.md)
+[stats::qqnorm](https://rdrr.io/r/stats/qqnorm.html),
+[stats::qqline](https://rdrr.io/r/stats/qqnorm.html),
+[stats::qqplot](https://rdrr.io/r/stats/qqnorm.html),
+[theme](https://andrisignorell.github.io/aurora/reference/theme.md),
+[lines.loess](https://andrisignorell.github.io/aurora/reference/lines.loess.md)
 
 Other plot.univariate:
 [`plotArea()`](https://andrisignorell.github.io/aurora/reference/plotArea.md),

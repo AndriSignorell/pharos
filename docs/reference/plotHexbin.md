@@ -27,52 +27,52 @@ plotHexbin(
 
 - x:
 
-  Numeric vector of x-values.
+  numeric vector of x-values.
 
 - y:
 
-  Numeric vector of y-values.
+  numeric vector of y-values.
 
 - bins:
 
-  Number of hexagons across the x-axis.
+  number of hexagons across the x-axis.
 
 - col:
 
-  Colours used for the count scale. If `NULL`, a default sequential
+  colours used for the count scale. If `NULL`, a default sequential
   palette is used.
 
 - border:
 
-  Border colour of the hexagons.
+  border colour of the hexagons.
 
 - grid:
 
-  Logical or list controlling the background grid.
+  logical or list controlling the background grid.
 
 - xlim:
 
-  Limits for the x-axis.
+  limits for the x-axis.
 
 - ylim:
 
-  Limits for the y-axis.
+  limits for the y-axis.
 
 - main:
 
-  Main title.
+  main title.
 
 - xlab:
 
-  Label for the x-axis.
+  label for the x-axis.
 
 - ylab:
 
-  Label for the y-axis.
+  label for the y-axis.
 
 - ...:
 
-  Additional graphical parameters passed to `.applyParFromDots()`.
+  additional graphical parameters passed to `.applyParFromDots()`.
 
 ## Value
 

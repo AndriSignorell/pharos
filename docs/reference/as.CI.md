@@ -15,11 +15,11 @@ is.CI(x)
 
 - x:
 
-  Object to convert.
+  object to convert.
 
 - ...:
 
-  Further arguments passed to methods.
+  further arguments passed to methods.
 
 ## Value
 
@@ -69,8 +69,8 @@ The returned object inherits from class `"ci"`.
 
 ## See also
 
-[`plotDot`](https://andrisignorell.github.io/lyra/reference/plotDot.md),
-`is.CI`
+[`fmCI`](https://andrisignorell.github.io/aurora/reference/fmCI.md),
+[`plotDot`](https://andrisignorell.github.io/aurora/reference/plotDot.md)
 
 ## Examples
 

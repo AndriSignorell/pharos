@@ -109,7 +109,7 @@ plotECDF(
 
 - grid:
 
-  Controls drawing of the background grid (vertical lines at default
+  controls drawing of the background grid (vertical lines at default
   tick positions, plus a fixed set of horizontal reference lines at the
   probability ticks `0`/`.25`/`.5`/`.75`/`1`
 
@@ -121,13 +121,13 @@ plotECDF(
 
 - box:
 
-  Controls drawing of the plot box. `.useTheme` (default) resolves to
+  controls drawing of the plot box. `.useTheme` (default) resolves to
   `getTheme()$box`. `TRUE`/`FALSE`/`NA`, or a named list, as for
   [`box`](https://rdrr.io/r/graphics/box.html).
 
 - stamp:
 
-  Controls the corner stamp. `.useTheme` (default) resolves to
+  controls the corner stamp. `.useTheme` (default) resolves to
   `getTheme()$stamp`. `TRUE`/`FALSE`/`NULL`, a string, or a named list
   of arguments for
   [`stamp()`](https://andrisignorell.github.io/aurora/reference/stamp.md).
@@ -151,7 +151,7 @@ plotECDF(
 
 - legend:
 
-  Logical or list controlling the legend. If `TRUE`, a legend is drawn
+  logical or list controlling the legend. If `TRUE`, a legend is drawn
   using the column names of the data. If a list is supplied, its
   elements are passed to the internal legend drawing routine.
 
@@ -181,7 +181,7 @@ a skewed or heavy-tailed distribution, nor lost in the tails).
 
 [`plot.ecdf`](https://rdrr.io/r/stats/ecdf.html),
 [`plotFdist`](https://andrisignorell.github.io/aurora/reference/plotFdist.md),
-[`getTheme`](https://andrisignorell.github.io/aurora/reference/getTheme.md)
+[theme](https://andrisignorell.github.io/aurora/reference/theme.md)
 
 Other plot.univariate:
 [`plotArea()`](https://andrisignorell.github.io/aurora/reference/plotArea.md),

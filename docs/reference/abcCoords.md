@@ -27,17 +27,17 @@ abcCoords(
 
 - region:
 
-  One of `"figure"` (default), `"plot"`, or `"device"`. Determines the
+  one of `"figure"` (default), `"plot"`, or `"device"`. Determines the
   coordinate region used.
 
 - cex:
 
-  Character expansion factor. If `NULL` (default), the current
+  character expansion factor. If `NULL` (default), the current
   `par("cex")` is used.
 
 - inset:
 
-  Inset distance from the boundary, specified in lines of text
+  inset distance from the boundary, specified in lines of text
   (character heights/widths). May be a scalar (applied to both x and y)
   or a length-2 vector (x inset, y inset). Default `0`.
 
@@ -57,7 +57,9 @@ A list with two components:
 
 ## Details
 
-The inset is computed in character units via
+The positioning logic is adapted from
+[`legend`](https://rdrr.io/r/graphics/legend.html). The inset is
+computed in character units via
 [`strwidth`](https://rdrr.io/r/graphics/strwidth.html) and
 [`strheight`](https://rdrr.io/r/graphics/strwidth.html), making it
 robust to device resizing, font changes, and plot-range scaling.
@@ -76,34 +78,18 @@ Three regions are supported:
 
   The full device area.
 
-## Note
-
-The positioning logic is adapted from
-[`legend`](https://rdrr.io/r/graphics/legend.html).
-
 ## See also
 
 [`text`](https://rdrr.io/r/graphics/text.html),
-[`legend`](https://rdrr.io/r/graphics/legend.html),
-[`boxedText`](https://andrisignorell.github.io/lyra/reference/boxedText.md)
+[`legend`](https://rdrr.io/r/graphics/legend.html)
 
-Other graphics.utils:
-[`axisBreak()`](https://andrisignorell.github.io/lyra/reference/axisBreak.md),
-[`barText()`](https://andrisignorell.github.io/lyra/reference/barText.md),
-[`boxedText()`](https://andrisignorell.github.io/lyra/reference/boxedText.md),
-[`colLegend()`](https://andrisignorell.github.io/lyra/reference/colLegend.md),
-[`degToRad()`](https://andrisignorell.github.io/lyra/reference/degToRad.md),
-[`errBars()`](https://andrisignorell.github.io/lyra/reference/errBars.md),
-[`lineSep()`](https://andrisignorell.github.io/lyra/reference/lineSep.md),
-[`lineToUser()`](https://andrisignorell.github.io/lyra/reference/lineToUser.md),
-[`lines.lm()`](https://andrisignorell.github.io/lyra/reference/linesLm.md),
-[`mar()`](https://andrisignorell.github.io/lyra/reference/mar.md),
-[`preview()`](https://andrisignorell.github.io/lyra/reference/preview.md),
-[`spreadOut()`](https://andrisignorell.github.io/lyra/reference/spreadOut.md),
-[`stamp()`](https://andrisignorell.github.io/lyra/reference/stamp.md),
-[`textLegend()`](https://andrisignorell.github.io/lyra/reference/textLegend.md),
-[`titleRect()`](https://andrisignorell.github.io/lyra/reference/titleRect.md),
-[`unit()`](https://andrisignorell.github.io/lyra/reference/unit.md)
+Other graphics.layout:
+[`axTicks`](https://andrisignorell.github.io/aurora/reference/axTicks.md),
+[`axisBreak()`](https://andrisignorell.github.io/aurora/reference/axisBreak.md),
+[`isValidPlotRegion()`](https://andrisignorell.github.io/aurora/reference/isValidPlotRegion.md),
+[`lineToUser()`](https://andrisignorell.github.io/aurora/reference/lineToUser.md),
+[`mar()`](https://andrisignorell.github.io/aurora/reference/mar.md),
+[`spreadOut()`](https://andrisignorell.github.io/aurora/reference/spreadOut.md)
 
 ## Examples
 

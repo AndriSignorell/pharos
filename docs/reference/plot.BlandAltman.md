@@ -30,11 +30,11 @@ plot(
 
 - x:
 
-  An object of class `"blandAltman"`.
+  an object of class `"blandAltman"`.
 
 - main:
 
-  Plot title.
+  plot title.
 
 - xlab:
 
@@ -54,43 +54,43 @@ plot(
 
 - pch:
 
-  Plotting symbol.
+  plotting symbol.
 
 - col:
 
-  Point colour.
+  point colour.
 
 - grid:
 
-  Logical; draw a background grid.
+  logical; draw a background grid.
 
 - meanLine:
 
-  Logical; draw the bias line.
+  logical; draw the bias line.
 
 - limits:
 
-  Logical; draw the limits of agreement.
+  logical; draw the limits of agreement.
 
 - conf.band:
 
-  Logical; draw confidence bands.
+  logical; draw confidence bands.
 
 - trend:
 
-  Logical; draw a regression line of differences versus means.
+  logical; draw a regression line of differences versus means.
 
 - showText:
 
-  Logical; annotate bias and limits.
+  logical; annotate bias and limits.
 
 - stamp:
 
-  Optional plot stamp.
+  optional plot stamp.
 
 - ...:
 
-  Further arguments passed to
+  further arguments passed to
   [`plot()`](https://rdrr.io/r/graphics/plot.default.html).
 
 ## Value

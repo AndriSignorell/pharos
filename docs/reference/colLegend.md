@@ -32,58 +32,58 @@ colLegend(
 
 - x:
 
-  Left x-coordinate of the legend or a keyword specifying automatic
+  left x-coordinate of the legend or a keyword specifying automatic
   placement: `"bottomright"`, `"bottom"`, `"bottomleft"`, `"left"`,
   `"topleft"`, `"top"`, `"topright"`, `"right"`, `"center"`.
 
 - y:
 
-  Top y-coordinate of the legend when `x` is numeric.
+  top y-coordinate of the legend when `x` is numeric.
 
 - col:
 
-  Vector of colors.
+  vector of colors.
 
 - labels:
 
-  Optional vector of labels.
+  optional vector of labels.
 
 - width:
 
-  Width of the legend in user coordinates.
+  width of the legend in user coordinates.
 
 - height:
 
-  Height of the legend in user coordinates.
+  height of the legend in user coordinates.
 
 - horiz:
 
-  Logical; if `TRUE`, draw horizontally.
+  logical; if `TRUE`, draw horizontally.
 
 - xjust:
 
-  Horizontal justification.
+  horizontal justification.
 
 - yjust:
 
-  Vertical justification.
+  vertical justification.
 
 - inset:
 
-  Inset distance(s) when keyword positioning is used.
+  inset distance(s) when keyword positioning is used.
 
 - region:
 
-  Character string specifying the reference region used for keyword
+  character string specifying the reference region used for keyword
   placement. One of: `"plot"`, `"figure"`, or `"device"`.
 
 - border:
 
-  Border color of individual color rectangles.
+  border color of individual color rectangles.
 
 - box:
 
-  Optional specification of an enclosing box around the whole legend.
+  optional specification of an enclosing box around the whole legend.
   Can be:
 
   - `FALSE`, `NULL`, or `NA`: no box
@@ -95,7 +95,7 @@ colLegend(
 
 - labelAdj:
 
-  Placement of labels relative to the color blocks:
+  placement of labels relative to the color blocks:
 
   `"edge"`
 
@@ -107,24 +107,24 @@ colLegend(
 
 - adj:
 
-  Text alignment passed to
+  text alignment passed to
   [`text`](https://rdrr.io/r/graphics/text.html).
 
 - cex:
 
-  Character expansion for labels.
+  character expansion for labels.
 
 - title:
 
-  Optional title.
+  optional title.
 
 - titleAdj:
 
-  Horizontal title adjustment.
+  horizontal title adjustment.
 
 - ...:
 
-  Additional arguments passed to
+  additional arguments passed to
   [`text`](https://rdrr.io/r/graphics/text.html).
 
 ## Value
@@ -150,26 +150,15 @@ centered within the color blocks.
 
 ## See also
 
-[`legend`](https://rdrr.io/r/graphics/legend.html),
-[`abcCoords`](https://andrisignorell.github.io/lyra/reference/abcCoords.md)
+[graphics::legend](https://rdrr.io/r/graphics/legend.html)
 
-Other graphics.utils:
-[`abcCoords()`](https://andrisignorell.github.io/lyra/reference/abcCoords.md),
-[`axisBreak()`](https://andrisignorell.github.io/lyra/reference/axisBreak.md),
-[`barText()`](https://andrisignorell.github.io/lyra/reference/barText.md),
-[`boxedText()`](https://andrisignorell.github.io/lyra/reference/boxedText.md),
-[`degToRad()`](https://andrisignorell.github.io/lyra/reference/degToRad.md),
-[`errBars()`](https://andrisignorell.github.io/lyra/reference/errBars.md),
-[`lineSep()`](https://andrisignorell.github.io/lyra/reference/lineSep.md),
-[`lineToUser()`](https://andrisignorell.github.io/lyra/reference/lineToUser.md),
-[`lines.lm()`](https://andrisignorell.github.io/lyra/reference/linesLm.md),
-[`mar()`](https://andrisignorell.github.io/lyra/reference/mar.md),
-[`preview()`](https://andrisignorell.github.io/lyra/reference/preview.md),
-[`spreadOut()`](https://andrisignorell.github.io/lyra/reference/spreadOut.md),
-[`stamp()`](https://andrisignorell.github.io/lyra/reference/stamp.md),
-[`textLegend()`](https://andrisignorell.github.io/lyra/reference/textLegend.md),
-[`titleRect()`](https://andrisignorell.github.io/lyra/reference/titleRect.md),
-[`unit()`](https://andrisignorell.github.io/lyra/reference/unit.md)
+Other graphics.annotation:
+[`barText()`](https://andrisignorell.github.io/aurora/reference/barText.md),
+[`boxedText()`](https://andrisignorell.github.io/aurora/reference/boxedText.md),
+[`errBars()`](https://andrisignorell.github.io/aurora/reference/errBars.md),
+[`stamp()`](https://andrisignorell.github.io/aurora/reference/stamp.md),
+[`textLegend()`](https://andrisignorell.github.io/aurora/reference/textLegend.md),
+[`titleRect()`](https://andrisignorell.github.io/aurora/reference/titleRect.md)
 
 ## Examples
 

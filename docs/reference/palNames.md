@@ -24,48 +24,37 @@ a character vector of palette names.
 
 [`pal`](https://andrisignorell.github.io/aurora/reference/pal.md)
 
-Other color:
-[`addOpacity()`](https://andrisignorell.github.io/aurora/reference/addOpacity.md),
-[`colToOpaque()`](https://andrisignorell.github.io/aurora/reference/colToOpaque.md),
-[`colToRGB()`](https://andrisignorell.github.io/aurora/reference/colToRGB.md),
-[`contrastColor()`](https://andrisignorell.github.io/aurora/reference/contrastColor.md),
-[`darken()`](https://andrisignorell.github.io/aurora/reference/darken.md),
-[`findColor()`](https://andrisignorell.github.io/aurora/reference/findColor.md),
-[`grayscale()`](https://andrisignorell.github.io/aurora/reference/grayscale.md),
+Other color.palettes:
 [`hcol()`](https://andrisignorell.github.io/aurora/reference/hcol.md),
-[`hexToRGB()`](https://andrisignorell.github.io/aurora/reference/hexToRGB.md),
-[`lighten()`](https://andrisignorell.github.io/aurora/reference/lighten.md),
-[`mixColors()`](https://andrisignorell.github.io/aurora/reference/mixColors.md),
-[`pal()`](https://andrisignorell.github.io/aurora/reference/pal.md),
-[`setBackCol()`](https://andrisignorell.github.io/aurora/reference/setBackCol.md)
+[`pal()`](https://andrisignorell.github.io/aurora/reference/pal.md)
 
 ## Examples
 
 ``` r
 palNames()
-#>  [1] "red-black"     "RedBlackGreen"  "SteelblueWhite" "RedWhiteGreen" 
-#>  [5] "RedWhiteBlue0"  "RedWhiteBlue1"  "RedWhiteBlue2"  "RedWhiteBlue3" 
-#>  [9] "RedGreen1"      "Helsana"        "Helsana1"       "Helsana2"      
-#> [13] "Tibco"          "Spring"         "Soap"           "Maiden"        
-#> [17] "Dark"           "Accent"         "Pastel"         "Fragile"       
-#> [21] "Big"            "GrandBudapest"  "Moonrise1"      "Royal1"        
-#> [25] "Moonrise2"      "Cavalcanti"     "Royal2"         "GrandBudapest2"
-#> [29] "Moonrise3"      "Chevalier"      "Zissou"         "FantasticFox"  
-#> [33] "Darjeeling"     "Rushmore"       "BottleRocket"   "Darjeeling2"   
-#> [37] "Tequila"        "Long"           "Night"          "Dawn"          
-#> [41] "Noon"           "Light"         
+#>  [1] "red-black"        "red-black-green"  "steelblue-white"  "red-white-green" 
+#>  [5] "red-white-blue-1" "red-white-blue-2" "red-white-blue-3" "red-white-blue-4"
+#>  [9] "red-green-1"      "helsana"          "helsana-1"        "helsana-2"       
+#> [13] "tibco"            "spring"           "soap"             "maiden"          
+#> [17] "dark"             "accent"           "pastel"           "fragile"         
+#> [21] "big"              "grand-budapest"   "moonrise-1"       "royal-1"         
+#> [25] "moonrise-2"       "cavalcanti"       "royal-2"          "grand-budapest-2"
+#> [29] "moonrise-3"       "chevalier"        "zissou"           "fantastic-fox"   
+#> [33] "darjeeling"       "rushmore"         "bottle-rocket"    "darjeeling-2"    
+#> [37] "tequila"          "long"             "night"            "dawn"            
+#> [41] "noon"             "light"           
 palNames("continuous")
-#> [1] "red-black"     "RedBlackGreen"  "SteelblueWhite" "RedWhiteGreen" 
-#> [5] "RedWhiteBlue0"  "RedWhiteBlue1"  "RedWhiteBlue2"  "RedWhiteBlue3" 
-#> [9] "RedGreen1"     
+#> [1] "red-black"        "red-black-green"  "steelblue-white"  "red-white-green" 
+#> [5] "red-white-blue-1" "red-white-blue-2" "red-white-blue-3" "red-white-blue-4"
+#> [9] "red-green-1"     
 palNames("discrete")
-#>  [1] "Helsana"        "Helsana1"       "Helsana2"       "Tibco"         
-#>  [5] "Spring"         "Soap"           "Maiden"         "Dark"          
-#>  [9] "Accent"         "Pastel"         "Fragile"        "Big"           
-#> [13] "GrandBudapest"  "Moonrise1"      "Royal1"         "Moonrise2"     
-#> [17] "Cavalcanti"     "Royal2"         "GrandBudapest2" "Moonrise3"     
-#> [21] "Chevalier"      "Zissou"         "FantasticFox"   "Darjeeling"    
-#> [25] "Rushmore"       "BottleRocket"   "Darjeeling2"    "Tequila"       
-#> [29] "Long"           "Night"          "Dawn"           "Noon"          
-#> [33] "Light"         
+#>  [1] "helsana"          "helsana-1"        "helsana-2"        "tibco"           
+#>  [5] "spring"           "soap"             "maiden"           "dark"            
+#>  [9] "accent"           "pastel"           "fragile"          "big"             
+#> [13] "grand-budapest"   "moonrise-1"       "royal-1"          "moonrise-2"      
+#> [17] "cavalcanti"       "royal-2"          "grand-budapest-2" "moonrise-3"      
+#> [21] "chevalier"        "zissou"           "fantastic-fox"    "darjeeling"      
+#> [25] "rushmore"         "bottle-rocket"    "darjeeling-2"     "tequila"         
+#> [29] "long"             "night"            "dawn"             "noon"            
+#> [33] "light"           
 ```

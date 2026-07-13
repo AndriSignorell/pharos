@@ -13,23 +13,23 @@ convUnit(x, from, to, prefix = NULL, units = NULL)
 
 - x:
 
-  Numeric value(s) to convert.
+  numeric value(s) to convert.
 
 - from:
 
-  Character string specifying the source unit.
+  character string specifying the source unit.
 
 - to:
 
-  Character string specifying the target unit.
+  character string specifying the target unit.
 
 - prefix:
 
-  Data frame of SI prefixes with columns `abbr` and `mult`.
+  data frame of SI prefixes with columns `abbr` and `mult`.
 
 - units:
 
-  Data frame of unit conversion factors with columns `from`, `to`, and
+  data frame of unit conversion factors with columns `from`, `to`, and
   `fact`.
 
 ## Value
@@ -75,7 +75,12 @@ multiplicative scaling.
 
 ## See also
 
-[`unit`](https://andrisignorell.github.io/lyra/reference/unit.md)
+Other format:
+[`fm()`](https://andrisignorell.github.io/aurora/reference/fm.md),
+[`fmCI()`](https://andrisignorell.github.io/aurora/reference/fmCI.md),
+[`print.Unit()`](https://andrisignorell.github.io/aurora/reference/print.Unit.md),
+[`style()`](https://andrisignorell.github.io/aurora/reference/style.md),
+[`unit()`](https://andrisignorell.github.io/aurora/reference/unit.md)
 
 ## Examples
 

@@ -21,7 +21,7 @@ colorRampPalette
 
     <a class="navbar-brand me-2" href="../index.html">lyra</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.930</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.933</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,7 +42,7 @@ colorRampPalette
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Get a Color Palette</h1>
-      <small class="dont-index">Source: <a href="https://github.com/AndriSignorell/lyra/blob/HEAD/R/Pal.R" class="external-link"><code>R/Pal.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/AndriSignorell/lyra/blob/HEAD/R/pal.R" class="external-link"><code>R/pal.R</code></a></small>
       <div class="d-none name"><code>pal.Rd</code></div>
     </div>
 
@@ -56,7 +56,7 @@ exactly <code>n</code> colors regardless of their base size:</p><ul><li><p><code
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">pal</span><span class="op">(</span><span class="va">name</span>, n <span class="op">=</span> <span class="cn">NA</span>, alpha <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">pal</span><span class="op">(</span><span class="va">name</span>, n <span class="op">=</span> <span class="cn">NA</span>, opacity <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for class 'Palette'</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span>, cex <span class="op">=</span> <span class="fl">2.5</span>, border <span class="op">=</span> <span class="st">"grey70"</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
@@ -70,7 +70,7 @@ exactly <code>n</code> colors regardless of their base size:</p><ul><li><p><code
 <dd><p>character or integer. Palette name (full match via
 <code><a href="https://rdrr.io/r/base/match.arg.html" class="external-link">match.arg</a></code>) or index into <code><a href="palNames.html">palNames()</a></code>.
 If missing, returns the palette named in the active theme
-(<code>getTheme()$palette</code>, see <code><a href="getTheme.html">getTheme</a></code>).</p></dd>
+(<code>getTheme()$palette</code>, see <a href="theme.html">theme</a>).</p></dd>
 
 
 <dt id="arg-n">n<a class="anchor" aria-label="anchor" href="#arg-n"></a></dt>
@@ -78,7 +78,7 @@ If missing, returns the palette named in the active theme
 the colors as contained in the palette.</p></dd>
 
 
-<dt id="arg-alpha">alpha<a class="anchor" aria-label="anchor" href="#arg-alpha"></a></dt>
+<dt id="arg-opacity">opacity<a class="anchor" aria-label="anchor" href="#arg-opacity"></a></dt>
 <dd><p>numeric in \([0, 1]\), opacity. Default <code>1</code> (opaque).
 Applied via <code><a href="https://rdrr.io/r/grDevices/adjustcolor.html" class="external-link">adjustcolor</a></code>.</p></dd>
 
@@ -108,20 +108,9 @@ Applied via <code><a href="https://rdrr.io/r/grDevices/adjustcolor.html" class="
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="palNames.html">palNames</a></code>, <code><a href="https://rdrr.io/r/grDevices/colorRamp.html" class="external-link">colorRampPalette</a></code>,
 <code><a href="https://rdrr.io/r/grDevices/adjustcolor.html" class="external-link">adjustcolor</a></code></p>
-<p>Other color:
-<code><a href="addOpacity.html">addOpacity()</a></code>,
-<code><a href="colToOpaque.html">colToOpaque()</a></code>,
-<code><a href="colToRGB.html">colToRGB()</a></code>,
-<code><a href="contrastColor.html">contrastColor()</a></code>,
-<code><a href="darken.html">darken()</a></code>,
-<code><a href="findColor.html">findColor()</a></code>,
-<code><a href="grayscale.html">grayscale()</a></code>,
+<p>Other color.palettes:
 <code><a href="hcol.html">hcol()</a></code>,
-<code><a href="hexToRGB.html">hexToRGB()</a></code>,
-<code><a href="lighten.html">lighten()</a></code>,
-<code><a href="mixColors.html">mixColors()</a></code>,
-<code><a href="palNames.html">palNames()</a></code>,
-<code><a href="setBackCol.html">setBackCol()</a></code></p></div>
+<code><a href="palNames.html">palNames()</a></code></p></div>
     </div>
 
     <div class="section level2">
@@ -133,20 +122,20 @@ Applied via <code><a href="https://rdrr.io/r/grDevices/adjustcolor.html" class="
 <span class="r-out co"><span class="r-pr">#&gt;</span>     slate      sand     brown      plum </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> "#5F6F9A" "#E6E2D3" "#6E5A3C" "#5B2A45" </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"name")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Helsana"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "helsana"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Palette"   "character"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># discrete palette — 3 maximally contrasting colors</span></span></span>
-<span class="r-in"><span><span class="fu">pal</span><span class="op">(</span><span class="st">"Dark"</span>, n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">pal</span><span class="op">(</span><span class="st">"dark"</span>, n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "#1B9E77" "#E7298A" "#666666"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"name")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Dark"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "dark"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Palette"   "character"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># continuous gradient — 50 colors</span></span></span>
-<span class="r-in"><span><span class="fu">pal</span><span class="op">(</span><span class="st">"RedWhiteBlue1"</span>, n <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">pal</span><span class="op">(</span><span class="st">"red-white-blue-2"</span>, n <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "#67001F" "#760421" "#850923" "#940E26" "#A41328" "#B2192B" "#BA2832"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [8] "#C13639" "#C84540" "#D05447" "#D7624F" "#DD7059" "#E37E64" "#E98D6F"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [15] "#EF9B7A" "#F4A886" "#F6B394" "#F8BEA2" "#FAC9B0" "#FBD4BE" "#FDDDCB"</span>
@@ -156,7 +145,7 @@ Applied via <code><a href="https://rdrr.io/r/grDevices/adjustcolor.html" class="
 <span class="r-out co"><span class="r-pr">#&gt;</span> [43] "#2F79B5" "#2870B1" "#2166AC" "#1B5C9E" "#16518E" "#10467F" "#0A3B70"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [50] "#053061"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"name")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "RedWhiteBlue1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "red-white-blue-2"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Palette"   "character"</span>
 <span class="r-in"><span></span></span>
@@ -170,26 +159,26 @@ Applied via <code><a href="https://rdrr.io/r/grDevices/adjustcolor.html" class="
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Palette"   "character"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># with transparency</span></span></span>
-<span class="r-in"><span><span class="fu">pal</span><span class="op">(</span><span class="st">"Helsana"</span>, n <span class="op">=</span> <span class="fl">5</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">pal</span><span class="op">(</span><span class="st">"helsana"</span>, n <span class="op">=</span> <span class="fl">5</span>, opacity <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "#8296C480" "#FED03780" "#B3BA1280" "#5F6F9A80" "#5B2A4580"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"name")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Helsana"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "helsana"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Palette"   "character"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># show all names</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="palNames.html">palNames</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "red-black"     "RedBlackGreen"  "SteelblueWhite" "RedWhiteGreen" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "RedWhiteBlue0"  "RedWhiteBlue1"  "RedWhiteBlue2"  "RedWhiteBlue3" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "RedGreen1"      "Helsana"        "Helsana1"       "Helsana2"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "Tibco"          "Spring"         "Soap"           "Maiden"        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [17] "Dark"           "Accent"         "Pastel"         "Fragile"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [21] "Big"            "GrandBudapest"  "Moonrise1"      "Royal1"        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [25] "Moonrise2"      "Cavalcanti"     "Royal2"         "GrandBudapest2"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [29] "Moonrise3"      "Chevalier"      "Zissou"         "FantasticFox"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [33] "Darjeeling"     "Rushmore"       "BottleRocket"   "Darjeeling2"   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [37] "Tequila"        "Long"           "Night"          "Dawn"          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [41] "Noon"           "Light"         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "red-black"        "red-black-green"  "steelblue-white"  "red-white-green" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "red-white-blue-1" "red-white-blue-2" "red-white-blue-3" "red-white-blue-4"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "red-green-1"      "helsana"          "helsana-1"        "helsana-2"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "tibco"            "spring"           "soap"             "maiden"          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [17] "dark"             "accent"           "pastel"           "fragile"         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [21] "big"              "grand-budapest"   "moonrise-1"       "royal-1"         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [25] "moonrise-2"       "cavalcanti"       "royal-2"          "grand-budapest-2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [29] "moonrise-3"       "chevalier"        "zissou"           "fantastic-fox"   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [33] "darjeeling"       "rushmore"         "bottle-rocket"    "darjeeling-2"    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [37] "tequila"          "long"             "night"            "dawn"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [41] "noon"             "light"           </span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
