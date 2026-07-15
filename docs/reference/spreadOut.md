@@ -63,7 +63,8 @@ Other graphics.layout:
 [`axisBreak()`](https://andrisignorell.github.io/aurora/reference/axisBreak.md),
 [`isValidPlotRegion()`](https://andrisignorell.github.io/aurora/reference/isValidPlotRegion.md),
 [`lineToUser()`](https://andrisignorell.github.io/aurora/reference/lineToUser.md),
-[`mar()`](https://andrisignorell.github.io/aurora/reference/mar.md)
+[`mar()`](https://andrisignorell.github.io/aurora/reference/mar.md),
+[`plotFacet()`](https://andrisignorell.github.io/aurora/reference/plotFacet.md)
 
 ## Examples
 

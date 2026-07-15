@@ -44,7 +44,7 @@ representation, so they don't fit a row/column slot above:
 |----|----|
 | Function | Purpose |
 | [`colToOpaque()`](https://andrisignorell.github.io/aurora/reference/colToOpaque.md) | Computes the equivalent opaque color for a transparent color against a background – Hex stays Hex |
-| [`grayscale()`](https://andrisignorell.github.io/aurora/reference/grayscale.md) | Converts colors to grayscale using luminance weighting – Col stays Col |
+| [`grayScale()`](https://andrisignorell.github.io/aurora/reference/grayScale.md) | Converts colors to grayscale using luminance weighting – Col stays Col |
 
 ## Why HSV has no source functions
 
@@ -71,16 +71,16 @@ instead (see examples).
 # (usually RGB or Col), not a missing feature.
 
 # CMY -> RGB: no direct function: CMY -> CMYK -> RGB
-cmykToRgb(cmyToCmyk(c(0.2, 0.6, 0.9)))
+c(0.2, 0.6, 0.9) |> cmyToCmyk() |> cmykToRgb()
 #>     R   G   B
 #> C 0.8 0.4 0.1
 
 # Long integer -> R color name: Long -> RGB -> Col
-rgbToCol(longToRGB(255))
+255 |> longToRGB() |> rgbToCol()
 #> [1] "red"
 
 # HSV -> RGB: base R's hsv() bridges the gap noted above
-colToRGB(hsv(h = 0.6, s = 0.8, v = 0.9))
+hsv(h = 0.6, s = 0.8, v = 0.9) |> colToRGB()
 #>       [,1]
 #> red     46
 #> green  119

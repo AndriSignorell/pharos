@@ -145,7 +145,7 @@ or combined into composite shapes.
   [`darken()`](https://andrisignorell.github.io/aurora/reference/darken.md),
   [`lighten()`](https://andrisignorell.github.io/aurora/reference/lighten.md),
   [`mixColors()`](https://andrisignorell.github.io/aurora/reference/mixColors.md),
-  [`grayscale()`](https://andrisignorell.github.io/aurora/reference/grayscale.md),
+  `grayscale()`,
   [`colToOpaque()`](https://andrisignorell.github.io/aurora/reference/colToOpaque.md)
 - **Analysis:**
   [`contrastColor()`](https://andrisignorell.github.io/aurora/reference/contrastColor.md)

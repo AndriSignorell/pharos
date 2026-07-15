@@ -1,11 +1,11 @@
-# Convert Colors to Grayscale
+# Convert Colors to grayScale
 
-Convert colors to grayscale using luminance weighting.
+Convert colors to grayScale using luminance weighting.
 
 ## Usage
 
 ``` r
-grayscale(col)
+grayScale(col)
 ```
 
 ## Arguments
@@ -16,11 +16,11 @@ grayscale(col)
 
 ## Value
 
-Character vector of grayscale colors.
+Character vector of grayScale colors.
 
 ## Details
 
-Grayscale conversion uses the standard luminance approximation: \$\$0.3
+grayScale conversion uses the standard luminance approximation: \$\$0.3
 R + 0.59 G + 0.11 B\$\$
 
 ## See also
@@ -37,10 +37,10 @@ tmp <- 1:3
 names(tmp) <- c('red','green','blue')
 
 barplot(tmp, col=c('red','green','blue'))
-barplot(tmp, col=grayscale(c('red','green','blue')))
+barplot(tmp, col=grayScale(c('red','green','blue')))
 
 barplot(tmp, col=c('red','#008100','#3636ff'))
-barplot(tmp, col=grayscale(c('red','#008100','#3636ff')))
+barplot(tmp, col=grayScale(c('red','#008100','#3636ff')))
 
 
 par(op)

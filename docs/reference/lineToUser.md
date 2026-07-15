@@ -38,6 +38,7 @@ Other graphics.layout:
 [`axisBreak()`](https://andrisignorell.github.io/aurora/reference/axisBreak.md),
 [`isValidPlotRegion()`](https://andrisignorell.github.io/aurora/reference/isValidPlotRegion.md),
 [`mar()`](https://andrisignorell.github.io/aurora/reference/mar.md),
+[`plotFacet()`](https://andrisignorell.github.io/aurora/reference/plotFacet.md),
 [`spreadOut()`](https://andrisignorell.github.io/aurora/reference/spreadOut.md)
 
 ## Examples

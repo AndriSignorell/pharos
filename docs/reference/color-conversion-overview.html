@@ -17,7 +17,7 @@ function. RGB is the hub between the two tables below."><meta property="og:image
 
     <a class="navbar-brand me-2" href="../index.html">lyra</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.933</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.934</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,7 +70,7 @@ second table for the reason this gap is left open.</p>
 
 
 <p>Two related functions transform a color without changing its
-representation, so they don't fit a row/column slot above:</p><table class="table table"><tr><td>Function</td><td>Purpose</td></tr><tr><td><code><a href="colToOpaque.html">colToOpaque()</a></code></td><td>Computes the equivalent opaque color for a transparent color against a background – Hex stays Hex</td></tr><tr><td><code><a href="grayscale.html">grayscale()</a></code></td><td>Converts colors to grayscale using luminance weighting – Col stays Col</td></tr></table></div>
+representation, so they don't fit a row/column slot above:</p><table class="table table"><tr><td>Function</td><td>Purpose</td></tr><tr><td><code><a href="colToOpaque.html">colToOpaque()</a></code></td><td>Computes the equivalent opaque color for a transparent color against a background – Hex stays Hex</td></tr><tr><td><code><a href="grayScale.html">grayScale()</a></code></td><td>Converts colors to grayscale using luminance weighting – Col stays Col</td></tr></table></div>
     <div class="section level2">
     <h2 id="why-hsv-has-no-source-functions">Why HSV has no source functions<a class="anchor" aria-label="anchor" href="#why-hsv-has-no-source-functions"></a></h2>
 
@@ -93,16 +93,16 @@ chain <code><a href="https://rdrr.io/r/grDevices/hsv.html" class="external-link"
 <span class="r-in"><span><span class="co"># (usually RGB or Col), not a missing feature.</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># CMY -&gt; RGB: no direct function: CMY -&gt; CMYK -&gt; RGB</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="cmykToRgb.html">cmykToRgb</a></span><span class="op">(</span><span class="fu"><a href="cmyToCmyk.html">cmyToCmyk</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">0.6</span>, <span class="fl">0.9</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">0.6</span>, <span class="fl">0.9</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="cmyToCmyk.html">cmyToCmyk</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="cmykToRgb.html">cmykToRgb</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     R   G   B</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> C 0.8 0.4 0.1</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Long integer -&gt; R color name: Long -&gt; RGB -&gt; Col</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="rgbToCol.html">rgbToCol</a></span><span class="op">(</span><span class="fu"><a href="longToRGB.html">longToRGB</a></span><span class="op">(</span><span class="fl">255</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fl">255</span> <span class="op">|&gt;</span> <span class="fu"><a href="longToRGB.html">longToRGB</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="rgbToCol.html">rgbToCol</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "red"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># HSV -&gt; RGB: base R's hsv() bridges the gap noted above</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="colToRGB.html">colToRGB</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/hsv.html" class="external-link">hsv</a></span><span class="op">(</span>h <span class="op">=</span> <span class="fl">0.6</span>, s <span class="op">=</span> <span class="fl">0.8</span>, v <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/grDevices/hsv.html" class="external-link">hsv</a></span><span class="op">(</span>h <span class="op">=</span> <span class="fl">0.6</span>, s <span class="op">=</span> <span class="fl">0.8</span>, v <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="colToRGB.html">colToRGB</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       [,1]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> red     46</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> green  119</span>
