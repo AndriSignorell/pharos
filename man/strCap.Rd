@@ -48,7 +48,7 @@ strCap(x, "title")
 \code{\link[stringi]{stri_trans_totitle}},
 \code{\link[stringi]{stri_split_boundaries}}
 
-\link{string-overview} for an overview of all string utilities in lyra.
+\link{string-overview} for an overview of all string utilities in pharos.
 }
 \concept{formatting}
 \concept{string-manipulation}

@@ -121,7 +121,7 @@ boxedText.default <- function(
     labels <- seq_along(coords$x)
   
   # ------------------------------------------------------------
-  # Recycling aller Parameter über lyra::recycle()
+  # Recycling aller Parameter über pharos::recycle()
   # ------------------------------------------------------------
   pars <- recycle(
     x       = coords$x,

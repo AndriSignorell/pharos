@@ -1,7 +1,7 @@
-# lyra's Graphics and Formatting Theme
+# pharos's Graphics and Formatting Theme
 
 `getTheme()`, `setTheme()`, and `resetTheme()` are the user-facing entry
-points to lyra's theme system: a single, named list of graphical and
+points to pharos's theme system: a single, named list of graphical and
 formatting defaults, consulted by essentially every plotting function in
 the package (and by
 [`fm()`](https://andrisignorell.github.io/aurora/reference/fm.md) for
@@ -35,7 +35,7 @@ list; `setTheme()` returns the new active theme as well, invisibly.
 
 ## What the theme is for
 
-Most graphical parameters in lyra's plotting functions (`col`, `grid`,
+Most graphical parameters in pharos's plotting functions (`col`, `grid`,
 `box`, `pch`, ...) default to a sentinel value, `.useTheme`, rather than
 to a hardcoded color or number. At call time, that sentinel is resolved
 against `getTheme()` - so changing the active theme changes the look of

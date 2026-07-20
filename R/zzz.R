@@ -3,15 +3,15 @@
 
 .onLoad <- function(libname, pkgname) {
   
-  current <- getOption("lyra.theme", list())
-  options(lyra.theme = utils::modifyList(.themeDefaults, current))
+  current <- getOption("pharos.theme", list())
+  options(pharos.theme = utils::modifyList(.themeDefaults, current))
   
 }
   
 
 
 
-#' @useDynLib lyra, .registration = TRUE
+#' @useDynLib pharos, .registration = TRUE
 
 
 #' @importFrom Rcpp sourceCpp

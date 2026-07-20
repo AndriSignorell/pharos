@@ -44,7 +44,7 @@ This is just a wrapper for the function
 [`regexpr`](https://rdrr.io/r/base/grep.html)
 
 [string-overview](https://andrisignorell.github.io/aurora/reference/string-overview.md)
-for an overview of all string utilities in lyra.
+for an overview of all string utilities in pharos.
 
 ## Examples
 

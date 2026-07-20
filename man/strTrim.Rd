@@ -46,7 +46,7 @@ strTrim(" ..Hello ... world! ", pattern=" \\\\.")
 \seealso{
 \code{\link[base]{trimws}}
 
-\link{string-overview} for an overview of all string utilities in lyra.
+\link{string-overview} for an overview of all string utilities in pharos.
 }
 \concept{formatting}
 \concept{string-manipulation}

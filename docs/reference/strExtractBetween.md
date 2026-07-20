@@ -52,7 +52,7 @@ which returns the first captured group.
 [`strExtract`](https://andrisignorell.github.io/aurora/reference/strExtract.md)
 
 [string-overview](https://andrisignorell.github.io/aurora/reference/string-overview.md)
-for an overview of all string utilities in lyra.
+for an overview of all string utilities in pharos.
 
 ## Examples
 

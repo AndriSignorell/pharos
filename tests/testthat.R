@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/articles/special-files.html
 
 library(testthat)
-library(lyra)
+library(pharos)
 
-test_check("lyra")
+test_check("pharos")

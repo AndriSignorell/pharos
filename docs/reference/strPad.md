@@ -46,7 +46,7 @@ length of width.
 [`strTrunc`](https://andrisignorell.github.io/aurora/reference/strTrunc.md)
 
 [string-overview](https://andrisignorell.github.io/aurora/reference/string-overview.md)
-for an overview of all string utilities in lyra.
+for an overview of all string utilities in pharos.
 
 ## Examples
 

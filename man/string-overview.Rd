@@ -2,9 +2,9 @@
 % Please edit documentation in R/string-overview.R
 \name{string-overview}
 \alias{string-overview}
-\title{String Functions in lyra}
+\title{String Functions in pharos}
 \description{
-lyra provides a family of functions for manipulating and inspecting
+pharos provides a family of functions for manipulating and inspecting
 character strings, built on top of \pkg{stringi} for Unicode-aware
 behavior. They fall into two groups:
 

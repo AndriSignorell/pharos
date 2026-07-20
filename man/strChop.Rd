@@ -49,7 +49,7 @@ strChop(x=x, pos=c(5, 10))
 \code{\link{strLeft}},
 \code{\link{substr}}
 
-\link{string-overview} for an overview of all string utilities in lyra.
+\link{string-overview} for an overview of all string utilities in pharos.
 }
 \concept{reshape}
 \concept{string-manipulation}

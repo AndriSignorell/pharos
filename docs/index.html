@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Descriptive Statistics Graphics and Utilities • lyra</title>
+<title>Descriptive Statistics Graphics and Utilities • pharos</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
 <link rel="icon" type="”image/svg+xml”" href="favicon.svg">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -26,9 +26,9 @@
 
     <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
 
-    <a class="navbar-brand me-2" href="index.html">lyra</a>
+    <a class="navbar-brand me-2" href="index.html">pharos</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.934</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.935</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,7 +44,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/AndriSignorell/lyra/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/AndriSignorell/pharos/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -54,20 +54,20 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header">
-<img src="logo.png" class="logo" alt=""><h1 id="lyra-">lyra <a class="anchor" aria-label="anchor" href="#lyra-"></a>
+<img src="logo.png" class="logo" alt=""><h1 id="pharos-">pharos <a class="anchor" aria-label="anchor" href="#pharos-"></a>
 </h1>
 </div>
 <p><strong>Descriptive Statistics Graphics and Utilities</strong></p>
 <p>Version 0.0.0.927 · License GPL (≥ 2)</p>
 <!-- badges: start -->
-<!-- [![R-CMD-check](https://github.com/AndriSignorell/lyra/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/AndriSignorell/lyra/actions) -->
+<!-- [![R-CMD-check](https://github.com/AndriSignorell/pharos/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/AndriSignorell/pharos/actions) -->
 <!-- badges: end -->
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<p><code>lyra</code> is the graphics package of the <strong>DescToolsX ecosystem</strong>. It provides a comprehensive collection of statistical plots, geometric drawing primitives, color tools, annotation helpers, and formatting utilities — all built directly on <strong>base R graphics</strong>.</p>
+<p><code>pharos</code> is the graphics package of the <strong>DescToolsX ecosystem</strong>. It provides a comprehensive collection of statistical plots, geometric drawing primitives, color tools, annotation helpers, and formatting utilities — all built directly on <strong>base R graphics</strong>.</p>
 <p>Building on base graphics keeps the package lightweight and fully compatible with everything base R offers (<code><a href="https://rdrr.io/r/graphics/layout.html" class="external-link">layout()</a></code>, <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par()</a></code>, custom devices), while a central <strong>theme system</strong> and consistent argument conventions remove the usual boilerplate: sensible defaults, automatic margin handling, and uniform styling across all plot functions.</p>
-<p><code>lyra</code> is part of the DescToolsX package suite:</p>
+<p><code>pharos</code> is part of the DescToolsX package suite:</p>
 <table class="table">
 <thead><tr>
 <th>Package</th>
@@ -79,7 +79,7 @@
 <td>core infrastructure and utilities</td>
 </tr>
 <tr>
-<td><code>lyra</code></td>
+<td><code>pharos</code></td>
 <td>graphics and visualization (this package)</td>
 </tr>
 <tr>
@@ -102,7 +102,7 @@
 </h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># development version from GitHub</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"AndriSignorell/lyra"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"AndriSignorell/pharos"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="key-features">Key Features<a class="anchor" aria-label="anchor" href="#key-features"></a>
@@ -210,7 +210,7 @@
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://andrisignorell.github.io/lyra/" class="external-link">lyra</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://andrisignorell.github.io/pharos/" class="external-link">pharos</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># grouped violin plot, styled by the active theme</span></span>
 <span><span class="fu"><a href="reference/plotViolin.html">plotViolin</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
@@ -219,7 +219,7 @@
 <span><span class="fu"><a href="reference/plotCor.html">plotCor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># custom geometric graphic</span></span>
-<span><span class="fu"><a href="reference/canvas.html">canvas</a></span><span class="op">(</span>main <span class="op">=</span> <span class="st">"lyra primitives"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/canvas.html">canvas</a></span><span class="op">(</span>main <span class="op">=</span> <span class="st">"pharos primitives"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/polygon.html">polygon</a></span><span class="op">(</span><span class="fu"><a href="reference/circle.html">circle</a></span><span class="op">(</span>radius <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, col <span class="op">=</span> <span class="fu"><a href="reference/addOpacity.html">addOpacity</a></span><span class="op">(</span><span class="st">"steelblue"</span>, <span class="fl">0.4</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/polygon.html">polygon</a></span><span class="op">(</span><span class="fu"><a href="reference/regPolygon.html">regPolygon</a></span><span class="op">(</span>radius <span class="op">=</span> <span class="fl">0.7</span>, numVertices <span class="op">=</span> <span class="fl">6</span><span class="op">)</span>, border <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -243,9 +243,9 @@
 <h2 id="documentation">Documentation<a class="anchor" aria-label="anchor" href="#documentation"></a>
 </h2>
 <ul>
-<li>Website: <a href="https://andrisignorell.github.io/lyra/" class="external-link uri">https://andrisignorell.github.io/lyra/</a>
+<li>Website: <a href="https://andrisignorell.github.io/pharos/" class="external-link uri">https://andrisignorell.github.io/pharos/</a>
 </li>
-<li>Bug reports: <a href="https://github.com/AndriSignorell/lyra/issues" class="external-link uri">https://github.com/AndriSignorell/lyra/issues</a>
+<li>Bug reports: <a href="https://github.com/AndriSignorell/pharos/issues" class="external-link uri">https://github.com/AndriSignorell/pharos/issues</a>
 </li>
 </ul>
 </div>
@@ -258,8 +258,8 @@
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/AndriSignorell/lyra/" class="external-link">Browse source code</a></li>
-<li><a href="https://github.com/AndriSignorell/lyra/issues" class="external-link">Report a bug</a></li>
+<li><a href="https://github.com/AndriSignorell/pharos/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/AndriSignorell/pharos/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
@@ -274,7 +274,7 @@
 <div class="citation">
 <h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li><a href="authors.html#citation">Citing lyra</a></li>
+<li><a href="authors.html#citation">Citing pharos</a></li>
 </ul>
 </div>
 
@@ -296,7 +296,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>

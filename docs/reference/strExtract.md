@@ -42,7 +42,7 @@ pattern.
 [`strExtractBetween`](https://andrisignorell.github.io/aurora/reference/strExtractBetween.md)
 
 [string-overview](https://andrisignorell.github.io/aurora/reference/string-overview.md)
-for an overview of all string utilities in lyra.
+for an overview of all string utilities in pharos.
 
 ## Examples
 

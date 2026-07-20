@@ -54,7 +54,7 @@ strSpell("ABC", upr = NA)
 \code{\link{strTrim}},
 \code{\link[stringi]{stri_split_boundaries}}
 
-\link{string-overview} for an overview of all string utilities in lyra.
+\link{string-overview} for an overview of all string utilities in pharos.
 }
 \concept{phonetic-encoding}
 \concept{string-manipulation}

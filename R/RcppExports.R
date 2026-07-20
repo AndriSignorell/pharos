@@ -2,26 +2,26 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 bagplot_compute <- function(xy, factor = 3.0, eps = 1e-8, dither = TRUE) {
-    .Call(`_lyra_bagplot_compute`, xy, factor, eps, dither)
+    .Call(`_pharos_bagplot_compute`, xy, factor, eps, dither)
 }
 
 formatDateTime <- function(x, fmt, strict = TRUE, locale = "current") {
-    .Call(`_lyra_formatDateTime`, x, fmt, strict, locale)
+    .Call(`_pharos_formatDateTime`, x, fmt, strict, locale)
 }
 
 formatNum <- function(x, digits = NULL, leadDigits = NULL, bigMark = NULL, decimalMark = NULL, sciBig = 9999L, sciSmall = -9999L) {
-    .Call(`_lyra_formatNum`, x, digits, leadDigits, bigMark, decimalMark, sciBig, sciSmall)
+    .Call(`_pharos_formatNum`, x, digits, leadDigits, bigMark, decimalMark, sciBig, sciSmall)
 }
 
 pSmirnov2x <- function(statistic, nx, ny) {
-    .Call(`_lyra_pSmirnov2x`, statistic, nx, ny)
+    .Call(`_pharos_pSmirnov2x`, statistic, nx, ny)
 }
 
 pKS2 <- function(statistic, tol) {
-    .Call(`_lyra_pKS2`, statistic, tol)
+    .Call(`_pharos_pKS2`, statistic, tol)
 }
 
 pKolmogorov2x <- function(statistic, n) {
-    .Call(`_lyra_pKolmogorov2x`, statistic, n)
+    .Call(`_pharos_pKolmogorov2x`, statistic, n)
 }
 

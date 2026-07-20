@@ -12,7 +12,7 @@ Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 
 // bagplot_compute
 List bagplot_compute(NumericMatrix xy, double factor, double eps, bool dither);
-RcppExport SEXP _lyra_bagplot_compute(SEXP xySEXP, SEXP factorSEXP, SEXP epsSEXP, SEXP ditherSEXP) {
+RcppExport SEXP _pharos_bagplot_compute(SEXP xySEXP, SEXP factorSEXP, SEXP epsSEXP, SEXP ditherSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -26,7 +26,7 @@ END_RCPP
 }
 // formatDateTime
 CharacterVector formatDateTime(SEXP x, std::string fmt, bool strict, std::string locale);
-RcppExport SEXP _lyra_formatDateTime(SEXP xSEXP, SEXP fmtSEXP, SEXP strictSEXP, SEXP localeSEXP) {
+RcppExport SEXP _pharos_formatDateTime(SEXP xSEXP, SEXP fmtSEXP, SEXP strictSEXP, SEXP localeSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -40,7 +40,7 @@ END_RCPP
 }
 // formatNum
 CharacterVector formatNum(NumericVector x, Nullable<IntegerVector> digits, Nullable<IntegerVector> leadDigits, Nullable<CharacterVector> bigMark, Nullable<CharacterVector> decimalMark, int sciBig, int sciSmall);
-RcppExport SEXP _lyra_formatNum(SEXP xSEXP, SEXP digitsSEXP, SEXP leadDigitsSEXP, SEXP bigMarkSEXP, SEXP decimalMarkSEXP, SEXP sciBigSEXP, SEXP sciSmallSEXP) {
+RcppExport SEXP _pharos_formatNum(SEXP xSEXP, SEXP digitsSEXP, SEXP leadDigitsSEXP, SEXP bigMarkSEXP, SEXP decimalMarkSEXP, SEXP sciBigSEXP, SEXP sciSmallSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -57,7 +57,7 @@ END_RCPP
 }
 // pSmirnov2x
 double pSmirnov2x(double statistic, int nx, int ny);
-RcppExport SEXP _lyra_pSmirnov2x(SEXP statisticSEXP, SEXP nxSEXP, SEXP nySEXP) {
+RcppExport SEXP _pharos_pSmirnov2x(SEXP statisticSEXP, SEXP nxSEXP, SEXP nySEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -70,7 +70,7 @@ END_RCPP
 }
 // pKS2
 NumericVector pKS2(NumericVector statistic, double tol);
-RcppExport SEXP _lyra_pKS2(SEXP statisticSEXP, SEXP tolSEXP) {
+RcppExport SEXP _pharos_pKS2(SEXP statisticSEXP, SEXP tolSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -82,7 +82,7 @@ END_RCPP
 }
 // pKolmogorov2x
 double pKolmogorov2x(double statistic, int n);
-RcppExport SEXP _lyra_pKolmogorov2x(SEXP statisticSEXP, SEXP nSEXP) {
+RcppExport SEXP _pharos_pKolmogorov2x(SEXP statisticSEXP, SEXP nSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -94,16 +94,16 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_lyra_bagplot_compute", (DL_FUNC) &_lyra_bagplot_compute, 4},
-    {"_lyra_formatDateTime", (DL_FUNC) &_lyra_formatDateTime, 4},
-    {"_lyra_formatNum", (DL_FUNC) &_lyra_formatNum, 7},
-    {"_lyra_pSmirnov2x", (DL_FUNC) &_lyra_pSmirnov2x, 3},
-    {"_lyra_pKS2", (DL_FUNC) &_lyra_pKS2, 2},
-    {"_lyra_pKolmogorov2x", (DL_FUNC) &_lyra_pKolmogorov2x, 2},
+    {"_pharos_bagplot_compute", (DL_FUNC) &_pharos_bagplot_compute, 4},
+    {"_pharos_formatDateTime", (DL_FUNC) &_pharos_formatDateTime, 4},
+    {"_pharos_formatNum", (DL_FUNC) &_pharos_formatNum, 7},
+    {"_pharos_pSmirnov2x", (DL_FUNC) &_pharos_pSmirnov2x, 3},
+    {"_pharos_pKS2", (DL_FUNC) &_pharos_pKS2, 2},
+    {"_pharos_pKolmogorov2x", (DL_FUNC) &_pharos_pKolmogorov2x, 2},
     {NULL, NULL, 0}
 };
 
-RcppExport void R_init_lyra(DllInfo *dll) {
+RcppExport void R_init_pharos(DllInfo *dll) {
     R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);
 }

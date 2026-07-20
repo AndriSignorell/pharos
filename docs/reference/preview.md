@@ -4,7 +4,7 @@ Generic function for an explicit, on-demand preview of an object, as
 distinct from [`print()`](https://rdrr.io/r/base/print.html).
 `preview()` exists for object types where
 [`print()`](https://rdrr.io/r/base/print.html) is shared with another
-package's S3 generic dispatch (e.g. class `"html"`, used both by lyra
+package's S3 generic dispatch (e.g. class `"html"`, used both by pharos
 and htmltools for genuinely different purposes), so that registering an
 own `print.*` method would silently overwrite - or be overwritten by -
 the other package's behaviour.

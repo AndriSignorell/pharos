@@ -30,22 +30,22 @@ degrees.
 ## See also
 
 Other graphics.utils:
-[`abcCoords()`](https://andrisignorell.github.io/lyra/reference/abcCoords.md),
-[`axisBreak()`](https://andrisignorell.github.io/lyra/reference/axisBreak.md),
-[`barText()`](https://andrisignorell.github.io/lyra/reference/barText.md),
-[`boxedText()`](https://andrisignorell.github.io/lyra/reference/boxedText.md),
-[`colLegend()`](https://andrisignorell.github.io/lyra/reference/colLegend.md),
-[`errBars()`](https://andrisignorell.github.io/lyra/reference/errBars.md),
-[`lineSep()`](https://andrisignorell.github.io/lyra/reference/lineSep.md),
-[`lineToUser()`](https://andrisignorell.github.io/lyra/reference/lineToUser.md),
-[`lines.lm()`](https://andrisignorell.github.io/lyra/reference/linesLm.md),
-[`mar()`](https://andrisignorell.github.io/lyra/reference/mar.md),
-[`preview()`](https://andrisignorell.github.io/lyra/reference/preview.md),
-[`spreadOut()`](https://andrisignorell.github.io/lyra/reference/spreadOut.md),
-[`stamp()`](https://andrisignorell.github.io/lyra/reference/stamp.md),
-[`textLegend()`](https://andrisignorell.github.io/lyra/reference/textLegend.md),
-[`titleRect()`](https://andrisignorell.github.io/lyra/reference/titleRect.md),
-[`unit()`](https://andrisignorell.github.io/lyra/reference/unit.md)
+[`abcCoords()`](https://andrisignorell.github.io/pharos/reference/abcCoords.md),
+[`axisBreak()`](https://andrisignorell.github.io/pharos/reference/axisBreak.md),
+[`barText()`](https://andrisignorell.github.io/pharos/reference/barText.md),
+[`boxedText()`](https://andrisignorell.github.io/pharos/reference/boxedText.md),
+[`colLegend()`](https://andrisignorell.github.io/pharos/reference/colLegend.md),
+[`errBars()`](https://andrisignorell.github.io/pharos/reference/errBars.md),
+[`lineSep()`](https://andrisignorell.github.io/pharos/reference/lineSep.md),
+[`lineToUser()`](https://andrisignorell.github.io/pharos/reference/lineToUser.md),
+[`lines.lm()`](https://andrisignorell.github.io/pharos/reference/linesLm.md),
+[`mar()`](https://andrisignorell.github.io/pharos/reference/mar.md),
+[`preview()`](https://andrisignorell.github.io/pharos/reference/preview.md),
+[`spreadOut()`](https://andrisignorell.github.io/pharos/reference/spreadOut.md),
+[`stamp()`](https://andrisignorell.github.io/pharos/reference/stamp.md),
+[`textLegend()`](https://andrisignorell.github.io/pharos/reference/textLegend.md),
+[`titleRect()`](https://andrisignorell.github.io/pharos/reference/titleRect.md),
+[`unit()`](https://andrisignorell.github.io/pharos/reference/unit.md)
 
 ## Examples
 

@@ -1,6 +1,6 @@
-# String Functions in lyra
+# String Functions in pharos
 
-lyra provides a family of functions for manipulating and inspecting
+pharos provides a family of functions for manipulating and inspecting
 character strings, built on top of stringi for Unicode-aware behavior.
 They fall into two groups:
 

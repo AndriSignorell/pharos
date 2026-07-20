@@ -33,7 +33,7 @@
 #' @importFrom stringi stri_detect_regex
 
 #' @seealso
-#' [string-overview] for an overview of all string utilities in lyra.
+#' [string-overview] for an overview of all string utilities in pharos.
 #'
 #' @concept string-inspection
 #' @concept type-test

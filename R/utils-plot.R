@@ -1,7 +1,7 @@
 
 # utils-plot.R -------------------------------------------------------------
 #
-# Internal plotting infrastructure for lyra. These helpers implement the
+# Internal plotting infrastructure for pharos. These helpers implement the
 # shared setup path used by all high-level plot*() functions: graphics state
 # management, theme-aware par() handling, margin calculation, and resolution
 # of callIf-style toggle specs. All functions are internal (@noRd) unless
@@ -16,7 +16,7 @@ fcol <- .pal_data$discrete$helsana
 #'
 #' Thin wrapper around [getOption()] that prepends the suite-wide
 #' `"DescToolsX."` prefix. All options across the package suite (bedrock,
-#' lyra, lumen, alloy, hermes) live in this single namespace, e.g.
+#' pharos, lumen, alloy, hermes) live in this single namespace, e.g.
 #' `options(DescToolsX.plot.minPin = c(1, 1))`.
 #'
 #' @param name character string, the option name *without* the
@@ -124,7 +124,7 @@ fcol <- .pal_data$discrete$helsana
 #'   plot: the sentinel `.useTheme` (default; let the theme decide),
 #'   `TRUE`/`FALSE`/`NULL`/`NA` as an on/off toggle, a bare string or an
 #'   expression (used as the stamp text itself), or a list of arguments
-#'   for [lyra::stamp()] (e.g. `list(text = "...", las = 2)`).
+#'   for [pharos::stamp()] (e.g. `list(text = "...", las = 2)`).
 #' @param resetLayout logical; if `TRUE`, the layout is reset to a single
 #'   panel (`layout(matrix(1))`) after successful completion. Use this in
 #'   plot functions that set up multi-panel layouts internally.
@@ -170,11 +170,11 @@ fcol <- .pal_data$discrete$helsana
 
   on.exit({
     if (ok)
-      # 'stamp' here refers to the exported lyra::stamp() function, not
+      # 'stamp' here refers to the exported pharos::stamp() function, not
       # the local formal argument 'stamp' of this call - R's function
       # lookup skips non-functions in call position, so the name resolves
       # correctly despite the clash.
-      tryCatch(do.call(lyra::stamp, stampArgs), error = function(e) NULL)
+      tryCatch(do.call(pharos::stamp, stampArgs), error = function(e) NULL)
 
     if (ok && resetLayout)
       tryCatch(layout(matrix(1)), error = function(e) NULL)

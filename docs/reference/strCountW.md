@@ -29,7 +29,7 @@ punctuation, and whitespace.
 [`stri_count_words`](https://rdrr.io/pkg/stringi/man/stri_count_boundaries.html)
 
 [string-overview](https://andrisignorell.github.io/aurora/reference/string-overview.md)
-for an overview of all string utilities in lyra.
+for an overview of all string utilities in pharos.
 
 ## Examples
 

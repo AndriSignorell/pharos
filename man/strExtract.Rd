@@ -41,7 +41,7 @@ strExtract("hello world", "\\\\w+")
 \code{\link[stringi]{stri_extract_first_regex}},
 \code{\link{strExtractBetween}}
 
-\link{string-overview} for an overview of all string utilities in lyra.
+\link{string-overview} for an overview of all string utilities in pharos.
 }
 \concept{pattern-matching}
 \concept{string-manipulation}

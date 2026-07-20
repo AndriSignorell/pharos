@@ -65,7 +65,7 @@ strVal("value = 3,14", dec = ",", output = "numeric")
 \seealso{
 \code{\link{as.numeric}}, \code{\link[stringi]{stri_extract_all_regex}}
 
-\link{string-overview} for an overview of all string utilities in lyra.
+\link{string-overview} for an overview of all string utilities in pharos.
 }
 \concept{number-formatting}
 \concept{pattern-matching}

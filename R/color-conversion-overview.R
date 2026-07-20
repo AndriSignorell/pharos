@@ -1,7 +1,7 @@
-#' Color Conversion Functions in lyra
+#' Color Conversion Functions in pharos
 #'
 #' @description
-#' lyra provides a family of functions for converting colors between
+#' pharos provides a family of functions for converting colors between
 #' representations. Read each matrix as **row -> column**: the cell at
 #' row X, column Y is the function that converts a color from
 #' representation X to representation Y. \code{-} marks the diagonal
@@ -45,7 +45,7 @@
 #' Base R already provides the HSV -> Col/Hex direction via
 #' \code{\link[grDevices]{hsv}()}, which builds a hex color string
 #' directly from h/s/v values -- the same role \code{\link{rgb}()}
-#' plays for RGB triplets. lyra deliberately doesn't duplicate it;
+#' plays for RGB triplets. pharos deliberately doesn't duplicate it;
 #' chain \code{hsv()} into \code{\link{colToRGB}()} or
 #' \code{\link{colToHex}()} instead (see examples).
 #'

@@ -62,7 +62,7 @@
   : Add a Color Legend to a Plot
 
 - [`color-conversion-overview`](https://andrisignorell.github.io/aurora/reference/color-conversion-overview.md)
-  : Color Conversion Functions in lyra
+  : Color Conversion Functions in pharos
 
 - [`colToHex()`](https://andrisignorell.github.io/aurora/reference/colToHex.md)
   : Convert R Colors to Hexadecimal Colors
@@ -369,7 +369,7 @@
   : Extract Substrings Between Patterns
 
 - [`string-overview`](https://andrisignorell.github.io/aurora/reference/string-overview.md)
-  : String Functions in lyra
+  : String Functions in pharos
 
 - [`strIsNumeric()`](https://andrisignorell.github.io/aurora/reference/strIsNumeric.md)
   : Check if Character Strings Represent Numeric Values
@@ -416,7 +416,7 @@
 - [`getTheme()`](https://andrisignorell.github.io/aurora/reference/theme.md)
   [`setTheme()`](https://andrisignorell.github.io/aurora/reference/theme.md)
   [`resetTheme()`](https://andrisignorell.github.io/aurora/reference/theme.md)
-  : lyra's Graphics and Formatting Theme
+  : pharos's Graphics and Formatting Theme
 
 - [`titleRect()`](https://andrisignorell.github.io/aurora/reference/titleRect.md)
   : Plot Boxed Annotation

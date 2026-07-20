@@ -236,7 +236,7 @@ plot.Desc.qn <- function(x,
                # retrofitted after the call - plotDens() restores its own
                # par() state on exit, so a .drawBox() here would draw into
                # the wrong (already-restored) graphics state.
-               lyra::plotDens(
+               pharos::plotDens(
                  split_x,
                  main = .main(.panelDefault("Density by group")),
                  xlab = xLab,
@@ -264,7 +264,7 @@ plot.Desc.qn <- function(x,
              "4" = {
                # plotBox() always draws its frame (box() is unconditional,
                # no toggle exists) - boxHere has no effect here.
-               lyra::plotBox(
+               pharos::plotBox(
                  x    = xOk,
                  g    = yOk,
                  main = .main(.panelDefault("Boxplot")),

@@ -1,6 +1,6 @@
-# Color Conversion Functions in lyra
+# Color Conversion Functions in pharos
 
-lyra provides a family of functions for converting colors between
+pharos provides a family of functions for converting colors between
 representations. Read each matrix as **row -\> column**: the cell at row
 X, column Y is the function that converts a color from representation X
 to representation Y. `-` marks the diagonal (no self-conversion), `.`
@@ -52,7 +52,7 @@ Base R already provides the HSV -\> Col/Hex direction via
 [`hsv()`](https://rdrr.io/r/grDevices/hsv.html), which builds a hex
 color string directly from h/s/v values – the same role
 [`rgb()`](https://rdrr.io/r/grDevices/rgb.html) plays for RGB triplets.
-lyra deliberately doesn't duplicate it; chain
+pharos deliberately doesn't duplicate it; chain
 [`hsv()`](https://rdrr.io/r/grDevices/hsv.html) into
 [`colToRGB()`](https://andrisignorell.github.io/aurora/reference/colToRGB.md)
 or

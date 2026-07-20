@@ -40,7 +40,7 @@ strPos(x=rownames(mtcars), pattern="t", pos=4)
 \seealso{
 \code{\link{strChop}}, \code{\link{regexpr}}
 
-\link{string-overview} for an overview of all string utilities in lyra.
+\link{string-overview} for an overview of all string utilities in pharos.
 }
 \concept{pattern-matching}
 \concept{string-inspection}

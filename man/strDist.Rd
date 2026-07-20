@@ -96,7 +96,7 @@ Psychometric Analyses}
 \seealso{
 \code{\link[utils]{adist}}, \code{\link[stats]{dist}}
 
-\link{string-overview} for an overview of all string utilities in lyra.
+\link{string-overview} for an overview of all string utilities in pharos.
 }
 \concept{numerical-methods}
 \concept{string-inspection}

@@ -40,7 +40,7 @@ strIsNumeric(x, scientific = TRUE)
 \seealso{
 \code{\link{as.numeric}}
 
-\link{string-overview} for an overview of all string utilities in lyra.
+\link{string-overview} for an overview of all string utilities in pharos.
 }
 \concept{string-inspection}
 \concept{type-test}

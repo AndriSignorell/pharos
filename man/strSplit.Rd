@@ -46,7 +46,7 @@ strSplit("a1b2c3", "\\\\d")
 \code{\link[stringi]{stri_split_fixed}},
 \code{\link[stringi]{stri_split_regex}}, \code{\link[base]{strsplit}}
 
-\link{string-overview} for an overview of all string utilities in lyra.
+\link{string-overview} for an overview of all string utilities in pharos.
 }
 \concept{pattern-matching}
 \concept{reshape}

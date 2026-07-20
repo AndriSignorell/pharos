@@ -1,6 +1,6 @@
 # Changelog
 
-## lyra 0.0.0.9000
+## pharos 0.0.0.9000
 
 ### New features
 

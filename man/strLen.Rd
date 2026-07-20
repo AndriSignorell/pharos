@@ -17,7 +17,7 @@ Intuitive alias for \code{\link{nchar}}.
 \seealso{
 \code{\link[base]{nchar}}
 
-\link{string-overview} for an overview of all string utilities in lyra.
+\link{string-overview} for an overview of all string utilities in pharos.
 }
 \concept{string-inspection}
 \concept{summary}

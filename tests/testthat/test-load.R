@@ -1,8 +1,8 @@
 
 
-test_that("lyra does not load without DescToolsX", {
+test_that("pharos does not load without DescToolsX", {
   expect_error(
-    library(lyra),
+    library(pharos),
     NA
   )
 })
