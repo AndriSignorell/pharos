@@ -51,9 +51,27 @@
 #' @concept geometry
 #'
 #' @export
-isValidPlotRegion <- function(minPin = .getOption("plot.minPin", c(0.5, 0.5))) {
-  if (dev.cur() == 1L) return(TRUE)
-  pin <- par("pin")
-  all(is.finite(pin)) && all(pin >= minPin)
+isValidPlotRegion <- function(
+    minPin = .getOption("plot.minPin", c(0.5, 0.5)) ) {
+  
+  minPin <- rep_len(minPin, 2L)
+  
+  if (length(minPin) != 2L ||
+      anyNA(minPin) ||
+      any(!is.finite(minPin)) ||
+      any(minPin < 0)) {
+    stop("'minPin' must contain one or two finite, non-negative values")
+  }
+  
+  fin <- par("fin")
+  mai <- par("mai")
+  
+  pin <- fin - c(
+    mai[2] + mai[4],
+    mai[1] + mai[3]
+  )
+  
+  isTRUE(all(is.finite(pin)) && all(pin >= minPin))
 }
+
 

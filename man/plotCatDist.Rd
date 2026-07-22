@@ -17,7 +17,9 @@ plotCatDist(
 )
 }
 \arguments{
-\item{x}{a factor, character vector, or table of counts.}
+\item{x}{a factor or character vector, a one-dimensional table of counts,
+or a numeric vector of precomputed frequencies. Unnamed numeric frequency
+vectors are labelled by their positions.}
 
 \item{type}{character; one of \code{"both"}, \code{"freq"}, \code{"perc"}.
 Controls whether absolute frequencies, relative frequencies, or both
@@ -57,11 +59,16 @@ If \code{type = "both"}, both views are shown side by side.
 
 Long labels are truncated, and large category sets can be limited via
 \code{maxcats}.
+
+Raw categorical data and their pre-tabulated form are treated identically.
+When categories are truncated via \code{maxcats}, proportions remain based
+on the total frequency before truncation.
 }
 \examples{
 # Basic usage
 x <- factor(sample(letters[1:5], 100, TRUE))
 plotCatDist(x)
+plotCatDist(table(x))
 
 # Only proportions
 plotCatDist(x, type = "perc")

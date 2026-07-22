@@ -208,16 +208,26 @@ plotBar <- function(height,
     labels <- .getBarplotAxisLabels(height, dots)
     
     # --- margin-corrections ---
-    # Skip auto-adjustment when caller supplied mar explicitly
-    .mar_supplied <- "mar" %in% names(dots)
+    # A user-supplied 'mar' only blocks the auto-adjustment for the sides
+    # it actually names: a partial spec like mar=c(right=5) must not
+    # disable the label-side widening on the left (side 2). An unnamed
+    # (full) mar vector puts the caller in charge of all four sides.
+    .marSides <- c("bottom", "left", "top", "right")
+    .userMarSides <- if (!"mar" %in% names(dots)) {
+      character(0)
+    } else {
+      nm <- names(dots$mar)
+      if (is.null(nm) || any(!nzchar(nm)) || anyNA(pmatch(nm, .marSides)))
+        .marSides                      # full or unrecognized spec: block all
+      else
+        .marSides[pmatch(nm, .marSides)]
+    }
     
-    if (!.mar_supplied) {
-      if (horiz && !(par("yaxt")=="n")) {
-        .adjustMargin(labels, side=2)
-      }
-      if (!horiz && las == 2 && !(par("xaxt")=="n")) {
-        .adjustMargin(labels, side=1, las=2)
-      }
+    if (horiz && !"left" %in% .userMarSides && par("yaxt") != "n") {
+      .adjustMargin(labels, side = 2)
+    }
+    if (!horiz && !"bottom" %in% .userMarSides && las == 2 && par("xaxt") != "n") {
+      .adjustMargin(labels, side = 1, las = 2)
     }
     
     # --- Setup (invisible) ---

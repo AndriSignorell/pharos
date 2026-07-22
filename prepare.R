@@ -27,7 +27,6 @@ available::available("clarity", browse = FALSE)
 
 pkgdown::build_site()
 
-
 rename_rda <- function(old_file, old_name, new_name, data_dir = "C:/temp/bedrock/data/") {
   e <- new.env()
   load(file.path(data_dir, old_file), envir = e)
@@ -180,3 +179,10 @@ debug(pal)
 pal()
 
 preview()
+
+plotFdist(bedrock::Pizza$temperature)
+
+# Rand wird automatisch geweitet, Labels werden nicht abgeschnitten
+plot(1:5, c(7, 6, 11, 5, 12), xaxt = "n", xlab = "")
+axisFmt(1, at = 1:5, labels = paste("Category", LETTERS[1:5]), srt = 45)
+

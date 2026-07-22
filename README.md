@@ -29,7 +29,7 @@ styling across all plot functions.
 | `pharos`  | graphics and visualization (this package) |
 | `lumen`   | statistical tests and confidence intervals |
 | `alloy`   | model fitting and evaluation            |
-| `hermes`  | reporting and output                    |
+| `pons`  | reporting and output                    |
 
 ## Installation
 

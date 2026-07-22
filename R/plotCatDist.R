@@ -5,7 +5,9 @@
 #' bar plots of absolute and relative frequencies. Optionally, cumulative
 #' proportions (ECDF-style) can be displayed.
 #'
-#' @param x a factor, character vector, or table of counts.
+#' @param x a factor or character vector, a one-dimensional table of counts,
+#'   or a numeric vector of precomputed frequencies. Unnamed numeric frequency
+#'   vectors are labelled by their positions.
 #'
 #' @param type character; one of \code{"both"}, \code{"freq"}, \code{"perc"}.
 #'   Controls whether absolute frequencies, relative frequencies, or both
@@ -36,12 +38,17 @@
 #' Long labels are truncated, and large category sets can be limited via
 #' \code{maxcats}.
 #'
+#' Raw categorical data and their pre-tabulated form are treated identically.
+#' When categories are truncated via \code{maxcats}, proportions remain based
+#' on the total frequency before truncation.
+#'
 #' @return Invisibly returns a list with frequencies and proportions.
 #'
 #' @examples
 #' # Basic usage
 #' x <- factor(sample(letters[1:5], 100, TRUE))
 #' plotCatDist(x)
+#' plotCatDist(table(x))
 #'
 #' # Only proportions
 #' plotCatDist(x, type = "perc")
@@ -79,16 +86,27 @@ plotCatDist <- function(
     
     .applyParFromDots(...)
     
-    n <- length(x)
-    
     # ── Input handling ───────────────────────────────────────────
     if (is.factor(x) || is.character(x)) {
       tab <- table(x)
-    } else if (is.table(x) || is.numeric(x)) {
+    } else if (is.table(x)) {
+      if (length(dim(x)) != 1L)
+        stop("'x' must be a one-dimensional table")
+      tab <- x
+    } else if (is.numeric(x)) {
       tab <- x
     } else {
-      stop("'x' must be factor, character, or table")
+      stop("'x' must be a factor or character vector, a one-dimensional ",
+           "table, or a numeric frequency vector")
     }
+
+    if (anyNA(tab) || any(!is.finite(tab)) || any(tab < 0))
+      stop("frequencies must be finite, non-missing, and non-negative")
+
+    total <- sum(tab)
+
+    if (total <= 0)
+      stop("the total frequency must be positive")
     
     tab <- sort(tab, decreasing = TRUE)
     k <- length(tab)
@@ -103,6 +121,9 @@ plotCatDist <- function(
     
     # ── Labels ───────────────────────────────────────────────────
     labs <- names(tab)
+
+    if (is.null(labs))
+      labs <- as.character(seq_along(tab))
     
     if (max(nchar(labs)) > maxlablen) {
       labs <- strTrunc(labs, maxlablen)
@@ -111,7 +132,7 @@ plotCatDist <- function(
     names(tab) <- labs
     
     # ── Proportions ──────────────────────────────────────────────
-    p <- tab / n # sum(tab)
+    p <- tab / total
     
     if (ecdf) {
       p <- cumsum(p)
@@ -124,8 +145,7 @@ plotCatDist <- function(
     y <- seq_along(tab)
     
     # ── Layout & margins ─────────────────────────────────────────
-    # Trigger plot.new() hooks (e.g. .Rprofile setHook) before reading par("cex")
-    frame()
+    # Preserve the current character expansion across the two-panel layout.
     ocex <- par("cex")
     
     if (type == "both") {
