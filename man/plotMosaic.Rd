@@ -94,10 +94,13 @@ Cells belonging to a row with a row total of zero are drawn as
 zero-height tiles and receive no label, but do not cause an error or
 \code{NaN} in the geometry.
 
-When \code{horiz = TRUE}, only the first table dimension (shown on the y-axis)
-receives an axis, since its split points are constant across the whole
-plot. The second dimension's split points vary by row/column and is
-represented via the legend only.
+In both orientations only the first table dimension receives an axis
+(its split points are constant across the whole plot); the second
+dimension's split points vary per column/row and are represented via
+the legend only. No numeric probability axis is drawn. The second
+dimension is stacked top-down (vertical) resp. left-to-right
+(\code{horiz = TRUE}): its first level sits at the top / left, matching
+\code{\link[graphics:spineplot]{graphics::spineplot()}} and the legend order.
 }
 \examples{
 tab <- apply(HairEyeColor, c(1, 2), sum)

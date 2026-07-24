@@ -66,7 +66,9 @@
 #' @details
 #' The heatmap represents values in a contingency table using color intensity.
 #' Depending on \code{scale}, the plot shows either absolute counts or different
-#' types of proportions. This plot complements association and spine plots by
+#' types of proportions. Rows are drawn in reading order: the first table row
+#' appears at the top, matching the printed table and the other bivariate
+#' plots. This plot complements association and spine plots by
 #' focusing on overall structure rather than conditional distributions or
 #' statistical inference.
 #'
@@ -206,7 +208,7 @@ plotHeatmap <- function(
     # --- Colors -----------------------------------------------------------
     
     if (identical(col, .useTheme)) {
-      cols_all <- pal("SteelblueWhite", n = 100)
+      cols_all <- pal("steelblue-white", n = 100)
       ncol_pal <- length(cols_all)
     } else {
       cols_all <- col
@@ -233,7 +235,10 @@ plotHeatmap <- function(
     # --- Coordinates ------------------------------------------------------
     
     xpos <- seq_len(nc)
-    ypos <- seq_len(nr)
+    # Leserichtung: Zeile 1 der Tabelle liegt OBEN (wie print(tab) und
+    # die uebrigen bivariaten Plots), nicht unten wie in der
+    # Standard-y-Orientierung - ypos[i] ist das y-Zentrum von Zeile i.
+    ypos <- rev(seq_len(nr))
     
     plot(
       NA,
@@ -255,9 +260,9 @@ plotHeatmap <- function(
         
         rect(
           j - 0.5,
-          i - 0.5,
+          ypos[i] - 0.5,
           j + 0.5,
-          i + 0.5,
+          ypos[i] + 0.5,
           col = cols[i, j],
           border = border
         )
@@ -312,7 +317,7 @@ plotHeatmap <- function(
             
             graphics::text(
               x = j,
-              y = i,
+              y = ypos[i],
               labels = lab[i, j]
             )
             

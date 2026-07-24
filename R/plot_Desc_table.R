@@ -1,4 +1,5 @@
 
+
 #' Plot Method for Categorical-Categorical \code{Desc} Objects
 #'
 #' Visualises a (two-dimensional) cross-tabulation, as computed by
@@ -53,18 +54,24 @@
 #'   things:
 #'   \describe{
 #'     \item{panel 1}{a grey ramp from \code{"grey30"} to \code{"grey90"},
-#'       sized to the number of columns of \code{tab} (not theme-driven by
+#'       sized to the number of rows of \code{tab} - the panel draws
+#'       \code{spineplot(t(tab))}, so the stacked (filled) dimension is the
+#'       row dimension of \code{tab}, not its columns (not theme-driven by
 #'       design, to keep the unordered category fill neutral).}
 #'     \item{panel 2}{a grey ramp from \code{"grey30"} to \code{"grey90"},
-#'       sized to the number of columns of \code{tab}, passed to
-#'       \code{\link{plotMosaic}}.}
-#'     \item{panel 3}{left at \code{\link{plotAssoc}}'s own default
+#'       sized to the number of columns of \code{tab} (the fill dimension
+#'       of the untransposed mosaic), passed to \code{\link{plotMosaic}}.}
+#'     \item{panel 3}{a grey ramp from \code{"grey30"} to \code{"grey90"},
+#'       sized to the number of rows of \code{tab} - with
+#'       \code{swap = TRUE} the fill dimension is the row dimension,
+#'       passed to \code{\link{plotMosaic}}.}
+#'     \item{panel 4}{left at \code{\link{plotAssoc}}'s own default
 #'       (\code{pal("red-white-blue-3", n = 100)}), a diverging palette - cell
 #'       colors there encode the sign and strength of Pearson residuals, so
 #'       a categorical or grey-ramp default would not be meaningful. Supplying
 #'       \code{col} overrides this with the diverging palette of the user's
 #'       choice.}
-#'     \item{panel 4}{left at \code{\link{plotHeatmap}}'s own default
+#'     \item{panel 5}{left at \code{\link{plotHeatmap}}'s own default
 #'       (\code{pal("Blues", n = 100)}), a sequential ramp - cell colors
 #'       there encode magnitude only. Supplying \code{col} overrides this.}
 #'   }
@@ -76,12 +83,12 @@
 #'   \describe{
 #'     \item{panel 1}{has no effect - \code{spineplot()} always draws its
 #'       native frame unconditionally, with no toggle to override it.}
-#'     \item{panel 2}{\code{\link{plotMosaic}} always draws its own frame;
-#'       this argument has no effect.}
-#'     \item{panel 3}{\code{\link{plotAssoc}} has no frame/box concept of
+#'     \item{panels 2/3}{\code{\link{plotMosaic}} always draws its own
+#'       frame; this argument has no effect.}
+#'     \item{panel 4}{\code{\link{plotAssoc}} has no frame/box concept of
 #'       its own (it draws dashed reference lines instead); this argument
 #'       has no effect.}
-#'     \item{panel 4}{forwarded as-is to \code{\link{plotHeatmap}}'s own
+#'     \item{panel 5}{forwarded as-is to \code{\link{plotHeatmap}}'s own
 #'       \code{box} argument, which draws the outer frame via
 #'       \code{rect()} at the exact tile boundaries rather than
 #'       \code{\link[graphics]{box}()}.}
@@ -89,7 +96,7 @@
 #'
 #' @param stamp controls the corner stamp. \code{.useTheme} (default)
 #'   resolves to \code{getTheme()$stamp}, drawn once after all selected
-#'   panels. Panels 2-4 delegate to \code{\link{plotMosaic}}/
+#'   panels. Panels 2-5 delegate to \code{\link{plotMosaic}}/
 #'   \code{\link{plotAssoc}}/\code{\link{plotHeatmap}}, whose own
 #'   \code{stamp} argument is set to \code{NA} internally to avoid a
 #'   duplicate. \code{TRUE}/\code{FALSE}/\code{NULL}, a string, or a
@@ -130,45 +137,45 @@
 # design_rules.md, "Exporting S3 Methods Callable From Other Packages".
 
 plot.Desc.table <- function(x,
-
+                            
                             # LABELS
                             main = NULL,
                             ylab = NULL,
-
+                            
                             # STRUCTURE
                             which   = 1,
                             verbose = NULL,
-
+                            
                             # STYLE
                             col = .useTheme,
                             box = .useTheme,
-
+                            
                             # FRAMEWORK
                             stamp = .useTheme,
-
+                            
                             ...) {
-
+  
   verbose <- verbose %||% x$meta$verbose %||%
     getOption("DescTools.verbose", default = 2L)
-
+  
   tab <- x$tab
-
+  
   if (length(dim(tab)) > 2L) {
     message("Sorry, plot not implemented for higher dimensional tables.")
     return(invisible(x))
   }
-
+  
   ncolTab <- ncol(tab)
-
+  
   # x$meta carries a single 'xname' (the deparsed expression originally
   # passed to desc(), e.g. "table(Pizza$area, Pizza$driver)") - there is
   # no y ~ x formula pair at this level, so no yname exists to invent a
   # "y ~ x" title from. The default title is simply xname itself, with a
   # panel-type suffix appended for context when multiple panels are shown.
   xName <- x$meta$xname %||% deparse(substitute(x))
-
+  
   .panelDefault <- function(label) sprintf("%s (%s)", xName, label)
-
+  
   # Panels 1/2 (spineplot()/plotMosaic()) draw the row names of tab as
   # axis tick labels - account for those when sizing the left margin (the
   # same reasoning as plot.Desc.qn's tickLabels), or they get clipped.
@@ -179,34 +186,42 @@ plot.Desc.table <- function(x,
   # wasn't sized from the actual labels being drawn.
   lmar <- max(4.1, .marginLines(c(ylab %||% "", rownames(tab)), 
                                 side = 2, las = 1, pad = 1))
-
+  
   .withGraphicsState({
-
+    
     .applyParFromDots(
       ...,
       defaults = list(
         mar = c(bottom = 5, left = lmar, top = .marTop(main), right = 3.1)
       )
     )
-
+    
     .main <- function(default) .resolveTitle(main, default = default)
-
+    
     # Colors resolved per panel type, not forced through one shared 'col':
-    # panels 1/2 share a grey ramp (unordered category fill kept neutral,
-    # not theme-driven by design); panels 3/4 keep their own diverging /
+    # panels 1-3 use a grey ramp (unordered category fill kept neutral,
+    # not theme-driven by design); panels 4/5 keep their own diverging /
     # sequential defaults from plotAssoc()/plotHeatmap() unless 'col' is
     # supplied explicitly. 'col' stays one user-facing argument;
-    # resolveCol() picks the right default for panels 1/2.
-    colSpineDefault <- colorRampPalette(c("grey30", "grey90"))(ncolTab)
-
+    # resolveCol() picks the right default per panel.
+    #
+    # The ramp length must match the *stacked/filled* dimension, which
+    # differs by panel: panel 1 draws spineplot(t(tab)) and panel 3 passes
+    # swap = TRUE to plotMosaic() - both fill by the ROWS of tab. Panel 2
+    # passes tab untransposed, filling by the columns. Sizing everything
+    # from ncolTab (as previously) made the ramp run over the x-axis
+    # levels instead of the stack segments in panels 1/3.
+    colRowDefault <- colorRampPalette(c("grey30", "grey90"))(nrow(tab))
+    colColDefault <- colorRampPalette(c("grey30", "grey90"))(ncolTab)
+    
     resolveCol <- function(default) {
       if (identical(col, .useTheme)) default else col
     }
-
+    
     for (w in which) {
-
+      
       switch(as.character(w),
-
+             
              # ── 1: Spineplot ─────────────────────────────────────────────────
              "1" = {
                # ylab left at "" (no override) since there is no separate
@@ -214,20 +229,20 @@ plot.Desc.table <- function(x,
                # as spineplot() draws it natively (no box() override here
                # by design - see @param box).
                spineplot(t(tab),
-                         col  = resolveCol(colSpineDefault),
-                         xlab = ylab %||% "",
-                         ylab = xName,
+                         col  = resolveCol(colRowDefault),
+                         xlab = "",
+                         ylab = ylab %||% "",
                          main = .main(.panelDefault("Spineplot")),
                          ...)
-
+               
                axis(side = 1, labels = NA, col.ticks = NA)
                axis(side = 4, labels = NA, col.ticks = NA)
              },
-
+             
              # ── 2: Mosaic plot ───────────────────────────────────────────────
              "2" = {
                plotMosaic(tab,
-                          col  = resolveCol(colSpineDefault),
+                          col  = resolveCol(colColDefault),
                           xlab = xName,
                           ylab = ylab %||% "",
                           main = .main(.panelDefault("Mosaic plot")),
@@ -235,11 +250,11 @@ plot.Desc.table <- function(x,
                           stamp = NA,
                           ...)
              },
-
+             
              # ── 3: Mosaic plot ───────────────────────────────────────────────
              "3" = {
                plotMosaic(tab,
-                          col  = resolveCol(colSpineDefault),
+                          col  = resolveCol(colRowDefault),
                           xlab = xName,
                           ylab = ylab %||% "",
                           main = .main(.panelDefault("Mosaic plot")),
@@ -248,7 +263,7 @@ plot.Desc.table <- function(x,
                           stamp = NA,
                           ...)
              },
-
+             
              # ── 4: Association plot ──────────────────────────────────────────
              "4" = {
                # plotAssoc() has its own diverging-palette default
@@ -259,31 +274,36 @@ plot.Desc.table <- function(x,
                # character toggles for the dimnames labels, not plain axis
                # strings - left at their own TRUE default (show dimnames)
                # unless the caller overrides.
+               # reorder = FALSE: in the Desc context every panel shows the
+               # same category order (rows top-down, columns as in tab);
+               # plotAssoc()'s strength-based reordering stays a standalone
+               # feature.
                plotAssoc(tab,
-                        col  = if (identical(col, .useTheme)) pal("red-white-blue-3", n = 100L) else col,
-                        main = .main(.panelDefault("Association plot")),
-                        stamp = NA,
-                        ...)
+                         col  = if (identical(col, .useTheme)) pal("red-white-blue-3", n = 100L) else col,
+                         main = .main(.panelDefault("Association plot")),
+                         reorder = FALSE,
+                         stamp = NA,
+                         ...)
              },
-
+             
              # ── 5: Heatmap ────────────────────────────────────────────────────
              "5" = {
                plotHeatmap(tab,
-                          scale = "prop",
-                          col   = col,
-                          xlab  = xName,
-                          ylab  = ylab %||% "",
-                          main  = .main(.panelDefault("Heatmap")),
-                          box   = box,
-                          stamp = NA,
-                          ...)
+                           scale = "prop",
+                           col   = col,
+                           ylab  = ylab %||% "",
+                           main  = .main(.panelDefault("Heatmap")),
+                           box   = box,
+                           stamp = NA,
+                           ...)
              },
-
+             
              message(sprintf("which=%d not defined for Desc.table", w))
       )
     }
-
+    
   }, stamp = stamp)
-
+  
   invisible(x)
 }
+

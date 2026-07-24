@@ -95,7 +95,9 @@ labels overlaid.
 \details{
 The heatmap represents values in a contingency table using color intensity.
 Depending on \code{scale}, the plot shows either absolute counts or different
-types of proportions. This plot complements association and spine plots by
+types of proportions. Rows are drawn in reading order: the first table row
+appears at the top, matching the printed table and the other bivariate
+plots. This plot complements association and spine plots by
 focusing on overall structure rather than conditional distributions or
 statistical inference.
 }

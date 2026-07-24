@@ -32,6 +32,10 @@
 #'   zero (`y0 == y1`, `pCond == 0`) rather than `NaN`, so empty categories
 #'   do not propagate missing values into the geometry.
 #'
+#'   The conditional (second) dimension is stacked top-down: the first
+#'   level occupies the top of each column (`y1 == 1`), consistent with
+#'   [graphics::spineplot()] and the `horiz` layout of [plotMosaic()].
+#'
 #' @examples
 #' tiles <- .computeMosaicTiles(apply(HairEyeColor, c(1, 2), sum))
 #' sum(tiles$p)
@@ -69,8 +73,13 @@
     rowTotal  <- rowTotals[i]
     rowCounts <- unname(x[i, ])
     height    <- if (rowTotal > 0) rowCounts / rowTotal else rep(0, ncol(x))
-    y1 <- cumsum(height)
-    y0 <- y1 - height
+    # top-down stacking: the first level of the second dimension sits at
+    # the TOP of each column (y1 = 1), consistent with spineplot() and the
+    # horiz layout ("erste Kategorie oben", analog DescTools). Zero-total
+    # rows still yield y0 == y1 tiles, no NaN.
+    cumHeight <- cumsum(height)
+    y1 <- 1 - (cumHeight - height)
+    y0 <- 1 - cumHeight
     
     out[[i]] <- data.frame(
       row   = dn[[1]][i],
@@ -152,10 +161,13 @@
 #'   zero-height tiles and receive no label, but do not cause an error or
 #'   `NaN` in the geometry.
 #'
-#' When `horiz = TRUE`, only the first table dimension (shown on the y-axis)
-#' receives an axis, since its split points are constant across the whole
-#' plot. The second dimension's split points vary by row/column and is
-#' represented via the legend only.
+#' In both orientations only the first table dimension receives an axis
+#' (its split points are constant across the whole plot); the second
+#' dimension's split points vary per column/row and are represented via
+#' the legend only. No numeric probability axis is drawn. The second
+#' dimension is stacked top-down (vertical) resp. left-to-right
+#' (`horiz = TRUE`): its first level sits at the top / left, matching
+#' [graphics::spineplot()] and the legend order.
 #'
 #' @examples
 #' tab <- apply(HairEyeColor, c(1, 2), sum)
@@ -209,10 +221,14 @@ plotMosaic <- function(x,
   colLevels <- unique(tiles[[colVar]])
   
   # horiz: x<->y vertauschen + vertikal spiegeln,
-  # sodass die erste Kategorie oben liegt (analog DescTools-Layout)
+  # sodass die erste Kategorie oben liegt (analog DescTools-Layout).
+  # Die konditionale Dimension ist in der Geometrie top-down gestapelt
+  # (erste Stufe bei y1 = 1); fuer horiz wird sie via 1 - y auf die
+  # x-Achse gespiegelt, damit die erste Stufe links liegt - horiz-Plots
+  # bleiben damit identisch zum bisherigen Layout.
   if (horiz) {
     tiles[c("x0", "x1", "y0", "y1")] <-
-      list(tiles$y0, tiles$y1, 1 - tiles$x1, 1 - tiles$x0)
+      list(1 - tiles$y1, 1 - tiles$y0, 1 - tiles$x1, 1 - tiles$x0)
   }
   
   if (identical(col, .useTheme))
@@ -271,7 +287,10 @@ plotMosaic <- function(x,
       rowInfo <- unique(tiles[c(rowVar, "x0", "x1")])
       axis(1, at = (rowInfo$x0 + rowInfo$x1) / 2,
            labels = rowInfo[[rowVar]], tick = FALSE, las = 1)
-      axis(2, las = 1)
+      # keine numerische 0-1-Achse: die konditionalen Splits variieren je
+      # Spalte, eine Wahrscheinlichkeitsachse suggeriert dort mehr
+      # Ablesbarkeit als vorhanden - symmetrisch zum horiz-Zweig, der
+      # ebenfalls keine numerische Achse zeichnet (Few-style minimal)
     }
     
     if (legend) {

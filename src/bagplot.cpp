@@ -4,17 +4,21 @@
 //
 // Rcpp implementation of the bagplot (bivariate boxplot).
 //
-// Algorithm:
+// Algorithm (Rousseeuw, Ruts & Tukey 1999):
 //   1. Compute halfspace (Tukey) depth for every point.
 //      Direct port of Fortran TUKDEPTH from the archived 'depth' package
 //      (Rousseeuw & Ruts 1996, Applied Statistics 45, 516-526).
-//   2. Find k* = depth of the floor(n/2)-th deepest point (bag contains ~50%).
-//   3. Bag   = convex hull of all points with depth >= k*.
-//   4. Tukey median = mean of all points with maximal depth (argmax depth).
-//   5. Loop  = inflate bag around the Tukey median by `factor`.
-//   6. Outliers = points outside the loop polygon.
+//   2. Tukey median = mean of all points with maximal depth (approximation
+//      of the depth median; HALFMED would compute the exact one).
+//   3. Bag: radial interpolation between the convex hulls of the depth
+//      regions D_{k-1} and D_k (with #D_k <= floor(n/2) < #D_{k-1}),
+//      so that the bag contains floor(n/2) observations.
+//   4. Fence = bag inflated around the Tukey median by `factor`.
+//      The fence is used for classification only and is never drawn.
+//   5. Outliers = points outside the fence.
+//   6. Loop = convex hull of the non-outlying points (inside the fence).
 //
-// Entry point: bagplot_compute(xy, factor, eps, dither)
+// Entry point: bagplot_compute_cpp(xy, factor, eps, dither)
 
 #include <Rcpp.h>
 #include <algorithm>
@@ -225,21 +229,44 @@ static bool point_in_polygon(double px, double py,
   return inside;
 }
 
+// ------------------------------------------------------------------
+//  ray_hull_dist: distance from interior point (cx,cy) to the boundary
+//  of a convex polygon along direction (ux,uy). Returns max t with
+//  (cx,cy) + t*(ux,uy) on an edge; 0 if no intersection (degenerate).
+// ------------------------------------------------------------------
+static double ray_hull_dist(double cx, double cy, double ux, double uy,
+                            const std::vector<double>& vx,
+                            const std::vector<double>& vy) {
+  int m = (int)vx.size();
+  double tmax = 0.0;
+  for (int i = 0, j = m - 1; i < m; j = i++) {
+    double ex = vx[i] - vx[j], ey = vy[i] - vy[j];
+    double den = ux * ey - uy * ex;                 // cross(u, e)
+    if (std::abs(den) < 1e-300) continue;           // ray parallel to edge
+    double wx = vx[j] - cx, wy = vy[j] - cy;
+    double t = (wx * ey - wy * ex) / den;           // along ray
+    double s = (wx * uy - wy * ux) / den;           // along edge [0,1]
+    if (t > 0.0 && s >= -1e-12 && s <= 1.0 + 1e-12)
+      tmax = std::max(tmax, t);
+  }
+  return tmax;
+}
+
 // ==================================================================
-//  bagplot_compute — exported R entry point
+//  bagplot_compute_cpp — exported R entry point
 // ==================================================================
 // [[Rcpp::export]]
-List bagplot_compute(NumericMatrix xy,
-                     double factor = 3.0,
-                     double eps    = 1e-8,
-                     bool   dither = true) {
-  
+List bagplot_compute_cpp(NumericMatrix xy,
+                         double factor = 3.0,
+                         double eps    = 1e-8,
+                         bool   dither = true) {
+
   int n = xy.nrow();
-  if (n < 3) stop("bagplot_compute: need at least 3 data points.");
-  
+  if (n < 3) stop("bagplot_compute_cpp: need at least 3 data points.");
+
   std::vector<double> x(n), y(n);
   for (int i = 0; i < n; ++i) { x[i] = xy(i,0); y[i] = xy(i,1); }
-  
+
   // Tiny dithering to break exact ties / collinearities
   if (dither) {
     double sx = 0, sy = 0;
@@ -257,110 +284,164 @@ List bagplot_compute(NumericMatrix xy,
       randm(nrun, r); y[i] += (r - 0.5) * noise;
     }
   }
-  
+
   // ---- 1. Halfspace depth of every point ----
   std::vector<int> depths = compute_all_depths(n, x, y, eps);
-  
-  // ---- 2. Find median depth k* ----
-  // The bag contains the innermost 50% of points (by halfspace depth).
-  // k* = depth of the floor(n/2)-th deepest point.
-  // Ties are handled by taking all points with depth >= k*.
-  int k_star = 1;
+  int max_d = *std::max_element(depths.begin(), depths.end());
+
+  // ---- 2. Tukey median: mean of all points with maximal depth ----
+  // Approximation of the depth median (exact: HALFMED). The mean of the
+  // deepest points lies inside every depth-region hull, so it is a valid
+  // center for the radial interpolation below.
+  double med_x = 0.0, med_y = 0.0;
   {
-    std::vector<int> sd(depths);
-    std::sort(sd.begin(), sd.end(), std::greater<int>());
-    int rank50 = std::max(1, (int)std::floor(n / 2.0));
-    k_star = sd[rank50 - 1];
-    // Ensure at least 3 points in the bag (needed for a polygon)
-    for (int k = k_star; k >= 1; --k) {
-      int cnt = 0;
-      for (int i = 0; i < n; ++i) if (depths[i] >= k) cnt++;
-      if (cnt >= 3) { k_star = k; break; }
-    }
+    int cnt = 0;
+    for (int i = 0; i < n; ++i)
+      if (depths[i] == max_d) { med_x += x[i]; med_y += y[i]; cnt++; }
+    med_x /= cnt; med_y /= cnt;
   }
-  
-  // ---- 3. Bag = convex hull of points with depth >= k* ----
-  std::vector<double> inner_x, inner_y;
+
+  // ---- 3. Bag: interpolate depth-region hulls to floor(n/2) points ----
+  // counts[k] = #D_k = number of points with depth >= k (decreasing in k)
+  std::vector<int> counts(max_d + 2, 0);
+  for (int i = 0; i < n; ++i)
+    for (int k = 1; k <= depths[i]; ++k) counts[k]++;
+
+  int half = std::max(3, (int)std::floor(n / 2.0));
+  int k1 = max_d;                          // smallest region with #D_k <= half
+  for (int k = 1; k <= max_d; ++k)
+    if (counts[k] <= half) { k1 = k; break; }
+  int k0 = k1 - 1;                          // #D_{k0} > half (k0 >= 1 since counts[1] = n)
+
+  std::vector<double> in_x, in_y, out_x_, out_y_;
+  bool ties_only = false;
+  if (counts[k1] > half) {
+    // massive ties: even the deepest region exceeds half -> bag = hull(D_max)
+    k0 = k1 = max_d;
+    ties_only = true;
+  }
   for (int i = 0; i < n; ++i) {
-    if (depths[i] >= k_star) {
-      inner_x.push_back(x[i]);
-      inner_y.push_back(y[i]);
-    }
+    if (depths[i] >= k1) { in_x.push_back(x[i]);  in_y.push_back(y[i]); }
+    if (depths[i] >= k0) { out_x_.push_back(x[i]); out_y_.push_back(y[i]); }
   }
-  
-  std::vector<int> hull = convex_hull(inner_x, inner_y);
-  std::vector<double> bag_x(hull.size()), bag_y(hull.size());
-  for (int i = 0; i < (int)hull.size(); ++i) {
-    bag_x[i] = inner_x[hull[i]];
-    bag_y[i] = inner_y[hull[i]];
-  }
-  
-  // Edge case: hull has fewer than 3 vertices (collinear / degenerate data)
-  // -> no polygon possible, skip outlier detection
-  if ((int)hull.size() < 3) {
-    NumericMatrix bag_mat(0, 2), loop_mat(0, 2), out_mat(0, 2);
-    colnames(bag_mat)  = CharacterVector::create("x", "y");
-    colnames(loop_mat) = CharacterVector::create("x", "y");
-    colnames(out_mat)  = CharacterVector::create("x", "y");
+
+  // hull polygons of the inner (D_{k1}) and outer (D_{k0}) regions
+  auto hullPoly = [](const std::vector<double>& hx, const std::vector<double>& hy,
+                     std::vector<double>& vx, std::vector<double>& vy) {
+    std::vector<int> h = convex_hull(hx, hy);
+    vx.clear(); vy.clear();
+    for (int id : h) { vx.push_back(hx[id]); vy.push_back(hy[id]); }
+  };
+  std::vector<double> ivx, ivy, ovx, ovy;
+  hullPoly(in_x,  in_y,  ivx, ivy);
+  hullPoly(out_x_, out_y_, ovx, ovy);
+
+  // Degenerate data (collinear): outer hull not a polygon -> no regions
+  if ((int)ovx.size() < 3) {
+    NumericMatrix e(0, 2);
+    colnames(e) = CharacterVector::create("x", "y");
     NumericVector dep_r(n);
     for (int i = 0; i < n; ++i) dep_r[i] = depths[i];
-    double mx = 0, my = 0;
-    int max_d = *std::max_element(depths.begin(), depths.end()), cnt = 0;
-    for (int i = 0; i < n; ++i) if (depths[i]==max_d) { mx+=x[i]; my+=y[i]; cnt++; }
     return List::create(
-      Named("center")   = NumericVector::create(mx/cnt, my/cnt),
-      Named("depth")    = k_star,
-      Named("bag")      = bag_mat,
-      Named("loop")     = loop_mat,
-      Named("outliers") = out_mat,
+      Named("center")   = NumericVector::create(med_x, med_y),
+      Named("depth")    = k1,
+      Named("bag")      = e,
+      Named("fence")    = clone(e),
+      Named("loop")     = clone(e),
+      Named("outliers") = clone(e),
       Named("depths")   = dep_r
     );
   }
-  
-  // ---- 4. Tukey median = mean of all points with maximal depth ----
-  // This is the correct definition: argmax_{x} depth(x),
-  // averaged over ties. Using the bag centroid would be biased
-  // for skewed distributions (centroid shifts toward the tail).
-  double med_x = 0.0, med_y = 0.0;
-  {
-    int max_d = *std::max_element(depths.begin(), depths.end());
-    int cnt = 0;
-    for (int i = 0; i < n; ++i) {
-      if (depths[i] == max_d) {
-        med_x += x[i];
-        med_y += y[i];
-        cnt++;
-      }
+
+  // interpolation directions: all hull vertex angles around the Tukey median
+  std::vector<double> angs;
+  for (size_t i = 0; i < ovx.size(); ++i)
+    angs.push_back(std::atan2(ovy[i] - med_y, ovx[i] - med_x));
+  for (size_t i = 0; i < ivx.size(); ++i)
+    angs.push_back(std::atan2(ivy[i] - med_y, ivx[i] - med_x));
+  std::sort(angs.begin(), angs.end());
+  angs.erase(std::unique(angs.begin(), angs.end()), angs.end());
+
+  // radial distances to both hull boundaries per direction
+  int na = (int)angs.size();
+  bool inner_poly = (int)ivx.size() >= 3;
+  std::vector<double> ca(na), sa(na), r0(na), r1(na);
+  for (int i = 0; i < na; ++i) {
+    ca[i] = std::cos(angs[i]); sa[i] = std::sin(angs[i]);
+    r0[i] = ray_hull_dist(med_x, med_y, ca[i], sa[i], ovx, ovy);
+    r1[i] = inner_poly ? ray_hull_dist(med_x, med_y, ca[i], sa[i], ivx, ivy) : 0.0;
+  }
+
+  // Interpolated polygon P(mu): r = r1 + mu*(r0 - r1), mu in [0,1].
+  // The point count in P(mu) grows monotonically from #D_{k1} (<= half)
+  // to #D_{k0} (> half). Instead of the linear lambda from the region
+  // counts (which only approximates the target), calibrate mu by binary
+  // search so that the bag contains exactly floor(n/2) observations
+  // (up to ties on the boundary).
+  auto bagCount = [&](double mu, std::vector<double>& px, std::vector<double>& py) {
+    px.resize(na); py.resize(na);
+    for (int i = 0; i < na; ++i) {
+      double r = r1[i] + mu * (r0[i] - r1[i]);
+      px[i] = med_x + r * ca[i];
+      py[i] = med_y + r * sa[i];
     }
-    med_x /= cnt;
-    med_y /= cnt;
+    int cnt = 0;
+    for (int i = 0; i < n; ++i)
+      if (point_in_polygon(x[i], y[i], px, py, eps)) cnt++;
+    return cnt;
+  };
+
+  std::vector<double> bag_x, bag_y;
+  if (ties_only) {
+    bagCount(0.0, bag_x, bag_y);            // bag = inner hull
+  } else {
+    double lo = 0.0, hi = 1.0;
+    for (int it = 0; it < 40; ++it) {       // smallest mu with count >= half
+      double mid = 0.5 * (lo + hi);
+      std::vector<double> px, py;
+      if (bagCount(mid, px, py) >= half) hi = mid; else lo = mid;
+    }
+    bagCount(hi, bag_x, bag_y);
   }
-  
-  // ---- 5. Loop = inflate bag around Tukey median by factor ----
+  // ensure convex, ordered polygon
+  {
+    std::vector<double> tx, ty;
+    hullPoly(bag_x, bag_y, tx, ty);
+    if (tx.size() >= 3) { bag_x = tx; bag_y = ty; }
+  }
+
   int nb = (int)bag_x.size();
-  std::vector<double> loop_x(nb), loop_y(nb);
+
+  // ---- 4. Fence: inflate bag around the Tukey median (never drawn) ----
+  std::vector<double> fence_x(nb), fence_y(nb);
   for (int i = 0; i < nb; ++i) {
-    loop_x[i] = med_x + factor * (bag_x[i] - med_x);
-    loop_y[i] = med_y + factor * (bag_y[i] - med_y);
+    fence_x[i] = med_x + factor * (bag_x[i] - med_x);
+    fence_y[i] = med_y + factor * (bag_y[i] - med_y);
   }
-  
-  // ---- 6. Outliers: original points outside loop ----
+
+  // ---- 5. Outliers: points outside the fence ----
+  // ---- 6. Loop: convex hull of the points inside the fence ----
   std::vector<int> out_idx;
+  std::vector<double> keep_x, keep_y;
   for (int i = 0; i < n; ++i) {
-    double xi = xy(i,0), yi = xy(i,1);
-    if (!point_in_polygon(xi, yi, loop_x, loop_y, eps))
+    if (point_in_polygon(x[i], y[i], fence_x, fence_y, eps)) {
+      keep_x.push_back(xy(i,0)); keep_y.push_back(xy(i,1));
+    } else {
       out_idx.push_back(i);
+    }
   }
-  
+  std::vector<double> loop_x, loop_y;
+  hullPoly(keep_x, keep_y, loop_x, loop_y);
+
   // ---- Build result matrices ----
-  NumericMatrix bag_mat(nb, 2);
-  for (int i = 0; i < nb; ++i) { bag_mat(i,0) = bag_x[i]; bag_mat(i,1) = bag_y[i]; }
-  colnames(bag_mat) = CharacterVector::create("x", "y");
-  
-  NumericMatrix loop_mat(nb, 2);
-  for (int i = 0; i < nb; ++i) { loop_mat(i,0) = loop_x[i]; loop_mat(i,1) = loop_y[i]; }
-  colnames(loop_mat) = CharacterVector::create("x", "y");
-  
+  auto asMat = [](const std::vector<double>& mx, const std::vector<double>& my) {
+    int m = (int)mx.size();
+    NumericMatrix out(m, 2);
+    for (int i = 0; i < m; ++i) { out(i,0) = mx[i]; out(i,1) = my[i]; }
+    colnames(out) = CharacterVector::create("x", "y");
+    return out;
+  };
+
   int no = (int)out_idx.size();
   NumericMatrix out_mat(no, 2);
   for (int i = 0; i < no; ++i) {
@@ -368,17 +449,17 @@ List bagplot_compute(NumericMatrix xy,
     out_mat(i,1) = xy(out_idx[i], 1);
   }
   colnames(out_mat) = CharacterVector::create("x", "y");
-  
+
   NumericVector dep_r(n);
   for (int i = 0; i < n; ++i) dep_r[i] = depths[i];
-  
+
   return List::create(
     Named("center")   = NumericVector::create(med_x, med_y),
-    Named("depth")    = k_star,
-    Named("bag")      = bag_mat,
-    Named("loop")     = loop_mat,
+    Named("depth")    = k1,
+    Named("bag")      = asMat(bag_x, bag_y),
+    Named("fence")    = asMat(fence_x, fence_y),
+    Named("loop")     = asMat(loop_x, loop_y),
     Named("outliers") = out_mat,
     Named("depths")   = dep_r
   );
 }
-

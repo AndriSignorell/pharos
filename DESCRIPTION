@@ -1,8 +1,33 @@
 Package: pharos
 Title: Descriptive Statistics Graphics and Utilities
-Version: 0.0.0.938
-Authors@R: 
-    person("Andri", "Signorell", , "andri@signorell.net", role = c("aut", "cre"))
+Version: 0.0.0.939
+Authors@R: c(
+  person(given="Andri", family="Signorell", 
+         email = "andri@signorell.net", 
+         role = c("aut", "cre"),
+         comment = c(ORCID = "0000-0003-4311-1969")),
+  person("R-Core"                                      , role = c("ctb")),
+  person("Ben"          , "Bolker"                     , role = c("ctb")),
+  person("Jeff"         , "Enos"                       , role = c("ctb")),
+  person("Frank E."     , "Harrell Jr"                 , role = c("ctb")),
+  person("Henk"         , "Harmsen"                    , role = c("ctb")),
+  person("Christian W." , "Hoffmann"                   , role = c("ctb")),
+  person("Markus"       , "Huerzeler"                  , role = c("ctb")),
+  person("Matthias"     , "Kohl"                       , role = c("ctb")),
+  person("Jim"          , "Lemon"                      , role = c("ctb")),
+  person("Arni"         , "Magnusson"                  , role = c("ctb")),
+  person("Markus"       , "Naepflin"                   , role = c("ctb")),
+  person("B. D."        , "Ripley"                     , role = c("ctb")),
+  person("Terry"        , "Therneau"                   , role = c("ctb")),
+  person("John"         , "Verzani"                    , role = c("ctb")),
+  person("W. N."        , "Venables"                   , role = c("ctb")),
+  person("Hans Peter"   , "Wolf"                       , role = c("ctb")),
+  person("Ying"         , "Wu"                         , role = c("ctb")),
+  person("OpenAI Codex",  role = c("ctb"), 
+    comment = "AI-assisted code and documentation review; all suggestions reviewed by the maintainer"),
+  person("Anthropic Claude", role = c("ctb"),
+    comment = "AI-assisted code and documentation review; all suggestions reviewed by the maintainer")
+ )
 Description: Provides plots and graphic routines used in DescToolsX.
 Depends: R (>= 4.2.0)
 License: GPL (>= 2)
@@ -11,7 +36,7 @@ LinkingTo: Rcpp
 Roxygen: list(markdown = TRUE)
 Imports: graphics, Rcpp, bedrock, MASS, cli, withr, stringi, methods, base64enc
 Suggests:
-    testthat (>= 3.0.0), R.rsp, hexbin
+    testthat (>= 3.0.0), R.rsp, hexbin, aplpack
 Config/testthat/edition: 3
 VignetteBuilder: R.rsp
 URL: https://andrisignorell.github.io/pharos/,

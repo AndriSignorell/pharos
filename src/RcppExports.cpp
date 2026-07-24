@@ -10,9 +10,9 @@ Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
-// bagplot_compute
-List bagplot_compute(NumericMatrix xy, double factor, double eps, bool dither);
-RcppExport SEXP _pharos_bagplot_compute(SEXP xySEXP, SEXP factorSEXP, SEXP epsSEXP, SEXP ditherSEXP) {
+// bagplot_compute_cpp
+List bagplot_compute_cpp(NumericMatrix xy, double factor, double eps, bool dither);
+RcppExport SEXP _pharos_bagplot_compute_cpp(SEXP xySEXP, SEXP factorSEXP, SEXP epsSEXP, SEXP ditherSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -20,7 +20,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type factor(factorSEXP);
     Rcpp::traits::input_parameter< double >::type eps(epsSEXP);
     Rcpp::traits::input_parameter< bool >::type dither(ditherSEXP);
-    rcpp_result_gen = Rcpp::wrap(bagplot_compute(xy, factor, eps, dither));
+    rcpp_result_gen = Rcpp::wrap(bagplot_compute_cpp(xy, factor, eps, dither));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -94,7 +94,7 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_pharos_bagplot_compute", (DL_FUNC) &_pharos_bagplot_compute, 4},
+    {"_pharos_bagplot_compute_cpp", (DL_FUNC) &_pharos_bagplot_compute_cpp, 4},
     {"_pharos_formatDateTime", (DL_FUNC) &_pharos_formatDateTime, 4},
     {"_pharos_formatNum", (DL_FUNC) &_pharos_formatNum, 7},
     {"_pharos_pSmirnov2x", (DL_FUNC) &_pharos_pSmirnov2x, 3},
