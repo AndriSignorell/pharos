@@ -4,77 +4,77 @@
 #' Draws a bagplot (bivariate boxplot) based on halfspace (Tukey) depth.
 #' The bag contains the innermost 50\% of the data, the loop is the convex
 #' hull of all non-outlying points, and points outside the fence (the bag
-#' inflated by \code{factor}, not drawn) are flagged as outliers.
+#' inflated by `factor`, not drawn) are flagged as outliers.
 #'
 #' All graphical elements are controlled via an object-oriented interface:
-#' each element can be specified as \code{TRUE}, \code{FALSE}, or a
-#' \code{list(...)} of graphical parameters. Internally, this is handled
-#' via \code{bedrock::callIf()}.
+#' each element can be specified as `TRUE`, `FALSE`, or a
+#' `list(...)` of graphical parameters. Internally, this is handled
+#' via `bedrock::callIf()`.
 #'
 #' @details
 #' The construction follows Rousseeuw, Ruts and Tukey (1999):
 #' \enumerate{
 #'   \item The halfspace (Tukey) depth of every observation is computed
-#'     using a direct port of the original Fortran routine \code{TUKDEPTH}
+#'     using a direct port of the original Fortran routine `TUKDEPTH`
 #'     (Rousseeuw & Ruts, 1996).
 #'   \item The Tukey median is approximated by the mean of all
 #'     observations with maximal depth.
-#'   \item The \emph{bag} is obtained by radial interpolation between the
+#'   \item The *bag* is obtained by radial interpolation between the
 #'     convex hulls of two adjacent depth regions, calibrated such that
 #'     it contains \eqn{\lfloor n/2 \rfloor} observations (up to ties on
 #'     the polygon boundary).
-#'   \item The \emph{fence} is the bag inflated by \code{factor} relative
+#'   \item The *fence* is the bag inflated by `factor` relative
 #'     to the Tukey median. Following the original proposal it is used
 #'     for classification only and not drawn by default.
-#'   \item Observations outside the fence are flagged as \emph{outliers}.
-#'   \item The \emph{loop} is the convex hull of all non-outlying
+#'   \item Observations outside the fence are flagged as *outliers*.
+#'   \item The *loop* is the convex hull of all non-outlying
 #'     observations, so it always lies within the data range.
 #' }
 #'
 #' Two approximations remain relative to the strict theory: the Tukey
-#' median is not computed via \code{HALFMED}, and the bag interpolates
+#' median is not computed via `HALFMED`, and the bag interpolates
 #' hulls of sample depth regions rather than exact isodepth contours.
 #' Borderline outlier classifications may therefore differ slightly from
 #' other implementations (e.g. \pkg{aplpack}).
 #'
 #' Exact ties and collinear configurations violate the general-position
-#' assumption of the depth algorithm; \code{dither} (default \code{TRUE})
-#' adds negligible noise (order \code{eps}) to break them.
+#' assumption of the depth algorithm; `dither` (default `TRUE`)
+#' adds negligible noise (order `eps`) to break them.
 #'
 #' @section Element Control:
 #' Each of the following arguments accepts:
 #' \itemize{
-#'   \item \code{TRUE}  - draw element with defaults
-#'   \item \code{FALSE} - suppress element
-#'   \item \code{list(...)} - customize graphical parameters
+#'   \item `TRUE`  - draw element with defaults
+#'   \item `FALSE` - suppress element
+#'   \item `list(...)` - customize graphical parameters
 #' }
 #'
 #' Supported elements (in drawing order):
 #' \itemize{
-#'   \item \code{grid}   - background grid
-#'   \item \code{fence}  - classification boundary (default \code{FALSE})
-#'   \item \code{loop}   - convex hull of the non-outlying points
-#'   \item \code{bag}    - central 50\% region
-#'   \item \code{points} - raw data points
-#'   \item \code{out}    - outliers
-#'   \item \code{median} - Tukey median
-#'   \item \code{box}    - plot frame
+#'   \item `grid`   - background grid
+#'   \item `fence`  - classification boundary (default `FALSE`)
+#'   \item `loop`   - convex hull of the non-outlying points
+#'   \item `bag`    - central 50\% region
+#'   \item `points` - raw data points
+#'   \item `out`    - outliers
+#'   \item `median` - Tukey median
+#'   \item `box`    - plot frame
 #' }
 #'
 #' @param x a numeric matrix or data frame with exactly two columns, or a
-#'   formula of the form \code{y ~ x} (see the formula method).
-#' @param formula a formula of the form \code{y ~ x}, where both variables
-#'   are numeric. \code{x} is drawn on the horizontal, \code{y} on the
+#'   formula of the form `y ~ x` (see the formula method).
+#' @param formula a formula of the form `y ~ x`, where both variables
+#'   are numeric. `x` is drawn on the horizontal, `y` on the
 #'   vertical axis.
 #' @param data an optional data frame containing the variables in
-#'   \code{formula}.
+#'   `formula`.
 #' @param subset an optional expression indicating which observations to
 #'   use.
 #' @param na.action a function specifying how missing values are handled.
-#'   Defaults to \code{\link[stats]{na.omit}}, as the depth computation
+#'   Defaults to [stats::na.omit()], as the depth computation
 #'   requires complete pairs.
 #' @param main,xlab,ylab character strings for plot annotations. The
-#'   formula method derives \code{xlab} and \code{ylab} from the variable
+#'   formula method derives `xlab` and `ylab` from the variable
 #'   names if they are not supplied.
 #' @param xlim,ylim numeric vectors of length 2 specifying axis limits.
 #' @param factor inflation factor for the fence (default: 3).
@@ -82,27 +82,27 @@
 #' @param dither logical, whether to add small noise to break ties.
 #' @param points,bag,loop,fence,out,median,grid,box
 #'   object-oriented control of plot elements (see Details).
-#' @param stamp optional stamp passed to \code{.withGraphicsState()}.
-#' @param ... additional graphical parameters passed to \code{par()}.
+#' @param stamp optional stamp passed to `.withGraphicsState()`.
+#' @param ... additional graphical parameters passed to `par()`.
 #'
-#' @return Invisibly returns a list of class \code{"bagplot"} with
+#' @return Invisibly returns a list of class `"bagplot"` with
 #'   components:
 #' \itemize{
-#'   \item \code{center}   - Tukey median.
-#'   \item \code{depth}    - depth of the innermost region bounding the bag.
-#'   \item \code{bag}      - bag polygon (matrix).
-#'   \item \code{fence}    - fence polygon (matrix, not drawn by default).
-#'   \item \code{loop}     - loop polygon (matrix).
-#'   \item \code{outliers} - outlier points (matrix).
-#'   \item \code{depths}   - halfspace depth of all observations.
+#'   \item `center`   - Tukey median.
+#'   \item `depth`    - depth of the innermost region bounding the bag.
+#'   \item `bag`      - bag polygon (matrix).
+#'   \item `fence`    - fence polygon (matrix, not drawn by default).
+#'   \item `loop`     - loop polygon (matrix).
+#'   \item `outliers` - outlier points (matrix).
+#'   \item `depths`   - halfspace depth of all observations.
 #' }
 #'
 #' @references P. J. Rousseeuw, I. Ruts, J. W. Tukey (1999):
-#'     The bagplot: a bivariate boxplot, \emph{The American
-#'     Statistician}, vol. 53, no. 4, 382--387.
+#'     The bagplot: a bivariate boxplot, *The American
+#'     Statistician*, vol. 53, no. 4, 382--387.
 #'
 #' P. J. Rousseeuw, I. Ruts (1996): Algorithm AS 307: Bivariate location
-#'     depth, \emph{Applied Statistics}, vol. 45, no. 4, 516--526.
+#'     depth, *Applied Statistics*, vol. 45, no. 4, 516--526.
 #'
 #' @examples
 #' set.seed(1)
@@ -181,7 +181,7 @@ plotBag.formula <- function(x, data = NULL, subset, na.action = na.omit,
   res <- plotBag.default(cbind(r$predictor, r$x),
                          main = main, xlab = xlab, ylab = ylab, ...)
 
-  res$data.name <- r$data.name
+  res$dataName <- r$dataName
 
   invisible(res)
 }

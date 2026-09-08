@@ -55,7 +55,7 @@ otherwise in degrees.}
 
 \item{cex.lab}{character expansion factor for labels.}
 
-\item{las}{integer controlling label orientation (as in \code{\link[graphics]{par}}).}
+\item{las}{integer controlling label orientation (as in \code{\link[graphics:par]{graphics::par()}}).}
 
 \item{adj}{numeric vector specifying text justification.}
 

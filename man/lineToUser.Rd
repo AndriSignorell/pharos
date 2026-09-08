@@ -30,7 +30,7 @@ lineToUser(line=2, side=4)
 
 }
 \seealso{
-\code{\link{mtext}}
+\code{\link[=mtext]{mtext()}}
 
 Other graphics.layout:
 \code{\link[=abcCoords]{abcCoords()}},

@@ -8,7 +8,7 @@
 #' 
 #' @param axis which axis to break
 #' @param breakpos where to place the break in user units
-#' @param pos position of the axis (see \link{axis})
+#' @param pos position of the axis (see [axis])
 #' @param bgcol the color of the plot background
 #' @param breakcol the color of the "break" marker
 #' @param style either \samp{gap}, \samp{slash} or \samp{zigzag}

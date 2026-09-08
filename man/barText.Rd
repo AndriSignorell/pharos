@@ -35,7 +35,7 @@ with the first bar to the left. If \code{TRUE}, the bars are drawn
 horizontally with the first at the bottom.}
 
 \item{cex}{numeric character expansion factor; multiplied by
-\code{\link{par}}\code{("cex")} yields the final character size. \code{NULL}
+\code{\link[=par]{par()}}\code{("cex")} yields the final character size. \code{NULL}
 and \code{NA} are equivalent to \code{1.0}.}
 
 \item{adj}{one or two values in \verb{[0, 1]} which specify the x (and optionally
@@ -52,7 +52,7 @@ relative to the x axis.}
 
 \item{col}{the color and to be used, possibly a vector (default in par("col")).}
 
-\item{\dots}{the dots are passed to the \code{\link{boxedText}}.}
+\item{\dots}{the dots are passed to the \code{\link[=boxedText]{boxedText()}}.}
 }
 \value{
 returns the geometry of the labels invisibly
@@ -69,7 +69,7 @@ barplot (side by side or stacked).
 }
 \details{
 The x coordinates of the labels can be found by using
-\code{\link{barplot}()} result, if they are to be centered at the top of
+\code{\link[=barplot]{barplot()}} result, if they are to be centered at the top of
 each bar. \code{barText()} calculates the rest.
 
 \ifelse{html}{\figure{barText.png}{options: width="700" alt="Positions for the text"}}{\figure{barText.png}{Positions for the text}}

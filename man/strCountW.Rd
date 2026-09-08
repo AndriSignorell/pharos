@@ -28,7 +28,7 @@ strCountW(c("One word", "Two words here", NA))
 
 }
 \seealso{
-\code{\link[stringi]{stri_count_words}}
+\code{\link[stringi:stri_count_words]{stringi::stri_count_words()}}
 
 \link{string-overview} for an overview of all string utilities in pharos.
 }

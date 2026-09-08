@@ -11,7 +11,7 @@
 #' \itemize{
 #'   \item a logical (`TRUE`/`FALSE`) to enable/disable sectors,
 #'   \item a vector of colors,
-#'   \item or a list with elements \code{col} and \code{border}.
+#'   \item or a list with elements `col` and `border`.
 #' }
 #' Colors are recycled to match the number of sectors (`nrow(x) + ncol(x)`).
 #'
@@ -19,7 +19,7 @@
 #' \itemize{
 #'   \item a logical (`TRUE`/`FALSE`) to enable/disable ribbons,
 #'   \item a vector of colors,
-#'   \item or a list with elements \code{col} and \code{border}.
+#'   \item or a list with elements `col` and `border`.
 #' }
 #' Colors are recycled to match the number of row categories (`nrow(x)`).
 #'
@@ -39,8 +39,8 @@
 #' @details
 #' The function constructs a circular layout where:
 #' \itemize{
-#'   \item Columns of \code{x} are placed on one half of the circle
-#'   \item Rows of \code{x} are placed on the opposite half
+#'   \item Columns of `x` are placed on one half of the circle
+#'   \item Rows of `x` are placed on the opposite half
 #'   \item Ribbon widths are proportional to matrix entries
 #' }
 #'

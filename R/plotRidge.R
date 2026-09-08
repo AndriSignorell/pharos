@@ -10,15 +10,15 @@
 #' compared to overlaid density plots.
 #'
 #' @param x A numeric vector, or a list of numeric vectors representing groups.
-#' @param ... additional graphical parameters passed to \code{par()}.
+#' @param ... additional graphical parameters passed to `par()`.
 #'
-#' @param formula A formula of the form \code{y ~ group}.
+#' @param formula A formula of the form `y ~ group`.
 #' @param data optional data frame.
 #' @param subset optional subset expression.
 #' @param na.action function to handle missing values.
 #'
-#' @param add logical; if \code{TRUE}, adds to an existing plot.
-#' @param bw bandwidth for \code{\link[stats]{density}}.
+#' @param add logical; if `TRUE`, adds to an existing plot.
+#' @param bw bandwidth for [stats::density()].
 #' @param scale scaling factor for density height.
 #' @param spacing vertical spacing between ridges.
 #'
@@ -27,12 +27,12 @@
 #' @param lwd line width(s).
 #' @param lty line type(s).
 #' @param fill logical; fill area under densities.
-#' @param grid logical, \code{NA}, or list controlling grid.
+#' @param grid logical, `NA`, or list controlling grid.
 #'
 #' @param main,xlab,ylab plot labels.
 #' @param xlim,ylim axis limits.
 #'
-#' @return Invisibly returns \code{NULL}.
+#' @return Invisibly returns `NULL`.
 #'
 #' @examples
 #' set.seed(1)
@@ -43,7 +43,7 @@
 #'
 #' plotRidge(value ~ group, data = df)
 #'
-#' @seealso \code{\link{plotDens}}
+#' @seealso [plotDens()]
 #' @concept base-graphics
 #' @concept plotting
 #'

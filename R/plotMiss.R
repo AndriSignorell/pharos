@@ -11,12 +11,12 @@
 #' @param col the colour of the missings. 
 #' @param bg the background colour of the plot. 
 #' @param clust logical, defining if the missings should be clustered. Default
-#' is \code{FALSE}. 
+#' is `FALSE`. 
 #' @param main the main title. 
-#' @param \dots the dots are passed to \code{\link{plot}}. 
+#' @param \dots the dots are passed to [plot()]. 
 #' @return if clust is set to TRUE, the new order will be returned invisibly.
 #' @note Following an idea of Henk Harmsen <henk@@carbonmetrics.com> 
-#' @seealso \code{\link{hclust}}, \code{\link[bedrock]{countCompCases}} 
+#' @seealso [hclust()], [bedrock::countCompCases()] 
 #' 
 #' @examples
 #' 

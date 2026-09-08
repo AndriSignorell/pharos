@@ -32,7 +32,7 @@
 )
 }
 \arguments{
-\item{x}{linear model object as returned by \code{\link{lm}}.}
+\item{x}{linear model object as returned by \code{\link[=lm]{lm()}}.}
 
 \item{col}{line color. Defaults to \code{pal()[1]}.}
 
@@ -40,7 +40,7 @@
 
 \item{lty}{line type.}
 
-\item{type}{plotting type passed to \code{\link{lines}}.}
+\item{type}{plotting type passed to \code{\link[=lines]{lines()}}.}
 
 \item{n}{number of points used for plotting the fit.}
 
@@ -67,7 +67,7 @@ calculates predictions from an \code{lm} object and then adds the fitted
 line together with optional confidence and prediction bands.
 }
 \details{
-In contrast to \code{\link{abline}}, polynomial models and transformed
+In contrast to \code{\link[=abline]{abline()}}, polynomial models and transformed
 predictors are supported as long as the model contains exactly one predictor.
 
 Confidence and prediction bands are controlled via \code{cbandArgs} and
@@ -79,7 +79,7 @@ Confidence and prediction bands are controlled via \code{cbandArgs} and
 }
 }
 \seealso{
-\code{\link{lines}}, \code{\link{lm}}
+\code{\link[=lines]{lines()}}, \code{\link[=lm]{lm()}}
 
 Other graphics.trendlines:
 \code{\link[=lines.loess]{lines.loess()}},

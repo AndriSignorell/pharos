@@ -8,10 +8,10 @@
 #' @return A character vector with each string reversed.
 #'
 #' @details
-#' This function uses \code{\link[stringi]{stri_reverse}}, which correctly
+#' This function uses [stringi::stri_reverse()], which correctly
 #' handles Unicode characters and multi-byte encodings.
 #'
-#' @seealso \code{\link[stringi]{stri_reverse}}
+#' @seealso [stringi::stri_reverse()]
 #'
 #' @examples
 #' strRev("abc")

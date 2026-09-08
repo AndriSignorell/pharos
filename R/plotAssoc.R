@@ -7,46 +7,46 @@
 #' Color encodes both the direction and strength of the association using a
 #' diverging palette.
 #'
-#' @param x a two-dimensional contingency table (\code{table} or \code{matrix}).
-#' @param main main title of the plot. \code{NULL} (default) derives a
-#'   title from the expression passed as \code{x} (via
-#'   \code{deparse(match.call()$x)}), the same "substitute magic"
-#'   convention used by \code{\link{plotXY}}/\code{\link{plotBox}} for
-#'   their \code{y ~ x} default - there's no formula pair here, just the
+#' @param x a two-dimensional contingency table (`table` or `matrix`).
+#' @param main main title of the plot. `NULL` (default) derives a
+#'   title from the expression passed as `x` (via
+#'   `deparse(match.call()$x)`), the same "substitute magic"
+#'   convention used by [plotXY()]/[plotBox()] for
+#'   their `y ~ x` default - there's no formula pair here, just the
 #'   single table argument, so the default is simply that expression's
-#'   text (e.g. \code{plotAssoc(tab)} titles itself \code{"tab"}).
-#'   \code{""}, \code{NA}, or \code{FALSE} suppress the title entirely
+#'   text (e.g. `plotAssoc(tab)` titles itself `"tab"`).
+#'   `""`, `NA`, or `FALSE` suppress the title entirely
 #'   and compact the top margin; any other string is used as given
-#'   (resolved internally via \code{.resolveTitle()}).
+#'   (resolved internally via `.resolveTitle()`).
 #' @param xlab character, x-axis label. Defaults to the first dimension name.
 #' @param ylab character, y-axis label. Defaults to the second dimension name.
 #' @param space numeric, fraction of average cell width/height used as gap
-#'   between cells. Default \code{0.3}.
-#' @param reorder logical. If \code{TRUE} (default), rows and columns are
+#'   between cells. Default `0.3`.
+#' @param reorder logical. If `TRUE` (default), rows and columns are
 #'   reordered by the strength of the strongest association
-#'   (\code{max(|residual|)}) in descending order.
+#'   (`max(|residual|)`) in descending order.
 #' @param col character vector of colors for the diverging palette. Default
-#'   uses \code{pal("red-white-blue-3", n = 100)} from the DescToolsX theme.
+#'   uses `pal("red-white-blue-3", n = 100)` from the DescToolsX theme.
 #'   Negative residuals map to the first color, zero to the middle, positive
 #'   to the last.
 #' @param border the color of the border
-#' @param labels logical or character. If \code{TRUE}, Pearson residuals are
-#'   printed inside each cell. If \code{FALSE} (default), no labels are shown.
-#'   A character format string (e.g. \code{"\%.1f"}) can also be passed for
+#' @param labels logical or character. If `TRUE`, Pearson residuals are
+#'   printed inside each cell. If `FALSE` (default), no labels are shown.
+#'   A character format string (e.g. `"\%.1f"`) can also be passed for
 #'   custom formatting.
-#' @param stamp controls the corner stamp. \code{.useTheme} (default)
-#'   resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
-#'   \code{NULL}, or an explicit string, as for
-#'   \code{.withGraphicsState()} (internal).
-#' @param \dots further arguments passed to \code{\link[graphics]{rect}}.
+#' @param stamp controls the corner stamp. `.useTheme` (default)
+#'   resolves to `getTheme()$stamp`. `TRUE`/`FALSE`/
+#'   `NULL`, or an explicit string, as for
+#'   `.withGraphicsState()` (internal).
+#' @param \dots further arguments passed to [graphics::rect()].
 #'
 #' @details
 #' The plot is based on the association plot described in Cohen (1980) and
 #' Friendly (1992). Each cell \eqn{(i,j)} is represented by a rectangle:
 #' \itemize{
-#'   \item \strong{width} proportional to \eqn{\sqrt{e_{ij}}}
+#'   \item **width** proportional to \eqn{\sqrt{e_{ij}}}
 #'     (square root of expected frequency)
-#'   \item \strong{height} proportional to the Pearson residual
+#'   \item **height** proportional to the Pearson residual
 #'     \eqn{d_{ij} = (f_{ij} - e_{ij}) / \sqrt{e_{ij}}}
 #' }
 #' A horizontal baseline at zero represents independence. Cells above the
@@ -58,13 +58,13 @@
 #'
 #' @references
 #'   Cohen, A. (1980). On the graphical display of the significant components
-#'   of a two-way contingency table. \emph{Communications in Statistics —
-#'   Theory and Methods}, 9, 1025--1041.
+#'   of a two-way contingency table. *Communications in Statistics —
+#'   Theory and Methods*, 9, 1025--1041.
 #'
 #'   Friendly, M. (1992). Graphical methods for categorical data.
-#'   \emph{SAS User Group International Conference Proceedings}, 17, 190--200.
+#'   *SAS User Group International Conference Proceedings*, 17, 190--200.
 #'
-#' @seealso [graphics::mosaicplot], \code{DescToolsX::conf}
+#' @seealso [graphics::mosaicplot], `DescToolsX::conf`
 #'
 #' @examples
 #' tab <- table(bedrock::Pizza$driver, bedrock::Pizza$area)

@@ -5,28 +5,28 @@
 #' The transformations are applied in the following order:
 #' \enumerate{
 #'   \item Scaling
-#'   \item Rotation (see \code{\link{rotate}})
+#'   \item Rotation (see [rotate()])
 #'   \item Translation
 #' }
 #'
 #' @param x numeric vector of x coordinates, or an object coercible by
-#'   \code{\link{xy.coords}}.
-#' @param y numeric vector of y coordinates. Ignored if \code{x} already
+#'   [xy.coords()].
+#' @param y numeric vector of y coordinates. Ignored if `x` already
 #'   contains both coordinates.
 #' @param translate numeric vector of length 1 or 2 specifying translation
-#'   in x and y direction. Recycled if necessary. Default is \code{c(0, 0)}.
+#'   in x and y direction. Recycled if necessary. Default is `c(0, 0)`.
 #' @param scale numeric vector of length 1 or 2 specifying scaling factors
-#'   for x and y. Recycled if necessary. Default is \code{c(1, 1)}.
-#' @param theta rotation angle in radians. Default is \code{0}.
-#' @param asp aspect ratio adjustment passed to \code{\link{rotate}}.
-#'   Default is \code{1}.
+#'   for x and y. Recycled if necessary. Default is `c(1, 1)`.
+#' @param theta rotation angle in radians. Default is `0`.
+#' @param asp aspect ratio adjustment passed to [rotate()].
+#'   Default is `1`.
 #'
 #' @details
 #' This function is a convenience wrapper combining basic affine transformations.
-#' Internally, it uses \code{\link{rotate}} for rotation.
+#' Internally, it uses [rotate()] for rotation.
 #'
-#' @return A list with components \code{x} and \code{y}, as returned by
-#'   \code{\link{xy.coords}}.
+#' @return A list with components `x` and `y`, as returned by
+#'   [xy.coords()].
 #'
 #' @examples
 #' x <- c(0, 1, 1, 0)

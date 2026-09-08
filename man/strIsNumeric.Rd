@@ -38,7 +38,7 @@ strIsNumeric(x, scientific = TRUE)
 
 }
 \seealso{
-\code{\link{as.numeric}}
+\code{\link[=as.numeric]{as.numeric()}}
 
 \link{string-overview} for an overview of all string utilities in pharos.
 }

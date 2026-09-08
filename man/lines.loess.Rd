@@ -16,7 +16,7 @@
 )
 }
 \arguments{
-\item{x}{a fitted \code{\link{loess}} object.}
+\item{x}{a fitted \code{\link[=loess]{loess()}} object.}
 
 \item{col}{line color of the smoother. \code{.useTheme} (default)
 resolves to \code{getTheme()$twin[1]} - the first of the theme's
@@ -26,7 +26,7 @@ two-color pair (see \link{theme}).}
 
 \item{lty}{line type.}
 
-\item{type}{plotting type passed to \code{\link{lines}}.}
+\item{type}{plotting type passed to \code{\link[=lines]{lines()}}.}
 
 \item{n}{number of points used for plotting the fit.}
 
@@ -72,8 +72,8 @@ lines(
 
 }
 \seealso{
-\code{\link{loess}}, \code{\link{scatter.smooth}},
-\code{\link{smooth.spline}}
+\code{\link[=loess]{loess()}}, \code{\link[=scatter.smooth]{scatter.smooth()}},
+\code{\link[=smooth.spline]{smooth.spline()}}
 
 Other graphics.trendlines:
 \code{\link[=lines.lm]{lines.lm()}},

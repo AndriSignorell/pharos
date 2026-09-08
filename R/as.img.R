@@ -3,7 +3,7 @@
 #'
 #' Evaluates a plotting expression in a temporary PNG device and returns
 #' the resulting image as a self-contained, base64-encoded \verb{<img>}
-#' tag (class \code{"html"}, see \code{\link{as.html}}), suitable for
+#' tag (class `"html"`, see [as.html()]), suitable for
 #' embedding directly in HTML text -- a report, a question, an e-mail.
 #'
 #' The expression is passed unevaluated and carries its own environment, so
@@ -11,15 +11,15 @@
 #' Several statements are given in braces, as in the examples below.
 #'
 #' @param expr a plotting expression, evaluated once inside the device.
-#'   Character input is evaluated via \code{eval(parse(text = expr))} for
+#'   Character input is evaluated via `eval(parse(text = expr))` for
 #'   compatibility with the earlier form of this function.
 #' @param width,height size of the device in pixels
 #' @param res nominal resolution in dpi, which also scales the text: raise
 #'   it for a larger picture with the same relative proportions
-#' @param ... further arguments passed to \code{\link[grDevices]{png}}
+#' @param ... further arguments passed to [grDevices::png()]
 #'
-#' @return an object of class \code{c("html", "character")} containing an
-#'   \verb{<img>} tag with a \code{data:image/png;base64,...} source
+#' @return an object of class `c("html", "character")` containing an
+#'   \verb{<img>} tag with a `data:image/png;base64,...` source
 #'
 #' @examples
 #' img <- as.img(plot(1:10))

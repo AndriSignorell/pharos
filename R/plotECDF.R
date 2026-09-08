@@ -4,15 +4,15 @@
 #' Fast plotting of the empirical cumulative distribution function (ECDF),
 #' designed to stay performant even for very large vectors (n ~ 1e6-1e7).
 #' 
-#' The base \code{\link{plot.ecdf}}/\code{\link{ecdf}} machinery becomes
-#' impractically slow well below \code{n = 1e7}, since it tracks every single
+#' The base [plot.ecdf()]/[ecdf()] machinery becomes
+#' impractically slow well below `n = 1e7`, since it tracks every single
 #' jump. Beyond a few thousand points, individual jumps are visually
-#' indistinguishable anyway, so \code{plotECDF()} caps the rendered resolution
-#' at \code{breaks} points by default.
+#' indistinguishable anyway, so `plotECDF()` caps the rendered resolution
+#' at `breaks` points by default.
 #'
 #' Resolution is achieved via quantile subsampling, not histogram binning:
-#' \code{breaks} evenly-spaced probability points are mapped back to their
-#' corresponding quantiles (\code{\link[stats]{quantile}}, \code{type = 7}).
+#' `breaks` evenly-spaced probability points are mapped back to their
+#' corresponding quantiles ([stats::quantile()], `type = 7`).
 #' Each rendered point therefore lies exactly on the true ECDF - unlike an
 #' equal-width-histogram approximation, this adapts automatically to the
 #' shape of the distribution (no resolution is wasted on near-empty bins in
@@ -22,64 +22,64 @@
 #' 
 #' @param x numeric vector of the observations for the ECDF.
 #'
-#' @param formula a formula of the form \code{y ~ x}.
+#' @param formula a formula of the form `y ~ x`.
 #' @param data an optional data frame containing variables in the formula.
 #' @param subset optional expression indicating which observations to use.
 #' @param na.action a function specifying how missing values are handled.
-#'   Defaults to \code{na.omit}.
+#'   Defaults to `na.omit`.
 #'   
-#' @param main main title of the plot. \code{NULL} (default) derives a
-#'   title from \code{deparse(substitute(x))}. \code{""}, \code{NA}, or
-#'   \code{FALSE} suppress the title.
-#' @param xlab label for the x-axis. \code{NULL} (default) derives a label
-#'   the same way as \code{main}.
+#' @param main main title of the plot. `NULL` (default) derives a
+#'   title from `deparse(substitute(x))`. `""`, `NA`, or
+#'   `FALSE` suppress the title.
+#' @param xlab label for the x-axis. `NULL` (default) derives a label
+#'   the same way as `main`.
 #' @param ylab label for the y-axis. The y-axis itself always shows fixed
-#'   probability labels (\code{.00} to \code{1.00}); \code{ylab} adds an
+#'   probability labels (`.00` to `1.00`); `ylab` adds an
 #'   axis title above/beside those, empty by default.
 #'
-#' @param xlim numeric vector of length 2; x-axis limits. \code{NULL}
-#'   (default) uses \code{range(x)}.
+#' @param xlim numeric vector of length 2; x-axis limits. `NULL`
+#'   (default) uses `range(x)`.
 #'
 #' @param breaks controls the rendered resolution. A single integer (default
-#'   \code{1000}) subsamples the ECDF at that many evenly-spaced quantiles
-#'   whenever \code{length(x)} exceeds it; for \code{length(x) <= breaks},
+#'   `1000`) subsamples the ECDF at that many evenly-spaced quantiles
+#'   whenever `length(x)` exceeds it; for `length(x) <= breaks`,
 #'   full resolution is used regardless (no data is ever thinned below its
-#'   actual size). \code{NULL}, \code{FALSE}, or \code{Inf} force full
-#'   resolution unconditionally, regardless of \code{length(x)}.
-#' @param add logical; if \code{TRUE}, adds to an existing plot instead of
+#'   actual size). `NULL`, `FALSE`, or `Inf` force full
+#'   resolution unconditionally, regardless of `length(x)`.
+#' @param add logical; if `TRUE`, adds to an existing plot instead of
 #'   starting a new one.
 #'
 #' @param col color of the step line and the min/max marker points.
-#'   \code{.useTheme} (default) resolves to \code{getTheme()$twin[1]} - a
-#'   single accent color, consistent with \code{\link{lines.loess}} and
-#'   \code{plotQQ()}'s confidence band.
+#'   `.useTheme` (default) resolves to `getTheme()$twin[1]` - a
+#'   single accent color, consistent with [lines.loess()] and
+#'   `plotQQ()`'s confidence band.
 #' @param lwd line width.
 #' @param grid controls drawing of the background grid (vertical lines at
 #'   default tick positions, plus a fixed set of horizontal reference
-#'   lines at the probability ticks \code{0}/\code{.25}/\code{.5}/\code{.75}/\code{1}
+#'   lines at the probability ticks `0`/`.25`/`.5`/`.75`/`1`
 #'   - the latter always grey regardless of the active theme, a
-#'   deliberately distinct look, not theme-driven). \code{.useTheme}
+#'   deliberately distinct look, not theme-driven). `.useTheme`
 #'   (default) follows the active theme's grid on/off state
-#'   (\code{getTheme()$grid}). \code{TRUE}/\code{FALSE}/\code{NA}, or a
-#'   named list, as for \code{\link[graphics]{grid}}.
-#' @param box controls drawing of the plot box. \code{.useTheme} (default)
-#'   resolves to \code{getTheme()$box}. \code{TRUE}/\code{FALSE}/\code{NA},
-#'   or a named list, as for \code{\link[graphics]{box}}.
+#'   (`getTheme()$grid`). `TRUE`/`FALSE`/`NA`, or a
+#'   named list, as for [graphics::grid()].
+#' @param box controls drawing of the plot box. `.useTheme` (default)
+#'   resolves to `getTheme()$box`. `TRUE`/`FALSE`/`NA`,
+#'   or a named list, as for [graphics::box()].
 #'
-#' @param stamp controls the corner stamp. \code{.useTheme} (default)
-#'   resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/\code{NULL},
-#'   a string, or a named list of arguments for \code{stamp()}.
+#' @param stamp controls the corner stamp. `.useTheme` (default)
+#'   resolves to `getTheme()$stamp`. `TRUE`/`FALSE`/`NULL`,
+#'   a string, or a named list of arguments for `stamp()`.
 #'
-#' @param legend logical or list controlling the legend. If \code{TRUE}, a legend
+#' @param legend logical or list controlling the legend. If `TRUE`, a legend
 #'   is drawn using the column names of the data. If a list is supplied, its
 #'   elements are passed to the internal legend drawing routine.
 #'   
-#' @param \dots further graphical parameters passed to \code{\link{par}} via
+#' @param \dots further graphical parameters passed to [par()] via
 #'   the internal framework.
 #' 
-#' @return Invisibly returns \code{NULL}.
+#' @return Invisibly returns `NULL`.
 #' 
-#' @seealso \code{\link{plot.ecdf}}, \code{\link{plotFdist}},
+#' @seealso [plot.ecdf()], [plotFdist()],
 #'   [theme]
 #' 
 #' @examples
@@ -264,7 +264,7 @@ plotECDF.formula <- function(
   groupLevs <- levels(r$group)
   ng        <- length(groups)
   
-  main <- .resolveTitle(main, default = r$data.name)
+  main <- .resolveTitle(main, default = r$dataName)
   if (is.null(xlab)) xlab <- names(r$mf)[1]
   
   if (identical(col, .useTheme))

@@ -20,7 +20,7 @@ distinct from \code{print()}. \code{preview()} exists for object types
 where \code{print()} is shared with another package's S3 generic
 dispatch (e.g. class \code{"html"}, used both by \pkg{pharos} and
 \pkg{htmltools} for genuinely different purposes), so that registering
-an own \code{print.*} method would silently overwrite - or be
+an own \verb{print.*} method would silently overwrite - or be
 overwritten by - the other package's behaviour.
 }
 \details{
@@ -28,7 +28,7 @@ The default method simply calls \code{print()}, so \code{preview()} is
 always safe to call even for types with no dedicated method.
 }
 \seealso{
-\code{\link{as.html}}
+\code{\link[=as.html]{as.html()}}
 }
 \concept{annotation}
 \concept{graphics.utils}

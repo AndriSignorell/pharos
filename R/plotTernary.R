@@ -12,30 +12,30 @@
 #' normalized with a warning.
 #'
 #' Graphical elements such as grids are controlled via the unified plot
-#' design system using \code{bedrock::callIf()} and \code{.theme()}.
+#' design system using `bedrock::callIf()` and `.theme()`.
 #'
-#' @param x A numeric vector, matrix, or data frame. If \code{y} and \code{z}
-#'   are provided, \code{x}, \code{y}, and \code{z} are combined into a matrix.
-#'   Otherwise, \code{x} must contain exactly three columns.
+#' @param x A numeric vector, matrix, or data frame. If `y` and `z`
+#'   are provided, `x`, `y`, and `z` are combined into a matrix.
+#'   Otherwise, `x` must contain exactly three columns.
 #' @param y optional numeric vector for the second component.
 #' @param z optional numeric vector for the third component.
 #'
-#' @param ... additional graphical parameters passed to \code{par()}.
+#' @param ... additional graphical parameters passed to `par()`.
 #'
 #' @param col point color(s).
 #' @param pch plotting symbol.
 #' @param cex point size.
 #'
-#' @param grid logical, \code{NA}, or list controlling the ternary grid.
+#' @param grid logical, `NA`, or list controlling the ternary grid.
 #'
 #' @param lbl character vector of length 3 specifying axis labels.
 #' @param main plot title.
 #'
 #' @param xlim,ylim plot limits (usually left at defaults).
 #'
-#' @param add logical; if \code{TRUE}, adds to an existing plot.
+#' @param add logical; if `TRUE`, adds to an existing plot.
 #'
-#' @return Invisibly returns \code{NULL}.
+#' @return Invisibly returns `NULL`.
 #'
 #' @examples
 #' set.seed(1)
@@ -49,7 +49,7 @@
 #' M <- cbind(x, y, z)
 #' plotTernary(M, lbl = c("A", "B", "C"))
 #'
-#' @seealso \code{\link{plotDens}}, \code{\link{plotRidge}}
+#' @seealso [plotDens()], [plotRidge()]
 
 
 

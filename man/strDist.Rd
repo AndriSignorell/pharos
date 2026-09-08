@@ -31,7 +31,7 @@ case sensitive and if \code{TRUE}, case is ignored}
 }
 \value{
 \code{strDist} returns an object of class \code{"dist"}; cf.
-\code{\link[stats]{dist}}.
+\code{\link[stats:dist]{stats::dist()}}.
 }
 \description{
 \code{strDist} computes distances between strings following to Levenshtein
@@ -94,7 +94,7 @@ Harold C. Doran (2010) \emph{MiscPsycho. An R Package for Miscellaneous
 Psychometric Analyses}
 }
 \seealso{
-\code{\link[utils]{adist}}, \code{\link[stats]{dist}}
+\code{\link[utils:adist]{utils::adist()}}, \code{\link[stats:dist]{stats::dist()}}
 
 \link{string-overview} for an overview of all string utilities in pharos.
 }

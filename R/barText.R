@@ -11,38 +11,38 @@
 #' barplot (side by side or stacked).  
 #' 
 #' The x coordinates of the labels can be found by using
-#' \code{\link{barplot}()} result, if they are to be centered at the top of
-#' each bar. \code{barText()} calculates the rest.
+#' [barplot()] result, if they are to be centered at the top of
+#' each bar. `barText()` calculates the rest.
 #' 
 #' \ifelse{html}{\figure{barText.png}{options: width="700" alt="Positions for the text"}}{\figure{barText.png}{Positions for the text}}
 #'   
 #' Notice that when the labels are placed on top of the bars, they may be
-#' clipped. This can be avoided by setting \code{xpd=TRUE}.
+#' clipped. This can be avoided by setting `xpd=TRUE`.
 #' 
 #' @param height either a vector or matrix of values describing the bars which
 #' make up the plot exactly as used for creating the barplot. 
-#' @param b the returned mid points as returned by \code{b <- barplot(...)}. 
+#' @param b the returned mid points as returned by `b <- barplot(...)`. 
 #' @param labels the labels to be placed on the bars. 
-#' @param beside a logical value. If \code{FALSE}, the columns of height are
-#' portrayed as stacked bars, and if \code{TRUE} the columns are portrayed as
+#' @param beside a logical value. If `FALSE`, the columns of height are
+#' portrayed as stacked bars, and if `TRUE` the columns are portrayed as
 #' juxtaposed bars. 
-#' @param horiz a logical value. If \code{FALSE}, the bars are drawn vertically
-#' with the first bar to the left. If \code{TRUE}, the bars are drawn
+#' @param horiz a logical value. If `FALSE`, the bars are drawn vertically
+#' with the first bar to the left. If `TRUE`, the bars are drawn
 #' horizontally with the first at the bottom. 
 #' @param cex numeric character expansion factor; multiplied by
-#' \code{\link{par}}\code{("cex")} yields the final character size. \code{NULL}
-#' and \code{NA} are equivalent to \code{1.0}.
+#' [par()]`("cex")` yields the final character size. `NULL`
+#' and `NA` are equivalent to `1.0`.
 #' @param adj one or two values in \verb{[0, 1]} which specify the x (and optionally
 #' y) adjustment of the labels. On most devices values outside that interval
 #' will also work.
-#' @param pos one of \code{"topout"}, \code{"topin"}, \code{"mid"},
-#' \code{"bottomin"}, \code{"bottomout"}, defining if the labels should be
+#' @param pos one of `"topout"`, `"topin"`, `"mid"`,
+#' `"bottomin"`, `"bottomout"`, defining if the labels should be
 #' placed on top of the bars (inside or outside) or at the bottom of the bars
 #' (inside or outside).
 #' @param offset a vector indicating how much the bars should be shifted
 #' relative to the x axis.
 #' @param col the color and to be used, possibly a vector (default in par("col")).
-#' @param \dots the dots are passed to the \code{\link{boxedText}}. 
+#' @param \dots the dots are passed to the [boxedText()]. 
 #' 
 #' @return returns the geometry of the labels invisibly
 #' 

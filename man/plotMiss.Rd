@@ -25,7 +25,7 @@ is \code{FALSE}.}
 
 \item{main}{the main title.}
 
-\item{\dots}{the dots are passed to \code{\link{plot}}.}
+\item{\dots}{the dots are passed to \code{\link[=plot]{plot()}}.}
 }
 \value{
 if clust is set to TRUE, the new order will be returned invisibly.
@@ -48,7 +48,7 @@ plotMiss(airquality, main="Missing data (clustered)", clust=TRUE)
 
 }
 \seealso{
-\code{\link{hclust}}, \code{\link[bedrock]{countCompCases}}
+\code{\link[=hclust]{hclust()}}, \code{\link[bedrock:countCompCases]{bedrock::countCompCases()}}
 
 Other plot.special:
 \code{\link[=plotBinaryTree]{plotBinaryTree()}},

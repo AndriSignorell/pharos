@@ -9,11 +9,11 @@
 #'   or a numeric vector of precomputed frequencies. Unnamed numeric frequency
 #'   vectors are labelled by their positions.
 #'
-#' @param type character; one of \code{"both"}, \code{"freq"}, \code{"perc"}.
+#' @param type character; one of `"both"`, `"freq"`, `"perc"`.
 #'   Controls whether absolute frequencies, relative frequencies, or both
 #'   are displayed.
 #'
-#' @param ecdf logical; if \code{TRUE}, cumulative proportions are shown
+#' @param ecdf logical; if `TRUE`, cumulative proportions are shown
 #'   instead of simple relative frequencies.
 #'
 #' @param col fill color for bars.
@@ -24,7 +24,7 @@
 #'
 #' @param main plot title.
 #'
-#' @param ... further graphical parameters passed to \code{par()}.
+#' @param ... further graphical parameters passed to `par()`.
 #'
 #' @details
 #' The function produces horizontal bar plots:
@@ -33,13 +33,13 @@
 #'   \item Relative frequencies (percentages) or cumulative proportions
 #' }
 #'
-#' If \code{type = "both"}, both views are shown side by side.
+#' If `type = "both"`, both views are shown side by side.
 #'
 #' Long labels are truncated, and large category sets can be limited via
-#' \code{maxcats}.
+#' `maxcats`.
 #'
 #' Raw categorical data and their pre-tabulated form are treated identically.
-#' When categories are truncated via \code{maxcats}, proportions remain based
+#' When categories are truncated via `maxcats`, proportions remain based
 #' on the total frequency before truncation.
 #'
 #' @return Invisibly returns a list with frequencies and proportions.

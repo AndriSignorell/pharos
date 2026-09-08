@@ -2,40 +2,40 @@
 #' Add a Linear Regression Line
 #'
 #' Add a linear regression line to an existing plot. The function first
-#' calculates predictions from an \code{lm} object and then adds the fitted
+#' calculates predictions from an `lm` object and then adds the fitted
 #' line together with optional confidence and prediction bands.
 #'
-#' In contrast to \code{\link{abline}}, polynomial models and transformed
+#' In contrast to [abline()], polynomial models and transformed
 #' predictors are supported as long as the model contains exactly one predictor.
 #'
-#' Confidence and prediction bands are controlled via \code{cbandArgs} and
-#' \code{pbandArgs}. These arguments can be:
+#' Confidence and prediction bands are controlled via `cbandArgs` and
+#' `pbandArgs`. These arguments can be:
 #' \itemize{
-#'   \item \code{FALSE}, \code{NULL} or \code{NA}: suppress the band
-#'   \item \code{TRUE}: draw the band with default settings
+#'   \item `FALSE`, `NULL` or `NA`: suppress the band
+#'   \item `TRUE`: draw the band with default settings
 #'   \item a named list: customize the band appearance and confidence level
 #' }
 #'
-#' @param x linear model object as returned by \code{\link{lm}}.
-#' @param col line color. Defaults to \code{pal()[1]}.
+#' @param x linear model object as returned by [lm()].
+#' @param col line color. Defaults to `pal()[1]`.
 #' @param lwd line width.
 #' @param lty line type.
-#' @param type plotting type passed to \code{\link{lines}}.
+#' @param type plotting type passed to [lines()].
 #' @param n number of points used for plotting the fit.
-#' @param cbandArgs controls the confidence band. May be \code{TRUE},
-#'   \code{FALSE}, \code{NULL}, \code{NA}, or a named list. The confidence
-#'   level is specified via \code{conf.level}. Default is
-#'   \code{list(conf.level=0.95)}.
-#' @param pbandArgs controls the prediction band. May be \code{TRUE},
-#'   \code{FALSE}, \code{NULL}, \code{NA}, or a named list. The confidence
-#'   level is specified via \code{conf.level}. Default is \code{NA}.
+#' @param cbandArgs controls the confidence band. May be `TRUE`,
+#'   `FALSE`, `NULL`, `NA`, or a named list. The confidence
+#'   level is specified via `conf.level`. Default is
+#'   `list(conf.level=0.95)`.
+#' @param pbandArgs controls the prediction band. May be `TRUE`,
+#'   `FALSE`, `NULL`, `NA`, or a named list. The confidence
+#'   level is specified via `conf.level`. Default is `NA`.
 #' @param xpred optional numeric vector defining the range over which
 #'   predictions should be calculated.
 #' @param \dots currently ignored.
 #'
 #' @return No return value; called for its side effect.
 #'
-#' @seealso \code{\link{lines}}, \code{\link{lm}}
+#' @seealso [lines()], [lm()]
 #' 
 #' @family graphics.trendlines  
 #' @concept regression  

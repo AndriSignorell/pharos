@@ -22,9 +22,9 @@ function. RGB is the hub between the two tables below.
 
 
 \emph{"Col" is any valid R color specification (name, hex string, or
-palette index) as accepted by} \code{\link[grDevices]{col2rgb}}.
+palette index) as accepted by} \code{\link[grDevices:col2rgb]{grDevices::col2rgb()}}.
 No function starts from HSV: it is only ever a conversion target
-(via \code{\link{colToHSV}}), not a source -- see the note below the
+(via \code{\link[=colToHSV]{colToHSV()}}), not a source -- see the note below the
 second table for the reason this gap is left open.
 }
 
@@ -51,11 +51,11 @@ representation, so they don't fit a row/column slot above:\tabular{ll}{
 \section{Why HSV has no source functions}{
 
 Base R already provides the HSV -> Col/Hex direction via
-\code{\link[grDevices]{hsv}()}, which builds a hex color string
-directly from h/s/v values -- the same role \code{\link{rgb}()}
+\code{\link[grDevices:hsv]{grDevices::hsv()}}, which builds a hex color string
+directly from h/s/v values -- the same role \code{\link[=rgb]{rgb()}}
 plays for RGB triplets. pharos deliberately doesn't duplicate it;
-chain \code{hsv()} into \code{\link{colToRGB}()} or
-\code{\link{colToHex}()} instead (see examples).
+chain \code{hsv()} into \code{\link[=colToRGB]{colToRGB()}} or
+\code{\link[=colToHex]{colToHex()}} instead (see examples).
 }
 
 \examples{

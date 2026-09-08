@@ -3,36 +3,36 @@
 #'
 #' Converts a matrix (or vector) to a \verb{<table>} HTML fragment, with
 #' optional row/column headers, caption, per-column alignment and widths.
-#' The result has class \code{c("html", "character")} (see
-#' \code{\link{as.html}}) and prints as a formatted text table via
-#' \code{\link{preview.html}}.
+#' The result has class `c("html", "character")` (see
+#' [as.html()]) and prints as a formatted text table via
+#' [preview.html()].
 #'
 #' @param m a matrix or vector
-#' @param sepCol logical; if \code{TRUE}, insert a narrow empty separator
+#' @param sepCol logical; if `TRUE`, insert a narrow empty separator
 #'   column between each pair of columns
 #' @param caption table caption text
 #' @param bodyAlign horizontal alignment of body cells
-#'   (\code{"left"}, \code{"center"}, \code{"right"}), recycled to the
+#'   (`"left"`, `"center"`, `"right"`), recycled to the
 #'   number of columns
-#' @param valign vertical alignment of body cells (HTML \code{valign}
-#'   attribute: \code{"top"}, \code{"middle"}, \code{"bottom"}), recycled
+#' @param valign vertical alignment of body cells (HTML `valign`
+#'   attribute: `"top"`, `"middle"`, `"bottom"`), recycled
 #'   to the number of columns
-#' @param width column width(s) (HTML \code{width} attribute), recycled
+#' @param width column width(s) (HTML `width` attribute), recycled
 #'   to the number of columns including an optional rowname column; use
-#'   \code{NA} for columns without an explicit width
-#' @param cellpadding HTML \code{cellpadding} attribute
-#' @param border HTML \code{border} attribute
-#' @param tableWidth overall table width (HTML \code{width} attribute on
-#'   \verb{<table>}), or \code{NA} for none
+#'   `NA` for columns without an explicit width
+#' @param cellpadding HTML `cellpadding` attribute
+#' @param border HTML `border` attribute
+#' @param tableWidth overall table width (HTML `width` attribute on
+#'   \verb{<table>}), or `NA` for none
 #' @param captionAlign horizontal alignment of the header row cells
-#' @param frame logical; if \code{TRUE}, draw outer frame and group rules
-#'   (\code{frame="hsides" rules="groups"})
+#' @param frame logical; if `TRUE`, draw outer frame and group rules
+#'   (`frame="hsides" rules="groups"`)
 #' @param rowNames logical; render the row names as a leading header
-#'   column. Ignored when \code{m} has none
+#'   column. Ignored when `m` has none
 #' @param colNames logical; render the column names as a header row.
-#'   Ignored when \code{m} has none
+#'   Ignored when `m` has none
 #'
-#' @return an object of class \code{c("html", "character")}
+#' @return an object of class `c("html", "character")`
 #'
 #' @seealso [bedrock::appendEnum]
 #'

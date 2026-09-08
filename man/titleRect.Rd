@@ -23,12 +23,11 @@ titleRect(
 
 \item{col}{the font color of the title}
 
-\item{xjust}{the x-justification of the text. This can be \code{c(0, 0.5,
-1)} for left, middle- and right alignement.}
+\item{xjust}{the x-justification of the text. This can be \code{c(0, 0.5, 1)} for left, middle- and right alignement.}
 
 \item{line}{on which MARgin line, starting at 0 counting outwards}
 
-\item{\dots}{the dots are passed to the \code{\link{text}} function, which
+\item{\dots}{the dots are passed to the \code{\link[=text]{text()}} function, which
 can be used to change font and similar arguments.}
 }
 \value{
@@ -47,7 +46,7 @@ titleRect("pressure")
 
 }
 \seealso{
-\code{\link{title}}
+\code{\link[=title]{title()}}
 
 Other graphics.annotation:
 \code{\link[=barText]{barText()}},

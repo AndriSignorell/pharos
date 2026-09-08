@@ -21,8 +21,8 @@ vector is returned.
 }
 \description{
 Splits character vectors into substrings. This is a convenience wrapper
-around \code{\link[stringi]{stri_split_fixed}} and
-\code{\link[stringi]{stri_split_regex}} with simplified defaults.
+around \code{\link[stringi:stri_split_fixed]{stringi::stri_split_fixed()}} and
+\code{\link[stringi:stri_split_regex]{stringi::stri_split_regex()}} with simplified defaults.
 }
 \details{
 If the input \code{x} has length 1, the result is returned as a character
@@ -30,7 +30,7 @@ vector instead of a list for convenience.
 
 This function provides a simplified interface to string splitting using
 the \pkg{stringi} package. It avoids some of the complexity of
-\code{\link[base]{strsplit}} while providing consistent and Unicode-aware
+\code{\link[base:strsplit]{base::strsplit()}} while providing consistent and Unicode-aware
 behavior.
 }
 \examples{
@@ -43,8 +43,8 @@ strSplit("a1b2c3", "\\\\d")
 
 }
 \seealso{
-\code{\link[stringi]{stri_split_fixed}},
-\code{\link[stringi]{stri_split_regex}}, \code{\link[base]{strsplit}}
+\code{\link[stringi:stri_split_fixed]{stringi::stri_split_fixed()}},
+\code{\link[stringi:stri_split_regex]{stringi::stri_split_regex()}}, \code{\link[base:strsplit]{base::strsplit()}}
 
 \link{string-overview} for an overview of all string utilities in pharos.
 }

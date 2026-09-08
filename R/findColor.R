@@ -4,29 +4,29 @@
 #' Find a color on a defined color range depending on the value of x. This is
 #' helpful for colorcoding numeric values.
 #' 
-#' For the selection of colors the option \code{rightmost.closed} in the used
-#' function \code{\link{findInterval}} is set to TRUE. This will ensure that
+#' For the selection of colors the option `rightmost.closed` in the used
+#' function [findInterval()] is set to TRUE. This will ensure that
 #' all values on the right edge of the range are assigned a color. How values
 #' outside the boundaries of minX and maxX should be handled can be
-#' controlled by \code{allInside}. Set this value to TRUE, if those values
+#' controlled by `allInside`. Set this value to TRUE, if those values
 #' should get the colors at the edges or set it to FALSE, if they should remain
 #' white (which is the default).
 #' 
-#' Note that \code{\link{findInterval}} closes the intervals on the left side,
+#' Note that [findInterval()] closes the intervals on the left side,
 #' e.g. [0, 1). This option can't be changed. Consequently will x-values lying
 #' on the edge of two colors get the color of the bigger one.
 #' 
 #' @param x numeric.
 #' @param col a vector of colors.
 #' @param minX the x-value to be used for the left edge of the first color. If
-#' left to the default \code{NULL} \code{min(pretty(x))} will be used.
+#' left to the default `NULL` `min(pretty(x))` will be used.
 #' @param maxX the x-value to be used for the right edge of the last color. If
-#' left to the default \code{NULL} \code{max(pretty(x))} will be used.
+#' left to the default `NULL` `max(pretty(x))` will be used.
 #' @param allInside logical; if true, the returned indices are coerced into
-#' \code{1, ..., N-1}, i.e., \code{0} is mapped to \code{1} and \code{N} to
-#' \code{N-1}.
+#' `1, ..., N-1`, i.e., `0` is mapped to `1` and `N` to
+#' `N-1`.
 #' 
-#' @seealso \code{\link{findInterval}}
+#' @seealso [findInterval()]
 
 
 

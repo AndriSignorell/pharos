@@ -10,10 +10,10 @@
 #' @param bg the background color of the box.
 #' @param border the border color of the box
 #' @param col the font color of the title
-#' @param xjust the x-justification of the text. This can be \code{c(0, 0.5,
-#' 1)} for left, middle- and right alignement.
+#' @param xjust the x-justification of the text. This can be `c(0, 0.5,
+#' 1)` for left, middle- and right alignement.
 #' @param line on which MARgin line, starting at 0 counting outwards
-#' @param \dots the dots are passed to the \code{\link{text}} function, which
+#' @param \dots the dots are passed to the [text()] function, which
 #' can be used to change font and similar arguments.
 #' 
 #' @return nothing is returned
@@ -23,7 +23,7 @@
 #' titleRect("pressure")
 #' 
 #' 
-#' @seealso \code{\link{title}}
+#' @seealso [title()]
 #' 
 #' @family graphics.annotation
 #' @concept annotation

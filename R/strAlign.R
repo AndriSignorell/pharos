@@ -11,9 +11,9 @@
 #' @param x a character vector
 #' @param sep a character specifying the alignment mode:
 #' \itemize{
-#'   \item \code{"\\l"}: left alignment
-#'   \item \code{"\\r"}: right alignment (default)
-#'   \item \code{"\\c"}: centered alignment
+#'   \item `"\\l"`: left alignment
+#'   \item `"\\r"`: right alignment (default)
+#'   \item `"\\c"`: centered alignment
 #'   \item any other character: align at the first occurrence of this separator
 #' }
 #'
@@ -30,9 +30,9 @@
 #' This function uses Unicode-aware string handling via the \pkg{stringi}
 #' package.
 #'
-#' @seealso \code{\link[stringi]{stri_pad}},
-#'   \code{\link[stringi]{stri_sub}},
-#'   \code{\link[stringi]{stri_trim_right}}
+#' @seealso [stringi::stri_pad()],
+#'   [stringi::stri_sub()],
+#'   [stringi::stri_trim_right()]
 #'
 #' @examples
 #' x <- c("here", "there", "everywhere")

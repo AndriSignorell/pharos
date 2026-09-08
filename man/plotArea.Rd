@@ -49,7 +49,7 @@ elements are passed to the internal legend drawing routine.}
 \item{grid}{logical or list controlling the background grid. If \code{TRUE},
 a default grid is drawn.}
 
-\item{...}{additional graphical parameters passed to \code{\link[graphics]{par}}
+\item{...}{additional graphical parameters passed to \code{\link[graphics:par]{graphics::par()}}
 via \code{.applyParFromDots()} and to the plotting functions.}
 }
 \value{

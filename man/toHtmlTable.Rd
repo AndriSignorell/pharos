@@ -50,7 +50,7 @@ to the number of columns including an optional rowname column; use
 \item{captionAlign}{horizontal alignment of the header row cells}
 
 \item{frame}{logical; if \code{TRUE}, draw outer frame and group rules
-(\code{frame="hsides" rules="groups"})}
+(\verb{frame="hsides" rules="groups"})}
 
 \item{rowNames}{logical; render the row names as a leading header
 column. Ignored when \code{m} has none}
@@ -65,8 +65,8 @@ an object of class \code{c("html", "character")}
 Converts a matrix (or vector) to a \verb{<table>} HTML fragment, with
 optional row/column headers, caption, per-column alignment and widths.
 The result has class \code{c("html", "character")} (see
-\code{\link{as.html}}) and prints as a formatted text table via
-\code{\link{preview.html}}.
+\code{\link[=as.html]{as.html()}}) and prints as a formatted text table via
+\code{\link[=preview.html]{preview.html()}}.
 }
 \seealso{
 \link[bedrock:appendEnum]{bedrock::appendEnum}

@@ -2,23 +2,23 @@
 #' Check if Character Strings Represent Numeric Values
 #'
 #' Determines whether elements of a character vector represent valid numeric values.
-#' Unlike \code{as.numeric()}, this function performs a regex-based validation and
+#' Unlike `as.numeric()`, this function performs a regex-based validation and
 #' does not produce warnings.
 #'
 #' @param x a character vector to be tested
-#' @param scientific logical; if \code{TRUE}, scientific notation (e.g., \code{"1e3"})
-#'   is allowed. Defaults to \code{FALSE}.
+#' @param scientific logical; if `TRUE`, scientific notation (e.g., `"1e3"`)
+#'   is allowed. Defaults to `FALSE`.
 #'
-#' @return A logical vector of the same length as \code{x}, indicating whether each
+#' @return A logical vector of the same length as `x`, indicating whether each
 #'   element represents a numeric value.
 #'
 #' @details
 #' The function uses regular expressions via \pkg{stringi} to validate numeric formats.
-#' Valid formats include optional leading sign (\code{+} or \code{-}), optional decimal
-#' point, and digits. If \code{scientific = TRUE}, exponential notation using \code{e}
-#' or \code{E} is also supported.
+#' Valid formats include optional leading sign (`+` or `-`), optional decimal
+#' point, and digits. If `scientific = TRUE`, exponential notation using `e`
+#' or `E` is also supported.
 #'
-#' Note that special values such as \code{"Inf"}, \code{"-Inf"}, and \code{"NaN"} are
+#' Note that special values such as `"Inf"`, `"-Inf"`, and `"NaN"` are
 #' not considered numeric by this function.
 #'
 #' @examples
@@ -27,7 +27,7 @@
 #' strIsNumeric(x)
 #' strIsNumeric(x, scientific = TRUE)
 #'
-#' @seealso \code{\link{as.numeric}}
+#' @seealso [as.numeric()]
 
 
 #' @importFrom stringi stri_detect_regex

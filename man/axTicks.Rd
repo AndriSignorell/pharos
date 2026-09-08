@@ -52,7 +52,7 @@ with(beaver1, {
 
 }
 \seealso{
-\code{\link{axTicks}}, \code{\link{axis.POSIXct}}
+\code{\link[=axTicks]{axTicks()}}, \code{\link[=axis.POSIXct]{axis.POSIXct()}}
 
 Other graphics.layout:
 \code{\link[=abcCoords]{abcCoords()}},

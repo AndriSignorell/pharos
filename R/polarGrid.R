@@ -6,46 +6,46 @@
 #'
 #' @param nr numeric or vector controlling radial grid lines:
 #'   \describe{
-#'     \item{\code{NULL}}{Uses default "pretty" axis values.}
+#'     \item{`NULL`}{Uses default "pretty" axis values.}
 #'     \item{single numeric}{Number of radial grid lines.}
 #'     \item{numeric vector}{Explicit radii at which to draw circles.}
-#'     \item{all \code{NA}}{Suppress radial grid lines.}
+#'     \item{all `NA`}{Suppress radial grid lines.}
 #'   }
 #' @param ntheta numeric or vector controlling angular grid lines:
 #'   \describe{
-#'     \item{\code{NULL}}{Uses 12 equally spaced angles.}
+#'     \item{`NULL`}{Uses 12 equally spaced angles.}
 #'     \item{single numeric}{Number of angular divisions.}
 #'     \item{numeric vector}{Explicit angles (in radians).}
-#'     \item{all \code{NA}}{Suppress angular grid lines.}
+#'     \item{all `NA`}{Suppress angular grid lines.}
 #'   }
 #' @param col color of grid lines.
 #' @param lty line type for grid lines.
 #' @param lwd line width for grid lines.
 #' @param rlabels optional labels for radial grid lines (excluding zero).
-#'   If \code{NULL}, labels are generated automatically.
-#'   Use \code{NA} to suppress labels.
+#'   If `NULL`, labels are generated automatically.
+#'   Use `NA` to suppress labels.
 #' @param alabels optional labels for angular grid lines.
-#'   If \code{NULL}, labels are generated automatically (degrees or radians).
-#'   Use \code{NA} to suppress labels.
-#' @param lblradians logical; if \code{TRUE}, angle labels are shown in radians,
+#'   If `NULL`, labels are generated automatically (degrees or radians).
+#'   Use `NA` to suppress labels.
+#' @param lblradians logical; if `TRUE`, angle labels are shown in radians,
 #'   otherwise in degrees.
 #' @param cex.lab character expansion factor for labels.
-#' @param las integer controlling label orientation (as in \code{\link[graphics]{par}}).
+#' @param las integer controlling label orientation (as in [graphics::par()]).
 #' @param adj numeric vector specifying text justification.
 #' @param dist numeric distance from origin for angular labels.
 #'
 #' @details
 #' This function is intended to be used together with polar plotting functions
-#' such as \code{plotPolar}. It assumes an existing plot with equal aspect ratio.
+#' such as `plotPolar`. It assumes an existing plot with equal aspect ratio.
 #'
 #' Radial grid lines are drawn as concentric circles, while angular grid lines
 #' are drawn as segments from the origin.
 #'
-#' Label placement and formatting can be customized via \code{adj}, \code{las},
-#' and \code{dist}.
+#' Label placement and formatting can be customized via `adj`, `las`,
+#' and `dist`.
 #'
 #' @return
-#' Invisibly returns \code{NULL}.
+#' Invisibly returns `NULL`.
 #'
 #' @examples
 #' plot(0, 0, type = "n", xlim = c(-1, 1), ylim = c(-1, 1), asp = 1)

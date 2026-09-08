@@ -32,64 +32,64 @@
 #' Draw an Axis With Formatted or Rotated Labels
 #'
 #' A drop-in replacement for [graphics::axis()] that adds two conveniences:
-#' tick labels can be formatted through [fm()] via the \code{fmt} argument,
-#' and labels can be drawn at an arbitrary angle using \code{srt} (which
+#' tick labels can be formatted through [fm()] via the `fmt` argument,
+#' and labels can be drawn at an arbitrary angle using `srt` (which
 #' [graphics::axis()] itself ignores). When rotated labels are requested the
 #' function also estimates the margin space they require and, optionally,
 #' widens the corresponding plot margin so the labels are not clipped.
 #'
-#' The \code{fmt} argument is passed straight to [fm()] and therefore accepts
+#' The `fmt` argument is passed straight to [fm()] and therefore accepts
 #' the full range of format specifications: a special short code (e.g.
-#' \code{"\%"}, \code{"e"}, \code{"eng"}, \code{"p"}), an ISO-8601 date
-#' pattern (e.g. \code{"MMM yyyy"}), a \code{Style} object, a bare (named)
-#' list treated as a style template (e.g. \code{fmt = list(digits = 1,
-#' bigMark = " ")}), or a function of \code{x}. See [fm()] for the details.
+#' `"\%"`, `"e"`, `"eng"`, `"p"`), an ISO-8601 date
+#' pattern (e.g. `"MMM yyyy"`), a `Style` object, a bare (named)
+#' list treated as a style template (e.g. `fmt = list(digits = 1,
+#' bigMark = " ")`), or a function of `x`. See [fm()] for the details.
 #'
-#' When \code{srt} is set, the axis line and ticks are drawn without labels
+#' When `srt` is set, the axis line and ticks are drawn without labels
 #' via [graphics::axis()], and the labels are added separately with
-#' [graphics::text()] using \code{xpd = TRUE} so they may extend into the
+#' [graphics::text()] using `xpd = TRUE` so they may extend into the
 #' figure margin. The required margin width is estimated by projecting the
-#' rotated label boxes onto the axis normal (see \code{estimateMar}).
+#' rotated label boxes onto the axis normal (see `estimateMar`).
 #'
-#' Note that changing \code{par("mar")} after the plot region has been
-#' established does not resize the existing region. When \code{estimateMar}
-#' is \code{TRUE} the widened margin therefore mainly ensures enough device
-#' space outside the plot region for the (\code{xpd = TRUE}) labels. For a
-#' clean layout, set the margin \emph{before} calling [graphics::plot()]; the
-#' returned \code{mar} component reports the estimated requirement so a
+#' Note that changing `par("mar")` after the plot region has been
+#' established does not resize the existing region. When `estimateMar`
+#' is `TRUE` the widened margin therefore mainly ensures enough device
+#' space outside the plot region for the (`xpd = TRUE`) labels. For a
+#' clean layout, set the margin *before* calling [graphics::plot()]; the
+#' returned `mar` component reports the estimated requirement so a
 #' calling routine can reserve the space in advance.
 #'
 #' @param side integer specifying which side of the plot the axis is drawn on,
-#' as in [graphics::axis()]: \code{1} = below, \code{2} = left, \code{3} =
-#' above and \code{4} = right.
-#' @param at numeric vector of tick positions. If \code{NULL} (default) the
+#' as in [graphics::axis()]: `1` = below, `2` = left, `3` =
+#' above and `4` = right.
+#' @param at numeric vector of tick positions. If `NULL` (default) the
 #' positions are determined with [graphics::axTicks()].
 #' @param fmt format specification passed to [fm()] to format the tick
-#' labels. If \code{NULL} (default) the labels are used as they are (or the
+#' labels. If `NULL` (default) the labels are used as they are (or the
 #' bare tick values, coerced to character). See Details.
 #' @param labels either a logical or a character vector of labels. If
-#' \code{TRUE} (default) the labels are generated from \code{at} (formatted
-#' with \code{fmt} if supplied). A character vector is used verbatim.
-#' @param srt numeric, the string rotation angle in degrees. If \code{NULL}
+#' `TRUE` (default) the labels are generated from `at` (formatted
+#' with `fmt` if supplied). A character vector is used verbatim.
+#' @param srt numeric, the string rotation angle in degrees. If `NULL`
 #' (default) labels are drawn horizontally through the ordinary
 #' [graphics::axis()] mechanism. Any other value triggers the rotated-label
 #' path described in Details (a common choice for long category names is
-#' \code{srt = 45}).
-#' @param adj label justification passed to [graphics::text()]. If \code{NULL}
-#' a sensible default is chosen from \code{side} and the rotation: right
-#' aligned with the tick for the x-axes (\code{c(1, 0.5)}) and bottom aligned
-#' for the y-axes (\code{c(0.5, 0)}).
-#' @param estimateMar logical. If \code{TRUE} (default) and \code{srt} is set,
-#' the margin on \code{side} is temporarily widened to the estimated space
-#' needed by the rotated labels (restored on exit). Set to \code{FALSE} to
+#' `srt = 45`).
+#' @param adj label justification passed to [graphics::text()]. If `NULL`
+#' a sensible default is chosen from `side` and the rotation: right
+#' aligned with the tick for the x-axes (`c(1, 0.5)`) and bottom aligned
+#' for the y-axes (`c(0.5, 0)`).
+#' @param estimateMar logical. If `TRUE` (default) and `srt` is set,
+#' the margin on `side` is temporarily widened to the estimated space
+#' needed by the rotated labels (restored on exit). Set to `FALSE` to
 #' leave the margins untouched.
 #' @param \dots further arguments passed to both [graphics::axis()] (for the
 #' line and ticks) and [graphics::text()] (for the labels). Graphical
-#' parameters shared by the two (e.g. \code{col}, \code{cex}) therefore affect
+#' parameters shared by the two (e.g. `col`, `cex`) therefore affect
 #' both.
-#' @return invisibly, a list with components \code{at} (the tick positions
-#' used) and \code{mar} (the estimated margin requirement in lines for the
-#' rotated labels, or \code{NA} when \code{srt} is \code{NULL}).
+#' @return invisibly, a list with components `at` (the tick positions
+#' used) and `mar` (the estimated margin requirement in lines for the
+#' rotated labels, or `NA` when `srt` is `NULL`).
 #' @author Andri Signorell <andri@@signorell.net>
 #' @seealso [graphics::axis], [graphics::axTicks], [graphics::text], [fm]
 #' @examples

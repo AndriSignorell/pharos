@@ -20,7 +20,7 @@ An object inheriting from class \code{"ellipseGeometry"}.
 Create an elliptic geometry.
 }
 \details{
-Use \code{\link{rotate}} to rotate the resulting geometry.
+Use \code{\link[=rotate]{rotate()}} to rotate the resulting geometry.
 }
 \seealso{
 Other geometry.structures:

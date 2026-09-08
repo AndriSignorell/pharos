@@ -2,18 +2,18 @@
 #' Returns the Left Or the Right Part Of a String 
 #' 
 #' Returns the left part or the right part of a string. The number of
-#' characters are defined by the argument \code{n}. If \code{n} is negative,
+#' characters are defined by the argument `n`. If `n` is negative,
 #' this number of characters will be cut off from the other side. 
 #' 
-#' The functions \code{strLeft} and \code{strRight} are simple wrappers to
-#' \code{substr}.
+#' The functions `strLeft` and `strRight` are simple wrappers to
+#' `substr`.
 #' 
 #' @name strLeftRight
 #' @aliases strRight strLeft
 #' @param x a vector of strings
 #' @param n a positive or a negative integer, the number of characters to cut.
 #' If n is negative, this number of characters will be cut off from the right
-#' with \code{strLeft} and from the left with \code{strRight}. \cr n will be
+#' with `strLeft` and from the left with `strRight`. \cr n will be
 #' recycled. 
 #' @return the left (right) n characters of x 
 #' @examples

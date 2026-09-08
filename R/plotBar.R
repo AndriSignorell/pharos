@@ -1,17 +1,17 @@
 
 #' Themed Barplot with Grid, Labels and Optional Connecting Lines
 #'
-#' Creates a themed wrapper around \code{\link[graphics]{barplot}} with
+#' Creates a themed wrapper around [graphics::barplot()] with
 #' support for consistent styling, optional grid lines, value labels,
 #' and connecting lines for stacked barplots.
 #'
 #' The function first initializes the plotting region invisibly using
-#' \code{\link[graphics]{barplot}}, optionally adds grid lines, and then
+#' [graphics::barplot()], optionally adds grid lines, and then
 #' draws the actual bars and additional layers (axis, connecting lines,
 #' text labels).
 #'
 #' @param height A vector or matrix of bar heights passed directly to
-#'   \code{\link[graphics]{barplot}}.
+#'   [graphics::barplot()].
 #'
 #' @param main,xlab,ylab optional plot labels. Defaults follow
 #'   base graphics behaviour.
@@ -20,77 +20,77 @@
 #'
 #'   Supported values are
 #'   \describe{
-#'     \item{\code{TRUE}}{draw axis using package defaults}
-#'     \item{\code{FALSE}}{suppress axis}
-#'     \item{\code{NULL}}{do not draw a numeric axis at all}
-#'     \item{\code{list(...)}}{custom axis parameters passed to the axis drawing routine}
+#'     \item{`TRUE`}{draw axis using package defaults}
+#'     \item{`FALSE`}{suppress axis}
+#'     \item{`NULL`}{do not draw a numeric axis at all}
+#'     \item{`list(...)`}{custom axis parameters passed to the axis drawing routine}
 #'   }
 #'
-#' @param beside logical. If \code{TRUE}, bars are drawn side-by-side.
-#'   If \code{FALSE} (default), bars are stacked.
+#' @param beside logical. If `TRUE`, bars are drawn side-by-side.
+#'   If `FALSE` (default), bars are stacked.
 #'
-#' @param horiz logical. If \code{TRUE}, bars are drawn horizontally.
-#'   Defaults to \code{FALSE}.
+#' @param horiz logical. If `TRUE`, bars are drawn horizontally.
+#'   Defaults to `FALSE`.
 #'
-#' @param col bar fill colours. \code{.useTheme} (default) resolves to
-#'   \code{getTheme()$bar$col}.
-#' @param border bar border colour. \code{.useTheme} (default) resolves to
-#'   \code{getTheme()$bar$border}.
+#' @param col bar fill colours. `.useTheme` (default) resolves to
+#'   `getTheme()$bar$col`.
+#' @param border bar border colour. `.useTheme` (default) resolves to
+#'   `getTheme()$bar$border`.
 #'
 #' @param grid controls drawing of grid lines.
 #'   Can be:
 #'   \itemize{
-#'     \item \code{.useTheme} (default): follow the active theme
-#'       (\code{getTheme()$grid}), restricted to the axis perpendicular to
+#'     \item `.useTheme` (default): follow the active theme
+#'       (`getTheme()$grid`), restricted to the axis perpendicular to
 #'       the value axis (e.g. horizontal lines only for vertical bars)
-#'     \item \code{TRUE}: draw grid with theme settings
-#'     \item \code{FALSE}, \code{NULL}, or \code{NA}: suppress grid
-#'     \item a named list: arguments passed to \code{\link[graphics]{grid}},
+#'     \item `TRUE`: draw grid with theme settings
+#'     \item `FALSE`, `NULL`, or `NA`: suppress grid
+#'     \item a named list: arguments passed to [graphics::grid()],
 #'       overriding the theme/function defaults for this call only
 #'   }
 #'
-#' @param box controls drawing of the plot box. \code{.useTheme} (default)
-#'   resolves to \code{getTheme()$box}. \code{TRUE}/\code{FALSE}/\code{NA},
-#'   or a named list, as for \code{grid}.
+#' @param box controls drawing of the plot box. `.useTheme` (default)
+#'   resolves to `getTheme()$box`. `TRUE`/`FALSE`/`NA`,
+#'   or a named list, as for `grid`.
 #'
-#' @param text optional list of arguments passed to \code{\link{barText}}
+#' @param text optional list of arguments passed to [barText()]
 #'   to draw value labels on bars.
 #'
 #' @param connlines optional list of arguments controlling connecting
 #'   lines between stacked bars. Only supported when
-#'   \code{beside = FALSE}.
+#'   `beside = FALSE`.
 #'
-#' @param stamp controls the corner stamp. \code{.useTheme} (default)
-#'   resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/\code{NULL},
-#'   or an explicit string, as for \code{.withGraphicsState()} (internal).
+#' @param stamp controls the corner stamp. `.useTheme` (default)
+#'   resolves to `getTheme()$stamp`. `TRUE`/`FALSE`/`NULL`,
+#'   or an explicit string, as for `.withGraphicsState()` (internal).
 #'   
-#' @param ... additional arguments passed to \code{\link[graphics]{barplot}}
-#'   and graphical parameters (via \code{\link[graphics]{par}}).
+#' @param ... additional arguments passed to [graphics::barplot()]
+#'   and graphical parameters (via [graphics::par()]).
 #'
 #' @details
 #' The function internally performs the following steps:
 #' \enumerate{
-#'   \item Draws an invisible \code{barplot} to establish the coordinate system.
+#'   \item Draws an invisible `barplot` to establish the coordinate system.
 #'   \item Optionally adds grid lines.
 #'   \item Draws the bars.
 #'   \item Draws the numeric axis if enabled.
 #'   \item Optionally adds connecting lines for stacked bars.
-#'   \item Optionally adds value labels via \code{\link{barText}}.
+#'   \item Optionally adds value labels via [barText()].
 #'   \item Optionally draws a box around the plot region.
 #' }
 #'
-#' Graphical parameters such as \code{bg}, \code{cex}, \code{las},
-#' \code{mar}, etc. can be supplied via \code{...}.
+#' Graphical parameters such as `bg`, `cex`, `las`,
+#' `mar`, etc. can be supplied via `...`.
 #'
-#' The precedence of theme-aware settings (\code{col}, \code{border},
-#' \code{grid}, \code{box}, \code{stamp}) is
+#' The precedence of theme-aware settings (`col`, `border`,
+#' `grid`, `box`, `stamp`) is
 #'
 #' \preformatted{
 #' explicit argument  >  function-specific default  >  active theme (getTheme())
 #' }
 #'
 #' @return Invisibly returns the midpoints of the bars as returned by
-#'   \code{\link[graphics]{barplot}}.
+#'   [graphics::barplot()].
 #'
 #' @seealso [graphics::barplot], [barText], [theme]
 #' 

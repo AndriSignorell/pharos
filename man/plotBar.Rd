@@ -24,7 +24,7 @@ plotBar(
 }
 \arguments{
 \item{height}{A vector or matrix of bar heights passed directly to
-\code{\link[graphics]{barplot}}.}
+\code{\link[graphics:barplot]{graphics::barplot()}}.}
 
 \item{main, xlab, ylab}{optional plot labels. Defaults follow
 base graphics behaviour.}
@@ -59,7 +59,7 @@ Can be:
 the value axis (e.g. horizontal lines only for vertical bars)
 \item \code{TRUE}: draw grid with theme settings
 \item \code{FALSE}, \code{NULL}, or \code{NA}: suppress grid
-\item a named list: arguments passed to \code{\link[graphics]{grid}},
+\item a named list: arguments passed to \code{\link[graphics:grid]{graphics::grid()}},
 overriding the theme/function defaults for this call only
 }}
 
@@ -67,7 +67,7 @@ overriding the theme/function defaults for this call only
 resolves to \code{getTheme()$box}. \code{TRUE}/\code{FALSE}/\code{NA},
 or a named list, as for \code{grid}.}
 
-\item{text}{optional list of arguments passed to \code{\link{barText}}
+\item{text}{optional list of arguments passed to \code{\link[=barText]{barText()}}
 to draw value labels on bars.}
 
 \item{connlines}{optional list of arguments controlling connecting
@@ -78,21 +78,21 @@ lines between stacked bars. Only supported when
 resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/\code{NULL},
 or an explicit string, as for \code{.withGraphicsState()} (internal).}
 
-\item{...}{additional arguments passed to \code{\link[graphics]{barplot}}
-and graphical parameters (via \code{\link[graphics]{par}}).}
+\item{...}{additional arguments passed to \code{\link[graphics:barplot]{graphics::barplot()}}
+and graphical parameters (via \code{\link[graphics:par]{graphics::par()}}).}
 }
 \value{
 Invisibly returns the midpoints of the bars as returned by
-\code{\link[graphics]{barplot}}.
+\code{\link[graphics:barplot]{graphics::barplot()}}.
 }
 \description{
-Creates a themed wrapper around \code{\link[graphics]{barplot}} with
+Creates a themed wrapper around \code{\link[graphics:barplot]{graphics::barplot()}} with
 support for consistent styling, optional grid lines, value labels,
 and connecting lines for stacked barplots.
 }
 \details{
 The function first initializes the plotting region invisibly using
-\code{\link[graphics]{barplot}}, optionally adds grid lines, and then
+\code{\link[graphics:barplot]{graphics::barplot()}}, optionally adds grid lines, and then
 draws the actual bars and additional layers (axis, connecting lines,
 text labels).
 
@@ -103,7 +103,7 @@ The function internally performs the following steps:
 \item Draws the bars.
 \item Draws the numeric axis if enabled.
 \item Optionally adds connecting lines for stacked bars.
-\item Optionally adds value labels via \code{\link{barText}}.
+\item Optionally adds value labels via \code{\link[=barText]{barText()}}.
 \item Optionally draws a box around the plot region.
 }
 

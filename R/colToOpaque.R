@@ -9,7 +9,7 @@
 #' need to get the equivalent opaque color for the transparent color. 
 #' 
 #' @param col the color as hex value (use converters below if it's not
-#' available). \code{col} and \code{opacity} are recycled. 
+#' available). `col` and `opacity` are recycled. 
 #' @param opacity the opacity value, if left to NULL the alpha channels of the
 #' colors are used 
 #' @param bg the background color to be used to calculate against (default is

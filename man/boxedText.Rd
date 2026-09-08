@@ -104,7 +104,7 @@ gives the response values and \code{rhs} the corresponding groups
 or explanatory variables.}
 
 \item{data}{an optional matrix or data frame (or similar; see
-\code{\link[stats]{model.frame}}) containing the variables in the
+\code{\link[stats:model.frame]{stats::model.frame()}}) containing the variables in the
 formula. By default the variables are taken from
 \code{environment(formula)}.}
 
@@ -132,7 +132,7 @@ boxedText(mpg ~ hp, data=mtcars,
 }
 \seealso{
 similar function in package \pkg{plotrix}
-\link[plotrix:boxed.labels]{plotrix::boxed.labels} (lacking rotation option)
+\code{plotrix::boxed.labels} (lacking rotation option)
 
 Other graphics.annotation:
 \code{\link[=barText]{barText()}},

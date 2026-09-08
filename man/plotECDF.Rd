@@ -46,7 +46,7 @@ plotECDF(x, ...)
 \arguments{
 \item{x}{numeric vector of the observations for the ECDF.}
 
-\item{\dots}{further graphical parameters passed to \code{\link{par}} via
+\item{\dots}{further graphical parameters passed to \code{\link[=par]{par()}} via
 the internal framework.}
 
 \item{main}{main title of the plot. \code{NULL} (default) derives a
@@ -75,7 +75,7 @@ starting a new one.}
 
 \item{col}{color of the step line and the min/max marker points.
 \code{.useTheme} (default) resolves to \code{getTheme()$twin[1]} - a
-single accent color, consistent with \code{\link{lines.loess}} and
+single accent color, consistent with \code{\link[=lines.loess]{lines.loess()}} and
 \code{plotQQ()}'s confidence band.}
 
 \item{lwd}{line width.}
@@ -88,12 +88,12 @@ lines at the probability ticks \code{0}/\code{.25}/\code{.5}/\code{.75}/\code{1}
 deliberately distinct look, not theme-driven). \code{.useTheme}
 (default) follows the active theme's grid on/off state
 (\code{getTheme()$grid}). \code{TRUE}/\code{FALSE}/\code{NA}, or a
-named list, as for \code{\link[graphics]{grid}}.
+named list, as for \code{\link[graphics:grid]{graphics::grid()}}.
 }}
 
 \item{box}{controls drawing of the plot box. \code{.useTheme} (default)
 resolves to \code{getTheme()$box}. \code{TRUE}/\code{FALSE}/\code{NA},
-or a named list, as for \code{\link[graphics]{box}}.}
+or a named list, as for \code{\link[graphics:box]{graphics::box()}}.}
 
 \item{stamp}{controls the corner stamp. \code{.useTheme} (default)
 resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/\code{NULL},
@@ -120,7 +120,7 @@ Fast plotting of the empirical cumulative distribution function (ECDF),
 designed to stay performant even for very large vectors (n ~ 1e6-1e7).
 }
 \details{
-The base \code{\link{plot.ecdf}}/\code{\link{ecdf}} machinery becomes
+The base \code{\link[=plot.ecdf]{plot.ecdf()}}/\code{\link[=ecdf]{ecdf()}} machinery becomes
 impractically slow well below \code{n = 1e7}, since it tracks every single
 jump. Beyond a few thousand points, individual jumps are visually
 indistinguishable anyway, so \code{plotECDF()} caps the rendered resolution
@@ -128,7 +128,7 @@ at \code{breaks} points by default.
 
 Resolution is achieved via quantile subsampling, not histogram binning:
 \code{breaks} evenly-spaced probability points are mapped back to their
-corresponding quantiles (\code{\link[stats]{quantile}}, \code{type = 7}).
+corresponding quantiles (\code{\link[stats:quantile]{stats::quantile()}}, \code{type = 7}).
 Each rendered point therefore lies exactly on the true ECDF - unlike an
 equal-width-histogram approximation, this adapts automatically to the
 shape of the distribution (no resolution is wasted on near-empty bins in
@@ -149,7 +149,7 @@ plotECDF(Sepal.Length ~ Species, data = iris)
 
 }
 \seealso{
-\code{\link{plot.ecdf}}, \code{\link{plotFdist}},
+\code{\link[=plot.ecdf]{plot.ecdf()}}, \code{\link[=plotFdist]{plotFdist()}},
 \link{theme}
 
 Other plot.univariate:

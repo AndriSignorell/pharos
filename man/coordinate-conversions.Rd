@@ -39,7 +39,7 @@ and vice versa.
 }
 \details{
 Angles are in radians, not degrees (i.e., a right angle is pi/2). Use
-\code{\link{degToRad}} to convert, if you don't wanna do it by yourself.\cr
+\code{\link[=degToRad]{degToRad()}} to convert, if you don't wanna do it by yourself.\cr
 All parameters are recycled if necessary.
 }
 \note{

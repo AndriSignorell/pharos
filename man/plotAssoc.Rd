@@ -24,7 +24,7 @@ plotAssoc(
 \item{main}{main title of the plot. \code{NULL} (default) derives a
 title from the expression passed as \code{x} (via
 \code{deparse(match.call()$x)}), the same "substitute magic"
-convention used by \code{\link{plotXY}}/\code{\link{plotBox}} for
+convention used by \code{\link[=plotXY]{plotXY()}}/\code{\link[=plotBox]{plotBox()}} for
 their \code{y ~ x} default - there's no formula pair here, just the
 single table argument, so the default is simply that expression's
 text (e.g. \code{plotAssoc(tab)} titles itself \code{"tab"}).
@@ -41,7 +41,7 @@ between cells. Default \code{0.3}.}
 
 \item{reorder}{logical. If \code{TRUE} (default), rows and columns are
 reordered by the strength of the strongest association
-(\code{max(|residual|)}) in descending order.}
+(\verb{max(|residual|)}) in descending order.}
 
 \item{col}{character vector of colors for the diverging palette. Default
 uses \code{pal("red-white-blue-3", n = 100)} from the DescToolsX theme.
@@ -52,7 +52,7 @@ to the last.}
 
 \item{labels}{logical or character. If \code{TRUE}, Pearson residuals are
 printed inside each cell. If \code{FALSE} (default), no labels are shown.
-A character format string (e.g. \code{"\%.1f"}) can also be passed for
+A character format string (e.g. \code{"\\\%.1f"}) can also be passed for
 custom formatting.}
 
 \item{stamp}{controls the corner stamp. \code{.useTheme} (default)
@@ -60,7 +60,7 @@ resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
 \code{NULL}, or an explicit string, as for
 \code{.withGraphicsState()} (internal).}
 
-\item{\dots}{further arguments passed to \code{\link[graphics]{rect}}.}
+\item{\dots}{further arguments passed to \code{\link[graphics:rect]{graphics::rect()}}.}
 }
 \description{
 Plots an association plot (Cohen-Friendly plot) for a two-dimensional

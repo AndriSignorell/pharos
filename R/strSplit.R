@@ -2,29 +2,29 @@
 #' Split Strings
 #'
 #' Splits character vectors into substrings. This is a convenience wrapper
-#' around \code{\link[stringi]{stri_split_fixed}} and
-#' \code{\link[stringi]{stri_split_regex}} with simplified defaults.
+#' around [stringi::stri_split_fixed()] and
+#' [stringi::stri_split_regex()] with simplified defaults.
 #'
-#' If the input \code{x} has length 1, the result is returned as a character
+#' If the input `x` has length 1, the result is returned as a character
 #' vector instead of a list for convenience.
 #'
 #' @param x a character vector to be split
 #' @param split a character string specifying the delimiter (if
-#'   \code{fixed = TRUE}) or a regular expression (if \code{fixed = FALSE})
-#' @param fixed logical; if \code{TRUE}, \code{split} is treated as a fixed
+#'   `fixed = TRUE`) or a regular expression (if `fixed = FALSE`)
+#' @param fixed logical; if `TRUE`, `split` is treated as a fixed
 #'   string. Otherwise, it is interpreted as a regular expression.
 #'
-#' @return A list of character vectors. If \code{x} has length 1, a character
+#' @return A list of character vectors. If `x` has length 1, a character
 #'   vector is returned.
 #'
 #' @details
 #' This function provides a simplified interface to string splitting using
 #' the \pkg{stringi} package. It avoids some of the complexity of
-#' \code{\link[base]{strsplit}} while providing consistent and Unicode-aware
+#' [base::strsplit()] while providing consistent and Unicode-aware
 #' behavior.
 #'
-#' @seealso \code{\link[stringi]{stri_split_fixed}},
-#' \code{\link[stringi]{stri_split_regex}}, \code{\link[base]{strsplit}}
+#' @seealso [stringi::stri_split_fixed()],
+#' [stringi::stri_split_regex()], [base::strsplit()]
 #'
 #' @examples
 #' strSplit("a,b,c", ",", fixed = TRUE)

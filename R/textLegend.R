@@ -4,56 +4,56 @@
 #' Draw a legend in the right margin consisting of short line segments
 #' and text labels, placed next to the (typically last) values of the
 #' plotted series. This labels lines directly instead of using a boxed
-#' \code{\link{legend}()}, as commonly preferred for time series and
+#' [legend()], as commonly preferred for time series and
 #' profile plots.
 #'
-#' The function owns the legend geometry: the anchor positions \code{y}
+#' The function owns the legend geometry: the anchor positions `y`
 #' are sorted internally so the legend follows the vertical order of the
 #' lines, the graphical parameters are recycled accordingly, and vertical
-#' label collisions are resolved via \code{spreadOut()}. Callers therefore
-#' simply pass the values in series order, parallel to \code{col},
-#' \code{lty} and \code{lwd}.
+#' label collisions are resolved via `spreadOut()`. Callers therefore
+#' simply pass the values in series order, parallel to `col`,
+#' `lty` and `lwd`.
 #'
-#' Drawing uses \code{\link{mtext}()} and \code{\link{segments}()} in the
-#' device margin; \code{xpd} is set to \code{TRUE} and restored on exit.
+#' Drawing uses [mtext()] and [segments()] in the
+#' device margin; `xpd` is set to `TRUE` and restored on exit.
 #' Horizontal positions are given in margin lines of side 4 and converted
-#' to user coordinates via \code{lineToUser()}.
+#' to user coordinates via `lineToUser()`.
 #'
 #' @param y numeric vector with the vertical anchor positions in user
 #'   coordinates, typically the last observed value of each series, in
 #'   series (column) order. Sorting and collision handling are done
 #'   internally.
-#' @param labels character vector of labels, parallel to \code{y}.
-#'   Defaults to \code{names(y)}, or the series index if \code{y} is
+#' @param labels character vector of labels, parallel to `y`.
+#'   Defaults to `names(y)`, or the series index if `y` is
 #'   unnamed.
 #' @param line numeric vector of length 1 or 2 (recycled), in margin
 #'   lines of side 4. The first element is the offset of the segments
 #'   from the plot region, the second the gap between segments and
 #'   labels.
 #' @param width length of the line segments in margin lines. Set to
-#'   \code{NA} to suppress the segments; the labels are then placed
-#'   directly at \code{line[1]}.
+#'   `NA` to suppress the segments; the labels are then placed
+#'   directly at `line[1]`.
 #' @param col,lty,lwd color, line type and width of the segments,
-#'   parallel to \code{y} (in series order, recycled). Ignored if
-#'   \code{width} is \code{NA}.
+#'   parallel to `y` (in series order, recycled). Ignored if
+#'   `width` is `NA`.
 #' @param cex character expansion for the labels. Also enters the
 #'   default vertical spacing, so larger text automatically gets wider
 #'   spacing.
 #' @param main optional title for the legend, drawn at the top of the
-#'   plot region. Default is \code{NULL} (none).
+#'   plot region. Default is `NULL` (none).
 #' @param mindist minimal vertical distance between labels in user
-#'   coordinates, passed to \code{spreadOut()}. Default is
-#'   \code{1.2 * strheight("M") * cex}.
+#'   coordinates, passed to `spreadOut()`. Default is
+#'   `1.2 * strheight("M") * cex`.
 #'
 #' @return The (sorted and spread) vertical label positions, invisibly.
 #'   Useful for adding further annotation next to the labels.
 #'
 #' @details Make sure the right margin is wide enough for segments and
-#'   labels, e.g. via the \code{mar} argument of the calling plot
+#'   labels, e.g. via the `mar` argument of the calling plot
 #'   function.
 #'
-#' @seealso \code{\link{plotLines}}, \code{\link{mtext}},
-#'   \code{\link{segments}}, \code{\link{legend}}
+#' @seealso [plotLines()], [mtext()],
+#'   [segments()], [legend()]
 #'
 #' @examples
 #' m <- EuStockMarkets[seq(1, 1860, 10), ]

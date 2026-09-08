@@ -34,7 +34,7 @@ For \code{type = "NATO"}, uppercase letters can optionally be prefixed
 (e.g., \code{"CAP Alfa"}) to distinguish them from lowercase letters.
 
 The function uses Unicode-aware character splitting via
-\code{\link[stringi]{stri_split_boundaries}}.
+\code{\link[stringi:stri_split_boundaries]{stringi::stri_split_boundaries()}}.
 }
 \examples{
 # NATO spelling
@@ -51,8 +51,8 @@ strSpell("ABC", upr = NA)
 
 }
 \seealso{
-\code{\link{strTrim}},
-\code{\link[stringi]{stri_split_boundaries}}
+\code{\link[=strTrim]{strTrim()}},
+\code{\link[stringi:stri_split_boundaries]{stringi::stri_split_boundaries()}}
 
 \link{string-overview} for an overview of all string utilities in pharos.
 }

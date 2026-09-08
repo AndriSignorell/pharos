@@ -23,12 +23,12 @@ plotBinaryTree(
 vertically (default).}
 
 \item{text}{properties of the text, can be any of the arguments
-of \code{\link{boxedText}} (besides geometry and label).}
+of \code{\link[=boxedText]{boxedText()}} (besides geometry and label).}
 
 \item{line}{properties of the line segments (\code{col},
 \code{lwd}, \code{lty}).}
 
-\item{\dots}{the dots are sent to \code{\link{canvas}}.}
+\item{\dots}{the dots are sent to \code{\link[=canvas]{canvas()}}.}
 }
 \value{
 an integer vector of length n
@@ -43,8 +43,7 @@ horizontal row, 4--7 for the next, \ldots then the parent-child traversal
 becomes particularly easy. The basic idea is that the rows of the tree start
 at indices 1, 2, 4, \ldots.
 
-binaryTree(13) yields the vector \code{c(8, 4, 9, 2, 10, 5, 11, 1, 12, 6, 13,
-3, 7)} meaning that the smallest element will be in position 8 of the tree,
+binaryTree(13) yields the vector \code{c(8, 4, 9, 2, 10, 5, 11, 1, 12, 6, 13, 3, 7)} meaning that the smallest element will be in position 8 of the tree,
 the next smallest in position 4, etc.
 }
 \note{

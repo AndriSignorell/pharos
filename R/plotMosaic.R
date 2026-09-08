@@ -145,10 +145,10 @@
 #'   Default `0.8`.
 #' @param labDigits integer. Number of decimal digits for percentage cell
 #'   labels when `labels = "p"`. Default `1`.
-#' @param stamp controls the corner stamp. \code{.useTheme} (default)
-#'   resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
-#'   \code{NULL}, or an explicit string, as for
-#'   \code{.withGraphicsState()} (internal).
+#' @param stamp controls the corner stamp. `.useTheme` (default)
+#'   resolves to `getTheme()$stamp`. `TRUE`/`FALSE`/
+#'   `NULL`, or an explicit string, as for
+#'   `.withGraphicsState()` (internal).
 #' @param ... further graphical parameters passed to `par()` via
 #'   `.applyParFromDots()`, e.g. `mar`, `cex.axis`, `las`.
 #'

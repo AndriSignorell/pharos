@@ -12,7 +12,7 @@ canvas(xlim = NULL, ylim = xlim, main = NULL, asp = 1, usrbg = "white", ...)
 \item{main}{the main title on top of the plot.}
 
 \item{asp}{numeric, giving the aspect ratio y/x. (See
-\code{\link{plot.window}} for details. Default is 1.}
+\code{\link[=plot.window]{plot.window()}} for details. Default is 1.}
 
 \item{usrbg}{the color of the user space of the plot, defaults to "white".}
 
@@ -27,8 +27,7 @@ This is just a wrapper for creating an empty plot with suitable defaults for
 plotting geometric shapes.
 }
 \details{
-The plot is created with these settings:\cr \code{asp = 1, xaxt = "n", yaxt
-= "n", xlab = "", ylab = "", frame.plot = FALSE}.
+The plot is created with these settings:\cr \verb{asp = 1, xaxt = "n", yaxt = "n", xlab = "", ylab = "", frame.plot = FALSE}.
 }
 \examples{
 

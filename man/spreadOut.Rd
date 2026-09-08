@@ -11,10 +11,10 @@ spreadOut(x, mindist = NULL, cex = 1)
 
 \item{mindist}{the minimum interval between any two values. If this is left
 to \code{NULL} (default) the function will check if a plot is open and then
-use 90\%\% of \code{\link{strheight}()}.}
+use 90\%\% of \code{\link[=strheight]{strheight()}}.}
 
 \item{cex}{numeric character expansion factor; multiplied by
-\code{\link{par}("cex")} yields the final character size; the default
+\verb{[par]("cex")} yields the final character size; the default
 \code{NULL} is equivalent to \code{1}.}
 }
 \value{
@@ -56,7 +56,7 @@ spreadOut(rnorm(10), 0.5)
 
 }
 \seealso{
-\code{\link{strheight}()}
+\code{\link[=strheight]{strheight()}}
 
 Other graphics.layout:
 \code{\link[=abcCoords]{abcCoords()}},

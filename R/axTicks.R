@@ -4,7 +4,7 @@
 #' Compute pretty tickmark locations, the same way as R does internally. By
 #' default, gives the at values which axis.POSIXct(side, x) would use. 
 #' 
-#' \link{axTicks} has no implementation for POSIXct axis. This function fills
+#' [axTicks] has no implementation for POSIXct axis. This function fills
 #' the gap. 
 #' 
 #' @name axTicks
@@ -35,7 +35,7 @@
 #'          col="grey", lty="dotted")
 #' })
 #' 
-#' @seealso \code{\link{axTicks}}, \code{\link{axis.POSIXct}} 
+#' @seealso [axTicks()], [axis.POSIXct()] 
 #' 
 #' @family graphics.layout
 #' @concept label

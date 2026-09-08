@@ -5,33 +5,33 @@
 #' The function supports integers, decimal numbers, and scientific notation.
 #'
 #' @param x a character vector
-#' @param collapse logical; if \code{TRUE}, all extracted numbers per element
-#'   of \code{x} are concatenated into a single string. Otherwise, a list of
+#' @param collapse logical; if `TRUE`, all extracted numbers per element
+#'   of `x` are concatenated into a single string. Otherwise, a list of
 #'   character vectors is returned.
 #' @param output character; controls the type of the returned values.
-#'   \code{"character"} (default) returns strings; \code{"numeric"} coerces
+#'   `"character"` (default) returns strings; `"numeric"` coerces
 #'   extracted values to numeric.
 #' @param dec character; decimal separator used in the input. Defaults to
-#'   \code{getOption("OutDec")}.
+#'   `getOption("OutDec")`.
 #'
 #' @return
-#' If \code{collapse = FALSE}, a list of character or numeric vectors
-#' containing the extracted values for each element of \code{x}.
-#' If \code{collapse = TRUE}, a character or numeric vector with
+#' If `collapse = FALSE`, a list of character or numeric vectors
+#' containing the extracted values for each element of `x`.
+#' If `collapse = TRUE`, a character or numeric vector with
 #' concatenated values per element.
 #'
 #' @details
 #' The function detects numeric values including optional signs, decimal parts,
-#' and scientific notation (e.g., \code{"1.23e-4"}).
+#' and scientific notation (e.g., `"1.23e-4"`).
 #'
-#' Whitespace between sign and number (e.g., \code{"- 2.5"}) is tolerated and
+#' Whitespace between sign and number (e.g., `"- 2.5"`) is tolerated and
 #' removed before returning results.
 #'
-#' If \code{output = "numeric"} and the decimal separator \code{dec} differs
-#' from the current system setting (\code{getOption("OutDec")}), values are
+#' If `output = "numeric"` and the decimal separator `dec` differs
+#' from the current system setting (`getOption("OutDec")`), values are
 #' converted accordingly before coercion.
 #'
-#' @seealso \code{\link{as.numeric}}, \code{\link[stringi]{stri_extract_all_regex}}
+#' @seealso [as.numeric()], [stringi::stri_extract_all_regex()]
 #'
 #' @examples
 #' x <- c("value = 12.5", "x = -3.2e2 and 7", "no numbers here")

@@ -5,7 +5,7 @@
 #' and vice versa. 
 #' 
 #' Angles are in radians, not degrees (i.e., a right angle is pi/2). Use
-#' \code{\link{degToRad}} to convert, if you don't wanna do it by yourself.\cr
+#' [degToRad()] to convert, if you don't wanna do it by yourself.\cr
 #' All parameters are recycled if necessary. 
 #' 
 #' @name coordinate-conversions
@@ -14,11 +14,11 @@
 #' @param r a vector with the radius of the points. 
 #' @param theta a vector with the angle(s) of the points. 
 #' @param phi a vector with the angle(s) of the points. 
-#' @param up logical. If set to \code{TRUE} (default) theta is measured from
+#' @param up logical. If set to `TRUE` (default) theta is measured from
 #' x-y plane, else theta is measured from the z-axis. 
 #' 
-#' @return \code{polToCart()} returns a list of x and y coordinates of the points.\cr
-#' \code{cartToPol()} returns a list of r for the radius and theta for the angles of the
+#' @return `polToCart()` returns a list of x and y coordinates of the points.\cr
+#' `cartToPol()` returns a list of r for the radius and theta for the angles of the
 #' given points.
 #' 
 #' @note Based on code by Christian W. Hoffmann

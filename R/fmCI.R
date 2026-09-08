@@ -8,10 +8,10 @@
 #' the template.
 #' @param template character string as template for the desired format.  
 #' %s are the placeholders for the numerical values. Default 
-#' is \verb{\code{"\%s [\%s, \%s]"}} for \verb{<est> [<lci>, <uci>]}.
-#' @param \dots the dots are passed on to the \code{\link{fm}()} function.
+#' is \verb{`"\%s [\%s, \%s]"`} for \verb{<est> [<lci>, <uci>]}.
+#' @param \dots the dots are passed on to the [fm()] function.
 #' @return a formatted string
-#' @seealso \code{\link{fm}}
+#' @seealso [fm()]
 #' @examples
 #' 
 #' x <- c(est=2.1, lci=1.5, uci=3.8)

@@ -1,7 +1,7 @@
 
 #' Compute Distances Between Strings
 #' 
-#' \code{strDist} computes distances between strings following to Levenshtein
+#' `strDist` computes distances between strings following to Levenshtein
 #' or Hamming method.
 #' 
 #' The function computes the Hamming and the Levenshtein (edit) distance of two
@@ -11,20 +11,20 @@
 #' In case of the Hamming distance the two strings must have the same length.
 #' 
 #' In case of the Levenshtein (edit) distance a scoring and a trace-back matrix
-#' are computed and are saved as attributes \code{"ScoringMatrix"} and
-#' \code{"TraceBackMatrix"}.  The numbers in the trace-back matrix reflect
-#' insertion of a gap in string \code{y} (1), match/mismatch (2), and
-#' insertion of a gap in string \code{x} (3).
+#' are computed and are saved as attributes `"ScoringMatrix"` and
+#' `"TraceBackMatrix"`.  The numbers in the trace-back matrix reflect
+#' insertion of a gap in string `y` (1), match/mismatch (2), and
+#' insertion of a gap in string `x` (3).
 #' 
 #' The edit distance is useful, but normalizing the distance to fall within the
 #' interval \verb{[0,1]} is preferred because it is somewhat difficult to judge whether
 #' an LD of for example 4 suggests a high or low degree of similarity.  The
-#' method \code{"normlevenshtein"} for normalizing the LD is sensitive to this
+#' method `"normlevenshtein"` for normalizing the LD is sensitive to this
 #' scenario. In this implementation, the Levenshtein distance is transformed to
 #' fall in this interval as follows: \deqn{lnd = 1 - \frac{ld}{max(length(x),
 #' length(y))}}{lnd = 1 - ld / max(length(x), length(y))}
 #' 
-#' where \code{ld} is the edit distance and \code{max(length(x), length(y))}
+#' where `ld` is the edit distance and `max(length(x), length(y))`
 #' denotes that we divide by the length of the larger of the two character
 #' strings. This normalization, referred to as the Levenshtein normalized
 #' distance (lnd), yields a statistic where 1 indicates perfect agreement
@@ -35,27 +35,27 @@
 #' @param x character vector, first string
 #' @param y character vector, second string
 #' @param method character, name of the distance method. This must be
-#' \code{"levenshtein"}, \code{"normlevenshtein"} or \code{"hamming"}. Default
-#' is \code{"levenshtein"}, the classical Levenshtein distance.
+#' `"levenshtein"`, `"normlevenshtein"` or `"hamming"`. Default
+#' is `"levenshtein"`, the classical Levenshtein distance.
 #' @param mismatch numeric, distance value for a mismatch between symbols
 #' @param gap numeric, distance value for inserting a gap
-#' @param ignoreCase if \code{FALSE} (default), the distance measure will be
-#' case sensitive and if \code{TRUE}, case is ignored
+#' @param ignoreCase if `FALSE` (default), the distance measure will be
+#' case sensitive and if `TRUE`, case is ignored
 #' 
-#' @return \code{strDist} returns an object of class \code{"dist"}; cf.
-#' \code{\link[stats]{dist}}.
+#' @return `strDist` returns an object of class `"dist"`; cf.
+#' [stats::dist()].
 #' 
 #' @note For distances between strings and for string alignments see also
 #' Bioconductor package \pkg{Biostrings}
 #' 
 #' @note Based on code by Matthias Kohl, adapted to conform to package standards. 
 #' 
-#' @seealso \code{\link[utils]{adist}}, \code{\link[stats]{dist}}
-#' @references R. Merkl and S. Waack (2009) \emph{Bioinformatik Interaktiv}.
+#' @seealso [utils::adist()], [stats::dist()]
+#' @references R. Merkl and S. Waack (2009) *Bioinformatik Interaktiv*.
 #' Wiley.
 #' 
-#' Harold C. Doran (2010) \emph{MiscPsycho. An R Package for Miscellaneous
-#' Psychometric Analyses}
+#' Harold C. Doran (2010) *MiscPsycho. An R Package for Miscellaneous
+#' Psychometric Analyses*
 
 
 

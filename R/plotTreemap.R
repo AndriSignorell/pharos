@@ -2,11 +2,11 @@
 #' Treemap Plot
 #'
 #' Draws a treemap in which the area of each rectangle is proportional to the
-#' corresponding value in \code{x}. Optionally, rectangles can be grouped into
+#' corresponding value in `x`. Optionally, rectangles can be grouped into
 #' higher-level regions.
 #'
 #' The appearance of individual rectangles and groups is controlled through the
-#' \code{area}, \code{labels}, \code{groupArea}, and \code{groupLabels}
+#' `area`, `labels`, `groupArea`, and `groupLabels`
 #' arguments. These accept logical values, vectors, or lists.
 #'
 #' @param x numeric vector of positive values determining the rectangle sizes.
@@ -14,36 +14,36 @@
 #'   placed within a common enclosing region.
 #' @param area controls the appearance of individual rectangles.
 #'   \itemize{
-#'     \item \code{NULL} or \code{TRUE}: use defaults.
-#'     \item \code{FALSE} or \code{NA}: suppress rectangle fill.
-#'     \item Atomic vector: interpreted as \code{col}.
-#'     \item List: graphical parameters such as \code{col}, \code{border},
-#'       and \code{lwd}.
+#'     \item `NULL` or `TRUE`: use defaults.
+#'     \item `FALSE` or `NA`: suppress rectangle fill.
+#'     \item Atomic vector: interpreted as `col`.
+#'     \item List: graphical parameters such as `col`, `border`,
+#'       and `lwd`.
 #'   }
 #' @param labels controls the labels of individual rectangles.
 #'   \itemize{
-#'     \item \code{NULL} or \code{TRUE}: use default labels (\code{names(x)}).
-#'     \item \code{FALSE} or \code{NA}: suppress labels.
+#'     \item `NULL` or `TRUE`: use default labels (`names(x)`).
+#'     \item `FALSE` or `NA`: suppress labels.
 #'     \item Character vector: interpreted as label text.
-#'     \item List: label properties such as \code{text}, \code{col}, and
-#'       \code{cex}.
+#'     \item List: label properties such as `text`, `col`, and
+#'       `cex`.
 #'   }
 #' @param groupArea controls the appearance of enclosing group regions.
-#'   Uses the same conventions as \code{area}.
+#'   Uses the same conventions as `area`.
 #' @param groupLabels controls the labels of enclosing group regions.
-#'   Uses the same conventions as \code{labels}. By default, group names are
+#'   Uses the same conventions as `labels`. By default, group names are
 #'   used when more than one group is present.
 #' @param main main title of the plot.
 #' @param ... additional graphical parameters passed to
-#'   \code{.applyParFromDots()}.
+#'   `.applyParFromDots()`.
 #'
 #' @details
-#' Individual rectangles are sized according to the values in \code{x}. When
-#' \code{groups} is supplied, a treemap is first constructed for the groups,
+#' Individual rectangles are sized according to the values in `x`. When
+#' `groups` is supplied, a treemap is first constructed for the groups,
 #' and each group's area is then subdivided among its members.
 #'
-#' The arguments \code{area}, \code{labels}, \code{groupArea}, and
-#' \code{groupLabels} provide a flexible interface for controlling the
+#' The arguments `area`, `labels`, `groupArea`, and
+#' `groupLabels` provide a flexible interface for controlling the
 #' appearance of the plot while keeping the main function signature compact.
 #'
 #' @return Invisibly returns a list containing the coordinates of group centres

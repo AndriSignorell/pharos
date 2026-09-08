@@ -43,14 +43,14 @@ Default \code{c(0, 1)}.}
 stacked bar. \code{.useTheme} (default) resolves to
 \code{getTheme()$twin} - the active theme's two-color pair. Note this
 is purely "first label gets the first color"; unlike
-\code{\link{plotCor}}/\code{\link{plotWeb}}, there is no positive/
+\code{\link[=plotCor]{plotCor()}}/\code{\link[=plotWeb]{plotWeb()}}, there is no positive/
 negative sign convention here, since proportions of two arbitrary
 categories (e.g. "yes"/"no") have no inherent sign.}
 
 \item{ci.col}{colour for the confidence interval bands. Default is a
 semi-transparent grey (\code{addOpacity("grey80", 0.12)}). Deliberately
 not theme-driven (like the sequential scales in
-\code{\link{plotDens2D}}/\code{\link{plotHeatmap}}): this is a
+\code{\link[=plotDens2D]{plotDens2D()}}/\code{\link[=plotHeatmap]{plotHeatmap()}}): this is a
 structural mechanism (many overlapping translucent bands building a
 gradient via overdraw), not a categorical or diverging color choice.}
 
@@ -66,24 +66,24 @@ bands share the same translucent color and no border.}
 the proportion ticks only - there is no meaningful horizontal grid
 for the categorical group axis). \code{.useTheme} (default) follows
 the active theme (\code{getTheme()$grid}). \code{TRUE}/\code{FALSE}/
-\code{NA}, or a named list, as for \code{\link[graphics]{grid}}.}
+\code{NA}, or a named list, as for \code{\link[graphics:grid]{graphics::grid()}}.}
 
 \item{box}{controls drawing of the plot box. Default \code{FALSE} (no
 frame, consistent with this chart's minimal "Few"-style appearance).
 \code{TRUE}/\code{NA}, or a named list, as for
-\code{\link[graphics]{box}}.}
+\code{\link[graphics:box]{graphics::box()}}.}
 
 \item{legend}{controls the legend explaining the CI band range.
 \code{TRUE} (default) draws it. \code{FALSE}/\code{NA} suppresses it.
 A named list overrides arguments forwarded to
-\code{\link[graphics]{legend}}.}
+\code{\link[graphics:legend]{graphics::legend()}}.}
 
 \item{stamp}{controls the corner stamp. \code{.useTheme} (default)
 resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
-\code{NULL}, a string, or a named list for \code{\link{stamp}()}.}
+\code{NULL}, a string, or a named list for \code{\link[=stamp]{stamp()}}.}
 
-\item{...}{further arguments passed to \code{\link[graphics]{par}} via
-the internal framework, and to \code{\link[graphics]{barplot}}.}
+\item{...}{further arguments passed to \code{\link[graphics:par]{graphics::par()}} via
+the internal framework, and to \code{\link[graphics:barplot]{graphics::barplot()}}.}
 }
 \value{
 Invisibly returns \code{NULL}. Called for its side effect of
@@ -113,7 +113,7 @@ plotPropCI(m[1, ], labels = c("yes", "no"))
 
 }
 \seealso{
-\code{\link[stats]{prop.test}}, \link{theme}
+\code{\link[stats:prop.test]{stats::prop.test()}}, \link{theme}
 
 Other plot.special:
 \code{\link[=plotBinaryTree]{plotBinaryTree()}},

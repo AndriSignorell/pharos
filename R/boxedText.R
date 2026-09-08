@@ -26,44 +26,44 @@
 #' coordinates. 
 #' @param offset when pos is specified, this value gives the offset of the
 #' label from the specified coordinate in fractions of a character width. 
-#' @param vfont \code{NULL} for the current font family, or a character vector
+#' @param vfont `NULL` for the current font family, or a character vector
 #' of length 2 for Hershey vector fonts. The first element of the vector
 #' selects a typeface and the second element selects a style. Ignored if labels
 #' is an expression. 
 #' @param cex numeric character expansion factor; multiplied by
-#' \code{par("cex")} yields the final character size. \code{NULL} and \code{NA}
+#' `par("cex")` yields the final character size. `NULL` and `NA`
 #' are equivalent to 1.0. 
 #' @param col,font the color and (if vfont = NULL) font to be used, possibly
 #' vectors. These default to the values of the global graphical parameters in
-#' \code{par()}. 
+#' `par()`. 
 #' @param srt the string rotation in degrees.  
 #' @param xpad,ypad the proportion of the rectangles to the extent of the text
 #' within. 
 #' @param density the density of shading lines, in lines per inch. The default
-#' value of \code{NULL} means that no shading lines are drawn.  A zero value of
+#' value of `NULL` means that no shading lines are drawn.  A zero value of
 #' density means no shading lines whereas negative values (and NA) suppress
 #' shading (and so allow color filling). 
 #' @param angle angle (in degrees) of the shading lines. 
 #' @param bg color(s) to fill or shade the rectangle(s) with. The default
-#' \code{NA} (or also NULL) means do not fill, i.e., draw transparent
+#' `NA` (or also NULL) means do not fill, i.e., draw transparent
 #' rectangles, unless density is specified. 
 #' @param border color for rectangle border(s). The default is
-#' \code{par("fg")}. Use \code{border = NA} to omit borders (this is the
-#' default).  If there are shading lines, \code{border = TRUE} means use the
+#' `par("fg")`. Use `border = NA` to omit borders (this is the
+#' default).  If there are shading lines, `border = TRUE` means use the
 #' same colour for the border as for the shading lines. 
-#' @param lty line type for borders and shading; defaults to \code{"solid"}. 
+#' @param lty line type for borders and shading; defaults to `"solid"`. 
 #' @param lwd line width for borders and shading. Note that the use of
-#' \code{lwd = 0} (as in the examples) is device-dependent. 
+#' `lwd = 0` (as in the examples) is device-dependent. 
 #' @param \dots additional arguments are passed to the text function. 
 #' 
-#' @param formula A formula of the form \code{lhs ~ rhs}, where \code{lhs}
-#'   gives the response values and \code{rhs} the corresponding groups
+#' @param formula A formula of the form `lhs ~ rhs`, where `lhs`
+#'   gives the response values and `rhs` the corresponding groups
 #'   or explanatory variables.
 #'
 #' @param data an optional matrix or data frame (or similar; see
-#'   \code{\link[stats]{model.frame}}) containing the variables in the
+#'   [stats::model.frame()]) containing the variables in the
 #'   formula. By default the variables are taken from
-#'   \code{environment(formula)}.
+#'   `environment(formula)`.
 #'
 #' @param subset an optional vector specifying a subset of observations
 #'   to be used in the analysis.
@@ -84,7 +84,7 @@
 #' 
 #' 
 #' @seealso similar function in package \pkg{plotrix}
-#' [plotrix::boxed.labels] (lacking rotation option) 
+#' `plotrix::boxed.labels` (lacking rotation option) 
 #' 
 #' @family graphics.annotation
 #' @concept annotation

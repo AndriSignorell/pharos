@@ -7,8 +7,8 @@
 shade(expr, col = par("fg"), breaks, density = 10, n = 101, xname = "x", ...)
 }
 \arguments{
-\item{expr}{the name of a function, or a \code{\link{call}} or an
-\code{\link{expression}} written as a function of \code{x} which will
+\item{expr}{the name of a function, or a \code{\link[=call]{call()}} or an
+\code{\link[=expression]{expression()}} written as a function of \code{x} which will
 evaluate to an object of the same length as \code{x}.}
 
 \item{col}{color to fill or shade the shape with. The default is taken from
@@ -25,7 +25,7 @@ infinite limits.}
 
 \item{xname}{character string giving the name to be used for the x axis.}
 
-\item{\dots}{the dots are passed on to \code{\link{polygon}}.}
+\item{\dots}{the dots are passed on to \code{\link[=polygon]{polygon()}}.}
 }
 \value{
 A list with components \code{x} and \code{y} of the points that were
@@ -35,7 +35,7 @@ drawn is returned invisibly.
 Sometimes the area under a density curve has to be color shaded, for
 instance to illustrate a p-value or a specific region under the normal
 curve. This function draws a curve corresponding to a function over the
-interval \code{[from, to]}. It can plot also an expression in the variable
+interval \verb{[from, to]}. It can plot also an expression in the variable
 \code{xname}, default \code{x}.
 }
 \details{
@@ -54,7 +54,7 @@ shade(dt(x, df=5), breaks=c(-6, qt(0.025, df=5), qt(0.975, df=5), 6),
 
 }
 \seealso{
-\code{\link{polygon}}, \code{\link{curve}}
+\code{\link[=polygon]{polygon()}}, \code{\link[=curve]{curve()}}
 
 Other plot.distribution:
 \code{\link[=plotFun]{plotFun()}},

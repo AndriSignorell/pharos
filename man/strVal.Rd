@@ -63,7 +63,7 @@ strVal("value = 3,14", dec = ",", output = "numeric")
 
 }
 \seealso{
-\code{\link{as.numeric}}, \code{\link[stringi]{stri_extract_all_regex}}
+\code{\link[=as.numeric]{as.numeric()}}, \code{\link[stringi:stri_extract_all_regex]{stringi::stri_extract_all_regex()}}
 
 \link{string-overview} for an overview of all string utilities in pharos.
 }

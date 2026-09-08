@@ -115,7 +115,7 @@ text(Income ~ Population, US, labels=US$Abb, cex=0.8)
 
 }
 \seealso{
-\code{\link{symbols}}
+\code{\link[=symbols]{symbols()}}
 }
 \concept{base-graphics}
 \concept{plotting}

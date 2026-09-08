@@ -12,9 +12,9 @@
 #' representations:
 #'
 #' \itemize{
-#'   \item \code{"contour"}: contour lines of equal density
-#'   \item \code{"image"}: raster representation of the density surface
-#'   \item \code{"persp"}: three-dimensional perspective plot
+#'   \item `"contour"`: contour lines of equal density
+#'   \item `"image"`: raster representation of the density surface
+#'   \item `"persp"`: three-dimensional perspective plot
 #' }
 #'
 #' The choice of representation affects interpretability:
@@ -28,7 +28,7 @@
 #' Missing or non-finite values are not allowed and will result in an error.
 #'
 #' @param x numeric vector of x-coordinates.
-#' @param y numeric vector of y-coordinates. Must have the same length as \code{x}.
+#' @param y numeric vector of y-coordinates. Must have the same length as `x`.
 #'
 #' @param main optional main title of the plot.
 #' @param xlab,ylab axis labels.
@@ -36,21 +36,21 @@
 #' @param xlim,ylim numeric vectors of length two specifying axis limits.
 #'
 #' @param type character string specifying the plot type.
-#' One of \code{"contour"}, \code{"image"}, or \code{"persp"}.
+#' One of `"contour"`, `"image"`, or `"persp"`.
 #'
-#' @param col color specification used for \code{type = "image"}. Defaults
-#'   to a reversed \code{"red-black"} sequential ramp (\code{pal()}),
+#' @param col color specification used for `type = "image"`. Defaults
+#'   to a reversed `"red-black"` sequential ramp (`pal()`),
 #'   running from black (low density) to red (high density) - hardcoded
 #'   rather than theme-driven, since this is a continuous, unidirectional
-#'   gradient, unlike the active theme's categorical \code{palette} or
-#'   diverging \code{twin} pair, neither of which fits a density surface.
-#' @param grid controls drawing of the background grid. \code{.useTheme}
-#'   (default) follows the active theme (\code{getTheme()$grid}).
-#'   \code{TRUE}/\code{FALSE}/\code{NA}, or a named list, as for
-#'   \code{\link[graphics]{grid}}.
-#' @param box controls drawing of the plot box. \code{.useTheme} (default)
-#'   resolves to \code{getTheme()$box}. \code{TRUE}/\code{FALSE}/\code{NA},
-#'   or a named list, as for \code{\link[graphics]{box}}.
+#'   gradient, unlike the active theme's categorical `palette` or
+#'   diverging `twin` pair, neither of which fits a density surface.
+#' @param grid controls drawing of the background grid. `.useTheme`
+#'   (default) follows the active theme (`getTheme()$grid`).
+#'   `TRUE`/`FALSE`/`NA`, or a named list, as for
+#'   [graphics::grid()].
+#' @param box controls drawing of the plot box. `.useTheme` (default)
+#'   resolves to `getTheme()$box`. `TRUE`/`FALSE`/`NA`,
+#'   or a named list, as for [graphics::box()].
 #'
 #' @param ... additional graphical parameters passed to underlying plotting functions.
 #'

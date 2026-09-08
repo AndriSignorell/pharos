@@ -68,10 +68,9 @@ widens the corresponding plot margin so the labels are not clipped.
 \details{
 The \code{fmt} argument is passed straight to \code{\link[=fm]{fm()}} and therefore accepts
 the full range of format specifications: a special short code (e.g.
-\code{"\%"}, \code{"e"}, \code{"eng"}, \code{"p"}), an ISO-8601 date
+\code{"\\\%"}, \code{"e"}, \code{"eng"}, \code{"p"}), an ISO-8601 date
 pattern (e.g. \code{"MMM yyyy"}), a \code{Style} object, a bare (named)
-list treated as a style template (e.g. \code{fmt = list(digits = 1,
-bigMark = " ")}), or a function of \code{x}. See \code{\link[=fm]{fm()}} for the details.
+list treated as a style template (e.g. \code{fmt = list(digits = 1, bigMark = " ")}), or a function of \code{x}. See \code{\link[=fm]{fm()}} for the details.
 
 When \code{srt} is set, the axis line and ticks are drawn without labels
 via \code{\link[graphics:axis]{graphics::axis()}}, and the labels are added separately with

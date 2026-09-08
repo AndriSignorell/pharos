@@ -6,26 +6,26 @@
 #' want to place textboxes on a plot and ensure, that they do not mutually
 #' overlap.
 #' 
-#' \code{spreadOut()} starts at or near the middle of the vector and increases
-#' the intervals between the ordered values. \code{NA}s are preserved.
-#' \code{spreadOut()} first tries to spread groups of values with intervals
-#' less than \code{mindist} out neatly away from the mean of the group. If this
+#' `spreadOut()` starts at or near the middle of the vector and increases
+#' the intervals between the ordered values. `NA`s are preserved.
+#' `spreadOut()` first tries to spread groups of values with intervals
+#' less than `mindist` out neatly away from the mean of the group. If this
 #' doesn't entirely succeed, a second pass that forces values away from the
 #' middle is performed.
 #' 
-#' \code{spreadOut()} can also be used to avoid overplotting of axis tick
+#' `spreadOut()` can also be used to avoid overplotting of axis tick
 #' labels where they may be close together.
 #' 
-#' @param x a numeric vector which may contain \code{NA}s.
+#' @param x a numeric vector which may contain `NA`s.
 #' @param mindist the minimum interval between any two values. If this is left
-#' to \code{NULL} (default) the function will check if a plot is open and then
-#' use 90%% of \code{\link{strheight}()}.
+#' to `NULL` (default) the function will check if a plot is open and then
+#' use 90%% of [strheight()].
 #' @param cex numeric character expansion factor; multiplied by
-#' \code{\link{par}("cex")} yields the final character size; the default
-#' \code{NULL} is equivalent to \code{1}.
+#' `[par]("cex")` yields the final character size; the default
+#' `NULL` is equivalent to `1`.
 #' @return On success, the spread out values. If there are less than two valid
 #' values, the original vector is returned.
-#' @note This function is based on \code{plotrix::spreadOut()} and has been
+#' @note This function is based on `plotrix::spreadOut()` and has been
 #' integrated here with some minor changes.
 #' 
 #' @note Based on code by Jim Lemon <jim@@bitwrit.com.au>
@@ -40,7 +40,7 @@
 #' spreadOut(rnorm(10), 0.5)
 #' 
 #' 
-#' @seealso \code{\link{strheight}()}
+#' @seealso [strheight()]
 #' 
 #' @family graphics.layout
 #' @concept label

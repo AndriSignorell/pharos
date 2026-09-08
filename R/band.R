@@ -8,13 +8,13 @@
 #' @param x A vector or matrix of x coordinates.
 #' @param y A vector or matrix of y coordinates.
 #'
-#' If either \code{x} or \code{y} is supplied as a two-column matrix,
+#' If either `x` or `y` is supplied as a two-column matrix,
 #' the second column is interpreted as the lower boundary and reversed
 #' automatically.
 #'
 #' @return
 #' An object inheriting from class
-#' \code{"bandGeometry"}.
+#' `"bandGeometry"`.
 #'
 #'
 #' @examples

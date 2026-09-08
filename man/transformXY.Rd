@@ -15,7 +15,7 @@ transformXY(
 }
 \arguments{
 \item{x}{numeric vector of x coordinates, or an object coercible by
-\code{\link{xy.coords}}.}
+\code{\link[=xy.coords]{xy.coords()}}.}
 
 \item{y}{numeric vector of y coordinates. Ignored if \code{x} already
 contains both coordinates.}
@@ -28,25 +28,25 @@ for x and y. Recycled if necessary. Default is \code{c(1, 1)}.}
 
 \item{theta}{rotation angle in radians. Default is \code{0}.}
 
-\item{asp}{aspect ratio adjustment passed to \code{\link{rotate}}.
+\item{asp}{aspect ratio adjustment passed to \code{\link[=rotate]{rotate()}}.
 Default is \code{1}.}
 }
 \value{
 A list with components \code{x} and \code{y}, as returned by
-\code{\link{xy.coords}}.
+\code{\link[=xy.coords]{xy.coords()}}.
 }
 \description{
 Applies scaling, rotation, and translation to a set of 2D coordinates.
 The transformations are applied in the following order:
 \enumerate{
 \item Scaling
-\item Rotation (see \code{\link{rotate}})
+\item Rotation (see \code{\link[=rotate]{rotate()}})
 \item Translation
 }
 }
 \details{
 This function is a convenience wrapper combining basic affine transformations.
-Internally, it uses \code{\link{rotate}} for rotation.
+Internally, it uses \code{\link[=rotate]{rotate()}} for rotation.
 }
 \examples{
 x <- c(0, 1, 1, 0)

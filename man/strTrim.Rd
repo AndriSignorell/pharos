@@ -10,7 +10,7 @@ strTrim(x, pattern = " \\t\\n", method = "both")
 \item{x}{the string to be trimmed}
 
 \item{pattern}{the pattern of the whitespaces to be deleted, defaults to
-space, tab and newline: \code{" \t\n"}}
+space, tab and newline: \code{" \\t\\n"}}
 
 \item{method}{one out of \code{"both"} (default), \code{"left"},
 \code{"right"}. Determines on which side the string should be trimmed.}
@@ -26,11 +26,7 @@ occurring in the middle of the string are retained.\cr Trimming with method
 trailing. Designed for users who were socialized by SQL.
 }
 \details{
-The functions are defined depending on method as\cr \code{both: gsub(
-pattern=gettextf("^[\%s]+|[\%s]+$", pattern, pattern), replacement="",
-x=x)}\cr \code{left: gsub( pattern=gettextf("^[\%s]+",pattern),
-replacement="", x=x)}\cr \code{right: gsub(
-pattern=gettextf("[\%s]+$",pattern), replacement="", x=x)}
+The functions are defined depending on method as\cr \code{both: gsub( pattern=gettextf("^[\\\%s]+|[\\\%s]+$", pattern, pattern), replacement="", x=x)}\cr \code{left: gsub( pattern=gettextf("^[\\\%s]+",pattern), replacement="", x=x)}\cr \code{right: gsub( pattern=gettextf("[\\\%s]+$",pattern), replacement="", x=x)}
 }
 \examples{
 
@@ -44,7 +40,7 @@ strTrim(" ..Hello ... world! ", pattern=" \\\\.")
 
 }
 \seealso{
-\code{\link[base]{trimws}}
+\code{\link[base:trimws]{base::trimws()}}
 
 \link{string-overview} for an overview of all string utilities in pharos.
 }

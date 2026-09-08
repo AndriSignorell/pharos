@@ -7,11 +7,11 @@
 #'
 #' @param x numeric estimates or confidence interval data. Supported formats
 #'   are a numeric vector, a numeric matrix, a three-dimensional numeric array,
-#'   or a \code{"CI"} object created with \code{\link{as.CI}}
+#'   or a `"CI"` object created with [as.CI()]
 #' @param items optional character vector containing the item labels; defaults
-#'   to the row names or first dimension names of \code{x}
+#'   to the row names or first dimension names of `x`
 #' @param groups optional character vector containing the group labels;
-#'   defaults to the column names or third dimension names of \code{x}
+#'   defaults to the column names or third dimension names of `x`
 #' @param main optional main title
 #' @param xlim numeric vector containing the limits of the horizontal axis;
 #'   by default, the range of all estimates and confidence limits
@@ -21,18 +21,18 @@
 #' @param xax optional specification for the horizontal axis, interpreted by
 #'   the internal axis renderer
 #' @param box specification controlling the plot box. The default
-#'   \code{.useTheme} uses the active theme. A logical value, \code{NA}, or
+#'   `.useTheme` uses the active theme. A logical value, `NA`, or
 #'   a named list of graphical parameters can also be supplied
 #' @param grid specification controlling the horizontal item and group grid
-#'   lines. The default \code{.useTheme} follows the active theme. A logical
-#'   value, \code{NA}, or a named list of graphical parameters can also be
+#'   lines. The default `.useTheme` follows the active theme. A logical
+#'   value, `NA`, or a named list of graphical parameters can also be
 #'   supplied
 #' @param pch specification for the estimate points. The default
-#'   \code{.useTheme} uses the point settings of the active theme. A plotting
-#'   symbol or a named list containing parameters such as \code{pch},
-#'   \code{col}, \code{bg}, and \code{cex} can also be supplied
+#'   `.useTheme` uses the point settings of the active theme. A plotting
+#'   symbol or a named list containing parameters such as `pch`,
+#'   `col`, `bg`, and `cex` can also be supplied
 #' @param ... additional graphical parameters passed to
-#'   \code{\link[graphics]{par}}
+#'   [graphics::par()]
 #'
 #' @details
 #' A numeric vector represents one estimate for each item.
@@ -42,22 +42,22 @@
 #' interpreted as three groups and not automatically as estimates with lower
 #' and upper confidence limits.
 #'
-#' Use \code{\link{as.CI}} to declare explicitly that a matrix, data frame,
-#' list, or result from \code{\link{tapply}} contains confidence interval
+#' Use [as.CI()] to declare explicitly that a matrix, data frame,
+#' list, or result from [tapply()] contains confidence interval
 #' data:
 #'
 #' \preformatted{
 #' plotDot(as.CI(x))
 #' }
 #'
-#' A \code{"CI"} object contains the columns \code{est}, \code{lci}, and
-#' \code{uci}. Additional columns can define the item and group structure.
+#' A `"CI"` object contains the columns `est`, `lci`, and
+#' `uci`. Additional columns can define the item and group structure.
 #' If two additional columns are present, the first defines the items and the
 #' second defines the groups.
 #'
 #' Confidence interval data can alternatively be supplied as a
 #' three-dimensional numeric array with dimensions
-#' \code{items × 3 × groups}. The second dimension must contain, in this
+#' `items × 3 × groups`. The second dimension must contain, in this
 #' order, the estimate, lower confidence limit, and upper confidence limit.
 #'
 #' Values supplied directly as arguments take precedence over the
@@ -65,9 +65,9 @@
 #'
 #' @return invisibly, a list containing:
 #' \describe{
-#'   \item{\code{ypos}}{vertical positions of the items within each group}
-#'   \item{\code{group_y}}{vertical positions of the group labels}
-#'   \item{\code{sep_y}}{vertical positions of the group separators}
+#'   \item{`ypos`}{vertical positions of the items within each group}
+#'   \item{`group_y`}{vertical positions of the group labels}
+#'   \item{`sep_y`}{vertical positions of the group separators}
 #' }
 #'
 #' @examples
@@ -130,8 +130,8 @@
 #'   pch = 4
 #' )
 #'
-#' @seealso \code{\link{as.CI}}, \code{\link{is.CI}},
-#'   \code{\link[graphics]{dotchart}}
+#' @seealso [as.CI()], [is.CI()],
+#'   [graphics::dotchart()]
 #'
 #' @family plot.univariate  
 #' @concept dotchart

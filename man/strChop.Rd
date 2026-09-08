@@ -46,8 +46,8 @@ strChop(x=x, pos=c(5, 10))
 
 }
 \seealso{
-\code{\link{strLeft}},
-\code{\link{substr}}
+\code{\link[=strLeft]{strLeft()}},
+\code{\link[=substr]{substr()}}
 
 \link{string-overview} for an overview of all string utilities in pharos.
 }

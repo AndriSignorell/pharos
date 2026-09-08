@@ -6,19 +6,19 @@
 #' labels overlaid.
 #'
 #' @param x a contingency table, matrix, or a pair of categorical vectors
-#'   coercible via \code{\link{table}}.
+#'   coercible via [table()].
 #'
-#' @param main main title of the plot. \code{NULL} (default) derives a
-#'   title from the expression passed as \code{x} (via
-#'   \code{deparse(match.call()$x)}), the same "substitute magic"
-#'   convention used by \code{\link{plotXY}}/\code{\link{plotBox}}/
-#'   \code{\link{plotAssoc}} for their default titles - there's no
+#' @param main main title of the plot. `NULL` (default) derives a
+#'   title from the expression passed as `x` (via
+#'   `deparse(match.call()$x)`), the same "substitute magic"
+#'   convention used by [plotXY()]/[plotBox()]/
+#'   [plotAssoc()] for their default titles - there's no
 #'   formula pair here, just the single table argument, so the default
-#'   is simply that expression's text (e.g. \code{plotHeatmap(tab)}
-#'   titles itself \code{"tab"}). \code{""}, \code{NA}, or \code{FALSE}
+#'   is simply that expression's text (e.g. `plotHeatmap(tab)`
+#'   titles itself `"tab"`). `""`, `NA`, or `FALSE`
 #'   suppress the title entirely and compact the top margin; any other
 #'   string is used as given (resolved internally via
-#'   \code{.resolveTitle()}).
+#'   `.resolveTitle()`).
 #' @param xlab label for the x-axis.
 #' @param ylab label for the y-axis.
 #'
@@ -26,46 +26,46 @@
 #'
 #' @param scale character specifying how values are computed:
 #'   \describe{
-#'     \item{\code{"count"}}{absolute frequencies}
-#'     \item{\code{"prop"}}{joint proportions \eqn{P(X, Y)}}
-#'     \item{\code{"row"}}{row-wise proportions \eqn{P(Y \mid X)}}
-#'     \item{\code{"col"}}{column-wise proportions \eqn{P(X \mid Y)}}
+#'     \item{`"count"`}{absolute frequencies}
+#'     \item{`"prop"`}{joint proportions \eqn{P(X, Y)}}
+#'     \item{`"row"`}{row-wise proportions \eqn{P(Y \mid X)}}
+#'     \item{`"col"`}{column-wise proportions \eqn{P(X \mid Y)}}
 #'   }
 #'
 #' @param col optional vector of colors. Default is a hardcoded sequential
-#'   white-to-navy ramp (\code{pal("Blues", n = 100)}) - deliberately not
+#'   white-to-navy ramp (`pal("Blues", n = 100)`) - deliberately not
 #'   theme-driven: cell values here are sequential (one direction, no sign
-#'   change), unlike the active theme's categorical \code{palette} or
-#'   diverging \code{twin} pair, neither of which fits a heat scale.
+#'   change), unlike the active theme's categorical `palette` or
+#'   diverging `twin` pair, neither of which fits a heat scale.
 #'
-#' @param border color of tile borders. Defaults to \code{NA}.
+#' @param border color of tile borders. Defaults to `NA`.
 #' @param naCol color used for missing values.
 #'
-#' @param text logical; if \code{TRUE}, cell values are printed on top of
-#'   the tiles using \code{fm()} formatting.
+#' @param text logical; if `TRUE`, cell values are printed on top of
+#'   the tiles using `fm()` formatting.
 #'
 #' @param zlim numeric vector of length 2 specifying the range used for
-#'   color scaling. If \code{NULL}, the range of the data is used.
+#'   color scaling. If `NULL`, the range of the data is used.
 #'
 #' @param box controls drawing of the outer frame around the tile grid,
-#'   drawn via \code{rect()} at the exact cell boundaries rather than
-#'   \code{\link[graphics]{box}()} (the initial plot suppresses the
-#'   standard box via \code{frame.plot = FALSE}, since cell bounds differ
-#'   from the default plot region). \code{.useTheme} (default) resolves
-#'   border color/width from \code{getTheme()$box}. \code{TRUE}/\code{FALSE},
-#'   or a named list overriding \code{rect()} arguments for this call only.
+#'   drawn via `rect()` at the exact cell boundaries rather than
+#'   [graphics::box()] (the initial plot suppresses the
+#'   standard box via `frame.plot = FALSE`, since cell bounds differ
+#'   from the default plot region). `.useTheme` (default) resolves
+#'   border color/width from `getTheme()$box`. `TRUE`/`FALSE`,
+#'   or a named list overriding `rect()` arguments for this call only.
 #'
-#' @param stamp controls the corner stamp. \code{.useTheme} (default)
-#'   resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
-#'   \code{NULL}, or an explicit string, as for
-#'   \code{.withGraphicsState()} (internal).
+#' @param stamp controls the corner stamp. `.useTheme` (default)
+#'   resolves to `getTheme()$stamp`. `TRUE`/`FALSE`/
+#'   `NULL`, or an explicit string, as for
+#'   `.withGraphicsState()` (internal).
 #'
 #' @param ... further graphical parameters passed to
-#'   \code{\link[graphics]{par}} via the internal framework.
+#'   [graphics::par()] via the internal framework.
 #'
 #' @details
 #' The heatmap represents values in a contingency table using color intensity.
-#' Depending on \code{scale}, the plot shows either absolute counts or different
+#' Depending on `scale`, the plot shows either absolute counts or different
 #' types of proportions. Rows are drawn in reading order: the first table row
 #' appears at the top, matching the printed table and the other bivariate
 #' plots. This plot complements association and spine plots by
@@ -74,7 +74,7 @@
 #'
 #' @return Invisibly returns the matrix used for plotting.
 #'
-#' @seealso \code{\link{plotAssoc}}, \code{\link[graphics]{image}},
+#' @seealso [plotAssoc()], [graphics::image()],
 #'   [theme]
 #'
 #' @examples

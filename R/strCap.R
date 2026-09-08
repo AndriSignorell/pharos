@@ -8,9 +8,9 @@
 #' @param x a character vector
 #' @param method character string specifying the capitalization method:
 #' \itemize{
-#'   \item \code{"first"}: capitalize the first letter of the string
-#'   \item \code{"word"}: capitalize the first letter of each word
-#'   \item \code{"title"}: title case, excluding common stopwords
+#'   \item `"first"`: capitalize the first letter of the string
+#'   \item `"word"`: capitalize the first letter of each word
+#'   \item `"title"`: title case, excluding common stopwords
 #' }
 #'
 #' @return A character vector with capitalized strings.
@@ -19,12 +19,12 @@
 #' The function uses Unicode-aware transformations from the
 #' \pkg{stringi} package.
 #'
-#' For \code{method = "title"}, common stopwords (e.g., \code{"a"},
-#' \code{"the"}, \code{"of"}) remain lowercase unless they appear
+#' For `method = "title"`, common stopwords (e.g., `"a"`,
+#' `"the"`, `"of"`) remain lowercase unless they appear
 #' as part of another word.
 #'
-#' @seealso \code{\link[stringi]{stri_trans_totitle}},
-#'   \code{\link[stringi]{stri_split_boundaries}}
+#' @seealso [stringi::stri_trans_totitle()],
+#'   [stringi::stri_split_boundaries()]
 #'
 #' @examples
 #' x <- c("hello world", "the lord of the rings")

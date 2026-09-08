@@ -42,7 +42,7 @@ plotBox(x, ...)
 
 \item{...}{graphical parameters. Parameters recognized by the
 internal graphics framework are applied via \code{par()};
-remaining arguments are forwarded to \code{\link[graphics]{boxplot}}.}
+remaining arguments are forwarded to \code{\link[graphics:boxplot]{graphics::boxplot()}}.}
 
 \item{g}{optional grouping variable (ignored if a formula is used).}
 
@@ -63,7 +63,7 @@ Can be:
 \itemize{
 \item \code{TRUE}: draw grid with default settings
 \item \code{FALSE}, \code{NULL}, or \code{NA}: suppress grid
-\item a named list: arguments passed to \code{\link[graphics]{grid}},
+\item a named list: arguments passed to \code{\link[graphics:grid]{graphics::grid()}},
 e.g. \code{list(col = "red", nx = NA, ny = NULL)} for vertical
 lines only
 }}
@@ -100,7 +100,7 @@ optionally be overlaid.
 }
 \details{
 Optional plot components are controlled using
-\code{\link[bedrock]{callIf}} semantics:
+\code{\link[bedrock:callIf]{bedrock::callIf()}} semantics:
 \itemize{
 \item \code{TRUE}: draw with defaults
 \item \code{FALSE}, \code{NULL}, or \code{NA}: suppress component
@@ -121,8 +121,8 @@ plotBox(x ~ g)
 
 }
 \seealso{
-\code{\link[graphics]{boxplot}},
-\code{\link[bedrock]{callIf}}
+\code{\link[graphics:boxplot]{graphics::boxplot()}},
+\code{\link[bedrock:callIf]{bedrock::callIf()}}
 
 Other plot.univariate:
 \code{\link[=plotArea]{plotArea()}},

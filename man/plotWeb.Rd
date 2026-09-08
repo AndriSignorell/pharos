@@ -30,7 +30,7 @@ title.}
 \item{col}{two colors for the connecting lines: the first is used for
 negative values, the second for positive values. \code{.useTheme}
 (default) resolves to \code{getTheme()$twin} - consistent with the
-sign-based coloring in \code{\link{plotCor}}.}
+sign-based coloring in \code{\link[=plotCor]{plotCor()}}.}
 
 \item{lty}{line type for the connecting lines. \code{NULL} (default)
 inherits from \code{par("lty")}.}
@@ -64,14 +64,14 @@ overrides individual elements (\code{pch}, \code{cex}, \code{col},
 \item{legend}{controls the legend. \code{TRUE} (default) draws a legend
 showing the line widths and colors for the minimum/maximum positive
 and negative values. \code{FALSE}/\code{NA} suppresses it. A named
-list overrides arguments forwarded to \code{\link[graphics]{legend}}.}
+list overrides arguments forwarded to \code{\link[graphics:legend]{graphics::legend()}}.}
 
 \item{stamp}{controls the corner stamp. \code{.useTheme} (default)
 resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
-\code{NULL}, a string, or a named list for \code{\link{stamp}()}.}
+\code{NULL}, a string, or a named list for \code{\link[=stamp]{stamp()}}.}
 
 \item{\dots}{further graphical parameters passed to
-\code{\link[graphics]{par}} and to the internal \code{canvas()} call.}
+\code{\link[graphics:par]{graphics::par()}} and to the internal \code{canvas()} call.}
 }
 \value{
 Invisibly returns a list of \code{x}/\code{y} coordinates of the
@@ -108,7 +108,7 @@ plotWeb(m2, labels = list(las = 2))
 
 }
 \seealso{
-\code{\link{plotCor}}, \link{theme}
+\code{\link[=plotCor]{plotCor()}}, \link{theme}
 
 Other plot.special:
 \code{\link[=plotBinaryTree]{plotBinaryTree()}},

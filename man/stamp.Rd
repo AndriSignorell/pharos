@@ -13,7 +13,7 @@ stamp text. \code{.useTheme} (default) or \code{TRUE} resolve to
 \code{NULL}, or \code{NA} suppress the stamp. Any other string or
 unevaluated \code{expression()} is used as given.}
 
-\item{las}{orientation; see \code{\link[graphics]{par}}. \code{NULL}
+\item{las}{orientation; see \code{\link[graphics:par]{graphics::par()}}. \code{NULL}
 (default) inherits the current \code{par("las")}. \code{las = 3}
 places the stamp vertically along the right edge instead of
 horizontally along the bottom.}
@@ -39,7 +39,7 @@ stamp()
 
 }
 \seealso{
-\code{\link{text}}
+\code{\link[=text]{text()}}
 
 Other graphics.annotation:
 \code{\link[=barText]{barText()}},

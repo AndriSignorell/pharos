@@ -2,11 +2,11 @@
 
 #' Bubble Plot
 #'
-#' Draws a bubble plot where the position is given by \code{x} and \code{y},
-#' and the size of each bubble is proportional to \code{area}.
+#' Draws a bubble plot where the position is given by `x` and `y`,
+#' and the size of each bubble is proportional to `area`.
 #'
 #' The function supports both a default interface and a formula interface
-#' of the form \code{y ~ x | area}.
+#' of the form `y ~ x | area`.
 #'
 #' @details
 #' Bubble sizes are interpreted as areas and internally converted to radii
@@ -14,20 +14,20 @@
 #' visually accurate circles.
 #'
 #' Graphical elements such as grids are controlled via the unified plot
-#' design system using \code{bedrock::callIf()} and \code{.theme()}.
+#' design system using `bedrock::callIf()` and `.theme()`.
 #'
 #' @param x numeric vector of x positions.
 #' @param y numeric vector of y positions.
 #' @param area numeric vector controlling bubble sizes (interpreted as area).
-#' @param ... additional graphical parameters passed to \code{par()}.
+#' @param ... additional graphical parameters passed to `par()`.
 #'
 #' @param col fill color(s) of the bubbles.
 #' @param border border color(s) of the bubbles.
 #' @param cex scaling factor applied to bubble areas.
 #'
-#' @param add logical; if \code{TRUE}, adds to an existing plot.
+#' @param add logical; if `TRUE`, adds to an existing plot.
 #'
-#' @param grid logical, \code{NA}, or list controlling background grid.
+#' @param grid logical, `NA`, or list controlling background grid.
 #'
 #' @param xlim,ylim axis limits.
 #'
@@ -35,12 +35,12 @@
 #'
 #' @param na.rm logical; remove missing values.
 #'
-#' @param formula A formula of the form \code{y ~ x | area}.
+#' @param formula A formula of the form `y ~ x | area`.
 #' @param data optional data frame.
 #' @param subset optional subset expression.
 #' @param na.action function to handle missing values.
 #'
-#' @return Invisibly returns \code{NULL}.
+#' @return Invisibly returns `NULL`.
 #' 
 #' @concept base-graphics
 #' @concept plotting
@@ -67,7 +67,7 @@
 #' 
 
 #'
-#' @seealso \code{\link{symbols}}
+#' @seealso [symbols()]
 #'
 #' @name plotBubble
 NULL

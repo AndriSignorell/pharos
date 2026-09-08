@@ -10,7 +10,7 @@
 #'
 #' @param bins number of hexagons across the x-axis.
 #'
-#' @param col colours used for the count scale. If \code{NULL}, a default
+#' @param col colours used for the count scale. If `NULL`, a default
 #'   sequential palette is used.
 #' @param border border colour of the hexagons.
 #' @param grid logical or list controlling the background grid.
@@ -23,10 +23,10 @@
 #' @param ylab label for the y-axis.
 #'
 #' @param ... additional graphical parameters passed to
-#'   \code{.applyParFromDots()}.
+#'   `.applyParFromDots()`.
 #'
 #' @return Invisibly returns a list containing the computed
-#'   \code{hexbin} object and the original \code{x} and \code{y}.
+#'   `hexbin` object and the original `x` and `y`.
 #'
 
 #' @family plot.bivariate  

@@ -8,9 +8,9 @@
 #' @param minchar integer; minimum number of characters to retain
 #' @param method character string specifying the abbreviation strategy:
 #' \itemize{
-#'   \item \code{"left"}: abbreviate each string individually to the shortest
+#'   \item `"left"`: abbreviate each string individually to the shortest
 #'     unique prefix
-#'   \item \code{"fix"}: use a common prefix length for all strings such that
+#'   \item `"fix"`: use a common prefix length for all strings such that
 #'     they are distinguishable
 #' }
 #'
@@ -18,19 +18,19 @@
 #'
 #' @details
 #' The function ensures that abbreviations are unique (within the given
-#' vector) while respecting the minimum length \code{minchar}.
+#' vector) while respecting the minimum length `minchar`.
 #'
-#' For \code{method = "left"}, each string is shortened individually to the
+#' For `method = "left"`, each string is shortened individually to the
 #' shortest prefix that distinguishes it from all others.
 #'
-#' For \code{method = "fix"}, a single prefix length is chosen such that all
+#' For `method = "fix"`, a single prefix length is chosen such that all
 #' strings are distinguishable.
 #'
 #' Unicode-aware substring operations are performed using the \pkg{stringi}
 #' package.
 #'
-#' @seealso \code{\link[stringi]{stri_sub}},
-#'   \code{\link[stringi]{stri_length}}
+#' @seealso [stringi::stri_sub()],
+#'   [stringi::stri_length()]
 #'
 #' @examples
 #' x <- c("apple", "apricot", "banana")

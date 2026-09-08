@@ -3,10 +3,10 @@
 #'
 #' Plots a Bland-Altman agreement analysis.
 #'
-#' Objects of class \code{"blandAltman"} are typically created with
-#' \code{DescToolsX::blandAltmanData()}.
+#' Objects of class `"blandAltman"` are typically created with
+#' `DescToolsX::blandAltmanData()`.
 #'
-#' @param x an object of class \code{"blandAltman"}.
+#' @param x an object of class `"blandAltman"`.
 #'
 #' @param main plot title.
 #' @param xlab X-axis label.
@@ -27,10 +27,10 @@
 #' @param showText logical; annotate bias and limits.
 #'
 #' @param stamp optional plot stamp.
-#' @param ... further arguments passed to \code{plot()}.
+#' @param ... further arguments passed to `plot()`.
 #'
 #' @return
-#' Invisibly returns \code{x}.
+#' Invisibly returns `x`.
 #'
 
 #' @family plot.s3  

@@ -78,7 +78,7 @@ plotTernary(M, lbl = c("A", "B", "C"))
 
 }
 \seealso{
-\code{\link{plotDens}}, \code{\link{plotRidge}}
+\code{\link[=plotDens]{plotDens()}}, \code{\link[=plotRidge]{plotRidge()}}
 
 Other plot.special:
 \code{\link[=plotBinaryTree]{plotBinaryTree()}},

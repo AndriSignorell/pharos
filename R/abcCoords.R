@@ -2,51 +2,51 @@
 #' Coordinates for Named Plot Positions
 #'
 #' Returns the xy-coordinates and text-adjustment values for named anchor
-#' positions such as \code{"topleft"}, \code{"center"}, etc., as used by
-#' \code{\link{legend}}.  Useful for placing text or other annotations at
+#' positions such as `"topleft"`, `"center"`, etc., as used by
+#' [legend()].  Useful for placing text or other annotations at
 #' consistent, region-aware positions.
 #'
 #' @details
-#' The positioning logic is adapted from \code{\link{legend}}.
-#' The inset is computed in character units via \code{\link{strwidth}} and
-#' \code{\link{strheight}}, making it robust to device resizing, font
+#' The positioning logic is adapted from [legend()].
+#' The inset is computed in character units via [strwidth()] and
+#' [strheight()], making it robust to device resizing, font
 #' changes, and plot-range scaling.
 #'
 #' Three regions are supported:
 #' \describe{
-#'   \item{\code{"plot"}}{The inner plot area (\code{par("usr")}).  The
-#'     default, and the region \code{\link{legend}} positions in.}
-#'   \item{\code{"figure"}}{The figure region within the device, accounting
-#'     for \code{par("fig")}.}
-#'   \item{\code{"device"}}{The full device area.}
+#'   \item{`"plot"`}{The inner plot area (`par("usr")`).  The
+#'     default, and the region [legend()] positions in.}
+#'   \item{`"figure"`}{The figure region within the device, accounting
+#'     for `par("fig")`.}
+#'   \item{`"device"`}{The full device area.}
 #' }
 #'
-#' Coordinates for \code{"figure"} and \code{"device"} lie outside
-#' \code{par("usr")} and are therefore clipped away by \code{\link{text}}
-#' and friends unless the drawing call sets \code{xpd = NA}.  The returned
+#' Coordinates for `"figure"` and `"device"` lie outside
+#' `par("usr")` and are therefore clipped away by [text()]
+#' and friends unless the drawing call sets `xpd = NA`.  The returned
 #' values are in user space either way; only the clipping has to be turned
 #' off by the caller.
 #'
 #'
 #' @param x       A character string specifying the anchor position.  One
-#'   of \code{"bottomright"}, \code{"bottom"}, \code{"bottomleft"},
-#'   \code{"left"}, \code{"topleft"}, \code{"top"}, \code{"topright"},
-#'   \code{"right"}, or \code{"center"}.  Partial matching is supported.
-#' @param region  one of \code{"plot"} (default), \code{"figure"}, or
-#'   \code{"device"}.  Determines the coordinate region used.  See Details
+#'   of `"bottomright"`, `"bottom"`, `"bottomleft"`,
+#'   `"left"`, `"topleft"`, `"top"`, `"topright"`,
+#'   `"right"`, or `"center"`.  Partial matching is supported.
+#' @param region  one of `"plot"` (default), `"figure"`, or
+#'   `"device"`.  Determines the coordinate region used.  See Details
 #'   for the clipping that comes with the latter two.
-#' @param cex character expansion factor. If \code{NULL} (default),
-#'   the current \code{par("cex")} is used.
+#' @param cex character expansion factor. If `NULL` (default),
+#'   the current `par("cex")` is used.
 #' @param inset   inset distance from the boundary, specified in lines of
 #'   text (character heights/widths).  May be a scalar (applied to both
-#'   x and y) or a length-2 vector (x inset, y inset).  Default \code{0}.
+#'   x and y) or a length-2 vector (x inset, y inset).  Default `0`.
 #'
 #' @return A list with two components:
 #' \describe{
-#'   \item{\code{xy}}{A list with elements \code{x} and \code{y} giving
+#'   \item{`xy`}{A list with elements `x` and `y` giving
 #'     the anchor coordinates in user space.}
-#'   \item{\code{adj}}{A numeric vector of length 2, suitable for the
-#'     \code{adj} argument of \code{\link{text}}.}
+#'   \item{`adj`}{A numeric vector of length 2, suitable for the
+#'     `adj` argument of [text()].}
 #' }
 #'
 #' @examples
@@ -74,7 +74,7 @@
 #' text(x = xy$xy$x, y = xy$xy$y, labels = "source: ...",
 #'      adj = xy$adj, cex = 0.7, xpd = NA)
 #'
-#' @seealso \code{\link{text}}, \code{\link{legend}}
+#' @seealso [text()], [legend()]
 #'
 #' @family graphics.layout
 #' @concept annotation

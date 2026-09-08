@@ -5,29 +5,29 @@
 #' classical density plots and conditional density plots.
 #'
 #' @details
-#' The function defers entirely to \code{\link[bedrock]{resolveFormula}()}'s
-#' design classification to pick a mode when \code{type = NULL}:
+#' The function defers entirely to [bedrock::resolveFormula()]'s
+#' design classification to pick a mode when `type = NULL`:
 #' \itemize{
-#'   \item \code{y ~ g} (\code{g} categorical) → density, one curve per
+#'   \item `y ~ g` (`g` categorical) → density, one curve per
 #'     group.
-#'   \item \code{y ~ x} (\code{x} numeric) → conditional density
+#'   \item `y ~ x` (`x` numeric) → conditional density
 #'     \eqn{P(Y | X)}, a single curve - equivalent to
-#'     \code{cdplot(x, factor(y))}.
-#'   \item \code{y ~ x | g} → conditional density, one curve per level of
-#'     \code{g}.
+#'     `cdplot(x, factor(y))`.
+#'   \item `y ~ x | g` → conditional density, one curve per level of
+#'     `g`.
 #' }
-#' \code{type} can be set explicitly to override the default for a given
+#' `type` can be set explicitly to override the default for a given
 #' design (e.g. to force an error rather than silently doing the wrong
 #' thing if a formula's shape is ambiguous).
 #'
 #' Graphical elements such as grids are controlled via the unified plot
-#' design system using \code{bedrock::callIf()} and \code{.theme()}.
+#' design system using `bedrock::callIf()` and `.theme()`.
 #'
 #' @param ... additional data vectors (unnamed, default method) or
-#'   graphical parameters passed to \code{par()}.
+#'   graphical parameters passed to `par()`.
 #'
-#' @param formula A formula of the form \code{y ~ group}, \code{y ~ x}
-#'   (\code{x} numeric, conditional density), or \code{y ~ x | group}.
+#' @param formula A formula of the form `y ~ group`, `y ~ x`
+#'   (`x` numeric, conditional density), or `y ~ x | group`.
 #' @param data optional data frame.
 #' @param subset optional subset expression.
 #' @param na.action function to handle missing values.
@@ -35,29 +35,29 @@
 #' @param main,xlab,ylab plot labels.
 #' @param xlim,ylim axis limits.
 #'
-#' @param add logical; if \code{TRUE}, adds to an existing plot.
-#' @param bw bandwidth passed to \code{\link[stats]{density}} or \code{cdplot}.
+#' @param add logical; if `TRUE`, adds to an existing plot.
+#' @param bw bandwidth passed to [stats::density()] or `cdplot`.
 #' @param type character string specifying the plot type. One of
-#'   \code{"density"}, \code{"conditional"}, or \code{NULL} (default,
-#'   determined by \code{resolveFormula()}'s design classification).
+#'   `"density"`, `"conditional"`, or `NULL` (default,
+#'   determined by `resolveFormula()`'s design classification).
 #'
 #' @param col line color(s).
 #' @param lwd line width(s).
 #' @param lty line type(s).
-#' @param fill for \code{type = "density"}: \code{FALSE} (default, no
-#'   fill), \code{TRUE} (translucent fill derived from each group's
-#'   \code{col} via \code{adjustcolor(col, alpha.f = 0.3)}), or one or
+#' @param fill for `type = "density"`: `FALSE` (default, no
+#'   fill), `TRUE` (translucent fill derived from each group's
+#'   `col` via `adjustcolor(col, alpha.f = 0.3)`), or one or
 #'   more explicit fill colors recycled over groups. For
-#'   \code{type = "conditional"} on a single, unstratified, binary curve:
-#'   \code{TRUE} for cdplot-style grey shading, or a vector of 2 colors for
+#'   `type = "conditional"` on a single, unstratified, binary curve:
+#'   `TRUE` for cdplot-style grey shading, or a vector of 2 colors for
 #'   the regions below/above the boundary curve.
-#' @param grid logical, \code{NA}, or list controlling background grid.
+#' @param grid logical, `NA`, or list controlling background grid.
 #'
-#' @param stamp controls the corner stamp. \code{.useTheme} (default)
-#'   resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/\code{NULL},
-#'   or an explicit string, as for \code{.withGraphicsState()} (internal).
+#' @param stamp controls the corner stamp. `.useTheme` (default)
+#'   resolves to `getTheme()$stamp`. `TRUE`/`FALSE`/`NULL`,
+#'   or an explicit string, as for `.withGraphicsState()` (internal).
 #'   
-#' @return Invisibly returns \code{NULL}.
+#' @return Invisibly returns `NULL`.
 #'
 #' @examples
 #' set.seed(1)
@@ -77,8 +77,8 @@
 #' # conditional density, stratified by group
 #' plotDens(y ~ x | g)
 #'
-#' @seealso \code{\link[stats]{density}}, \code{\link[graphics]{cdplot}},
-#'   \code{\link[bedrock]{resolveFormula}}
+#' @seealso [stats::density()], [graphics::cdplot()],
+#'   [bedrock::resolveFormula()]
 #' 
 #' @concept base-graphics
 #' @concept plotting
@@ -232,30 +232,30 @@ plotDens.default <- function(
 
 #' Conditional Density Engine (cdplot-based)
 #'
-#' Internal engine shared by both code paths of \code{\link{plotDens.formula}}
-#' that need a conditional density plot: the stratified case (\code{y ~ x |
-#' g}, several groups) and the degenerate single-group case (\code{y ~ x},
-#' no \code{| g} block).
+#' Internal engine shared by both code paths of [plotDens.formula()]
+#' that need a conditional density plot: the stratified case (`y ~ x |
+#' g`, several groups) and the degenerate single-group case (`y ~ x`,
+#' no `| g` block).
 #'
 #' @param y response variable, coerced to a factor if not already one.
 #' @param x continuous predictor.
 #' @param g grouping/block factor. For the degenerate single-group case,
-#'   pass a constant-level factor of the same length as \code{x} (e.g.
-#'   \code{factor(rep.int("", length(x)))}); no legend distinction is then
+#'   pass a constant-level factor of the same length as `x` (e.g.
+#'   `factor(rep.int("", length(x)))`); no legend distinction is then
 #'   needed since there is only one curve.
 #' @param main,xlab,ylab plot labels.
 #' @param xlim,ylim axis limits.
-#' @param add,bw,col,lwd,lty,grid see \code{\link{plotDens}}.
-#' @param fill \code{FALSE} (default, no fill), \code{TRUE} (cdplot-style
+#' @param add,bw,col,lwd,lty,grid see [plotDens()].
+#' @param fill `FALSE` (default, no fill), `TRUE` (cdplot-style
 #'   grey shading), or a vector of 2 colors for the regions below/above the
-#'   boundary curve, representing \code{P(y = levels(y)[1] | x)} and
-#'   \code{P(y = levels(y)[2] | x)}. Only supported for a binary response
-#'   (\code{nlevels(y) == 2}) and a single, unstratified curve
-#'   (\code{nlevels(g) == 1}); both are checked explicitly with informative
+#'   boundary curve, representing `P(y = levels(y)[1] | x)` and
+#'   `P(y = levels(y)[2] | x)`. Only supported for a binary response
+#'   (`nlevels(y) == 2`) and a single, unstratified curve
+#'   (`nlevels(g) == 1`); both are checked explicitly with informative
 #'   errors, rather than silently producing overlapping or misleading fills.
-#' @param ... further graphical parameters passed to \code{par()}.
+#' @param ... further graphical parameters passed to `par()`.
 #'
-#' @return Invisibly \code{NULL}.
+#' @return Invisibly `NULL`.
 #'
 #' @noRd
 .plotDensConditional <- function(

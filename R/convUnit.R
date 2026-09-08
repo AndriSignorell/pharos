@@ -9,15 +9,15 @@
 #'   \item SI base units (m, kg, s, A, K, mol, cd)
 #'   \item Derived units (N, Pa, J, W, Hz)
 #'   \item Prefixes (k, m, µ, etc.)
-#'   \item Compound units (e.g. \code{"km/h"}, \code{"kg*m/s^2"})
-#'   \item Unit powers (e.g. \code{"m2"}, \code{"s^-1"})
+#'   \item Compound units (e.g. `"km/h"`, `"kg*m/s^2"`)
+#'   \item Unit powers (e.g. `"m2"`, `"s^-1"`)
 #'   \item Temperature conversion (C, F, K)
 #' }
 #'
 #' The function internally:
 #' \enumerate{
 #'   \item Parses units into symbolic components
-#'   \item Expands derived units (e.g. \code{N = kg*m/s^2})
+#'   \item Expands derived units (e.g. `N = kg*m/s^2`)
 #'   \item Computes dimensional vectors
 #'   \item Applies prefix scaling
 #'   \item Uses a graph search (Dijkstra) for non-SI conversions
@@ -27,9 +27,9 @@
 #' @param from character string specifying the source unit.
 #' @param to character string specifying the target unit.
 #' @param prefix data frame of SI prefixes with columns
-#'   \code{abbr} and \code{mult}.
+#'   `abbr` and `mult`.
 #' @param units data frame of unit conversion factors with columns
-#'   \code{from}, \code{to}, and \code{fact}.
+#'   `from`, `to`, and `fact`.
 #'
 #' @return Numeric value(s) converted to the target unit.
 #'
@@ -37,8 +37,8 @@
 #' The function checks dimensional consistency before conversion.
 #' If units are not compatible, an error is thrown.
 #'
-#' For non-SI units (e.g. \code{"mi"}, \code{"bar"}), conversion
-#' paths are resolved via a graph representation of \code{Units}.
+#' For non-SI units (e.g. `"mi"`, `"bar"`), conversion
+#' paths are resolved via a graph representation of `Units`.
 #'
 #' Temperature conversions are handled separately and do not use
 #' multiplicative scaling.

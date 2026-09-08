@@ -2,7 +2,7 @@
 #' Plot Proportions with Confidence Intervals
 #'
 #' Displays a horizontal bar with nested confidence interval bands from
-#' \code{min(ciLevels)} to \code{max(ciLevels)} to visualise the uncertainty
+#' `min(ciLevels)` to `max(ciLevels)` to visualise the uncertainty
 #' of a proportion. Bands are drawn in a semi-transparent grey so that the
 #' accumulated overlap creates a natural density gradient - darker in the
 #' centre, lighter at the edges.
@@ -11,64 +11,64 @@
 #'   the two columns contain counts for the two categories. A numeric vector
 #'   of length 2 is also accepted and will be coerced to a one-row matrix.
 #'
-#' @param main main title of the plot. \code{NULL} (default) derives a title
-#'   from \code{deparse(substitute(x))}. \code{""}, \code{NA}, or \code{FALSE}
+#' @param main main title of the plot. `NULL` (default) derives a title
+#'   from `deparse(substitute(x))`. `""`, `NA`, or `FALSE`
 #'   suppress the title and compact the top margin. Any other string is used
 #'   as given.
 #' @param labels character vector of length 2 with labels for the two
-#'   categories, displayed at the top of the plot. Default \code{c("", "")}.
-#' @param xlab label for the x-axis. Default \code{""}.
+#'   categories, displayed at the top of the plot. Default `c("", "")`.
+#' @param xlab label for the x-axis. Default `""`.
 #'
 #' @param xlim numeric vector of length 2 for the x-axis limits.
-#'   Default \code{c(0, 1)}.
+#'   Default `c(0, 1)`.
 #'
 #' @param col character vector of length 2 specifying fill colours for the
-#'   stacked bar. \code{.useTheme} (default) resolves to
-#'   \code{getTheme()$twin} - the active theme's two-color pair. Note this
+#'   stacked bar. `.useTheme` (default) resolves to
+#'   `getTheme()$twin` - the active theme's two-color pair. Note this
 #'   is purely "first label gets the first color"; unlike
-#'   \code{\link{plotCor}}/\code{\link{plotWeb}}, there is no positive/
+#'   [plotCor()]/[plotWeb()], there is no positive/
 #'   negative sign convention here, since proportions of two arbitrary
 #'   categories (e.g. "yes"/"no") have no inherent sign.
 #' @param ci.col colour for the confidence interval bands. Default is a
-#'   semi-transparent grey (\code{addOpacity("grey80", 0.12)}). Deliberately
+#'   semi-transparent grey (`addOpacity("grey80", 0.12)`). Deliberately
 #'   not theme-driven (like the sequential scales in
-#'   \code{\link{plotDens2D}}/\code{\link{plotHeatmap}}): this is a
+#'   [plotDens2D()]/[plotHeatmap()]): this is a
 #'   structural mechanism (many overlapping translucent bands building a
 #'   gradient via overdraw), not a categorical or diverging color choice.
 #' @param border border colour for the confidence interval bands and the
-#'   stacked bar. Default \code{NA} (no border).
+#'   stacked bar. Default `NA` (no border).
 #' @param ciLevels numeric vector of confidence levels for the nested bands.
-#'   Default \code{seq(0.99, 0.80, by = -0.01)} (20 bands, 99\% down to
+#'   Default `seq(0.99, 0.80, by = -0.01)` (20 bands, 99\% down to
 #'   80\% in 1\% steps). Draw order does not affect the result, since all
 #'   bands share the same translucent color and no border.
 #' @param grid controls drawing of the background grid (vertical lines at
 #'   the proportion ticks only - there is no meaningful horizontal grid
-#'   for the categorical group axis). \code{.useTheme} (default) follows
-#'   the active theme (\code{getTheme()$grid}). \code{TRUE}/\code{FALSE}/
-#'   \code{NA}, or a named list, as for \code{\link[graphics]{grid}}.
-#' @param box controls drawing of the plot box. Default \code{FALSE} (no
+#'   for the categorical group axis). `.useTheme` (default) follows
+#'   the active theme (`getTheme()$grid`). `TRUE`/`FALSE`/
+#'   `NA`, or a named list, as for [graphics::grid()].
+#' @param box controls drawing of the plot box. Default `FALSE` (no
 #'   frame, consistent with this chart's minimal "Few"-style appearance).
-#'   \code{TRUE}/\code{NA}, or a named list, as for
-#'   \code{\link[graphics]{box}}.
+#'   `TRUE`/`NA`, or a named list, as for
+#'   [graphics::box()].
 #'
 #' @param legend controls the legend explaining the CI band range.
-#'   \code{TRUE} (default) draws it. \code{FALSE}/\code{NA} suppresses it.
+#'   `TRUE` (default) draws it. `FALSE`/`NA` suppresses it.
 #'   A named list overrides arguments forwarded to
-#'   \code{\link[graphics]{legend}}.
+#'   [graphics::legend()].
 #'
-#' @param stamp controls the corner stamp. \code{.useTheme} (default)
-#'   resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
-#'   \code{NULL}, a string, or a named list for \code{\link{stamp}()}.
-#' @param ... further arguments passed to \code{\link[graphics]{par}} via
-#'   the internal framework, and to \code{\link[graphics]{barplot}}.
+#' @param stamp controls the corner stamp. `.useTheme` (default)
+#'   resolves to `getTheme()$stamp`. `TRUE`/`FALSE`/
+#'   `NULL`, a string, or a named list for [stamp()].
+#' @param ... further arguments passed to [graphics::par()] via
+#'   the internal framework, and to [graphics::barplot()].
 #'
-#' @return Invisibly returns \code{NULL}. Called for its side effect of
+#' @return Invisibly returns `NULL`. Called for its side effect of
 #'   producing a plot.
 #'
 #' @details
-#' Each row of \code{x} is displayed as a horizontal stacked bar showing the
+#' Each row of `x` is displayed as a horizontal stacked bar showing the
 #' proportion of the first category. Confidence intervals are calculated
-#' using \code{prop.test()} and drawn as nested bands per \code{ciLevels},
+#' using `prop.test()` and drawn as nested bands per `ciLevels`,
 #' all in the same semi-transparent colour. The repeated overdraw naturally
 #' darkens the centre of the interval where all bands overlap. A vertical
 #' segment marks the observed proportion.
@@ -83,7 +83,7 @@
 #' # single row - vector input is accepted
 #' plotPropCI(m[1, ], labels = c("yes", "no"))
 #'
-#' @seealso \code{\link[stats]{prop.test}}, [theme]
+#' @seealso [stats::prop.test()], [theme]
 #'
 
 #' @family plot.special  

@@ -4,23 +4,23 @@
 #' The function removes whitespace characters as spaces, tabs and newlines from
 #' the beginning and end of the supplied string. Whitespace characters
 #' occurring in the middle of the string are retained.\cr Trimming with method
-#' \code{"left"} deletes only leading whitespaces, \code{"right"} only
+#' `"left"` deletes only leading whitespaces, `"right"` only
 #' trailing. Designed for users who were socialized by SQL. 
 #' 
-#' The functions are defined depending on method as\cr \code{both: gsub(
+#' The functions are defined depending on method as\cr `both: gsub(
 #' pattern=gettextf("^[\%s]+|[\%s]+$", pattern, pattern), replacement="",
-#' x=x)}\cr \code{left: gsub( pattern=gettextf("^[\%s]+",pattern),
-#' replacement="", x=x)}\cr \code{right: gsub(
-#' pattern=gettextf("[\%s]+$",pattern), replacement="", x=x)} 
+#' x=x)`\cr `left: gsub( pattern=gettextf("^[\%s]+",pattern),
+#' replacement="", x=x)`\cr `right: gsub(
+#' pattern=gettextf("[\%s]+$",pattern), replacement="", x=x)` 
 #' 
 #' @param x the string to be trimmed
 #' @param pattern the pattern of the whitespaces to be deleted, defaults to
-#' space, tab and newline: \code{" \t\n"}
-#' @param method one out of \code{"both"} (default), \code{"left"},
-#' \code{"right"}. Determines on which side the string should be trimmed.
+#' space, tab and newline: `" \t\n"`
+#' @param method one out of `"both"` (default), `"left"`,
+#' `"right"`. Determines on which side the string should be trimmed.
 #' @return the string x without whitespaces
 #' 
-#' @seealso \code{\link[base]{trimws}}
+#' @seealso [base::trimws()]
 #' 
 #' @examples
 #' 

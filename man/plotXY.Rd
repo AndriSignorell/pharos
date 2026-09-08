@@ -62,7 +62,7 @@ internal framework.}
 
 \item{main}{main title of the plot. \code{NULL} (default) derives a
 title from the input - \code{deparse(y) ~ deparse(x)} for the default
-method, or the formula's \code{data.name} for the formula method.
+method, or the formula's \code{dataName} for the formula method.
 \code{""}, \code{NA}, or \code{FALSE} suppress the title entirely
 (and compact the top margin accordingly); any other string is used
 as given (resolved internally via \code{.resolveTitle()}).}
@@ -96,7 +96,7 @@ Can be:
 (\code{getTheme()$grid})
 \item \code{TRUE}: draw grid with theme settings
 \item \code{FALSE}, \code{NULL}, or \code{NA}: suppress grid
-\item a named list: arguments passed to \code{\link[graphics]{grid}},
+\item a named list: arguments passed to \code{\link[graphics:grid]{graphics::grid()}},
 overriding the theme defaults for this call only
 }}
 
@@ -107,7 +107,7 @@ Can be:
 (\code{getTheme()$box})
 \item \code{TRUE}: draw box with theme settings
 \item \code{FALSE}, \code{NULL}, or \code{NA}: suppress box
-\item a named list: arguments passed to \code{\link[graphics]{box}},
+\item a named list: arguments passed to \code{\link[graphics:box]{graphics::box()}},
 overriding the theme defaults for this call only
 }}
 
@@ -116,7 +116,7 @@ Can be:
 \itemize{
 \item \code{TRUE}: draw with default settings
 \item \code{FALSE}, \code{NULL}, or \code{NA}: suppress
-\item a named list: arguments passed to \code{\link[graphics]{lines}},
+\item a named list: arguments passed to \code{\link[graphics:lines]{graphics::lines()}},
 e.g. \code{list(col = "blue", lwd = 2)}
 }}
 
@@ -125,7 +125,7 @@ Can be:
 \itemize{
 \item \code{TRUE}: draw with default settings
 \item \code{FALSE}, \code{NULL}, or \code{NA}: suppress
-\item a named list: arguments passed to \code{\link[graphics]{lines}},
+\item a named list: arguments passed to \code{\link[graphics:lines]{graphics::lines()}},
 e.g. \code{list(col = "red", lty = "dashed")}
 }}
 
@@ -134,7 +134,7 @@ Can be:
 \itemize{
 \item \code{TRUE}: draw with default settings (position \code{"topright"})
 \item \code{FALSE}, \code{NULL}, or \code{NA}: suppress
-\item a named list: arguments passed to \code{\link[graphics]{legend}},
+\item a named list: arguments passed to \code{\link[graphics:legend]{graphics::legend()}},
 e.g. \code{list(x = "bottomleft")}
 }
 The legend is only drawn when at least one of \code{lm} or \code{loess}
@@ -143,7 +143,7 @@ active theme's \code{twin} colors (\code{getTheme()$twin}).}
 
 \item{stamp}{controls the corner stamp. \code{.useTheme} (default)
 resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
-\code{NULL}, a string, or a named list for \code{\link{stamp}()}.}
+\code{NULL}, a string, or a named list for \code{\link[=stamp]{stamp()}}.}
 
 \item{formula}{a formula of the form \code{y ~ x}.}
 
@@ -163,7 +163,7 @@ locally weighted regression lines, and an optional legend.
 }
 \details{
 Optional plot components (\code{grid}, \code{box}, \code{lm},
-\code{loess}, \code{legend}) follow \code{\link[bedrock]{callIf}}
+\code{loess}, \code{legend}) follow \code{\link[bedrock:callIf]{bedrock::callIf()}}
 semantics:
 \itemize{
 \item \code{TRUE}: draw with defaults
@@ -194,10 +194,10 @@ plotXY(temperature ~ delivery_min, bedrock::Pizza, main = "")
 
 }
 \seealso{
-\code{\link[graphics]{plot}},
-\code{\link[stats]{lm}},
-\code{\link[stats]{loess}},
-\code{\link[bedrock]{callIf}}
+\code{\link[graphics:plot]{graphics::plot()}},
+\code{\link[stats:lm]{stats::lm()}},
+\code{\link[stats:loess]{stats::loess()}},
+\code{\link[bedrock:callIf]{bedrock::callIf()}}
 
 Other plot.bivariate:
 \code{\link[=plotAssoc]{plotAssoc()}},

@@ -6,10 +6,10 @@
 #' distribution shape, while the boxplot summarizes key statistics such as
 #' median, spread, and outliers.
 #'
-#' @param x numeric vector, or a formula of the form \code{x ~ g}.
+#' @param x numeric vector, or a formula of the form `x ~ g`.
 #' @param g optional grouping variable (ignored if a formula is used).
 #'
-#' @param formula A formula of the form \code{y ~ group}.
+#' @param formula A formula of the form `y ~ group`.
 #' @param data an optional data frame containing variables in the formula.
 #' @param subset optional expression indicating which observations to use.
 #' @param na.action a function specifying how missing values are handled.
@@ -23,60 +23,60 @@
 #' @param layout_heights numeric vector of length 2 specifying the relative
 #' heights of the density plot (top) and boxplot (bottom).
 #'
-#' @param col vector of colors. If \code{NULL}, a palette is generated.
+#' @param col vector of colors. If `NULL`, a palette is generated.
 #'
 #' @param grid controls drawing of the background grid.
 #'   Can be:
 #'   \itemize{
-#'     \item \code{TRUE}: draw grid with default settings
-#'     \item \code{FALSE}, \code{NULL}, \code{NA}: suppress grid
-#'     \item a named list: arguments passed to \code{\link[graphics]{grid}}
+#'     \item `TRUE`: draw grid with default settings
+#'     \item `FALSE`, `NULL`, `NA`: suppress grid
+#'     \item a named list: arguments passed to [graphics::grid()]
 #'   }
 #'
 #' @param densArgs controls density estimation via
-#'   \code{\link[stats]{density}}.
+#'   [stats::density()].
 #'   Can be:
 #'   \itemize{
-#'     \item \code{TRUE}: use default density settings
-#'     \item \code{FALSE}, \code{NULL}, \code{NA}: suppress densities
+#'     \item `TRUE`: use default density settings
+#'     \item `FALSE`, `NULL`, `NA`: suppress densities
 #'     \item a named list: additional arguments passed to
-#'       \code{\link[stats]{density}}
+#'       [stats::density()]
 #'   }
 #'
 #' @param boxArgs controls drawing of boxplots via
-#'   \code{\link[graphics]{boxplot}}.
+#'   [graphics::boxplot()].
 #'   Can be:
 #'   \itemize{
-#'     \item \code{TRUE}: use default boxplot settings
-#'     \item \code{FALSE}, \code{NULL}, \code{NA}: suppress boxplots
+#'     \item `TRUE`: use default boxplot settings
+#'     \item `FALSE`, `NULL`, `NA`: suppress boxplots
 #'     \item a named list: additional arguments passed to
-#'       \code{\link[graphics]{boxplot}}
+#'       [graphics::boxplot()]
 #'   }
 #'
 #' @param stamp optional annotation passed to the plotting framework.
 #'
 #' @param ... further graphical parameters passed to
-#'   \code{\link[graphics]{par}} via the internal framework.
+#'   [graphics::par()] via the internal framework.
 #'
 #' @details
-#' The function arranges two plots vertically using \code{\link{layout}}:
+#' The function arranges two plots vertically using [layout()]:
 #' a density plot on top and a horizontal boxplot below. When a grouping
 #' variable is provided, densities and boxplots are drawn for each group.
 #'
 #' Optional plot components are controlled using
-#' \code{\link[bedrock]{callIf}} semantics:
+#' [bedrock::callIf()] semantics:
 #' \itemize{
-#'   \item \code{TRUE}: draw with defaults
-#'   \item \code{FALSE}: suppress component
+#'   \item `TRUE`: draw with defaults
+#'   \item `FALSE`: suppress component
 #'   \item named list: customize component arguments
 #' }
 #'
-#' @return Invisibly returns \code{NULL}.
+#' @return Invisibly returns `NULL`.
 #'
 #' @seealso
-#' \code{\link[stats]{density}},
-#' \code{\link[graphics]{boxplot}},
-#' \code{\link[bedrock]{callIf}}
+#' [stats::density()],
+#' [graphics::boxplot()],
+#' [bedrock::callIf()]
 #'
 #' @examples
 #' \dontrun{
@@ -347,7 +347,7 @@ plotDensBox.formula <- function(
   g <- r$group
   
   if (!nzchar(main))
-    main <- r$data.name
+    main <- r$dataName
   
   if (!nzchar(xlab))
     xlab <- names(r$mf)[1]

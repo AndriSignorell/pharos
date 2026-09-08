@@ -1,7 +1,7 @@
 
 #' Correlation Matrix Plot with Theming and Optional Labels
 #'
-#' Draws a correlation matrix using \code{\link[graphics]{image}} with
+#' Draws a correlation matrix using [graphics::image()] with
 #' optional clustering, triangular display, grid lines, color legend,
 #' and numeric labels inside the cells.
 #'
@@ -10,8 +10,8 @@
 #' \itemize{
 #'   \item User arguments override theme settings.
 #'   \item Theme settings override base graphics defaults.
-#'   \item Graphical parameters (e.g. \code{cex}, \code{las}, \code{mar})
-#'         can be supplied via \code{...}.
+#'   \item Graphical parameters (e.g. `cex`, `las`, `mar`)
+#'         can be supplied via `...`.
 #' }
 #'
 #' @param x A numeric correlation matrix.
@@ -22,43 +22,43 @@
 #'
 #'   Supported values are
 #'   \describe{
-#'     \item{\code{TRUE}}{draw axis using default settings}
-#'     \item{\code{FALSE}}{suppress axis}
-#'     \item{\code{list(...)}}{custom axis parameters passed to \code{\link[graphics]{axis}}}
+#'     \item{`TRUE`}{draw axis using default settings}
+#'     \item{`FALSE`}{suppress axis}
+#'     \item{`list(...)`}{custom axis parameters passed to [graphics::axis()]}
 #'   }
 #'
-#' @param cluster logical; if \code{TRUE}, variables are reordered by
+#' @param cluster logical; if `TRUE`, variables are reordered by
 #'   hierarchical clustering to place similar correlations together.
 #'
 #' @param mincor numeric threshold; correlations with absolute value
-#'   smaller than this are suppressed (set to \code{NA}).
+#'   smaller than this are suppressed (set to `NA`).
 #'
 #' @param triangle which part of the matrix to display.
 #'   One of
-#'   \code{"full"}, \code{"upper"}, or \code{"lower"}.
+#'   `"full"`, `"upper"`, or `"lower"`.
 #'
 #' @param diag logical; should the diagonal be displayed.
 #'
-#' @param col color palette used for the correlation values. \code{.useTheme}
-#'   (default) builds a diverging ramp from \code{getTheme()$twin} - the
-#'   active theme's two-color pair - through white: \code{twin[1]} at the
-#'   negative end (\eqn{-1}), white at zero, \code{twin[2]} at the positive
+#' @param col color palette used for the correlation values. `.useTheme`
+#'   (default) builds a diverging ramp from `getTheme()$twin` - the
+#'   active theme's two-color pair - through white: `twin[1]` at the
+#'   negative end (\eqn{-1}), white at zero, `twin[2]` at the positive
 #'   end (\eqn{+1}).
 #'
 #' @param grid controls drawing of cell-separator grid lines at the
 #'   half-integer matrix boundaries (clipped to the matrix extent, so they
 #'   never bleed into the margins). Can be:
 #'   \itemize{
-#'     \item \code{.useTheme} (default): follow the active theme
-#'       (\code{getTheme()$grid$col}/\code{$lwd})
-#'     \item \code{TRUE}: draw with theme settings
-#'     \item \code{FALSE}, \code{NULL}, or \code{NA}: suppress
-#'     \item a named list: override \code{col}/\code{lwd} for this call only
+#'     \item `.useTheme` (default): follow the active theme
+#'       (`getTheme()$grid$col`/`$lwd`)
+#'     \item `TRUE`: draw with theme settings
+#'     \item `FALSE`, `NULL`, or `NA`: suppress
+#'     \item a named list: override `col`/`lwd` for this call only
 #'   }
 #'
-#' @param box controls drawing of the plot box. \code{.useTheme} (default)
-#'   resolves to \code{getTheme()$box}. \code{TRUE}/\code{FALSE}/\code{NA},
-#'   or a named list, as for \code{grid}.
+#' @param box controls drawing of the plot box. `.useTheme` (default)
+#'   resolves to `getTheme()$box`. `TRUE`/`FALSE`/`NA`,
+#'   or a named list, as for `grid`.
 #'
 #' @param legend logical; draw a color legend for the correlation scale.
 #'
@@ -66,30 +66,30 @@
 #'
 #'   Supported values are
 #'   \describe{
-#'     \item{\code{FALSE}}{no labels}
-#'     \item{\code{TRUE}}{default labels based on the correlation values}
-#'     \item{\code{list(...)}}{custom parameters passed to the internal text drawing routine}
+#'     \item{`FALSE`}{no labels}
+#'     \item{`TRUE`}{default labels based on the correlation values}
+#'     \item{`list(...)`}{custom parameters passed to the internal text drawing routine}
 #'   }
 #'
 #' @param ... additional graphical parameters passed to
-#'   \code{\link[graphics]{par}} and \code{\link[graphics]{image}}.
+#'   [graphics::par()] and [graphics::image()].
 #'
 #' @details
 #' The function internally:
 #'
 #' \enumerate{
 #'   \item Optionally reorders the matrix using hierarchical clustering.
-#'   \item Masks parts of the matrix according to \code{triangle} and \code{diag}.
+#'   \item Masks parts of the matrix according to `triangle` and `diag`.
 #'   \item Adjusts plot margins based on label sizes.
-#'   \item Draws the matrix using \code{\link[graphics]{image}}.
+#'   \item Draws the matrix using [graphics::image()].
 #'   \item Optionally adds grid lines, numeric labels, axes, and a color legend.
 #' }
 #'
-#' Grid lines are drawn via clipped \code{\link[graphics]{abline}()} calls
+#' Grid lines are drawn via clipped [graphics::abline()] calls
 #' at the matrix's half-integer cell boundaries rather than via
-#' \code{\link[graphics]{grid}()}: \code{grid()}'s \code{nx}/\code{ny}
-#' divide the full plot region (\code{par("usr")}), which may carry axis
-#' padding unrelated to \code{image()}'s integer cell geometry, whereas the
+#' [graphics::grid()]: `grid()`'s `nx`/`ny`
+#' divide the full plot region (`par("usr")`), which may carry axis
+#' padding unrelated to `image()`'s integer cell geometry, whereas the
 #' clipped approach stays exact regardless of that padding.
 #'
 #' @return Invisibly returns the (possibly reordered) matrix used for plotting.
@@ -163,7 +163,7 @@
 #'                                  width=ncol(m)))
 #' mtext(text = rev(rownames(m)), side = 4, at=1:ncol(m), las=1, line = -5, cex=0.8)
 #' 
-#' @seealso \code{\link[graphics]{image}}, \code{\link[stats]{cor}},
+#' @seealso [graphics::image()], [stats::cor()],
 #'   [theme]
 #' 
 #' @family plot.bivariate  

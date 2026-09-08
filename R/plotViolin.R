@@ -11,38 +11,38 @@
 #' quantile lines can be added.
 #'
 #' Graphical elements such as the boxplot overlay and grid are controlled
-#' via a flexible interface using \code{TRUE}, \code{FALSE}, \code{NA}, or
-#' \code{list(...)} and are evaluated using \code{bedrock::callIf()}.
+#' via a flexible interface using `TRUE`, `FALSE`, `NA`, or
+#' `list(...)` and are evaluated using `bedrock::callIf()`.
 #'
 #' @section Data Handling:
 #' The function accepts:
 #' \itemize{
 #'   \item a numeric vector
-#'   \item multiple vectors via \code{...}
+#'   \item multiple vectors via `...`
 #'   \item a list of numeric vectors
 #' }
-#' Groups are handled similarly to \code{boxplot()}.
+#' Groups are handled similarly to `boxplot()`.
 #'
 #' @param x numeric vector, list of numeric vectors, or first group.
 #'
 #' @param ... additional data vectors (unnamed) or graphical parameters
-#'   passed to \code{par()}.
+#'   passed to `par()`.
 #'
 #' @param main,xlab,ylab plot labels.
 #' @param xlim,ylim axis limits.
 #'
-#' @param horizontal logical; if \code{TRUE}, draws horizontal violins.
+#' @param horizontal logical; if `TRUE`, draws horizontal violins.
 #' @param at numeric positions of the groups.
 #' @param names optional group labels.
-#' @param add logical; if \code{TRUE}, adds to an existing plot.
-#' @param bw bandwidth specification passed to \code{density()}.
-#' @param trim logical. If \code{TRUE} (default), the kernel density
+#' @param add logical; if `TRUE`, adds to an existing plot.
+#' @param bw bandwidth specification passed to `density()`.
+#' @param trim logical. If `TRUE` (default), the kernel density
 #'   estimate of each group is restricted to the observed data range
-#'   (\code{from = min(x)}, \code{to = max(x)}), so the violin never
+#'   (`from = min(x)`, `to = max(x)`), so the violin never
 #'   extends beyond the actual data — matching the default behavior of
-#'   \code{ggplot2::geom_violin()}. If \code{FALSE}, \code{density()} is
+#'   `ggplot2::geom_violin()`. If `FALSE`, `density()` is
 #'   called with its own defaults, which extend the tails up to
-#'   \code{cut * bw} beyond \code{range(x)} and may produce violins that
+#'   `cut * bw` beyond `range(x)` and may produce violins that
 #'   reach into implausible values (e.g. scores above 100 or below 0).
 #'
 #' @param col fill color(s) of the violins.
@@ -50,7 +50,7 @@
 #' @param lwd line width for violin borders.
 #' @param box logical or list controlling the boxplot overlay
 #'   (see Details).
-#' @param grid logical, \code{NA}, or list controlling background grid.
+#' @param grid logical, `NA`, or list controlling background grid.
 #'
 #' @param quantiles optional numeric vector of probabilities for drawing
 #'   quantile lines inside each violin.
@@ -62,7 +62,7 @@
 #'
 #' @name plotViolin
 #'
-#' @return Invisibly returns \code{NULL}.
+#' @return Invisibly returns `NULL`.
 #'
 #' @examples
 #' set.seed(1)
@@ -95,7 +95,7 @@
 #'
 #' plotViolin(value ~ group, data = df)
 #'
-#' @seealso \code{\link{boxplot}}, \code{\link{density}}
+#' @seealso [boxplot()], [density()]
 #'
 
 #' @family plot.univariate  

@@ -7,18 +7,18 @@
 #' @param x a character vector
 #' @param pattern a character string containing a regular expression to match
 #' @param ... additional arguments passed to
-#'   \code{\link[stringi]{stri_extract_first_regex}}
+#'   [stringi::stri_extract_first_regex()]
 #'
 #' @return A character vector containing the first match for each element of
-#'   \code{x}. If no match is found, \code{NA} is returned.
+#'   `x`. If no match is found, `NA` is returned.
 #'
 #' @details
 #' This function is a thin wrapper around
-#' \code{\link[stringi]{stri_extract_first_regex}} providing a simplified
+#' [stringi::stri_extract_first_regex()] providing a simplified
 #' interface for extracting the first match of a pattern.
 #'
-#' @seealso \code{\link[stringi]{stri_extract_first_regex}},
-#'   \code{\link{strExtractBetween}}
+#' @seealso [stringi::stri_extract_first_regex()],
+#'   [strExtractBetween()]
 #'
 #' @examples
 #' x <- c("abc123", "no digits", "456xyz")

@@ -1,11 +1,11 @@
 
 #' Convert Line Coordinates To User Coordinates 
 #' 
-#' Functions like \code{mtext} or \code{axis} use the \code{line} argument to
+#' Functions like `mtext` or `axis` use the `line` argument to
 #' set the distance from plot. Sometimes it's useful to have the distance in
-#' user coordinates. \code{lineToUser()} does this nontrivial conversion. 
+#' user coordinates. `lineToUser()` does this nontrivial conversion. 
 #' 
-#' For the \code{lineToUser} function to work, there must be an open plot.
+#' For the `lineToUser` function to work, there must be an open plot.
 #' 
 #' @param line the number of lines 
 #' @param side the side of the plot 
@@ -17,7 +17,7 @@
 #' lineToUser(line=2, side=4)
 #' 
 #' 
-#' @seealso \code{\link{mtext}} 
+#' @seealso [mtext()] 
 #' @family graphics.layout
 #' @concept geometry
 #' @concept numerical-methods

@@ -33,7 +33,7 @@ style(
 either in the global enviroment or in the options.}
 
 \item{digits}{integer, the desired (fixed) number of digits after the
-decimal point. Unlike \code{\link{formatC}} you will always get this number
+decimal point. Unlike \code{\link[=formatC]{formatC()}} you will always get this number
 of digits even if the last digit is 0.  Negative numbers of digits round to
 a power of ten (\code{digits=-2} would round to the nearest hundred).}
 
@@ -69,18 +69,18 @@ formats or an object of class \code{style}, consisting of a list of
 \code{fdm} arguments. See Details.}
 
 \item{pThreshold}{a numerical tolerance used mainly for formatting p values,
-those less than pThreshold are formatted as "\verb{\code{< [pThreshold]}}" (where '\verb{[pThreshold]}'
-stands for \code{format(pThreshold, digits))}.  Default is \code{0.001}.}
+those less than pThreshold are formatted as "\verb{`< [pThreshold]`}" (where '\verb{[pThreshold]}'
+stands for \verb{format(pThreshold, digits))}.  Default is \code{0.001}.}
 
 \item{width}{integer, the defined fixed width of the strings.}
 
 \item{align}{the character on whose position the strings will be aligned.
-Left alignment can be requested by setting \code{sep = "\\l"}, right
-alignment by \code{"\\r"} and center alignment by \code{"\\c"}. Mind the
+Left alignment can be requested by setting \code{sep = "\\\\l"}, right
+alignment by \code{"\\\\r"} and center alignment by \code{"\\\\c"}. Mind the
 backslashes, as if they are omitted, strings would be aligned to the
-\bold{character} l, r or c respectively. The default is \code{NULL} which
+\strong{character} l, r or c respectively. The default is \code{NULL} which
 would just leave the strings as they are.\cr This argument is send directly
-to the function \code{\link[pharos]{strAlign}()} as argument \code{sep}.}
+to the function \code{\link[=strAlign]{strAlign()}} as argument \code{sep}.}
 
 \item{lang}{optional value setting the language for the months and daynames.
 Can be either \code{"local"} for current locale or \code{"en"} for english.
@@ -112,8 +112,7 @@ displayed with 2 fixed digits and a comma as big mark:
 \preformatted{num.sty <- style(digits=2, bigMark=",") 
 fm(12222.89345, fmt=num.sty) = 12,222.89}
 This is the same result as if the arguments would have been supplied
-directly, but helps to avoid boilerplate code: \cr \code{fm(12222.89345,
-digits=2, bigMark=",")}.
+directly, but helps to avoid boilerplate code: \cr \code{fm(12222.89345, digits=2, bigMark=",")}.
 
 To edit a style we can provide \code{style()} with its name and overwrite,
 resp. add new format options.  \code{style("num.sty", digits=1, sci=10)}
@@ -125,11 +124,10 @@ and < 1e-10.
 environment or in the options.
 
 The styles can be stored as options for convenience.  To store a new format
-we use the default \code{options()} approach: \code{options(num.sty =
-style(digits=1, bigMark=" "))} Defined styles in the options can be passed
+we use the default \code{options()} approach: \code{options(num.sty = style(digits=1, bigMark=" "))} Defined styles in the options can be passed
 on to \code{fm()} simply by their name.
 
-Many report functions (e.g. \code{DescToolsX::tOne()}) in \bold{DescToolsX} use
+Many report functions (e.g. \code{DescToolsX::tOne()}) in \strong{DescToolsX} use
 three default formats for counts (named \code{"abs.sty"}), numeric values
 (\code{"num.sty"}) and percentages (\code{"per.sty"}).
 }

@@ -46,7 +46,7 @@ polygon(x, ...)
 \item{fillOddEven}{logical; should the odd-even rule be used for filling?}
 
 \item{rule}{character string specifying the filling rule passed to
-\code{\link[graphics]{polypath}}. One of \code{"evenodd"} or
+\code{\link[graphics:polypath]{graphics::polypath()}}. One of \code{"evenodd"} or
 \code{"winding"}.}
 }
 \value{
@@ -59,9 +59,9 @@ geometry objects such as circle(), ellipse(), regPolygon() and ring()
 and further remains fully compatible with its original interface.
 #'
 For ordinary coordinate vectors the call is forwarded to
-\code{\link[graphics]{polygon}}. Geometry objects such as
-\code{\link{circle}}, \code{\link{ellipse}}, \code{\link{regPolygon}}
-and \code{\link{ring}} are dispatched to specialised methods.
+\code{\link[graphics:polygon]{graphics::polygon()}}. Geometry objects such as
+\code{\link[=circle]{circle()}}, \code{\link[=ellipse]{ellipse()}}, \code{\link[=regPolygon]{regPolygon()}}
+and \code{\link[=ring]{ring()}} are dispatched to specialised methods.
 }
 \examples{
 canvas()

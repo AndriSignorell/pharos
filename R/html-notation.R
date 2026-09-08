@@ -41,9 +41,9 @@ htmlBar <- function(x) {
 #' @name htmlSubscript
 #'
 #' @param x a character vector (the base symbol)
-#' @param i a character vector (the subscript), recycled against \code{x}
+#' @param i a character vector (the subscript), recycled against `x`
 #'
-#' @return a character vector: \code{x} followed by \verb{<sub>i</sub>}
+#' @return a character vector: `x` followed by \verb{<sub>i</sub>}
 #'
 #' @examples
 #' "x" %_% "i"  # -> "x<sub>i</sub>"

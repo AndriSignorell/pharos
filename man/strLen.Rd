@@ -12,10 +12,10 @@ strLen(x, ...)
 \item{...}{further arguments passed to \code{nchar}}
 }
 \description{
-Intuitive alias for \code{\link{nchar}}.
+Intuitive alias for \code{\link[=nchar]{nchar()}}.
 }
 \seealso{
-\code{\link[base]{nchar}}
+\code{\link[base:nchar]{base::nchar()}}
 
 \link{string-overview} for an overview of all string utilities in pharos.
 }

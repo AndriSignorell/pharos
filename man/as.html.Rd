@@ -14,7 +14,7 @@ as.html(x)
 }
 \description{
 Tags a character vector with the S3 class \code{"html"} so that it
-prints via \code{\link{preview.html}} as readable text instead of as
+prints via \code{\link[=preview.html]{preview.html()}} as readable text instead of as
 a raw character vector.
 }
 \examples{

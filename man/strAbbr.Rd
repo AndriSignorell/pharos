@@ -50,8 +50,8 @@ strAbbr(x, method = "fix")
 
 }
 \seealso{
-\code{\link[stringi]{stri_sub}},
-\code{\link[stringi]{stri_length}}
+\code{\link[stringi:stri_sub]{stringi::stri_sub()}},
+\code{\link[stringi:stri_length]{stringi::stri_length()}}
 
 \link{string-overview} for an overview of all string utilities in pharos.
 }

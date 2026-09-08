@@ -1,7 +1,7 @@
 
 #' Pad a String With Justification
 #' 
-#' \code{strPad} will fill a string x with defined characters to fit a given
+#' `strPad` will fill a string x with defined characters to fit a given
 #' length.
 #' 
 #' If a string x has more characters than width, it will be chopped on the
@@ -12,13 +12,13 @@
 #' left to NULL, it will be set to the length of the largest string in x.
 #' @param pad string to pad with. Will be repeated as often as necessary.
 #' Default is " ".
-#' @param adj adjustment of the old string, one of \code{"left"},
-#' \code{"right"}, \code{"center"}. If set to \code{"left"} the old string will
+#' @param adj adjustment of the old string, one of `"left"`,
+#' `"right"`, `"center"`. If set to `"left"` the old string will
 #' be adjusted on the left and the new characters will be filled in on the
 #' right side.
 #' @return the string
 #' 
-#' @seealso \code{\link{strAlign}}, \code{\link{strTrunc}}
+#' @seealso [strAlign()], [strTrunc()]
 #' 
 #' @examples
 #' 

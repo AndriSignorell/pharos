@@ -54,8 +54,8 @@ isValidPlotRegion(minPin = c(4, 3))
 
 }
 \seealso{
-\code{\link{par}} (entries \code{pin}, \code{fin}, \code{mar}),
-\code{\link{dev.cur}}
+\code{\link[=par]{par()}} (entries \code{pin}, \code{fin}, \code{mar}),
+\code{\link[=dev.cur]{dev.cur()}}
 
 Other graphics.layout:
 \code{\link[=abcCoords]{abcCoords()}},

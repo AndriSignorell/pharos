@@ -10,18 +10,18 @@
 #' returned, so if the rest of the string is needed, it's possible to simply
 #' enter a big number as last partlength.
 #' 
-#' \code{len} and \code{pos} can't be defined simultaneously, only
+#' `len` and `pos` can't be defined simultaneously, only
 #' alternatively.
 #' 
 #' Typical usages are \preformatted{ strChop(x, len) strChop(x, pos) } 
 #' 
 #' @param x the string to be cut in pieces
 #' @param len a vector with the lengths of the pieces
-#' @param pos a vector of cutting positions. Will be ignored when \code{len}
+#' @param pos a vector of cutting positions. Will be ignored when `len`
 #' has been defined.
 #' @return a vector with the parts of the string.
-#' @seealso \code{\link{strLeft}},
-#' \code{\link{substr}}
+#' @seealso [strLeft()],
+#' [substr()]
 
 #' @examples
 #' 

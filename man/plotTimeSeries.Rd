@@ -18,7 +18,7 @@ plotTimeSeries(
 \item{maxLag}{integer. Defines the number of lags to be displayed. The
 default is 10 * log10(length(series)).}
 
-\item{ylab}{a title for the y axis: see \code{\link{title}}.}
+\item{ylab}{a title for the y axis: see \code{\link[=title]{title()}}.}
 
 \item{main}{an overall title for the plot}
 
@@ -40,7 +40,7 @@ Rewritten based on ideas of M.Huerzeler
 plotTimeSeries(AirPassengers)
 }
 \seealso{
-\code{\link{ts}}
+\code{\link[=ts]{ts()}}
 
 Other plot.special:
 \code{\link[=plotBinaryTree]{plotBinaryTree()}},

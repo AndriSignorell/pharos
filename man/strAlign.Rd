@@ -11,9 +11,9 @@ strAlign(x, sep = "\\\\r")
 
 \item{sep}{a character specifying the alignment mode:
 \itemize{
-\item \code{"\\l"}: left alignment
-\item \code{"\\r"}: right alignment (default)
-\item \code{"\\c"}: centered alignment
+\item \code{"\\\\l"}: left alignment
+\item \code{"\\\\r"}: right alignment (default)
+\item \code{"\\\\c"}: centered alignment
 \item any other character: align at the first occurrence of this separator
 }}
 }
@@ -56,9 +56,9 @@ strAlign(z, ".")
 
 }
 \seealso{
-\code{\link[stringi]{stri_pad}},
-\code{\link[stringi]{stri_sub}},
-\code{\link[stringi]{stri_trim_right}}
+\code{\link[stringi:stri_pad]{stringi::stri_pad()}},
+\code{\link[stringi:stri_sub]{stringi::stri_sub()}},
+\code{\link[stringi:stri_trim_right]{stringi::stri_trim_right()}}
 
 \link{string-overview} for an overview of all string utilities in pharos.
 }

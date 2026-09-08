@@ -40,7 +40,7 @@ and compact the top margin.}
 
 \item{xlim, ylim}{limits for the axes.}
 
-\item{xaxt, yaxt}{axis specification passed to \code{\link[graphics]{axis}}.}
+\item{xaxt, yaxt}{axis specification passed to \code{\link[graphics:axis]{graphics::axis()}}.}
 
 \item{lty}{line type(s).}
 
@@ -57,7 +57,7 @@ and compact the top margin.}
 \item{grid}{controls drawing of the background grid. \code{.useTheme}
 (default) follows the active theme (\code{getTheme()$grid}).
 \code{TRUE}/\code{FALSE}/\code{NA}, or a named list, as for
-\code{\link[graphics]{grid}}.}
+\code{\link[graphics:grid]{graphics::grid()}}.}
 
 \item{legend}{controls the legend. \code{TRUE} (default) draws an
 inline legend via \code{textLegend} at the last value of each series.
@@ -65,9 +65,9 @@ inline legend via \code{textLegend} at the last value of each series.
 
 \item{stamp}{controls the corner stamp. \code{.useTheme} (default)
 resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/\code{NULL},
-a string, or a named list for \code{\link{stamp}()}.}
+a string, or a named list for \code{\link[=stamp]{stamp()}}.}
 
-\item{...}{additional graphical parameters passed to \code{\link[graphics]{par}}
+\item{...}{additional graphical parameters passed to \code{\link[graphics:par]{graphics::par()}}
 via \code{.applyParFromDots()} and to the plotting functions.}
 }
 \value{
@@ -79,7 +79,7 @@ Invisibly returns a list containing:
 }
 }
 \description{
-Draws one or several line series using \code{\link[graphics]{matplot}}.
+Draws one or several line series using \code{\link[graphics:matplot]{graphics::matplot()}}.
 The function accepts either a matrix of values or separate \code{x} and
 \code{y} coordinates and supports optional point symbols, grid lines,
 and an automatically positioned legend.

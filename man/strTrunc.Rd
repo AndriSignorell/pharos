@@ -26,7 +26,7 @@ The string(s) passed as \samp{x} now with a maximum length of
 \description{
 Truncates one or more strings to a specified length, adding an ellipsis
 (...)  to those strings that have been truncated. The truncation can also be
-performed using word boundaries.  Use \code{\link{strAlign}()} to justify
+performed using word boundaries.  Use \code{\link[=strAlign]{strAlign()}} to justify
 the strings if needed.
 }
 \examples{
@@ -50,7 +50,7 @@ for(i in 0:20)
 
 }
 \seealso{
-\code{\link{strAlign}}, \code{\link{strPad}}
+\code{\link[=strAlign]{strAlign()}}, \code{\link[=strPad]{strPad()}}
 
 \link{string-overview} for an overview of all string utilities in pharos.
 }

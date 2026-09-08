@@ -2,21 +2,21 @@
 #' Preview an Object
 #'
 #' Generic function for an explicit, on-demand preview of an object, as
-#' distinct from \code{print()}. \code{preview()} exists for object types
-#' where \code{print()} is shared with another package's S3 generic
-#' dispatch (e.g. class \code{"html"}, used both by \pkg{pharos} and
+#' distinct from `print()`. `preview()` exists for object types
+#' where `print()` is shared with another package's S3 generic
+#' dispatch (e.g. class `"html"`, used both by \pkg{pharos} and
 #' \pkg{htmltools} for genuinely different purposes), so that registering
-#' an own \code{print.*} method would silently overwrite - or be
+#' an own `print.*` method would silently overwrite - or be
 #' overwritten by - the other package's behaviour.
 #'
 #' @param x object to preview.
 #' @param ... further arguments passed to methods.
 #'
 #' @details
-#' The default method simply calls \code{print()}, so \code{preview()} is
+#' The default method simply calls `print()`, so `preview()` is
 #' always safe to call even for types with no dedicated method.
 #'
-#' @seealso \code{\link{as.html}}
+#' @seealso [as.html()]
 #'
 
 #' @family graphics.utils  
@@ -37,7 +37,7 @@ preview.default <- function(x, ...) {
 
 #' Print HTML markup as readable text
 #'
-#' Renders an \code{"html"} object as text in the console: tags are
+#' Renders an `"html"` object as text in the console: tags are
 #' stripped or translated (\verb{<sub>}/\verb{<sup>} become
 #' \verb{_}/\verb{^}, \verb{<b>}/\verb{<strong>}/\verb{<i>}/\verb{<em>}
 #' become bold/italic via ANSI codes), common HTML entities
@@ -47,11 +47,11 @@ preview.default <- function(x, ...) {
 #' If output does not support ANSI styling, bold/italic markup is
 #' rendered as plain text (handled automatically by \pkg{cli}).
 #'
-#' @param x an object of class \code{"html"}
+#' @param x an object of class `"html"`
 #' @param ... further arguments, currently unused (kept for
-#'   consistency with \code{\link{print}})
+#'   consistency with [print()])
 #'
-#' @return \code{x}, invisibly
+#' @return `x`, invisibly
 #'
 #' @export
 preview.html <- function(x, ...) {

@@ -20,7 +20,7 @@ an object of class \code{c("html", "character")}
 Turns a file into a download link that carries the file with it: the
 contents travel base64-encoded inside the \code{href}, so the resulting
 HTML needs no server and no accompanying assets. The counterpart of
-\code{\link{as.img}} for non-image files -- a data set next to a table,
+\code{\link[=as.img]{as.img()}} for non-image files -- a data set next to a table,
 a script next to its output.
 }
 \details{

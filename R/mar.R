@@ -1,21 +1,21 @@
 
 #' Get or set plot margins conveniently
 #'
-#' Convenience wrapper around \code{\link[graphics]{par}} for getting and setting
-#' plot margins (\code{mar}) or outer margins (\code{oma}). Individual sides can
+#' Convenience wrapper around [graphics::par()] for getting and setting
+#' plot margins (`mar`) or outer margins (`oma`). Individual sides can
 #' be modified without affecting the others.
 #'
 #' @param bottom,left,top,right numeric scalars specifying the margin size
-#'   (in lines) for each side. If \code{NULL}, the current value is retained.
-#' @param outer logical; if \code{TRUE}, outer margins (\code{oma}) are used
-#'   instead of inner margins (\code{mar}).
+#'   (in lines) for each side. If `NULL`, the current value is retained.
+#' @param outer logical; if `TRUE`, outer margins (`oma`) are used
+#'   instead of inner margins (`mar`).
 #'
 #' @return
 #' If no arguments are provided, returns the current margin vector (numeric of length 4).
 #' Otherwise, sets the margins and returns the new values invisibly.
 #'
 #' @details
-#' This function simplifies partial updates of \code{par("mar")} or \code{par("oma")}.
+#' This function simplifies partial updates of `par("mar")` or `par("oma")`.
 #' It avoids the need to manually query and reconstruct the full margin vector.
 #'
 #' For restoring graphical parameters, the recommended base R approach is:

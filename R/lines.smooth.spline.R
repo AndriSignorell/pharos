@@ -3,10 +3,10 @@
 #'
 #' Fit a smoothing spline and optionally add confidence bands.
 #'
-#' Confidence bands are controlled via \code{bandArgs}. These arguments can be:
+#' Confidence bands are controlled via `bandArgs`. These arguments can be:
 #' \itemize{
-#'   \item \code{FALSE}, \code{NULL} or \code{NA}: suppress the band
-#'   \item \code{TRUE}: draw the band with default settings
+#'   \item `FALSE`, `NULL` or `NA`: suppress the band
+#'   \item `TRUE`: draw the band with default settings
 #'   \item a named list: customize the band appearance and confidence level
 #' }
 #'
@@ -14,17 +14,17 @@
 #' @aliases lines.splineX lines.SplineX
 #' @inheritParams Formulas
 #' @param weights optional vector of weights of the same length as x.
-#' @param x spline object returned by \code{splineX()}.
+#' @param x spline object returned by `splineX()`.
 #' @param col line color of the smoother.
 #' @param lwd line width.
 #' @param lty line type.
-#' @param type plotting type passed to \code{\link{lines}}.
-#' @param bandArgs controls the confidence band. May be \code{TRUE},
-#'   \code{FALSE}, \code{NULL}, \code{NA}, or a named list. The confidence
-#'   level is specified via \code{conf.level}. Default is
-#'   \code{list(conf.level = 0.95)}.
+#' @param type plotting type passed to [lines()].
+#' @param bandArgs controls the confidence band. May be `TRUE`,
+#'   `FALSE`, `NULL`, `NA`, or a named list. The confidence
+#'   level is specified via `conf.level`. Default is
+#'   `list(conf.level = 0.95)`.
 #' @param \dots further arguments passed to
-#'   \code{\link[stats:smooth.spline]{smooth.spline}}.
+#'   [stats::smooth.spline()].
 #'
 #' @examples
 #' op <- par(no.readonly = TRUE)
@@ -51,7 +51,7 @@
 #'
 #' par(op)
 #'
-#' @seealso \code{\link{loess}}, \code{\link{scatter.smooth}}
+#' @seealso [loess()], [scatter.smooth()]
 #'
 #' @family graphics.trendlines  
 #' @concept regression

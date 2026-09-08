@@ -12,9 +12,9 @@ the template.}
 
 \item{template}{character string as template for the desired format.
 \%s are the placeholders for the numerical values. Default
-is \verb{\code{"\%s [\%s, \%s]"}} for \verb{<est> [<lci>, <uci>]}.}
+is \verb{`"\%s [\%s, \%s]"`} for \verb{<est> [<lci>, <uci>]}.}
 
-\item{\dots}{the dots are passed on to the \code{\link{fm}()} function.}
+\item{\dots}{the dots are passed on to the \code{\link[=fm]{fm()}} function.}
 }
 \value{
 a formatted string
@@ -38,7 +38,7 @@ tapply(warpbreaks$breaks, warpbreaks$wool,
 
 }
 \seealso{
-\code{\link{fm}}
+\code{\link[=fm]{fm()}}
 
 Other format:
 \code{\link[=convUnit]{convUnit()}},

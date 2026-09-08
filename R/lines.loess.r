@@ -2,28 +2,28 @@
 #' Add a Loess Smoother and Its Confidence Band
 #'
 #' Add a loess smoother to an existing plot. The function first calculates
-#' predictions from a \code{loess} object and then adds the fitted smoother
+#' predictions from a `loess` object and then adds the fitted smoother
 #' together with an optional confidence band.
 #'
-#' The confidence band is controlled via \code{bandArgs}. This argument may be:
+#' The confidence band is controlled via `bandArgs`. This argument may be:
 #' \itemize{
-#'   \item \code{FALSE}, \code{NULL} or \code{NA}: suppress the band
-#'   \item \code{TRUE}: draw the band with default settings
+#'   \item `FALSE`, `NULL` or `NA`: suppress the band
+#'   \item `TRUE`: draw the band with default settings
 #'   \item a named list: customize the band appearance and confidence level
 #' }
 #'
-#' @param x a fitted \code{\link{loess}} object.
-#' @param col line color of the smoother. \code{.useTheme} (default)
-#'   resolves to \code{getTheme()$twin[1]} - the first of the theme's
+#' @param x a fitted [loess()] object.
+#' @param col line color of the smoother. `.useTheme` (default)
+#'   resolves to `getTheme()$twin[1]` - the first of the theme's
 #'   two-color pair (see [theme]).
 #' @param lwd line width.
 #' @param lty line type.
-#' @param type plotting type passed to \code{\link{lines}}.
+#' @param type plotting type passed to [lines()].
 #' @param n number of points used for plotting the fit.
-#' @param bandArgs controls the confidence band. May be \code{TRUE},
-#'   \code{FALSE}, \code{NULL}, \code{NA}, or a named list. The confidence
-#'   level is specified via \code{conf.level}. Default is
-#'   \code{list(conf.level = 0.95)}.
+#' @param bandArgs controls the confidence band. May be `TRUE`,
+#'   `FALSE`, `NULL`, `NA`, or a named list. The confidence
+#'   level is specified via `conf.level`. Default is
+#'   `list(conf.level = 0.95)`.
 #' @param \dots currently ignored.
 #'
 #' @note Loess can result in substantial computational load for large datasets.
@@ -45,8 +45,8 @@
 #'   )
 #' )
 #'
-#' @seealso \code{\link{loess}}, \code{\link{scatter.smooth}},
-#'   \code{\link{smooth.spline}}
+#' @seealso [loess()], [scatter.smooth()],
+#'   [smooth.spline()]
 #' @family graphics.trendlines  
 #'
 #' @method lines loess

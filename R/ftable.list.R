@@ -2,24 +2,24 @@
 #' Flat Contingency Table for tapply-Like Lists
 #'
 #' Creates a flat contingency table from a list array, such as the result of
-#' \code{\link{tapply}} when the applied function returns a named vector.
+#' [tapply()] when the applied function returns a named vector.
 #'
 #' Each list element is expanded into an additional dimension corresponding to
 #' the names of the returned vector. The resulting array is then passed to
-#' \code{\link{ftable}}.
+#' [ftable()].
 #'
 #' This is particularly useful for displaying multi-dimensional summaries such
-#' as confidence intervals returned by \code{meanCI()}, where each cell contains
+#' as confidence intervals returned by `meanCI()`, where each cell contains
 #' several statistics (e.g. estimate, lower CI, upper CI).
 #'
-#' @param x A list with a \code{dim} attribute, typically produced by
-#'   \code{\link{tapply}}. Each element must be a vector of equal length and
+#' @param x A list with a `dim` attribute, typically produced by
+#'   [tapply()]. Each element must be a vector of equal length and
 #'   have identical names.
-#' @param row.vars row variables passed to \code{\link{ftable}}.
-#'   Defaults to all dimensions except those specified in \code{col.vars}.
-#' @param col.vars column variables passed to \code{\link{ftable}}.
+#' @param row.vars row variables passed to [ftable()].
+#'   Defaults to all dimensions except those specified in `col.vars`.
+#' @param col.vars column variables passed to [ftable()].
 #'   Defaults to the dimension created from the names of the list elements.
-#' @param ... further arguments passed to \code{\link{ftable}}.
+#' @param ... further arguments passed to [ftable()].
 #'
 #' @details
 #' The names of the vectors stored in the list elements become an additional
@@ -27,7 +27,7 @@
 #' in the columns of the flat contingency table.
 #'
 #' @return
-#' An object of class \code{"ftable"}.
+#' An object of class `"ftable"`.
 #'
 #' @examples
 #' \dontrun{
@@ -53,8 +53,8 @@
 #' }
 #'
 #' @seealso
-#' \code{\link{tapply}},
-#' \code{\link{ftable}}
+#' [tapply()],
+#' [ftable()]
 #'
 
 

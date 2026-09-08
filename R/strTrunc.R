@@ -3,22 +3,22 @@
 #' 
 #' Truncates one or more strings to a specified length, adding an ellipsis
 #' (...)  to those strings that have been truncated. The truncation can also be
-#' performed using word boundaries.  Use \code{\link{strAlign}()} to justify
+#' performed using word boundaries.  Use [strAlign()] to justify
 #' the strings if needed.
 #' 
 #' 
 #' @param x a vector of strings
 #' @param maxlen the maximum length of the returned strings (NOT counting the
-#' appended ellipsis). \code{maxlen} is recycled.
+#' appended ellipsis). `maxlen` is recycled.
 #' @param ellipsis the string to be appended, if the string is longer than the
-#' given maximal length. The default is \code{"..."}.
+#' given maximal length. The default is `"..."`.
 #' @param wbound logical. Determines if the maximal length should be reduced to
 #' the next smaller word boundary and so words are not chopped. Default is
-#' \code{FALSE}.
+#' `FALSE`.
 #' @return The string(s) passed as \samp{x} now with a maximum length of
 #' \samp{maxlen} + 3 (for the ellipsis).
 #' 
-#' @seealso \code{\link{strAlign}}, \code{\link{strPad}}
+#' @seealso [strAlign()], [strPad()]
 #' 
 #' @examples
 #' 

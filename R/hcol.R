@@ -4,9 +4,9 @@
 #' Retrieve one or more colors from the helsana palette.
 #'
 #' @param ... character strings naming the colors to retrieve. Valid names are:
-#'   \code{"blue"}, \code{"red"}, \code{"orange"}, \code{"yellow"},
-#'   \code{"ecru"}, \code{"green"}, \code{"pink"}, \code{"moss"},
-#'   \code{"slate"}, \code{"sand"}, \code{"brown"}, \code{"plum"}.
+#'   `"blue"`, `"red"`, `"orange"`, `"yellow"`,
+#'   `"ecru"`, `"green"`, `"pink"`, `"moss"`,
+#'   `"slate"`, `"sand"`, `"brown"`, `"plum"`.
 #'   If none are provided, the full palette is returned.
 #'
 #' @return A named character vector of hex color codes.

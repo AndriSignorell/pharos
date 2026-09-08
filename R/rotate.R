@@ -7,7 +7,7 @@
 #' @param x,y vectors containing the coordinates of the vertices of the polygon
 #' , which has to be rotated.  The coordinates can be passed in a plotting
 #' structure (a list with x and y components), a two-column matrix, .... See
-#' \code{\link{xy.coords}}. 
+#' [xy.coords()]. 
 #' @param mx,my xy-coordinates of the center of the rotation. If left to NULL,
 #' the centroid of the structure will be used. 
 #' @param theta angle of the rotation 
@@ -17,8 +17,8 @@
 #' @return The function invisibly returns a list of the coordinates for the
 #' rotated shape(s). 
 #' 
-#' @seealso \code{\link{polygon}}, \code{\link{regPolygon}},
-#' \code{\link{ellipse}}, \code{\link{arc}} 
+#' @seealso [polygon()], [regPolygon()],
+#' [ellipse()], [arc()] 
 
 
 #' @examples

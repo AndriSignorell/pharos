@@ -1,126 +1,126 @@
 
 
-#' Plot Method for Categorical-Categorical \code{Desc} Objects
+#' Plot Method for Categorical-Categorical `Desc` Objects
 #'
 #' Visualises a (two-dimensional) cross-tabulation, as computed by
-#' \code{DescToolsX::desc()} for a categorical/categorical pair.
+#' `DescToolsX::desc()` for a categorical/categorical pair.
 #' Four panel types are available, selectable (and combinable) via
-#' \code{which}. Higher-dimensional tables (more than two margins) are not
+#' `which`. Higher-dimensional tables (more than two margins) are not
 #' supported; a message is issued and the call returns invisibly.
 #'
-#' @param x an object of class \code{"Desc.table"}, as returned by
-#'   \code{DescToolsX::desc()} for a categorical-categorical pair.
+#' @param x an object of class `"Desc.table"`, as returned by
+#'   `DescToolsX::desc()` for a categorical-categorical pair.
 #'
-#' @param main main title. \code{NULL} (default) derives a title per panel
-#'   from \code{x$meta$xname} (the deparsed expression originally passed to
-#'   \code{desc()}, e.g. \code{"table(Pizza$area, Pizza$driver)"}) combined
+#' @param main main title. `NULL` (default) derives a title per panel
+#'   from `x$meta$xname` (the deparsed expression originally passed to
+#'   `desc()`, e.g. `"table(Pizza$area, Pizza$driver)"`) combined
 #'   with a panel-type label for context when multiple panels are shown
-#'   (e.g. \code{"table(Pizza$area, Pizza$driver) (Spineplot)"}). There is
-#'   no \code{y ~ x} pair to draw on here - \code{x$meta} carries only a
-#'   single \code{xname}, since a table built outside a two-sided formula
-#'   has no separately named "x" and "y" variable. \code{""}, \code{NA},
-#'   or \code{FALSE} suppress the title and compact the top margin. Any
+#'   (e.g. `"table(Pizza$area, Pizza$driver) (Spineplot)"`). There is
+#'   no `y ~ x` pair to draw on here - `x$meta` carries only a
+#'   single `xname`, since a table built outside a two-sided formula
+#'   has no separately named "x" and "y" variable. `""`, `NA`,
+#'   or `FALSE` suppress the title and compact the top margin. Any
 #'   other string is used as-is, identically for every selected panel.
-#' @param ylab y-axis label. \code{NULL} (default) leaves the panel's own
+#' @param ylab y-axis label. `NULL` (default) leaves the panel's own
 #'   default in place (typically empty/unlabeled, since the row dimension
-#'   of a table built via e.g. \code{table(a, b)} usually has no name
-#'   carried in \code{x$meta}). Supplying a value overrides this for every
+#'   of a table built via e.g. `table(a, b)` usually has no name
+#'   carried in `x$meta`). Supplying a value overrides this for every
 #'   selected panel.
 #'
 #' @param which integer vector selecting one or more panels to draw, in the
 #'   given order. One or more of:
 #'   \describe{
-#'     \item{\code{1}}{Spineplot (\code{\link[graphics]{spineplot}}).
+#'     \item{`1`}{Spineplot ([graphics::spineplot()]).
 #'       Default.}
-#'     \item{\code{2}}{Mosaic plot (via \code{\link{plotMosaic}}).}
-#'     \item{\code{3}}{Mosaic plot (swapped axis).}
-#'     \item{\code{4}}{Association plot (Cohen-Friendly plot) via
-#'       \code{\link{plotAssoc}}.}
-#'     \item{\code{5}}{Heatmap of cell proportions (via
-#'       \code{\link{plotHeatmap}}, \code{scale = "prop"}).}
+#'     \item{`2`}{Mosaic plot (via [plotMosaic()]).}
+#'     \item{`3`}{Mosaic plot (swapped axis).}
+#'     \item{`4`}{Association plot (Cohen-Friendly plot) via
+#'       [plotAssoc()].}
+#'     \item{`5`}{Heatmap of cell proportions (via
+#'       [plotHeatmap()], `scale = "prop"`).}
 #'   }
 #'   Selecting multiple panels does not change the plotting layout (no
-#'   implicit \code{mfrow}) - as with other \code{plot.Desc.*} methods,
+#'   implicit `mfrow`) - as with other `plot.Desc.*` methods,
 #'   arranging multiple panels on one device is left to the caller (e.g.
-#'   \code{par(mfrow = c(2, 1))} beforehand).
+#'   `par(mfrow = c(2, 1))` beforehand).
 #' @param verbose integer; currently computed from
-#'   \code{x$meta$verbose}/\code{getOption("DescTools.verbose")} for
-#'   consistency with other \code{plot.Desc.*} methods, but not yet
-#'   consulted to pick a default \code{which}.
+#'   `x$meta$verbose`/`getOption("DescTools.verbose")` for
+#'   consistency with other `plot.Desc.*` methods, but not yet
+#'   consulted to pick a default `which`.
 #'
-#' @param col color specification. \code{.useTheme} (default) resolves a
+#' @param col color specification. `.useTheme` (default) resolves a
 #'   panel-appropriate default rather than one shared color, since fill
 #'   ramps, diverging palettes, and sequential heat scales are different
 #'   things:
 #'   \describe{
-#'     \item{panel 1}{a grey ramp from \code{"grey30"} to \code{"grey90"},
-#'       sized to the number of rows of \code{tab} - the panel draws
-#'       \code{spineplot(t(tab))}, so the stacked (filled) dimension is the
-#'       row dimension of \code{tab}, not its columns (not theme-driven by
+#'     \item{panel 1}{a grey ramp from `"grey30"` to `"grey90"`,
+#'       sized to the number of rows of `tab` - the panel draws
+#'       `spineplot(t(tab))`, so the stacked (filled) dimension is the
+#'       row dimension of `tab`, not its columns (not theme-driven by
 #'       design, to keep the unordered category fill neutral).}
-#'     \item{panel 2}{a grey ramp from \code{"grey30"} to \code{"grey90"},
-#'       sized to the number of columns of \code{tab} (the fill dimension
-#'       of the untransposed mosaic), passed to \code{\link{plotMosaic}}.}
-#'     \item{panel 3}{a grey ramp from \code{"grey30"} to \code{"grey90"},
-#'       sized to the number of rows of \code{tab} - with
-#'       \code{swap = TRUE} the fill dimension is the row dimension,
-#'       passed to \code{\link{plotMosaic}}.}
-#'     \item{panel 4}{left at \code{\link{plotAssoc}}'s own default
-#'       (\code{pal("red-white-blue-3", n = 100)}), a diverging palette - cell
+#'     \item{panel 2}{a grey ramp from `"grey30"` to `"grey90"`,
+#'       sized to the number of columns of `tab` (the fill dimension
+#'       of the untransposed mosaic), passed to [plotMosaic()].}
+#'     \item{panel 3}{a grey ramp from `"grey30"` to `"grey90"`,
+#'       sized to the number of rows of `tab` - with
+#'       `swap = TRUE` the fill dimension is the row dimension,
+#'       passed to [plotMosaic()].}
+#'     \item{panel 4}{left at [plotAssoc()]'s own default
+#'       (`pal("red-white-blue-3", n = 100)`), a diverging palette - cell
 #'       colors there encode the sign and strength of Pearson residuals, so
 #'       a categorical or grey-ramp default would not be meaningful. Supplying
-#'       \code{col} overrides this with the diverging palette of the user's
+#'       `col` overrides this with the diverging palette of the user's
 #'       choice.}
-#'     \item{panel 5}{left at \code{\link{plotHeatmap}}'s own default
-#'       (\code{pal("Blues", n = 100)}), a sequential ramp - cell colors
-#'       there encode magnitude only. Supplying \code{col} overrides this.}
+#'     \item{panel 5}{left at [plotHeatmap()]'s own default
+#'       (`pal("Blues", n = 100)`), a sequential ramp - cell colors
+#'       there encode magnitude only. Supplying `col` overrides this.}
 #'   }
-#'   Supplying \code{col} explicitly overrides the default uniformly for
+#'   Supplying `col` explicitly overrides the default uniformly for
 #'   every selected panel.
-#' @param box controls the plot frame. \code{.useTheme} (default) follows
-#'   the active theme (\code{getTheme()$box}); \code{FALSE}/\code{NA}
+#' @param box controls the plot frame. `.useTheme` (default) follows
+#'   the active theme (`getTheme()$box`); `FALSE`/`NA`
 #'   suppress it; a named list overrides frame-drawing arguments.
 #'   \describe{
-#'     \item{panel 1}{has no effect - \code{spineplot()} always draws its
+#'     \item{panel 1}{has no effect - `spineplot()` always draws its
 #'       native frame unconditionally, with no toggle to override it.}
-#'     \item{panels 2/3}{\code{\link{plotMosaic}} always draws its own
+#'     \item{panels 2/3}{[plotMosaic()] always draws its own
 #'       frame; this argument has no effect.}
-#'     \item{panel 4}{\code{\link{plotAssoc}} has no frame/box concept of
+#'     \item{panel 4}{[plotAssoc()] has no frame/box concept of
 #'       its own (it draws dashed reference lines instead); this argument
 #'       has no effect.}
-#'     \item{panel 5}{forwarded as-is to \code{\link{plotHeatmap}}'s own
-#'       \code{box} argument, which draws the outer frame via
-#'       \code{rect()} at the exact tile boundaries rather than
-#'       \code{\link[graphics]{box}()}.}
+#'     \item{panel 5}{forwarded as-is to [plotHeatmap()]'s own
+#'       `box` argument, which draws the outer frame via
+#'       `rect()` at the exact tile boundaries rather than
+#'       [graphics::box()].}
 #'   }
 #'
-#' @param stamp controls the corner stamp. \code{.useTheme} (default)
-#'   resolves to \code{getTheme()$stamp}, drawn once after all selected
-#'   panels. Panels 2-5 delegate to \code{\link{plotMosaic}}/
-#'   \code{\link{plotAssoc}}/\code{\link{plotHeatmap}}, whose own
-#'   \code{stamp} argument is set to \code{NA} internally to avoid a
-#'   duplicate. \code{TRUE}/\code{FALSE}/\code{NULL}, a string, or a
-#'   named list for \code{\link{stamp}()}.
+#' @param stamp controls the corner stamp. `.useTheme` (default)
+#'   resolves to `getTheme()$stamp`, drawn once after all selected
+#'   panels. Panels 2-5 delegate to [plotMosaic()]/
+#'   [plotAssoc()]/[plotHeatmap()], whose own
+#'   `stamp` argument is set to `NA` internally to avoid a
+#'   duplicate. `TRUE`/`FALSE`/`NULL`, a string, or a
+#'   named list for [stamp()].
 #'
-#' @param ... further graphical parameters, passed to \code{\link{par}} via
+#' @param ... further graphical parameters, passed to [par()] via
 #'   the internal framework and to the underlying panel-drawing functions
-#'   (\code{spineplot()}, \code{\link{plotMosaic}}, \code{\link{plotAssoc}},
-#'   or \code{\link{plotHeatmap}}, depending on the selected panel).
+#'   (`spineplot()`, [plotMosaic()], [plotAssoc()],
+#'   or [plotHeatmap()], depending on the selected panel).
 #'
 #' @details
 #' The left margin is sized automatically from the longest of: the y-axis
-#' label, and - for panels 1/2 - the row names of \code{tab} drawn as
-#' axis tick labels, so neither is ever clipped regardless of \code{which}.
+#' label, and - for panels 1/2 - the row names of `tab` drawn as
+#' axis tick labels, so neither is ever clipped regardless of `which`.
 #'
-#' Only two-dimensional tables are supported. If \code{x} carries a table
+#' Only two-dimensional tables are supported. If `x` carries a table
 #' with more than two margins, a message is issued and the function returns
 #' invisibly without drawing anything.
 #'
-#' @return Invisibly returns \code{x}.
+#' @return Invisibly returns `x`.
 #'
-#' @seealso \code{DescToolsX::desc}, \code{\link{plotAssoc}},
-#'   \code{\link{plotHeatmap}}, \code{\link{plotMosaic}},
-#'   \code{\link[graphics]{spineplot}}
+#' @seealso `DescToolsX::desc`, [plotAssoc()],
+#'   [plotHeatmap()], [plotMosaic()],
+#'   [graphics::spineplot()]
 #'
 #' @family plot.s3  
 #' @concept frequency-table

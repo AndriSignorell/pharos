@@ -16,16 +16,16 @@ compatibility with the earlier form of this function.}
 \item{res}{nominal resolution in dpi, which also scales the text: raise
 it for a larger picture with the same relative proportions}
 
-\item{...}{further arguments passed to \code{\link[grDevices]{png}}}
+\item{...}{further arguments passed to \code{\link[grDevices:png]{grDevices::png()}}}
 }
 \value{
 an object of class \code{c("html", "character")} containing an
-\verb{<img>} tag with a \code{data:image/png;base64,...} source
+\verb{<img>} tag with a \verb{data:image/png;base64,...} source
 }
 \description{
 Evaluates a plotting expression in a temporary PNG device and returns
 the resulting image as a self-contained, base64-encoded \verb{<img>}
-tag (class \code{"html"}, see \code{\link{as.html}}), suitable for
+tag (class \code{"html"}, see \code{\link[=as.html]{as.html()}}), suitable for
 embedding directly in HTML text -- a report, a question, an e-mail.
 }
 \details{

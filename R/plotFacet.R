@@ -8,23 +8,23 @@
 #' height, as the strip space is reserved separately in the layout.
 #'
 #' The available device area inside the outer margins is partitioned with
-#' \code{\link{layout}} such that all plot regions have exactly the same
+#' [layout()] such that all plot regions have exactly the same
 #' size in inches. The horizontal gap between two adjacent columns is
-#' \code{horiz} margin lines, the vertical gap between two adjacent rows is
-#' \code{vert} lines. Since margin lines have the same physical size in
-#' both directions, \code{horiz == vert} yields visually equal gaps.
+#' `horiz` margin lines, the vertical gap between two adjacent rows is
+#' `vert` lines. Since margin lines have the same physical size in
+#' both directions, `horiz == vert` yields visually equal gaps.
 #'
 #' @section Bound and free scales:
 #' By default all panels share one coordinate system, and the axes are
 #' drawn on the outer panels only - the arrangement that makes small
 #' multiples comparable at a glance.
 #'
-#' Passing \code{xlim = "free"} - or a list of limits, for control over
+#' Passing `xlim = "free"` - or a list of limits, for control over
 #' the individual panels - frees that dimension:
 #' every panel gets its own limits, and with them its own axis, because an
 #' outer axis would no longer describe the panels above or beside it.
 #' The layout answers for this - a freed dimension reserves the full
-#' \code{mar} on every panel edge that now carries annotation, not just on
+#' `mar` on every panel edge that now carries annotation, not just on
 #' the outer ones, so the panels stay equal in size and the tick labels
 #' have room.
 #'
@@ -33,82 +33,82 @@
 #' model against different predictors - the residual scale is shared and
 #' worth comparing, the predictor scales are not commensurable at all.
 #'
-#' The strip is drawn with \code{\link{titleRect}} above each panel. Its
-#' height (\code{line} argument of \code{titleRect}) is reserved in the top
+#' The strip is drawn with [titleRect()] above each panel. Its
+#' height (`line` argument of `titleRect`) is reserved in the top
 #' margin of every panel, so the strip never eats into the gap between the
 #' rows.
 #'
-#' Note that \code{\link{plot.new}} silently reduces \code{cex} (and with
-#' it \code{csi}, the physical size of a margin line) in layouts with more
+#' Note that [plot.new()] silently reduces `cex` (and with
+#' it `csi`, the physical size of a margin line) in layouts with more
 #' than two regions, which would make the realized panel margins deviate
 #' from the computed layout. The function therefore controls the character
-#' size deterministically via its \code{cex} argument and sets the panel
-#' margins in inches (\code{mai}/\code{omi}), so that all plot regions are
+#' size deterministically via its `cex` argument and sets the panel
+#' margins in inches (`mai`/`omi`), so that all plot regions are
 #' exactly equal in size.
 #'
 #' @param samples a list of samples, each a list (or data.frame) with
-#'   components \code{x} and \code{y}.
+#'   components `x` and `y`.
 #' @param dim integer vector of length 2, the number of rows and columns
-#'   of the panel matrix, \code{c(nrow, ncol)}.
+#'   of the panel matrix, `c(nrow, ncol)`.
 #' @param panelFun the panel function, called per panel as
-#'   \code{panelFun(x, y, col, pch, ...)} with a fully set up coordinate
-#'   system. Components of a sample beyond \code{x} and \code{y} are
+#'   `panelFun(x, y, col, pch, ...)` with a fully set up coordinate
+#'   system. Components of a sample beyond `x` and `y` are
 #'   passed on under their own names, so a panel can carry per-panel data
 #'   of its own - confidence bounds, weights, labels. They are only passed
-#'   to a \code{panelFun} that can accept them (a matching formal, or
-#'   \code{...}), so panel functions written for the two-component form
+#'   to a `panelFun` that can accept them (a matching formal, or
+#'   `...`), so panel functions written for the two-component form
 #'   keep working unchanged.
 #' @param cols the colors for the panels, recycled to the number of
-#'   samples. Default is \code{hcl.colors(n, "Dark 3")}.
+#'   samples. Default is `hcl.colors(n, "Dark 3")`.
 #' @param stripLabels the labels for the panel strips. Default is
-#'   \code{names(samples)} where the samples are named, otherwise the
-#'   sequence along \code{samples}.
+#'   `names(samples)` where the samples are named, otherwise the
+#'   sequence along `samples`.
 #' @param main the main title, placed in the outer margin.
 #' @param xlab,ylab the axis labels, placed in the outer margins.
 #' @param xlim,ylim the axis limits. A numeric vector of length 2 (or
-#'   \code{NULL}, the default, for the range over all samples) binds every
-#'   panel to the same scale. \code{"free"} gives each panel its own
-#'   scale, taken from its own sample. A \emph{list} of length 2 vectors,
+#'   `NULL`, the default, for the range over all samples) binds every
+#'   panel to the same scale. `"free"` gives each panel its own
+#'   scale, taken from its own sample. A *list* of length 2 vectors,
 #'   one per sample, does the same with limits you choose; a list of
 #'   length 1 is recycled. See the section on free scales.
 #' @param mar the margins around the whole panel matrix in lines,
-#'   \code{c(bottom, left, top, right)}. The bottom and left margins hold
+#'   `c(bottom, left, top, right)`. The bottom and left margins hold
 #'   the axis annotation of the outer panels.
-#' @param oma the outer margins in lines, holding \code{xlab}, \code{ylab}
-#'   and \code{main}.
+#' @param oma the outer margins in lines, holding `xlab`, `ylab`
+#'   and `main`.
 #' @param horiz the horizontal gap between adjacent columns in margin
 #'   lines.
 #' @param vert the vertical gap between adjacent rows in margin lines.
-#'   Default is \code{horiz}, yielding physically equal gaps.
+#'   Default is `horiz`, yielding physically equal gaps.
 #' @param strip controls the panel strips, evaluated by
-#'   [bedrock::callIf]: \code{TRUE} (default) draws strips with default
-#'   settings, \code{FALSE}/\code{NULL}/\code{NA} suppresses them (no
+#'   [bedrock::callIf]: `TRUE` (default) draws strips with default
+#'   settings, `FALSE`/`NULL`/`NA` suppresses them (no
 #'   space is reserved), a named list is passed as arguments to
-#'   \code{\link{titleRect}}, e.g.
-#'   \code{list(bg = "steelblue", col = "white", line = 1.5)}. The
-#'   \code{label} argument is set per panel from \code{stripLabels} and
+#'   [titleRect()], e.g.
+#'   `list(bg = "steelblue", col = "white", line = 1.5)`. The
+#'   `label` argument is set per panel from `stripLabels` and
 #'   cannot be overridden.
 #' @param bg the background color of the plot regions.
 #' @param grid controls the grid lines, evaluated by [bedrock::callIf]:
-#'   \code{TRUE} (default) draws grid lines at the positions of
-#'   \code{\link{axTicks}} with default settings
-#'   (\code{col = "grey85", lwd = 0.8}), \code{FALSE}/\code{NULL}/\code{NA}
+#'   `TRUE` (default) draws grid lines at the positions of
+#'   [axTicks()] with default settings
+#'   (`col = "grey85", lwd = 0.8`), `FALSE`/`NULL`/`NA`
 #'   suppresses them, a named list is passed as arguments to
-#'   \code{\link{abline}}, e.g. \code{list(col = "white", lty = "dotted")}.
-#'   The default positions \code{v} and \code{h} can be overridden, e.g.
-#'   \code{list(v = seq(0, 20, 5))}.
+#'   [abline()], e.g. `list(col = "white", lty = "dotted")`.
+#'   The default positions `v` and `h` can be overridden, e.g.
+#'   `list(v = seq(0, 20, 5))`.
 #' @param cex the character expansion used inside the panels (axis
 #'   annotation, strip labels, panel content) and as unit for the panel
 #'   margin lines. Default is 0.66, matching R's own reduction in
 #'   multi-figure layouts. Set deterministically after each
-#'   \code{plot.new()}, see Details.
-#' @param pch the plotting character, passed to \code{panelFun}.
-#' @param \dots the dots are passed to \code{panelFun}.
+#'   `plot.new()`, see Details.
+#' @param pch the plotting character, passed to `panelFun`.
+#' @param \dots the dots are passed to `panelFun`.
 #'
 #' @return Invisibly returns a list with the realized geometry:
-#'   \code{horiz}, \code{vert}, \code{strip_line} (reserved strip height
-#'   in lines) and the common plot region size \code{plot_width_in},
-#'   \code{plot_height_in} in inches.
+#'   `horiz`, `vert`, `strip_line` (reserved strip height
+#'   in lines) and the common plot region size `plot_width_in`,
+#'   `plot_height_in` in inches.
 #'
 #' @examples
 #' samples <- lapply(split(ChickWeight, ChickWeight$Chick)[1:25],

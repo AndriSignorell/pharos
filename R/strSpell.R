@@ -5,28 +5,28 @@
 #'
 #' @param x a character vector (typically of length 1)
 #' @param upr character string used as a prefix for uppercase letters.
-#'   Default is \code{"CAP"}. If \code{NA}, no prefix is added.
+#'   Default is `"CAP"`. If `NA`, no prefix is added.
 #' @param type character string specifying the encoding system:
 #' \itemize{
-#'   \item \code{"NATO"}: NATO phonetic alphabet (default)
-#'   \item \code{"Morse"}: Morse code
+#'   \item `"NATO"`: NATO phonetic alphabet (default)
+#'   \item `"Morse"`: Morse code
 #' }
 #'
-#' @return A character vector with each character of \code{x} replaced by its
+#' @return A character vector with each character of `x` replaced by its
 #'   phonetic representation.
 #'
 #' @details
 #' Letters (A–Z, a–z) and digits (0–9) are mapped to their corresponding
 #' phonetic representations. Other characters are returned unchanged.
 #'
-#' For \code{type = "NATO"}, uppercase letters can optionally be prefixed
-#' (e.g., \code{"CAP Alfa"}) to distinguish them from lowercase letters.
+#' For `type = "NATO"`, uppercase letters can optionally be prefixed
+#' (e.g., `"CAP Alfa"`) to distinguish them from lowercase letters.
 #'
 #' The function uses Unicode-aware character splitting via
-#' \code{\link[stringi]{stri_split_boundaries}}.
+#' [stringi::stri_split_boundaries()].
 #'
-#' @seealso \code{\link{strTrim}},
-#'   \code{\link[stringi]{stri_split_boundaries}}
+#' @seealso [strTrim()],
+#'   [stringi::stri_split_boundaries()]
 #'
 #' @examples
 #' # NATO spelling

@@ -7,20 +7,20 @@
 #' without enforcing any automatic conversion or validation.
 #'
 #' @param x an R object.
-#' @param value A single character string specifying the unit, or \code{NULL}
+#' @param value A single character string specifying the unit, or `NULL`
 #'   to remove the unit attribute.
 #'
 #' @details
 #' The setter does not validate whether the unit is physically meaningful.
 #' Validation and conversion should be handled externally (e.g., via
-#' a unit conversion engine such as \code{ConvUnit7}).
+#' a unit conversion engine such as `ConvUnit7`).
 #'
-#' Assigning \code{NULL} removes the unit attribute.
+#' Assigning `NULL` removes the unit attribute.
 #'
 #' @return
 #' \itemize{
-#'   \item \code{unit(x)} returns the unit as a character string or \code{NULL}.
-#'   \item \code{unit(x) <- value} returns \code{x} with updated unit attribute.
+#'   \item `unit(x)` returns the unit as a character string or `NULL`.
+#'   \item `unit(x) <- value` returns `x` with updated unit attribute.
 #' }
 #'
 #' @examples
@@ -66,13 +66,13 @@ unit <- function(x) {
 
 #' Print Object with Unit
 #'
-#' S3 method for printing objects with a \code{"Unit"} class.
+#' S3 method for printing objects with a `"Unit"` class.
 #' Displays the value along with its associated unit.
 #'
-#' @param x an object with class \code{"Unit"}.
-#' @param ... additional arguments passed to \code{print()}.
+#' @param x an object with class `"Unit"`.
+#' @param ... additional arguments passed to `print()`.
 #'
-#' @return Invisibly returns \code{x}.
+#' @return Invisibly returns `x`.
 #'
 #' @examples
 #' x <- 10

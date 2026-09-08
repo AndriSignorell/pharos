@@ -2,14 +2,14 @@
 #' Stacked Area Plot
 #'
 #' Draws one or several stacked area series using cumulative polygons.
-#' The function accepts either a matrix of values or separate \code{x} and
-#' \code{y} coordinates. Multiple series are displayed as stacked areas.
+#' The function accepts either a matrix of values or separate `x` and
+#' `y` coordinates. Multiple series are displayed as stacked areas.
 #'
-#' @param x numeric vector, matrix or data frame. If \code{y} is missing,
-#'   \code{x} is interpreted as a matrix of series where rows correspond to
+#' @param x numeric vector, matrix or data frame. If `y` is missing,
+#'   `x` is interpreted as a matrix of series where rows correspond to
 #'   x positions and columns to individual areas.
 #' @param y optional numeric vector or matrix giving the y-values. If supplied,
-#'   \code{x} is interpreted as the x-coordinates.
+#'   `x` is interpreted as the x-coordinates.
 #' @param prop logical indicating whether rows should be converted to
 #'   proportions so that stacked areas sum to one.
 #' @param col fill colours used for the areas.
@@ -17,33 +17,33 @@
 #' @param ylab label for the y-axis.
 #' @param xlim limits for the x-axis.
 #' @param ylim limits for the y-axis.
-#' @param legend logical or list controlling the legend. If \code{TRUE}, a legend
+#' @param legend logical or list controlling the legend. If `TRUE`, a legend
 #'   is drawn using the column names of the data. If a list is supplied, its
 #'   elements are passed to the internal legend drawing routine.
 #' @param main main title of the plot.
-#' @param grid logical or list controlling the background grid. If \code{TRUE},
+#' @param grid logical or list controlling the background grid. If `TRUE`,
 #'   a default grid is drawn.
-#' @param ... additional graphical parameters passed to \code{\link[graphics]{par}}
-#'   via \code{.applyParFromDots()} and to the plotting functions.
+#' @param ... additional graphical parameters passed to [graphics::par()]
+#'   via `.applyParFromDots()` and to the plotting functions.
 #'
 #' @details
-#' If \code{y} is missing, \code{x} is interpreted as a matrix and each column
+#' If `y` is missing, `x` is interpreted as a matrix and each column
 #' is drawn as a separate stacked area.
 #'
 #' The cumulative sums are calculated row-wise and displayed as polygons stacked
 #' on top of each other.
 #'
-#' If \code{prop = TRUE}, each row is converted to proportions before plotting,
+#' If `prop = TRUE`, each row is converted to proportions before plotting,
 #' so the stacked areas sum to one.
 #'
-#' Row names are used as x-axis labels when available and \code{y} is omitted.
+#' Row names are used as x-axis labels when available and `y` is omitted.
 #'
 #' @return Invisibly returns a list containing:
 #' \itemize{
-#' \item \code{x} the x-values used for plotting,
-#' \item \code{y} the original y-values,
-#' \item \code{cumulative} the cumulative values used to construct the areas,
-#' \item \code{legend} the legend specification if drawn.
+#' \item `x` the x-values used for plotting,
+#' \item `y` the original y-values,
+#' \item `cumulative` the cumulative values used to construct the areas,
+#' \item `legend` the legend specification if drawn.
 #' }
 #'
 #' @examples

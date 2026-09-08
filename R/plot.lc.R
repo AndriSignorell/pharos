@@ -1,108 +1,108 @@
 
 #' Plot Methods for Lorenz Curve Objects
 #'
-#' Visualize objects of class \code{"Lc"} and \code{"LcList"} returned by
-#' \code{DescToolsX::lc()}.  The \code{plot()} method draws a new
-#' Lorenz curve plot including the line of perfect equality; \code{lines()}
-#' and \code{points()} add to an existing plot.
+#' Visualize objects of class `"Lc"` and `"LcList"` returned by
+#' `DescToolsX::lc()`.  The `plot()` method draws a new
+#' Lorenz curve plot including the line of perfect equality; `lines()`
+#' and `points()` add to an existing plot.
 #'
-#' For \code{"LcList"} objects (grouped Lorenz curves), \code{plot()} draws
-#' the first group and overlays the remaining groups with \code{lines()}.
-#' Colors cycle automatically when \code{col} is not supplied and are
+#' For `"LcList"` objects (grouped Lorenz curves), `plot()` draws
+#' the first group and overlays the remaining groups with `lines()`.
+#' Colors cycle automatically when `col` is not supplied and are
 #' recycled to the number of groups otherwise.
 #'
-#' The curve of \code{plot.Lc()} is drawn by \code{lines.Lc()} and the
-#' symbols by \code{points.Lc()}, so all three methods share one code path
+#' The curve of `plot.Lc()` is drawn by `lines.Lc()` and the
+#' symbols by `points.Lc()`, so all three methods share one code path
 #' and one set of semantics - including the confidence band, which is
-#' controlled by \code{cbandArgs} in \code{plot.Lc()} exactly as it is in
-#' \code{lines.Lc()}.  Pass a list of arguments to
-#' \code{DescToolsX::predict.Lc()} to control the bootstrap (e.g.
-#' \code{cbandArgs = list(conf.level = 0.90, n = 500)}).  Set
-#' \code{cbandArgs = NA} (default) to suppress the band.  Note that
-#' \code{line = FALSE} suppresses the band along with the curve.
+#' controlled by `cbandArgs` in `plot.Lc()` exactly as it is in
+#' `lines.Lc()`.  Pass a list of arguments to
+#' `DescToolsX::predict.Lc()` to control the bootstrap (e.g.
+#' `cbandArgs = list(conf.level = 0.90, n = 500)`).  Set
+#' `cbandArgs = NA` (default) to suppress the band.  Note that
+#' `line = FALSE` suppresses the band along with the curve.
 #'
-#' With \code{general = TRUE} the generalized Lorenz curve is displayed.
-#' It ends at the mean rather than at 1, so the default \code{ylim} and the
-#' slope of the equality line follow the data; for \code{"LcList"} objects
+#' With `general = TRUE` the generalized Lorenz curve is displayed.
+#' It ends at the mean rather than at 1, so the default `ylim` and the
+#' slope of the equality line follow the data; for `"LcList"` objects
 #' the panel is sized to accommodate *all* groups, not just the first.
 #'
 #' @name plot.Lc
 #'
-#' @param x object of class \code{"Lc"} (for \code{plot.Lc()},
-#'   \code{lines.Lc()}, \code{points.Lc()}) or \code{"LcList"} (for the
-#'   \code{*.LcList()} methods).
-#' @param general logical.  If \code{TRUE}, the generalized Lorenz curve
+#' @param x object of class `"Lc"` (for `plot.Lc()`,
+#'   `lines.Lc()`, `points.Lc()`) or `"LcList"` (for the
+#'   `*.LcList()` methods).
+#' @param general logical.  If `TRUE`, the generalized Lorenz curve
 #'   (scaled by the mean) is displayed instead of the standard curve.
-#'   Default is \code{FALSE}.
+#'   Default is `FALSE`.
 #' @param main,xlab,ylab main title and axis labels, used by
-#'   \code{plot.Lc()} only.  All default to \code{NULL}: no title,
-#'   \code{"p"}, and \code{"L(p)"} (\code{"GL(p)"} if \code{general =
-#'   TRUE}), respectively.
+#'   `plot.Lc()` only.  All default to `NULL`: no title,
+#'   `"p"`, and `"L(p)"` (`"GL(p)"` if `general =
+#'   TRUE`), respectively.
 #' @param xlim,ylim numeric vectors of length 2 giving axis limits, used by
-#'   \code{plot.Lc()} and \code{plot.LcList()}.  Default \code{NULL}, which
-#'   resolves to \code{c(0, 1)} for \code{xlim} and, for \code{ylim}, to
-#'   \code{c(0, 1)} for the standard and \code{c(0, max(L))} for the
+#'   `plot.Lc()` and `plot.LcList()`.  Default `NULL`, which
+#'   resolves to `c(0, 1)` for `xlim` and, for `ylim`, to
+#'   `c(0, 1)` for the standard and `c(0, max(L))` for the
 #'   generalized curve.
-#' @param col color of curve and symbols.  For \code{plot.Lc()},
-#'   \code{lines.Lc()} and \code{points.Lc()} a single color (default
-#'   \code{NULL}, i.e. \code{"black"} in \code{plot.Lc()} and the device
-#'   default in the low-level methods).  For the \code{"LcList"} methods a
-#'   vector recycled to the number of groups (default \code{NULL}, i.e.
-#'   \code{seq_len(k)}).
-#' @param line logical or list, used by \code{plot.Lc()} to control drawing
-#'   of the Lorenz curve.  \code{TRUE} (default) draws it with package
-#'   defaults (\code{lty = 1}, \code{lwd = 2}); \code{FALSE} suppresses it
+#' @param col color of curve and symbols.  For `plot.Lc()`,
+#'   `lines.Lc()` and `points.Lc()` a single color (default
+#'   `NULL`, i.e. `"black"` in `plot.Lc()` and the device
+#'   default in the low-level methods).  For the `"LcList"` methods a
+#'   vector recycled to the number of groups (default `NULL`, i.e.
+#'   `seq_len(k)`).
+#' @param line logical or list, used by `plot.Lc()` to control drawing
+#'   of the Lorenz curve.  `TRUE` (default) draws it with package
+#'   defaults (`lty = 1`, `lwd = 2`); `FALSE` suppresses it
 #'   (and the confidence band); a list overrides individual defaults and is
-#'   forwarded to \code{lines.Lc()}.
-#' @param points \code{NULL}, logical or list, used by \code{plot.Lc()} to
-#'   control drawing of symbols on the curve.  \code{NULL} (default) is
+#'   forwarded to `lines.Lc()`.
+#' @param points `NULL`, logical or list, used by `plot.Lc()` to
+#'   control drawing of symbols on the curve.  `NULL` (default) is
 #'   automatic: symbols are drawn only while the curve has at most
-#'   \code{getOption("DescToolsX.plot.maxSymbols")} knots (100 by default),
-#'   which keeps large samples legible.  \code{TRUE} always draws them with
-#'   package defaults (\code{pch = 21}, \code{bg = "white"},
-#'   \code{cex = 1.4}); \code{FALSE} suppresses them; a list overrides
-#'   individual defaults and is forwarded to \code{points.Lc()}.
-#' @param eqline logical or list, used by \code{plot.Lc()} only.  Controls
-#'   the line of perfect equality: \code{TRUE} (default) draws it with
-#'   package defaults (\code{col = "grey50"}, \code{lty = 2}),
-#'   \code{FALSE} suppresses it, a list is forwarded to
-#'   \code{\link[graphics]{abline}()}.  Its slope is \code{1} for the
-#'   standard and \code{max(L)} for the generalized curve; overriding
-#'   \code{a}/\code{b} is possible but rarely sensible.
+#'   `getOption("DescToolsX.plot.maxSymbols")` knots (100 by default),
+#'   which keeps large samples legible.  `TRUE` always draws them with
+#'   package defaults (`pch = 21`, `bg = "white"`,
+#'   `cex = 1.4`); `FALSE` suppresses them; a list overrides
+#'   individual defaults and is forwarded to `points.Lc()`.
+#' @param eqline logical or list, used by `plot.Lc()` only.  Controls
+#'   the line of perfect equality: `TRUE` (default) draws it with
+#'   package defaults (`col = "grey50"`, `lty = 2`),
+#'   `FALSE` suppresses it, a list is forwarded to
+#'   [graphics::abline()].  Its slope is `1` for the
+#'   standard and `max(L)` for the generalized curve; overriding
+#'   `a`/`b` is possible but rarely sensible.
 #' @param grid,box callIf-style specs for the grid and the box around the
-#'   plot region, used by \code{plot.Lc()} only.  \code{.useTheme}
-#'   (default) lets \code{getTheme()} decide, \code{TRUE}/\code{FALSE}
+#'   plot region, used by `plot.Lc()` only.  `.useTheme`
+#'   (default) lets `getTheme()` decide, `TRUE`/`FALSE`
 #'   force drawing/suppression, and a named list is forwarded to
-#'   \code{\link[graphics]{grid}()} resp. \code{\link[graphics]{box}()}.
-#' @param stamp controls the corner stamp. \code{.useTheme} (default)
-#'   resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
-#'   \code{NULL}, a string, or a named list for \code{\link{stamp}()}.
-#' @param lwd line width, used by \code{plot.Lc()} (via \code{line}) and
-#'   \code{lines.Lc()}.  Default is \code{2}.
-#' @param lty line type, used by \code{plot.Lc()} (via \code{line}) and
-#'   \code{lines.Lc()}.  Default is \code{1}.
-#' @param pch plotting symbol, used by \code{points.Lc()} only.  Default is
-#'   \code{16}.
-#' @param cbandArgs used by \code{plot.Lc()} and \code{lines.Lc()}.
-#'   \code{NA} to suppress the confidence band (default), or a list of
-#'   arguments passed to \code{DescToolsX::predict.Lc()} to control
+#'   [graphics::grid()] resp. [graphics::box()].
+#' @param stamp controls the corner stamp. `.useTheme` (default)
+#'   resolves to `getTheme()$stamp`. `TRUE`/`FALSE`/
+#'   `NULL`, a string, or a named list for [stamp()].
+#' @param lwd line width, used by `plot.Lc()` (via `line`) and
+#'   `lines.Lc()`.  Default is `2`.
+#' @param lty line type, used by `plot.Lc()` (via `line`) and
+#'   `lines.Lc()`.  Default is `1`.
+#' @param pch plotting symbol, used by `points.Lc()` only.  Default is
+#'   `16`.
+#' @param cbandArgs used by `plot.Lc()` and `lines.Lc()`.
+#'   `NA` to suppress the confidence band (default), or a list of
+#'   arguments passed to `DescToolsX::predict.Lc()` to control
 #'   bootstrap confidence intervals.
-#' @param ... further arguments.  For \code{plot.Lc()}, graphical parameters
-#'   passed to \code{\link[graphics]{par}()} via \code{.applyParFromDots()}
-#'   (e.g. \code{mar}, \code{cex.axis}, \code{las}).  For \code{lines.Lc()}
-#'   and \code{points.Lc()}, further arguments passed on to
-#'   \code{\link[graphics]{lines}()} and \code{\link[graphics]{points}()},
-#'   respectively.  For \code{plot.LcList()}, arguments are passed to
-#'   \code{plot.Lc()} for the first group and, restricted to those the
-#'   low-level method understands, to \code{lines.Lc()} for the remaining
+#' @param ... further arguments.  For `plot.Lc()`, graphical parameters
+#'   passed to [graphics::par()] via `.applyParFromDots()`
+#'   (e.g. `mar`, `cex.axis`, `las`).  For `lines.Lc()`
+#'   and `points.Lc()`, further arguments passed on to
+#'   [graphics::lines()] and [graphics::points()],
+#'   respectively.  For `plot.LcList()`, arguments are passed to
+#'   `plot.Lc()` for the first group and, restricted to those the
+#'   low-level method understands, to `lines.Lc()` for the remaining
 #'   ones.
 #'
-#' @return All methods return \code{NULL} invisibly.
+#' @return All methods return `NULL` invisibly.
 #'
 #' @seealso
-#'   \code{DescToolsX::lc()} for computing the Lorenz curve,
-#'   \code{DescToolsX::predict.Lc()} for bootstrap confidence
-#'   intervals, \code{DescToolsX::gini()} for the Gini coefficient.
+#'   `DescToolsX::lc()` for computing the Lorenz curve,
+#'   `DescToolsX::predict.Lc()` for bootstrap confidence
+#'   intervals, `DescToolsX::gini()` for the Gini coefficient.
 #'
 #' @family plot.s3
 #' @concept inequality

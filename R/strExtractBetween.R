@@ -9,26 +9,26 @@
 #'   boundary
 #' @param right a character string or regular expression marking the right
 #'   boundary
-#' @param greedy logical; if \code{TRUE}, the match is greedy (longest match).
-#'   If \code{FALSE} (default), the match is non-greedy (shortest match).
+#' @param greedy logical; if `TRUE`, the match is greedy (longest match).
+#'   If `FALSE` (default), the match is non-greedy (shortest match).
 #'
 #' @return A character vector containing the extracted substrings. If no match
-#'   is found, \code{NA} is returned for that element.
+#'   is found, `NA` is returned for that element.
 #'
 #' @details
 #' The function uses regular expressions to extract the first substring
-#' between \code{left} and \code{right}. Internally, it constructs a pattern
+#' between `left` and `right`. Internally, it constructs a pattern
 #' of the form:
 #' \itemize{
-#'   \item greedy: \code{left (.*) right}
-#'   \item non-greedy: \code{left (.*?) right}
+#'   \item greedy: `left (.*) right`
+#'   \item non-greedy: `left (.*?) right`
 #' }
 #'
-#' Extraction is performed using \code{\link[stringi]{stri_match_first_regex}},
+#' Extraction is performed using [stringi::stri_match_first_regex()],
 #' which returns the first captured group.
 #'
-#' @seealso \code{\link[stringi]{stri_match_first_regex}},
-#'   \code{\link{strExtract}}
+#' @seealso [stringi::stri_match_first_regex()],
+#'   [strExtract()]
 #'
 #' @examples
 #' x <- c("a[123]b", "x[abc]y", "no match")

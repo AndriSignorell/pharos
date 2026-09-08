@@ -6,8 +6,8 @@
 #' @param col1 first vector of colors.
 #' @param col2 second vector of colors.
 #' @param weights numeric value between 0 and 1 specifying the
-#'   contribution of \code{col2}. A value of 0 returns \code{col1},
-#'   while 1 returns \code{col2}.
+#'   contribution of `col2`. A value of 0 returns `col1`,
+#'   while 1 returns `col2`.
 #'
 #' @return Character vector of hexadecimal colors.
 #'

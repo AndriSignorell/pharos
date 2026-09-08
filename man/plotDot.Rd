@@ -22,7 +22,7 @@ plotDot(
 \arguments{
 \item{x}{numeric estimates or confidence interval data. Supported formats
 are a numeric vector, a numeric matrix, a three-dimensional numeric array,
-or a \code{"CI"} object created with \code{\link{as.CI}}}
+or a \code{"CI"} object created with \code{\link[=as.CI]{as.CI()}}}
 
 \item{items}{optional character vector containing the item labels; defaults
 to the row names or first dimension names of \code{x}}
@@ -58,7 +58,7 @@ symbol or a named list containing parameters such as \code{pch},
 \code{col}, \code{bg}, and \code{cex} can also be supplied}
 
 \item{...}{additional graphical parameters passed to
-\code{\link[graphics]{par}}}
+\code{\link[graphics:par]{graphics::par()}}}
 }
 \value{
 invisibly, a list containing:
@@ -81,8 +81,8 @@ columns define the groups. Consequently, a matrix with three columns is
 interpreted as three groups and not automatically as estimates with lower
 and upper confidence limits.
 
-Use \code{\link{as.CI}} to declare explicitly that a matrix, data frame,
-list, or result from \code{\link{tapply}} contains confidence interval
+Use \code{\link[=as.CI]{as.CI()}} to declare explicitly that a matrix, data frame,
+list, or result from \code{\link[=tapply]{tapply()}} contains confidence interval
 data:
 
 \preformatted{
@@ -96,7 +96,7 @@ second defines the groups.
 
 Confidence interval data can alternatively be supplied as a
 three-dimensional numeric array with dimensions
-\code{items × 3 × groups}. The second dimension must contain, in this
+\verb{items × 3 × groups}. The second dimension must contain, in this
 order, the estimate, lower confidence limit, and upper confidence limit.
 
 Values supplied directly as arguments take precedence over the
@@ -164,8 +164,8 @@ points(
 
 }
 \seealso{
-\code{\link{as.CI}}, \code{\link{is.CI}},
-\code{\link[graphics]{dotchart}}
+\code{\link[=as.CI]{as.CI()}}, \code{\link[=is.CI]{is.CI()}},
+\code{\link[graphics:dotchart]{graphics::dotchart()}}
 
 Other plot.univariate:
 \code{\link[=plotArea]{plotArea()}},

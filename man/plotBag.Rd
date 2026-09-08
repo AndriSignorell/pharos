@@ -54,7 +54,7 @@ formula of the form \code{y ~ x} (see the formula method).}
 use.}
 
 \item{na.action}{a function specifying how missing values are handled.
-Defaults to \code{\link[stats]{na.omit}}, as the depth computation
+Defaults to \code{\link[stats:na.omit]{stats::na.omit()}}, as the depth computation
 requires complete pairs.}
 
 \item{main, xlab, ylab}{character strings for plot annotations. The

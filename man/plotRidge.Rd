@@ -56,7 +56,7 @@
 
 \item{add}{logical; if \code{TRUE}, adds to an existing plot.}
 
-\item{bw}{bandwidth for \code{\link[stats]{density}}.}
+\item{bw}{bandwidth for \code{\link[stats:density]{stats::density()}}.}
 
 \item{scale}{scaling factor for density height.}
 
@@ -109,7 +109,7 @@ plotRidge(value ~ group, data = df)
 
 }
 \seealso{
-\code{\link{plotDens}}
+\code{\link[=plotDens]{plotDens()}}
 }
 \concept{base-graphics}
 \concept{plotting}

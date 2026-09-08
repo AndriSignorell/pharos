@@ -40,23 +40,23 @@ selected panel.}
 \item{which}{integer vector selecting one or more panels to draw, in the
 given order. One or more of:
 \describe{
-\item{\code{1}}{Spineplot (\code{\link[graphics]{spineplot}}).
+\item{\code{1}}{Spineplot (\code{\link[graphics:spineplot]{graphics::spineplot()}}).
 Default.}
-\item{\code{2}}{Mosaic plot (via \code{\link{plotMosaic}}).}
+\item{\code{2}}{Mosaic plot (via \code{\link[=plotMosaic]{plotMosaic()}}).}
 \item{\code{3}}{Mosaic plot (swapped axis).}
 \item{\code{4}}{Association plot (Cohen-Friendly plot) via
-\code{\link{plotAssoc}}.}
+\code{\link[=plotAssoc]{plotAssoc()}}.}
 \item{\code{5}}{Heatmap of cell proportions (via
-\code{\link{plotHeatmap}}, \code{scale = "prop"}).}
+\code{\link[=plotHeatmap]{plotHeatmap()}}, \code{scale = "prop"}).}
 }
 Selecting multiple panels does not change the plotting layout (no
-implicit \code{mfrow}) - as with other \code{plot.Desc.*} methods,
+implicit \code{mfrow}) - as with other \verb{plot.Desc.*} methods,
 arranging multiple panels on one device is left to the caller (e.g.
 \code{par(mfrow = c(2, 1))} beforehand).}
 
 \item{verbose}{integer; currently computed from
 \code{x$meta$verbose}/\code{getOption("DescTools.verbose")} for
-consistency with other \code{plot.Desc.*} methods, but not yet
+consistency with other \verb{plot.Desc.*} methods, but not yet
 consulted to pick a default \code{which}.}
 
 \item{col}{color specification. \code{.useTheme} (default) resolves a
@@ -71,18 +71,18 @@ row dimension of \code{tab}, not its columns (not theme-driven by
 design, to keep the unordered category fill neutral).}
 \item{panel 2}{a grey ramp from \code{"grey30"} to \code{"grey90"},
 sized to the number of columns of \code{tab} (the fill dimension
-of the untransposed mosaic), passed to \code{\link{plotMosaic}}.}
+of the untransposed mosaic), passed to \code{\link[=plotMosaic]{plotMosaic()}}.}
 \item{panel 3}{a grey ramp from \code{"grey30"} to \code{"grey90"},
 sized to the number of rows of \code{tab} - with
 \code{swap = TRUE} the fill dimension is the row dimension,
-passed to \code{\link{plotMosaic}}.}
-\item{panel 4}{left at \code{\link{plotAssoc}}'s own default
+passed to \code{\link[=plotMosaic]{plotMosaic()}}.}
+\item{panel 4}{left at \code{\link[=plotAssoc]{plotAssoc()}}'s own default
 (\code{pal("red-white-blue-3", n = 100)}), a diverging palette - cell
 colors there encode the sign and strength of Pearson residuals, so
 a categorical or grey-ramp default would not be meaningful. Supplying
 \code{col} overrides this with the diverging palette of the user's
 choice.}
-\item{panel 5}{left at \code{\link{plotHeatmap}}'s own default
+\item{panel 5}{left at \code{\link[=plotHeatmap]{plotHeatmap()}}'s own default
 (\code{pal("Blues", n = 100)}), a sequential ramp - cell colors
 there encode magnitude only. Supplying \code{col} overrides this.}
 }
@@ -95,29 +95,29 @@ suppress it; a named list overrides frame-drawing arguments.
 \describe{
 \item{panel 1}{has no effect - \code{spineplot()} always draws its
 native frame unconditionally, with no toggle to override it.}
-\item{panels 2/3}{\code{\link{plotMosaic}} always draws its own
+\item{panels 2/3}{\code{\link[=plotMosaic]{plotMosaic()}} always draws its own
 frame; this argument has no effect.}
-\item{panel 4}{\code{\link{plotAssoc}} has no frame/box concept of
+\item{panel 4}{\code{\link[=plotAssoc]{plotAssoc()}} has no frame/box concept of
 its own (it draws dashed reference lines instead); this argument
 has no effect.}
-\item{panel 5}{forwarded as-is to \code{\link{plotHeatmap}}'s own
+\item{panel 5}{forwarded as-is to \code{\link[=plotHeatmap]{plotHeatmap()}}'s own
 \code{box} argument, which draws the outer frame via
 \code{rect()} at the exact tile boundaries rather than
-\code{\link[graphics]{box}()}.}
+\code{\link[graphics:box]{graphics::box()}}.}
 }}
 
 \item{stamp}{controls the corner stamp. \code{.useTheme} (default)
 resolves to \code{getTheme()$stamp}, drawn once after all selected
-panels. Panels 2-5 delegate to \code{\link{plotMosaic}}/
-\code{\link{plotAssoc}}/\code{\link{plotHeatmap}}, whose own
+panels. Panels 2-5 delegate to \code{\link[=plotMosaic]{plotMosaic()}}/
+\code{\link[=plotAssoc]{plotAssoc()}}/\code{\link[=plotHeatmap]{plotHeatmap()}}, whose own
 \code{stamp} argument is set to \code{NA} internally to avoid a
 duplicate. \code{TRUE}/\code{FALSE}/\code{NULL}, a string, or a
-named list for \code{\link{stamp}()}.}
+named list for \code{\link[=stamp]{stamp()}}.}
 
-\item{...}{further graphical parameters, passed to \code{\link{par}} via
+\item{...}{further graphical parameters, passed to \code{\link[=par]{par()}} via
 the internal framework and to the underlying panel-drawing functions
-(\code{spineplot()}, \code{\link{plotMosaic}}, \code{\link{plotAssoc}},
-or \code{\link{plotHeatmap}}, depending on the selected panel).}
+(\code{spineplot()}, \code{\link[=plotMosaic]{plotMosaic()}}, \code{\link[=plotAssoc]{plotAssoc()}},
+or \code{\link[=plotHeatmap]{plotHeatmap()}}, depending on the selected panel).}
 }
 \value{
 Invisibly returns \code{x}.
@@ -139,9 +139,9 @@ with more than two margins, a message is issued and the function returns
 invisibly without drawing anything.
 }
 \seealso{
-\code{DescToolsX::desc}, \code{\link{plotAssoc}},
-\code{\link{plotHeatmap}}, \code{\link{plotMosaic}},
-\code{\link[graphics]{spineplot}}
+\code{DescToolsX::desc}, \code{\link[=plotAssoc]{plotAssoc()}},
+\code{\link[=plotHeatmap]{plotHeatmap()}}, \code{\link[=plotMosaic]{plotMosaic()}},
+\code{\link[graphics:spineplot]{graphics::spineplot()}}
 
 Other plot.s3:
 \code{\link[=plot.BlandAltman]{plot.BlandAltman()}},

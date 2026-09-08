@@ -2,10 +2,10 @@
 #' Confidence Interval Objects
 #'
 #' Converts common confidence interval representations into a standardized
-#' object of class \code{"CI"}. The standardized representation removes the
+#' object of class `"CI"`. The standardized representation removes the
 #' ambiguity between ordinary numeric data and confidence interval data.
 #'
-#' @param x object to convert or, for \code{is.CI()}, object to test
+#' @param x object to convert or, for `is.CI()`, object to test
 #' @param estimate name of the data-frame column containing the point estimates
 #' @param lower name of the data-frame column containing the lower confidence
 #'   limits
@@ -14,39 +14,39 @@
 #' @param ... further arguments passed to methods
 #'
 #' @details
-#' A \code{"CI"} object is a data frame containing the columns \code{est},
-#' \code{lci}, and \code{uci}. Additional columns are retained and can be used
-#' as grouping variables by functions such as \code{\link{plotDot}}.
+#' A `"CI"` object is a data frame containing the columns `est`,
+#' `lci`, and `uci`. Additional columns are retained and can be used
+#' as grouping variables by functions such as [plotDot()].
 #'
-#' The primary purpose of \code{as.CI()} is to declare explicitly that an
+#' The primary purpose of `as.CI()` is to declare explicitly that an
 #' object contains estimates and confidence limits. For example, a numeric
 #' matrix with three columns is normally ambiguous: its columns may represent
 #' three groups or the estimate, lower limit, and upper limit. Passing the
-#' matrix to \code{as.CI()} declares that its columns have the latter meaning.
+#' matrix to `as.CI()` declares that its columns have the latter meaning.
 #'
 #' Supported inputs are:
 #' \itemize{
 #'   \item a numeric matrix with exactly three columns, interpreted in the
-#'     order \code{est}, \code{lci}, and \code{uci}
+#'     order `est`, `lci`, and `uci`
 #'   \item a data frame containing columns for the estimates and confidence
-#'     limits; their names can be specified with \code{estimate},
-#'     \code{lower}, and \code{upper}
+#'     limits; their names can be specified with `estimate`,
+#'     `lower`, and `upper`
 #'   \item a list in which every element contains three values representing
-#'     \code{c(est, lci, uci)}
-#'   \item an array-like result from \code{\link{tapply}} in which every cell
-#'     contains \code{c(est, lci, uci)}; its dimensions are converted to
+#'     `c(est, lci, uci)`
+#'   \item an array-like result from [tapply()] in which every cell
+#'     contains `c(est, lci, uci)`; its dimensions are converted to
 #'     grouping variables
-#'   \item an existing \code{"CI"} object, which is returned unchanged
+#'   \item an existing `"CI"` object, which is returned unchanged
 #' }
 #'
-#' The standardized object can be passed directly to \code{\link{plotDot}} to
+#' The standardized object can be passed directly to [plotDot()] to
 #' display the estimates and their confidence intervals. This is particularly
-#' useful for matrices, because a bare matrix supplied to \code{plotDot()} is
+#' useful for matrices, because a bare matrix supplied to `plotDot()` is
 #' interpreted as grouped estimates rather than as confidence interval data.
 #'
-#' @return \code{as.CI()} returns a data frame of class \code{"CI"} containing
-#'   the columns \code{est}, \code{lci}, and \code{uci}, followed by any
-#'   grouping columns; \code{is.CI()} returns a single logical value
+#' @return `as.CI()` returns a data frame of class `"CI"` containing
+#'   the columns `est`, `lci`, and `uci`, followed by any
+#'   grouping columns; `is.CI()` returns a single logical value
 #'
 #' @examples
 #' # matrix containing estimate, lower limit, and upper limit
@@ -110,7 +110,7 @@
 #' plotDot(as.CI(xci))
 #' }
 #'
-#' @seealso \code{\link{plotDot}}, \code{\link{fmCI}}
+#' @seealso [plotDot()], [fmCI()]
 #' @concept confidence-interval
 #' @export
 #'

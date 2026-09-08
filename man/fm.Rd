@@ -116,7 +116,7 @@ fm(
 \code{POSIXt} vector, or a matrix, table, ftable, or data frame}
 
 \item{digits}{integer, the desired (fixed) number of digits after the
-decimal point. Unlike \code{\link{formatC}} you will always get this number
+decimal point. Unlike \code{\link[=formatC]{formatC()}} you will always get this number
 of digits even if the last digit is 0.  Negative numbers of digits round to
 a power of ten (\code{digits=-2} would round to the nearest hundred) for
 standard numeric formats; engineering formats require nonnegative values}
@@ -156,12 +156,12 @@ as \code{"< threshold"}}
 \item{width}{nonnegative integer giving the minimum display width}
 
 \item{align}{the character on whose position the strings will be aligned.
-Left alignment can be requested by setting \code{sep = "\\l"}, right
-alignment by \code{"\\r"} and center alignment by \code{"\\c"}. Mind the
+Left alignment can be requested by setting \code{sep = "\\\\l"}, right
+alignment by \code{"\\\\r"} and center alignment by \code{"\\\\c"}. Mind the
 backslashes, as if they are omitted, strings would be aligned to the
-\bold{character} l, r or c respectively. The default is \code{NULL} which
+\strong{character} l, r or c respectively. The default is \code{NULL} which
 would just leave the strings as they are.\cr This argument is send directly
-to the function \code{\link[pharos]{strAlign}()} as argument \code{sep}.}
+to the function \code{\link[=strAlign]{strAlign()}} as argument \code{sep}.}
 
 \item{lang}{optional value setting the language for the months and daynames.
 Can be either \code{"local"} for current locale or \code{"en"} for english.
@@ -203,7 +203,7 @@ ISO-8601-inspired token syntax similar to .NET or Moment.js (consisting of
 designator) and defining the combination of day month and year
 representation.\cr
 
-\tabular{ll}{ \bold{Code}\verb{ } \tab \bold{Description}\cr \code{d } \tab
+\tabular{ll}{ \strong{Code}\verb{ } \tab \strong{Description}\cr \code{d } \tab
 day of the month without leading zero (1 - 31) \cr \code{dd} \tab day of the
 month with leading zero (01 - 31)\cr \code{ddd} \tab abbreviated name for
 the day of the week (e.g. Mon) in the current user's language \cr
@@ -219,8 +219,7 @@ implemented by design.)\cr \code{M } \tab month without leading zero (1 -
 \code{MMMM} \tab full month name (e.g. January) in the current user's
 language \cr \code{y } \tab year without century, without leading zero (0 -
 99) \cr \code{yy } \tab year without century, with leading zero (00 - 99)
-\cr \code{yyyy } \tab year with century. For example: 2005 \cr\cr \code{H/HH
-} \tab Hour in 24h format, one digit / two digits \cr \code{h/hh } \tab Hour
+\cr \code{yyyy } \tab year with century. For example: 2005 \cr\cr \code{H/HH } \tab Hour in 24h format, one digit / two digits \cr \code{h/hh } \tab Hour
 in 12h format, one digit / two digits, note that in this case t must be set
 also to ensure uniqueness.\cr \code{t/tt } \tab AM/PM description (one/two
 characters)\cr \code{m/mm } \tab Minutes one digit / two digits\cr
@@ -231,7 +230,7 @@ English. The language can be controlled by the argument "\code{lang}".\cr
 
 Even more variability is needed to display numeric values. For the most
 frequently used formats there are the following special codes available:
-\tabular{lll}{ \bold{Code} \tab \bold{Type} \tab \bold{Description} \cr
+\tabular{lll}{ \strong{Code} \tab \strong{Type} \tab \strong{Description} \cr
 \code{e} \tab scientific \tab forces scientific representation of x, e.g.
 3.141e-05. The number of digits,\cr \tab \tab alignment and zero values are
 further respected.\cr \tab\cr
@@ -242,28 +241,28 @@ further respected.\cr \tab\cr
 \code{eng}, but replaces the exponential representation by codes, \cr
 \tab\tab e.g. \code{M} for mega (1e6). \cr
 
-\code{\%} \tab percent \tab multiplies the given number by 100 and appends
+\verb{\\\%} \tab percent \tab multiplies the given number by 100 and appends
 the \\%-sign (without a separator).\cr \tab\cr \code{p} \tab p-value \tab
 formats values as p-values. \cr \tab \tab Use \code{pThreshold} to define
 the threshold to e.g.
-switch to a \code{ <0.001 } representation.\cr \tab\cr \code{frac} \tab
+switch to a \verb{<0.001} representation.\cr \tab\cr \code{frac} \tab
 fractions \tab will (try to) convert numbers to fractions. So 0.1 will be
-displayed as 1/10. \cr \tab\tab See \code{\link[MASS]{fractions}()}.\cr
+displayed as 1/10. \cr \tab\tab See \code{\link[MASS:fractions]{MASS::fractions()}}.\cr
 \tab\cr
 
 \code{*} \tab significance \tab will produce a significance representation
 of a p-value consisting of * and ., \cr \tab \tab while the breaks are set
 according to the used defaults e.g. in \code{lm} as \cr \tab \tab \verb{[0, 0.001]}
-= \code{***} \cr \tab \tab (0.001, 0.01\verb{]} = \code{**} \cr \tab \tab (0.01,
+= \verb{***} \cr \tab \tab (0.001, 0.01\verb{]} = \verb{**} \cr \tab \tab (0.01,
 0.05\verb{]} = \code{*} \cr \tab \tab (0.05, 0.1\verb{]} = \code{.} \cr \tab \tab (0.1,1\verb{]}
-= \code{ }\cr
+= \verb{ }\cr
 
-\code{p*}\tab p-value stars\tab will produce p-value and significance stars
+\verb{p*}\tab p-value stars\tab will produce p-value and significance stars
 
 }
 
 \code{fmt} can as well be an object of class "\code{Style}" consisting of a
-list out of the arguments above (as created by \code{\link{style}()}). This
+list out of the arguments above (as created by \code{\link[=style]{style()}}). This
 allows to store and manage the full format in variables or as options and
 use it as format template subsequently. Arguments supplied directly to
 \code{fm()} override the corresponding Style settings, including an
@@ -276,7 +275,7 @@ Functions and Style objects count as single settings; use a list to supply
 different functions or Styles by column.
 
 Finally, \code{fmt} can be a function of \code{x}. Additional arguments in
-\code{\dots} are forwarded to that function.
+\verb{\\dots} are forwarded to that function.
 }
 \examples{
 

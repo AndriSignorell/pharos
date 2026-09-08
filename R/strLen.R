@@ -1,12 +1,12 @@
 
 #' String length
 #'
-#' Intuitive alias for \code{\link{nchar}}.
+#' Intuitive alias for [nchar()].
 #'
 #' @param x a character vector
-#' @param ... further arguments passed to \code{nchar}
+#' @param ... further arguments passed to `nchar`
 #'
-#' @seealso \code{\link[base]{nchar}}
+#' @seealso [base::nchar()]
 #'
 
 #' @seealso

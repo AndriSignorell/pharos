@@ -45,8 +45,8 @@ strCap(x, "title")
 
 }
 \seealso{
-\code{\link[stringi]{stri_trans_totitle}},
-\code{\link[stringi]{stri_split_boundaries}}
+\code{\link[stringi:stri_trans_totitle]{stringi::stri_trans_totitle()}},
+\code{\link[stringi:stri_split_boundaries]{stringi::stri_split_boundaries()}}
 
 \link{string-overview} for an overview of all string utilities in pharos.
 }

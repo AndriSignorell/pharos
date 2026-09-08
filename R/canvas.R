@@ -4,15 +4,15 @@
 #' This is just a wrapper for creating an empty plot with suitable defaults for
 #' plotting geometric shapes. 
 #' 
-#' The plot is created with these settings:\cr \code{asp = 1, xaxt = "n", yaxt
-#' = "n", xlab = "", ylab = "", frame.plot = FALSE}. 
+#' The plot is created with these settings:\cr `asp = 1, xaxt = "n", yaxt
+#' = "n", xlab = "", ylab = "", frame.plot = FALSE`. 
 #' 
 #' @param xlim,ylim the xlims and ylims for the plot. Default is c(-1, 1). 
 #' @param main the main title on top of the plot. 
 #' @param asp numeric, giving the aspect ratio y/x. (See
-#' \code{\link{plot.window}} for details. Default is 1. 
+#' [plot.window()] for details. Default is 1. 
 #' @param usrbg the color of the user space of the plot, defaults to "white".
-#' @param \dots additional arguments are passed to the \code{plot()} command.
+#' @param \dots additional arguments are passed to the `plot()` command.
 #' 
 #' @return a list of all the previous values of the parameters changed
 #' (returned invisibly)

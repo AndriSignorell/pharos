@@ -62,7 +62,7 @@ whole legend. Can be:
 \itemize{
 \item \code{FALSE}, \code{NULL}, or \code{NA}: no box
 \item \code{TRUE}: draw box with defaults
-\item named list of arguments passed to \code{\link{rect}}
+\item named list of arguments passed to \code{\link[=rect]{rect()}}
 }}
 
 \item{labelAdj}{placement of labels relative to the color blocks:
@@ -75,7 +75,7 @@ Labels are centered within color blocks.
 }
 }}
 
-\item{adj}{text alignment passed to \code{\link{text}}.}
+\item{adj}{text alignment passed to \code{\link[=text]{text()}}.}
 
 \item{cex}{character expansion for labels.}
 
@@ -83,7 +83,7 @@ Labels are centered within color blocks.
 
 \item{titleAdj}{horizontal title adjustment.}
 
-\item{...}{additional arguments passed to \code{\link{text}}.}
+\item{...}{additional arguments passed to \code{\link[=text]{text()}}.}
 }
 \value{
 Invisibly returns a list with components:

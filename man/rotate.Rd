@@ -10,7 +10,7 @@ rotate(x, y = NULL, mx = NULL, my = NULL, theta = pi/3, asp = 1)
 \item{x, y}{vectors containing the coordinates of the vertices of the polygon
 , which has to be rotated.  The coordinates can be passed in a plotting
 structure (a list with x and y components), a two-column matrix, .... See
-\code{\link{xy.coords}}.}
+\code{\link[=xy.coords]{xy.coords()}}.}
 
 \item{mx, my}{xy-coordinates of the center of the rotation. If left to NULL,
 the centroid of the structure will be used.}
@@ -45,8 +45,8 @@ par(op)
 
 }
 \seealso{
-\code{\link{polygon}}, \code{\link{regPolygon}},
-\code{\link{ellipse}}, \code{\link{arc}}
+\code{\link[=polygon]{polygon()}}, \code{\link[=regPolygon]{regPolygon()}},
+\code{\link[=ellipse]{ellipse()}}, \code{\link[=arc]{arc()}}
 
 Other geometry.transformation:
 \code{\link[=transformXY]{transformXY()}}

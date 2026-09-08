@@ -78,7 +78,7 @@ Default is \code{horiz}, yielding physically equal gaps.}
 \link[bedrock:callIf]{bedrock::callIf}: \code{TRUE} (default) draws strips with default
 settings, \code{FALSE}/\code{NULL}/\code{NA} suppresses them (no
 space is reserved), a named list is passed as arguments to
-\code{\link{titleRect}}, e.g.
+\code{\link[=titleRect]{titleRect()}}, e.g.
 \code{list(bg = "steelblue", col = "white", line = 1.5)}. The
 \code{label} argument is set per panel from \code{stripLabels} and
 cannot be overridden.}
@@ -87,10 +87,10 @@ cannot be overridden.}
 
 \item{grid}{controls the grid lines, evaluated by \link[bedrock:callIf]{bedrock::callIf}:
 \code{TRUE} (default) draws grid lines at the positions of
-\code{\link{axTicks}} with default settings
-(\code{col = "grey85", lwd = 0.8}), \code{FALSE}/\code{NULL}/\code{NA}
+\code{\link[=axTicks]{axTicks()}} with default settings
+(\verb{col = "grey85", lwd = 0.8}), \code{FALSE}/\code{NULL}/\code{NA}
 suppresses them, a named list is passed as arguments to
-\code{\link{abline}}, e.g. \code{list(col = "white", lty = "dotted")}.
+\code{\link[=abline]{abline()}}, e.g. \code{list(col = "white", lty = "dotted")}.
 The default positions \code{v} and \code{h} can be overridden, e.g.
 \code{list(v = seq(0, 20, 5))}.}
 
@@ -119,7 +119,7 @@ height, as the strip space is reserved separately in the layout.
 }
 \details{
 The available device area inside the outer margins is partitioned with
-\code{\link{layout}} such that all plot regions have exactly the same
+\code{\link[=layout]{layout()}} such that all plot regions have exactly the same
 size in inches. The horizontal gap between two adjacent columns is
 \code{horiz} margin lines, the vertical gap between two adjacent rows is
 \code{vert} lines. Since margin lines have the same physical size in
@@ -145,12 +145,12 @@ position, only by shape. The natural case is a set of diagnostics of one
 model against different predictors - the residual scale is shared and
 worth comparing, the predictor scales are not commensurable at all.
 
-The strip is drawn with \code{\link{titleRect}} above each panel. Its
+The strip is drawn with \code{\link[=titleRect]{titleRect()}} above each panel. Its
 height (\code{line} argument of \code{titleRect}) is reserved in the top
 margin of every panel, so the strip never eats into the gap between the
 rows.
 
-Note that \code{\link{plot.new}} silently reduces \code{cex} (and with
+Note that \code{\link[=plot.new]{plot.new()}} silently reduces \code{cex} (and with
 it \code{csi}, the physical size of a margin line) in layouts with more
 than two regions, which would make the realized panel margins deviate
 from the computed layout. The function therefore controls the character

@@ -30,7 +30,7 @@ are drawn.}
 \item{points}{optional point specification.}
 
 \item{...}{additional graphical arguments passed to
-\code{\link{arrows}}.}
+\code{\link[=arrows]{arrows()}}.}
 }
 \value{
 Invisibly returns a list with components:
@@ -45,11 +45,11 @@ Invisibly returns a list with components:
 Add vertical or horizontal error bars to an existing plot.
 }
 \details{
-This is a lightweight wrapper around \code{\link{arrows}} with
-optional point symbols added via \code{\link{points}}.
+This is a lightweight wrapper around \code{\link[=arrows]{arrows()}} with
+optional point symbols added via \code{\link[=points]{points()}}.
 
 Additional graphical arguments in \code{...} are passed to
-\code{\link{arrows}} and may be used to control the appearance
+\code{\link[=arrows]{arrows()}} and may be used to control the appearance
 of the error bars.
 
 Common examples include:
@@ -83,7 +83,7 @@ points = list(
 
 The default orientation is horizontal (\code{horiz = TRUE}), which
 suits the typical use case of adding confidence intervals to a
-\code{\link{dotchart}}.  Set \code{horiz = FALSE} for vertical bars
+\code{\link[=dotchart]{dotchart()}}.  Set \code{horiz = FALSE} for vertical bars
 on barplots or similar.
 }
 \examples{
@@ -129,8 +129,8 @@ par(op)
 
 }
 \seealso{
-\code{\link{arrows}},
-\code{\link{points}}
+\code{\link[=arrows]{arrows()}},
+\code{\link[=points]{points()}}
 
 Other graphics.annotation:
 \code{\link[=barText]{barText()}},

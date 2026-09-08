@@ -1,19 +1,19 @@
 
 #' Line Plot for Multiple Series
 #'
-#' Draws one or several line series using \code{\link[graphics]{matplot}}.
-#' The function accepts either a matrix of values or separate \code{x} and
-#' \code{y} coordinates and supports optional point symbols, grid lines,
+#' Draws one or several line series using [graphics::matplot()].
+#' The function accepts either a matrix of values or separate `x` and
+#' `y` coordinates and supports optional point symbols, grid lines,
 #' and an automatically positioned legend.
 #'
-#' @param x numeric vector, matrix or data frame. If \code{y} is missing,
-#'   \code{x} is interpreted as a matrix of series where rows correspond to
+#' @param x numeric vector, matrix or data frame. If `y` is missing,
+#'   `x` is interpreted as a matrix of series where rows correspond to
 #'   x positions and columns to individual lines.
 #' @param y optional numeric vector or matrix giving the y-values. If supplied,
-#'   \code{x} is interpreted as the x-coordinates.
+#'   `x` is interpreted as the x-coordinates.
 #'
-#' @param main main title of the plot. \code{NULL} (default) derives a title
-#'   from the input. \code{""}, \code{NA}, or \code{FALSE} suppress the title
+#' @param main main title of the plot. `NULL` (default) derives a title
+#'   from the input. `""`, `NA`, or `FALSE` suppress the title
 #'   and compact the top margin.
 #' @param xlab,ylab labels for the axes.
 #'
@@ -21,38 +21,38 @@
 #'
 #' @param lty line type(s).
 #' @param lwd line width(s).
-#' @param xaxt,yaxt axis specification passed to \code{\link[graphics]{axis}}.
+#' @param xaxt,yaxt axis specification passed to [graphics::axis()].
 #'
-#' @param col colours for the lines. \code{.useTheme} (default) resolves to
-#'   \code{pal(getTheme()$palette)}, the active theme's qualitative palette.
-#' @param points controls drawing of points on the lines. \code{FALSE}
-#'   (default) suppresses points; \code{TRUE} draws with theme defaults
-#'   (\code{getTheme()$points}); a named list overrides individual elements
-#'   (\code{pch}, \code{col}, \code{bg}, \code{cex}).
-#' @param grid controls drawing of the background grid. \code{.useTheme}
-#'   (default) follows the active theme (\code{getTheme()$grid}).
-#'   \code{TRUE}/\code{FALSE}/\code{NA}, or a named list, as for
-#'   \code{\link[graphics]{grid}}.
-#' @param legend controls the legend. \code{TRUE} (default) draws an
-#'   inline legend via \code{textLegend} at the last value of each series.
-#'   \code{FALSE}/\code{NA} suppresses it. A list overrides legend arguments.
+#' @param col colours for the lines. `.useTheme` (default) resolves to
+#'   `pal(getTheme()$palette)`, the active theme's qualitative palette.
+#' @param points controls drawing of points on the lines. `FALSE`
+#'   (default) suppresses points; `TRUE` draws with theme defaults
+#'   (`getTheme()$points`); a named list overrides individual elements
+#'   (`pch`, `col`, `bg`, `cex`).
+#' @param grid controls drawing of the background grid. `.useTheme`
+#'   (default) follows the active theme (`getTheme()$grid`).
+#'   `TRUE`/`FALSE`/`NA`, or a named list, as for
+#'   [graphics::grid()].
+#' @param legend controls the legend. `TRUE` (default) draws an
+#'   inline legend via `textLegend` at the last value of each series.
+#'   `FALSE`/`NA` suppresses it. A list overrides legend arguments.
 #'
-#' @param stamp controls the corner stamp. \code{.useTheme} (default)
-#'   resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/\code{NULL},
-#'   a string, or a named list for \code{\link{stamp}()}.
-#' @param ... additional graphical parameters passed to \code{\link[graphics]{par}}
-#'   via \code{.applyParFromDots()} and to the plotting functions.
+#' @param stamp controls the corner stamp. `.useTheme` (default)
+#'   resolves to `getTheme()$stamp`. `TRUE`/`FALSE`/`NULL`,
+#'   a string, or a named list for [stamp()].
+#' @param ... additional graphical parameters passed to [graphics::par()]
+#'   via `.applyParFromDots()` and to the plotting functions.
 #'
 #' @details
-#' If \code{y} is missing, \code{x} is interpreted as a matrix and each column
+#' If `y` is missing, `x` is interpreted as a matrix and each column
 #' is drawn as a separate line. Row names are used for the x-axis labels if
 #' available. The legend labels default to the column names of the data.
 #'
 #' @return Invisibly returns a list containing:
 #' \itemize{
-#'   \item \code{x} the x-values used for plotting,
-#'   \item \code{y} the y-values (if supplied),
-#'   \item \code{legend} the legend specification if drawn.
+#'   \item `x` the x-values used for plotting,
+#'   \item `y` the y-values (if supplied),
+#'   \item `legend` the legend specification if drawn.
 #' }
 #'
 #' @examples

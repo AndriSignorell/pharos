@@ -12,7 +12,7 @@ strExtract(x, pattern, ...)
 \item{pattern}{a character string containing a regular expression to match}
 
 \item{...}{additional arguments passed to
-\code{\link[stringi]{stri_extract_first_regex}}}
+\code{\link[stringi:stri_extract_first_regex]{stringi::stri_extract_first_regex()}}}
 }
 \value{
 A character vector containing the first match for each element of
@@ -24,7 +24,7 @@ element of a character vector.
 }
 \details{
 This function is a thin wrapper around
-\code{\link[stringi]{stri_extract_first_regex}} providing a simplified
+\code{\link[stringi:stri_extract_first_regex]{stringi::stri_extract_first_regex()}} providing a simplified
 interface for extracting the first match of a pattern.
 }
 \examples{
@@ -38,8 +38,8 @@ strExtract("hello world", "\\\\w+")
 
 }
 \seealso{
-\code{\link[stringi]{stri_extract_first_regex}},
-\code{\link{strExtractBetween}}
+\code{\link[stringi:stri_extract_first_regex]{stringi::stri_extract_first_regex()}},
+\code{\link[=strExtractBetween]{strExtractBetween()}}
 
 \link{string-overview} for an overview of all string utilities in pharos.
 }

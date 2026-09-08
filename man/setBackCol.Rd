@@ -30,7 +30,7 @@ plot(x = rnorm(100), col="blue", cex=1.2, pch=16,
 
 }
 \seealso{
-\code{\link{rect}}
+\code{\link[=rect]{rect()}}
 
 Other graphics.setup:
 \code{\link[=canvas]{canvas()}},

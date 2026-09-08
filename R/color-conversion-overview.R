@@ -4,8 +4,8 @@
 #' pharos provides a family of functions for converting colors between
 #' representations. Read each matrix as **row -> column**: the cell at
 #' row X, column Y is the function that converts a color from
-#' representation X to representation Y. \code{-} marks the diagonal
-#' (no self-conversion), \code{.} marks a combination with no direct
+#' representation X to representation Y. `-` marks the diagonal
+#' (no self-conversion), `.` marks a combination with no direct
 #' function. RGB is the hub between the two tables below.
 #'
 #' @section R color, hex, HSV, and RGB:
@@ -17,10 +17,10 @@
 #' | **HSV** | . | . | - | . |
 #' | **RGB** | [rgbToCol()] | [rgbToHex()] | . | - |
 #'
-#' \emph{"Col" is any valid R color specification (name, hex string, or
-#' palette index) as accepted by} \code{\link[grDevices]{col2rgb}}.
+#' *"Col" is any valid R color specification (name, hex string, or
+#' palette index) as accepted by* [grDevices::col2rgb()].
 #' No function starts from HSV: it is only ever a conversion target
-#' (via \code{\link{colToHSV}}), not a source -- see the note below the
+#' (via [colToHSV()]), not a source -- see the note below the
 #' second table for the reason this gap is left open.
 #'
 #' @section RGB, CMY, CMYK, and long integer:
@@ -43,11 +43,11 @@
 #'
 #' @section Why HSV has no source functions:
 #' Base R already provides the HSV -> Col/Hex direction via
-#' \code{\link[grDevices]{hsv}()}, which builds a hex color string
-#' directly from h/s/v values -- the same role \code{\link{rgb}()}
+#' [grDevices::hsv()], which builds a hex color string
+#' directly from h/s/v values -- the same role [rgb()]
 #' plays for RGB triplets. pharos deliberately doesn't duplicate it;
-#' chain \code{hsv()} into \code{\link{colToRGB}()} or
-#' \code{\link{colToHex}()} instead (see examples).
+#' chain `hsv()` into [colToRGB()] or
+#' [colToHex()] instead (see examples).
 #'
 #' @examples
 #' # A "." in the matrix means chaining two functions through a hub

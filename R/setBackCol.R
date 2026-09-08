@@ -8,8 +8,8 @@
 #' 
 #' @param col the color of the background, if two colors are provided, the
 #' first is used for the plot region and the second for the figure region. 
-#' @param region either \code{"plot"} or \code{"figure"} 
-#' @param border color for rectangle border(s). Default is \code{NA} for no
+#' @param region either `"plot"` or `"figure"` 
+#' @param border color for rectangle border(s). Default is `NA` for no
 #' borders. 
 #' 
 #' @examples
@@ -20,7 +20,7 @@
 #'                   grid()})
 #' 
 #' 
-#' @seealso \code{\link{rect}} 
+#' @seealso [rect()] 
 #' 
 #' @family graphics.setup
 #' @concept color

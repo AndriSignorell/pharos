@@ -4,17 +4,17 @@
 #' Create a Bézier curve from a set of control points.
 #'
 #' @param x,y numeric vectors of control points.
-#'   Alternatively, \code{x} may be a list with components
-#'   \code{x} and \code{y}.
+#'   Alternatively, `x` may be a list with components
+#'   `x` and `y`.
 #' @param numPoints number of points used to approximate the curve.
 #'
 #' @return
 #' An object inheriting from class
-#' \code{"bezierGeometry"}.
+#' `"bezierGeometry"`.
 #'
 #' @references
 #' Farin, G. (1993).
-#' \emph{Curves and Surfaces for Computer Aided Geometric Design}.
+#' *Curves and Surfaces for Computer Aided Geometric Design*.
 #' Academic Press.
 #'
 #' @seealso [graphics::lines]

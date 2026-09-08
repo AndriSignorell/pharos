@@ -6,7 +6,7 @@
 #'
 #' @param r numeric vector or matrix of radial values. Each row represents one series.
 #' @param theta optional numeric vector or matrix of angles (in radians).
-#'   Must match the dimensions of \code{r}. If \code{NULL}, equally spaced angles are used.
+#'   Must match the dimensions of `r`. If `NULL`, equally spaced angles are used.
 #' @param main optional plot title.
 #' @param type character vector specifying plot type for each series:
 #'   \describe{
@@ -14,24 +14,24 @@
 #'     \item{"l"}{polygon (connected and optionally filled)}
 #'     \item{"h"}{radial segments ("histogram"-style)}
 #'   }
-#' @param rlim numeric limit for radial axis. If \code{NULL}, determined automatically.
+#' @param rlim numeric limit for radial axis. If `NULL`, determined automatically.
 #' @param col color for points/lines.
-#' @param border color for border in case of type \code{polygon}.
-#' @param add logical; if \code{TRUE}, adds to an existing plot.
+#' @param border color for border in case of type `polygon`.
+#' @param add logical; if `TRUE`, adds to an existing plot.
 #' @param ... additional graphical parameters passed to base plotting functions.
 #'
 #' @details
 #' The function supports plotting multiple radial series simultaneously.
-#' Each row of \code{r} is treated as a separate series.
+#' Each row of `r` is treated as a separate series.
 #'
-#' Angles are interpreted in radians. If \code{theta} is not provided,
+#' Angles are interpreted in radians. If `theta` is not provided,
 #' points are distributed evenly over \eqn{[0, 2\pi)}.
 #'
-#' Graphical parameters such as \code{lwd}, \code{lty}, \code{pch},
-#' \code{cex}, \code{fill}, and \code{mar} can be passed via \code{...}.
+#' Graphical parameters such as `lwd`, `lty`, `pch`,
+#' `cex`, `fill`, and `mar` can be passed via `...`.
 #'
 #' @return
-#' Invisibly returns \code{NULL}.
+#' Invisibly returns `NULL`.
 #'
 #' @examples
 #' r <- matrix(runif(20), nrow = 2)

@@ -24,7 +24,7 @@ left to the default \code{NULL} \code{min(pretty(x))} will be used.}
 left to the default \code{NULL} \code{max(pretty(x))} will be used.}
 
 \item{allInside}{logical; if true, the returned indices are coerced into
-\code{1, ..., N-1}, i.e., \code{0} is mapped to \code{1} and \code{N} to
+\verb{1, ..., N-1}, i.e., \code{0} is mapped to \code{1} and \code{N} to
 \code{N-1}.}
 }
 \description{
@@ -33,14 +33,14 @@ helpful for colorcoding numeric values.
 }
 \details{
 For the selection of colors the option \code{rightmost.closed} in the used
-function \code{\link{findInterval}} is set to TRUE. This will ensure that
+function \code{\link[=findInterval]{findInterval()}} is set to TRUE. This will ensure that
 all values on the right edge of the range are assigned a color. How values
 outside the boundaries of minX and maxX should be handled can be
 controlled by \code{allInside}. Set this value to TRUE, if those values
 should get the colors at the edges or set it to FALSE, if they should remain
 white (which is the default).
 
-Note that \code{\link{findInterval}} closes the intervals on the left side,
+Note that \code{\link[=findInterval]{findInterval()}} closes the intervals on the left side,
 e.g. [0, 1). This option can't be changed. Consequently will x-values lying
 on the edge of two colors get the color of the bigger one.
 }
@@ -83,7 +83,7 @@ text(x=x, y = 0.3, labels = names(findColor(x, col=cols,
    minX = 0, maxX = 1, allInside = FALSE)), adj = c(0.5,0.5))
 }
 \seealso{
-\code{\link{findInterval}}
+\code{\link[=findInterval]{findInterval()}}
 
 Other color.lookup:
 \code{\link[=contrastColor]{contrastColor()}}

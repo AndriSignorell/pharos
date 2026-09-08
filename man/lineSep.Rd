@@ -8,7 +8,7 @@ lineSep(sep = .getOption("linesep"))
 }
 \arguments{
 \item{sep}{A character string used as separator. If \code{NULL},
-a default Unicode box-drawing character (\code{"\u2500"}) is used.
+a default Unicode box-drawing character (\code{"\\u2500"}) is used.
 If \code{sep} consists of a single visible character, it is
 repeated to match the current console width (minus two characters).}
 }

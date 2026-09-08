@@ -3,29 +3,29 @@
 #'
 #' Add vertical or horizontal error bars to an existing plot.
 #'
-#' This is a lightweight wrapper around \code{\link{arrows}} with
-#' optional point symbols added via \code{\link{points}}.
+#' This is a lightweight wrapper around [arrows()] with
+#' optional point symbols added via [points()].
 #'
 #' @details
-#' Additional graphical arguments in \code{...} are passed to
-#' \code{\link{arrows}} and may be used to control the appearance
+#' Additional graphical arguments in `...` are passed to
+#' [arrows()] and may be used to control the appearance
 #' of the error bars.
 #'
 #' Common examples include:
 #' \itemize{
-#'   \item \code{col}: line color
-#'   \item \code{lwd}: line width
-#'   \item \code{lty}: line type
-#'   \item \code{code}: which end caps to draw
-#'   \item \code{length}: length of the end caps
+#'   \item `col`: line color
+#'   \item `lwd`: line width
+#'   \item `lty`: line type
+#'   \item `code`: which end caps to draw
+#'   \item `length`: length of the end caps
 #' }
 #'
 #' Point symbols may optionally be added:
 #' \itemize{
-#'   \item \code{points = TRUE}: draw default points halfway between
-#'     \code{from} and \code{to}
-#'   \item \code{points = numeric}: use these values as point coordinates
-#'   \item \code{points = list(...)}: fully specify point coordinates
+#'   \item `points = TRUE`: draw default points halfway between
+#'     `from` and `to`
+#'   \item `points = numeric`: use these values as point coordinates
+#'   \item `points = list(...)`: fully specify point coordinates
 #'     and graphical parameters
 #' }
 #'
@@ -40,19 +40,19 @@
 #' )
 #' }
 #' 
-#' The default orientation is horizontal (\code{horiz = TRUE}), which
+#' The default orientation is horizontal (`horiz = TRUE`), which
 #' suits the typical use case of adding confidence intervals to a
-#' \code{\link{dotchart}}.  Set \code{horiz = FALSE} for vertical bars
+#' [dotchart()].  Set `horiz = FALSE` for vertical bars
 #' on barplots or similar.
 #'
 #' @param from coordinates of the lower end of the error bars.
 #'
-#'   If \code{to = NULL} and \code{from} is a matrix:
+#'   If `to = NULL` and `from` is a matrix:
 #'   \itemize{
 #'     \item a 2-column matrix is interpreted as
-#'       \code{cbind(from, to)}
+#'       `cbind(from, to)`
 #'     \item a 3-column matrix is interpreted as
-#'       \code{cbind(point, from, to)}
+#'       `cbind(point, from, to)`
 #'   }
 #'
 #' @param to coordinates of the upper end of the error bars.
@@ -62,13 +62,13 @@
 #'   For vertical bars this corresponds to x-positions;
 #'   for horizontal bars to y-positions.
 #'
-#' @param horiz logical; if \code{TRUE}, horizontal error bars
+#' @param horiz logical; if `TRUE`, horizontal error bars
 #'   are drawn.
 #'
 #' @param points optional point specification.
 #'
 #' @param ... additional graphical arguments passed to
-#'   \code{\link{arrows}}.
+#'   [arrows()].
 #'
 #' @return
 #' Invisibly returns a list with components:
@@ -80,8 +80,8 @@
 #' }
 #'
 #' @seealso
-#' \code{\link{arrows}},
-#' \code{\link{points}}
+#' [arrows()],
+#' [points()]
 #'
 #' @examples
 #' op <- par(no.readonly = TRUE)

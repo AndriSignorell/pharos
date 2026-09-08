@@ -13,8 +13,8 @@ embedFile(path)
 a single character string
 }
 \description{
-The building block behind \code{\link{as.img}} and
-\code{\link{as.fileLink}}: reads a file and returns its contents
+The building block behind \code{\link[=as.img]{as.img()}} and
+\code{\link[=as.fileLink]{as.fileLink()}}: reads a file and returns its contents
 base64-encoded, ready to be placed in a data URI or in any container
 format that carries binary payloads as text.
 }

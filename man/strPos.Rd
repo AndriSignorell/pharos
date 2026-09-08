@@ -26,7 +26,7 @@ Returns the numeric position of the first occurrence of a substring within a
 string. If the search string is not found, the result will be \code{NA}.
 }
 \details{
-This is just a wrapper for the function \code{\link{regexpr}}.
+This is just a wrapper for the function \code{\link[=regexpr]{regexpr()}}.
 }
 \examples{
 
@@ -38,7 +38,7 @@ strPos(x=rownames(mtcars), pattern="t", pos=4)
 
 }
 \seealso{
-\code{\link{strChop}}, \code{\link{regexpr}}
+\code{\link[=strChop]{strChop()}}, \code{\link[=regexpr]{regexpr()}}
 
 \link{string-overview} for an overview of all string utilities in pharos.
 }

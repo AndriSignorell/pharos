@@ -18,7 +18,7 @@ If no arguments are provided, returns the current margin vector (numeric of leng
 Otherwise, sets the margins and returns the new values invisibly.
 }
 \description{
-Convenience wrapper around \code{\link[graphics]{par}} for getting and setting
+Convenience wrapper around \code{\link[graphics:par]{graphics::par()}} for getting and setting
 plot margins (\code{mar}) or outer margins (\code{oma}). Individual sides can
 be modified without affecting the others.
 }

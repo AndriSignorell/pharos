@@ -59,7 +59,7 @@ Useful for adding further annotation next to the labels.
 Draw a legend in the right margin consisting of short line segments
 and text labels, placed next to the (typically last) values of the
 plotted series. This labels lines directly instead of using a boxed
-\code{\link{legend}()}, as commonly preferred for time series and
+\code{\link[=legend]{legend()}}, as commonly preferred for time series and
 profile plots.
 }
 \details{
@@ -70,7 +70,7 @@ label collisions are resolved via \code{spreadOut()}. Callers therefore
 simply pass the values in series order, parallel to \code{col},
 \code{lty} and \code{lwd}.
 
-Drawing uses \code{\link{mtext}()} and \code{\link{segments}()} in the
+Drawing uses \code{\link[=mtext]{mtext()}} and \code{\link[=segments]{segments()}} in the
 device margin; \code{xpd} is set to \code{TRUE} and restored on exit.
 Horizontal positions are given in margin lines of side 4 and converted
 to user coordinates via \code{lineToUser()}.
@@ -90,8 +90,8 @@ par(op)
 
 }
 \seealso{
-\code{\link{plotLines}}, \code{\link{mtext}},
-\code{\link{segments}}, \code{\link{legend}}
+\code{\link[=plotLines]{plotLines()}}, \code{\link[=mtext]{mtext()}},
+\code{\link[=segments]{segments()}}, \code{\link[=legend]{legend()}}
 
 Other graphics.annotation:
 \code{\link[=barText]{barText()}},

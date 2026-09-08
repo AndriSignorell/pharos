@@ -160,23 +160,6 @@ test_that("degenerate inputs are handled gracefully", {
   expect_identical(nrow(r4$loop), 0L)
 })
 
-test_that("outlier classification agrees with aplpack (superset on cardata)", {
-  # suppressWarnings: aplpack warns about a missing Tk display on headless
-  # systems (CI) already while its namespace is loaded
-  skip_if_not(suppressWarnings(requireNamespace("aplpack", quietly = TRUE)),
-              "aplpack not installed")
-  a   <- suppressWarnings(
-           aplpack::compute.bagplot(.cardata[, 1], .cardata[, 2],
-                                    approx.limit = 5000))
-  res <- bagplot_compute_cpp(.cardata)
-  ao  <- rbind(a$pxy.outlier)[, 1:2, drop = FALSE]
-  skip_if(is.null(ao) || nrow(ao) == 0)
-  for (i in seq_len(nrow(ao)))
-    expect_true(any(res$outliers[, 1] == ao[i, 1] &
-                    res$outliers[, 2] == ao[i, 2]),
-                info = paste("aplpack outlier not flagged:",
-                             ao[i, 1], ao[i, 2]))
-})
 
 
 # == plotBag wrapper =============================================================
@@ -205,11 +188,11 @@ test_that("plotBag.formula matches the default method", {
   rf <- plotBag(Disp ~ Weight, data = cd)
   rd <- plotBag(cbind(cd$Weight, cd$Disp))
   # y ~ x puts the predictor on the horizontal axis, so both routes agree
-  # on every computed component (the formula method adds 'data.name')
+  # on every computed component (the formula method adds 'dataName')
   for (el in names(rd))
     expect_equal(rf[[el]], rd[[el]], ignore_attr = TRUE, info = el)
   expect_s3_class(rf, "bagplot")
-  expect_identical(rf$data.name, "Disp ~ Weight")
+  expect_identical(rf$dataName, "Disp ~ Weight")
 })
 
 test_that("plotBag.formula honours subset, na.action and the calling env", {

@@ -29,14 +29,14 @@ splineX(x, ...)
 \item{x}{spline object returned by \code{splineX()}.}
 
 \item{\dots}{further arguments passed to
-\code{\link[stats:smooth.spline]{smooth.spline}}.}
+\code{\link[stats:smooth.spline]{stats::smooth.spline()}}.}
 
 \item{formula}{A formula of the form \code{lhs ~ rhs}, where \code{lhs}
 gives the response values and \code{rhs} the corresponding groups
 or explanatory variables.}
 
 \item{data}{an optional matrix or data frame (or similar; see
-\code{\link[stats]{model.frame}}) containing the variables in the
+\code{\link[stats:model.frame]{stats::model.frame()}}) containing the variables in the
 formula. By default the variables are taken from
 \code{environment(formula)}.}
 
@@ -55,7 +55,7 @@ the data contain \code{NA}s. Defaults to
 
 \item{lty}{line type.}
 
-\item{type}{plotting type passed to \code{\link{lines}}.}
+\item{type}{plotting type passed to \code{\link[=lines]{lines()}}.}
 
 \item{bandArgs}{controls the confidence band. May be \code{TRUE},
 \code{FALSE}, \code{NULL}, \code{NA}, or a named list. The confidence
@@ -100,7 +100,7 @@ par(op)
 
 }
 \seealso{
-\code{\link{loess}}, \code{\link{scatter.smooth}}
+\code{\link[=loess]{loess()}}, \code{\link[=scatter.smooth]{scatter.smooth()}}
 
 Other graphics.trendlines:
 \code{\link[=lines.lm]{lines.lm()}},

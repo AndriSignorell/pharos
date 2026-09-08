@@ -1,6 +1,6 @@
 Package: pharos
 Title: Descriptive Statistics Graphics and Utilities
-Version: 0.0.0.953
+Version: 0.0.0.954
 Authors@R: c(
   person(given="Andri", family="Signorell", 
          email = "andri@signorell.net", 
@@ -41,7 +41,7 @@ LinkingTo: Rcpp
 Roxygen: list(markdown = TRUE)
 Imports: graphics, Rcpp, bedrock, MASS, cli, withr, stringi, methods, base64enc
 Suggests:
-    testthat (>= 3.0.0), R.rsp, hexbin, aplpack, prettyunits
+    testthat (>= 3.0.0), R.rsp, hexbin, prettyunits
 Remotes:  
     AndriSignorell/bedrock
 Config/testthat/edition: 3

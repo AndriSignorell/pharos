@@ -3,120 +3,120 @@
 #' Draws a scatterplot of two numeric variables with optional linear and
 #' locally weighted regression lines, and an optional legend.
 #'
-#' @param x numeric vector of x-values, or a formula of the form \code{y ~ x}.
+#' @param x numeric vector of x-values, or a formula of the form `y ~ x`.
 #' @param y numeric vector of y-values (ignored if a formula is used).
 #'
-#' @param formula a formula of the form \code{y ~ x}.
+#' @param formula a formula of the form `y ~ x`.
 #' @param data an optional data frame containing variables in the formula.
 #' @param subset optional expression indicating which observations to use.
 #' @param na.action a function specifying how missing values are handled.
-#'   Defaults to \code{na.omit}.
+#'   Defaults to `na.omit`.
 #'
-#' @param main main title of the plot. \code{NULL} (default) derives a
-#'   title from the input - \code{deparse(y) ~ deparse(x)} for the default
-#'   method, or the formula's \code{data.name} for the formula method.
-#'   \code{""}, \code{NA}, or \code{FALSE} suppress the title entirely
+#' @param main main title of the plot. `NULL` (default) derives a
+#'   title from the input - `deparse(y) ~ deparse(x)` for the default
+#'   method, or the formula's `dataName` for the formula method.
+#'   `""`, `NA`, or `FALSE` suppress the title entirely
 #'   (and compact the top margin accordingly); any other string is used
-#'   as given (resolved internally via \code{.resolveTitle()}).
+#'   as given (resolved internally via `.resolveTitle()`).
 #' @param xlab label for the x-axis.
 #' @param ylab label for the y-axis.
 #'
-#' @param xlim numeric vector of length 2; x-axis limits. If \code{NULL}
-#'   (default), the range of \code{x} is used.
-#' @param ylim numeric vector of length 2; y-axis limits. If \code{NULL}
-#'   (default), the range of \code{y} is used.
+#' @param xlim numeric vector of length 2; x-axis limits. If `NULL`
+#'   (default), the range of `x` is used.
+#' @param ylim numeric vector of length 2; y-axis limits. If `NULL`
+#'   (default), the range of `y` is used.
 #'
-#' @param col color of the points. \code{.useTheme} (default) resolves to
-#'   \code{getTheme()$points$col}.
-#' @param bg background (fill) color of the points. \code{.useTheme}
-#'   (default) resolves to \code{getTheme()$points$bg}.
-#' @param pch plotting character. \code{.useTheme} (default) resolves to
-#'   \code{getTheme()$points$pch}.
-#' @param cex character expansion factor for points. \code{.useTheme}
-#'   (default) resolves to \code{getTheme()$points$cex}.
+#' @param col color of the points. `.useTheme` (default) resolves to
+#'   `getTheme()$points$col`.
+#' @param bg background (fill) color of the points. `.useTheme`
+#'   (default) resolves to `getTheme()$points$bg`.
+#' @param pch plotting character. `.useTheme` (default) resolves to
+#'   `getTheme()$points$pch`.
+#' @param cex character expansion factor for points. `.useTheme`
+#'   (default) resolves to `getTheme()$points$cex`.
 #'
 #' @param grid controls drawing of the background grid.
 #'   Can be:
 #'   \itemize{
-#'     \item \code{.useTheme} (default): follow the active theme
-#'       (\code{getTheme()$grid})
-#'     \item \code{TRUE}: draw grid with theme settings
-#'     \item \code{FALSE}, \code{NULL}, or \code{NA}: suppress grid
-#'     \item a named list: arguments passed to \code{\link[graphics]{grid}},
+#'     \item `.useTheme` (default): follow the active theme
+#'       (`getTheme()$grid`)
+#'     \item `TRUE`: draw grid with theme settings
+#'     \item `FALSE`, `NULL`, or `NA`: suppress grid
+#'     \item a named list: arguments passed to [graphics::grid()],
 #'       overriding the theme defaults for this call only
 #'   }
 #'
 #' @param lm controls drawing of the linear regression line.
 #'   Can be:
 #'   \itemize{
-#'     \item \code{TRUE}: draw with default settings
-#'     \item \code{FALSE}, \code{NULL}, or \code{NA}: suppress
-#'     \item a named list: arguments passed to \code{\link[graphics]{lines}},
-#'       e.g. \code{list(col = "blue", lwd = 2)}
+#'     \item `TRUE`: draw with default settings
+#'     \item `FALSE`, `NULL`, or `NA`: suppress
+#'     \item a named list: arguments passed to [graphics::lines()],
+#'       e.g. `list(col = "blue", lwd = 2)`
 #'   }
 #'
 #' @param loess controls drawing of the locally weighted regression line.
 #'   Can be:
 #'   \itemize{
-#'     \item \code{TRUE}: draw with default settings
-#'     \item \code{FALSE}, \code{NULL}, or \code{NA}: suppress
-#'     \item a named list: arguments passed to \code{\link[graphics]{lines}},
-#'       e.g. \code{list(col = "red", lty = "dashed")}
+#'     \item `TRUE`: draw with default settings
+#'     \item `FALSE`, `NULL`, or `NA`: suppress
+#'     \item a named list: arguments passed to [graphics::lines()],
+#'       e.g. `list(col = "red", lty = "dashed")`
 #'   }
 #'
 #' @param legend controls drawing of the legend.
 #'   Can be:
 #'   \itemize{
-#'     \item \code{TRUE}: draw with default settings (position \code{"topright"})
-#'     \item \code{FALSE}, \code{NULL}, or \code{NA}: suppress
-#'     \item a named list: arguments passed to \code{\link[graphics]{legend}},
-#'       e.g. \code{list(x = "bottomleft")}
+#'     \item `TRUE`: draw with default settings (position `"topright"`)
+#'     \item `FALSE`, `NULL`, or `NA`: suppress
+#'     \item a named list: arguments passed to [graphics::legend()],
+#'       e.g. `list(x = "bottomleft")`
 #'   }
-#'   The legend is only drawn when at least one of \code{lm} or \code{loess}
-#'   is active. \code{lm}/\code{loess} line colors are taken from the
-#'   active theme's \code{twin} colors (\code{getTheme()$twin}).
+#'   The legend is only drawn when at least one of `lm` or `loess`
+#'   is active. `lm`/`loess` line colors are taken from the
+#'   active theme's `twin` colors (`getTheme()$twin`).
 #'
 #' @param box controls drawing of the plot box.
 #'   Can be:
 #'   \itemize{
-#'     \item \code{.useTheme} (default): follow the active theme
-#'       (\code{getTheme()$box})
-#'     \item \code{TRUE}: draw box with theme settings
-#'     \item \code{FALSE}, \code{NULL}, or \code{NA}: suppress box
-#'     \item a named list: arguments passed to \code{\link[graphics]{box}},
+#'     \item `.useTheme` (default): follow the active theme
+#'       (`getTheme()$box`)
+#'     \item `TRUE`: draw box with theme settings
+#'     \item `FALSE`, `NULL`, or `NA`: suppress box
+#'     \item a named list: arguments passed to [graphics::box()],
 #'       overriding the theme defaults for this call only
 #'   }
 #'
-#' @param stamp controls the corner stamp. \code{.useTheme} (default)
-#'   resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
-#'   \code{NULL}, a string, or a named list for \code{\link{stamp}()}.
-#' @param ... further graphical parameters passed to \code{par()} via the
+#' @param stamp controls the corner stamp. `.useTheme` (default)
+#'   resolves to `getTheme()$stamp`. `TRUE`/`FALSE`/
+#'   `NULL`, a string, or a named list for [stamp()].
+#' @param ... further graphical parameters passed to `par()` via the
 #'   internal framework.
 #'
 #' @details
-#' Optional plot components (\code{grid}, \code{box}, \code{lm},
-#' \code{loess}, \code{legend}) follow \code{\link[bedrock]{callIf}}
+#' Optional plot components (`grid`, `box`, `lm`,
+#' `loess`, `legend`) follow [bedrock::callIf()]
 #' semantics:
 #' \itemize{
-#'   \item \code{TRUE}: draw with defaults
-#'   \item \code{FALSE}, \code{NULL}, or \code{NA}: suppress component
+#'   \item `TRUE`: draw with defaults
+#'   \item `FALSE`, `NULL`, or `NA`: suppress component
 #'   \item named list: customize component arguments
 #' }
 #'
-#' \code{col}, \code{bg}, \code{pch}, \code{cex}, \code{grid}, and \code{box}
-#' default to \code{.useTheme}, deferring to the package's active theme
+#' `col`, `bg`, `pch`, `cex`, `grid`, and `box`
+#' default to `.useTheme`, deferring to the package's active theme
 #' (see [theme]) rather than a hardcoded value. This means
-#' \code{setTheme(list(points = list(col = "black")))} changes the point
-#' color for every call to \code{plotXY()} (and any other function using
-#' the same theme section) that doesn't override \code{col} explicitly.
+#' `setTheme(list(points = list(col = "black")))` changes the point
+#' color for every call to `plotXY()` (and any other function using
+#' the same theme section) that doesn't override `col` explicitly.
 #'
-#' @return Invisibly returns \code{NULL}.
+#' @return Invisibly returns `NULL`.
 #'
 #' @seealso
-#' \code{\link[graphics]{plot}},
-#' \code{\link[stats]{lm}},
-#' \code{\link[stats]{loess}},
-#' \code{\link[bedrock]{callIf}}
+#' [graphics::plot()],
+#' [stats::lm()],
+#' [stats::loess()],
+#' [bedrock::callIf()]
 #'
 #' @examples
 #' \dontrun{
@@ -319,7 +319,7 @@ plotXY.formula <- function(
   x <- r$predictor
   y <- r$x
   
-  main <- .resolveTitle(main, default = r$data.name)
+  main <- .resolveTitle(main, default = r$dataName)
   
   if (!nzchar(xlab)) xlab <- names(r$mf)[2]
   if (!nzchar(ylab)) ylab <- names(r$mf)[1]

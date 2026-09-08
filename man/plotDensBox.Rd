@@ -46,7 +46,7 @@ plotDensBox(x, ...)
 \item{x}{numeric vector, or a formula of the form \code{x ~ g}.}
 
 \item{...}{further graphical parameters passed to
-\code{\link[graphics]{par}} via the internal framework.}
+\code{\link[graphics:par]{graphics::par()}} via the internal framework.}
 
 \item{g}{optional grouping variable (ignored if a formula is used).}
 
@@ -68,27 +68,27 @@ Can be:
 \itemize{
 \item \code{TRUE}: draw grid with default settings
 \item \code{FALSE}, \code{NULL}, \code{NA}: suppress grid
-\item a named list: arguments passed to \code{\link[graphics]{grid}}
+\item a named list: arguments passed to \code{\link[graphics:grid]{graphics::grid()}}
 }}
 
 \item{densArgs}{controls density estimation via
-\code{\link[stats]{density}}.
+\code{\link[stats:density]{stats::density()}}.
 Can be:
 \itemize{
 \item \code{TRUE}: use default density settings
 \item \code{FALSE}, \code{NULL}, \code{NA}: suppress densities
 \item a named list: additional arguments passed to
-\code{\link[stats]{density}}
+\code{\link[stats:density]{stats::density()}}
 }}
 
 \item{boxArgs}{controls drawing of boxplots via
-\code{\link[graphics]{boxplot}}.
+\code{\link[graphics:boxplot]{graphics::boxplot()}}.
 Can be:
 \itemize{
 \item \code{TRUE}: use default boxplot settings
 \item \code{FALSE}, \code{NULL}, \code{NA}: suppress boxplots
 \item a named list: additional arguments passed to
-\code{\link[graphics]{boxplot}}
+\code{\link[graphics:boxplot]{graphics::boxplot()}}
 }}
 
 \item{stamp}{optional annotation passed to the plotting framework.}
@@ -111,12 +111,12 @@ distribution shape, while the boxplot summarizes key statistics such as
 median, spread, and outliers.
 }
 \details{
-The function arranges two plots vertically using \code{\link{layout}}:
+The function arranges two plots vertically using \code{\link[=layout]{layout()}}:
 a density plot on top and a horizontal boxplot below. When a grouping
 variable is provided, densities and boxplots are drawn for each group.
 
 Optional plot components are controlled using
-\code{\link[bedrock]{callIf}} semantics:
+\code{\link[bedrock:callIf]{bedrock::callIf()}} semantics:
 \itemize{
 \item \code{TRUE}: draw with defaults
 \item \code{FALSE}: suppress component
@@ -148,9 +148,9 @@ plotDensBox(x ~ g)
 
 }
 \seealso{
-\code{\link[stats]{density}},
-\code{\link[graphics]{boxplot}},
-\code{\link[bedrock]{callIf}}
+\code{\link[stats:density]{stats::density()}},
+\code{\link[graphics:boxplot]{graphics::boxplot()}},
+\code{\link[bedrock:callIf]{bedrock::callIf()}}
 
 Other plot.univariate:
 \code{\link[=plotArea]{plotArea()}},

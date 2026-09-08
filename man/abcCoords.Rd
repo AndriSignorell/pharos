@@ -34,32 +34,32 @@ A list with two components:
 \item{\code{xy}}{A list with elements \code{x} and \code{y} giving
 the anchor coordinates in user space.}
 \item{\code{adj}}{A numeric vector of length 2, suitable for the
-\code{adj} argument of \code{\link{text}}.}
+\code{adj} argument of \code{\link[=text]{text()}}.}
 }
 }
 \description{
 Returns the xy-coordinates and text-adjustment values for named anchor
 positions such as \code{"topleft"}, \code{"center"}, etc., as used by
-\code{\link{legend}}.  Useful for placing text or other annotations at
+\code{\link[=legend]{legend()}}.  Useful for placing text or other annotations at
 consistent, region-aware positions.
 }
 \details{
-The positioning logic is adapted from \code{\link{legend}}.
-The inset is computed in character units via \code{\link{strwidth}} and
-\code{\link{strheight}}, making it robust to device resizing, font
+The positioning logic is adapted from \code{\link[=legend]{legend()}}.
+The inset is computed in character units via \code{\link[=strwidth]{strwidth()}} and
+\code{\link[=strheight]{strheight()}}, making it robust to device resizing, font
 changes, and plot-range scaling.
 
 Three regions are supported:
 \describe{
 \item{\code{"plot"}}{The inner plot area (\code{par("usr")}).  The
-default, and the region \code{\link{legend}} positions in.}
+default, and the region \code{\link[=legend]{legend()}} positions in.}
 \item{\code{"figure"}}{The figure region within the device, accounting
 for \code{par("fig")}.}
 \item{\code{"device"}}{The full device area.}
 }
 
 Coordinates for \code{"figure"} and \code{"device"} lie outside
-\code{par("usr")} and are therefore clipped away by \code{\link{text}}
+\code{par("usr")} and are therefore clipped away by \code{\link[=text]{text()}}
 and friends unless the drawing call sets \code{xpd = NA}.  The returned
 values are in user space either way; only the clipping has to be turned
 off by the caller.
@@ -91,7 +91,7 @@ text(x = xy$xy$x, y = xy$xy$y, labels = "source: ...",
 
 }
 \seealso{
-\code{\link{text}}, \code{\link{legend}}
+\code{\link[=text]{text()}}, \code{\link[=legend]{legend()}}
 
 Other graphics.layout:
 \code{\link{axTicks}},

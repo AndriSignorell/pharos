@@ -50,7 +50,7 @@ graphical parameters passed to \code{par()}.}
 
 \item{add}{logical; if \code{TRUE}, adds to an existing plot.}
 
-\item{bw}{bandwidth passed to \code{\link[stats]{density}} or \code{cdplot}.}
+\item{bw}{bandwidth passed to \code{\link[stats:density]{stats::density()}} or \code{cdplot}.}
 
 \item{type}{character string specifying the plot type. One of
 \code{"density"}, \code{"conditional"}, or \code{NULL} (default,
@@ -84,7 +84,7 @@ Draws kernel density estimates for one or more groups. Supports both
 classical density plots and conditional density plots.
 }
 \details{
-The function defers entirely to \code{\link[bedrock]{resolveFormula}()}'s
+The function defers entirely to \code{\link[bedrock:resolveFormula]{bedrock::resolveFormula()}}'s
 design classification to pick a mode when \code{type = NULL}:
 \itemize{
 \item \code{y ~ g} (\code{g} categorical) → density, one curve per
@@ -122,8 +122,8 @@ plotDens(y ~ x | g)
 
 }
 \seealso{
-\code{\link[stats]{density}}, \code{\link[graphics]{cdplot}},
-\code{\link[bedrock]{resolveFormula}}
+\code{\link[stats:density]{stats::density()}}, \code{\link[graphics:cdplot]{graphics::cdplot()}},
+\code{\link[bedrock:resolveFormula]{bedrock::resolveFormula()}}
 
 Other plot.univariate:
 \code{\link[=plotArea]{plotArea()}},

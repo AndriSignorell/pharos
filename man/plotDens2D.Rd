@@ -43,11 +43,11 @@ diverging \code{twin} pair, neither of which fits a density surface.}
 \item{grid}{controls drawing of the background grid. \code{.useTheme}
 (default) follows the active theme (\code{getTheme()$grid}).
 \code{TRUE}/\code{FALSE}/\code{NA}, or a named list, as for
-\code{\link[graphics]{grid}}.}
+\code{\link[graphics:grid]{graphics::grid()}}.}
 
 \item{box}{controls drawing of the plot box. \code{.useTheme} (default)
 resolves to \code{getTheme()$box}. \code{TRUE}/\code{FALSE}/\code{NA},
-or a named list, as for \code{\link[graphics]{box}}.}
+or a named list, as for \code{\link[graphics:box]{graphics::box()}}.}
 
 \item{...}{additional graphical parameters passed to underlying plotting functions.}
 }

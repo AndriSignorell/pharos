@@ -11,58 +11,58 @@
 #' @param x the data sample 
 #' @param qdist the quantile function of the assumed distribution. Can either
 #' be given as simple function name or defined as own function using the
-#' required arguments. Default is \code{qnorm()}. See examples.
+#' required arguments. Default is `qnorm()`. See examples.
 #' 
 #' @param main the main title for the plot. This will be "Q-Q-Plot" by default
 #' @param xlab the xlab for the plot 
 #' @param ylab the ylab for the plot 
 #' 
 #' @param datax logical. Should data values be on the x-axis? Default is
-#' \code{FALSE}.
+#' `FALSE`.
 #' @param add logical specifying if the points should be added to an already
-#' existing plot; defaults to \code{FALSE}.
+#' existing plot; defaults to `FALSE`.
 #' 
-#' @param grid controls drawing of the background grid. \code{.useTheme}
-#'   (default) follows the active theme (\code{getTheme()$grid}).
-#'   \code{TRUE}/\code{FALSE}/\code{NA}, or a named list, as for
-#'   \code{\link[graphics]{grid}}.
-#' @param box controls drawing of the plot box. \code{.useTheme} (default)
-#'   resolves to \code{getTheme()$box}. \code{TRUE}/\code{FALSE}/\code{NA},
-#'   or a named list, as for \code{\link[graphics]{box}}.
+#' @param grid controls drawing of the background grid. `.useTheme`
+#'   (default) follows the active theme (`getTheme()$grid`).
+#'   `TRUE`/`FALSE`/`NA`, or a named list, as for
+#'   [graphics::grid()].
+#' @param box controls drawing of the plot box. `.useTheme` (default)
+#'   resolves to `getTheme()$box`. `TRUE`/`FALSE`/`NA`,
+#'   or a named list, as for [graphics::box()].
 #' 
-#' @param cband controls the confidence band. \code{FALSE}, \code{NULL}, or
-#'   \code{NA} suppress it. A named list configures it; its
-#'   \code{conf.level} element (default \code{0.95}) controls the
+#' @param cband controls the confidence band. `FALSE`, `NULL`, or
+#'   `NA` suppress it. A named list configures it; its
+#'   `conf.level` element (default `0.95`) controls the
 #'   confidence level of the pointwise Kolmogorov-Smirnov-based band
-#'   (\code{conf.level} is consumed before the band is drawn and never
+#'   (`conf.level` is consumed before the band is drawn and never
 #'   forwarded as a graphical parameter). Other list elements (e.g.
-#'   \code{col}, \code{border}) configure the band's appearance.
+#'   `col`, `border`) configure the band's appearance.
 #' @param qqline arguments for the qqline. This will be estimated as a
 #' line through the 25\% and 75\% quantiles by default, which is the same
-#' procedure as \code{\link{qqline}()} does for normal distribution (instead of
-#' set it to \code{abline(a = 0, b = 1))}. The quantiles can however be
-#' overwritten by setting the argument \code{probs} to some user defined
+#' procedure as [qqline()] does for normal distribution (instead of
+#' set it to `abline(a = 0, b = 1))`. The quantiles can however be
+#' overwritten by setting the argument `probs` to some user defined
 #' values. Also the method for calculating the quantiles can be defined
-#' (default is 7, see \code{\link{quantile}}). The line defaults are set to
-#' \code{col = par("fg")}, \code{lwd = par("lwd")} and \code{lty = par("lty")}.
-#' No line will be plotted if \code{args.qqline} is set to \code{NA}.
+#' (default is 7, see [quantile()]). The line defaults are set to
+#' `col = par("fg")`, `lwd = par("lwd")` and `lty = par("lty")`.
+#' No line will be plotted if `args.qqline` is set to `NA`.
 #' 
-#' @param stamp controls the corner stamp. \code{.useTheme} (default)
-#'   resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/\code{NULL},
-#'   a string, or a named list of arguments for \code{stamp()} (e.g.
-#'   \code{list(text = "...", las = 2)}).
+#' @param stamp controls the corner stamp. `.useTheme` (default)
+#'   resolves to `getTheme()$stamp`. `TRUE`/`FALSE`/`NULL`,
+#'   a string, or a named list of arguments for `stamp()` (e.g.
+#'   `list(text = "...", las = 2)`).
 #' 
 #' @param \dots the dots are passed to the plot function. 
 #' 
 #' @note The code is inspired by the tip 10.22 "Creating other
 #' Quantile-Quantile plots" from R Cookbook and based on R-Core code from the
-#' function \code{qqline}. The calculation of confidence bands are rewritten
+#' function `qqline`. The calculation of confidence bands are rewritten
 #' based on an algorithm published in the package
-#' \code{BoutrosLab.plotting.general}.
+#' `BoutrosLab.plotting.general`.
 #' 
 #' @note Based on code by Ying Wu
 #' 
-#' @references Teetor, P. (2011) \emph{R Cookbook}. O'Reilly, pp. 254-255.
+#' @references Teetor, P. (2011) *R Cookbook*. O'Reilly, pp. 254-255.
 #' @examples
 #' 
 #' y <- rexp(100, 1/10)

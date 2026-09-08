@@ -31,89 +31,89 @@
 #' intellectual challenge for us little minds down here in the valley of tears.
 #' There are a number of options available and quite often it's hard to work
 #' out which one to use, when a more uncommon setting is needed. The
-#' \code{fm()} function wraps all these functions and tries to offer a simpler,
+#' `fm()` function wraps all these functions and tries to offer a simpler,
 #' less technical, but still flexible interface.
 #' 
 #' There's also an easygoing interface for format templates, defined as a list
 #' consisting of any accepted format features. This enables to define templates
 #' globally and easily change or modify them later.
 #' 
-#' \code{fm()} is the workhorse for formatting numbers and dates, supporting a
+#' `fm()` is the workhorse for formatting numbers and dates, supporting a
 #' comprehensive range of format options that are likely to occur in everyday
-#' reporting. Among these, the argument \code{fmt} deserves a more detailed
+#' reporting. Among these, the argument `fmt` deserves a more detailed
 #' description due to its flexibility. It is used to generate a variety of
-#' different special formats. \cr\cr If \code{x} is a date, it can take
+#' different special formats. \cr\cr If `x` is a date, it can take
 #' ISO-8601-inspired token syntax similar to .NET or Moment.js (consisting of
-#' \code{d}, \code{M} and \code{y} for day, month or year and \code{h/H},
-#' \code{m}, \code{s}, \code{t} for hours, minutes, seconds and AM/PM
+#' `d`, `M` and `y` for day, month or year and `h/H`,
+#' `m`, `s`, `t` for hours, minutes, seconds and AM/PM
 #' designator) and defining the combination of day month and year
 #' representation.\cr
 #' 
-#' \tabular{ll}{ \bold{Code}\verb{ } \tab \bold{Description}\cr \code{d } \tab
-#' day of the month without leading zero (1 - 31) \cr \code{dd} \tab day of the
-#' month with leading zero (01 - 31)\cr \code{ddd} \tab abbreviated name for
+#' \tabular{ll}{ **Code**\verb{ } \tab **Description**\cr `d ` \tab
+#' day of the month without leading zero (1 - 31) \cr `dd` \tab day of the
+#' month with leading zero (01 - 31)\cr `ddd` \tab abbreviated name for
 #' the day of the week (e.g. Mon) in the current user's language \cr
-#' \code{dddd} \tab full name for the day of the week (e.g. Monday) in the
-#' current user's language \cr \code{do} \tab The token \code{do} (aka 'day
+#' `dddd` \tab full name for the day of the week (e.g. Monday) in the
+#' current user's language \cr `do` \tab The token `do` (aka 'day
 #' ordinal') formats the day of month using English ordinal suffixes (e.g. 1st,
 #' 2nd, 3rd, 4th). This is an English-only feature. (For most other languages,
 #' ordinal dates are written using punctuation in the format string, e.g.
-#' \code{"d. MMM yyyy"}. Locale-specific ordinal rules beyond English are not
-#' implemented by design.)\cr \code{M } \tab month without leading zero (1 -
-#' 12) \cr \code{MM} \tab month with leading zero (01 - 12) \cr \code{MMM }
+#' `"d. MMM yyyy"`. Locale-specific ordinal rules beyond English are not
+#' implemented by design.)\cr `M ` \tab month without leading zero (1 -
+#' 12) \cr `MM` \tab month with leading zero (01 - 12) \cr `MMM `
 #' \tab abbreviated month name (e.g. Jan) in the current user's language \cr
-#' \code{MMMM} \tab full month name (e.g. January) in the current user's
-#' language \cr \code{y } \tab year without century, without leading zero (0 -
-#' 99) \cr \code{yy } \tab year without century, with leading zero (00 - 99)
-#' \cr \code{yyyy } \tab year with century. For example: 2005 \cr\cr \code{H/HH
-#' } \tab Hour in 24h format, one digit / two digits \cr \code{h/hh } \tab Hour
+#' `MMMM` \tab full month name (e.g. January) in the current user's
+#' language \cr `y ` \tab year without century, without leading zero (0 -
+#' 99) \cr `yy ` \tab year without century, with leading zero (00 - 99)
+#' \cr `yyyy ` \tab year with century. For example: 2005 \cr\cr `H/HH
+#' ` \tab Hour in 24h format, one digit / two digits \cr `h/hh ` \tab Hour
 #' in 12h format, one digit / two digits, note that in this case t must be set
-#' also to ensure uniqueness.\cr \code{t/tt } \tab AM/PM description (one/two
-#' characters)\cr \code{m/mm } \tab Minutes one digit / two digits\cr
-#' \code{s/ss } \tab Seconds one digit / two digits\cr
+#' also to ensure uniqueness.\cr `t/tt ` \tab AM/PM description (one/two
+#' characters)\cr `m/mm ` \tab Minutes one digit / two digits\cr
+#' `s/ss ` \tab Seconds one digit / two digits\cr
 #' 
 #' \cr } Weekdays and month names can be expressed in the local language or in
-#' English. The language can be controlled by the argument "\code{lang}".\cr
+#' English. The language can be controlled by the argument "`lang`".\cr
 #' 
 #' Even more variability is needed to display numeric values. For the most
 #' frequently used formats there are the following special codes available:
-#' \tabular{lll}{ \bold{Code} \tab \bold{Type} \tab \bold{Description} \cr
-#' \code{e} \tab scientific \tab forces scientific representation of x, e.g.
+#' \tabular{lll}{ **Code** \tab **Type** \tab **Description** \cr
+#' `e` \tab scientific \tab forces scientific representation of x, e.g.
 #' 3.141e-05. The number of digits,\cr \tab \tab alignment and zero values are
 #' further respected.\cr \tab\cr
 #' 
-#' \code{eng} \tab engineering \tab forces scientific representation of
-#' \code{x}, but only with powers that are a multiple of 3. \cr
-#' \code{engabb}\verb{ } \tab engineering abbr.\verb{ } \tab same as
-#' \code{eng}, but replaces the exponential representation by codes, \cr
-#' \tab\tab e.g. \code{M} for mega (1e6). \cr
+#' `eng` \tab engineering \tab forces scientific representation of
+#' `x`, but only with powers that are a multiple of 3. \cr
+#' `engabb`\verb{ } \tab engineering abbr.\verb{ } \tab same as
+#' `eng`, but replaces the exponential representation by codes, \cr
+#' \tab\tab e.g. `M` for mega (1e6). \cr
 #' 
-#' \code{\%} \tab percent \tab multiplies the given number by 100 and appends
-#' the \%-sign (without a separator).\cr \tab\cr \code{p} \tab p-value \tab
-#' formats values as p-values. \cr \tab \tab Use \code{pThreshold} to define
+#' `\%` \tab percent \tab multiplies the given number by 100 and appends
+#' the \%-sign (without a separator).\cr \tab\cr `p` \tab p-value \tab
+#' formats values as p-values. \cr \tab \tab Use `pThreshold` to define
 #' the threshold to e.g.
-#' switch to a \code{ <0.001 } representation.\cr \tab\cr \code{frac} \tab
+#' switch to a ` <0.001 ` representation.\cr \tab\cr `frac` \tab
 #' fractions \tab will (try to) convert numbers to fractions. So 0.1 will be
-#' displayed as 1/10. \cr \tab\tab See \code{\link[MASS]{fractions}()}.\cr
+#' displayed as 1/10. \cr \tab\tab See [MASS::fractions()].\cr
 #' \tab\cr
 #' 
-#' \code{*} \tab significance \tab will produce a significance representation
+#' `*` \tab significance \tab will produce a significance representation
 #' of a p-value consisting of * and ., \cr \tab \tab while the breaks are set
-#' according to the used defaults e.g. in \code{lm} as \cr \tab \tab \verb{[0, 0.001]}
-#' = \code{***} \cr \tab \tab (0.001, 0.01\verb{]} = \code{**} \cr \tab \tab (0.01,
-#' 0.05\verb{]} = \code{*} \cr \tab \tab (0.05, 0.1\verb{]} = \code{.} \cr \tab \tab (0.1,1\verb{]}
-#' = \code{ }\cr
+#' according to the used defaults e.g. in `lm` as \cr \tab \tab \verb{[0, 0.001]}
+#' = `***` \cr \tab \tab (0.001, 0.01\verb{]} = `**` \cr \tab \tab (0.01,
+#' 0.05\verb{]} = `*` \cr \tab \tab (0.05, 0.1\verb{]} = `.` \cr \tab \tab (0.1,1\verb{]}
+#' = ` `\cr
 #' 
-#' \code{p*}\tab p-value stars\tab will produce p-value and significance stars
+#' `p*`\tab p-value stars\tab will produce p-value and significance stars
 #' 
 #' }
 #' 
-#' \code{fmt} can as well be an object of class "\code{Style}" consisting of a
-#' list out of the arguments above (as created by \code{\link{style}()}). This
+#' `fmt` can as well be an object of class "`Style`" consisting of a
+#' list out of the arguments above (as created by [style()]). This
 #' allows to store and manage the full format in variables or as options and
 #' use it as format template subsequently. Arguments supplied directly to
-#' \code{fm()} override the corresponding Style settings, including an
-#' explicitly supplied \code{NULL}.
+#' `fm()` override the corresponding Style settings, including an
+#' explicitly supplied `NULL`.
 #' 
 #' For data frames, every formatting argument must have length one or the
 #' number of columns. Length-one arguments are recycled, allowing each column
@@ -121,58 +121,58 @@
 #' Functions and Style objects count as single settings; use a list to supply
 #' different functions or Styles by column.
 #'
-#' Finally, \code{fmt} can be a function of \code{x}. Additional arguments in
-#' \code{\dots} are forwarded to that function.
+#' Finally, `fmt` can be a function of `x`. Additional arguments in
+#' `\dots` are forwarded to that function.
 #'
-#' @param x a numeric, logical, character, factor, \code{Date}, or
-#'   \code{POSIXt} vector, or a matrix, table, ftable, or data frame
+#' @param x a numeric, logical, character, factor, `Date`, or
+#'   `POSIXt` vector, or a matrix, table, ftable, or data frame
 #' @param digits integer, the desired (fixed) number of digits after the
-#' decimal point. Unlike \code{\link{formatC}} you will always get this number
+#' decimal point. Unlike [formatC()] you will always get this number
 #' of digits even if the last digit is 0.  Negative numbers of digits round to
-#' a power of ten (\code{digits=-2} would round to the nearest hundred) for
+#' a power of ten (`digits=-2` would round to the nearest hundred) for
 #' standard numeric formats; engineering formats require nonnegative values
-#' @param leadDigits number of leading zeros. \code{leadDigits=3} would make sure
-#' that at least 3 digits on the left side will be printed, say \code{3.4} will
-#' be printed as \code{003.4}. Setting \code{leadDigits} to \code{0} will yield
-#' results like \code{.452} for \code{0.452}. The default \code{NULL} will
+#' @param leadDigits number of leading zeros. `leadDigits=3` would make sure
+#' that at least 3 digits on the left side will be printed, say `3.4` will
+#' be printed as `003.4`. Setting `leadDigits` to `0` will yield
+#' results like `.452` for `0.452`. The default `NULL` will
 #' leave the numbers as they are (meaning at least one 0 digit).
 #' @param sci numeric scalar giving the absolute power-of-ten threshold for
 #'   scientific notation. Its absolute value is used symmetrically: for
-#'   \code{sci = 8}, nonzero values below \eqn{10^{-8}} and values at or above
+#'   `sci = 8`, nonzero values below \eqn{10^{-8}} and values at or above
 #'   \eqn{10^8} are displayed scientifically. The default is based on
-#'   \code{getOption("scipen")}; an option value of zero is replaced by 7
+#'   `getOption("scipen")`; an option value of zero is replaced by 7
 #' @param bigMark character; if not empty used as mark between every 3
 #' decimals before the decimal point. Default is "" (none).
-#' @param decMark character specifying the decimal mark. If \code{NULL}, the
-#'   current \code{OutDec} option is used
-#' @param naForm character, string specifying how \code{NA}s should be
-#' specially formatted.  If set to \code{NULL} (default) no special action will
+#' @param decMark character specifying the decimal mark. If `NULL`, the
+#'   current `OutDec` option is used
+#' @param naForm character, string specifying how `NA`s should be
+#' specially formatted.  If set to `NULL` (default) no special action will
 #' be taken.
 #' @param zeroForm character, string specifying how zeros should be specially
 #' formatted. Useful for pretty printing 'sparse' objects.  If set to
-#' \code{NULL} (default) no special action will be taken.
+#' `NULL` (default) no special action will be taken.
 #' @param fmt a format code or date-time template, a formatting function, a
-#'   named Style, or an object of class \code{Style}. See Details
+#'   named Style, or an object of class `Style`. See Details
 #' @param pThreshold positive numeric threshold below which p-values are shown
-#'   as \code{"< threshold"}
+#'   as `"< threshold"`
 #' @param width nonnegative integer giving the minimum display width
 #' @param align the character on whose position the strings will be aligned.
-#' Left alignment can be requested by setting \code{sep = "\\l"}, right
-#' alignment by \code{"\\r"} and center alignment by \code{"\\c"}. Mind the
+#' Left alignment can be requested by setting `sep = "\\l"`, right
+#' alignment by `"\\r"` and center alignment by `"\\c"`. Mind the
 #' backslashes, as if they are omitted, strings would be aligned to the
-#' \bold{character} l, r or c respectively. The default is \code{NULL} which
+#' **character** l, r or c respectively. The default is `NULL` which
 #' would just leave the strings as they are.\cr This argument is send directly
-#' to the function \code{\link[pharos]{strAlign}()} as argument \code{sep}.
+#' to the function [pharos::strAlign()] as argument `sep`.
 #' @param lang optional value setting the language for the months and daynames.
-#' Can be either \code{"local"} for current locale or \code{"en"} for english.
-#' If left to \code{NULL}, the package option \code{"lang"} is used, falling
-#' back to \code{"en"}
+#' Can be either `"local"` for current locale or `"en"` for english.
+#' If left to `NULL`, the package option `"lang"` is used, falling
+#' back to `"en"`
 #' @param \dots additional arguments passed to methods or to a formatting
-#'   function supplied through \code{fmt}
+#'   function supplied through `fmt`
 #' @return formatted character values with the dimensions or tabular structure
-#'   of \code{x} preserved where applicable, of class \code{noquote} so that
+#'   of `x` preserved where applicable, of class `noquote` so that
 #'   they print without quotation marks. For a matrix or a table the entries
-#'   are padded to one common width unless \code{width} is given, so that the
+#'   are padded to one common width unless `width` is given, so that the
 #'   decimal points line up: a character matrix prints left justified, which
 #'   would otherwise shift every negative entry against the positive ones.
 #' @examples
@@ -214,8 +214,8 @@
 #' 
 #' @seealso [base::format], [base::formatC],
 #' [base::prettyNum], [base::sprintf], [stats::symnum],\cr
-#' [base::Sys.setlocale],\cr \code{DescToolsX::weekday}, 
-#' \code{DescToolsX::month},
+#' [base::Sys.setlocale],\cr `DescToolsX::weekday`, 
+#' `DescToolsX::month`,
 #' [theme]
 #' 
 #' @family format  
@@ -905,25 +905,25 @@ fm.ftable <- function(x, digits = NULL, leadDigits = NULL, sci = NULL,
 
 #' Format a Date or Date-Time
 #'
-#' Renders a \code{Date}, \code{POSIXct} or \code{POSIXlt} with the
+#' Renders a `Date`, `POSIXct` or `POSIXlt` with the
 #' package's own format tokens. This is the entry point used by
-#' \code{\link{fm}()}; the compiled kernel behind it,
-#' \code{formatDateTimeUtc_cpp()}, works exclusively in UTC.
+#' [fm()]; the compiled kernel behind it,
+#' `formatDateTimeUtc_cpp()`, works exclusively in UTC.
 #'
 #' The time zone is resolved here rather than in C++. The C runtime's
-#' \code{localtime()} is not usable for the job: on Windows
-#' \code{_tzset()} understands only POSIX-style \code{TZ} strings and
-#' falls back to UTC for IANA names such as \code{"Europe/Zurich"}, and
-#' \code{localtime_r()} is not even required to consult \code{TZ}. R
+#' `localtime()` is not usable for the job: on Windows
+#' `_tzset()` understands only POSIX-style `TZ` strings and
+#' falls back to UTC for IANA names such as `"Europe/Zurich"`, and
+#' `localtime_r()` is not even required to consult `TZ`. R
 #' carries its own time zone database, so the shift belongs on this side -
 #' which is also what makes the result agree with
-#' \code{\link{format}()} for a \code{POSIXct} that carries a
-#' \code{tzone} attribute.
+#' [format()] for a `POSIXct` that carries a
+#' `tzone` attribute.
 #'
-#' @param x a \code{Date}, \code{POSIXct} or \code{POSIXlt} vector
+#' @param x a `Date`, `POSIXct` or `POSIXlt` vector
 #' @param fmt a format string
 #' @param strict logical; reject unknown or ambiguous format tokens
-#' @param locale locale for month and weekday names, or \code{"current"}
+#' @param locale locale for month and weekday names, or `"current"`
 #'
 #' @return a character vector
 #' @noRd

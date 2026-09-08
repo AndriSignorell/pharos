@@ -10,7 +10,7 @@
 \item{x}{an object of class \code{"html"}}
 
 \item{...}{further arguments, currently unused (kept for
-consistency with \code{\link{print}})}
+consistency with \code{\link[=print]{print()}})}
 }
 \value{
 \code{x}, invisibly

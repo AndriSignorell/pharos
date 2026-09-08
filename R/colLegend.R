@@ -4,60 +4,60 @@
 #' Draw a color legend (color strip) inside an existing plot region.
 #'
 #' The legend can be positioned either by explicit coordinates or by
-#' keyword placement such as \code{"topright"} or \code{"left"}.
+#' keyword placement such as `"topright"` or `"left"`.
 #'
 #' Labels may either be aligned with the edges of the color strip or
 #' centered within the color blocks.
 #'
 #' @param x left x-coordinate of the legend or a keyword specifying
 #'   automatic placement:
-#'   \code{"bottomright"}, \code{"bottom"}, \code{"bottomleft"},
-#'   \code{"left"}, \code{"topleft"}, \code{"top"},
-#'   \code{"topright"}, \code{"right"}, \code{"center"}.
-#' @param y top y-coordinate of the legend when \code{x} is numeric.
+#'   `"bottomright"`, `"bottom"`, `"bottomleft"`,
+#'   `"left"`, `"topleft"`, `"top"`,
+#'   `"topright"`, `"right"`, `"center"`.
+#' @param y top y-coordinate of the legend when `x` is numeric.
 #' @param col vector of colors.
 #' @param labels optional vector of labels.
 #' @param width width of the legend in user coordinates.
 #' @param height height of the legend in user coordinates.
-#' @param horiz logical; if \code{TRUE}, draw horizontally.
+#' @param horiz logical; if `TRUE`, draw horizontally.
 #' @param xjust horizontal justification.
 #' @param yjust vertical justification.
 #' @param inset inset distance(s) when keyword positioning is used.
 #' @param region character string specifying the reference region
 #'   used for keyword placement. One of:
-#'   \code{"plot"}, \code{"figure"}, or \code{"device"}.
+#'   `"plot"`, `"figure"`, or `"device"`.
 #' @param border border color of individual color rectangles.
 #' @param box optional specification of an enclosing box around the
 #'   whole legend. Can be:
 #'   \itemize{
-#'     \item \code{FALSE}, \code{NULL}, or \code{NA}: no box
-#'     \item \code{TRUE}: draw box with defaults
-#'     \item named list of arguments passed to \code{\link{rect}}
+#'     \item `FALSE`, `NULL`, or `NA`: no box
+#'     \item `TRUE`: draw box with defaults
+#'     \item named list of arguments passed to [rect()]
 #'   }
 #' @param labelAdj placement of labels relative to the color blocks:
 #'   \describe{
-#'     \item{\code{"edge"}}{
+#'     \item{`"edge"`}{
 #'       Labels are aligned with the strip edges.
 #'     }
-#'     \item{\code{"center"}}{
+#'     \item{`"center"`}{
 #'       Labels are centered within color blocks.
 #'     }
 #'   }
-#' @param adj text alignment passed to \code{\link{text}}.
+#' @param adj text alignment passed to [text()].
 #' @param cex character expansion for labels.
 #' @param title optional title.
 #' @param titleAdj horizontal title adjustment.
-#' @param ... additional arguments passed to \code{\link{text}}.
+#' @param ... additional arguments passed to [text()].
 #'
 #' @return
 #' Invisibly returns a list with components:
 #' \describe{
 #'   \item{rect}{
 #'     List describing the color strip geometry with components
-#'     \code{width}, \code{height}, \code{left}, and \code{top}.
+#'     `width`, `height`, `left`, and `top`.
 #'   }
 #'   \item{text}{
-#'     List containing the label coordinates \code{x} and \code{y}.
+#'     List containing the label coordinates `x` and `y`.
 #'   }
 #' }
 #'

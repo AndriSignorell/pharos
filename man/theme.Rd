@@ -30,7 +30,7 @@ theme as well, invisibly.
 \code{getTheme()}, \code{setTheme()}, and \code{resetTheme()} are the
 user-facing entry points to pharos's theme system: a single, named list
 of graphical and formatting defaults, consulted by essentially every
-plotting function in the package (and by \code{\link{fm}()} for
+plotting function in the package (and by \code{\link[=fm]{fm()}} for
 numeric/percentage/p-value formatting) whenever the corresponding
 function argument is left at its default value.
 }
@@ -76,49 +76,47 @@ nested value, supply the complete sub-list, e.g.
 \code{setTheme(list(grid = list(col = "red", lwd = 1, lty = "dotted")))}.
 
 \describe{
-\item{\code{par}}{\code{col.axis="grey40", las=1, cex=1.1}. Global
+\item{\code{par}}{\verb{col.axis="grey40", las=1, cex=1.1}. Global
 \code{par()} pass applied by every \code{.applyParFromDots()} call
 (axis label color, axis label orientation, global text scaling).}
-\item{\code{grid}}{\code{col="grey80", lwd=1, lty="dotted"}, plus
-\code{group.*} variants. Background grid lines, via
-\code{.drawGrid()}. The \code{group.*} entries style a
+\item{\code{grid}}{\verb{col="grey80", lwd=1, lty="dotted"}, plus
+\verb{group.*} variants. Background grid lines, via
+\code{.drawGrid()}. The \verb{group.*} entries style a
 subordinate/secondary grid (e.g. group separators) where a
 function draws one.}
-\item{\code{box}}{\code{col="grey50", lwd=1, lty="solid"}. The frame
+\item{\code{box}}{\verb{col="grey50", lwd=1, lty="solid"}. The frame
 drawn around a plot region, via \code{.drawBox()}.}
-\item{\code{points}}{\code{pch=21, col="grey50",
-    bg=addOpacity("grey"), cex=1.1}. Default point styling for
+\item{\code{points}}{\verb{pch=21, col="grey50", bg=addOpacity("grey"), cex=1.1}. Default point styling for
 scatterplot-like functions (e.g. \code{plotXY()}, \code{plotDot()}).}
 \item{\code{twin}}{\code{pal("helsana")[c(6, 1)]}. A fixed pair of
 colors for contexts that inherently need exactly two contrasting
 colors (e.g. a fit line and a smoother in \code{plotXY()}, the two
 poles of a diverging color ramp in \code{plotCor()}, a single
 accent color via \code{twin[1]} in
-\code{\link{lines.loess}}/\code{plotQQ()}'s confidence band). Never
+\code{\link[=lines.loess]{lines.loess()}}/\code{plotQQ()}'s confidence band). Never
 used as a substitute for \code{palette} when more than two colors
 are needed.}
 \item{\code{palette}}{\code{"helsana"}. Name of the qualitative
 (categorical) palette used whenever more than two unordered colors
 are needed (e.g. \code{plotMosaic()}'s fill colors), resolved via
-\code{\link{pal}()}. Deliberately not used for sequential or
+\code{\link[=pal]{pal()}}. Deliberately not used for sequential or
 diverging numeric scales -- see the next item.}
 \item{(none -- by design)}{Sequential/diverging numeric color scales
 (e.g. \code{plotDens2D()}'s density heatmap, \code{plotHeatmap()}'s
 cell shading) are deliberately \emph{not} theme-driven; they use a
-hardcoded, purpose-built palette via \code{\link{pal}()} instead
+hardcoded, purpose-built palette via \code{\link[=pal]{pal()}} instead
 (e.g. \code{pal("red-black")}, \code{pal("Blues")}). Neither
 \code{palette} (categorical) nor \code{twin} (a fixed pair) is the
 right semantic fit for an ordered, continuous scale -- see
-\code{\link{pal}} for the registry of named continuous palettes.}
-\item{\code{bar}}{\code{col="grey80", border=NA}. Default bar
+\code{\link[=pal]{pal()}} for the registry of named continuous palettes.}
+\item{\code{bar}}{\verb{col="grey80", border=NA}. Default bar
 fill/border in \code{plotBar()}.}
-\item{\code{sty}}{\code{abs="abs.sty", perc="per.sty", num="num.sty",
-    pval="pval.sty"}. Names of \code{\link{fm}()} format styles (see
-\code{\link{styles}()}) used for absolute counts, percentages,
+\item{\code{sty}}{\verb{abs="abs.sty", perc="per.sty", num="num.sty", pval="pval.sty"}. Names of \code{\link[=fm]{fm()}} format styles (see
+\code{\link[=styles]{styles()}}) used for absolute counts, percentages,
 plain numbers, and p-values respectively.}
 \item{\code{stamp}}{\code{expression(...)} -- unevaluated. The corner
 stamp text drawn by every
-\code{\link{stamp}()}/\code{.withGraphicsState()} call. Stored as
+\code{\link[=stamp]{stamp()}}/\code{.withGraphicsState()} call. Stored as
 an unevaluated \code{expression()} and \code{eval()}'d at draw
 time (not at theme-load or theme-set time), so it always reflects
 the current user and date rather than freezing whatever they were
@@ -175,7 +173,7 @@ Generic dispatchers wrapping \code{graphics::grid()}/
 merge the theme's style values with any function-specific
 \code{defaults} (e.g. \code{plotBar()} suppressing the
 axis-parallel grid direction via \code{nx}/\code{ny}), and dispatch
-via \code{\link[bedrock]{callIf}}. \strong{Not} used by every
+via \code{\link[bedrock:callIf]{bedrock::callIf()}}. \strong{Not} used by every
 function that draws a grid or frame: a few (\code{plotCor()},
 \code{plotHeatmap()}, \code{plotDot()}) have grid/box geometry tied
 to exact data coordinates (e.g. half-integer cell boundaries) that
@@ -186,7 +184,7 @@ these resolve theme values directly via \code{getTheme()$grid}/
 \item{\code{.withGraphicsState(expr, stamp = .useTheme, ...)}}{Wraps a
 plotting function's body, restores \code{par()} afterwards, and -
 after \code{expr} has run successfully - calls
-\code{\link{stamp}()} with the (possibly theme-resolved) corner
+\code{\link[=stamp]{stamp()}} with the (possibly theme-resolved) corner
 stamp text/arguments.}
 }
 }
@@ -221,8 +219,8 @@ resetTheme()
 
 }
 \seealso{
-\code{\link{pal}} for the color palette registry,
-\code{\link{fm}} for the formatting styles referenced by \code{sty},
-\code{\link{stamp}} for the corner stamp mechanism.
+\code{\link[=pal]{pal()}} for the color palette registry,
+\code{\link[=fm]{fm()}} for the formatting styles referenced by \code{sty},
+\code{\link[=stamp]{stamp()}} for the corner stamp mechanism.
 }
 \concept{theme}

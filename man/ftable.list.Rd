@@ -8,28 +8,28 @@
 }
 \arguments{
 \item{x}{A list with a \code{dim} attribute, typically produced by
-\code{\link{tapply}}. Each element must be a vector of equal length and
+\code{\link[=tapply]{tapply()}}. Each element must be a vector of equal length and
 have identical names.}
 
-\item{row.vars}{row variables passed to \code{\link{ftable}}.
+\item{row.vars}{row variables passed to \code{\link[=ftable]{ftable()}}.
 Defaults to all dimensions except those specified in \code{col.vars}.}
 
-\item{col.vars}{column variables passed to \code{\link{ftable}}.
+\item{col.vars}{column variables passed to \code{\link[=ftable]{ftable()}}.
 Defaults to the dimension created from the names of the list elements.}
 
-\item{...}{further arguments passed to \code{\link{ftable}}.}
+\item{...}{further arguments passed to \code{\link[=ftable]{ftable()}}.}
 }
 \value{
 An object of class \code{"ftable"}.
 }
 \description{
 Creates a flat contingency table from a list array, such as the result of
-\code{\link{tapply}} when the applied function returns a named vector.
+\code{\link[=tapply]{tapply()}} when the applied function returns a named vector.
 }
 \details{
 Each list element is expanded into an additional dimension corresponding to
 the names of the returned vector. The resulting array is then passed to
-\code{\link{ftable}}.
+\code{\link[=ftable]{ftable()}}.
 
 This is particularly useful for displaying multi-dimensional summaries such
 as confidence intervals returned by \code{meanCI()}, where each cell contains
@@ -64,8 +64,8 @@ ftable(
 
 }
 \seealso{
-\code{\link{tapply}},
-\code{\link{ftable}}
+\code{\link[=tapply]{tapply()}},
+\code{\link[=ftable]{ftable()}}
 }
 \concept{frequency-table}
 \concept{tables}

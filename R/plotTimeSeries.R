@@ -13,11 +13,11 @@
 #' @param maxLag integer. Defines the number of lags to be displayed. The
 #' default is 10 * log10(length(series)). 
 #' @param main an overall title for the plot
-#' @param ylab a title for the y axis: see \code{\link{title}}. 
+#' @param ylab a title for the y axis: see [title()]. 
 #' @param \dots the dots are passed to the plot command. 
 #' 
 #' @note Rewritten based on ideas of M.Huerzeler
-#' @seealso \code{\link{ts}}
+#' @seealso [ts()]
 #' 
 #' @examples
 #' 

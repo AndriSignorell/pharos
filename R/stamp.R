@@ -9,15 +9,15 @@
 #' \preformatted{setDescToolsXOption(stamp=expression(gettextf('%s/%s',
 #' Sys.getenv('USERNAME'), Today() )))}
 #' 
-#' For \R results may not be satisfactory if \code{par(mfrow=)} is in effect.
+#' For \R results may not be satisfactory if `par(mfrow=)` is in effect.
 #' 
 #' @param text character string, expression, or toggle controlling the
-#'   stamp text. \code{.useTheme} (default) or \code{TRUE} resolve to
-#'   \code{getTheme()$stamp}, evaluated lazily at draw time. \code{FALSE},
-#'   \code{NULL}, or \code{NA} suppress the stamp. Any other string or
-#'   unevaluated \code{expression()} is used as given.
-#' @param las orientation; see \code{\link[graphics]{par}}. \code{NULL}
-#'   (default) inherits the current \code{par("las")}. \code{las = 3}
+#'   stamp text. `.useTheme` (default) or `TRUE` resolve to
+#'   `getTheme()$stamp`, evaluated lazily at draw time. `FALSE`,
+#'   `NULL`, or `NA` suppress the stamp. Any other string or
+#'   unevaluated `expression()` is used as given.
+#' @param las orientation; see [graphics::par()]. `NULL`
+#'   (default) inherits the current `par("las")`. `las = 3`
 #'   places the stamp vertically along the right edge instead of
 #'   horizontally along the bottom.
 #' @param cex,col size and color of the stamp text.
@@ -27,7 +27,7 @@
 #' plot(1:20)
 #' stamp()
 #'
-#' @seealso \code{\link{text}}
+#' @seealso [text()]
 #' 
 #' @family graphics.annotation
 #' @concept annotation

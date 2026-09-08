@@ -6,65 +6,65 @@
 #' and connecting lines between each pair are drawn with width proportional
 #' to the absolute value of the matrix entry and color indicating its sign.
 #'
-#' The function uses the lower triangular matrix of \code{m}; when
-#' overriding \code{lwd} or \code{col} manually, values must be supplied in
-#' the same order as \code{m[lower.tri(m)]}.
+#' The function uses the lower triangular matrix of `m`; when
+#' overriding `lwd` or `col` manually, values must be supplied in
+#' the same order as `m[lower.tri(m)]`.
 #'
 #' @param m a symmetric numeric matrix (e.g. a correlation matrix).
 #'
-#' @param main main title of the plot. \code{NULL} (default) produces no
+#' @param main main title of the plot. `NULL` (default) produces no
 #'   title.
 #'
 #' @param dist distance of node labels from the outer circle. Default
-#'   \code{0.5}.
+#'   `0.5`.
 #'
 #' @param col two colors for the connecting lines: the first is used for
-#'   negative values, the second for positive values. \code{.useTheme}
-#'   (default) resolves to \code{getTheme()$twin} - consistent with the
-#'   sign-based coloring in \code{\link{plotCor}}.
-#' @param lty line type for the connecting lines. \code{NULL} (default)
-#'   inherits from \code{par("lty")}.
-#' @param lwd line widths for the connecting lines. \code{NULL} (default)
+#'   negative values, the second for positive values. `.useTheme`
+#'   (default) resolves to `getTheme()$twin` - consistent with the
+#'   sign-based coloring in [plotCor()].
+#' @param lty line type for the connecting lines. `NULL` (default)
+#'   inherits from `par("lty")`.
+#' @param lwd line widths for the connecting lines. `NULL` (default)
 #'   scales widths linearly between 0.5 and 10 in proportion to the absolute
 #'   matrix values.
 #'
-#' @param labels controls node labels around the circle. \code{TRUE}
-#'   (default) draws labels using \code{colnames(m)} with default styling.
-#'   \code{FALSE}/\code{NA}/\code{NULL} suppresses labels. A named list
+#' @param labels controls node labels around the circle. `TRUE`
+#'   (default) draws labels using `colnames(m)` with default styling.
+#'   `FALSE`/`NA`/`NULL` suppresses labels. A named list
 #'   overrides individual settings:
 #'   \describe{
-#'     \item{\code{labels}}{character vector of label texts; defaults to
-#'       \code{colnames(m)}}
-#'     \item{\code{las}}{orientation: \code{1} horizontal (default),
-#'       \code{2} radial, \code{3} vertical}
-#'     \item{\code{adj}}{label adjustment (0/0.5/1); \code{NULL} (default)
+#'     \item{`labels`}{character vector of label texts; defaults to
+#'       `colnames(m)`}
+#'     \item{`las`}{orientation: `1` horizontal (default),
+#'       `2` radial, `3` vertical}
+#'     \item{`adj`}{label adjustment (0/0.5/1); `NULL` (default)
 #'       chooses automatically based on position around the circle}
-#'     \item{\code{cex}}{character expansion; default \code{1.0}}
+#'     \item{`cex`}{character expansion; default `1.0`}
 #'   }
 #'
 #' @param points controls the node point symbols. The default
-#'   (\code{list(pch=21, cex=2, col="black", bg="darkgrey")}) draws
+#'   (`list(pch=21, cex=2, col="black", bg="darkgrey")`) draws
 #'   prominent filled circles, larger than the generic data-point default,
 #'   since nodes represent variables rather than observations.
-#'   \code{FALSE}/\code{NA}/\code{NULL} suppresses the points. A named list
-#'   overrides individual elements (\code{pch}, \code{cex}, \code{col},
-#'   \code{bg}).
+#'   `FALSE`/`NA`/`NULL` suppresses the points. A named list
+#'   overrides individual elements (`pch`, `cex`, `col`,
+#'   `bg`).
 #'
-#' @param legend controls the legend. \code{TRUE} (default) draws a legend
+#' @param legend controls the legend. `TRUE` (default) draws a legend
 #'   showing the line widths and colors for the minimum/maximum positive
-#'   and negative values. \code{FALSE}/\code{NA} suppresses it. A named
-#'   list overrides arguments forwarded to \code{\link[graphics]{legend}}.
+#'   and negative values. `FALSE`/`NA` suppresses it. A named
+#'   list overrides arguments forwarded to [graphics::legend()].
 #'
-#' @param stamp controls the corner stamp. \code{.useTheme} (default)
-#'   resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
-#'   \code{NULL}, a string, or a named list for \code{\link{stamp}()}.
+#' @param stamp controls the corner stamp. `.useTheme` (default)
+#'   resolves to `getTheme()$stamp`. `TRUE`/`FALSE`/
+#'   `NULL`, a string, or a named list for [stamp()].
 #' @param \dots further graphical parameters passed to
-#'   \code{\link[graphics]{par}} and to the internal \code{canvas()} call.
+#'   [graphics::par()] and to the internal `canvas()` call.
 #'
-#' @return Invisibly returns a list of \code{x}/\code{y} coordinates of the
+#' @return Invisibly returns a list of `x`/`y` coordinates of the
 #'   node points, useful for adding further annotations to the plot.
 #'
-#' @seealso \code{\link{plotCor}}, [theme]
+#' @seealso [plotCor()], [theme]
 #'
 #' @examples
 #' m <- cor(swiss)

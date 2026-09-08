@@ -2,9 +2,9 @@
 #' Find Position of First Occurrence Of a String 
 #' 
 #' Returns the numeric position of the first occurrence of a substring within a
-#' string. If the search string is not found, the result will be \code{NA}.
+#' string. If the search string is not found, the result will be `NA`.
 #' 
-#' This is just a wrapper for the function \code{\link{regexpr}}. 
+#' This is just a wrapper for the function [regexpr()]. 
 #' 
 #' @param x a character vector in which to search for the pattern, or an object
 #' which can be coerced by as.character to a character vector
@@ -17,7 +17,7 @@
 #' 
 #' @return a vector of the first position of pattern in x 
 #' 
-#' @seealso \code{\link{strChop}}, \code{\link{regexpr}} 
+#' @seealso [strChop()], [regexpr()] 
 #' 
 #' @examples
 #' 

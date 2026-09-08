@@ -113,7 +113,7 @@ circle <- function(
 #'
 #' Create an elliptic geometry.
 #'
-#' Use \code{\link{rotate}} to rotate the resulting geometry.
+#' Use [rotate()] to rotate the resulting geometry.
 #'
 #' @param x,y centre coordinates.
 #' @param radiusX,radiusY horizontal and vertical radius.
@@ -212,8 +212,8 @@ regPolygon <- function(
 #' @param numPoints number of points used for each boundary.
 #'
 #' @return
-#' An object inheriting from class \code{"ringGeometry"} or a
-#' \code{"geometryCollection"}.
+#' An object inheriting from class `"ringGeometry"` or a
+#' `"geometryCollection"`.
 #'
 #' @family geometry.structures
 #' @concept geometry

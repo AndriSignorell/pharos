@@ -7,9 +7,9 @@
 #' and further remains fully compatible with its original interface.
 #' #'
 #' For ordinary coordinate vectors the call is forwarded to
-#' \code{\link[graphics]{polygon}}. Geometry objects such as
-#' \code{\link{circle}}, \code{\link{ellipse}}, \code{\link{regPolygon}}
-#' and \code{\link{ring}} are dispatched to specialised methods.
+#' [graphics::polygon()]. Geometry objects such as
+#' [circle()], [ellipse()], [regPolygon()]
+#' and [ring()] are dispatched to specialised methods.
 
 #' @aliases polygon.ringGeometry polygon.polygonGeometry polygon.geometryCollection
 #'
@@ -17,7 +17,7 @@
 #' @param ... further arguments passed to the corresponding method.
 #'
 #' @return
-#' Invisibly returns \code{x}.
+#' Invisibly returns `x`.
 #'
 #' @examples
 #' canvas()
@@ -64,8 +64,8 @@ polygon.default <- graphics::polygon
 #' @rdname polygon
 #'
 #' @param rule character string specifying the filling rule passed to
-#'   \code{\link[graphics]{polypath}}. One of \code{"evenodd"} or
-#'   \code{"winding"}.
+#'   [graphics::polypath()]. One of `"evenodd"` or
+#'   `"winding"`.
 #'
 
 #' @export

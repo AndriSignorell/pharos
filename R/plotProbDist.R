@@ -7,41 +7,41 @@
 #'
 #' @param breaks numeric vector of break points defining the boundaries between
 #'   shaded areas. The first and last value define the plot range passed to
-#'   \code{\link{shade}()}; interior values are the actual boundaries.
+#'   [shade()]; interior values are the actual boundaries.
 #' @param FUN the distribution density function to plot, typically of the form
-#'   \code{function(x) dnorm(x, mean=0, sd=1)}.
-#' @param main main title for the plot. \code{NULL} or \code{""} suppresses
+#'   `function(x) dnorm(x, mean=0, sd=1)`.
+#' @param main main title for the plot. `NULL` or `""` suppresses
 #'   the title and reduces the top margin automatically.
 #' @param xlim numeric vector of length 2. x-axis limits passed to
-#'   \code{\link{curve}()}.
+#'   [curve()].
 #' @param col color(s) for the shaded areas. Recycled if shorter than the
 #'   number of areas. Defaults to the "helsana" palette.
-#' @param density density of shading lines passed to \code{\link{shade}()}.
-#'   Default is \code{7}.
-#' @param ylab label for the y-axis. Default is \code{"density"}.
+#' @param density density of shading lines passed to [shade()].
+#'   Default is `7`.
+#' @param ylab label for the y-axis. Default is `"density"`.
 #' @param areaLabels controls labels placed in the centre of each shaded area.
-#'   \code{NULL} (default) suppresses labels. \code{TRUE} uses
-#'   \code{LETTERS} as default labels. A character vector sets explicit labels.
+#'   `NULL` (default) suppresses labels. `TRUE` uses
+#'   `LETTERS` as default labels. A character vector sets explicit labels.
 #'   A named list overrides individual arguments passed to
-#'   \code{\link{boxedText}()} (e.g. \code{list(cex = 3)} or
-#'   \code{list(x = c(-2, 3), y = 0.1)} for manual positioning).
+#'   [boxedText()] (e.g. `list(cex = 3)` or
+#'   `list(x = c(-2, 3), y = 0.1)` for manual positioning).
 #' @param breakLabels controls labels placed on the x-axis at interior break
-#'   points via \code{\link{mtext}()}. \code{NULL} (default) suppresses labels.
-#'   \code{TRUE} uses \code{LETTERS} as default labels. A character vector
+#'   points via [mtext()]. `NULL` (default) suppresses labels.
+#'   `TRUE` uses `LETTERS` as default labels. A character vector
 #'   sets explicit labels. A named list overrides individual arguments
-#'   (e.g. \code{list(cex = 1.8, font = 1)}).
-#' @param grid controls background grid. \code{FALSE} (default) suppresses the
-#'   grid. \code{TRUE} or \code{.useTheme} draws a grid according to the
+#'   (e.g. `list(cex = 1.8, font = 1)`).
+#' @param grid controls background grid. `FALSE` (default) suppresses the
+#'   grid. `TRUE` or `.useTheme` draws a grid according to the
 #'   current theme. A named list overrides individual arguments passed to
-#'   \code{\link{grid}()}.
-#' @param box controls the plot box. \code{.useTheme} (default) uses the
-#'   current theme setting. \code{TRUE}/\code{FALSE} forces the box on or off.
+#'   [grid()].
+#' @param box controls the plot box. `.useTheme` (default) uses the
+#'   current theme setting. `TRUE`/`FALSE` forces the box on or off.
 #'   A named list overrides individual arguments passed to
-#'   \code{\link{box}()}.
-#' @param \dots further graphical parameters passed to \code{\link{curve}()}
-#'   and \code{.applyParFromDots()}, e.g. \code{las}, \code{col.axis}.
+#'   [box()].
+#' @param \dots further graphical parameters passed to [curve()]
+#'   and `.applyParFromDots()`, e.g. `las`, `col.axis`.
 #'
-#' @return \code{NULL}, invisibly.
+#' @return `NULL`, invisibly.
 #'
 #' @examples
 #' # Normal distribution with two areas
@@ -73,7 +73,7 @@
 #'              breakLabels = list(text="B"))
 #'
 #'
-#' @seealso \code{\link{curve}}
+#' @seealso [curve()]
 #' 
 #' @family plot.distribution  
 #' @concept distribution-summary

@@ -5,10 +5,10 @@
 #' variable. Group means and a reference line for the overall mean can
 #' optionally be overlaid.
 #'
-#' @param x numeric vector, or a formula of the form \code{x ~ g}.
+#' @param x numeric vector, or a formula of the form `x ~ g`.
 #' @param g optional grouping variable (ignored if a formula is used).
 #'
-#' @param formula A formula of the form \code{y ~ group}.
+#' @param formula A formula of the form `y ~ group`.
 #' @param data an optional data frame containing variables in the formula.
 #' @param subset optional expression indicating which observations to use.
 #' @param na.action a function specifying how missing values are handled.
@@ -18,53 +18,53 @@
 #' @param ylab label for the y-axis.
 #'
 #' @param ylim numeric vector of length 2 specifying the y-axis limits.
-#'   If \code{NULL} (default), the range of \code{x} is used.
+#'   If `NULL` (default), the range of `x` is used.
 #'
-#' @param col vector of colors. If \code{NULL}, a palette is generated
+#' @param col vector of colors. If `NULL`, a palette is generated
 #'   automatically.
 #'
 #' @param grid controls drawing of the background grid.
 #'   Can be:
 #'   \itemize{
-#'     \item \code{TRUE}: draw grid with default settings
-#'     \item \code{FALSE}, \code{NULL}, or \code{NA}: suppress grid
-#'     \item a named list: arguments passed to \code{\link[graphics]{grid}},
-#'       e.g. \code{list(col = "red", nx = NA, ny = NULL)} for vertical
+#'     \item `TRUE`: draw grid with default settings
+#'     \item `FALSE`, `NULL`, or `NA`: suppress grid
+#'     \item a named list: arguments passed to [graphics::grid()],
+#'       e.g. `list(col = "red", nx = NA, ny = NULL)` for vertical
 #'       lines only
 #'   }
 #'
 #' @param means controls drawing of group means and an overall mean reference
 #'   line. Can be:
 #'   \itemize{
-#'     \item \code{TRUE}: draw with default settings
-#'     \item \code{FALSE}, \code{NULL}, or \code{NA}: suppress
+#'     \item `TRUE`: draw with default settings
+#'     \item `FALSE`, `NULL`, or `NA`: suppress
 #'     \item a named list: arguments passed to the internal means function.
-#'       Supported arguments: \code{col}, \code{pch}, \code{cex},
-#'       \code{lcol}, \code{lty}, \code{lwd}.
+#'       Supported arguments: `col`, `pch`, `cex`,
+#'       `lcol`, `lty`, `lwd`.
 #'   }
 #'
-#' @param stamp controls the corner stamp. \code{.useTheme} (default)
-#'   resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/\code{NULL},
-#'   or an explicit string, as for \code{.withGraphicsState()} (internal).
+#' @param stamp controls the corner stamp. `.useTheme` (default)
+#'   resolves to `getTheme()$stamp`. `TRUE`/`FALSE`/`NULL`,
+#'   or an explicit string, as for `.withGraphicsState()` (internal).
 #'   
 #' @param ... graphical parameters. Parameters recognized by the
-#' internal graphics framework are applied via \code{par()};
-#' remaining arguments are forwarded to \code{\link[graphics]{boxplot}}.
+#' internal graphics framework are applied via `par()`;
+#' remaining arguments are forwarded to [graphics::boxplot()].
 #'
 #' @details
 #' Optional plot components are controlled using
-#' \code{\link[bedrock]{callIf}} semantics:
+#' [bedrock::callIf()] semantics:
 #' \itemize{
-#'   \item \code{TRUE}: draw with defaults
-#'   \item \code{FALSE}, \code{NULL}, or \code{NA}: suppress component
+#'   \item `TRUE`: draw with defaults
+#'   \item `FALSE`, `NULL`, or `NA`: suppress component
 #'   \item named list: customize component arguments
 #' }
 #'
-#' @return Invisibly returns \code{NULL}.
+#' @return Invisibly returns `NULL`.
 #'
 #' @seealso
-#' \code{\link[graphics]{boxplot}},
-#' \code{\link[bedrock]{callIf}}
+#' [graphics::boxplot()],
+#' [bedrock::callIf()]
 #'
 #' @examples
 #' \dontrun{
@@ -278,7 +278,7 @@ plotBox.formula <- function(
   x <- r$x
   g <- r$group
   
-  main <- .resolveTitle(main, default = r$data.name)
+  main <- .resolveTitle(main, default = r$dataName)
 
   if (!nzchar(xlab))
     xlab <- names(r$mf)[2]   # grouping variable on x-axis

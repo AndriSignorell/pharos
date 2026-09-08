@@ -16,7 +16,7 @@ A character vector with each string reversed.
 Reverses each element of a character vector.
 }
 \details{
-This function uses \code{\link[stringi]{stri_reverse}}, which correctly
+This function uses \code{\link[stringi:stri_reverse]{stringi::stri_reverse()}}, which correctly
 handles Unicode characters and multi-byte encodings.
 }
 \examples{
@@ -29,7 +29,7 @@ strRev("äöü")
 
 }
 \seealso{
-\code{\link[stringi]{stri_reverse}}
+\code{\link[stringi:stri_reverse]{stringi::stri_reverse()}}
 
 \link{string-overview} for an overview of all string utilities in pharos.
 }

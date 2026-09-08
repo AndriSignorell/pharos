@@ -54,7 +54,7 @@ redrawing axes or grid. Default \code{FALSE}.}
 
 \item{col}{color of the line. \code{.useTheme} (default) resolves to
 \code{getTheme()$twin[1]} - the primary accent color, consistent with
-\code{\link{lines.loess}} and \code{plotQQ()}.}
+\code{\link[=lines.loess]{lines.loess()}} and \code{plotQQ()}.}
 
 \item{lwd}{line width. Default \code{1}.}
 
@@ -63,14 +63,14 @@ redrawing axes or grid. Default \code{FALSE}.}
 \item{grid}{controls drawing of the background grid. \code{.useTheme}
 (default) follows the active theme (\code{getTheme()$grid}).
 \code{TRUE}/\code{FALSE}/\code{NA}, or a named list, as for
-\code{\link[graphics]{grid}}.}
+\code{\link[graphics:grid]{graphics::grid()}}.}
 
 \item{stamp}{controls the corner stamp. \code{.useTheme} (default)
 resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
-\code{NULL}, a string, or a named list for \code{\link{stamp}()}.}
+\code{NULL}, a string, or a named list for \code{\link[=stamp]{stamp()}}.}
 
 \item{\dots}{further graphical parameters passed to
-\code{\link[graphics]{par}} via the internal framework.}
+\code{\link[graphics:par]{graphics::par()}} via the internal framework.}
 }
 \value{
 Invisibly returns a list with components \code{x} and \code{y}
@@ -116,6 +116,7 @@ for (a in 1:3)
   plotFun(y ~ sin(a*x), args = list(a = a),
           from = 0, to = 2*pi,
           add = (a != 1), col = a)
+
 
 }
 \seealso{

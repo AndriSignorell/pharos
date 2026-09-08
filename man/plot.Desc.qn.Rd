@@ -35,13 +35,13 @@ overrides this for every selected panel.}
 \item{which}{integer vector selecting one or more panels to draw, in the
 given order. One or more of:
 \describe{
-\item{\code{1}}{Conditional density plot (\code{\link[graphics]{cdplot}}).}
-\item{\code{2}}{Spineplot (\code{\link[graphics]{spineplot}}).
+\item{\code{1}}{Conditional density plot (\code{\link[graphics:cdplot]{graphics::cdplot()}}).}
+\item{\code{2}}{Spineplot (\code{\link[graphics:spineplot]{graphics::spineplot()}}).
 Default.}
 \item{\code{3}}{Overlapping kernel density curves, one per group
-(via \code{\link{plotDens}}).}
+(via \code{\link[=plotDens]{plotDens()}}).}
 \item{\code{4}}{Boxplot of the numeric variable by group (via
-\code{\link{plotBox}}).}
+\code{\link[=plotBox]{plotBox()}}).}
 \item{\code{5}}{Prevalence (with Wilson confidence intervals) across
 quantile bins of the numeric variable. Only available when the
 categorical variable is binary (\code{k == 2}); a message is
@@ -53,7 +53,7 @@ left to the caller (e.g. \code{par(mfrow = c(2, 1))} beforehand).}
 
 \item{verbose}{integer; currently computed from
 \code{x$meta$verbose}/\code{getOption("DescTools.verbose")} for
-consistency with other \code{plot.Desc.*} methods, but not yet
+consistency with other \verb{plot.Desc.*} methods, but not yet
 consulted to pick a default \code{which}.}
 
 \item{col}{color specification. \code{.useTheme} (default) resolves a
@@ -63,7 +63,7 @@ ramps, categorical sets, and single accents are different things:
 \item{panels 1/2}{a grey ramp from \code{"grey30"} to \code{"grey90"},
 sized to the number of categorical levels (not theme-driven by
 design, to keep the unordered category fill neutral - see
-\code{\link{plotMosaic}} for the same rationale).}
+\code{\link[=plotMosaic]{plotMosaic()}} for the same rationale).}
 \item{panels 3/4}{\code{pal(getTheme()$palette)}, the active theme's
 qualitative palette, sized to the number of levels.}
 \item{panel 5}{\code{getTheme()$twin[1]}, the active theme's primary
@@ -75,31 +75,31 @@ every selected panel.}
 \item{box}{controls the plot frame for panels 4 and 5.
 \code{.useTheme} (default) follows the active theme
 (\code{getTheme()$box}); \code{FALSE}/\code{NA} suppress it; a named
-list overrides \code{\link[graphics]{box}()} arguments. Panels 1/2
+list overrides \code{\link[graphics:box]{graphics::box()}} arguments. Panels 1/2
 (\code{cdplot()}/\code{spineplot()}) have no effect from this
 argument - they always draw their native frame unconditionally, with
-no toggle to override it. Panel 4 (\code{\link{plotBox}}) always
+no toggle to override it. Panel 4 (\code{\link[=plotBox]{plotBox()}}) always
 draws its own frame regardless of this argument. Panel 3
-(\code{\link{plotDens}}) never draws a frame, regardless of this
+(\code{\link[=plotDens]{plotDens()}}) never draws a frame, regardless of this
 argument.}
 
 \item{legend}{controls the legend for panel 3 (grouped density curves).
 \code{TRUE} (default) draws a legend with the group levels.
 \code{FALSE}/\code{NA} suppresses it. A named list overrides arguments
-forwarded to \code{\link[graphics]{legend}}. Has no effect on the
+forwarded to \code{\link[graphics:legend]{graphics::legend()}}. Has no effect on the
 other panels.}
 
 \item{stamp}{controls the corner stamp. \code{.useTheme} (default)
 resolves to \code{getTheme()$stamp}, drawn once after all selected
-panels (panels 3/4 delegate to \code{\link{plotDens}}/
-\code{\link{plotBox}}, whose own stamp is suppressed internally to
+panels (panels 3/4 delegate to \code{\link[=plotDens]{plotDens()}}/
+\code{\link[=plotBox]{plotBox()}}, whose own stamp is suppressed internally to
 avoid a duplicate). \code{TRUE}/\code{FALSE}/\code{NULL}, a string, or
-a named list for \code{\link{stamp}()}.}
+a named list for \code{\link[=stamp]{stamp()}}.}
 
-\item{...}{further graphical parameters, passed to \code{\link{par}} via
+\item{...}{further graphical parameters, passed to \code{\link[=par]{par()}} via
 the internal framework and to the underlying panel-drawing functions
-(\code{cdplot()}, \code{spineplot()}, \code{\link{plotDens}},
-\code{\link{plotBox}}, or \code{\link[graphics]{plot}}, depending on
+(\code{cdplot()}, \code{spineplot()}, \code{\link[=plotDens]{plotDens()}},
+\code{\link[=plotBox]{plotBox()}}, or \code{\link[graphics:plot]{graphics::plot()}}, depending on
 the selected panel).}
 }
 \value{
@@ -118,8 +118,8 @@ categorical level names drawn as axis tick labels, so neither is ever
 clipped regardless of \code{which}.
 }
 \seealso{
-\code{DescToolsX::desc}, \code{\link{plotDens}}, \code{\link{plotBox}},
-\code{\link[graphics]{cdplot}}, \code{\link[graphics]{spineplot}}
+\code{DescToolsX::desc}, \code{\link[=plotDens]{plotDens()}}, \code{\link[=plotBox]{plotBox()}},
+\code{\link[graphics:cdplot]{graphics::cdplot()}}, \code{\link[graphics:spineplot]{graphics::spineplot()}}
 
 Other plot.s3:
 \code{\link[=plot.BlandAltman]{plot.BlandAltman()}},

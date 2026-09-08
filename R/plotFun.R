@@ -6,55 +6,55 @@
 #'
 #' The function automatically detects the type of input:
 #' \itemize{
-#'   \item \strong{Cartesian:} \code{y ~ f(x)}
-#'   \item \strong{Polar:} \code{r ~ f(phi)} or \code{r ~ f(theta)}
-#'   \item \strong{Parametric:} \code{list(x ~ f(t), y ~ g(t))}
+#'   \item **Cartesian:** `y ~ f(x)`
+#'   \item **Polar:** \code{r ~ f(phi)} or \code{r ~ f(theta)}
+#'   \item **Parametric:** `list(x ~ f(t), y ~ g(t))`
 #' }
 #'
 #' Additional parameters fixed for the expression can be passed via
-#' \code{args}.
+#' `args`.
 #'
 #' @param expr expression defining the function. Either a formula
-#'   (\code{y ~ f(x)}), a polar formula (\code{r ~ f(phi)}), or a list
+#'   (`y ~ f(x)`), a polar formula (\code{r ~ f(phi)}), or a list
 #'   of two formulas for parametric plots.
 #'
-#' @param main main title of the plot. \code{NULL} (default) derives a
-#'   title from \code{expr}. \code{""}, \code{NA}, or \code{FALSE}
+#' @param main main title of the plot. `NULL` (default) derives a
+#'   title from `expr`. `""`, `NA`, or `FALSE`
 #'   suppress the title and compact the top margin.
 #' @param xlab,ylab labels for the axes.
 #'
 #' @param xlim,ylim numeric vectors of length 2 defining axis limits.
-#'   For Cartesian functions, \code{xlim} defaults to \code{c(from, to)}.
+#'   For Cartesian functions, `xlim` defaults to `c(from, to)`.
 #'   For polar and parametric plots, limits are derived from the data.
-#'   If only \code{xlim} is supplied for polar/parametric plots, \code{ylim}
-#'   mirrors it (ensures \code{asp=1} renders correctly).
+#'   If only `xlim` is supplied for polar/parametric plots, `ylim`
+#'   mirrors it (ensures `asp=1` renders correctly).
 #'
 #' @param from,to numeric; lower and upper bound of the parameter domain.
-#'   Default \code{from=0}, \code{to=1}.
-#' @param n integer; number of evaluation points. Default \code{500}.
+#'   Default `from=0`, `to=1`.
+#' @param n integer; number of evaluation points. Default `500`.
 #' @param args named list of additional parameters fixed for the function
-#'   expression (e.g. \code{list(a = 2)} for \code{y ~ sin(a*x)}).
+#'   expression (e.g. `list(a = 2)` for `y ~ sin(a*x)`).
 #'
-#' @param col color of the line. \code{.useTheme} (default) resolves to
-#'   \code{getTheme()$twin[1]} - the primary accent color, consistent with
-#'   \code{\link{lines.loess}} and \code{plotQQ()}.
-#' @param lwd line width. Default \code{1}.
-#' @param lty line type. Default \code{1}.
-#' @param grid controls drawing of the background grid. \code{.useTheme}
-#'   (default) follows the active theme (\code{getTheme()$grid}).
-#'   \code{TRUE}/\code{FALSE}/\code{NA}, or a named list, as for
-#'   \code{\link[graphics]{grid}}.
+#' @param col color of the line. `.useTheme` (default) resolves to
+#'   `getTheme()$twin[1]` - the primary accent color, consistent with
+#'   [lines.loess()] and `plotQQ()`.
+#' @param lwd line width. Default `1`.
+#' @param lty line type. Default `1`.
+#' @param grid controls drawing of the background grid. `.useTheme`
+#'   (default) follows the active theme (`getTheme()$grid`).
+#'   `TRUE`/`FALSE`/`NA`, or a named list, as for
+#'   [graphics::grid()].
 #'
-#' @param add logical; if \code{TRUE}, adds to an existing plot without
-#'   redrawing axes or grid. Default \code{FALSE}.
+#' @param add logical; if `TRUE`, adds to an existing plot without
+#'   redrawing axes or grid. Default `FALSE`.
 #'
-#' @param stamp controls the corner stamp. \code{.useTheme} (default)
-#'   resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
-#'   \code{NULL}, a string, or a named list for \code{\link{stamp}()}.
+#' @param stamp controls the corner stamp. `.useTheme` (default)
+#'   resolves to `getTheme()$stamp`. `TRUE`/`FALSE`/
+#'   `NULL`, a string, or a named list for [stamp()].
 #' @param \dots further graphical parameters passed to
-#'   \code{\link[graphics]{par}} via the internal framework.
+#'   [graphics::par()] via the internal framework.
 #'
-#' @return Invisibly returns a list with components \code{x} and \code{y}
+#' @return Invisibly returns a list with components `x` and `y`
 #'   (the plotted coordinates after finite filtering).
 #'
 #' @examples
@@ -83,7 +83,7 @@
 #'           from = 0, to = 2*pi,
 #'           add = (a != 1), col = a)
 #'
-
+#'
 #' @family plot.distribution  
 #' @concept distribution-summary
 #'

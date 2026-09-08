@@ -46,7 +46,7 @@ from \code{type}.}
 
 \item{col}{color of the curve or the bars. \code{.useTheme} (default)
 resolves to \code{getTheme()$twin[1]} - a single accent color,
-consistent with \code{\link{plotECDF}}.}
+consistent with \code{\link[=plotECDF]{plotECDF()}}.}
 
 \item{lwd}{line width of the curve. Has no effect for
 \code{type = "decile"}.}
@@ -58,7 +58,7 @@ Can be:
 (\code{getTheme()$grid})
 \item \code{TRUE}: draw grid with theme settings
 \item \code{FALSE}, \code{NULL}, or \code{NA}: suppress grid
-\item a named list: arguments passed to \code{\link[graphics]{grid}},
+\item a named list: arguments passed to \code{\link[graphics:grid]{graphics::grid()}},
 overriding the theme defaults for this call only
 }}
 
@@ -73,8 +73,8 @@ Can be:
 \itemize{
 \item \code{TRUE} (default): draw with default settings
 \item \code{FALSE}, \code{NULL}, or \code{NA}: suppress
-\item a named list: arguments passed to \code{\link[graphics]{lines}}
-(or \code{\link[graphics]{abline}} for \code{type = "decile"}),
+\item a named list: arguments passed to \code{\link[graphics:lines]{graphics::lines()}}
+(or \code{\link[graphics:abline]{graphics::abline()}} for \code{type = "decile"}),
 e.g. \code{list(col = "black", lty = "dotted")}
 }}
 
@@ -89,14 +89,14 @@ Can be:
 \itemize{
 \item \code{TRUE} (default): draw with default settings
 \item \code{FALSE}, \code{NULL}, or \code{NA}: suppress
-\item a named list: arguments passed to \code{\link[graphics]{legend}},
+\item a named list: arguments passed to \code{\link[graphics:legend]{graphics::legend()}},
 e.g. \code{list(x = "bottomleft")}
 }}
 
 \item{stamp}{controls the corner stamp. \code{.useTheme} (default)
 resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
 \code{NULL}, a string, or a named list of arguments for
-\code{\link{stamp}()}.}
+\code{\link[=stamp]{stamp()}}.}
 
 \item{...}{further graphical parameters passed to \code{par()} via the
 internal framework.}
@@ -125,7 +125,7 @@ afterwards is preferable for a small campaign to one with the reverse
 profile and identical AUC.
 
 Optional plot components (\code{grid}, \code{box}, \code{baseline},
-\code{perfect}, \code{legend}) follow \code{\link[bedrock]{callIf}}
+\code{perfect}, \code{legend}) follow \code{\link[bedrock:callIf]{bedrock::callIf()}}
 semantics:
 \itemize{
 \item \code{TRUE}: draw with defaults
@@ -160,8 +160,8 @@ plotLift(lft, main = "")
 
 }
 \seealso{
-\code{alloy::lift()}, \code{alloy::roc()}, \code{\link{plotECDF}},
-\code{\link[bedrock]{callIf}}, \link{theme}
+\code{alloy::lift()}, \code{alloy::roc()}, \code{\link[=plotECDF]{plotECDF()}},
+\code{\link[bedrock:callIf]{bedrock::callIf()}}, \link{theme}
 
 Other plot.special:
 \code{\link[=plotBinaryTree]{plotBinaryTree()}},

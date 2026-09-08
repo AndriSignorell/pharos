@@ -167,7 +167,7 @@ plotViolin(value ~ group, data = df)
 
 }
 \seealso{
-\code{\link{boxplot}}, \code{\link{density}}
+\code{\link[=boxplot]{boxplot()}}, \code{\link[=density]{density()}}
 
 Other plot.univariate:
 \code{\link[=plotArea]{plotArea()}},

@@ -106,15 +106,15 @@
 
 #' List Available Palette Names
 #'
-#' Returns the names of all palettes available in \code{\link{pal}},
+#' Returns the names of all palettes available in [pal()],
 #' optionally filtered by type.
 #'
-#' @param type character, one of \code{"all"} (default), \code{"continuous"},
-#'   or \code{"discrete"}.
+#' @param type character, one of `"all"` (default), `"continuous"`,
+#'   or `"discrete"`.
 #'
 #' @return a character vector of palette names.
 #'
-#' @seealso \code{\link{pal}}
+#' @seealso [pal()]
 #' @examples
 #' palNames()
 #' palNames("continuous")
@@ -142,30 +142,30 @@ palNames <- function(type = c("all", "continuous", "discrete")) {
 
 #' Get a Color Palette
 #'
-#' Returns \code{n} colors from a named palette. All palettes always return
-#' exactly \code{n} colors regardless of their base size:
+#' Returns `n` colors from a named palette. All palettes always return
+#' exactly `n` colors regardless of their base size:
 #' \itemize{
-#'   \item \code{n < length(base)}: evenly spaced sample for maximum contrast
-#'   \item \code{n = length(base)}: returned as-is
-#'   \item \code{n > length(base)}: interpolated via
-#'     \code{\link[grDevices]{colorRampPalette}}
+#'   \item `n < length(base)`: evenly spaced sample for maximum contrast
+#'   \item `n = length(base)`: returned as-is
+#'   \item `n > length(base)`: interpolated via
+#'     [grDevices::colorRampPalette()]
 #' }
 #'
 #' @param name character or integer. Palette name (full match via
-#'   \code{\link[base]{match.arg}}) or index into \code{\link{palNames}()}.
+#'   [base::match.arg()]) or index into [palNames()].
 #'   If missing, returns the palette named in the active theme
-#'   (\code{getTheme()$palette}, see [theme]).   
+#'   (`getTheme()$palette`, see [theme]).   
 #'   
-#' @param n integer, number of colors to return. Default \code{NA} returns 
+#' @param n integer, number of colors to return. Default `NA` returns 
 #' the colors as contained in the palette.
-#' @param opacity numeric in \eqn{[0, 1]}, opacity. Default \code{1} (opaque).
-#'   Applied via \code{\link[grDevices]{adjustcolor}}.
+#' @param opacity numeric in \eqn{[0, 1]}, opacity. Default `1` (opaque).
+#'   Applied via [grDevices::adjustcolor()].
 #'
-#' @return a character vector of \code{n} hex color codes of class
-#'   \code{c("palette", "character")} with a \code{"name"} attribute.
+#' @return a character vector of `n` hex color codes of class
+#'   `c("palette", "character")` with a `"name"` attribute.
 #'
-#' @seealso \code{\link{palNames}}, \code{\link[grDevices]{colorRampPalette}},
-#'   \code{\link[grDevices]{adjustcolor}}
+#' @seealso [palNames()], [grDevices::colorRampPalette()],
+#'   [grDevices::adjustcolor()]
 #'
 #' @family color.palettes
 #' @concept color

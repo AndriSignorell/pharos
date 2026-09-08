@@ -30,11 +30,11 @@ The function uses regular expressions to extract the first substring
 between \code{left} and \code{right}. Internally, it constructs a pattern
 of the form:
 \itemize{
-\item greedy: \code{left (.*) right}
-\item non-greedy: \code{left (.*?) right}
+\item greedy: \verb{left (.*) right}
+\item non-greedy: \verb{left (.*?) right}
 }
 
-Extraction is performed using \code{\link[stringi]{stri_match_first_regex}},
+Extraction is performed using \code{\link[stringi:stri_match_first_regex]{stringi::stri_match_first_regex()}},
 which returns the first captured group.
 }
 \examples{
@@ -48,8 +48,8 @@ strExtractBetween("a[1]b[2]c", "\\\\[", "\\\\]", greedy = TRUE)
 
 }
 \seealso{
-\code{\link[stringi]{stri_match_first_regex}},
-\code{\link{strExtract}}
+\code{\link[stringi:stri_match_first_regex]{stringi::stri_match_first_regex()}},
+\code{\link[=strExtract]{strExtract()}}
 
 \link{string-overview} for an overview of all string utilities in pharos.
 }

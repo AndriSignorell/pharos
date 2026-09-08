@@ -38,7 +38,7 @@ strPad("My string", 25, "XoX", "center")
 
 }
 \seealso{
-\code{\link{strAlign}}, \code{\link{strTrunc}}
+\code{\link[=strAlign]{strAlign()}}, \code{\link[=strTrunc]{strTrunc()}}
 
 \link{string-overview} for an overview of all string utilities in pharos.
 }

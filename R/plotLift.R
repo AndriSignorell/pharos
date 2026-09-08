@@ -7,78 +7,78 @@
 #' much better is acting on the top-scored share of the cases than acting on
 #' a random share of the same size.
 #'
-#' @param x an object of class \code{"Lift"}, as returned by
-#'   \code{alloy::lift()}.
+#' @param x an object of class `"Lift"`, as returned by
+#'   `alloy::lift()`.
 #'
-#' @param type the curve to draw. One of \code{"cumulative"} (cumulative
-#'   lift over depth, the default), \code{"gain"} (share of all positives
-#'   captured, over depth), or \code{"decile"} (per-group lift as bars).
+#' @param type the curve to draw. One of `"cumulative"` (cumulative
+#'   lift over depth, the default), `"gain"` (share of all positives
+#'   captured, over depth), or `"decile"` (per-group lift as bars).
 #'
-#' @param main main title of the plot. \code{NULL} (default) derives a title
-#'   from \code{deparse(substitute(x))}. \code{""}, \code{NA}, or
-#'   \code{FALSE} suppress the title entirely (and compact the top margin
+#' @param main main title of the plot. `NULL` (default) derives a title
+#'   from `deparse(substitute(x))`. `""`, `NA`, or
+#'   `FALSE` suppress the title entirely (and compact the top margin
 #'   accordingly); any other string is used as given.
-#' @param xlab label for the x-axis. \code{NULL} (default) derives a label
-#'   from \code{type}.
-#' @param ylab label for the y-axis. \code{NULL} (default) derives a label
-#'   from \code{type}.
-#' @param ylim numeric vector of length 2; y-axis limits. \code{NULL}
+#' @param xlab label for the x-axis. `NULL` (default) derives a label
+#'   from `type`.
+#' @param ylab label for the y-axis. `NULL` (default) derives a label
+#'   from `type`.
+#' @param ylim numeric vector of length 2; y-axis limits. `NULL`
 #'   (default) spans the curve together with the baseline.
 #'
-#' @param col color of the curve or the bars. \code{.useTheme} (default)
-#'   resolves to \code{getTheme()$twin[1]} - a single accent color,
-#'   consistent with \code{\link{plotECDF}}.
+#' @param col color of the curve or the bars. `.useTheme` (default)
+#'   resolves to `getTheme()$twin[1]` - a single accent color,
+#'   consistent with [plotECDF()].
 #' @param lwd line width of the curve. Has no effect for
-#'   \code{type = "decile"}.
+#'   `type = "decile"`.
 #'
 #' @param grid controls drawing of the background grid.
 #'   Can be:
 #'   \itemize{
-#'     \item \code{.useTheme} (default): follow the active theme
-#'       (\code{getTheme()$grid})
-#'     \item \code{TRUE}: draw grid with theme settings
-#'     \item \code{FALSE}, \code{NULL}, or \code{NA}: suppress grid
-#'     \item a named list: arguments passed to \code{\link[graphics]{grid}},
+#'     \item `.useTheme` (default): follow the active theme
+#'       (`getTheme()$grid`)
+#'     \item `TRUE`: draw grid with theme settings
+#'     \item `FALSE`, `NULL`, or `NA`: suppress grid
+#'     \item a named list: arguments passed to [graphics::grid()],
 #'       overriding the theme defaults for this call only
 #'   }
 #'
-#' @param box controls drawing of the plot box. \code{.useTheme} (default)
-#'   resolves to \code{getTheme()$box}. \code{TRUE}/\code{FALSE}/\code{NA},
-#'   or a named list, as for \code{grid}.
+#' @param box controls drawing of the plot box. `.useTheme` (default)
+#'   resolves to `getTheme()$box`. `TRUE`/`FALSE`/`NA`,
+#'   or a named list, as for `grid`.
 #'
 #' @param baseline controls the reference line of a random model - a
-#'   horizontal line at 1 for \code{type = "cumulative"} and
-#'   \code{"decile"}, the diagonal for \code{type = "gain"}.
+#'   horizontal line at 1 for `type = "cumulative"` and
+#'   `"decile"`, the diagonal for `type = "gain"`.
 #'   Can be:
 #'   \itemize{
-#'     \item \code{TRUE} (default): draw with default settings
-#'     \item \code{FALSE}, \code{NULL}, or \code{NA}: suppress
-#'     \item a named list: arguments passed to \code{\link[graphics]{lines}}
-#'       (or \code{\link[graphics]{abline}} for \code{type = "decile"}),
-#'       e.g. \code{list(col = "black", lty = "dotted")}
+#'     \item `TRUE` (default): draw with default settings
+#'     \item `FALSE`, `NULL`, or `NA`: suppress
+#'     \item a named list: arguments passed to [graphics::lines()]
+#'       (or [graphics::abline()] for `type = "decile"`),
+#'       e.g. `list(col = "black", lty = "dotted")`
 #'   }
 #'
 #' @param perfect controls the curve of a perfect ranking - the theoretical
-#'   maximum attainable at each depth, given the base rate. \code{FALSE} by
+#'   maximum attainable at each depth, given the base rate. `FALSE` by
 #'   default, since it compresses the interesting part of the y-axis;
-#'   \code{TRUE} or a named list to draw it, as for \code{baseline}. Has no
-#'   effect for \code{type = "decile"}.
+#'   `TRUE` or a named list to draw it, as for `baseline`. Has no
+#'   effect for `type = "decile"`.
 #'
 #' @param legend controls drawing of the legend.
 #'   Can be:
 #'   \itemize{
-#'     \item \code{TRUE} (default): draw with default settings
-#'     \item \code{FALSE}, \code{NULL}, or \code{NA}: suppress
-#'     \item a named list: arguments passed to \code{\link[graphics]{legend}},
-#'       e.g. \code{list(x = "bottomleft")}
+#'     \item `TRUE` (default): draw with default settings
+#'     \item `FALSE`, `NULL`, or `NA`: suppress
+#'     \item a named list: arguments passed to [graphics::legend()],
+#'       e.g. `list(x = "bottomleft")`
 #'   }
 #'
-#' @param stamp controls the corner stamp. \code{.useTheme} (default)
-#'   resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
-#'   \code{NULL}, a string, or a named list of arguments for
-#'   \code{\link{stamp}()}.
+#' @param stamp controls the corner stamp. `.useTheme` (default)
+#'   resolves to `getTheme()$stamp`. `TRUE`/`FALSE`/
+#'   `NULL`, a string, or a named list of arguments for
+#'   [stamp()].
 #'
-#' @param ... further graphical parameters passed to \code{par()} via the
+#' @param ... further graphical parameters passed to `par()` via the
 #'   internal framework.
 #'
 #' @details
@@ -94,26 +94,26 @@
 #' afterwards is preferable for a small campaign to one with the reverse
 #' profile and identical AUC.
 #'
-#' Optional plot components (\code{grid}, \code{box}, \code{baseline},
-#' \code{perfect}, \code{legend}) follow \code{\link[bedrock]{callIf}}
+#' Optional plot components (`grid`, `box`, `baseline`,
+#' `perfect`, `legend`) follow [bedrock::callIf()]
 #' semantics:
 #' \itemize{
-#'   \item \code{TRUE}: draw with defaults
-#'   \item \code{FALSE}, \code{NULL}, or \code{NA}: suppress component
+#'   \item `TRUE`: draw with defaults
+#'   \item `FALSE`, `NULL`, or `NA`: suppress component
 #'   \item named list: customize component arguments
 #' }
 #'
-#' \code{col}, \code{grid}, \code{box}, and \code{stamp} default to
-#' \code{.useTheme}, deferring to the package's active theme (see [theme])
+#' `col`, `grid`, `box`, and `stamp` default to
+#' `.useTheme`, deferring to the package's active theme (see [theme])
 #' rather than a hardcoded value.
 #'
 #' The number of groups is a property of the lift table, not of the plot -
-#' set it via the \code{nBins} argument of \code{alloy::lift()}.
+#' set it via the `nBins` argument of `alloy::lift()`.
 #'
-#' @return Invisibly returns \code{x}.
+#' @return Invisibly returns `x`.
 #'
-#' @seealso \code{alloy::lift()}, \code{alloy::roc()}, \code{\link{plotECDF}},
-#'   \code{\link[bedrock]{callIf}}, [theme]
+#' @seealso `alloy::lift()`, `alloy::roc()`, [plotECDF()],
+#'   [bedrock::callIf()], [theme]
 #'
 #' @examples
 #' \dontrun{

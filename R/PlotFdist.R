@@ -8,78 +8,78 @@
 #' curves for both the histogram and the ECDF panel.
 #'
 #' Each plot component is controlled via a single argument accepting
-#' \code{\link[bedrock]{callIf}} semantics:
+#' [bedrock::callIf()] semantics:
 #' \itemize{
-#'   \item \code{TRUE}: draw with package defaults
-#'   \item \code{FALSE}, \code{NULL}, or \code{NA}: suppress entirely
+#'   \item `TRUE`: draw with package defaults
+#'   \item `FALSE`, `NULL`, or `NA`: suppress entirely
 #'   \item a named list: draw with the given overrides merged into the defaults
 #' }
 #' 
 #' Performance: for very large vectors (n > 1e7) the density curve, ECDF,
 #' and semi-transparent boxplot outliers will still take noticeable time.
 #' For exploratory work on very large data, consider sampling first:
-#' \code{plotFdist(x[sample(length(x), 5000)])}.
+#' `plotFdist(x[sample(length(x), 5000)])`.
 #'
 #' @param x numeric vector whose distribution is to be plotted.
 #'
-#' @param main main title. \code{NULL} (default) derives the title from
-#'   \code{deparse(substitute(x))}. \code{""}, \code{NA}, or \code{FALSE}
+#' @param main main title. `NULL` (default) derives the title from
+#'   `deparse(substitute(x))`. `""`, `NA`, or `FALSE`
 #'   suppress the title and compact the top margin.
 #' @param xlab label for the x-axis. The variable name is typically placed
-#'   in \code{main}, so this defaults to \code{""}.
-#' @param xlim range of the x-axis. \code{NULL} (default) uses a pretty
-#'   range of the non-missing values in \code{x}.
+#'   in `main`, so this defaults to `""`.
+#' @param xlim range of the x-axis. `NULL` (default) uses a pretty
+#'   range of the non-missing values in `x`.
 #'
 #' @param heights numeric vector of relative panel heights for
-#'   \code{\link{layout}}: three values for histogram/boxplot/ecdf, two
-#'   for histogram/boxplot or histogram/ecdf only. \code{NULL} (default)
+#'   [layout()]: three values for histogram/boxplot/ecdf, two
+#'   for histogram/boxplot or histogram/ecdf only. `NULL` (default)
 #'   chooses automatically.
 #'
-#' @param hist controls the histogram panel. \code{TRUE} (default) uses
-#'   package defaults; \code{FALSE}/\code{NA} suppresses the panel
-#'   (\code{xlim} then falls back to the pretty range of the data);
+#' @param hist controls the histogram panel. `TRUE` (default) uses
+#'   package defaults; `FALSE`/`NA` suppresses the panel
+#'   (`xlim` then falls back to the pretty range of the data);
 #'   a list overrides specific arguments forwarded to
-#'   \code{\link[graphics]{hist}}. The element \code{type} selects the
-#'   plot style: \code{"hist"} (standard histogram, chosen automatically
-#'   for continuous or high-cardinality data) or \code{"mass"} (vertical
+#'   [graphics::hist()]. The element `type` selects the
+#'   plot style: `"hist"` (standard histogram, chosen automatically
+#'   for continuous or high-cardinality data) or `"mass"` (vertical
 #'   bars per unique value, for discrete/low-cardinality data).
-#' @param dens controls the kernel density curve. \code{TRUE} (default)
-#'   draws a curve via \code{\link[stats]{density}}; a list overrides
-#'   specific arguments (e.g. \code{list(bw = 0.1, col = "red")}).
-#' @param rug controls a rug plot. \code{FALSE} (default) suppresses it;
-#'   \code{TRUE} or a list draw a rug via \code{\link[graphics]{rug}}.
+#' @param dens controls the kernel density curve. `TRUE` (default)
+#'   draws a curve via [stats::density()]; a list overrides
+#'   specific arguments (e.g. `list(bw = 0.1, col = "red")`).
+#' @param rug controls a rug plot. `FALSE` (default) suppresses it;
+#'   `TRUE` or a list draw a rug via [graphics::rug()].
 #' @param curve controls a fitted theoretical distribution curve on the
-#'   histogram. \code{FALSE} (default), \code{NULL}, or \code{NA}
-#'   suppress it; \code{TRUE} draws a normal curve with
-#'   \code{mean(x)}/\code{sd(x)}; a list may include \code{expr} as a
-#'   character string, expression, or function of \code{x} for any
+#'   histogram. `FALSE` (default), `NULL`, or `NA`
+#'   suppress it; `TRUE` draws a normal curve with
+#'   `mean(x)`/`sd(x)`; a list may include `expr` as a
+#'   character string, expression, or function of `x` for any
 #'   distribution (e.g.
-#'   \code{list(expr = "dt(x, df=2)", col = "darkgreen")}). A character
-#'   \code{expr} is evaluated in the caller's environment, so local
+#'   `list(expr = "dt(x, df=2)", col = "darkgreen")`). A character
+#'   `expr` is evaluated in the caller's environment, so local
 #'   variables may be referenced (see the gamma example below).
-#' @param boxplot controls the boxplot panel. \code{TRUE} (default) draws
-#'   a horizontal boxplot with a mean marker and CI band; \code{FALSE}/
-#'   \code{NA} suppresses the panel. A list overrides arguments forwarded
-#'   to \code{\link[graphics]{boxplot}}; two extra elements control the
-#'   mean display: \code{pch.mean} (default \code{3}) and \code{col.meanci}
-#'   (default \code{getTheme()$grid$col}). Set either to \code{NA} to
+#' @param boxplot controls the boxplot panel. `TRUE` (default) draws
+#'   a horizontal boxplot with a mean marker and CI band; `FALSE`/
+#'   `NA` suppresses the panel. A list overrides arguments forwarded
+#'   to [graphics::boxplot()]; two extra elements control the
+#'   mean display: `pch.mean` (default `3`) and `col.meanci`
+#'   (default `getTheme()$grid$col`). Set either to `NA` to
 #'   suppress that element.
-#' @param ecdf controls the ECDF panel. \code{TRUE} (default) calls
-#'   \code{\link{plotECDF}}; a list overrides specific arguments.
+#' @param ecdf controls the ECDF panel. `TRUE` (default) calls
+#'   [plotECDF()]; a list overrides specific arguments.
 #' @param curveEcdf controls a fitted theoretical CDF curve on the ECDF
-#'   panel, analogous to \code{curve}. \code{FALSE} (default) suppresses
+#'   panel, analogous to `curve`. `FALSE` (default) suppresses
 #'   it.
 #'
-#' @param stamp controls the corner stamp. \code{.useTheme} (default)
-#'   resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
-#'   \code{NULL}, a string, or a named list for \code{\link{stamp}()}.
-#' @param \dots further graphical parameters passed to \code{\link{par}}
-#'   via the internal framework. Note that \code{mar} given here sets the
-#'   \emph{outer} margins (\code{oma}) of the multi-panel figure; the
+#' @param stamp controls the corner stamp. `.useTheme` (default)
+#'   resolves to `getTheme()$stamp`. `TRUE`/`FALSE`/
+#'   `NULL`, a string, or a named list for [stamp()].
+#' @param \dots further graphical parameters passed to [par()]
+#'   via the internal framework. Note that `mar` given here sets the
+#'   *outer* margins (`oma`) of the multi-panel figure; the
 #'   inner panel margins are managed internally and cannot be overridden.
 #'
-#' @seealso \code{\link{hist}}, \code{\link{boxplot}}, \code{\link{plotECDF}},
-#'   \code{\link{density}}, \code{\link{rug}}, \code{\link{layout}},
+#' @seealso [hist()], [boxplot()], [plotECDF()],
+#'   [density()], [rug()], [layout()],
 #'   [theme]
 #'
 #' @examples

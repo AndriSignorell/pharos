@@ -7,9 +7,9 @@
 #' @aliases degToRad radToDeg
 #' @param deg a vector of angles in degrees. 
 #' @param rad a vector of angles in radians. 
-#' @return degToRad returns a vector of the same length as \code{deg} with the
+#' @return degToRad returns a vector of the same length as `deg` with the
 #' angles in radians.\cr radToDeg returns a vector of the same length as
-#' \code{rad} with the angles in degrees. 
+#' `rad` with the angles in degrees. 
 #' 
 
 

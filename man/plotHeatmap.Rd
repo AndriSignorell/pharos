@@ -24,13 +24,13 @@ plotHeatmap(
 }
 \arguments{
 \item{x}{a contingency table, matrix, or a pair of categorical vectors
-coercible via \code{\link{table}}.}
+coercible via \code{\link[=table]{table()}}.}
 
 \item{main}{main title of the plot. \code{NULL} (default) derives a
 title from the expression passed as \code{x} (via
 \code{deparse(match.call()$x)}), the same "substitute magic"
-convention used by \code{\link{plotXY}}/\code{\link{plotBox}}/
-\code{\link{plotAssoc}} for their default titles - there's no
+convention used by \code{\link[=plotXY]{plotXY()}}/\code{\link[=plotBox]{plotBox()}}/
+\code{\link[=plotAssoc]{plotAssoc()}} for their default titles - there's no
 formula pair here, just the single table argument, so the default
 is simply that expression's text (e.g. \code{plotHeatmap(tab)}
 titles itself \code{"tab"}). \code{""}, \code{NA}, or \code{FALSE}
@@ -70,7 +70,7 @@ color scaling. If \code{NULL}, the range of the data is used.}
 
 \item{box}{controls drawing of the outer frame around the tile grid,
 drawn via \code{rect()} at the exact cell boundaries rather than
-\code{\link[graphics]{box}()} (the initial plot suppresses the
+\code{\link[graphics:box]{graphics::box()}} (the initial plot suppresses the
 standard box via \code{frame.plot = FALSE}, since cell bounds differ
 from the default plot region). \code{.useTheme} (default) resolves
 border color/width from \code{getTheme()$box}. \code{TRUE}/\code{FALSE},
@@ -82,7 +82,7 @@ resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
 \code{.withGraphicsState()} (internal).}
 
 \item{...}{further graphical parameters passed to
-\code{\link[graphics]{par}} via the internal framework.}
+\code{\link[graphics:par]{graphics::par()}} via the internal framework.}
 }
 \value{
 Invisibly returns the matrix used for plotting.
@@ -112,7 +112,7 @@ plotHeatmap(tab,
 
 }
 \seealso{
-\code{\link{plotAssoc}}, \code{\link[graphics]{image}},
+\code{\link[=plotAssoc]{plotAssoc()}}, \code{\link[graphics:image]{graphics::image()}},
 \link{theme}
 
 Other plot.bivariate:

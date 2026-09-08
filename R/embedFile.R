@@ -1,8 +1,8 @@
 
 #' Base64-encode a file
 #'
-#' The building block behind \code{\link{as.img}} and
-#' \code{\link{as.fileLink}}: reads a file and returns its contents
+#' The building block behind [as.img()] and
+#' [as.fileLink()]: reads a file and returns its contents
 #' base64-encoded, ready to be placed in a data URI or in any container
 #' format that carries binary payloads as text.
 #'
@@ -34,9 +34,9 @@ embedFile <- function(path) {
 #' Link to a self-contained embedded file
 #'
 #' Turns a file into a download link that carries the file with it: the
-#' contents travel base64-encoded inside the \code{href}, so the resulting
+#' contents travel base64-encoded inside the `href`, so the resulting
 #' HTML needs no server and no accompanying assets. The counterpart of
-#' \code{\link{as.img}} for non-image files -- a data set next to a table,
+#' [as.img()] for non-image files -- a data set next to a table,
 #' a script next to its output.
 #'
 #' Browsers limit the size of a data URI, so this suits spreadsheets and
@@ -44,9 +44,9 @@ embedFile <- function(path) {
 #'
 #' @param path path to an existing file
 #' @param label link text; defaults to the file name
-#' @param type MIME type; guessed from the extension when \code{NULL}
+#' @param type MIME type; guessed from the extension when `NULL`
 #'
-#' @return an object of class \code{c("html", "character")}
+#' @return an object of class `c("html", "character")`
 #'
 #' @examples
 #' fn <- tempfile(fileext = ".csv")
@@ -84,7 +84,7 @@ as.fileLink <- function(path, label = NULL, type = NULL) {
 #' Use it on any text of unknown origin -- a variable label, a file name,
 #' a user-supplied caption -- before pasting it into HTML or XML.
 #'
-#' Quotes are escaped as well when \code{attribute = TRUE}, which is
+#' Quotes are escaped as well when `attribute = TRUE`, which is
 #' required for text placed inside an attribute value rather than between
 #' tags.
 #'
