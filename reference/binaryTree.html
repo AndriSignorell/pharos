@@ -15,7 +15,7 @@ organize a sorted numeric vector as a binary tree."><meta property="og:image" co
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.953</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.954</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -85,7 +85,7 @@ vertically (default).</p></dd>
 
 <dt id="arg-text">text<a class="anchor" aria-label="anchor" href="#arg-text"></a></dt>
 <dd><p>properties of the text, can be any of the arguments
-of <code><a href="boxedText.html">boxedText</a></code> (besides geometry and label).</p></dd>
+of <code><a href="boxedText.html">boxedText()</a></code> (besides geometry and label).</p></dd>
 
 
 <dt id="arg-line">line<a class="anchor" aria-label="anchor" href="#arg-line"></a></dt>
@@ -94,7 +94,7 @@ of <code><a href="boxedText.html">boxedText</a></code> (besides geometry and lab
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>the dots are sent to <code><a href="canvas.html">canvas</a></code>.</p></dd>
+<dd><p>the dots are sent to <code><a href="canvas.html">canvas()</a></code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -107,8 +107,7 @@ of <code><a href="boxedText.html">boxedText</a></code> (besides geometry and lab
 horizontal row, 4–7 for the next, ... then the parent-child traversal
 becomes particularly easy. The basic idea is that the rows of the tree start
 at indices 1, 2, 4, ....</p>
-<p>binaryTree(13) yields the vector <code>c(8, 4, 9, 2, 10, 5, 11, 1, 12, 6, 13,
-3, 7)</code> meaning that the smallest element will be in position 8 of the tree,
+<p>binaryTree(13) yields the vector <code>c(8, 4, 9, 2, 10, 5, 11, 1, 12, 6, 13, 3, 7)</code> meaning that the smallest element will be in position 8 of the tree,
 the next smallest in position 4, etc.</p>
     </div>
     <div class="section level2">

@@ -21,7 +21,7 @@ centre, lighter at the edges."><meta property="og:image" content="/logo.png"></h
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.953</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.954</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -119,7 +119,7 @@ Default <code>c(0, 1)</code>.</p></dd>
 stacked bar. <code>.useTheme</code> (default) resolves to
 <code>getTheme()$twin</code> - the active theme's two-color pair. Note this
 is purely "first label gets the first color"; unlike
-<code><a href="plotCor.html">plotCor</a></code>/<code><a href="plotWeb.html">plotWeb</a></code>, there is no positive/
+<code><a href="plotCor.html">plotCor()</a></code>/<code><a href="plotWeb.html">plotWeb()</a></code>, there is no positive/
 negative sign convention here, since proportions of two arbitrary
 categories (e.g. "yes"/"no") have no inherent sign.</p></dd>
 
@@ -128,7 +128,7 @@ categories (e.g. "yes"/"no") have no inherent sign.</p></dd>
 <dd><p>colour for the confidence interval bands. Default is a
 semi-transparent grey (<code>addOpacity("grey80", 0.12)</code>). Deliberately
 not theme-driven (like the sequential scales in
-<code><a href="plotDens2D.html">plotDens2D</a></code>/<code><a href="plotHeatmap.html">plotHeatmap</a></code>): this is a
+<code><a href="plotDens2D.html">plotDens2D()</a></code>/<code><a href="plotHeatmap.html">plotHeatmap()</a></code>): this is a
 structural mechanism (many overlapping translucent bands building a
 gradient via overdraw), not a categorical or diverging color choice.</p></dd>
 
@@ -150,21 +150,21 @@ bands share the same translucent color and no border.</p></dd>
 the proportion ticks only - there is no meaningful horizontal grid
 for the categorical group axis). <code>.useTheme</code> (default) follows
 the active theme (<code>getTheme()$grid</code>). <code>TRUE</code>/<code>FALSE</code>/
-<code>NA</code>, or a named list, as for <code><a href="https://rdrr.io/r/graphics/grid.html" class="external-link">grid</a></code>.</p></dd>
+<code>NA</code>, or a named list, as for <code><a href="https://rdrr.io/r/graphics/grid.html" class="external-link">graphics::grid()</a></code>.</p></dd>
 
 
 <dt id="arg-box">box<a class="anchor" aria-label="anchor" href="#arg-box"></a></dt>
 <dd><p>controls drawing of the plot box. Default <code>FALSE</code> (no
 frame, consistent with this chart's minimal "Few"-style appearance).
 <code>TRUE</code>/<code>NA</code>, or a named list, as for
-<code><a href="https://rdrr.io/r/graphics/box.html" class="external-link">box</a></code>.</p></dd>
+<code><a href="https://rdrr.io/r/graphics/box.html" class="external-link">graphics::box()</a></code>.</p></dd>
 
 
 <dt id="arg-legend">legend<a class="anchor" aria-label="anchor" href="#arg-legend"></a></dt>
 <dd><p>controls the legend explaining the CI band range.
 <code>TRUE</code> (default) draws it. <code>FALSE</code>/<code>NA</code> suppresses it.
 A named list overrides arguments forwarded to
-<code><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></code>.</p></dd>
+<code><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">graphics::legend()</a></code>.</p></dd>
 
 
 <dt id="arg-stamp">stamp<a class="anchor" aria-label="anchor" href="#arg-stamp"></a></dt>
@@ -174,8 +174,8 @@ resolves to <code>getTheme()$stamp</code>. <code>TRUE</code>/<code>FALSE</code>/
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>further arguments passed to <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> via
-the internal framework, and to <code><a href="https://rdrr.io/r/graphics/barplot.html" class="external-link">barplot</a></code>.</p></dd>
+<dd><p>further arguments passed to <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">graphics::par()</a></code> via
+the internal framework, and to <code><a href="https://rdrr.io/r/graphics/barplot.html" class="external-link">graphics::barplot()</a></code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -194,7 +194,7 @@ segment marks the observed proportion.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="https://rdrr.io/r/stats/prop.test.html" class="external-link">prop.test</a></code>, <a href="theme.html">theme</a></p>
+    <div class="dont-index"><p><code><a href="https://rdrr.io/r/stats/prop.test.html" class="external-link">stats::prop.test()</a></code>, <a href="theme.html">theme</a></p>
 <p>Other plot.special:
 <code><a href="binaryTree.html">plotBinaryTree()</a></code>,
 <code><a href="plotCirc.html">plotCirc()</a></code>,

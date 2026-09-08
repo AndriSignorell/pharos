@@ -22,7 +22,8 @@ stamp(text = .useTheme, las = NULL, cex = 0.6, col = "grey40")
 
 - las:
 
-  orientation; see [`par`](https://rdrr.io/r/graphics/par.html). `NULL`
+  orientation; see
+  [`graphics::par()`](https://rdrr.io/r/graphics/par.html). `NULL`
   (default) inherits the current `par("las")`. `las = 3` places the
   stamp vertically along the right edge instead of horizontally along
   the bottom.
@@ -43,7 +44,7 @@ For R results may not be satisfactory if `par(mfrow=)` is in effect.
 
 ## See also
 
-[`text`](https://rdrr.io/r/graphics/text.html)
+[`text()`](https://rdrr.io/r/graphics/text.html)
 
 Other graphics.annotation: [`barText()`](barText.md),
 [`boxedText()`](boxedText.md), [`colLegend()`](colLegend.md),

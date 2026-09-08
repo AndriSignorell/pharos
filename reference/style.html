@@ -17,7 +17,7 @@ and easily change or modify them later."><meta property="og:image" content="/log
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.953</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.954</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -94,7 +94,7 @@ either in the global enviroment or in the options.</p></dd>
 
 <dt id="arg-digits">digits<a class="anchor" aria-label="anchor" href="#arg-digits"></a></dt>
 <dd><p>integer, the desired (fixed) number of digits after the
-decimal point. Unlike <code><a href="https://rdrr.io/r/base/formatc.html" class="external-link">formatC</a></code> you will always get this number
+decimal point. Unlike <code><a href="https://rdrr.io/r/base/formatc.html" class="external-link">formatC()</a></code> you will always get this number
 of digits even if the last digit is 0.  Negative numbers of digits round to
 a power of ten (<code>digits=-2</code> would round to the nearest hundred).</p></dd>
 
@@ -146,7 +146,7 @@ formats or an object of class <code>style</code>, consisting of a list of
 
 <dt id="arg-pthreshold">pThreshold<a class="anchor" aria-label="anchor" href="#arg-pthreshold"></a></dt>
 <dd><p>a numerical tolerance used mainly for formatting p values,
-those less than pThreshold are formatted as "<code>\code{&lt; [pThreshold]}</code>" (where '<code>[pThreshold]</code>'
+those less than pThreshold are formatted as "<code>`&lt; [pThreshold]`</code>" (where '<code>[pThreshold]</code>'
 stands for <code>format(pThreshold, digits))</code>.  Default is <code>0.001</code>.</p></dd>
 
 
@@ -156,10 +156,10 @@ stands for <code>format(pThreshold, digits))</code>.  Default is <code>0.001</co
 
 <dt id="arg-align">align<a class="anchor" aria-label="anchor" href="#arg-align"></a></dt>
 <dd><p>the character on whose position the strings will be aligned.
-Left alignment can be requested by setting <code>sep = "\l"</code>, right
-alignment by <code>"\r"</code> and center alignment by <code>"\c"</code>. Mind the
+Left alignment can be requested by setting <code>sep = "\\l"</code>, right
+alignment by <code>"\\r"</code> and center alignment by <code>"\\c"</code>. Mind the
 backslashes, as if they are omitted, strings would be aligned to the
-<b>character</b> l, r or c respectively. The default is <code>NULL</code> which
+<strong>character</strong> l, r or c respectively. The default is <code>NULL</code> which
 would just leave the strings as they are.<br> This argument is send directly
 to the function <code><a href="strAlign.html">strAlign()</a></code> as argument <code>sep</code>.</p></dd>
 
@@ -194,8 +194,7 @@ Following will define a new format template named
 "<code>num.sty</code>".  Passed to <code><a href="fm.html">fm()</a></code> this will result in a number
 displayed with 2 fixed digits and a comma as big mark:</p><div class="sourceCode"><pre><code>num.sty &lt;- style(digits=2, bigMark=",")
 fm(12222.89345, fmt=num.sty) = 12,222.89</code></pre></div><p>This is the same result as if the arguments would have been supplied
-directly, but helps to avoid boilerplate code: <br><code>fm(12222.89345,
-digits=2, bigMark=",")</code>.</p>
+directly, but helps to avoid boilerplate code: <br><code>fm(12222.89345, digits=2, bigMark=",")</code>.</p>
 <p>To edit a style we can provide <code>style()</code> with its name and overwrite,
 resp. add new format options.  <code>style("num.sty", digits=1, sci=10)</code>
 will use the current version of the numeric format and change the digits to
@@ -204,10 +203,9 @@ and &lt; 1e-10.</p>
 <p><code>styles()</code> returns all found style definitions in the global
 environment or in the options.</p>
 <p>The styles can be stored as options for convenience.  To store a new format
-we use the default <code><a href="https://rdrr.io/r/base/options.html" class="external-link">options()</a></code> approach: <code>options(num.sty =
-style(digits=1, bigMark=" "))</code> Defined styles in the options can be passed
+we use the default <code><a href="https://rdrr.io/r/base/options.html" class="external-link">options()</a></code> approach: <code>options(num.sty = style(digits=1, bigMark=" "))</code> Defined styles in the options can be passed
 on to <code><a href="fm.html">fm()</a></code> simply by their name.</p>
-<p>Many report functions (e.g. <code>DescToolsX::tOne()</code>) in <b>DescToolsX</b> use
+<p>Many report functions (e.g. <code>DescToolsX::tOne()</code>) in <strong>DescToolsX</strong> use
 three default formats for counts (named <code>"abs.sty"</code>), numeric values
 (<code>"num.sty"</code>) and percentages (<code>"per.sty"</code>).</p>
     </div>
@@ -276,7 +274,7 @@ three default formats for counts (named <code>"abs.sty"</code>), numeric values
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 314.16</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="fm.html">fm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.Date</a></span><span class="op">(</span><span class="op">)</span>, fmt<span class="op">=</span><span class="va">dat.sty</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 09, 01 2026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 09, 08 2026</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

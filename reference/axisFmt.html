@@ -23,7 +23,7 @@ widens the corresponding plot margin so the labels are not clipped."><meta prope
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.953</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.954</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -146,10 +146,9 @@ rotated labels, or <code>NA</code> when <code>srt</code> is <code>NULL</code>).<
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>The <code>fmt</code> argument is passed straight to <code><a href="fm.html">fm()</a></code> and therefore accepts
 the full range of format specifications: a special short code (e.g.
-<code>"%"</code>, <code>"e"</code>, <code>"eng"</code>, <code>"p"</code>), an ISO-8601 date
+<code>"\%"</code>, <code>"e"</code>, <code>"eng"</code>, <code>"p"</code>), an ISO-8601 date
 pattern (e.g. <code>"MMM yyyy"</code>), a <code>Style</code> object, a bare (named)
-list treated as a style template (e.g. <code>fmt = list(digits = 1,
-bigMark = " ")</code>), or a function of <code>x</code>. See <code><a href="fm.html">fm()</a></code> for the details.</p>
+list treated as a style template (e.g. <code>fmt = list(digits = 1, bigMark = " ")</code>), or a function of <code>x</code>. See <code><a href="fm.html">fm()</a></code> for the details.</p>
 <p>When <code>srt</code> is set, the axis line and ticks are drawn without labels
 via <code><a href="https://rdrr.io/r/graphics/axis.html" class="external-link">graphics::axis()</a></code>, and the labels are added separately with
 <code><a href="https://rdrr.io/r/graphics/text.html" class="external-link">graphics::text()</a></code> using <code>xpd = TRUE</code> so they may extend into the

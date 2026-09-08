@@ -35,7 +35,7 @@ plotAssoc(
   main title of the plot. `NULL` (default) derives a title from the
   expression passed as `x` (via `deparse(match.call()$x)`), the same
   "substitute magic" convention used by
-  [`plotXY`](plotXY.md)/[`plotBox`](plotBox.md) for their `y ~ x`
+  [`plotXY()`](plotXY.md)/[`plotBox()`](plotBox.md) for their `y ~ x`
   default - there's no formula pair here, just the single table
   argument, so the default is simply that expression's text (e.g.
   `plotAssoc(tab)` titles itself `"tab"`). `""`, `NA`, or `FALSE`
@@ -77,7 +77,7 @@ plotAssoc(
 
   logical or character. If `TRUE`, Pearson residuals are printed inside
   each cell. If `FALSE` (default), no labels are shown. A character
-  format string (e.g. `"%.1f"`) can also be passed for custom
+  format string (e.g. `"\%.1f"`) can also be passed for custom
   formatting.
 
 - stamp:
@@ -89,7 +89,7 @@ plotAssoc(
 - ...:
 
   further arguments passed to
-  [`rect`](https://rdrr.io/r/graphics/rect.html).
+  [`graphics::rect()`](https://rdrr.io/r/graphics/rect.html).
 
 ## Details
 

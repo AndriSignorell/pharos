@@ -99,7 +99,7 @@ polarGrid(
 - las:
 
   integer controlling label orientation (as in
-  [`par`](https://rdrr.io/r/graphics/par.html)).
+  [`graphics::par()`](https://rdrr.io/r/graphics/par.html)).
 
 - adj:
 

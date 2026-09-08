@@ -75,7 +75,7 @@ plotXY(
 
   main title of the plot. `NULL` (default) derives a title from the
   input - `deparse(y) ~ deparse(x)` for the default method, or the
-  formula's `data.name` for the formula method. `""`, `NA`, or `FALSE`
+  formula's `dataName` for the formula method. `""`, `NA`, or `FALSE`
   suppress the title entirely (and compact the top margin accordingly);
   any other string is used as given (resolved internally via
   [`.resolveTitle()`](graphics-framework.md)).
@@ -129,8 +129,8 @@ plotXY(
   - `FALSE`, `NULL`, or `NA`: suppress grid
 
   - a named list: arguments passed to
-    [`grid`](https://rdrr.io/r/graphics/grid.html), overriding the theme
-    defaults for this call only
+    [`graphics::grid()`](https://rdrr.io/r/graphics/grid.html),
+    overriding the theme defaults for this call only
 
 - box:
 
@@ -143,8 +143,8 @@ plotXY(
   - `FALSE`, `NULL`, or `NA`: suppress box
 
   - a named list: arguments passed to
-    [`box`](https://rdrr.io/r/graphics/box.html), overriding the theme
-    defaults for this call only
+    [`graphics::box()`](https://rdrr.io/r/graphics/box.html), overriding
+    the theme defaults for this call only
 
 - lm:
 
@@ -155,7 +155,7 @@ plotXY(
   - `FALSE`, `NULL`, or `NA`: suppress
 
   - a named list: arguments passed to
-    [`lines`](https://rdrr.io/r/graphics/lines.html), e.g.
+    [`graphics::lines()`](https://rdrr.io/r/graphics/lines.html), e.g.
     `list(col = "blue", lwd = 2)`
 
 - loess:
@@ -167,7 +167,7 @@ plotXY(
   - `FALSE`, `NULL`, or `NA`: suppress
 
   - a named list: arguments passed to
-    [`lines`](https://rdrr.io/r/graphics/lines.html), e.g.
+    [`graphics::lines()`](https://rdrr.io/r/graphics/lines.html), e.g.
     `list(col = "red", lty = "dashed")`
 
 - legend:
@@ -179,7 +179,7 @@ plotXY(
   - `FALSE`, `NULL`, or `NA`: suppress
 
   - a named list: arguments passed to
-    [`legend`](https://rdrr.io/r/graphics/legend.html), e.g.
+    [`graphics::legend()`](https://rdrr.io/r/graphics/legend.html), e.g.
     `list(x = "bottomleft")`
 
   The legend is only drawn when at least one of `lm` or `loess` is
@@ -216,7 +216,7 @@ Invisibly returns `NULL`.
 ## Details
 
 Optional plot components (`grid`, `box`, `lm`, `loess`, `legend`) follow
-[`callIf`](https://andrisignorell.github.io/bedrock/reference/callIf.html)
+[`bedrock::callIf()`](https://andrisignorell.github.io/bedrock/reference/callIf.html)
 semantics:
 
 - `TRUE`: draw with defaults
@@ -234,10 +234,10 @@ theme section) that doesn't override `col` explicitly.
 
 ## See also
 
-[`plot`](https://rdrr.io/r/graphics/plot.default.html),
-[`lm`](https://rdrr.io/r/stats/lm.html),
-[`loess`](https://rdrr.io/r/stats/loess.html),
-[`callIf`](https://andrisignorell.github.io/bedrock/reference/callIf.html)
+[`graphics::plot()`](https://rdrr.io/r/graphics/plot.default.html),
+[`stats::lm()`](https://rdrr.io/r/stats/lm.html),
+[`stats::loess()`](https://rdrr.io/r/stats/loess.html),
+[`bedrock::callIf()`](https://andrisignorell.github.io/bedrock/reference/callIf.html)
 
 Other plot.bivariate: [`plotAssoc()`](plotAssoc.md),
 [`plotBag()`](plotBag.md), [`plotCor()`](plotCor.md),

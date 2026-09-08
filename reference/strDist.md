@@ -48,7 +48,7 @@ strDist(
 ## Value
 
 `strDist` returns an object of class `"dist"`; cf.
-[`dist`](https://rdrr.io/r/stats/dist.html).
+[`stats::dist()`](https://rdrr.io/r/stats/dist.html).
 
 ## Details
 
@@ -97,8 +97,8 @@ Psychometric Analyses*
 
 ## See also
 
-[`adist`](https://rdrr.io/r/utils/adist.html),
-[`dist`](https://rdrr.io/r/stats/dist.html)
+[`utils::adist()`](https://rdrr.io/r/utils/adist.html),
+[`stats::dist()`](https://rdrr.io/r/stats/dist.html)
 
 [string-overview](string-overview.md) for an overview of all string
 utilities in pharos.

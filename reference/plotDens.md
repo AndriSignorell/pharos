@@ -74,8 +74,9 @@ plotDens(
 
 - bw:
 
-  bandwidth passed to [`density`](https://rdrr.io/r/stats/density.html)
-  or `cdplot`.
+  bandwidth passed to
+  [`stats::density()`](https://rdrr.io/r/stats/density.html) or
+  `cdplot`.
 
 - type:
 
@@ -121,7 +122,7 @@ Invisibly returns `NULL`.
 ## Details
 
 The function defers entirely to
-[`resolveFormula()`](https://andrisignorell.github.io/bedrock/reference/resolveFormula.html)'s
+[`bedrock::resolveFormula()`](https://andrisignorell.github.io/bedrock/reference/resolveFormula.html)'s
 design classification to pick a mode when `type = NULL`:
 
 - `y ~ g` (`g` categorical) → density, one curve per group.
@@ -142,9 +143,9 @@ and `.theme()`.
 
 ## See also
 
-[`density`](https://rdrr.io/r/stats/density.html),
-[`cdplot`](https://rdrr.io/r/graphics/cdplot.html),
-[`resolveFormula`](https://andrisignorell.github.io/bedrock/reference/resolveFormula.html)
+[`stats::density()`](https://rdrr.io/r/stats/density.html),
+[`graphics::cdplot()`](https://rdrr.io/r/graphics/cdplot.html),
+[`bedrock::resolveFormula()`](https://andrisignorell.github.io/bedrock/reference/resolveFormula.html)
 
 Other plot.univariate: [`plotArea()`](plotArea.md),
 [`plotBar()`](plotBar.md), [`plotBox()`](plotBox.md),

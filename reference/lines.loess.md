@@ -24,7 +24,7 @@ lines(
 
 - x:
 
-  a fitted [`loess`](https://rdrr.io/r/stats/loess.html) object.
+  a fitted [`loess()`](https://rdrr.io/r/stats/loess.html) object.
 
 - col:
 
@@ -43,7 +43,7 @@ lines(
 - type:
 
   plotting type passed to
-  [`lines`](https://rdrr.io/r/graphics/lines.html).
+  [`lines()`](https://rdrr.io/r/graphics/lines.html).
 
 - n:
 
@@ -75,9 +75,9 @@ Loess can result in substantial computational load for large datasets.
 
 ## See also
 
-[`loess`](https://rdrr.io/r/stats/loess.html),
-[`scatter.smooth`](https://rdrr.io/r/stats/scatter.smooth.html),
-[`smooth.spline`](https://rdrr.io/r/stats/smooth.spline.html)
+[`loess()`](https://rdrr.io/r/stats/loess.html),
+[`scatter.smooth()`](https://rdrr.io/r/stats/scatter.smooth.html),
+[`smooth.spline()`](https://rdrr.io/r/stats/smooth.spline.html)
 
 Other graphics.trendlines: [`lines.lm()`](linesLm.md),
 [`splineCI`](splineCI.md)

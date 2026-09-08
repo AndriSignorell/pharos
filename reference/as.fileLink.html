@@ -8,11 +8,11 @@
 </script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Link to a self-contained embedded file — as.fileLink"><meta name="description" content="Turns a file into a download link that carries the file with it: the
 contents travel base64-encoded inside the href, so the resulting
 HTML needs no server and no accompanying assets. The counterpart of
-as.img for non-image files – a data set next to a table,
+as.img() for non-image files – a data set next to a table,
 a script next to its output."><meta property="og:description" content="Turns a file into a download link that carries the file with it: the
 contents travel base64-encoded inside the href, so the resulting
 HTML needs no server and no accompanying assets. The counterpart of
-as.img for non-image files – a data set next to a table,
+as.img() for non-image files – a data set next to a table,
 a script next to its output."><meta property="og:image" content="/logo.png"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
@@ -21,7 +21,7 @@ a script next to its output."><meta property="og:image" content="/logo.png"></he
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.953</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.954</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,7 +59,7 @@ a script next to its output."><meta property="og:image" content="/logo.png"></he
     <p>Turns a file into a download link that carries the file with it: the
 contents travel base64-encoded inside the <code>href</code>, so the resulting
 HTML needs no server and no accompanying assets. The counterpart of
-<code><a href="as.img.html">as.img</a></code> for non-image files – a data set next to a table,
+<code><a href="as.img.html">as.img()</a></code> for non-image files – a data set next to a table,
 a script next to its output.</p>
     </div>
 
@@ -110,7 +110,7 @@ text files rather than large binaries.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">fn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".csv"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span>, <span class="va">fn</span>, row.names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">as.fileLink</span><span class="op">(</span><span class="va">fn</span>, label <span class="op">=</span> <span class="st">"iris"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;a href="data:text/csv;base64,IlNlcGFsLkxlbmd0aCIsIlNlcGFsLldpZHRoIiwiUGV0YWwuTGVuZ3RoIiwiUGV0YWwuV2lkdGgiLCJTcGVjaWVzIgo1LjEsMy41LDEuNCwwLjIsInNldG9zYSIKNC45LDMsMS40LDAuMiwic2V0b3NhIgo0LjcsMy4yLDEuMywwLjIsInNldG9zYSIKNC42LDMuMSwxLjUsMC4yLCJzZXRvc2EiCjUsMy42LDEuNCwwLjIsInNldG9zYSIKNS40LDMuOSwxLjcsMC40LCJzZXRvc2EiCg==" download="file1c9c26f4d121.csv"&gt;iris&lt;/a&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;a href="data:text/csv;base64,IlNlcGFsLkxlbmd0aCIsIlNlcGFsLldpZHRoIiwiUGV0YWwuTGVuZ3RoIiwiUGV0YWwuV2lkdGgiLCJTcGVjaWVzIgo1LjEsMy41LDEuNCwwLjIsInNldG9zYSIKNC45LDMsMS40LDAuMiwic2V0b3NhIgo0LjcsMy4yLDEuMywwLjIsInNldG9zYSIKNC42LDMuMSwxLjUsMC4yLCJzZXRvc2EiCjUsMy42LDEuNCwwLjIsInNldG9zYSIKNS40LDMuOSwxLjcsMC40LCJzZXRvc2EiCg==" download="file19772bd0c373.csv"&gt;iris&lt;/a&gt;</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="va">fn</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

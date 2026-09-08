@@ -64,7 +64,7 @@ plotLift(
 
   color of the curve or the bars. `.useTheme` (default) resolves to
   `getTheme()$twin[1]` - a single accent color, consistent with
-  [`plotECDF`](plotECDF.md).
+  [`plotECDF()`](plotECDF.md).
 
 - lwd:
 
@@ -81,8 +81,8 @@ plotLift(
   - `FALSE`, `NULL`, or `NA`: suppress grid
 
   - a named list: arguments passed to
-    [`grid`](https://rdrr.io/r/graphics/grid.html), overriding the theme
-    defaults for this call only
+    [`graphics::grid()`](https://rdrr.io/r/graphics/grid.html),
+    overriding the theme defaults for this call only
 
 - box:
 
@@ -100,8 +100,8 @@ plotLift(
   - `FALSE`, `NULL`, or `NA`: suppress
 
   - a named list: arguments passed to
-    [`lines`](https://rdrr.io/r/graphics/lines.html) (or
-    [`abline`](https://rdrr.io/r/graphics/abline.html) for
+    [`graphics::lines()`](https://rdrr.io/r/graphics/lines.html) (or
+    [`graphics::abline()`](https://rdrr.io/r/graphics/abline.html) for
     `type = "decile"`), e.g. `list(col = "black", lty = "dotted")`
 
 - perfect:
@@ -121,7 +121,7 @@ plotLift(
   - `FALSE`, `NULL`, or `NA`: suppress
 
   - a named list: arguments passed to
-    [`legend`](https://rdrr.io/r/graphics/legend.html), e.g.
+    [`graphics::legend()`](https://rdrr.io/r/graphics/legend.html), e.g.
     `list(x = "bottomleft")`
 
 - stamp:
@@ -156,7 +156,7 @@ with the reverse profile and identical AUC.
 
 Optional plot components (`grid`, `box`, `baseline`, `perfect`,
 `legend`) follow
-[`callIf`](https://andrisignorell.github.io/bedrock/reference/callIf.html)
+[`bedrock::callIf()`](https://andrisignorell.github.io/bedrock/reference/callIf.html)
 semantics:
 
 - `TRUE`: draw with defaults
@@ -174,8 +174,8 @@ set it via the `nBins` argument of `alloy::lift()`.
 
 ## See also
 
-`alloy::lift()`, `alloy::roc()`, [`plotECDF`](plotECDF.md),
-[`callIf`](https://andrisignorell.github.io/bedrock/reference/callIf.html),
+`alloy::lift()`, `alloy::roc()`, [`plotECDF()`](plotECDF.md),
+[`bedrock::callIf()`](https://andrisignorell.github.io/bedrock/reference/callIf.html),
 [theme](theme.md)
 
 Other plot.special: [`plotBinaryTree()`](binaryTree.md),

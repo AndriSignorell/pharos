@@ -29,7 +29,7 @@ plotDot(
 
   numeric estimates or confidence interval data. Supported formats are a
   numeric vector, a numeric matrix, a three-dimensional numeric array,
-  or a `"CI"` object created with [`as.CI`](as.CI.md)
+  or a `"CI"` object created with [`as.CI()`](as.CI.md)
 
 - items:
 
@@ -86,7 +86,7 @@ plotDot(
 - ...:
 
   additional graphical parameters passed to
-  [`par`](https://rdrr.io/r/graphics/par.html)
+  [`graphics::par()`](https://rdrr.io/r/graphics/par.html)
 
 ## Value
 
@@ -113,9 +113,10 @@ columns define the groups. Consequently, a matrix with three columns is
 interpreted as three groups and not automatically as estimates with
 lower and upper confidence limits.
 
-Use [`as.CI`](as.CI.md) to declare explicitly that a matrix, data frame,
-list, or result from [`tapply`](https://rdrr.io/r/base/tapply.html)
-contains confidence interval data:
+Use [`as.CI()`](as.CI.md) to declare explicitly that a matrix, data
+frame, list, or result from
+[`tapply()`](https://rdrr.io/r/base/tapply.html) contains confidence
+interval data:
 
 
     plotDot(as.CI(x))
@@ -135,8 +136,8 @@ corresponding settings of the active theme.
 
 ## See also
 
-[`as.CI`](as.CI.md), [`is.CI`](as.CI.md),
-[`dotchart`](https://rdrr.io/r/graphics/dotchart.html)
+[`as.CI()`](as.CI.md), [`is.CI()`](as.CI.md),
+[`graphics::dotchart()`](https://rdrr.io/r/graphics/dotchart.html)
 
 Other plot.univariate: [`plotArea()`](plotArea.md),
 [`plotBar()`](plotBar.md), [`plotBox()`](plotBox.md),

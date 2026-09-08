@@ -43,21 +43,21 @@ findColor(
 ## Details
 
 For the selection of colors the option `rightmost.closed` in the used
-function [`findInterval`](https://rdrr.io/r/base/findInterval.html) is
+function [`findInterval()`](https://rdrr.io/r/base/findInterval.html) is
 set to TRUE. This will ensure that all values on the right edge of the
 range are assigned a color. How values outside the boundaries of minX
 and maxX should be handled can be controlled by `allInside`. Set this
 value to TRUE, if those values should get the colors at the edges or set
 it to FALSE, if they should remain white (which is the default).
 
-Note that [`findInterval`](https://rdrr.io/r/base/findInterval.html)
+Note that [`findInterval()`](https://rdrr.io/r/base/findInterval.html)
 closes the intervals on the left side, e.g. \[0, 1). This option can't
 be changed. Consequently will x-values lying on the edge of two colors
 get the color of the bigger one.
 
 ## See also
 
-[`findInterval`](https://rdrr.io/r/base/findInterval.html)
+[`findInterval()`](https://rdrr.io/r/base/findInterval.html)
 
 Other color.lookup: [`contrastColor()`](contrastColor.md)
 

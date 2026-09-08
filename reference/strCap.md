@@ -39,8 +39,8 @@ remain lowercase unless they appear as part of another word.
 
 ## See also
 
-[`stri_trans_totitle`](https://rdrr.io/pkg/stringi/man/stri_trans_casemap.html),
-[`stri_split_boundaries`](https://rdrr.io/pkg/stringi/man/stri_split_boundaries.html)
+[`stringi::stri_trans_totitle()`](https://rdrr.io/pkg/stringi/man/stri_trans_casemap.html),
+[`stringi::stri_split_boundaries()`](https://rdrr.io/pkg/stringi/man/stri_split_boundaries.html)
 
 [string-overview](string-overview.md) for an overview of all string
 utilities in pharos.

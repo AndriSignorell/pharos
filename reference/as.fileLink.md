@@ -3,8 +3,8 @@
 Turns a file into a download link that carries the file with it: the
 contents travel base64-encoded inside the `href`, so the resulting HTML
 needs no server and no accompanying assets. The counterpart of
-[`as.img`](as.img.md) for non-image files – a data set next to a table,
-a script next to its output.
+[`as.img()`](as.img.md) for non-image files – a data set next to a
+table, a script next to its output.
 
 ## Usage
 
@@ -48,6 +48,6 @@ Other html: [`as.html()`](as.html.md), [`as.img()`](as.img.md),
 fn <- tempfile(fileext = ".csv")
 write.csv(head(iris), fn, row.names = FALSE)
 as.fileLink(fn, label = "iris")
-#> <a href="data:text/csv;base64,IlNlcGFsLkxlbmd0aCIsIlNlcGFsLldpZHRoIiwiUGV0YWwuTGVuZ3RoIiwiUGV0YWwuV2lkdGgiLCJTcGVjaWVzIgo1LjEsMy41LDEuNCwwLjIsInNldG9zYSIKNC45LDMsMS40LDAuMiwic2V0b3NhIgo0LjcsMy4yLDEuMywwLjIsInNldG9zYSIKNC42LDMuMSwxLjUsMC4yLCJzZXRvc2EiCjUsMy42LDEuNCwwLjIsInNldG9zYSIKNS40LDMuOSwxLjcsMC40LCJzZXRvc2EiCg==" download="file1c9c26f4d121.csv">iris</a>
+#> <a href="data:text/csv;base64,IlNlcGFsLkxlbmd0aCIsIlNlcGFsLldpZHRoIiwiUGV0YWwuTGVuZ3RoIiwiUGV0YWwuV2lkdGgiLCJTcGVjaWVzIgo1LjEsMy41LDEuNCwwLjIsInNldG9zYSIKNC45LDMsMS40LDAuMiwic2V0b3NhIgo0LjcsMy4yLDEuMywwLjIsInNldG9zYSIKNC42LDMuMSwxLjUsMC4yLCJzZXRvc2EiCjUsMy42LDEuNCwwLjIsInNldG9zYSIKNS40LDMuOSwxLjcsMC40LCJzZXRvc2EiCg==" download="file19772bd0c373.csv">iris</a>
 unlink(fn)
 ```

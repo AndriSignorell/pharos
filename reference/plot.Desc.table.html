@@ -21,7 +21,7 @@ supported; a message is issued and the call returns invisibly."><meta property="
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.953</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.954</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -112,22 +112,22 @@ selected panel.</p></dd>
 <dt id="arg-which">which<a class="anchor" aria-label="anchor" href="#arg-which"></a></dt>
 <dd><p>integer vector selecting one or more panels to draw, in the
 given order. One or more of:</p><dl><dt><code>1</code></dt>
-<dd><p>Spineplot (<code><a href="https://rdrr.io/r/graphics/spineplot.html" class="external-link">spineplot</a></code>).
+<dd><p>Spineplot (<code><a href="https://rdrr.io/r/graphics/spineplot.html" class="external-link">graphics::spineplot()</a></code>).
 Default.</p></dd>
 
 <dt><code>2</code></dt>
-<dd><p>Mosaic plot (via <code><a href="plotMosaic.html">plotMosaic</a></code>).</p></dd>
+<dd><p>Mosaic plot (via <code><a href="plotMosaic.html">plotMosaic()</a></code>).</p></dd>
 
 <dt><code>3</code></dt>
 <dd><p>Mosaic plot (swapped axis).</p></dd>
 
 <dt><code>4</code></dt>
 <dd><p>Association plot (Cohen-Friendly plot) via
-<code><a href="plotAssoc.html">plotAssoc</a></code>.</p></dd>
+<code><a href="plotAssoc.html">plotAssoc()</a></code>.</p></dd>
 
 <dt><code>5</code></dt>
 <dd><p>Heatmap of cell proportions (via
-<code><a href="plotHeatmap.html">plotHeatmap</a></code>, <code>scale = "prop"</code>).</p></dd>
+<code><a href="plotHeatmap.html">plotHeatmap()</a></code>, <code>scale = "prop"</code>).</p></dd>
 
 
 </dl><p>Selecting multiple panels does not change the plotting layout (no
@@ -157,16 +157,16 @@ design, to keep the unordered category fill neutral).</p></dd>
 <dt>panel 2</dt>
 <dd><p>a grey ramp from <code>"grey30"</code> to <code>"grey90"</code>,
 sized to the number of columns of <code>tab</code> (the fill dimension
-of the untransposed mosaic), passed to <code><a href="plotMosaic.html">plotMosaic</a></code>.</p></dd>
+of the untransposed mosaic), passed to <code><a href="plotMosaic.html">plotMosaic()</a></code>.</p></dd>
 
 <dt>panel 3</dt>
 <dd><p>a grey ramp from <code>"grey30"</code> to <code>"grey90"</code>,
 sized to the number of rows of <code>tab</code> - with
 <code>swap = TRUE</code> the fill dimension is the row dimension,
-passed to <code><a href="plotMosaic.html">plotMosaic</a></code>.</p></dd>
+passed to <code><a href="plotMosaic.html">plotMosaic()</a></code>.</p></dd>
 
 <dt>panel 4</dt>
-<dd><p>left at <code><a href="plotAssoc.html">plotAssoc</a></code>'s own default
+<dd><p>left at <code><a href="plotAssoc.html">plotAssoc()</a></code>'s own default
 (<code>pal("red-white-blue-3", n = 100)</code>), a diverging palette - cell
 colors there encode the sign and strength of Pearson residuals, so
 a categorical or grey-ramp default would not be meaningful. Supplying
@@ -174,7 +174,7 @@ a categorical or grey-ramp default would not be meaningful. Supplying
 choice.</p></dd>
 
 <dt>panel 5</dt>
-<dd><p>left at <code><a href="plotHeatmap.html">plotHeatmap</a></code>'s own default
+<dd><p>left at <code><a href="plotHeatmap.html">plotHeatmap()</a></code>'s own default
 (<code>pal("Blues", n = 100)</code>), a sequential ramp - cell colors
 there encode magnitude only. Supplying <code>col</code> overrides this.</p></dd>
 
@@ -191,19 +191,19 @@ suppress it; a named list overrides frame-drawing arguments.</p><dl><dt>panel 1<
 native frame unconditionally, with no toggle to override it.</p></dd>
 
 <dt>panels 2/3</dt>
-<dd><p><code><a href="plotMosaic.html">plotMosaic</a></code> always draws its own
+<dd><p><code><a href="plotMosaic.html">plotMosaic()</a></code> always draws its own
 frame; this argument has no effect.</p></dd>
 
 <dt>panel 4</dt>
-<dd><p><code><a href="plotAssoc.html">plotAssoc</a></code> has no frame/box concept of
+<dd><p><code><a href="plotAssoc.html">plotAssoc()</a></code> has no frame/box concept of
 its own (it draws dashed reference lines instead); this argument
 has no effect.</p></dd>
 
 <dt>panel 5</dt>
-<dd><p>forwarded as-is to <code><a href="plotHeatmap.html">plotHeatmap</a></code>'s own
+<dd><p>forwarded as-is to <code><a href="plotHeatmap.html">plotHeatmap()</a></code>'s own
 <code>box</code> argument, which draws the outer frame via
 <code><a href="https://rdrr.io/r/graphics/rect.html" class="external-link">rect()</a></code> at the exact tile boundaries rather than
-<code><a href="https://rdrr.io/r/graphics/box.html" class="external-link">box()</a></code>.</p></dd>
+<code><a href="https://rdrr.io/r/graphics/box.html" class="external-link">graphics::box()</a></code>.</p></dd>
 
 
 </dl></dd>
@@ -212,18 +212,18 @@ has no effect.</p></dd>
 <dt id="arg-stamp">stamp<a class="anchor" aria-label="anchor" href="#arg-stamp"></a></dt>
 <dd><p>controls the corner stamp. <code>.useTheme</code> (default)
 resolves to <code>getTheme()$stamp</code>, drawn once after all selected
-panels. Panels 2-5 delegate to <code><a href="plotMosaic.html">plotMosaic</a></code>/
-<code><a href="plotAssoc.html">plotAssoc</a></code>/<code><a href="plotHeatmap.html">plotHeatmap</a></code>, whose own
+panels. Panels 2-5 delegate to <code><a href="plotMosaic.html">plotMosaic()</a></code>/
+<code><a href="plotAssoc.html">plotAssoc()</a></code>/<code><a href="plotHeatmap.html">plotHeatmap()</a></code>, whose own
 <code>stamp</code> argument is set to <code>NA</code> internally to avoid a
 duplicate. <code>TRUE</code>/<code>FALSE</code>/<code>NULL</code>, a string, or a
 named list for <code><a href="stamp.html">stamp()</a></code>.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>further graphical parameters, passed to <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> via
+<dd><p>further graphical parameters, passed to <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par()</a></code> via
 the internal framework and to the underlying panel-drawing functions
-(<code><a href="https://rdrr.io/r/graphics/spineplot.html" class="external-link">spineplot()</a></code>, <code><a href="plotMosaic.html">plotMosaic</a></code>, <code><a href="plotAssoc.html">plotAssoc</a></code>,
-or <code><a href="plotHeatmap.html">plotHeatmap</a></code>, depending on the selected panel).</p></dd>
+(<code><a href="https://rdrr.io/r/graphics/spineplot.html" class="external-link">spineplot()</a></code>, <code><a href="plotMosaic.html">plotMosaic()</a></code>, <code><a href="plotAssoc.html">plotAssoc()</a></code>,
+or <code><a href="plotHeatmap.html">plotHeatmap()</a></code>, depending on the selected panel).</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -241,9 +241,9 @@ invisibly without drawing anything.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code>DescToolsX::desc</code>, <code><a href="plotAssoc.html">plotAssoc</a></code>,
-<code><a href="plotHeatmap.html">plotHeatmap</a></code>, <code><a href="plotMosaic.html">plotMosaic</a></code>,
-<code><a href="https://rdrr.io/r/graphics/spineplot.html" class="external-link">spineplot</a></code></p>
+    <div class="dont-index"><p><code>DescToolsX::desc</code>, <code><a href="plotAssoc.html">plotAssoc()</a></code>,
+<code><a href="plotHeatmap.html">plotHeatmap()</a></code>, <code><a href="plotMosaic.html">plotMosaic()</a></code>,
+<code><a href="https://rdrr.io/r/graphics/spineplot.html" class="external-link">graphics::spineplot()</a></code></p>
 <p>Other plot.s3:
 <code><a href="plot.BlandAltman.html">plot.BlandAltman()</a></code>,
 <code><a href="plot.Desc.qn.html">plot.Desc.qn()</a></code>,

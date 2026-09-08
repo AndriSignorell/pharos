@@ -21,12 +21,12 @@ A character vector with each string reversed.
 ## Details
 
 This function uses
-[`stri_reverse`](https://rdrr.io/pkg/stringi/man/stri_reverse.html),
+[`stringi::stri_reverse()`](https://rdrr.io/pkg/stringi/man/stri_reverse.html),
 which correctly handles Unicode characters and multi-byte encodings.
 
 ## See also
 
-[`stri_reverse`](https://rdrr.io/pkg/stringi/man/stri_reverse.html)
+[`stringi::stri_reverse()`](https://rdrr.io/pkg/stringi/man/stri_reverse.html)
 
 [string-overview](string-overview.md) for an overview of all string
 utilities in pharos.

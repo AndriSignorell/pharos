@@ -53,7 +53,7 @@ plotFdist(
 - heights:
 
   numeric vector of relative panel heights for
-  [`layout`](https://rdrr.io/r/graphics/layout.html): three values for
+  [`layout()`](https://rdrr.io/r/graphics/layout.html): three values for
   histogram/boxplot/ecdf, two for histogram/boxplot or histogram/ecdf
   only. `NULL` (default) chooses automatically.
 
@@ -62,7 +62,8 @@ plotFdist(
   controls the histogram panel. `TRUE` (default) uses package defaults;
   `FALSE`/`NA` suppresses the panel (`xlim` then falls back to the
   pretty range of the data); a list overrides specific arguments
-  forwarded to [`hist`](https://rdrr.io/r/graphics/hist.html). The
+  forwarded to
+  [`graphics::hist()`](https://rdrr.io/r/graphics/hist.html). The
   element `type` selects the plot style: `"hist"` (standard histogram,
   chosen automatically for continuous or high-cardinality data) or
   `"mass"` (vertical bars per unique value, for discrete/low-cardinality
@@ -71,13 +72,14 @@ plotFdist(
 - dens:
 
   controls the kernel density curve. `TRUE` (default) draws a curve via
-  [`density`](https://rdrr.io/r/stats/density.html); a list overrides
-  specific arguments (e.g. `list(bw = 0.1, col = "red")`).
+  [`stats::density()`](https://rdrr.io/r/stats/density.html); a list
+  overrides specific arguments (e.g. `list(bw = 0.1, col = "red")`).
 
 - rug:
 
   controls a rug plot. `FALSE` (default) suppresses it; `TRUE` or a list
-  draw a rug via [`rug`](https://rdrr.io/r/graphics/rug.html).
+  draw a rug via
+  [`graphics::rug()`](https://rdrr.io/r/graphics/rug.html).
 
 - curve:
 
@@ -94,15 +96,15 @@ plotFdist(
   controls the boxplot panel. `TRUE` (default) draws a horizontal
   boxplot with a mean marker and CI band; `FALSE`/ `NA` suppresses the
   panel. A list overrides arguments forwarded to
-  [`boxplot`](https://rdrr.io/r/graphics/boxplot.html); two extra
-  elements control the mean display: `pch.mean` (default `3`) and
+  [`graphics::boxplot()`](https://rdrr.io/r/graphics/boxplot.html); two
+  extra elements control the mean display: `pch.mean` (default `3`) and
   `col.meanci` (default `getTheme()$grid$col`). Set either to `NA` to
   suppress that element.
 
 - ecdf:
 
   controls the ECDF panel. `TRUE` (default) calls
-  [`plotECDF`](plotECDF.md); a list overrides specific arguments.
+  [`plotECDF()`](plotECDF.md); a list overrides specific arguments.
 
 - curveEcdf:
 
@@ -118,7 +120,7 @@ plotFdist(
 - ...:
 
   further graphical parameters passed to
-  [`par`](https://rdrr.io/r/graphics/par.html) via the internal
+  [`par()`](https://rdrr.io/r/graphics/par.html) via the internal
   framework. Note that `mar` given here sets the *outer* margins (`oma`)
   of the multi-panel figure; the inner panel margins are managed
   internally and cannot be overridden.
@@ -126,7 +128,7 @@ plotFdist(
 ## Details
 
 Each plot component is controlled via a single argument accepting
-[`callIf`](https://andrisignorell.github.io/bedrock/reference/callIf.html)
+[`bedrock::callIf()`](https://andrisignorell.github.io/bedrock/reference/callIf.html)
 semantics:
 
 - `TRUE`: draw with package defaults
@@ -142,12 +144,12 @@ For exploratory work on very large data, consider sampling first:
 
 ## See also
 
-[`hist`](https://rdrr.io/r/graphics/hist.html),
-[`boxplot`](https://rdrr.io/r/graphics/boxplot.html),
-[`plotECDF`](plotECDF.md),
-[`density`](https://rdrr.io/r/stats/density.html),
-[`rug`](https://rdrr.io/r/graphics/rug.html),
-[`layout`](https://rdrr.io/r/graphics/layout.html), [theme](theme.md)
+[`hist()`](https://rdrr.io/r/graphics/hist.html),
+[`boxplot()`](https://rdrr.io/r/graphics/boxplot.html),
+[`plotECDF()`](plotECDF.md),
+[`density()`](https://rdrr.io/r/stats/density.html),
+[`rug()`](https://rdrr.io/r/graphics/rug.html),
+[`layout()`](https://rdrr.io/r/graphics/layout.html), [theme](theme.md)
 
 Other plot.univariate: [`plotArea()`](plotArea.md),
 [`plotBar()`](plotBar.md), [`plotBox()`](plotBox.md),

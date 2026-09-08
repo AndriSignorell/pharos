@@ -17,8 +17,8 @@ shade(expr, col = par("fg"), breaks, density = 10, n = 101, xname = "x", ...)
 - expr:
 
   the name of a function, or a
-  [`call`](https://rdrr.io/r/base/call.html) or an
-  [`expression`](https://rdrr.io/r/base/expression.html) written as a
+  [`call()`](https://rdrr.io/r/base/call.html) or an
+  [`expression()`](https://rdrr.io/r/base/expression.html) written as a
   function of `x` which will evaluate to an object of the same length as
   `x`.
 
@@ -47,7 +47,7 @@ shade(expr, col = par("fg"), breaks, density = 10, n = 101, xname = "x", ...)
 
 - ...:
 
-  the dots are passed on to [`polygon`](polygon.md).
+  the dots are passed on to [`polygon()`](polygon.md).
 
 ## Value
 
@@ -61,8 +61,8 @@ significance tests.
 
 ## See also
 
-[`polygon`](polygon.md),
-[`curve`](https://rdrr.io/r/graphics/curve.html)
+[`polygon()`](polygon.md),
+[`curve()`](https://rdrr.io/r/graphics/curve.html)
 
 Other plot.distribution: [`plotFun()`](plotFun.md),
 [`plotProbDist()`](plotProbDist.md)

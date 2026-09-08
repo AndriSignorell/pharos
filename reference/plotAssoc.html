@@ -21,7 +21,7 @@ diverging palette."><meta property="og:image" content="/logo.png"></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.953</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.954</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -92,7 +92,7 @@ diverging palette.</p>
 <dd><p>main title of the plot. <code>NULL</code> (default) derives a
 title from the expression passed as <code>x</code> (via
 <code>deparse(match.call()$x)</code>), the same "substitute magic"
-convention used by <code><a href="plotXY.html">plotXY</a></code>/<code><a href="plotBox.html">plotBox</a></code> for
+convention used by <code><a href="plotXY.html">plotXY()</a></code>/<code><a href="plotBox.html">plotBox()</a></code> for
 their <code>y ~ x</code> default - there's no formula pair here, just the
 single table argument, so the default is simply that expression's
 text (e.g. <code>plotAssoc(tab)</code> titles itself <code>"tab"</code>).
@@ -134,7 +134,7 @@ to the last.</p></dd>
 <dt id="arg-labels">labels<a class="anchor" aria-label="anchor" href="#arg-labels"></a></dt>
 <dd><p>logical or character. If <code>TRUE</code>, Pearson residuals are
 printed inside each cell. If <code>FALSE</code> (default), no labels are shown.
-A character format string (e.g. <code>"%.1f"</code>) can also be passed for
+A character format string (e.g. <code>"\%.1f"</code>) can also be passed for
 custom formatting.</p></dd>
 
 
@@ -146,7 +146,7 @@ resolves to <code>getTheme()$stamp</code>. <code>TRUE</code>/<code>FALSE</code>/
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>further arguments passed to <code><a href="https://rdrr.io/r/graphics/rect.html" class="external-link">rect</a></code>.</p></dd>
+<dd><p>further arguments passed to <code><a href="https://rdrr.io/r/graphics/rect.html" class="external-link">graphics::rect()</a></code>.</p></dd>
 
 </dl></div>
     <div class="section level2">

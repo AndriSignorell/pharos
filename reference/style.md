@@ -41,7 +41,7 @@ print(x, ...)
 - digits:
 
   integer, the desired (fixed) number of digits after the decimal point.
-  Unlike [`formatC`](https://rdrr.io/r/base/formatc.html) you will
+  Unlike [`formatC()`](https://rdrr.io/r/base/formatc.html) you will
   always get this number of digits even if the last digit is 0. Negative
   numbers of digits round to a power of ten (`digits=-2` would round to
   the nearest hundred).
@@ -94,7 +94,7 @@ print(x, ...)
 - pThreshold:
 
   a numerical tolerance used mainly for formatting p values, those less
-  than pThreshold are formatted as "`\code{< [pThreshold]}`" (where
+  than pThreshold are formatted as "`` `< [pThreshold]` ``" (where
   '`[pThreshold]`' stands for `format(pThreshold, digits))`. Default is
   `0.001`.
 
@@ -105,10 +105,10 @@ print(x, ...)
 - align:
 
   the character on whose position the strings will be aligned. Left
-  alignment can be requested by setting `sep = "\l"`, right alignment by
-  `"\r"` and center alignment by `"\c"`. Mind the backslashes, as if
-  they are omitted, strings would be aligned to the **character** l, r
-  or c respectively. The default is `NULL` which would just leave the
+  alignment can be requested by setting `sep = "\\l"`, right alignment
+  by `"\\r"` and center alignment by `"\\c"`. Mind the backslashes, as
+  if they are omitted, strings would be aligned to the **character** l,
+  r or c respectively. The default is `NULL` which would just leave the
   strings as they are.  
   This argument is send directly to the function
   [`strAlign()`](strAlign.md) as argument `sep`.
@@ -232,5 +232,5 @@ fm(314.1563, fmt=num.sty)
 #> [1] 314.16
 
 fm(Sys.Date(), fmt=dat.sty)
-#> [1] 09, 01 2026
+#> [1] 09, 08 2026
 ```

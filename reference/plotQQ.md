@@ -62,13 +62,14 @@ plotQQ(
 
   controls drawing of the background grid. `.useTheme` (default) follows
   the active theme (`getTheme()$grid`). `TRUE`/`FALSE`/`NA`, or a named
-  list, as for [`grid`](https://rdrr.io/r/graphics/grid.html).
+  list, as for
+  [`graphics::grid()`](https://rdrr.io/r/graphics/grid.html).
 
 - box:
 
   controls drawing of the plot box. `.useTheme` (default) resolves to
   `getTheme()$box`. `TRUE`/`FALSE`/`NA`, or a named list, as for
-  [`box`](https://rdrr.io/r/graphics/box.html).
+  [`graphics::box()`](https://rdrr.io/r/graphics/box.html).
 
 - cband:
 
@@ -87,7 +88,7 @@ plotQQ(
   `abline(a = 0, b = 1))`. The quantiles can however be overwritten by
   setting the argument `probs` to some user defined values. Also the
   method for calculating the quantiles can be defined (default is 7, see
-  [`quantile`](https://rdrr.io/r/stats/quantile.html)). The line
+  [`quantile()`](https://rdrr.io/r/stats/quantile.html)). The line
   defaults are set to `col = par("fg")`, `lwd = par("lwd")` and
   `lty = par("lty")`. No line will be plotted if `args.qqline` is set to
   `NA`.

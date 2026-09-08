@@ -69,7 +69,8 @@ plotRidge(
 
 - bw:
 
-  bandwidth for [`density`](https://rdrr.io/r/stats/density.html).
+  bandwidth for
+  [`stats::density()`](https://rdrr.io/r/stats/density.html).
 
 - scale:
 
@@ -139,7 +140,7 @@ readability compared to overlaid density plots.
 
 ## See also
 
-[`plotDens`](plotDens.md)
+[`plotDens()`](plotDens.md)
 
 ## Examples
 

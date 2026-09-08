@@ -59,18 +59,20 @@ plotPropCI(
   character vector of length 2 specifying fill colours for the stacked
   bar. `.useTheme` (default) resolves to `getTheme()$twin` - the active
   theme's two-color pair. Note this is purely "first label gets the
-  first color"; unlike [`plotCor`](plotCor.md)/[`plotWeb`](plotWeb.md),
-  there is no positive/ negative sign convention here, since proportions
-  of two arbitrary categories (e.g. "yes"/"no") have no inherent sign.
+  first color"; unlike
+  [`plotCor()`](plotCor.md)/[`plotWeb()`](plotWeb.md), there is no
+  positive/ negative sign convention here, since proportions of two
+  arbitrary categories (e.g. "yes"/"no") have no inherent sign.
 
 - ci.col:
 
   colour for the confidence interval bands. Default is a
   semi-transparent grey (`addOpacity("grey80", 0.12)`). Deliberately not
   theme-driven (like the sequential scales in
-  [`plotDens2D`](plotDens2D.md)/[`plotHeatmap`](plotHeatmap.md)): this
-  is a structural mechanism (many overlapping translucent bands building
-  a gradient via overdraw), not a categorical or diverging color choice.
+  [`plotDens2D()`](plotDens2D.md)/[`plotHeatmap()`](plotHeatmap.md)):
+  this is a structural mechanism (many overlapping translucent bands
+  building a gradient via overdraw), not a categorical or diverging
+  color choice.
 
 - border:
 
@@ -89,20 +91,21 @@ plotPropCI(
   proportion ticks only - there is no meaningful horizontal grid for the
   categorical group axis). `.useTheme` (default) follows the active
   theme (`getTheme()$grid`). `TRUE`/`FALSE`/ `NA`, or a named list, as
-  for [`grid`](https://rdrr.io/r/graphics/grid.html).
+  for [`graphics::grid()`](https://rdrr.io/r/graphics/grid.html).
 
 - box:
 
   controls drawing of the plot box. Default `FALSE` (no frame,
   consistent with this chart's minimal "Few"-style appearance).
   `TRUE`/`NA`, or a named list, as for
-  [`box`](https://rdrr.io/r/graphics/box.html).
+  [`graphics::box()`](https://rdrr.io/r/graphics/box.html).
 
 - legend:
 
   controls the legend explaining the CI band range. `TRUE` (default)
   draws it. `FALSE`/`NA` suppresses it. A named list overrides arguments
-  forwarded to [`legend`](https://rdrr.io/r/graphics/legend.html).
+  forwarded to
+  [`graphics::legend()`](https://rdrr.io/r/graphics/legend.html).
 
 - stamp:
 
@@ -113,9 +116,9 @@ plotPropCI(
 - ...:
 
   further arguments passed to
-  [`par`](https://rdrr.io/r/graphics/par.html) via the internal
-  framework, and to
-  [`barplot`](https://rdrr.io/r/graphics/barplot.html).
+  [`graphics::par()`](https://rdrr.io/r/graphics/par.html) via the
+  internal framework, and to
+  [`graphics::barplot()`](https://rdrr.io/r/graphics/barplot.html).
 
 ## Value
 
@@ -133,7 +136,8 @@ all bands overlap. A vertical segment marks the observed proportion.
 
 ## See also
 
-[`prop.test`](https://rdrr.io/r/stats/prop.test.html), [theme](theme.md)
+[`stats::prop.test()`](https://rdrr.io/r/stats/prop.test.html),
+[theme](theme.md)
 
 Other plot.special: [`plotBinaryTree()`](binaryTree.md),
 [`plotCirc()`](plotCirc.md), [`plotLift()`](plotLift.md),

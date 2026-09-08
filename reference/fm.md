@@ -128,7 +128,7 @@ fm(
 - digits:
 
   integer, the desired (fixed) number of digits after the decimal point.
-  Unlike [`formatC`](https://rdrr.io/r/base/formatc.html) you will
+  Unlike [`formatC()`](https://rdrr.io/r/base/formatc.html) you will
   always get this number of digits even if the last digit is 0. Negative
   numbers of digits round to a power of ten (`digits=-2` would round to
   the nearest hundred) for standard numeric formats; engineering formats
@@ -188,10 +188,10 @@ fm(
 - align:
 
   the character on whose position the strings will be aligned. Left
-  alignment can be requested by setting `sep = "\l"`, right alignment by
-  `"\r"` and center alignment by `"\c"`. Mind the backslashes, as if
-  they are omitted, strings would be aligned to the **character** l, r
-  or c respectively. The default is `NULL` which would just leave the
+  alignment can be requested by setting `sep = "\\l"`, right alignment
+  by `"\\r"` and center alignment by `"\\c"`. Mind the backslashes, as
+  if they are omitted, strings would be aligned to the **character** l,
+  r or c respectively. The default is `NULL` which would just leave the
   strings as they are.  
   This argument is send directly to the function
   [`strAlign()`](strAlign.md) as argument `sep`.
@@ -270,12 +270,12 @@ frequently used formats there are the following special codes available:
 |  |  | `eng` |
 | engineering | forces scientific representation of `x`, but only with powers that are a multiple of 3. | `engabb`` ` |
 | engineering abbr.` ` | same as `eng`, but replaces the exponential representation by codes, |  |
-|  | e.g. `M` for mega (1e6). | `%` |
+|  | e.g. `M` for mega (1e6). | `\%` |
 | percent | multiplies the given number by 100 and appends the \\ formats values as p-values. |  |
-|  | Use `pThreshold` to define the threshold to e.g. switch to a ` <0.001 ` representation. |  |
+|  | Use `pThreshold` to define the threshold to e.g. switch to a `<0.001` representation. |  |
 |  | `frac` | fractions |
 | will (try to) convert numbers to fractions. So 0.1 will be displayed as 1/10. |  |  |
-| See [`fractions()`](https://rdrr.io/pkg/MASS/man/fractions.html). |  |  |
+| See [`MASS::fractions()`](https://rdrr.io/pkg/MASS/man/fractions.html). |  |  |
 | `*` | significance | will produce a significance representation of a p-value consisting of \* and ., |
 |  |  | while the breaks are set according to the used defaults e.g. in `lm` as |
 |  |  | `[0, 0.001]` = `***` |
@@ -298,7 +298,7 @@ column to use its own formatting settings without ambiguous partial
 recycling. Functions and Style objects count as single settings; use a
 list to supply different functions or Styles by column.
 
-Finally, `fmt` can be a function of `x`. Additional arguments in `...`
+Finally, `fmt` can be a function of `x`. Additional arguments in `\dots`
 are forwarded to that function.
 
 ## See also

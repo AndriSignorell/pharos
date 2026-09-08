@@ -39,7 +39,7 @@ considered numeric by this function.
 
 ## See also
 
-[`as.numeric`](https://rdrr.io/r/base/numeric.html)
+[`as.numeric()`](https://rdrr.io/r/base/numeric.html)
 
 [string-overview](string-overview.md) for an overview of all string
 utilities in pharos.

@@ -15,7 +15,7 @@ locally weighted regression lines, and an optional legend."><meta property="og:i
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.953</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.954</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -125,7 +125,7 @@ internal framework.</p></dd>
 <dt id="arg-main">main<a class="anchor" aria-label="anchor" href="#arg-main"></a></dt>
 <dd><p>main title of the plot. <code>NULL</code> (default) derives a
 title from the input - <code>deparse(y) ~ deparse(x)</code> for the default
-method, or the formula's <code>data.name</code> for the formula method.
+method, or the formula's <code>dataName</code> for the formula method.
 <code>""</code>, <code>NA</code>, or <code>FALSE</code> suppress the title entirely
 (and compact the top margin accordingly); any other string is used
 as given (resolved internally via <code><a href="graphics-framework.html">.resolveTitle()</a></code>).</p></dd>
@@ -175,7 +175,7 @@ Can be:</p><ul><li><p><code>.useTheme</code> (default): follow the active theme
 (<code>getTheme()$grid</code>)</p></li>
 <li><p><code>TRUE</code>: draw grid with theme settings</p></li>
 <li><p><code>FALSE</code>, <code>NULL</code>, or <code>NA</code>: suppress grid</p></li>
-<li><p>a named list: arguments passed to <code><a href="https://rdrr.io/r/graphics/grid.html" class="external-link">grid</a></code>,
+<li><p>a named list: arguments passed to <code><a href="https://rdrr.io/r/graphics/grid.html" class="external-link">graphics::grid()</a></code>,
 overriding the theme defaults for this call only</p></li>
 </ul></dd>
 
@@ -186,7 +186,7 @@ Can be:</p><ul><li><p><code>.useTheme</code> (default): follow the active theme
 (<code>getTheme()$box</code>)</p></li>
 <li><p><code>TRUE</code>: draw box with theme settings</p></li>
 <li><p><code>FALSE</code>, <code>NULL</code>, or <code>NA</code>: suppress box</p></li>
-<li><p>a named list: arguments passed to <code><a href="https://rdrr.io/r/graphics/box.html" class="external-link">box</a></code>,
+<li><p>a named list: arguments passed to <code><a href="https://rdrr.io/r/graphics/box.html" class="external-link">graphics::box()</a></code>,
 overriding the theme defaults for this call only</p></li>
 </ul></dd>
 
@@ -195,7 +195,7 @@ overriding the theme defaults for this call only</p></li>
 <dd><p>controls drawing of the linear regression line.
 Can be:</p><ul><li><p><code>TRUE</code>: draw with default settings</p></li>
 <li><p><code>FALSE</code>, <code>NULL</code>, or <code>NA</code>: suppress</p></li>
-<li><p>a named list: arguments passed to <code><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></code>,
+<li><p>a named list: arguments passed to <code><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">graphics::lines()</a></code>,
 e.g. <code>list(col = "blue", lwd = 2)</code></p></li>
 </ul></dd>
 
@@ -204,7 +204,7 @@ e.g. <code>list(col = "blue", lwd = 2)</code></p></li>
 <dd><p>controls drawing of the locally weighted regression line.
 Can be:</p><ul><li><p><code>TRUE</code>: draw with default settings</p></li>
 <li><p><code>FALSE</code>, <code>NULL</code>, or <code>NA</code>: suppress</p></li>
-<li><p>a named list: arguments passed to <code><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></code>,
+<li><p>a named list: arguments passed to <code><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">graphics::lines()</a></code>,
 e.g. <code>list(col = "red", lty = "dashed")</code></p></li>
 </ul></dd>
 
@@ -213,7 +213,7 @@ e.g. <code>list(col = "red", lty = "dashed")</code></p></li>
 <dd><p>controls drawing of the legend.
 Can be:</p><ul><li><p><code>TRUE</code>: draw with default settings (position <code>"topright"</code>)</p></li>
 <li><p><code>FALSE</code>, <code>NULL</code>, or <code>NA</code>: suppress</p></li>
-<li><p>a named list: arguments passed to <code><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></code>,
+<li><p>a named list: arguments passed to <code><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">graphics::legend()</a></code>,
 e.g. <code>list(x = "bottomleft")</code></p></li>
 </ul><p>The legend is only drawn when at least one of <code>lm</code> or <code>loess</code>
 is active. <code>lm</code>/<code>loess</code> line colors are taken from the
@@ -250,7 +250,7 @@ Defaults to <code>na.omit</code>.</p></dd>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Optional plot components (<code>grid</code>, <code>box</code>, <code>lm</code>,
-<code>loess</code>, <code>legend</code>) follow <code><a href="https://andrisignorell.github.io/bedrock/reference/callIf.html" class="external-link">callIf</a></code>
+<code>loess</code>, <code>legend</code>) follow <code><a href="https://andrisignorell.github.io/bedrock/reference/callIf.html" class="external-link">bedrock::callIf()</a></code>
 semantics:</p><ul><li><p><code>TRUE</code>: draw with defaults</p></li>
 <li><p><code>FALSE</code>, <code>NULL</code>, or <code>NA</code>: suppress component</p></li>
 <li><p>named list: customize component arguments</p></li>
@@ -263,10 +263,10 @@ the same theme section) that doesn't override <code>col</code> explicitly.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></code>,
-<code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></code>,
-<code><a href="https://rdrr.io/r/stats/loess.html" class="external-link">loess</a></code>,
-<code><a href="https://andrisignorell.github.io/bedrock/reference/callIf.html" class="external-link">callIf</a></code></p>
+    <div class="dont-index"><p><code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">graphics::plot()</a></code>,
+<code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">stats::lm()</a></code>,
+<code><a href="https://rdrr.io/r/stats/loess.html" class="external-link">stats::loess()</a></code>,
+<code><a href="https://andrisignorell.github.io/bedrock/reference/callIf.html" class="external-link">bedrock::callIf()</a></code></p>
 <p>Other plot.bivariate:
 <code><a href="plotAssoc.html">plotAssoc()</a></code>,
 <code><a href="plotBag.html">plotBag()</a></code>,

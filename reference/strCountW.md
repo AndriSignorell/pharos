@@ -26,7 +26,7 @@ punctuation, and whitespace.
 
 ## See also
 
-[`stri_count_words`](https://rdrr.io/pkg/stringi/man/stri_count_boundaries.html)
+[`stringi::stri_count_words()`](https://rdrr.io/pkg/stringi/man/stri_count_boundaries.html)
 
 [string-overview](string-overview.md) for an overview of all string
 utilities in pharos.

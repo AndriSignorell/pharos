@@ -79,7 +79,7 @@ plotArea(
 - ...:
 
   additional graphical parameters passed to
-  [`par`](https://rdrr.io/r/graphics/par.html) via
+  [`graphics::par()`](https://rdrr.io/r/graphics/par.html) via
   [`.applyParFromDots()`](graphics-framework.md) and to the plotting
   functions.
 

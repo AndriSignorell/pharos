@@ -5,7 +5,7 @@ The transformations are applied in the following order:
 
 1.  Scaling
 
-2.  Rotation (see [`rotate`](rotate.md))
+2.  Rotation (see [`rotate()`](rotate.md))
 
 3.  Translation
 
@@ -27,7 +27,7 @@ transformXY(
 - x:
 
   numeric vector of x coordinates, or an object coercible by
-  [`xy.coords`](https://rdrr.io/r/grDevices/xy.coords.html).
+  [`xy.coords()`](https://rdrr.io/r/grDevices/xy.coords.html).
 
 - y:
 
@@ -50,18 +50,19 @@ transformXY(
 
 - asp:
 
-  aspect ratio adjustment passed to [`rotate`](rotate.md). Default is
+  aspect ratio adjustment passed to [`rotate()`](rotate.md). Default is
   `1`.
 
 ## Value
 
 A list with components `x` and `y`, as returned by
-[`xy.coords`](https://rdrr.io/r/grDevices/xy.coords.html).
+[`xy.coords()`](https://rdrr.io/r/grDevices/xy.coords.html).
 
 ## Details
 
 This function is a convenience wrapper combining basic affine
-transformations. Internally, it uses [`rotate`](rotate.md) for rotation.
+transformations. Internally, it uses [`rotate()`](rotate.md) for
+rotation.
 
 ## See also
 

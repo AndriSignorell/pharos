@@ -53,23 +53,23 @@ plot(
   `1`
 
   :   Conditional density plot
-      ([`cdplot`](https://rdrr.io/r/graphics/cdplot.html)).
+      ([`graphics::cdplot()`](https://rdrr.io/r/graphics/cdplot.html)).
 
   `2`
 
   :   Spineplot
-      ([`spineplot`](https://rdrr.io/r/graphics/spineplot.html)).
+      ([`graphics::spineplot()`](https://rdrr.io/r/graphics/spineplot.html)).
       Default.
 
   `3`
 
   :   Overlapping kernel density curves, one per group (via
-      [`plotDens`](plotDens.md)).
+      [`plotDens()`](plotDens.md)).
 
   `4`
 
   :   Boxplot of the numeric variable by group (via
-      [`plotBox`](plotBox.md)).
+      [`plotBox()`](plotBox.md)).
 
   `5`
 
@@ -100,7 +100,7 @@ plot(
   :   a grey ramp from `"grey30"` to `"grey90"`, sized to the number of
       categorical levels (not theme-driven by design, to keep the
       unordered category fill neutral - see
-      [`plotMosaic`](plotMosaic.md) for the same rationale).
+      [`plotMosaic()`](plotMosaic.md) for the same rationale).
 
   panels 3/4
 
@@ -118,13 +118,14 @@ plot(
 
   controls the plot frame for panels 4 and 5. `.useTheme` (default)
   follows the active theme (`getTheme()$box`); `FALSE`/`NA` suppress it;
-  a named list overrides [`box()`](https://rdrr.io/r/graphics/box.html)
-  arguments. Panels 1/2
+  a named list overrides
+  [`graphics::box()`](https://rdrr.io/r/graphics/box.html) arguments.
+  Panels 1/2
   ([`cdplot()`](https://rdrr.io/r/graphics/cdplot.html)/[`spineplot()`](https://rdrr.io/r/graphics/spineplot.html))
   have no effect from this argument - they always draw their native
   frame unconditionally, with no toggle to override it. Panel 4
-  ([`plotBox`](plotBox.md)) always draws its own frame regardless of
-  this argument. Panel 3 ([`plotDens`](plotDens.md)) never draws a
+  ([`plotBox()`](plotBox.md)) always draws its own frame regardless of
+  this argument. Panel 3 ([`plotDens()`](plotDens.md)) never draws a
   frame, regardless of this argument.
 
 - legend:
@@ -132,28 +133,28 @@ plot(
   controls the legend for panel 3 (grouped density curves). `TRUE`
   (default) draws a legend with the group levels. `FALSE`/`NA`
   suppresses it. A named list overrides arguments forwarded to
-  [`legend`](https://rdrr.io/r/graphics/legend.html). Has no effect on
-  the other panels.
+  [`graphics::legend()`](https://rdrr.io/r/graphics/legend.html). Has no
+  effect on the other panels.
 
 - stamp:
 
   controls the corner stamp. `.useTheme` (default) resolves to
   `getTheme()$stamp`, drawn once after all selected panels (panels 3/4
-  delegate to [`plotDens`](plotDens.md)/ [`plotBox`](plotBox.md), whose
-  own stamp is suppressed internally to avoid a duplicate).
+  delegate to [`plotDens()`](plotDens.md)/ [`plotBox()`](plotBox.md),
+  whose own stamp is suppressed internally to avoid a duplicate).
   `TRUE`/`FALSE`/`NULL`, a string, or a named list for
   [`stamp()`](stamp.md).
 
 - ...:
 
   further graphical parameters, passed to
-  [`par`](https://rdrr.io/r/graphics/par.html) via the internal
+  [`par()`](https://rdrr.io/r/graphics/par.html) via the internal
   framework and to the underlying panel-drawing functions
   ([`cdplot()`](https://rdrr.io/r/graphics/cdplot.html),
   [`spineplot()`](https://rdrr.io/r/graphics/spineplot.html),
-  [`plotDens`](plotDens.md), [`plotBox`](plotBox.md), or
-  [`plot`](https://rdrr.io/r/graphics/plot.default.html), depending on
-  the selected panel).
+  [`plotDens()`](plotDens.md), [`plotBox()`](plotBox.md), or
+  [`graphics::plot()`](https://rdrr.io/r/graphics/plot.default.html),
+  depending on the selected panel).
 
 ## Value
 
@@ -168,9 +169,10 @@ clipped regardless of `which`.
 
 ## See also
 
-`DescToolsX::desc`, [`plotDens`](plotDens.md), [`plotBox`](plotBox.md),
-[`cdplot`](https://rdrr.io/r/graphics/cdplot.html),
-[`spineplot`](https://rdrr.io/r/graphics/spineplot.html)
+`DescToolsX::desc`, [`plotDens()`](plotDens.md),
+[`plotBox()`](plotBox.md),
+[`graphics::cdplot()`](https://rdrr.io/r/graphics/cdplot.html),
+[`graphics::spineplot()`](https://rdrr.io/r/graphics/spineplot.html)
 
 Other plot.s3: [`plot.BlandAltman()`](plot.BlandAltman.md),
 [`plot.Desc.table()`](plot.Desc.table.md), [`plot.Lc()`](plot.lc.md)

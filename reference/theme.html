@@ -23,7 +23,7 @@ function argument is left at its default value."><meta property="og:image" conte
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.953</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.954</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -150,8 +150,7 @@ function draws one.</p></dd>
 drawn around a plot region, via <code><a href="graphics-framework.html">.drawBox()</a></code>.</p></dd>
 
 <dt><code>points</code></dt>
-<dd><p><code>pch=21, col="grey50",
-    bg=addOpacity("grey"), cex=1.1</code>. Default point styling for
+<dd><p><code>pch=21, col="grey50", bg=addOpacity("grey"), cex=1.1</code>. Default point styling for
 scatterplot-like functions (e.g. <code><a href="plotXY.html">plotXY()</a></code>, <code><a href="plotDot.html">plotDot()</a></code>).</p></dd>
 
 <dt><code>twin</code></dt>
@@ -160,7 +159,7 @@ colors for contexts that inherently need exactly two contrasting
 colors (e.g. a fit line and a smoother in <code><a href="plotXY.html">plotXY()</a></code>, the two
 poles of a diverging color ramp in <code><a href="plotCor.html">plotCor()</a></code>, a single
 accent color via <code>twin[1]</code> in
-<code><a href="lines.loess.html">lines.loess</a></code>/<code><a href="plotQQ.html">plotQQ()</a></code>'s confidence band). Never
+<code><a href="lines.loess.html">lines.loess()</a></code>/<code><a href="plotQQ.html">plotQQ()</a></code>'s confidence band). Never
 used as a substitute for <code>palette</code> when more than two colors
 are needed.</p></dd>
 
@@ -179,15 +178,14 @@ hardcoded, purpose-built palette via <code><a href="pal.html">pal()</a></code> i
 (e.g. <code>pal("red-black")</code>, <code>pal("Blues")</code>). Neither
 <code>palette</code> (categorical) nor <code>twin</code> (a fixed pair) is the
 right semantic fit for an ordered, continuous scale – see
-<code><a href="pal.html">pal</a></code> for the registry of named continuous palettes.</p></dd>
+<code><a href="pal.html">pal()</a></code> for the registry of named continuous palettes.</p></dd>
 
 <dt><code>bar</code></dt>
 <dd><p><code>col="grey80", border=NA</code>. Default bar
 fill/border in <code><a href="plotBar.html">plotBar()</a></code>.</p></dd>
 
 <dt><code>sty</code></dt>
-<dd><p><code>abs="abs.sty", perc="per.sty", num="num.sty",
-    pval="pval.sty"</code>. Names of <code><a href="fm.html">fm()</a></code> format styles (see
+<dd><p><code>abs="abs.sty", perc="per.sty", num="num.sty", pval="pval.sty"</code>. Names of <code><a href="fm.html">fm()</a></code> format styles (see
 <code><a href="style.html">styles()</a></code>) used for absolute counts, percentages,
 plain numbers, and p-values respectively.</p></dd>
 
@@ -250,7 +248,7 @@ defaults and the user's <code>...</code>.</p></dd>
 merge the theme's style values with any function-specific
 <code>defaults</code> (e.g. <code><a href="plotBar.html">plotBar()</a></code> suppressing the
 axis-parallel grid direction via <code>nx</code>/<code>ny</code>), and dispatch
-via <code><a href="https://andrisignorell.github.io/bedrock/reference/callIf.html" class="external-link">callIf</a></code>. <strong>Not</strong> used by every
+via <code><a href="https://andrisignorell.github.io/bedrock/reference/callIf.html" class="external-link">bedrock::callIf()</a></code>. <strong>Not</strong> used by every
 function that draws a grid or frame: a few (<code><a href="plotCor.html">plotCor()</a></code>,
 <code><a href="plotHeatmap.html">plotHeatmap()</a></code>, <code><a href="plotDot.html">plotDot()</a></code>) have grid/box geometry tied
 to exact data coordinates (e.g. half-integer cell boundaries) that
@@ -282,9 +280,9 @@ high-contrast theme) can be added later without changing the
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="pal.html">pal</a></code> for the color palette registry,
-<code><a href="fm.html">fm</a></code> for the formatting styles referenced by <code>sty</code>,
-<code><a href="stamp.html">stamp</a></code> for the corner stamp mechanism.</p></div>
+    <div class="dont-index"><p><code><a href="pal.html">pal()</a></code> for the color palette registry,
+<code><a href="fm.html">fm()</a></code> for the formatting styles referenced by <code>sty</code>,
+<code><a href="stamp.html">stamp()</a></code> for the corner stamp mechanism.</p></div>
     </div>
 
     <div class="section level2">

@@ -75,7 +75,7 @@ plotFun(
 
   color of the line. `.useTheme` (default) resolves to
   `getTheme()$twin[1]` - the primary accent color, consistent with
-  [`lines.loess`](lines.loess.md) and [`plotQQ()`](plotQQ.md).
+  [`lines.loess()`](lines.loess.md) and [`plotQQ()`](plotQQ.md).
 
 - lwd:
 
@@ -89,7 +89,8 @@ plotFun(
 
   controls drawing of the background grid. `.useTheme` (default) follows
   the active theme (`getTheme()$grid`). `TRUE`/`FALSE`/`NA`, or a named
-  list, as for [`grid`](https://rdrr.io/r/graphics/grid.html).
+  list, as for
+  [`graphics::grid()`](https://rdrr.io/r/graphics/grid.html).
 
 - stamp:
 
@@ -100,8 +101,8 @@ plotFun(
 - ...:
 
   further graphical parameters passed to
-  [`par`](https://rdrr.io/r/graphics/par.html) via the internal
-  framework.
+  [`graphics::par()`](https://rdrr.io/r/graphics/par.html) via the
+  internal framework.
 
 ## Value
 
@@ -156,5 +157,6 @@ for (a in 1:3)
   plotFun(y ~ sin(a*x), args = list(a = a),
           from = 0, to = 2*pi,
           add = (a != 1), col = a)
+
 
 ```

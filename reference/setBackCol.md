@@ -27,7 +27,7 @@ setBackCol(col = "grey", region = c("plot", "figure"), border = NA)
 
 ## See also
 
-[`rect`](https://rdrr.io/r/graphics/rect.html)
+[`rect()`](https://rdrr.io/r/graphics/rect.html)
 
 Other graphics.setup: [`canvas()`](canvas.md),
 [`polarGrid()`](polarGrid.md)

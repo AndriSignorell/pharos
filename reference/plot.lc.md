@@ -103,7 +103,8 @@ plot(x, col = NULL, general = FALSE, ylim = NULL, ...)
   logical or list, used by `plot.Lc()` only. Controls the line of
   perfect equality: `TRUE` (default) draws it with package defaults
   (`col = "grey50"`, `lty = 2`), `FALSE` suppresses it, a list is
-  forwarded to [`abline()`](https://rdrr.io/r/graphics/abline.html). Its
+  forwarded to
+  [`graphics::abline()`](https://rdrr.io/r/graphics/abline.html). Its
   slope is `1` for the standard and `max(L)` for the generalized curve;
   overriding `a`/`b` is possible but rarely sensible.
 
@@ -113,8 +114,8 @@ plot(x, col = NULL, general = FALSE, ylim = NULL, ...)
   used by `plot.Lc()` only. `.useTheme` (default) lets
   [`getTheme()`](theme.md) decide, `TRUE`/`FALSE` force
   drawing/suppression, and a named list is forwarded to
-  [`grid()`](https://rdrr.io/r/graphics/grid.html) resp.
-  [`box()`](https://rdrr.io/r/graphics/box.html).
+  [`graphics::grid()`](https://rdrr.io/r/graphics/grid.html) resp.
+  [`graphics::box()`](https://rdrr.io/r/graphics/box.html).
 
 - cbandArgs:
 
@@ -131,15 +132,15 @@ plot(x, col = NULL, general = FALSE, ylim = NULL, ...)
 - ...:
 
   further arguments. For `plot.Lc()`, graphical parameters passed to
-  [`par()`](https://rdrr.io/r/graphics/par.html) via
+  [`graphics::par()`](https://rdrr.io/r/graphics/par.html) via
   [`.applyParFromDots()`](graphics-framework.md) (e.g. `mar`,
   `cex.axis`, `las`). For `lines.Lc()` and `points.Lc()`, further
   arguments passed on to
-  [`lines()`](https://rdrr.io/r/graphics/lines.html) and
-  [`points()`](https://rdrr.io/r/graphics/points.html), respectively.
-  For `plot.LcList()`, arguments are passed to `plot.Lc()` for the first
-  group and, restricted to those the low-level method understands, to
-  `lines.Lc()` for the remaining ones.
+  [`graphics::lines()`](https://rdrr.io/r/graphics/lines.html) and
+  [`graphics::points()`](https://rdrr.io/r/graphics/points.html),
+  respectively. For `plot.LcList()`, arguments are passed to `plot.Lc()`
+  for the first group and, restricted to those the low-level method
+  understands, to `lines.Lc()` for the remaining ones.
 
 - lwd:
 

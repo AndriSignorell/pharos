@@ -17,7 +17,7 @@ ambiguity between ordinary numeric data and confidence interval data.'><meta pro
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.953</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.954</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,7 +47,7 @@ ambiguity between ordinary numeric data and confidence interval data.'><meta pro
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Confidence Interval Objects</h1>
-      <small class="dont-index">Source: <a href="https://github.com/AndriSignorell/pharos/blob/main/R/as.CI.R" class="external-link"><code>R/as.CI.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/AndriSignorell/pharos/blob/main/R/as.ci.R" class="external-link"><code>R/as.ci.R</code></a></small>
       <div class="d-none name"><code>as.CI.Rd</code></div>
     </div>
 
@@ -115,7 +115,7 @@ grouping columns; <code>is.CI()</code> returns a single logical value</p>
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>A <code>"CI"</code> object is a data frame containing the columns <code>est</code>,
 <code>lci</code>, and <code>uci</code>. Additional columns are retained and can be used
-as grouping variables by functions such as <code><a href="plotDot.html">plotDot</a></code>.</p>
+as grouping variables by functions such as <code><a href="plotDot.html">plotDot()</a></code>.</p>
 <p>The primary purpose of <code>as.CI()</code> is to declare explicitly that an
 object contains estimates and confidence limits. For example, a numeric
 matrix with three columns is normally ambiguous: its columns may represent
@@ -128,18 +128,18 @@ limits; their names can be specified with <code>estimate</code>,
 <code>lower</code>, and <code>upper</code></p></li>
 <li><p>a list in which every element contains three values representing
 <code>c(est, lci, uci)</code></p></li>
-<li><p>an array-like result from <code><a href="https://rdrr.io/r/base/tapply.html" class="external-link">tapply</a></code> in which every cell
+<li><p>an array-like result from <code><a href="https://rdrr.io/r/base/tapply.html" class="external-link">tapply()</a></code> in which every cell
 contains <code>c(est, lci, uci)</code>; its dimensions are converted to
 grouping variables</p></li>
 <li><p>an existing <code>"CI"</code> object, which is returned unchanged</p></li>
-</ul><p>The standardized object can be passed directly to <code><a href="plotDot.html">plotDot</a></code> to
+</ul><p>The standardized object can be passed directly to <code><a href="plotDot.html">plotDot()</a></code> to
 display the estimates and their confidence intervals. This is particularly
 useful for matrices, because a bare matrix supplied to <code><a href="plotDot.html">plotDot()</a></code> is
 interpreted as grouped estimates rather than as confidence interval data.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="plotDot.html">plotDot</a></code>, <code><a href="fmCI.html">fmCI</a></code></p></div>
+    <div class="dont-index"><p><code><a href="plotDot.html">plotDot()</a></code>, <code><a href="fmCI.html">fmCI()</a></code></p></div>
     </div>
 
     <div class="section level2">

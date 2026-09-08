@@ -48,8 +48,8 @@ titleRect(
 - ...:
 
   the dots are passed to the
-  [`text`](https://rdrr.io/r/graphics/text.html) function, which can be
-  used to change font and similar arguments.
+  [`text()`](https://rdrr.io/r/graphics/text.html) function, which can
+  be used to change font and similar arguments.
 
 ## Value
 
@@ -57,7 +57,7 @@ nothing is returned
 
 ## See also
 
-[`title`](https://rdrr.io/r/graphics/title.html)
+[`title()`](https://rdrr.io/r/graphics/title.html)
 
 Other graphics.annotation: [`barText()`](barText.md),
 [`boxedText()`](boxedText.md), [`colLegend()`](colLegend.md),

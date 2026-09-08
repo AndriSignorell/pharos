@@ -93,10 +93,10 @@ via the `mar` argument of the calling plot function.
 
 ## See also
 
-[`plotLines`](plotLines.md),
-[`mtext`](https://rdrr.io/r/graphics/mtext.html),
-[`segments`](https://rdrr.io/r/graphics/segments.html),
-[`legend`](https://rdrr.io/r/graphics/legend.html)
+[`plotLines()`](plotLines.md),
+[`mtext()`](https://rdrr.io/r/graphics/mtext.html),
+[`segments()`](https://rdrr.io/r/graphics/segments.html),
+[`legend()`](https://rdrr.io/r/graphics/legend.html)
 
 Other graphics.annotation: [`barText()`](barText.md),
 [`boxedText()`](boxedText.md), [`colLegend()`](colLegend.md),

@@ -22,7 +22,7 @@ preview(x, ...)
 - ...:
 
   further arguments, currently unused (kept for consistency with
-  [`print`](https://rdrr.io/r/base/print.html))
+  [`print()`](https://rdrr.io/r/base/print.html))
 
 ## Value
 

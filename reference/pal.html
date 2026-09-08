@@ -10,14 +10,14 @@ exactly n colors regardless of their base size:
 n &amp;lt; length(base): evenly spaced sample for maximum contrast
 n = length(base): returned as-is
 n &amp;gt; length(base): interpolated via
-colorRampPalette
+grDevices::colorRampPalette()
 
 "><meta property="og:description" content="Returns n colors from a named palette. All palettes always return
 exactly n colors regardless of their base size:
 n &amp;lt; length(base): evenly spaced sample for maximum contrast
 n = length(base): returned as-is
 n &amp;gt; length(base): interpolated via
-colorRampPalette
+grDevices::colorRampPalette()
 
 "><meta property="og:image" content="/logo.png"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -27,7 +27,7 @@ colorRampPalette
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.953</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.954</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,7 +57,7 @@ colorRampPalette
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Get a Color Palette</h1>
-      <small class="dont-index">Source: <a href="https://github.com/AndriSignorell/pharos/blob/main/R/pal.R" class="external-link"><code>R/pal.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/AndriSignorell/pharos/blob/main/R/Pal.R" class="external-link"><code>R/Pal.R</code></a></small>
       <div class="d-none name"><code>pal.Rd</code></div>
     </div>
 
@@ -66,7 +66,7 @@ colorRampPalette
 exactly <code>n</code> colors regardless of their base size:</p><ul><li><p><code>n &lt; length(base)</code>: evenly spaced sample for maximum contrast</p></li>
 <li><p><code>n = length(base)</code>: returned as-is</p></li>
 <li><p><code>n &gt; length(base)</code>: interpolated via
-<code><a href="https://rdrr.io/r/grDevices/colorRamp.html" class="external-link">colorRampPalette</a></code></p></li>
+<code><a href="https://rdrr.io/r/grDevices/colorRamp.html" class="external-link">grDevices::colorRampPalette()</a></code></p></li>
 </ul></div>
 
     <div class="section level2">
@@ -83,7 +83,7 @@ exactly <code>n</code> colors regardless of their base size:</p><ul><li><p><code
 
 <dl><dt id="arg-name">name<a class="anchor" aria-label="anchor" href="#arg-name"></a></dt>
 <dd><p>character or integer. Palette name (full match via
-<code><a href="https://rdrr.io/r/base/match.arg.html" class="external-link">match.arg</a></code>) or index into <code><a href="palNames.html">palNames()</a></code>.
+<code><a href="https://rdrr.io/r/base/match.arg.html" class="external-link">base::match.arg()</a></code>) or index into <code><a href="palNames.html">palNames()</a></code>.
 If missing, returns the palette named in the active theme
 (<code>getTheme()$palette</code>, see <a href="theme.html">theme</a>).</p></dd>
 
@@ -95,7 +95,7 @@ the colors as contained in the palette.</p></dd>
 
 <dt id="arg-opacity">opacity<a class="anchor" aria-label="anchor" href="#arg-opacity"></a></dt>
 <dd><p>numeric in \([0, 1]\), opacity. Default <code>1</code> (opaque).
-Applied via <code><a href="https://rdrr.io/r/grDevices/adjustcolor.html" class="external-link">adjustcolor</a></code>.</p></dd>
+Applied via <code><a href="https://rdrr.io/r/grDevices/adjustcolor.html" class="external-link">grDevices::adjustcolor()</a></code>.</p></dd>
 
 
 <dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
@@ -121,8 +121,8 @@ Applied via <code><a href="https://rdrr.io/r/grDevices/adjustcolor.html" class="
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="palNames.html">palNames</a></code>, <code><a href="https://rdrr.io/r/grDevices/colorRamp.html" class="external-link">colorRampPalette</a></code>,
-<code><a href="https://rdrr.io/r/grDevices/adjustcolor.html" class="external-link">adjustcolor</a></code></p>
+    <div class="dont-index"><p><code><a href="palNames.html">palNames()</a></code>, <code><a href="https://rdrr.io/r/grDevices/colorRamp.html" class="external-link">grDevices::colorRampPalette()</a></code>,
+<code><a href="https://rdrr.io/r/grDevices/adjustcolor.html" class="external-link">grDevices::adjustcolor()</a></code></p>
 <p>Other color.palettes:
 <code><a href="hcol.html">hcol()</a></code>,
 <code><a href="palNames.html">palNames()</a></code></p></div>

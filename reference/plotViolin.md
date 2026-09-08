@@ -181,8 +181,8 @@ Groups are handled similarly to
 
 ## See also
 
-[`boxplot`](https://rdrr.io/r/graphics/boxplot.html),
-[`density`](https://rdrr.io/r/stats/density.html)
+[`boxplot()`](https://rdrr.io/r/graphics/boxplot.html),
+[`density()`](https://rdrr.io/r/stats/density.html)
 
 Other plot.univariate: [`plotArea()`](plotArea.md),
 [`plotBar()`](plotBar.md), [`plotBox()`](plotBox.md),

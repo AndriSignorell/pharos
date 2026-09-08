@@ -15,7 +15,7 @@ rotate(x, y = NULL, mx = NULL, my = NULL, theta = pi/3, asp = 1)
   vectors containing the coordinates of the vertices of the polygon ,
   which has to be rotated. The coordinates can be passed in a plotting
   structure (a list with x and y components), a two-column matrix, ....
-  See [`xy.coords`](https://rdrr.io/r/grDevices/xy.coords.html).
+  See [`xy.coords()`](https://rdrr.io/r/grDevices/xy.coords.html).
 
 - mx, my:
 
@@ -38,8 +38,8 @@ shape(s).
 
 ## See also
 
-[`polygon`](polygon.md), [`regPolygon`](regPolygon.md),
-[`ellipse`](ellipse.md), [`arc`](arc.md)
+[`polygon()`](polygon.md), [`regPolygon()`](regPolygon.md),
+[`ellipse()`](ellipse.md), [`arc()`](arc.md)
 
 Other geometry.transformation: [`transformXY()`](transformXY.md)
 

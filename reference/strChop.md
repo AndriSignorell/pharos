@@ -44,8 +44,8 @@ Typical usages are
 
 ## See also
 
-[`strLeft`](strLeftRight.md),
-[`substr`](https://rdrr.io/r/base/substr.html)
+[`strLeft()`](strLeftRight.md),
+[`substr()`](https://rdrr.io/r/base/substr.html)
 
 [string-overview](string-overview.md) for an overview of all string
 utilities in pharos.

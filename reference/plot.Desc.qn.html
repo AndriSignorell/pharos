@@ -19,7 +19,7 @@ a numeric/categorical pair. Five panel types are available, selectable
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.953</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.954</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -104,19 +104,19 @@ overrides this for every selected panel.</p></dd>
 <dt id="arg-which">which<a class="anchor" aria-label="anchor" href="#arg-which"></a></dt>
 <dd><p>integer vector selecting one or more panels to draw, in the
 given order. One or more of:</p><dl><dt><code>1</code></dt>
-<dd><p>Conditional density plot (<code><a href="https://rdrr.io/r/graphics/cdplot.html" class="external-link">cdplot</a></code>).</p></dd>
+<dd><p>Conditional density plot (<code><a href="https://rdrr.io/r/graphics/cdplot.html" class="external-link">graphics::cdplot()</a></code>).</p></dd>
 
 <dt><code>2</code></dt>
-<dd><p>Spineplot (<code><a href="https://rdrr.io/r/graphics/spineplot.html" class="external-link">spineplot</a></code>).
+<dd><p>Spineplot (<code><a href="https://rdrr.io/r/graphics/spineplot.html" class="external-link">graphics::spineplot()</a></code>).
 Default.</p></dd>
 
 <dt><code>3</code></dt>
 <dd><p>Overlapping kernel density curves, one per group
-(via <code><a href="plotDens.html">plotDens</a></code>).</p></dd>
+(via <code><a href="plotDens.html">plotDens()</a></code>).</p></dd>
 
 <dt><code>4</code></dt>
 <dd><p>Boxplot of the numeric variable by group (via
-<code><a href="plotBox.html">plotBox</a></code>).</p></dd>
+<code><a href="plotBox.html">plotBox()</a></code>).</p></dd>
 
 <dt><code>5</code></dt>
 <dd><p>Prevalence (with Wilson confidence intervals) across
@@ -144,7 +144,7 @@ ramps, categorical sets, and single accents are different things:</p><dl><dt>pan
 <dd><p>a grey ramp from <code>"grey30"</code> to <code>"grey90"</code>,
 sized to the number of categorical levels (not theme-driven by
 design, to keep the unordered category fill neutral - see
-<code><a href="plotMosaic.html">plotMosaic</a></code> for the same rationale).</p></dd>
+<code><a href="plotMosaic.html">plotMosaic()</a></code> for the same rationale).</p></dd>
 
 <dt>panels 3/4</dt>
 <dd><p><code>pal(getTheme()$palette)</code>, the active theme's
@@ -163,12 +163,12 @@ every selected panel.</p></dd>
 <dd><p>controls the plot frame for panels 4 and 5.
 <code>.useTheme</code> (default) follows the active theme
 (<code>getTheme()$box</code>); <code>FALSE</code>/<code>NA</code> suppress it; a named
-list overrides <code><a href="https://rdrr.io/r/graphics/box.html" class="external-link">box()</a></code> arguments. Panels 1/2
+list overrides <code><a href="https://rdrr.io/r/graphics/box.html" class="external-link">graphics::box()</a></code> arguments. Panels 1/2
 (<code><a href="https://rdrr.io/r/graphics/cdplot.html" class="external-link">cdplot()</a></code>/<code><a href="https://rdrr.io/r/graphics/spineplot.html" class="external-link">spineplot()</a></code>) have no effect from this
 argument - they always draw their native frame unconditionally, with
-no toggle to override it. Panel 4 (<code><a href="plotBox.html">plotBox</a></code>) always
+no toggle to override it. Panel 4 (<code><a href="plotBox.html">plotBox()</a></code>) always
 draws its own frame regardless of this argument. Panel 3
-(<code><a href="plotDens.html">plotDens</a></code>) never draws a frame, regardless of this
+(<code><a href="plotDens.html">plotDens()</a></code>) never draws a frame, regardless of this
 argument.</p></dd>
 
 
@@ -176,24 +176,24 @@ argument.</p></dd>
 <dd><p>controls the legend for panel 3 (grouped density curves).
 <code>TRUE</code> (default) draws a legend with the group levels.
 <code>FALSE</code>/<code>NA</code> suppresses it. A named list overrides arguments
-forwarded to <code><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></code>. Has no effect on the
+forwarded to <code><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">graphics::legend()</a></code>. Has no effect on the
 other panels.</p></dd>
 
 
 <dt id="arg-stamp">stamp<a class="anchor" aria-label="anchor" href="#arg-stamp"></a></dt>
 <dd><p>controls the corner stamp. <code>.useTheme</code> (default)
 resolves to <code>getTheme()$stamp</code>, drawn once after all selected
-panels (panels 3/4 delegate to <code><a href="plotDens.html">plotDens</a></code>/
-<code><a href="plotBox.html">plotBox</a></code>, whose own stamp is suppressed internally to
+panels (panels 3/4 delegate to <code><a href="plotDens.html">plotDens()</a></code>/
+<code><a href="plotBox.html">plotBox()</a></code>, whose own stamp is suppressed internally to
 avoid a duplicate). <code>TRUE</code>/<code>FALSE</code>/<code>NULL</code>, a string, or
 a named list for <code><a href="stamp.html">stamp()</a></code>.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>further graphical parameters, passed to <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> via
+<dd><p>further graphical parameters, passed to <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par()</a></code> via
 the internal framework and to the underlying panel-drawing functions
-(<code><a href="https://rdrr.io/r/graphics/cdplot.html" class="external-link">cdplot()</a></code>, <code><a href="https://rdrr.io/r/graphics/spineplot.html" class="external-link">spineplot()</a></code>, <code><a href="plotDens.html">plotDens</a></code>,
-<code><a href="plotBox.html">plotBox</a></code>, or <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></code>, depending on
+(<code><a href="https://rdrr.io/r/graphics/cdplot.html" class="external-link">cdplot()</a></code>, <code><a href="https://rdrr.io/r/graphics/spineplot.html" class="external-link">spineplot()</a></code>, <code><a href="plotDens.html">plotDens()</a></code>,
+<code><a href="plotBox.html">plotBox()</a></code>, or <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">graphics::plot()</a></code>, depending on
 the selected panel).</p></dd>
 
 </dl></div>
@@ -210,8 +210,8 @@ clipped regardless of <code>which</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code>DescToolsX::desc</code>, <code><a href="plotDens.html">plotDens</a></code>, <code><a href="plotBox.html">plotBox</a></code>,
-<code><a href="https://rdrr.io/r/graphics/cdplot.html" class="external-link">cdplot</a></code>, <code><a href="https://rdrr.io/r/graphics/spineplot.html" class="external-link">spineplot</a></code></p>
+    <div class="dont-index"><p><code>DescToolsX::desc</code>, <code><a href="plotDens.html">plotDens()</a></code>, <code><a href="plotBox.html">plotBox()</a></code>,
+<code><a href="https://rdrr.io/r/graphics/cdplot.html" class="external-link">graphics::cdplot()</a></code>, <code><a href="https://rdrr.io/r/graphics/spineplot.html" class="external-link">graphics::spineplot()</a></code></p>
 <p>Other plot.s3:
 <code><a href="plot.BlandAltman.html">plot.BlandAltman()</a></code>,
 <code><a href="plot.Desc.table.html">plot.Desc.table()</a></code>,

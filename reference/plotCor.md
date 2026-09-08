@@ -1,9 +1,9 @@
 # Correlation Matrix Plot with Theming and Optional Labels
 
 Draws a correlation matrix using
-[`image`](https://rdrr.io/r/graphics/image.html) with optional
-clustering, triangular display, grid lines, color legend, and numeric
-labels inside the cells.
+[`graphics::image()`](https://rdrr.io/r/graphics/image.html) with
+optional clustering, triangular display, grid lines, color legend, and
+numeric labels inside the cells.
 
 ## Usage
 
@@ -55,7 +55,7 @@ plotCor(
   `list(...)`
 
   :   custom axis parameters passed to
-      [`axis`](https://rdrr.io/r/graphics/axis.html)
+      [`graphics::axis()`](https://rdrr.io/r/graphics/axis.html)
 
 - cluster:
 
@@ -128,8 +128,8 @@ plotCor(
 - ...:
 
   additional graphical parameters passed to
-  [`par`](https://rdrr.io/r/graphics/par.html) and
-  [`image`](https://rdrr.io/r/graphics/image.html).
+  [`graphics::par()`](https://rdrr.io/r/graphics/par.html) and
+  [`graphics::image()`](https://rdrr.io/r/graphics/image.html).
 
 ## Value
 
@@ -155,15 +155,15 @@ The function internally:
 3.  Adjusts plot margins based on label sizes.
 
 4.  Draws the matrix using
-    [`image`](https://rdrr.io/r/graphics/image.html).
+    [`graphics::image()`](https://rdrr.io/r/graphics/image.html).
 
 5.  Optionally adds grid lines, numeric labels, axes, and a color
     legend.
 
 Grid lines are drawn via clipped
-[`abline()`](https://rdrr.io/r/graphics/abline.html) calls at the
-matrix's half-integer cell boundaries rather than via
-[`grid()`](https://rdrr.io/r/graphics/grid.html):
+[`graphics::abline()`](https://rdrr.io/r/graphics/abline.html) calls at
+the matrix's half-integer cell boundaries rather than via
+[`graphics::grid()`](https://rdrr.io/r/graphics/grid.html):
 [`grid()`](https://rdrr.io/r/graphics/grid.html)'s `nx`/`ny` divide the
 full plot region (`par("usr")`), which may carry axis padding unrelated
 to [`image()`](https://rdrr.io/r/graphics/image.html)'s integer cell
@@ -172,8 +172,8 @@ padding.
 
 ## See also
 
-[`image`](https://rdrr.io/r/graphics/image.html),
-[`cor`](https://rdrr.io/r/stats/cor.html), [theme](theme.md)
+[`graphics::image()`](https://rdrr.io/r/graphics/image.html),
+[`stats::cor()`](https://rdrr.io/r/stats/cor.html), [theme](theme.md)
 
 Other plot.bivariate: [`plotAssoc()`](plotAssoc.md),
 [`plotBag()`](plotBag.md), [`plotDens2D()`](plotDens2D.md),

@@ -19,11 +19,11 @@ strAlign(x, sep = "\\r")
 
   a character specifying the alignment mode:
 
-  - `"\l"`: left alignment
+  - `"\\l"`: left alignment
 
-  - `"\r"`: right alignment (default)
+  - `"\\r"`: right alignment (default)
 
-  - `"\c"`: centered alignment
+  - `"\\c"`: centered alignment
 
   - any other character: align at the first occurrence of this separator
 
@@ -49,9 +49,9 @@ package.
 
 ## See also
 
-[`stri_pad`](https://rdrr.io/pkg/stringi/man/stri_pad.html),
-[`stri_sub`](https://rdrr.io/pkg/stringi/man/stri_sub.html),
-[`stri_trim_right`](https://rdrr.io/pkg/stringi/man/stri_trim.html)
+[`stringi::stri_pad()`](https://rdrr.io/pkg/stringi/man/stri_pad.html),
+[`stringi::stri_sub()`](https://rdrr.io/pkg/stringi/man/stri_sub.html),
+[`stringi::stri_trim_right()`](https://rdrr.io/pkg/stringi/man/stri_trim.html)
 
 [string-overview](string-overview.md) for an overview of all string
 utilities in pharos.

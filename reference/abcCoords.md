@@ -2,7 +2,7 @@
 
 Returns the xy-coordinates and text-adjustment values for named anchor
 positions such as `"topleft"`, `"center"`, etc., as used by
-[`legend`](https://rdrr.io/r/graphics/legend.html). Useful for placing
+[`legend()`](https://rdrr.io/r/graphics/legend.html). Useful for placing
 text or other annotations at consistent, region-aware positions.
 
 ## Usage
@@ -54,15 +54,15 @@ A list with two components:
 - `adj`:
 
   A numeric vector of length 2, suitable for the `adj` argument of
-  [`text`](https://rdrr.io/r/graphics/text.html).
+  [`text()`](https://rdrr.io/r/graphics/text.html).
 
 ## Details
 
 The positioning logic is adapted from
-[`legend`](https://rdrr.io/r/graphics/legend.html). The inset is
+[`legend()`](https://rdrr.io/r/graphics/legend.html). The inset is
 computed in character units via
-[`strwidth`](https://rdrr.io/r/graphics/strwidth.html) and
-[`strheight`](https://rdrr.io/r/graphics/strwidth.html), making it
+[`strwidth()`](https://rdrr.io/r/graphics/strwidth.html) and
+[`strheight()`](https://rdrr.io/r/graphics/strwidth.html), making it
 robust to device resizing, font changes, and plot-range scaling.
 
 Three regions are supported:
@@ -70,7 +70,7 @@ Three regions are supported:
 - `"plot"`:
 
   The inner plot area (`par("usr")`). The default, and the region
-  [`legend`](https://rdrr.io/r/graphics/legend.html) positions in.
+  [`legend()`](https://rdrr.io/r/graphics/legend.html) positions in.
 
 - `"figure"`:
 
@@ -82,14 +82,14 @@ Three regions are supported:
 
 Coordinates for `"figure"` and `"device"` lie outside `par("usr")` and
 are therefore clipped away by
-[`text`](https://rdrr.io/r/graphics/text.html) and friends unless the
+[`text()`](https://rdrr.io/r/graphics/text.html) and friends unless the
 drawing call sets `xpd = NA`. The returned values are in user space
 either way; only the clipping has to be turned off by the caller.
 
 ## See also
 
-[`text`](https://rdrr.io/r/graphics/text.html),
-[`legend`](https://rdrr.io/r/graphics/legend.html)
+[`text()`](https://rdrr.io/r/graphics/text.html),
+[`legend()`](https://rdrr.io/r/graphics/legend.html)
 
 Other graphics.layout: [`axTicks`](axTicks.md),
 [`axisBreak()`](axisBreak.md),

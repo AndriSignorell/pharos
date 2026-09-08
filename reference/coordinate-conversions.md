@@ -47,7 +47,7 @@ angles of the given points.
 ## Details
 
 Angles are in radians, not degrees (i.e., a right angle is pi/2). Use
-[`degToRad`](degree-radians-conversion.md) to convert, if you don't
+[`degToRad()`](degree-radians-conversion.md) to convert, if you don't
 wanna do it by yourself.  
 All parameters are recycled if necessary.
 

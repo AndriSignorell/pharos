@@ -15,7 +15,7 @@ designed to stay performant even for very large vectors (n ~ 1e6-1e7)."><meta pr
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.953</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.954</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -105,7 +105,7 @@ designed to stay performant even for very large vectors (n ~ 1e6-1e7).</p>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>further graphical parameters passed to <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> via
+<dd><p>further graphical parameters passed to <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par()</a></code> via
 the internal framework.</p></dd>
 
 
@@ -148,7 +148,7 @@ starting a new one.</p></dd>
 <dt id="arg-col">col<a class="anchor" aria-label="anchor" href="#arg-col"></a></dt>
 <dd><p>color of the step line and the min/max marker points.
 <code>.useTheme</code> (default) resolves to <code>getTheme()$twin[1]</code> - a
-single accent color, consistent with <code><a href="lines.loess.html">lines.loess</a></code> and
+single accent color, consistent with <code><a href="lines.loess.html">lines.loess()</a></code> and
 <code><a href="plotQQ.html">plotQQ()</a></code>'s confidence band.</p></dd>
 
 
@@ -163,14 +163,14 @@ lines at the probability ticks <code>0</code>/<code>.25</code>/<code>.5</code>/<
 deliberately distinct look, not theme-driven). <code>.useTheme</code>
 (default) follows the active theme's grid on/off state
 (<code>getTheme()$grid</code>). <code>TRUE</code>/<code>FALSE</code>/<code>NA</code>, or a
-named list, as for <code><a href="https://rdrr.io/r/graphics/grid.html" class="external-link">grid</a></code>.</p></li>
+named list, as for <code><a href="https://rdrr.io/r/graphics/grid.html" class="external-link">graphics::grid()</a></code>.</p></li>
 </ul></dd>
 
 
 <dt id="arg-box">box<a class="anchor" aria-label="anchor" href="#arg-box"></a></dt>
 <dd><p>controls drawing of the plot box. <code>.useTheme</code> (default)
 resolves to <code>getTheme()$box</code>. <code>TRUE</code>/<code>FALSE</code>/<code>NA</code>,
-or a named list, as for <code><a href="https://rdrr.io/r/graphics/box.html" class="external-link">box</a></code>.</p></dd>
+or a named list, as for <code><a href="https://rdrr.io/r/graphics/box.html" class="external-link">graphics::box()</a></code>.</p></dd>
 
 
 <dt id="arg-stamp">stamp<a class="anchor" aria-label="anchor" href="#arg-stamp"></a></dt>
@@ -208,14 +208,14 @@ elements are passed to the internal legend drawing routine.</p></dd>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>The base <code><a href="https://rdrr.io/r/stats/ecdf.html" class="external-link">plot.ecdf</a></code>/<code><a href="https://rdrr.io/r/stats/ecdf.html" class="external-link">ecdf</a></code> machinery becomes
+    <p>The base <code><a href="https://rdrr.io/r/stats/ecdf.html" class="external-link">plot.ecdf()</a></code>/<code><a href="https://rdrr.io/r/stats/ecdf.html" class="external-link">ecdf()</a></code> machinery becomes
 impractically slow well below <code>n = 1e7</code>, since it tracks every single
 jump. Beyond a few thousand points, individual jumps are visually
 indistinguishable anyway, so <code>plotECDF()</code> caps the rendered resolution
 at <code>breaks</code> points by default.</p>
 <p>Resolution is achieved via quantile subsampling, not histogram binning:
 <code>breaks</code> evenly-spaced probability points are mapped back to their
-corresponding quantiles (<code><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></code>, <code>type = 7</code>).
+corresponding quantiles (<code><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">stats::quantile()</a></code>, <code>type = 7</code>).
 Each rendered point therefore lies exactly on the true ECDF - unlike an
 equal-width-histogram approximation, this adapts automatically to the
 shape of the distribution (no resolution is wasted on near-empty bins in
@@ -223,7 +223,7 @@ a skewed or heavy-tailed distribution, nor lost in the tails).</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="https://rdrr.io/r/stats/ecdf.html" class="external-link">plot.ecdf</a></code>, <code><a href="plotFdist.html">plotFdist</a></code>,
+    <div class="dont-index"><p><code><a href="https://rdrr.io/r/stats/ecdf.html" class="external-link">plot.ecdf()</a></code>, <code><a href="plotFdist.html">plotFdist()</a></code>,
 <a href="theme.html">theme</a></p>
 <p>Other plot.univariate:
 <code><a href="plotArea.html">plotArea()</a></code>,

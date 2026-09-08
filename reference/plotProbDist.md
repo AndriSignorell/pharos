@@ -104,7 +104,7 @@ plotProbDist(
 
 ## See also
 
-[`curve`](https://rdrr.io/r/graphics/curve.html)
+[`curve()`](https://rdrr.io/r/graphics/curve.html)
 
 Other plot.distribution: [`plotFun()`](plotFun.md),
 [`shade()`](shade.md)

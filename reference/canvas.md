@@ -22,7 +22,7 @@ canvas(xlim = NULL, ylim = xlim, main = NULL, asp = 1, usrbg = "white", ...)
 - asp:
 
   numeric, giving the aspect ratio y/x. (See
-  [`plot.window`](https://rdrr.io/r/graphics/plot.window.html) for
+  [`plot.window()`](https://rdrr.io/r/graphics/plot.window.html) for
   details. Default is 1.
 
 - usrbg:

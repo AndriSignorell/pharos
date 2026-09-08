@@ -107,7 +107,7 @@ plotFacet(
   [bedrock::callIf](https://andrisignorell.github.io/bedrock/reference/callIf.html):
   `TRUE` (default) draws strips with default settings,
   `FALSE`/`NULL`/`NA` suppresses them (no space is reserved), a named
-  list is passed as arguments to [`titleRect`](titleRect.md), e.g.
+  list is passed as arguments to [`titleRect()`](titleRect.md), e.g.
   `list(bg = "steelblue", col = "white", line = 1.5)`. The `label`
   argument is set per panel from `stripLabels` and cannot be overridden.
 
@@ -120,10 +120,10 @@ plotFacet(
   controls the grid lines, evaluated by
   [bedrock::callIf](https://andrisignorell.github.io/bedrock/reference/callIf.html):
   `TRUE` (default) draws grid lines at the positions of
-  [`axTicks`](axTicks.md) with default settings
+  [`axTicks()`](axTicks.md) with default settings
   (`col = "grey85", lwd = 0.8`), `FALSE`/`NULL`/`NA` suppresses them, a
   named list is passed as arguments to
-  [`abline`](https://rdrr.io/r/graphics/abline.html), e.g.
+  [`abline()`](https://rdrr.io/r/graphics/abline.html), e.g.
   `list(col = "white", lty = "dotted")`. The default positions `v` and
   `h` can be overridden, e.g. `list(v = seq(0, 20, 5))`.
 
@@ -152,7 +152,7 @@ size `plot_width_in`, `plot_height_in` in inches.
 ## Details
 
 The available device area inside the outer margins is partitioned with
-[`layout`](https://rdrr.io/r/graphics/layout.html) such that all plot
+[`layout()`](https://rdrr.io/r/graphics/layout.html) such that all plot
 regions have exactly the same size in inches. The horizontal gap between
 two adjacent columns is `horiz` margin lines, the vertical gap between
 two adjacent rows is `vert` lines. Since margin lines have the same
@@ -178,12 +178,12 @@ position, only by shape. The natural case is a set of diagnostics of one
 model against different predictors - the residual scale is shared and
 worth comparing, the predictor scales are not commensurable at all.
 
-The strip is drawn with [`titleRect`](titleRect.md) above each panel.
+The strip is drawn with [`titleRect()`](titleRect.md) above each panel.
 Its height (`line` argument of `titleRect`) is reserved in the top
 margin of every panel, so the strip never eats into the gap between the
 rows.
 
-Note that [`plot.new`](https://rdrr.io/r/graphics/frame.html) silently
+Note that [`plot.new()`](https://rdrr.io/r/graphics/frame.html) silently
 reduces `cex` (and with it `csi`, the physical size of a margin line) in
 layouts with more than two regions, which would make the realized panel
 margins deviate from the computed layout. The function therefore

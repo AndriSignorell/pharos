@@ -28,7 +28,7 @@ An object inheriting from class `"ellipseGeometry"`.
 
 ## Details
 
-Use [`rotate`](rotate.md) to rotate the resulting geometry.
+Use [`rotate()`](rotate.md) to rotate the resulting geometry.
 
 ## See also
 

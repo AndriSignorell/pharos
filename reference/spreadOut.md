@@ -25,9 +25,9 @@ spreadOut(x, mindist = NULL, cex = 1)
 
 - cex:
 
-  numeric character expansion factor; multiplied by
-  [`par`](https://rdrr.io/r/graphics/par.html)`("cex")` yields the final
-  character size; the default `NULL` is equivalent to `1`.
+  numeric character expansion factor; multiplied by `[par]("cex")`
+  yields the final character size; the default `NULL` is equivalent to
+  `1`.
 
 ## Value
 

@@ -22,7 +22,7 @@ strExtract(x, pattern, ...)
 - ...:
 
   additional arguments passed to
-  [`stri_extract_first_regex`](https://rdrr.io/pkg/stringi/man/stri_extract.html)
+  [`stringi::stri_extract_first_regex()`](https://rdrr.io/pkg/stringi/man/stri_extract.html)
 
 ## Value
 
@@ -32,14 +32,14 @@ If no match is found, `NA` is returned.
 ## Details
 
 This function is a thin wrapper around
-[`stri_extract_first_regex`](https://rdrr.io/pkg/stringi/man/stri_extract.html)
+[`stringi::stri_extract_first_regex()`](https://rdrr.io/pkg/stringi/man/stri_extract.html)
 providing a simplified interface for extracting the first match of a
 pattern.
 
 ## See also
 
-[`stri_extract_first_regex`](https://rdrr.io/pkg/stringi/man/stri_extract.html),
-[`strExtractBetween`](strExtractBetween.md)
+[`stringi::stri_extract_first_regex()`](https://rdrr.io/pkg/stringi/man/stri_extract.html),
+[`strExtractBetween()`](strExtractBetween.md)
 
 [string-overview](string-overview.md) for an overview of all string
 utilities in pharos.

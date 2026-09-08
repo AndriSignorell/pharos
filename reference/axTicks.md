@@ -47,8 +47,8 @@ gap.
 
 ## See also
 
-`axTicks`,
-[`axis.POSIXct`](https://rdrr.io/r/graphics/axis.POSIXct.html)
+`axTicks()`,
+[`axis.POSIXct()`](https://rdrr.io/r/graphics/axis.POSIXct.html)
 
 Other graphics.layout: [`abcCoords()`](abcCoords.md),
 [`axisBreak()`](axisBreak.md),

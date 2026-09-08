@@ -19,10 +19,10 @@ two tables below.
 
 *"Col" is any valid R color specification (name, hex string, or palette
 index) as accepted by*
-[`col2rgb`](https://rdrr.io/r/grDevices/col2rgb.html). No function
-starts from HSV: it is only ever a conversion target (via
-[`colToHSV`](colToHSV.md)), not a source – see the note below the second
-table for the reason this gap is left open.
+[`grDevices::col2rgb()`](https://rdrr.io/r/grDevices/col2rgb.html). No
+function starts from HSV: it is only ever a conversion target (via
+[`colToHSV()`](colToHSV.md)), not a source – see the note below the
+second table for the reason this gap is left open.
 
 ## RGB, CMY, CMYK, and long integer
 
@@ -48,8 +48,8 @@ representation, so they don't fit a row/column slot above:
 ## Why HSV has no source functions
 
 Base R already provides the HSV -\> Col/Hex direction via
-[`hsv()`](https://rdrr.io/r/grDevices/hsv.html), which builds a hex
-color string directly from h/s/v values – the same role
+[`grDevices::hsv()`](https://rdrr.io/r/grDevices/hsv.html), which builds
+a hex color string directly from h/s/v values – the same role
 [`rgb()`](https://rdrr.io/r/grDevices/rgb.html) plays for RGB triplets.
 pharos deliberately doesn't duplicate it; chain
 [`hsv()`](https://rdrr.io/r/grDevices/hsv.html) into

@@ -19,7 +19,7 @@ to the absolute value of the matrix entry and color indicating its sign."><meta 
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.953</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.954</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -99,7 +99,7 @@ title.</p></dd>
 <dd><p>two colors for the connecting lines: the first is used for
 negative values, the second for positive values. <code>.useTheme</code>
 (default) resolves to <code>getTheme()$twin</code> - consistent with the
-sign-based coloring in <code><a href="plotCor.html">plotCor</a></code>.</p></dd>
+sign-based coloring in <code><a href="plotCor.html">plotCor()</a></code>.</p></dd>
 
 
 <dt id="arg-lty">lty<a class="anchor" aria-label="anchor" href="#arg-lty"></a></dt>
@@ -150,7 +150,7 @@ overrides individual elements (<code>pch</code>, <code>cex</code>, <code>col</co
 <dd><p>controls the legend. <code>TRUE</code> (default) draws a legend
 showing the line widths and colors for the minimum/maximum positive
 and negative values. <code>FALSE</code>/<code>NA</code> suppresses it. A named
-list overrides arguments forwarded to <code><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></code>.</p></dd>
+list overrides arguments forwarded to <code><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">graphics::legend()</a></code>.</p></dd>
 
 
 <dt id="arg-stamp">stamp<a class="anchor" aria-label="anchor" href="#arg-stamp"></a></dt>
@@ -161,7 +161,7 @@ resolves to <code>getTheme()$stamp</code>. <code>TRUE</code>/<code>FALSE</code>/
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>further graphical parameters passed to
-<code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> and to the internal <code><a href="canvas.html">canvas()</a></code> call.</p></dd>
+<code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">graphics::par()</a></code> and to the internal <code><a href="canvas.html">canvas()</a></code> call.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -177,7 +177,7 @@ the same order as <code>m[lower.tri(m)]</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="plotCor.html">plotCor</a></code>, <a href="theme.html">theme</a></p>
+    <div class="dont-index"><p><code><a href="plotCor.html">plotCor()</a></code>, <a href="theme.html">theme</a></p>
 <p>Other plot.special:
 <code><a href="binaryTree.html">plotBinaryTree()</a></code>,
 <code><a href="plotCirc.html">plotCirc()</a></code>,

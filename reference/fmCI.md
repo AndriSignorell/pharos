@@ -19,7 +19,7 @@ fmCI(x, template = NULL, ...)
 
   character string as template for the desired format. %s are the
   placeholders for the numerical values. Default is
-  `\code{"%s [%s, %s]"}` for `<est> [<lci>, <uci>]`.
+  `` `"%s [%s, %s]"` `` for `<est> [<lci>, <uci>]`.
 
 - ...:
 
@@ -31,7 +31,7 @@ a formatted string
 
 ## See also
 
-[`fm`](fm.md)
+[`fm()`](fm.md)
 
 Other format: [`convUnit()`](convUnit.md), [`fm()`](fm.md),
 [`print.Unit()`](print.Unit.md), [`style()`](style.md),

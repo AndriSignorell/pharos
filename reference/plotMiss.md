@@ -42,7 +42,7 @@ plotMiss(
 - ...:
 
   the dots are passed to
-  [`plot`](https://rdrr.io/r/graphics/plot.default.html).
+  [`plot()`](https://rdrr.io/r/graphics/plot.default.html).
 
 ## Value
 
@@ -59,8 +59,8 @@ Following an idea of Henk Harmsen <henk@carbonmetrics.com>
 
 ## See also
 
-[`hclust`](https://rdrr.io/r/stats/hclust.html),
-[`countCompCases`](https://andrisignorell.github.io/bedrock/reference/countCompCases.html)
+[`hclust()`](https://rdrr.io/r/stats/hclust.html),
+[`bedrock::countCompCases()`](https://andrisignorell.github.io/bedrock/reference/countCompCases.html)
 
 Other plot.special: [`plotBinaryTree()`](binaryTree.md),
 [`plotCirc()`](plotCirc.md), [`plotLift()`](plotLift.md),

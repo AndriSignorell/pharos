@@ -6,10 +6,10 @@
     }
   };
 </script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Split Strings — strSplit"><meta name="description" content="Splits character vectors into substrings. This is a convenience wrapper
-around stri_split_fixed and
-stri_split_regex with simplified defaults."><meta property="og:description" content="Splits character vectors into substrings. This is a convenience wrapper
-around stri_split_fixed and
-stri_split_regex with simplified defaults."><meta property="og:image" content="/logo.png"></head><body>
+around stringi::stri_split_fixed() and
+stringi::stri_split_regex() with simplified defaults."><meta property="og:description" content="Splits character vectors into substrings. This is a convenience wrapper
+around stringi::stri_split_fixed() and
+stringi::stri_split_regex() with simplified defaults."><meta property="og:image" content="/logo.png"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -17,7 +17,7 @@ stri_split_regex with simplified defaults."><meta property="og:image" content="/
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.953</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.954</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,8 +53,8 @@ stri_split_regex with simplified defaults."><meta property="og:image" content="/
 
     <div class="ref-description section level2">
     <p>Splits character vectors into substrings. This is a convenience wrapper
-around <code><a href="https://rdrr.io/pkg/stringi/man/stri_split.html" class="external-link">stri_split_fixed</a></code> and
-<code><a href="https://rdrr.io/pkg/stringi/man/stri_split.html" class="external-link">stri_split_regex</a></code> with simplified defaults.</p>
+around <code><a href="https://rdrr.io/pkg/stringi/man/stri_split.html" class="external-link">stringi::stri_split_fixed()</a></code> and
+<code><a href="https://rdrr.io/pkg/stringi/man/stri_split.html" class="external-link">stringi::stri_split_regex()</a></code> with simplified defaults.</p>
     </div>
 
     <div class="section level2">
@@ -91,13 +91,13 @@ vector is returned.</p>
 vector instead of a list for convenience.</p>
 <p>This function provides a simplified interface to string splitting using
 the <span class="pkg">stringi</span> package. It avoids some of the complexity of
-<code><a href="https://rdrr.io/r/base/strsplit.html" class="external-link">strsplit</a></code> while providing consistent and Unicode-aware
+<code><a href="https://rdrr.io/r/base/strsplit.html" class="external-link">base::strsplit()</a></code> while providing consistent and Unicode-aware
 behavior.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="https://rdrr.io/pkg/stringi/man/stri_split.html" class="external-link">stri_split_fixed</a></code>,
-<code><a href="https://rdrr.io/pkg/stringi/man/stri_split.html" class="external-link">stri_split_regex</a></code>, <code><a href="https://rdrr.io/r/base/strsplit.html" class="external-link">strsplit</a></code></p>
+    <div class="dont-index"><p><code><a href="https://rdrr.io/pkg/stringi/man/stri_split.html" class="external-link">stringi::stri_split_fixed()</a></code>,
+<code><a href="https://rdrr.io/pkg/stringi/man/stri_split.html" class="external-link">stringi::stri_split_regex()</a></code>, <code><a href="https://rdrr.io/r/base/strsplit.html" class="external-link">base::strsplit()</a></code></p>
 <p><a href="string-overview.html">string-overview</a> for an overview of all string utilities in pharos.</p></div>
     </div>
 

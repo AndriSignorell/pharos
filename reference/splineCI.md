@@ -34,7 +34,7 @@ lines(
 - ...:
 
   further arguments passed to
-  [`smooth.spline`](https://rdrr.io/r/stats/smooth.spline.html).
+  [`stats::smooth.spline()`](https://rdrr.io/r/stats/smooth.spline.html).
 
 - formula:
 
@@ -44,9 +44,9 @@ lines(
 - data:
 
   an optional matrix or data frame (or similar; see
-  [`model.frame`](https://rdrr.io/r/stats/model.frame.html)) containing
-  the variables in the formula. By default the variables are taken from
-  `environment(formula)`.
+  [`stats::model.frame()`](https://rdrr.io/r/stats/model.frame.html))
+  containing the variables in the formula. By default the variables are
+  taken from `environment(formula)`.
 
 - subset:
 
@@ -77,7 +77,7 @@ lines(
 - type:
 
   plotting type passed to
-  [`lines`](https://rdrr.io/r/graphics/lines.html).
+  [`lines()`](https://rdrr.io/r/graphics/lines.html).
 
 - bandArgs:
 
@@ -97,8 +97,8 @@ Confidence bands are controlled via `bandArgs`. These arguments can be:
 
 ## See also
 
-[`loess`](https://rdrr.io/r/stats/loess.html),
-[`scatter.smooth`](https://rdrr.io/r/stats/scatter.smooth.html)
+[`loess()`](https://rdrr.io/r/stats/loess.html),
+[`scatter.smooth()`](https://rdrr.io/r/stats/scatter.smooth.html)
 
 Other graphics.trendlines: [`lines.lm()`](linesLm.md),
 [`lines.loess()`](lines.loess.md)

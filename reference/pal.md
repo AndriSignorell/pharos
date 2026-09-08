@@ -8,7 +8,7 @@ exactly `n` colors regardless of their base size:
 - `n = length(base)`: returned as-is
 
 - `n > length(base)`: interpolated via
-  [`colorRampPalette`](https://rdrr.io/r/grDevices/colorRamp.html)
+  [`grDevices::colorRampPalette()`](https://rdrr.io/r/grDevices/colorRamp.html)
 
 ## Usage
 
@@ -24,9 +24,10 @@ plot(x, cex = 2.5, border = "grey70", ...)
 - name:
 
   character or integer. Palette name (full match via
-  [`match.arg`](https://rdrr.io/r/base/match.arg.html)) or index into
-  [`palNames()`](palNames.md). If missing, returns the palette named in
-  the active theme (`getTheme()$palette`, see [theme](theme.md)).
+  [`base::match.arg()`](https://rdrr.io/r/base/match.arg.html)) or index
+  into [`palNames()`](palNames.md). If missing, returns the palette
+  named in the active theme (`getTheme()$palette`, see
+  [theme](theme.md)).
 
 - n:
 
@@ -36,7 +37,7 @@ plot(x, cex = 2.5, border = "grey70", ...)
 - opacity:
 
   numeric in \\\[0, 1\]\\, opacity. Default `1` (opaque). Applied via
-  [`adjustcolor`](https://rdrr.io/r/grDevices/adjustcolor.html).
+  [`grDevices::adjustcolor()`](https://rdrr.io/r/grDevices/adjustcolor.html).
 
 - x:
 
@@ -61,9 +62,9 @@ a character vector of `n` hex color codes of class
 
 ## See also
 
-[`palNames`](palNames.md),
-[`colorRampPalette`](https://rdrr.io/r/grDevices/colorRamp.html),
-[`adjustcolor`](https://rdrr.io/r/grDevices/adjustcolor.html)
+[`palNames()`](palNames.md),
+[`grDevices::colorRampPalette()`](https://rdrr.io/r/grDevices/colorRamp.html),
+[`grDevices::adjustcolor()`](https://rdrr.io/r/grDevices/adjustcolor.html)
 
 Other color.palettes: [`hcol()`](hcol.md), [`palNames()`](palNames.md)
 

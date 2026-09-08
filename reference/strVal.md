@@ -58,8 +58,8 @@ accordingly before coercion.
 
 ## See also
 
-[`as.numeric`](https://rdrr.io/r/base/numeric.html),
-[`stri_extract_all_regex`](https://rdrr.io/pkg/stringi/man/stri_extract.html)
+[`as.numeric()`](https://rdrr.io/r/base/numeric.html),
+[`stringi::stri_extract_all_regex()`](https://rdrr.io/pkg/stringi/man/stri_extract.html)
 
 [string-overview](string-overview.md) for an overview of all string
 utilities in pharos.

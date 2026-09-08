@@ -42,12 +42,12 @@ For `type = "NATO"`, uppercase letters can optionally be prefixed (e.g.,
 `"CAP Alfa"`) to distinguish them from lowercase letters.
 
 The function uses Unicode-aware character splitting via
-[`stri_split_boundaries`](https://rdrr.io/pkg/stringi/man/stri_split_boundaries.html).
+[`stringi::stri_split_boundaries()`](https://rdrr.io/pkg/stringi/man/stri_split_boundaries.html).
 
 ## See also
 
-[`strTrim`](strTrim.md),
-[`stri_split_boundaries`](https://rdrr.io/pkg/stringi/man/stri_split_boundaries.html)
+[`strTrim()`](strTrim.md),
+[`stringi::stri_split_boundaries()`](https://rdrr.io/pkg/stringi/man/stri_split_boundaries.html)
 
 [string-overview](string-overview.md) for an overview of all string
 utilities in pharos.

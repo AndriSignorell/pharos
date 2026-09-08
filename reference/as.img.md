@@ -2,7 +2,7 @@
 
 Evaluates a plotting expression in a temporary PNG device and returns
 the resulting image as a self-contained, base64-encoded `<img>` tag
-(class `"html"`, see [`as.html`](as.html.md)), suitable for embedding
+(class `"html"`, see [`as.html()`](as.html.md)), suitable for embedding
 directly in HTML text – a report, a question, an e-mail.
 
 ## Usage
@@ -31,7 +31,7 @@ as.img(expr, width = 520, height = 440, res = 96, ...)
 - ...:
 
   further arguments passed to
-  [`png`](https://rdrr.io/r/grDevices/png.html)
+  [`grDevices::png()`](https://rdrr.io/r/grDevices/png.html)
 
 ## Value
 

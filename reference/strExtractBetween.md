@@ -43,13 +43,13 @@ form:
 - non-greedy: `left (.*?) right`
 
 Extraction is performed using
-[`stri_match_first_regex`](https://rdrr.io/pkg/stringi/man/stri_match.html),
+[`stringi::stri_match_first_regex()`](https://rdrr.io/pkg/stringi/man/stri_match.html),
 which returns the first captured group.
 
 ## See also
 
-[`stri_match_first_regex`](https://rdrr.io/pkg/stringi/man/stri_match.html),
-[`strExtract`](strExtract.md)
+[`stringi::stri_match_first_regex()`](https://rdrr.io/pkg/stringi/man/stri_match.html),
+[`strExtract()`](strExtract.md)
 
 [string-overview](string-overview.md) for an overview of all string
 utilities in pharos.

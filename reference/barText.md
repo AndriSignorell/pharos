@@ -57,8 +57,8 @@ barText(
 - cex:
 
   numeric character expansion factor; multiplied by
-  [`par`](https://rdrr.io/r/graphics/par.html)`("cex")` yields the final
-  character size. `NULL` and `NA` are equivalent to `1.0`.
+  [`par()`](https://rdrr.io/r/graphics/par.html)`("cex")` yields the
+  final character size. `NULL` and `NA` are equivalent to `1.0`.
 
 - adj:
 
@@ -83,7 +83,7 @@ barText(
 
 - ...:
 
-  the dots are passed to the [`boxedText`](boxedText.md).
+  the dots are passed to the [`boxedText()`](boxedText.md).
 
 ## Value
 

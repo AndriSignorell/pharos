@@ -40,7 +40,7 @@ The string(s) passed as `x` now with a maximum length of `maxlen` + 3
 
 ## See also
 
-[`strAlign`](strAlign.md), [`strPad`](strPad.md)
+[`strAlign()`](strAlign.md), [`strPad()`](strPad.md)
 
 [string-overview](string-overview.md) for an overview of all string
 utilities in pharos.

@@ -58,12 +58,12 @@ plot(
   `1`
 
   :   Spineplot
-      ([`spineplot`](https://rdrr.io/r/graphics/spineplot.html)).
+      ([`graphics::spineplot()`](https://rdrr.io/r/graphics/spineplot.html)).
       Default.
 
   `2`
 
-  :   Mosaic plot (via [`plotMosaic`](plotMosaic.md)).
+  :   Mosaic plot (via [`plotMosaic()`](plotMosaic.md)).
 
   `3`
 
@@ -72,12 +72,12 @@ plot(
   `4`
 
   :   Association plot (Cohen-Friendly plot) via
-      [`plotAssoc`](plotAssoc.md).
+      [`plotAssoc()`](plotAssoc.md).
 
   `5`
 
-  :   Heatmap of cell proportions (via [`plotHeatmap`](plotHeatmap.md),
-      `scale = "prop"`).
+  :   Heatmap of cell proportions (via
+      [`plotHeatmap()`](plotHeatmap.md), `scale = "prop"`).
 
   Selecting multiple panels does not change the plotting layout (no
   implicit `mfrow`) - as with other `plot.Desc.*` methods, arranging
@@ -110,17 +110,17 @@ plot(
 
   :   a grey ramp from `"grey30"` to `"grey90"`, sized to the number of
       columns of `tab` (the fill dimension of the untransposed mosaic),
-      passed to [`plotMosaic`](plotMosaic.md).
+      passed to [`plotMosaic()`](plotMosaic.md).
 
   panel 3
 
   :   a grey ramp from `"grey30"` to `"grey90"`, sized to the number of
       rows of `tab` - with `swap = TRUE` the fill dimension is the row
-      dimension, passed to [`plotMosaic`](plotMosaic.md).
+      dimension, passed to [`plotMosaic()`](plotMosaic.md).
 
   panel 4
 
-  :   left at [`plotAssoc`](plotAssoc.md)'s own default
+  :   left at [`plotAssoc()`](plotAssoc.md)'s own default
       (`pal("red-white-blue-3", n = 100)`), a diverging palette - cell
       colors there encode the sign and strength of Pearson residuals, so
       a categorical or grey-ramp default would not be meaningful.
@@ -129,7 +129,7 @@ plot(
 
   panel 5
 
-  :   left at [`plotHeatmap`](plotHeatmap.md)'s own default
+  :   left at [`plotHeatmap()`](plotHeatmap.md)'s own default
       (`pal("Blues", n = 100)`), a sequential ramp - cell colors there
       encode magnitude only. Supplying `col` overrides this.
 
@@ -151,41 +151,41 @@ plot(
 
   panels 2/3
 
-  :   [`plotMosaic`](plotMosaic.md) always draws its own frame; this
+  :   [`plotMosaic()`](plotMosaic.md) always draws its own frame; this
       argument has no effect.
 
   panel 4
 
-  :   [`plotAssoc`](plotAssoc.md) has no frame/box concept of its own
+  :   [`plotAssoc()`](plotAssoc.md) has no frame/box concept of its own
       (it draws dashed reference lines instead); this argument has no
       effect.
 
   panel 5
 
-  :   forwarded as-is to [`plotHeatmap`](plotHeatmap.md)'s own `box`
+  :   forwarded as-is to [`plotHeatmap()`](plotHeatmap.md)'s own `box`
       argument, which draws the outer frame via
       [`rect()`](https://rdrr.io/r/graphics/rect.html) at the exact tile
       boundaries rather than
-      [`box()`](https://rdrr.io/r/graphics/box.html).
+      [`graphics::box()`](https://rdrr.io/r/graphics/box.html).
 
 - stamp:
 
   controls the corner stamp. `.useTheme` (default) resolves to
   `getTheme()$stamp`, drawn once after all selected panels. Panels 2-5
-  delegate to [`plotMosaic`](plotMosaic.md)/
-  [`plotAssoc`](plotAssoc.md)/[`plotHeatmap`](plotHeatmap.md), whose own
-  `stamp` argument is set to `NA` internally to avoid a duplicate.
+  delegate to [`plotMosaic()`](plotMosaic.md)/
+  [`plotAssoc()`](plotAssoc.md)/[`plotHeatmap()`](plotHeatmap.md), whose
+  own `stamp` argument is set to `NA` internally to avoid a duplicate.
   `TRUE`/`FALSE`/`NULL`, a string, or a named list for
   [`stamp()`](stamp.md).
 
 - ...:
 
   further graphical parameters, passed to
-  [`par`](https://rdrr.io/r/graphics/par.html) via the internal
+  [`par()`](https://rdrr.io/r/graphics/par.html) via the internal
   framework and to the underlying panel-drawing functions
   ([`spineplot()`](https://rdrr.io/r/graphics/spineplot.html),
-  [`plotMosaic`](plotMosaic.md), [`plotAssoc`](plotAssoc.md), or
-  [`plotHeatmap`](plotHeatmap.md), depending on the selected panel).
+  [`plotMosaic()`](plotMosaic.md), [`plotAssoc()`](plotAssoc.md), or
+  [`plotHeatmap()`](plotHeatmap.md), depending on the selected panel).
 
 ## Value
 
@@ -203,9 +203,9 @@ invisibly without drawing anything.
 
 ## See also
 
-`DescToolsX::desc`, [`plotAssoc`](plotAssoc.md),
-[`plotHeatmap`](plotHeatmap.md), [`plotMosaic`](plotMosaic.md),
-[`spineplot`](https://rdrr.io/r/graphics/spineplot.html)
+`DescToolsX::desc`, [`plotAssoc()`](plotAssoc.md),
+[`plotHeatmap()`](plotHeatmap.md), [`plotMosaic()`](plotMosaic.md),
+[`graphics::spineplot()`](https://rdrr.io/r/graphics/spineplot.html)
 
 Other plot.s3: [`plot.BlandAltman()`](plot.BlandAltman.md),
 [`plot.Desc.qn()`](plot.Desc.qn.md), [`plot.Lc()`](plot.lc.md)

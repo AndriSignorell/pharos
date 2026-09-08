@@ -5,10 +5,10 @@ function extends graphics::polygon() with support for geometry objects
 such as circle(), ellipse(), regPolygon() and ring() and further remains
 fully compatible with its original interface. \#' For ordinary
 coordinate vectors the call is forwarded to
-[`polygon`](https://rdrr.io/r/graphics/polygon.html). Geometry objects
-such as [`circle`](circle.md), [`ellipse`](ellipse.md),
-[`regPolygon`](regPolygon.md) and [`ring`](ring.md) are dispatched to
-specialised methods.
+[`graphics::polygon()`](https://rdrr.io/r/graphics/polygon.html).
+Geometry objects such as [`circle()`](circle.md),
+[`ellipse()`](ellipse.md), [`regPolygon()`](regPolygon.md) and
+[`ring()`](ring.md) are dispatched to specialised methods.
 
 ## Usage
 
@@ -76,8 +76,8 @@ polygon(x, ...)
 - rule:
 
   character string specifying the filling rule passed to
-  [`polypath`](https://rdrr.io/r/graphics/polypath.html). One of
-  `"evenodd"` or `"winding"`.
+  [`graphics::polypath()`](https://rdrr.io/r/graphics/polypath.html).
+  One of `"evenodd"` or `"winding"`.
 
 ## Value
 

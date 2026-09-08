@@ -5,9 +5,9 @@
       fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
     }
   };
-</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Correlation Matrix Plot with Theming and Optional Labels — plotCor"><meta name="description" content="Draws a correlation matrix using image with
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Correlation Matrix Plot with Theming and Optional Labels — plotCor"><meta name="description" content="Draws a correlation matrix using graphics::image() with
 optional clustering, triangular display, grid lines, color legend,
-and numeric labels inside the cells."><meta property="og:description" content="Draws a correlation matrix using image with
+and numeric labels inside the cells."><meta property="og:description" content="Draws a correlation matrix using graphics::image() with
 optional clustering, triangular display, grid lines, color legend,
 and numeric labels inside the cells."><meta property="og:image" content="/logo.png"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -17,7 +17,7 @@ and numeric labels inside the cells."><meta property="og:image" content="/logo.p
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.953</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.954</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,7 +52,7 @@ and numeric labels inside the cells."><meta property="og:image" content="/logo.p
     </div>
 
     <div class="ref-description section level2">
-    <p>Draws a correlation matrix using <code><a href="https://rdrr.io/r/graphics/image.html" class="external-link">image</a></code> with
+    <p>Draws a correlation matrix using <code><a href="https://rdrr.io/r/graphics/image.html" class="external-link">graphics::image()</a></code> with
 optional clustering, triangular display, grid lines, color legend,
 and numeric labels inside the cells.</p>
     </div>
@@ -100,7 +100,7 @@ and numeric labels inside the cells.</p>
 <dd><p>suppress axis</p></dd>
 
 <dt><code>list(...)</code></dt>
-<dd><p>custom axis parameters passed to <code><a href="https://rdrr.io/r/graphics/axis.html" class="external-link">axis</a></code></p></dd>
+<dd><p>custom axis parameters passed to <code><a href="https://rdrr.io/r/graphics/axis.html" class="external-link">graphics::axis()</a></code></p></dd>
 
 
 </dl></dd>
@@ -172,7 +172,7 @@ or a named list, as for <code>grid</code>.</p></dd>
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>additional graphical parameters passed to
-<code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> and <code><a href="https://rdrr.io/r/graphics/image.html" class="external-link">image</a></code>.</p></dd>
+<code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">graphics::par()</a></code> and <code><a href="https://rdrr.io/r/graphics/image.html" class="external-link">graphics::image()</a></code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -190,18 +190,18 @@ can be supplied via <code>...</code>.</p></li>
 <ol><li><p>Optionally reorders the matrix using hierarchical clustering.</p></li>
 <li><p>Masks parts of the matrix according to <code>triangle</code> and <code>diag</code>.</p></li>
 <li><p>Adjusts plot margins based on label sizes.</p></li>
-<li><p>Draws the matrix using <code><a href="https://rdrr.io/r/graphics/image.html" class="external-link">image</a></code>.</p></li>
+<li><p>Draws the matrix using <code><a href="https://rdrr.io/r/graphics/image.html" class="external-link">graphics::image()</a></code>.</p></li>
 <li><p>Optionally adds grid lines, numeric labels, axes, and a color legend.</p></li>
-</ol><p>Grid lines are drawn via clipped <code><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline()</a></code> calls
+</ol><p>Grid lines are drawn via clipped <code><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">graphics::abline()</a></code> calls
 at the matrix's half-integer cell boundaries rather than via
-<code><a href="https://rdrr.io/r/graphics/grid.html" class="external-link">grid()</a></code>: <code><a href="https://rdrr.io/r/graphics/grid.html" class="external-link">grid()</a></code>'s <code>nx</code>/<code>ny</code>
+<code><a href="https://rdrr.io/r/graphics/grid.html" class="external-link">graphics::grid()</a></code>: <code><a href="https://rdrr.io/r/graphics/grid.html" class="external-link">grid()</a></code>'s <code>nx</code>/<code>ny</code>
 divide the full plot region (<code>par("usr")</code>), which may carry axis
 padding unrelated to <code><a href="https://rdrr.io/r/graphics/image.html" class="external-link">image()</a></code>'s integer cell geometry, whereas the
 clipped approach stays exact regardless of that padding.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="https://rdrr.io/r/graphics/image.html" class="external-link">image</a></code>, <code><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></code>,
+    <div class="dont-index"><p><code><a href="https://rdrr.io/r/graphics/image.html" class="external-link">graphics::image()</a></code>, <code><a href="https://rdrr.io/r/stats/cor.html" class="external-link">stats::cor()</a></code>,
 <a href="theme.html">theme</a></p>
 <p>Other plot.bivariate:
 <code><a href="plotAssoc.html">plotAssoc()</a></code>,

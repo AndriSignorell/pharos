@@ -17,7 +17,7 @@ optionally be overlaid."><meta property="og:image" content="/logo.png"></head><b
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.953</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.954</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -104,7 +104,7 @@ optionally be overlaid.</p>
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>graphical parameters. Parameters recognized by the
 internal graphics framework are applied via <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par()</a></code>;
-remaining arguments are forwarded to <code><a href="https://rdrr.io/r/graphics/boxplot.html" class="external-link">boxplot</a></code>.</p></dd>
+remaining arguments are forwarded to <code><a href="https://rdrr.io/r/graphics/boxplot.html" class="external-link">graphics::boxplot()</a></code>.</p></dd>
 
 
 <dt id="arg-g">g<a class="anchor" aria-label="anchor" href="#arg-g"></a></dt>
@@ -137,7 +137,7 @@ automatically.</p></dd>
 <dd><p>controls drawing of the background grid.
 Can be:</p><ul><li><p><code>TRUE</code>: draw grid with default settings</p></li>
 <li><p><code>FALSE</code>, <code>NULL</code>, or <code>NA</code>: suppress grid</p></li>
-<li><p>a named list: arguments passed to <code><a href="https://rdrr.io/r/graphics/grid.html" class="external-link">grid</a></code>,
+<li><p>a named list: arguments passed to <code><a href="https://rdrr.io/r/graphics/grid.html" class="external-link">graphics::grid()</a></code>,
 e.g. <code>list(col = "red", nx = NA, ny = NULL)</code> for vertical
 lines only</p></li>
 </ul></dd>
@@ -182,14 +182,14 @@ or an explicit string, as for <code><a href="graphics-framework.html">.withGraph
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Optional plot components are controlled using
-<code><a href="https://andrisignorell.github.io/bedrock/reference/callIf.html" class="external-link">callIf</a></code> semantics:</p><ul><li><p><code>TRUE</code>: draw with defaults</p></li>
+<code><a href="https://andrisignorell.github.io/bedrock/reference/callIf.html" class="external-link">bedrock::callIf()</a></code> semantics:</p><ul><li><p><code>TRUE</code>: draw with defaults</p></li>
 <li><p><code>FALSE</code>, <code>NULL</code>, or <code>NA</code>: suppress component</p></li>
 <li><p>named list: customize component arguments</p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="https://rdrr.io/r/graphics/boxplot.html" class="external-link">boxplot</a></code>,
-<code><a href="https://andrisignorell.github.io/bedrock/reference/callIf.html" class="external-link">callIf</a></code></p>
+    <div class="dont-index"><p><code><a href="https://rdrr.io/r/graphics/boxplot.html" class="external-link">graphics::boxplot()</a></code>,
+<code><a href="https://andrisignorell.github.io/bedrock/reference/callIf.html" class="external-link">bedrock::callIf()</a></code></p>
 <p>Other plot.univariate:
 <code><a href="plotArea.html">plotArea()</a></code>,
 <code><a href="plotBar.html">plotBar()</a></code>,

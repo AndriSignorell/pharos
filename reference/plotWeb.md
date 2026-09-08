@@ -42,7 +42,7 @@ plotWeb(
   two colors for the connecting lines: the first is used for negative
   values, the second for positive values. `.useTheme` (default) resolves
   to `getTheme()$twin` - consistent with the sign-based coloring in
-  [`plotCor`](plotCor.md).
+  [`plotCor()`](plotCor.md).
 
 - lty:
 
@@ -92,7 +92,8 @@ plotWeb(
   controls the legend. `TRUE` (default) draws a legend showing the line
   widths and colors for the minimum/maximum positive and negative
   values. `FALSE`/`NA` suppresses it. A named list overrides arguments
-  forwarded to [`legend`](https://rdrr.io/r/graphics/legend.html).
+  forwarded to
+  [`graphics::legend()`](https://rdrr.io/r/graphics/legend.html).
 
 - stamp:
 
@@ -103,8 +104,8 @@ plotWeb(
 - ...:
 
   further graphical parameters passed to
-  [`par`](https://rdrr.io/r/graphics/par.html) and to the internal
-  [`canvas()`](canvas.md) call.
+  [`graphics::par()`](https://rdrr.io/r/graphics/par.html) and to the
+  internal [`canvas()`](canvas.md) call.
 
 ## Value
 
@@ -119,7 +120,7 @@ The function uses the lower triangular matrix of `m`; when overriding
 
 ## See also
 
-[`plotCor`](plotCor.md), [theme](theme.md)
+[`plotCor()`](plotCor.md), [theme](theme.md)
 
 Other plot.special: [`plotBinaryTree()`](binaryTree.md),
 [`plotCirc()`](plotCirc.md), [`plotLift()`](plotLift.md),

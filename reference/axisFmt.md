@@ -92,7 +92,7 @@ or `NA` when `srt` is `NULL`).
 
 The `fmt` argument is passed straight to [`fm()`](fm.md) and therefore
 accepts the full range of format specifications: a special short code
-(e.g. `"%"`, `"e"`, `"eng"`, `"p"`), an ISO-8601 date pattern (e.g.
+(e.g. `"\%"`, `"e"`, `"eng"`, `"p"`), an ISO-8601 date pattern (e.g.
 `"MMM yyyy"`), a `Style` object, a bare (named) list treated as a style
 template (e.g. `fmt = list(digits = 1, bigMark = " ")`), or a function
 of `x`. See [`fm()`](fm.md) for the details.

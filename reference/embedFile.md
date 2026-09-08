@@ -1,7 +1,7 @@
 # Base64-encode a file
 
-The building block behind [`as.img`](as.img.md) and
-[`as.fileLink`](as.fileLink.md): reads a file and returns its contents
+The building block behind [`as.img()`](as.img.md) and
+[`as.fileLink()`](as.fileLink.md): reads a file and returns its contents
 base64-encoded, ready to be placed in a data URI or in any container
 format that carries binary payloads as text.
 

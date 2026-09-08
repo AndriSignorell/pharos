@@ -1,7 +1,7 @@
 # Mark a character vector as HTML
 
 Tags a character vector with the S3 class `"html"` so that it prints via
-[`preview.html`](preview.html.md) as readable text instead of as a raw
+[`preview.html()`](preview.html.md) as readable text instead of as a raw
 character vector.
 
 ## Usage

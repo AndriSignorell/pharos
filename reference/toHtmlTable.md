@@ -3,8 +3,8 @@
 Converts a matrix (or vector) to a `<table>` HTML fragment, with
 optional row/column headers, caption, per-column alignment and widths.
 The result has class `c("html", "character")` (see
-[`as.html`](as.html.md)) and prints as a formatted text table via
-[`preview.html`](preview.html.md).
+[`as.html()`](as.html.md)) and prints as a formatted text table via
+[`preview.html()`](preview.html.md).
 
 ## Usage
 

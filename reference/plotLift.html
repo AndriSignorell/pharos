@@ -21,7 +21,7 @@ a random share of the same size."><meta property="og:image" content="/logo.png">
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.953</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.954</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -124,7 +124,7 @@ from <code>type</code>.</p></dd>
 <dt id="arg-col">col<a class="anchor" aria-label="anchor" href="#arg-col"></a></dt>
 <dd><p>color of the curve or the bars. <code>.useTheme</code> (default)
 resolves to <code>getTheme()$twin[1]</code> - a single accent color,
-consistent with <code><a href="plotECDF.html">plotECDF</a></code>.</p></dd>
+consistent with <code><a href="plotECDF.html">plotECDF()</a></code>.</p></dd>
 
 
 <dt id="arg-lwd">lwd<a class="anchor" aria-label="anchor" href="#arg-lwd"></a></dt>
@@ -138,7 +138,7 @@ Can be:</p><ul><li><p><code>.useTheme</code> (default): follow the active theme
 (<code>getTheme()$grid</code>)</p></li>
 <li><p><code>TRUE</code>: draw grid with theme settings</p></li>
 <li><p><code>FALSE</code>, <code>NULL</code>, or <code>NA</code>: suppress grid</p></li>
-<li><p>a named list: arguments passed to <code><a href="https://rdrr.io/r/graphics/grid.html" class="external-link">grid</a></code>,
+<li><p>a named list: arguments passed to <code><a href="https://rdrr.io/r/graphics/grid.html" class="external-link">graphics::grid()</a></code>,
 overriding the theme defaults for this call only</p></li>
 </ul></dd>
 
@@ -155,8 +155,8 @@ horizontal line at 1 for <code>type = "cumulative"</code> and
 <code>"decile"</code>, the diagonal for <code>type = "gain"</code>.
 Can be:</p><ul><li><p><code>TRUE</code> (default): draw with default settings</p></li>
 <li><p><code>FALSE</code>, <code>NULL</code>, or <code>NA</code>: suppress</p></li>
-<li><p>a named list: arguments passed to <code><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></code>
-(or <code><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></code> for <code>type = "decile"</code>),
+<li><p>a named list: arguments passed to <code><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">graphics::lines()</a></code>
+(or <code><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">graphics::abline()</a></code> for <code>type = "decile"</code>),
 e.g. <code>list(col = "black", lty = "dotted")</code></p></li>
 </ul></dd>
 
@@ -173,7 +173,7 @@ effect for <code>type = "decile"</code>.</p></dd>
 <dd><p>controls drawing of the legend.
 Can be:</p><ul><li><p><code>TRUE</code> (default): draw with default settings</p></li>
 <li><p><code>FALSE</code>, <code>NULL</code>, or <code>NA</code>: suppress</p></li>
-<li><p>a named list: arguments passed to <code><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></code>,
+<li><p>a named list: arguments passed to <code><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">graphics::legend()</a></code>,
 e.g. <code>list(x = "bottomleft")</code></p></li>
 </ul></dd>
 
@@ -207,7 +207,7 @@ value: a model that separates well over the first two deciles and poorly
 afterwards is preferable for a small campaign to one with the reverse
 profile and identical AUC.</p>
 <p>Optional plot components (<code>grid</code>, <code>box</code>, <code>baseline</code>,
-<code>perfect</code>, <code>legend</code>) follow <code><a href="https://andrisignorell.github.io/bedrock/reference/callIf.html" class="external-link">callIf</a></code>
+<code>perfect</code>, <code>legend</code>) follow <code><a href="https://andrisignorell.github.io/bedrock/reference/callIf.html" class="external-link">bedrock::callIf()</a></code>
 semantics:</p><ul><li><p><code>TRUE</code>: draw with defaults</p></li>
 <li><p><code>FALSE</code>, <code>NULL</code>, or <code>NA</code>: suppress component</p></li>
 <li><p>named list: customize component arguments</p></li>
@@ -219,8 +219,8 @@ set it via the <code>nBins</code> argument of <code>alloy::lift()</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code>alloy::lift()</code>, <code>alloy::roc()</code>, <code><a href="plotECDF.html">plotECDF</a></code>,
-<code><a href="https://andrisignorell.github.io/bedrock/reference/callIf.html" class="external-link">callIf</a></code>, <a href="theme.html">theme</a></p>
+    <div class="dont-index"><p><code>alloy::lift()</code>, <code>alloy::roc()</code>, <code><a href="plotECDF.html">plotECDF()</a></code>,
+<code><a href="https://andrisignorell.github.io/bedrock/reference/callIf.html" class="external-link">bedrock::callIf()</a></code>, <a href="theme.html">theme</a></p>
 <p>Other plot.special:
 <code><a href="binaryTree.html">plotBinaryTree()</a></code>,
 <code><a href="plotCirc.html">plotCirc()</a></code>,

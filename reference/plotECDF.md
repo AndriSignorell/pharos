@@ -55,7 +55,7 @@ plotECDF(
 - ...:
 
   further graphical parameters passed to
-  [`par`](https://rdrr.io/r/graphics/par.html) via the internal
+  [`par()`](https://rdrr.io/r/graphics/par.html) via the internal
   framework.
 
 - main:
@@ -97,7 +97,7 @@ plotECDF(
 
   color of the step line and the min/max marker points. `.useTheme`
   (default) resolves to `getTheme()$twin[1]` - a single accent color,
-  consistent with [`lines.loess`](lines.loess.md) and
+  consistent with [`lines.loess()`](lines.loess.md) and
   [`plotQQ()`](plotQQ.md)'s confidence band.
 
 - lwd:
@@ -114,13 +114,13 @@ plotECDF(
     deliberately distinct look, not theme-driven). `.useTheme` (default)
     follows the active theme's grid on/off state (`getTheme()$grid`).
     `TRUE`/`FALSE`/`NA`, or a named list, as for
-    [`grid`](https://rdrr.io/r/graphics/grid.html).
+    [`graphics::grid()`](https://rdrr.io/r/graphics/grid.html).
 
 - box:
 
   controls drawing of the plot box. `.useTheme` (default) resolves to
   `getTheme()$box`. `TRUE`/`FALSE`/`NA`, or a named list, as for
-  [`box`](https://rdrr.io/r/graphics/box.html).
+  [`graphics::box()`](https://rdrr.io/r/graphics/box.html).
 
 - stamp:
 
@@ -158,7 +158,7 @@ Invisibly returns `NULL`.
 ## Details
 
 The base
-[`plot.ecdf`](https://rdrr.io/r/stats/ecdf.html)/[`ecdf`](https://rdrr.io/r/stats/ecdf.html)
+[`plot.ecdf()`](https://rdrr.io/r/stats/ecdf.html)/[`ecdf()`](https://rdrr.io/r/stats/ecdf.html)
 machinery becomes impractically slow well below `n = 1e7`, since it
 tracks every single jump. Beyond a few thousand points, individual jumps
 are visually indistinguishable anyway, so `plotECDF()` caps the rendered
@@ -167,16 +167,17 @@ resolution at `breaks` points by default.
 Resolution is achieved via quantile subsampling, not histogram binning:
 `breaks` evenly-spaced probability points are mapped back to their
 corresponding quantiles
-([`quantile`](https://rdrr.io/r/stats/quantile.html), `type = 7`). Each
-rendered point therefore lies exactly on the true ECDF - unlike an
-equal-width-histogram approximation, this adapts automatically to the
-shape of the distribution (no resolution is wasted on near-empty bins in
-a skewed or heavy-tailed distribution, nor lost in the tails).
+([`stats::quantile()`](https://rdrr.io/r/stats/quantile.html),
+`type = 7`). Each rendered point therefore lies exactly on the true
+ECDF - unlike an equal-width-histogram approximation, this adapts
+automatically to the shape of the distribution (no resolution is wasted
+on near-empty bins in a skewed or heavy-tailed distribution, nor lost in
+the tails).
 
 ## See also
 
-[`plot.ecdf`](https://rdrr.io/r/stats/ecdf.html),
-[`plotFdist`](plotFdist.md), [theme](theme.md)
+[`plot.ecdf()`](https://rdrr.io/r/stats/ecdf.html),
+[`plotFdist()`](plotFdist.md), [theme](theme.md)
 
 Other plot.univariate: [`plotArea()`](plotArea.md),
 [`plotBar()`](plotBar.md), [`plotBox()`](plotBox.md),

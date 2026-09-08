@@ -132,7 +132,7 @@ and `.theme()`.
 
 ## See also
 
-[`symbols`](https://rdrr.io/r/graphics/symbols.html)
+[`symbols()`](https://rdrr.io/r/graphics/symbols.html)
 
 ## Examples
 

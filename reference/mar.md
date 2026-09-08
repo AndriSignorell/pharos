@@ -1,8 +1,9 @@
 # Get or set plot margins conveniently
 
-Convenience wrapper around [`par`](https://rdrr.io/r/graphics/par.html)
-for getting and setting plot margins (`mar`) or outer margins (`oma`).
-Individual sides can be modified without affecting the others.
+Convenience wrapper around
+[`graphics::par()`](https://rdrr.io/r/graphics/par.html) for getting and
+setting plot margins (`mar`) or outer margins (`oma`). Individual sides
+can be modified without affecting the others.
 
 ## Usage
 

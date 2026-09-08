@@ -56,8 +56,8 @@ plotDensBox(
 - ...:
 
   further graphical parameters passed to
-  [`par`](https://rdrr.io/r/graphics/par.html) via the internal
-  framework.
+  [`graphics::par()`](https://rdrr.io/r/graphics/par.html) via the
+  internal framework.
 
 - g:
 
@@ -97,31 +97,32 @@ plotDensBox(
   - `FALSE`, `NULL`, `NA`: suppress grid
 
   - a named list: arguments passed to
-    [`grid`](https://rdrr.io/r/graphics/grid.html)
+    [`graphics::grid()`](https://rdrr.io/r/graphics/grid.html)
 
 - densArgs:
 
   controls density estimation via
-  [`density`](https://rdrr.io/r/stats/density.html). Can be:
+  [`stats::density()`](https://rdrr.io/r/stats/density.html). Can be:
 
   - `TRUE`: use default density settings
 
   - `FALSE`, `NULL`, `NA`: suppress densities
 
   - a named list: additional arguments passed to
-    [`density`](https://rdrr.io/r/stats/density.html)
+    [`stats::density()`](https://rdrr.io/r/stats/density.html)
 
 - boxArgs:
 
   controls drawing of boxplots via
-  [`boxplot`](https://rdrr.io/r/graphics/boxplot.html). Can be:
+  [`graphics::boxplot()`](https://rdrr.io/r/graphics/boxplot.html). Can
+  be:
 
   - `TRUE`: use default boxplot settings
 
   - `FALSE`, `NULL`, `NA`: suppress boxplots
 
   - a named list: additional arguments passed to
-    [`boxplot`](https://rdrr.io/r/graphics/boxplot.html)
+    [`graphics::boxplot()`](https://rdrr.io/r/graphics/boxplot.html)
 
 - stamp:
 
@@ -150,12 +151,12 @@ Invisibly returns `NULL`.
 ## Details
 
 The function arranges two plots vertically using
-[`layout`](https://rdrr.io/r/graphics/layout.html): a density plot on
+[`layout()`](https://rdrr.io/r/graphics/layout.html): a density plot on
 top and a horizontal boxplot below. When a grouping variable is
 provided, densities and boxplots are drawn for each group.
 
 Optional plot components are controlled using
-[`callIf`](https://andrisignorell.github.io/bedrock/reference/callIf.html)
+[`bedrock::callIf()`](https://andrisignorell.github.io/bedrock/reference/callIf.html)
 semantics:
 
 - `TRUE`: draw with defaults
@@ -166,9 +167,9 @@ semantics:
 
 ## See also
 
-[`density`](https://rdrr.io/r/stats/density.html),
-[`boxplot`](https://rdrr.io/r/graphics/boxplot.html),
-[`callIf`](https://andrisignorell.github.io/bedrock/reference/callIf.html)
+[`stats::density()`](https://rdrr.io/r/stats/density.html),
+[`graphics::boxplot()`](https://rdrr.io/r/graphics/boxplot.html),
+[`bedrock::callIf()`](https://andrisignorell.github.io/bedrock/reference/callIf.html)
 
 Other plot.univariate: [`plotArea()`](plotArea.md),
 [`plotBar()`](plotBar.md), [`plotBox()`](plotBox.md),

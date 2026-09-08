@@ -59,7 +59,7 @@ returns a single logical value
 
 A `"CI"` object is a data frame containing the columns `est`, `lci`, and
 `uci`. Additional columns are retained and can be used as grouping
-variables by functions such as [`plotDot`](plotDot.md).
+variables by functions such as [`plotDot()`](plotDot.md).
 
 The primary purpose of `as.CI()` is to declare explicitly that an object
 contains estimates and confidence limits. For example, a numeric matrix
@@ -80,21 +80,21 @@ Supported inputs are:
   `c(est, lci, uci)`
 
 - an array-like result from
-  [`tapply`](https://rdrr.io/r/base/tapply.html) in which every cell
+  [`tapply()`](https://rdrr.io/r/base/tapply.html) in which every cell
   contains `c(est, lci, uci)`; its dimensions are converted to grouping
   variables
 
 - an existing `"CI"` object, which is returned unchanged
 
 The standardized object can be passed directly to
-[`plotDot`](plotDot.md) to display the estimates and their confidence
+[`plotDot()`](plotDot.md) to display the estimates and their confidence
 intervals. This is particularly useful for matrices, because a bare
 matrix supplied to [`plotDot()`](plotDot.md) is interpreted as grouped
 estimates rather than as confidence interval data.
 
 ## See also
 
-[`plotDot`](plotDot.md), [`fmCI`](fmCI.md)
+[`plotDot()`](plotDot.md), [`fmCI()`](fmCI.md)
 
 ## Examples
 

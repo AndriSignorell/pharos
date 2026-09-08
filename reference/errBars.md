@@ -42,7 +42,7 @@ errBars(from, to = NULL, pos = NULL, horiz = TRUE, points = NULL, ...)
 - ...:
 
   additional graphical arguments passed to
-  [`arrows`](https://rdrr.io/r/graphics/arrows.html).
+  [`arrows()`](https://rdrr.io/r/graphics/arrows.html).
 
 ## Value
 
@@ -67,11 +67,11 @@ Invisibly returns a list with components:
 ## Details
 
 This is a lightweight wrapper around
-[`arrows`](https://rdrr.io/r/graphics/arrows.html) with optional point
-symbols added via [`points`](https://rdrr.io/r/graphics/points.html).
+[`arrows()`](https://rdrr.io/r/graphics/arrows.html) with optional point
+symbols added via [`points()`](https://rdrr.io/r/graphics/points.html).
 
 Additional graphical arguments in `...` are passed to
-[`arrows`](https://rdrr.io/r/graphics/arrows.html) and may be used to
+[`arrows()`](https://rdrr.io/r/graphics/arrows.html) and may be used to
 control the appearance of the error bars.
 
 Common examples include:
@@ -108,13 +108,13 @@ Example:
 
 The default orientation is horizontal (`horiz = TRUE`), which suits the
 typical use case of adding confidence intervals to a
-[`dotchart`](https://rdrr.io/r/graphics/dotchart.html). Set
+[`dotchart()`](https://rdrr.io/r/graphics/dotchart.html). Set
 `horiz = FALSE` for vertical bars on barplots or similar.
 
 ## See also
 
-[`arrows`](https://rdrr.io/r/graphics/arrows.html),
-[`points`](https://rdrr.io/r/graphics/points.html)
+[`arrows()`](https://rdrr.io/r/graphics/arrows.html),
+[`points()`](https://rdrr.io/r/graphics/points.html)
 
 Other graphics.annotation: [`barText()`](barText.md),
 [`boxedText()`](boxedText.md), [`colLegend()`](colLegend.md),

@@ -2,9 +2,9 @@
 
 Splits character vectors into substrings. This is a convenience wrapper
 around
-[`stri_split_fixed`](https://rdrr.io/pkg/stringi/man/stri_split.html)
+[`stringi::stri_split_fixed()`](https://rdrr.io/pkg/stringi/man/stri_split.html)
 and
-[`stri_split_regex`](https://rdrr.io/pkg/stringi/man/stri_split.html)
+[`stringi::stri_split_regex()`](https://rdrr.io/pkg/stringi/man/stri_split.html)
 with simplified defaults.
 
 ## Usage
@@ -41,14 +41,14 @@ vector instead of a list for convenience.
 
 This function provides a simplified interface to string splitting using
 the stringi package. It avoids some of the complexity of
-[`strsplit`](https://rdrr.io/r/base/strsplit.html) while providing
-consistent and Unicode-aware behavior.
+[`base::strsplit()`](https://rdrr.io/r/base/strsplit.html) while
+providing consistent and Unicode-aware behavior.
 
 ## See also
 
-[`stri_split_fixed`](https://rdrr.io/pkg/stringi/man/stri_split.html),
-[`stri_split_regex`](https://rdrr.io/pkg/stringi/man/stri_split.html),
-[`strsplit`](https://rdrr.io/r/base/strsplit.html)
+[`stringi::stri_split_fixed()`](https://rdrr.io/pkg/stringi/man/stri_split.html),
+[`stringi::stri_split_regex()`](https://rdrr.io/pkg/stringi/man/stri_split.html),
+[`base::strsplit()`](https://rdrr.io/r/base/strsplit.html)
 
 [string-overview](string-overview.md) for an overview of all string
 utilities in pharos.

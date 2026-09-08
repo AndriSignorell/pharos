@@ -91,7 +91,7 @@ colLegend(
   - `TRUE`: draw box with defaults
 
   - named list of arguments passed to
-    [`rect`](https://rdrr.io/r/graphics/rect.html)
+    [`rect()`](https://rdrr.io/r/graphics/rect.html)
 
 - labelAdj:
 
@@ -108,7 +108,7 @@ colLegend(
 - adj:
 
   text alignment passed to
-  [`text`](https://rdrr.io/r/graphics/text.html).
+  [`text()`](https://rdrr.io/r/graphics/text.html).
 
 - cex:
 
@@ -125,7 +125,7 @@ colLegend(
 - ...:
 
   additional arguments passed to
-  [`text`](https://rdrr.io/r/graphics/text.html).
+  [`text()`](https://rdrr.io/r/graphics/text.html).
 
 ## Value
 

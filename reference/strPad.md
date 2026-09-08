@@ -42,7 +42,7 @@ length of width.
 
 ## See also
 
-[`strAlign`](strAlign.md), [`strTrunc`](strTrunc.md)
+[`strAlign()`](strAlign.md), [`strTrunc()`](strTrunc.md)
 
 [string-overview](string-overview.md) for an overview of all string
 utilities in pharos.

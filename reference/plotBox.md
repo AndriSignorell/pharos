@@ -52,7 +52,8 @@ plotBox(
   graphical parameters. Parameters recognized by the internal graphics
   framework are applied via
   [`par()`](https://rdrr.io/r/graphics/par.html); remaining arguments
-  are forwarded to [`boxplot`](https://rdrr.io/r/graphics/boxplot.html).
+  are forwarded to
+  [`graphics::boxplot()`](https://rdrr.io/r/graphics/boxplot.html).
 
 - g:
 
@@ -88,7 +89,7 @@ plotBox(
   - `FALSE`, `NULL`, or `NA`: suppress grid
 
   - a named list: arguments passed to
-    [`grid`](https://rdrr.io/r/graphics/grid.html), e.g.
+    [`graphics::grid()`](https://rdrr.io/r/graphics/grid.html), e.g.
     `list(col = "red", nx = NA, ny = NULL)` for vertical lines only
 
 - means:
@@ -132,7 +133,7 @@ Invisibly returns `NULL`.
 ## Details
 
 Optional plot components are controlled using
-[`callIf`](https://andrisignorell.github.io/bedrock/reference/callIf.html)
+[`bedrock::callIf()`](https://andrisignorell.github.io/bedrock/reference/callIf.html)
 semantics:
 
 - `TRUE`: draw with defaults
@@ -143,8 +144,8 @@ semantics:
 
 ## See also
 
-[`boxplot`](https://rdrr.io/r/graphics/boxplot.html),
-[`callIf`](https://andrisignorell.github.io/bedrock/reference/callIf.html)
+[`graphics::boxplot()`](https://rdrr.io/r/graphics/boxplot.html),
+[`bedrock::callIf()`](https://andrisignorell.github.io/bedrock/reference/callIf.html)
 
 Other plot.univariate: [`plotArea()`](plotArea.md),
 [`plotBar()`](plotBar.md), [`plotCatDist()`](plotCatDist.md),

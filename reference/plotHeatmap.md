@@ -31,15 +31,15 @@ plotHeatmap(
 - x:
 
   a contingency table, matrix, or a pair of categorical vectors
-  coercible via [`table`](https://rdrr.io/r/base/table.html).
+  coercible via [`table()`](https://rdrr.io/r/base/table.html).
 
 - main:
 
   main title of the plot. `NULL` (default) derives a title from the
   expression passed as `x` (via `deparse(match.call()$x)`), the same
   "substitute magic" convention used by
-  [`plotXY`](plotXY.md)/[`plotBox`](plotBox.md)/
-  [`plotAssoc`](plotAssoc.md) for their default titles - there's no
+  [`plotXY()`](plotXY.md)/[`plotBox()`](plotBox.md)/
+  [`plotAssoc()`](plotAssoc.md) for their default titles - there's no
   formula pair here, just the single table argument, so the default is
   simply that expression's text (e.g. `plotHeatmap(tab)` titles itself
   `"tab"`). `""`, `NA`, or `FALSE` suppress the title entirely and
@@ -108,11 +108,12 @@ plotHeatmap(
 
   controls drawing of the outer frame around the tile grid, drawn via
   [`rect()`](https://rdrr.io/r/graphics/rect.html) at the exact cell
-  boundaries rather than [`box()`](https://rdrr.io/r/graphics/box.html)
-  (the initial plot suppresses the standard box via
-  `frame.plot = FALSE`, since cell bounds differ from the default plot
-  region). `.useTheme` (default) resolves border color/width from
-  `getTheme()$box`. `TRUE`/`FALSE`, or a named list overriding
+  boundaries rather than
+  [`graphics::box()`](https://rdrr.io/r/graphics/box.html) (the initial
+  plot suppresses the standard box via `frame.plot = FALSE`, since cell
+  bounds differ from the default plot region). `.useTheme` (default)
+  resolves border color/width from `getTheme()$box`. `TRUE`/`FALSE`, or
+  a named list overriding
   [`rect()`](https://rdrr.io/r/graphics/rect.html) arguments for this
   call only.
 
@@ -125,8 +126,8 @@ plotHeatmap(
 - ...:
 
   further graphical parameters passed to
-  [`par`](https://rdrr.io/r/graphics/par.html) via the internal
-  framework.
+  [`graphics::par()`](https://rdrr.io/r/graphics/par.html) via the
+  internal framework.
 
 ## Value
 
@@ -144,8 +145,9 @@ or statistical inference.
 
 ## See also
 
-[`plotAssoc`](plotAssoc.md),
-[`image`](https://rdrr.io/r/graphics/image.html), [theme](theme.md)
+[`plotAssoc()`](plotAssoc.md),
+[`graphics::image()`](https://rdrr.io/r/graphics/image.html),
+[theme](theme.md)
 
 Other plot.bivariate: [`plotAssoc()`](plotAssoc.md),
 [`plotBag()`](plotBag.md), [`plotCor()`](plotCor.md),

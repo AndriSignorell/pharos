@@ -95,7 +95,7 @@ and `.theme()`.
 
 ## See also
 
-[`plotDens`](plotDens.md), [`plotRidge`](plotRidge.md)
+[`plotDens()`](plotDens.md), [`plotRidge()`](plotRidge.md)
 
 Other plot.special: [`plotBinaryTree()`](binaryTree.md),
 [`plotCirc()`](plotCirc.md), [`plotLift()`](plotLift.md),

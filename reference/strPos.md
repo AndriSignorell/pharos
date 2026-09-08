@@ -36,11 +36,12 @@ a vector of the first position of pattern in x
 ## Details
 
 This is just a wrapper for the function
-[`regexpr`](https://rdrr.io/r/base/grep.html).
+[`regexpr()`](https://rdrr.io/r/base/grep.html).
 
 ## See also
 
-[`strChop`](strChop.md), [`regexpr`](https://rdrr.io/r/base/grep.html)
+[`strChop()`](strChop.md),
+[`regexpr()`](https://rdrr.io/r/base/grep.html)
 
 [string-overview](string-overview.md) for an overview of all string
 utilities in pharos.

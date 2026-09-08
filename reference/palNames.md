@@ -1,6 +1,6 @@
 # List Available Palette Names
 
-Returns the names of all palettes available in [`pal`](pal.md),
+Returns the names of all palettes available in [`pal()`](pal.md),
 optionally filtered by type.
 
 ## Usage
@@ -21,7 +21,7 @@ a character vector of palette names.
 
 ## See also
 
-[`pal`](pal.md)
+[`pal()`](pal.md)
 
 Other color.palettes: [`hcol()`](hcol.md), [`pal()`](pal.md)
 

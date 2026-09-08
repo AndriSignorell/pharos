@@ -144,9 +144,9 @@ boxedText(formula, data = parent.frame(), ..., subset)
 - data:
 
   an optional matrix or data frame (or similar; see
-  [`model.frame`](https://rdrr.io/r/stats/model.frame.html)) containing
-  the variables in the formula. By default the variables are taken from
-  `environment(formula)`.
+  [`stats::model.frame()`](https://rdrr.io/r/stats/model.frame.html))
+  containing the variables in the formula. By default the variables are
+  taken from `environment(formula)`.
 
 - subset:
 
@@ -155,7 +155,7 @@ boxedText(formula, data = parent.frame(), ..., subset)
 
 ## See also
 
-similar function in package plotrix plotrix::boxed.labels (lacking
+similar function in package plotrix `plotrix::boxed.labels` (lacking
 rotation option)
 
 Other graphics.annotation: [`barText()`](barText.md),

@@ -69,8 +69,8 @@ plotBag(
 - na.action:
 
   a function specifying how missing values are handled. Defaults to
-  [`na.omit`](https://rdrr.io/r/stats/na.fail.html), as the depth
-  computation requires complete pairs.
+  [`stats::na.omit()`](https://rdrr.io/r/stats/na.fail.html), as the
+  depth computation requires complete pairs.
 
 - main, xlab, ylab:
 

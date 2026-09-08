@@ -23,7 +23,7 @@ function. RGB is the hub between the two tables below."><meta property="og:image
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.953</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.954</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,9 +71,9 @@ function. RGB is the hub between the two tables below.</p>
     <h2 id="r-color-hex-hsv-and-rgb">R color, hex, HSV, and RGB<a class="anchor" aria-label="anchor" href="#r-color-hex-hsv-and-rgb"></a></h2>
 
 <table class="table table"><tr><td>From \ To</td><td>Col</td><td>Hex</td><td>HSV</td><td>RGB</td></tr><tr><td><strong>Col</strong></td><td>-</td><td><code><a href="colToHex.html">colToHex()</a></code></td><td><code><a href="colToHSV.html">colToHSV()</a></code></td><td><code><a href="colToRGB.html">colToRGB()</a></code></td></tr><tr><td><strong>Hex</strong></td><td><code><a href="hexToCol.html">hexToCol()</a></code></td><td>-</td><td>.</td><td><code><a href="hexToRGB.html">hexToRGB()</a></code></td></tr><tr><td><strong>HSV</strong></td><td>.</td><td>.</td><td>-</td><td>.</td></tr><tr><td><strong>RGB</strong></td><td><code><a href="RGBToCol.html">rgbToCol()</a></code></td><td><code><a href="RGBToHex.html">rgbToHex()</a></code></td><td>.</td><td>-</td></tr></table><p><em>"Col" is any valid R color specification (name, hex string, or
-palette index) as accepted by</em> <code><a href="https://rdrr.io/r/grDevices/col2rgb.html" class="external-link">col2rgb</a></code>.
+palette index) as accepted by</em> <code><a href="https://rdrr.io/r/grDevices/col2rgb.html" class="external-link">grDevices::col2rgb()</a></code>.
 No function starts from HSV: it is only ever a conversion target
-(via <code><a href="colToHSV.html">colToHSV</a></code>), not a source – see the note below the
+(via <code><a href="colToHSV.html">colToHSV()</a></code>), not a source – see the note below the
 second table for the reason this gap is left open.</p>
     </div>
     <div class="section level2">
@@ -91,7 +91,7 @@ representation, so they don't fit a row/column slot above:</p><table class="tabl
 
 
 <p>Base R already provides the HSV -&gt; Col/Hex direction via
-<code><a href="https://rdrr.io/r/grDevices/hsv.html" class="external-link">hsv()</a></code>, which builds a hex color string
+<code><a href="https://rdrr.io/r/grDevices/hsv.html" class="external-link">grDevices::hsv()</a></code>, which builds a hex color string
 directly from h/s/v values – the same role <code><a href="https://rdrr.io/r/grDevices/rgb.html" class="external-link">rgb()</a></code>
 plays for RGB triplets. pharos deliberately doesn't duplicate it;
 chain <code><a href="https://rdrr.io/r/grDevices/hsv.html" class="external-link">hsv()</a></code> into <code><a href="colToRGB.html">colToRGB()</a></code> or

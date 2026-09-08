@@ -19,7 +19,7 @@ and points() add to an existing plot.'><meta property="og:image" content="/logo.
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.953</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.954</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,7 +49,7 @@ and points() add to an existing plot.'><meta property="og:image" content="/logo.
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Plot Methods for Lorenz Curve Objects</h1>
-      <small class="dont-index">Source: <a href="https://github.com/AndriSignorell/pharos/blob/main/R/plot.Lc.R" class="external-link"><code>R/plot.Lc.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/AndriSignorell/pharos/blob/main/R/plot.lc.R" class="external-link"><code>R/plot.lc.R</code></a></small>
       <div class="d-none name"><code>plot.lc.Rd</code></div>
     </div>
 
@@ -111,8 +111,7 @@ and <code><a href="https://rdrr.io/r/graphics/points.html" class="external-link"
 <dt id="arg-main-xlab-ylab">main, xlab, ylab<a class="anchor" aria-label="anchor" href="#arg-main-xlab-ylab"></a></dt>
 <dd><p>main title and axis labels, used by
 <code>plot.Lc()</code> only.  All default to <code>NULL</code>: no title,
-<code>"p"</code>, and <code>"L(p)"</code> (<code>"GL(p)"</code> if <code>general =
-TRUE</code>), respectively.</p></dd>
+<code>"p"</code>, and <code>"L(p)"</code> (<code>"GL(p)"</code> if <code>general = TRUE</code>), respectively.</p></dd>
 
 
 <dt id="arg-xlim-ylim">xlim, ylim<a class="anchor" aria-label="anchor" href="#arg-xlim-ylim"></a></dt>
@@ -162,7 +161,7 @@ individual defaults and is forwarded to <code>points.Lc()</code>.</p></dd>
 the line of perfect equality: <code>TRUE</code> (default) draws it with
 package defaults (<code>col = "grey50"</code>, <code>lty = 2</code>),
 <code>FALSE</code> suppresses it, a list is forwarded to
-<code><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline()</a></code>.  Its slope is <code>1</code> for the
+<code><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">graphics::abline()</a></code>.  Its slope is <code>1</code> for the
 standard and <code>max(L)</code> for the generalized curve; overriding
 <code>a</code>/<code>b</code> is possible but rarely sensible.</p></dd>
 
@@ -172,7 +171,7 @@ standard and <code>max(L)</code> for the generalized curve; overriding
 plot region, used by <code>plot.Lc()</code> only.  <code>.useTheme</code>
 (default) lets <code><a href="theme.html">getTheme()</a></code> decide, <code>TRUE</code>/<code>FALSE</code>
 force drawing/suppression, and a named list is forwarded to
-<code><a href="https://rdrr.io/r/graphics/grid.html" class="external-link">grid()</a></code> resp. <code><a href="https://rdrr.io/r/graphics/box.html" class="external-link">box()</a></code>.</p></dd>
+<code><a href="https://rdrr.io/r/graphics/grid.html" class="external-link">graphics::grid()</a></code> resp. <code><a href="https://rdrr.io/r/graphics/box.html" class="external-link">graphics::box()</a></code>.</p></dd>
 
 
 <dt id="arg-cbandargs">cbandArgs<a class="anchor" aria-label="anchor" href="#arg-cbandargs"></a></dt>
@@ -190,10 +189,10 @@ resolves to <code>getTheme()$stamp</code>. <code>TRUE</code>/<code>FALSE</code>/
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>further arguments.  For <code>plot.Lc()</code>, graphical parameters
-passed to <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par()</a></code> via <code><a href="graphics-framework.html">.applyParFromDots()</a></code>
+passed to <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">graphics::par()</a></code> via <code><a href="graphics-framework.html">.applyParFromDots()</a></code>
 (e.g. <code>mar</code>, <code>cex.axis</code>, <code>las</code>).  For <code>lines.Lc()</code>
 and <code>points.Lc()</code>, further arguments passed on to
-<code><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines()</a></code> and <code><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points()</a></code>,
+<code><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">graphics::lines()</a></code> and <code><a href="https://rdrr.io/r/graphics/points.html" class="external-link">graphics::points()</a></code>,
 respectively.  For <code>plot.LcList()</code>, arguments are passed to
 <code>plot.Lc()</code> for the first group and, restricted to those the
 low-level method understands, to <code>lines.Lc()</code> for the remaining

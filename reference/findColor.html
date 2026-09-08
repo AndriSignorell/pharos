@@ -15,7 +15,7 @@ helpful for colorcoding numeric values."><meta property="og:image" content="/log
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.953</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.954</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -96,19 +96,19 @@ left to the default <code>NULL</code> <code>max(pretty(x))</code> will be used.<
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>For the selection of colors the option <code>rightmost.closed</code> in the used
-function <code><a href="https://rdrr.io/r/base/findInterval.html" class="external-link">findInterval</a></code> is set to TRUE. This will ensure that
+function <code><a href="https://rdrr.io/r/base/findInterval.html" class="external-link">findInterval()</a></code> is set to TRUE. This will ensure that
 all values on the right edge of the range are assigned a color. How values
 outside the boundaries of minX and maxX should be handled can be
 controlled by <code>allInside</code>. Set this value to TRUE, if those values
 should get the colors at the edges or set it to FALSE, if they should remain
 white (which is the default).</p>
-<p>Note that <code><a href="https://rdrr.io/r/base/findInterval.html" class="external-link">findInterval</a></code> closes the intervals on the left side,
+<p>Note that <code><a href="https://rdrr.io/r/base/findInterval.html" class="external-link">findInterval()</a></code> closes the intervals on the left side,
 e.g. [0, 1). This option can't be changed. Consequently will x-values lying
 on the edge of two colors get the color of the bigger one.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="https://rdrr.io/r/base/findInterval.html" class="external-link">findInterval</a></code></p>
+    <div class="dont-index"><p><code><a href="https://rdrr.io/r/base/findInterval.html" class="external-link">findInterval()</a></code></p>
 <p>Other color.lookup:
 <code><a href="contrastColor.html">contrastColor()</a></code></p></div>
     </div>

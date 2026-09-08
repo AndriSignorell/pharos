@@ -1,10 +1,10 @@
 # Line Plot for Multiple Series
 
 Draws one or several line series using
-[`matplot`](https://rdrr.io/r/graphics/matplot.html). The function
-accepts either a matrix of values or separate `x` and `y` coordinates
-and supports optional point symbols, grid lines, and an automatically
-positioned legend.
+[`graphics::matplot()`](https://rdrr.io/r/graphics/matplot.html). The
+function accepts either a matrix of values or separate `x` and `y`
+coordinates and supports optional point symbols, grid lines, and an
+automatically positioned legend.
 
 ## Usage
 
@@ -60,7 +60,7 @@ plotLines(
 - xaxt, yaxt:
 
   axis specification passed to
-  [`axis`](https://rdrr.io/r/graphics/axis.html).
+  [`graphics::axis()`](https://rdrr.io/r/graphics/axis.html).
 
 - lty:
 
@@ -85,7 +85,8 @@ plotLines(
 
   controls drawing of the background grid. `.useTheme` (default) follows
   the active theme (`getTheme()$grid`). `TRUE`/`FALSE`/`NA`, or a named
-  list, as for [`grid`](https://rdrr.io/r/graphics/grid.html).
+  list, as for
+  [`graphics::grid()`](https://rdrr.io/r/graphics/grid.html).
 
 - legend:
 
@@ -102,7 +103,7 @@ plotLines(
 - ...:
 
   additional graphical parameters passed to
-  [`par`](https://rdrr.io/r/graphics/par.html) via
+  [`graphics::par()`](https://rdrr.io/r/graphics/par.html) via
   [`.applyParFromDots()`](graphics-framework.md) and to the plotting
   functions.
 

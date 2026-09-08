@@ -47,8 +47,8 @@ guard for conditional plotting, e.g.
 
 ## See also
 
-[`par`](https://rdrr.io/r/graphics/par.html) (entries `pin`, `fin`,
-`mar`), [`dev.cur`](https://rdrr.io/r/grDevices/dev.html)
+[`par()`](https://rdrr.io/r/graphics/par.html) (entries `pin`, `fin`,
+`mar`), [`dev.cur()`](https://rdrr.io/r/grDevices/dev.html)
 
 Other graphics.layout: [`abcCoords()`](abcCoords.md),
 [`axTicks`](axTicks.md), [`axisBreak()`](axisBreak.md),

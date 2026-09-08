@@ -1,9 +1,9 @@
 # Themed Barplot with Grid, Labels and Optional Connecting Lines
 
 Creates a themed wrapper around
-[`barplot`](https://rdrr.io/r/graphics/barplot.html) with support for
-consistent styling, optional grid lines, value labels, and connecting
-lines for stacked barplots.
+[`graphics::barplot()`](https://rdrr.io/r/graphics/barplot.html) with
+support for consistent styling, optional grid lines, value labels, and
+connecting lines for stacked barplots.
 
 ## Usage
 
@@ -32,7 +32,7 @@ plotBar(
 - height:
 
   A vector or matrix of bar heights passed directly to
-  [`barplot`](https://rdrr.io/r/graphics/barplot.html).
+  [`graphics::barplot()`](https://rdrr.io/r/graphics/barplot.html).
 
 - main, xlab, ylab:
 
@@ -92,8 +92,8 @@ plotBar(
   - `FALSE`, `NULL`, or `NA`: suppress grid
 
   - a named list: arguments passed to
-    [`grid`](https://rdrr.io/r/graphics/grid.html), overriding the
-    theme/function defaults for this call only
+    [`graphics::grid()`](https://rdrr.io/r/graphics/grid.html),
+    overriding the theme/function defaults for this call only
 
 - box:
 
@@ -102,7 +102,7 @@ plotBar(
 
 - text:
 
-  optional list of arguments passed to [`barText`](barText.md) to draw
+  optional list of arguments passed to [`barText()`](barText.md) to draw
   value labels on bars.
 
 - connlines:
@@ -119,20 +119,21 @@ plotBar(
 - ...:
 
   additional arguments passed to
-  [`barplot`](https://rdrr.io/r/graphics/barplot.html) and graphical
-  parameters (via [`par`](https://rdrr.io/r/graphics/par.html)).
+  [`graphics::barplot()`](https://rdrr.io/r/graphics/barplot.html) and
+  graphical parameters (via
+  [`graphics::par()`](https://rdrr.io/r/graphics/par.html)).
 
 ## Value
 
 Invisibly returns the midpoints of the bars as returned by
-[`barplot`](https://rdrr.io/r/graphics/barplot.html).
+[`graphics::barplot()`](https://rdrr.io/r/graphics/barplot.html).
 
 ## Details
 
 The function first initializes the plotting region invisibly using
-[`barplot`](https://rdrr.io/r/graphics/barplot.html), optionally adds
-grid lines, and then draws the actual bars and additional layers (axis,
-connecting lines, text labels).
+[`graphics::barplot()`](https://rdrr.io/r/graphics/barplot.html),
+optionally adds grid lines, and then draws the actual bars and
+additional layers (axis, connecting lines, text labels).
 
 The function internally performs the following steps:
 
@@ -146,7 +147,7 @@ The function internally performs the following steps:
 
 5.  Optionally adds connecting lines for stacked bars.
 
-6.  Optionally adds value labels via [`barText`](barText.md).
+6.  Optionally adds value labels via [`barText()`](barText.md).
 
 7.  Optionally draws a box around the plot region.
 

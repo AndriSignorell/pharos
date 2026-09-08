@@ -1,7 +1,7 @@
 # Flat Contingency Table for tapply-Like Lists
 
 Creates a flat contingency table from a list array, such as the result
-of [`tapply`](https://rdrr.io/r/base/tapply.html) when the applied
+of [`tapply()`](https://rdrr.io/r/base/tapply.html) when the applied
 function returns a named vector.
 
 ## Usage
@@ -16,25 +16,25 @@ ftable(x, row.vars = NULL, col.vars = NULL, ...)
 - x:
 
   A list with a `dim` attribute, typically produced by
-  [`tapply`](https://rdrr.io/r/base/tapply.html). Each element must be a
-  vector of equal length and have identical names.
+  [`tapply()`](https://rdrr.io/r/base/tapply.html). Each element must be
+  a vector of equal length and have identical names.
 
 - row.vars:
 
   row variables passed to
-  [`ftable`](https://rdrr.io/r/stats/ftable.html). Defaults to all
+  [`ftable()`](https://rdrr.io/r/stats/ftable.html). Defaults to all
   dimensions except those specified in `col.vars`.
 
 - col.vars:
 
   column variables passed to
-  [`ftable`](https://rdrr.io/r/stats/ftable.html). Defaults to the
+  [`ftable()`](https://rdrr.io/r/stats/ftable.html). Defaults to the
   dimension created from the names of the list elements.
 
 - ...:
 
   further arguments passed to
-  [`ftable`](https://rdrr.io/r/stats/ftable.html).
+  [`ftable()`](https://rdrr.io/r/stats/ftable.html).
 
 ## Value
 
@@ -44,7 +44,7 @@ An object of class `"ftable"`.
 
 Each list element is expanded into an additional dimension corresponding
 to the names of the returned vector. The resulting array is then passed
-to [`ftable`](https://rdrr.io/r/stats/ftable.html).
+to [`ftable()`](https://rdrr.io/r/stats/ftable.html).
 
 This is particularly useful for displaying multi-dimensional summaries
 such as confidence intervals returned by `meanCI()`, where each cell
@@ -56,8 +56,8 @@ dimension is shown in the columns of the flat contingency table.
 
 ## See also
 
-[`tapply`](https://rdrr.io/r/base/tapply.html),
-[`ftable`](https://rdrr.io/r/stats/ftable.html)
+[`tapply()`](https://rdrr.io/r/base/tapply.html),
+[`ftable()`](https://rdrr.io/r/stats/ftable.html)
 
 ## Examples
 

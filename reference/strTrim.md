@@ -35,13 +35,13 @@ the string x without whitespaces
 ## Details
 
 The functions are defined depending on method as  
-`both: gsub( pattern=gettextf("^[%s]+|[%s]+$", pattern, pattern), replacement="", x=x)`  
-`left: gsub( pattern=gettextf("^[%s]+",pattern), replacement="", x=x)`  
-`right: gsub( pattern=gettextf("[%s]+$",pattern), replacement="", x=x)`
+`both: gsub( pattern=gettextf("^[\%s]+|[\%s]+$", pattern, pattern), replacement="", x=x)`  
+`left: gsub( pattern=gettextf("^[\%s]+",pattern), replacement="", x=x)`  
+`right: gsub( pattern=gettextf("[\%s]+$",pattern), replacement="", x=x)`
 
 ## See also
 
-[`trimws`](https://rdrr.io/r/base/trimws.html)
+[`base::trimws()`](https://rdrr.io/r/base/trimws.html)
 
 [string-overview](string-overview.md) for an overview of all string
 utilities in pharos.

@@ -100,9 +100,10 @@ sub-list, e.g.
   inherently need exactly two contrasting colors (e.g. a fit line and a
   smoother in [`plotXY()`](plotXY.md), the two poles of a diverging
   color ramp in [`plotCor()`](plotCor.md), a single accent color via
-  `twin[1]` in [`lines.loess`](lines.loess.md)/[`plotQQ()`](plotQQ.md)'s
-  confidence band). Never used as a substitute for `palette` when more
-  than two colors are needed.
+  `twin[1]` in
+  [`lines.loess()`](lines.loess.md)/[`plotQQ()`](plotQQ.md)'s confidence
+  band). Never used as a substitute for `palette` when more than two
+  colors are needed.
 
 - `palette`:
 
@@ -120,7 +121,7 @@ sub-list, e.g.
   *not* theme-driven; they use a hardcoded, purpose-built palette via
   [`pal()`](pal.md) instead (e.g. `pal("red-black")`, `pal("Blues")`).
   Neither `palette` (categorical) nor `twin` (a fixed pair) is the right
-  semantic fit for an ordered, continuous scale – see [`pal`](pal.md)
+  semantic fit for an ordered, continuous scale – see [`pal()`](pal.md)
   for the registry of named continuous palettes.
 
 - `bar`:
@@ -196,7 +197,7 @@ See e.g. [`plotCor()`](plotCor.md)'s `col` argument or
   function-specific `defaults` (e.g. [`plotBar()`](plotBar.md)
   suppressing the axis-parallel grid direction via `nx`/`ny`), and
   dispatch via
-  [`callIf`](https://andrisignorell.github.io/bedrock/reference/callIf.html).
+  [`bedrock::callIf()`](https://andrisignorell.github.io/bedrock/reference/callIf.html).
   **Not** used by every function that draws a grid or frame: a few
   ([`plotCor()`](plotCor.md), [`plotHeatmap()`](plotHeatmap.md),
   [`plotDot()`](plotDot.md)) have grid/box geometry tied to exact data
@@ -224,8 +225,8 @@ later without changing the `setTheme()` interface.
 
 ## See also
 
-[`pal`](pal.md) for the color palette registry, [`fm`](fm.md) for the
-formatting styles referenced by `sty`, [`stamp`](stamp.md) for the
+[`pal()`](pal.md) for the color palette registry, [`fm()`](fm.md) for
+the formatting styles referenced by `sty`, [`stamp()`](stamp.md) for the
 corner stamp mechanism.
 
 ## Examples

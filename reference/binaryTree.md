@@ -34,7 +34,7 @@ plotBinaryTree(
 - text:
 
   properties of the text, can be any of the arguments of
-  [`boxedText`](boxedText.md) (besides geometry and label).
+  [`boxedText()`](boxedText.md) (besides geometry and label).
 
 - line:
 
@@ -42,7 +42,7 @@ plotBinaryTree(
 
 - ...:
 
-  the dots are sent to [`canvas`](canvas.md).
+  the dots are sent to [`canvas()`](canvas.md).
 
 ## Value
 

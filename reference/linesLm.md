@@ -41,7 +41,7 @@ lines(
 - x:
 
   linear model object as returned by
-  [`lm`](https://rdrr.io/r/stats/lm.html).
+  [`lm()`](https://rdrr.io/r/stats/lm.html).
 
 - col:
 
@@ -58,7 +58,7 @@ lines(
 - type:
 
   plotting type passed to
-  [`lines`](https://rdrr.io/r/graphics/lines.html).
+  [`lines()`](https://rdrr.io/r/graphics/lines.html).
 
 - n:
 
@@ -91,7 +91,7 @@ No return value; called for its side effect.
 
 ## Details
 
-In contrast to [`abline`](https://rdrr.io/r/graphics/abline.html),
+In contrast to [`abline()`](https://rdrr.io/r/graphics/abline.html),
 polynomial models and transformed predictors are supported as long as
 the model contains exactly one predictor.
 
@@ -106,8 +106,8 @@ Confidence and prediction bands are controlled via `cbandArgs` and
 
 ## See also
 
-[`lines`](https://rdrr.io/r/graphics/lines.html),
-[`lm`](https://rdrr.io/r/stats/lm.html)
+[`lines()`](https://rdrr.io/r/graphics/lines.html),
+[`lm()`](https://rdrr.io/r/stats/lm.html)
 
 Other graphics.trendlines: [`lines.loess()`](lines.loess.md),
 [`splineCI`](splineCI.md)

@@ -29,7 +29,7 @@ plotTimeSeries(
 - ylab:
 
   a title for the y axis: see
-  [`title`](https://rdrr.io/r/graphics/title.html).
+  [`title()`](https://rdrr.io/r/graphics/title.html).
 
 - main:
 
@@ -50,7 +50,7 @@ Rewritten based on ideas of M.Huerzeler
 
 ## See also
 
-[`ts`](https://rdrr.io/r/stats/ts.html)
+[`ts()`](https://rdrr.io/r/stats/ts.html)
 
 Other plot.special: [`plotBinaryTree()`](binaryTree.md),
 [`plotCirc()`](plotCirc.md), [`plotLift()`](plotLift.md),

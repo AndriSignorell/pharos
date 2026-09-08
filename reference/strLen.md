@@ -1,6 +1,6 @@
 # String length
 
-Intuitive alias for [`nchar`](https://rdrr.io/r/base/nchar.html).
+Intuitive alias for [`nchar()`](https://rdrr.io/r/base/nchar.html).
 
 ## Usage
 
@@ -20,7 +20,7 @@ strLen(x, ...)
 
 ## See also
 
-[`nchar`](https://rdrr.io/r/base/nchar.html)
+[`base::nchar()`](https://rdrr.io/r/base/nchar.html)
 
 [string-overview](string-overview.md) for an overview of all string
 utilities in pharos.
