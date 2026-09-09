@@ -42,8 +42,9 @@ test_that("an explicit width still wins", {
 
   # and align is honoured rather than overridden by the padding
   left <- unclass(fm(cor(swiss), digits = 3, align = "\\l"))
-  expect_true(all(grepl(" $", left[left != left[1, 1]]) |
-                  nchar(left) == max(nchar(left))))
+  expect_length(unique(as.vector(nchar(left))), 1L)
+  expect_false(any(grepl("^ ", left)))
+  
 })
 
 

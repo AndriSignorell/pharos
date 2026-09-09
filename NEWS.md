@@ -1,4 +1,4 @@
-# pharos (development version)
+# pharos 0.0.0.954
 
 ## New features
 

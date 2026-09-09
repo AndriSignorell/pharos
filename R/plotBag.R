@@ -160,29 +160,31 @@ plotBag <- function(x, ...) {
 
 plotBag.formula <- function(x, data = NULL, subset, na.action = na.omit,
                             main = "", xlab = NULL, ylab = NULL, ...) {
-
+  
   # 'x' is the formula: the generic dispatches on the first argument, so the
   # formal must be named 'x' for consistent method signatures. Renamed here
   # for readability.
   formula <- x
-
+  
   # capture subset unevaluated, following the resolveFormula() contract
-  subset_expr <- if (!missing(subset)) substitute(subset) else NULL
-
+  subsetExpr <- if (missing(subset)) NULL else substitute(subset)
+  
   r <- resolveFormula(formula, data,
-                      subset    = subset_expr,
+                      subset    = subsetExpr,
                       na.action = na.action,
                       allowed   = "numeric-numeric")
 
   # y ~ x: predictor on the horizontal, response on the vertical axis
   if (is.null(xlab)) xlab <- names(r$mf)[2L]
   if (is.null(ylab)) ylab <- names(r$mf)[1L]
-
-  res <- plotBag.default(cbind(r$predictor, r$x),
+  
+  res <- plotBag.default(cbind(r$mf[[2L]], r$mf[[1L]]),
                          main = main, xlab = xlab, ylab = ylab, ...)
 
-  res$dataName <- r$dataName
-
+  # deparsed here rather than taken from r$dataName: the expression is in this
+  # frame anyway, and a NULL from the callee would drop the field unnoticed
+  res[["dataName"]] <- deparse1(formula)
+  
   invisible(res)
 }
 
