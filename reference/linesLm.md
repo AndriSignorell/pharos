@@ -67,14 +67,13 @@ lines(
 - cbandArgs:
 
   controls the confidence band. May be `TRUE`, `FALSE`, `NULL`, `NA`, or
-  a named list. The confidence level is specified via `conf.level`.
-  Default is `list(conf.level=0.95)`.
+  a named list. The confidence level is specified via `conf.level`, all
+  other elements are graphical parameters of the band. Default is
+  `list(conf.level=0.95)`.
 
 - pbandArgs:
 
-  controls the prediction band. May be `TRUE`, `FALSE`, `NULL`, `NA`, or
-  a named list. The confidence level is specified via `conf.level`.
-  Default is `NA`.
+  controls the prediction band, as `cbandArgs`. Default is `NA`.
 
 - xpred:
 
@@ -83,7 +82,9 @@ lines(
 
 - ...:
 
-  currently ignored.
+  further graphical parameters passed to
+  [`lines()`](https://rdrr.io/r/graphics/lines.html) for the fitted
+  line.
 
 ## Value
 
@@ -93,7 +94,10 @@ No return value; called for its side effect.
 
 In contrast to [`abline()`](https://rdrr.io/r/graphics/abline.html),
 polynomial models and transformed predictors are supported as long as
-the model contains exactly one predictor.
+the model contains exactly one predictor variable. A polynomial,
+`y ~ poly(x, 2)` or `y ~ x + I(x^2)`, is drawn against `x`; a single
+transformed term such as `y ~ log(x)` is drawn against the transformed
+values, matching `plot(y ~ log(x))`.
 
 Confidence and prediction bands are controlled via `cbandArgs` and
 `pbandArgs`. These arguments can be:

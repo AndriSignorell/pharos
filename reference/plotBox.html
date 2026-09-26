@@ -17,7 +17,7 @@ optionally be overlaid."><meta property="og:image" content="/logo.png"></head><b
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.955</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.956</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,7 +72,7 @@ optionally be overlaid.</p>
 <span>  col <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  grid <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  means <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  stamp <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  stamp <span class="op">=</span> <span class="va">.useTheme</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -85,10 +85,6 @@ optionally be overlaid.</p>
 <span>  main <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  xlab <span class="op">=</span> <span class="st">""</span>,</span>
 <span>  ylab <span class="op">=</span> <span class="st">""</span>,</span>
-<span>  ylim <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  col <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  grid <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  stamp <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -112,7 +108,9 @@ remaining arguments are forwarded to <code><a href="https://rdrr.io/r/graphics/b
 
 
 <dt id="arg-main">main<a class="anchor" aria-label="anchor" href="#arg-main"></a></dt>
-<dd><p>main title of the plot.</p></dd>
+<dd><p>main title of the plot. <code>NULL</code> (default) derives the title
+from the input: the formula, or <code>x ~ g</code> for the default method.
+<code>""</code>, <code>NA</code>, or <code>FALSE</code> suppress the title and compact the top margin.</p></dd>
 
 
 <dt id="arg-xlab">xlab<a class="anchor" aria-label="anchor" href="#arg-xlab"></a></dt>
@@ -129,8 +127,8 @@ If <code>NULL</code> (default), the range of <code>x</code> is used.</p></dd>
 
 
 <dt id="arg-col">col<a class="anchor" aria-label="anchor" href="#arg-col"></a></dt>
-<dd><p>vector of colors. If <code>NULL</code>, a palette is generated
-automatically.</p></dd>
+<dd><p>vector of fill colors, recycled over the groups. <code>NULL</code>
+(default) uses <code>"grey90"</code>.</p></dd>
 
 
 <dt id="arg-grid">grid<a class="anchor" aria-label="anchor" href="#arg-grid"></a></dt>
@@ -160,19 +158,24 @@ or an explicit string, as for <code><a href="graphics-framework.html">.withGraph
 
 
 <dt id="arg-formula">formula<a class="anchor" aria-label="anchor" href="#arg-formula"></a></dt>
-<dd><p>A formula of the form <code>y ~ group</code>.</p></dd>
+<dd><p>a formula of the form <code>y ~ group</code>, or <code>y ~ a:b</code> for the
+cells of several grouping variables. <code>y ~ a + b</code> is not accepted, see
+<code><a href="https://andrisignorell.github.io/bedrock/reference/resolveFormula.html" class="external-link">bedrock::resolveFormula()</a></code>.</p></dd>
 
 
 <dt id="arg-data">data<a class="anchor" aria-label="anchor" href="#arg-data"></a></dt>
-<dd><p>an optional data frame containing variables in the formula.</p></dd>
+<dd><p>an optional data frame containing the variables in the
+formula.</p></dd>
 
 
 <dt id="arg-subset">subset<a class="anchor" aria-label="anchor" href="#arg-subset"></a></dt>
-<dd><p>optional expression indicating which observations to use.</p></dd>
+<dd><p>an optional expression indicating which observations to
+use, evaluated in <code>data</code> (<code>subset = len &gt; 10</code>), as in <code><a href="https://rdrr.io/r/graphics/boxplot.html" class="external-link">boxplot()</a></code>.</p></dd>
 
 
 <dt id="arg-na-action">na.action<a class="anchor" aria-label="anchor" href="#arg-na-action"></a></dt>
-<dd><p>a function specifying how missing values are handled.</p></dd>
+<dd><p>a function specifying how missing values are handled,
+defaults to <code><a href="https://rdrr.io/r/stats/na.fail.html" class="external-link">na.omit()</a></code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -215,6 +218,10 @@ or an explicit string, as for <code><a href="graphics-framework.html">.withGraph
 <span class="r-in"><span><span class="fu">plotBox</span><span class="op">(</span><span class="va">x</span>, <span class="va">g</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">plotBox</span><span class="op">(</span><span class="va">x</span> <span class="op">~</span> <span class="va">g</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># data, subset and the cells of two grouping variables</span></span></span>
+<span class="r-in"><span><span class="fu">plotBox</span><span class="op">(</span><span class="va">len</span> <span class="op">~</span> <span class="va">supp</span>, <span class="va">ToothGrowth</span>, subset <span class="op">=</span> <span class="va">dose</span> <span class="op">&gt;</span> <span class="fl">0.5</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">plotBox</span><span class="op">(</span><span class="va">len</span> <span class="op">~</span> <span class="va">supp</span><span class="op">:</span><span class="va">dose</span>, <span class="va">ToothGrowth</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

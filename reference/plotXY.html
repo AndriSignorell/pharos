@@ -15,7 +15,7 @@ locally weighted regression lines, and an optional legend."><meta property="og:i
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.955</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.956</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -89,18 +89,6 @@ locally weighted regression lines, and an optional legend.</p>
 <span>  main <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  xlab <span class="op">=</span> <span class="st">""</span>,</span>
 <span>  ylab <span class="op">=</span> <span class="st">""</span>,</span>
-<span>  xlim <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  ylim <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  col <span class="op">=</span> <span class="va">.useTheme</span>,</span>
-<span>  bg <span class="op">=</span> <span class="va">.useTheme</span>,</span>
-<span>  pch <span class="op">=</span> <span class="va">.useTheme</span>,</span>
-<span>  cex <span class="op">=</span> <span class="va">.useTheme</span>,</span>
-<span>  grid <span class="op">=</span> <span class="va">.useTheme</span>,</span>
-<span>  lm <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  loess <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  legend <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  box <span class="op">=</span> <span class="va">.useTheme</span>,</span>
-<span>  stamp <span class="op">=</span> <span class="va">.useTheme</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -227,7 +215,7 @@ resolves to <code>getTheme()$stamp</code>. <code>TRUE</code>/<code>FALSE</code>/
 
 
 <dt id="arg-formula">formula<a class="anchor" aria-label="anchor" href="#arg-formula"></a></dt>
-<dd><p>a formula of the form <code>y ~ x</code>.</p></dd>
+<dd><p>a formula of the form <code>y ~ x</code>, both numeric.</p></dd>
 
 
 <dt id="arg-data">data<a class="anchor" aria-label="anchor" href="#arg-data"></a></dt>
@@ -235,7 +223,9 @@ resolves to <code>getTheme()$stamp</code>. <code>TRUE</code>/<code>FALSE</code>/
 
 
 <dt id="arg-subset">subset<a class="anchor" aria-label="anchor" href="#arg-subset"></a></dt>
-<dd><p>optional expression indicating which observations to use.</p></dd>
+<dd><p>an optional expression indicating which observations to
+use, evaluated in <code>data</code> (<code>subset = delivery_min &lt; 40</code>), as in
+<code><a href="https://rdrr.io/r/graphics/plot.formula.html" class="external-link">plot.formula()</a></code>.</p></dd>
 
 
 <dt id="arg-na-action">na.action<a class="anchor" aria-label="anchor" href="#arg-na-action"></a></dt>
@@ -290,6 +280,10 @@ the same theme section) that doesn't override <code>col</code> explicitly.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># No title, compact top margin</span></span></span>
 <span class="r-in"><span><span class="fu">plotXY</span><span class="op">(</span><span class="va">temperature</span> <span class="op">~</span> <span class="va">delivery_min</span>, <span class="fu">bedrock</span><span class="fu">::</span><span class="va"><a href="https://andrisignorell.github.io/bedrock/reference/Pizza.html" class="external-link">Pizza</a></span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># subset, evaluated in data</span></span></span>
+<span class="r-in"><span><span class="fu">plotXY</span><span class="op">(</span><span class="va">temperature</span> <span class="op">~</span> <span class="va">delivery_min</span>, <span class="fu">bedrock</span><span class="fu">::</span><span class="va"><a href="https://andrisignorell.github.io/bedrock/reference/Pizza.html" class="external-link">Pizza</a></span>,</span></span>
+<span class="r-in"><span>       subset <span class="op">=</span> <span class="va">area</span> <span class="op">==</span> <span class="st">"Camden"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

@@ -39,18 +39,6 @@ plotXY(
   main = NULL,
   xlab = "",
   ylab = "",
-  xlim = NULL,
-  ylim = NULL,
-  col = .useTheme,
-  bg = .useTheme,
-  pch = .useTheme,
-  cex = .useTheme,
-  grid = .useTheme,
-  lm = TRUE,
-  loess = TRUE,
-  legend = TRUE,
-  box = .useTheme,
-  stamp = .useTheme,
   ...
 )
 ```
@@ -194,7 +182,7 @@ plotXY(
 
 - formula:
 
-  a formula of the form `y ~ x`.
+  a formula of the form `y ~ x`, both numeric.
 
 - data:
 
@@ -202,7 +190,9 @@ plotXY(
 
 - subset:
 
-  optional expression indicating which observations to use.
+  an optional expression indicating which observations to use, evaluated
+  in `data` (`subset = delivery_min < 40`), as in
+  [`plot.formula()`](https://rdrr.io/r/graphics/plot.formula.html).
 
 - na.action:
 
@@ -258,5 +248,9 @@ plotXY(temperature ~ delivery_min, bedrock::Pizza,
 
 # No title, compact top margin
 plotXY(temperature ~ delivery_min, bedrock::Pizza, main = "")
+
+# subset, evaluated in data
+plotXY(temperature ~ delivery_min, bedrock::Pizza,
+       subset = area == "Camden")
 } # }
 ```

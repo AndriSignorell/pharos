@@ -8,6 +8,26 @@ classical density plots and conditional density plots.
 ``` r
 plotDens(x, ...)
 
+# Default S3 method
+plotDens(
+  x,
+  ...,
+  main = NULL,
+  xlab = "",
+  ylab = "density",
+  xlim = NULL,
+  ylim = NULL,
+  add = FALSE,
+  bw = "nrd0",
+  col = NULL,
+  lwd = 2,
+  lty = 1,
+  fill = FALSE,
+  grid = NULL,
+  legend = TRUE,
+  stamp = .useTheme
+)
+
 # S3 method for class 'formula'
 plotDens(
   formula,
@@ -18,17 +38,7 @@ plotDens(
   main = NULL,
   xlab = "",
   ylab = NULL,
-  xlim = NULL,
-  ylim = NULL,
-  add = FALSE,
-  bw = "nrd0",
-  type = NULL,
-  col = NULL,
-  lwd = 2,
-  lty = 1,
-  fill = FALSE,
-  grid = NA,
-  stamp = TRUE
+  type = NULL
 )
 ```
 
@@ -43,30 +53,20 @@ plotDens(
   additional data vectors (unnamed, default method) or graphical
   parameters passed to [`par()`](https://rdrr.io/r/graphics/par.html).
 
-- formula:
+- main:
 
-  A formula of the form `y ~ group`, `y ~ x` (`x` numeric, conditional
-  density), or `y ~ x | group`.
+  main title. `NULL` (default) derives the title from the input: the
+  names of the data arguments, or the formula. `""`, `NA`, or `FALSE`
+  suppress the title and compact the top margin.
 
-- data:
+- xlab, ylab:
 
-  optional data frame.
-
-- subset:
-
-  optional subset expression.
-
-- na.action:
-
-  function to handle missing values.
-
-- main, xlab, ylab:
-
-  plot labels.
+  axis labels.
 
 - xlim, ylim:
 
-  axis limits.
+  axis limits. `NULL` (default) uses the range of the densities, the
+  y-axis starting at 0 (`c(0, 1)` for a conditional density).
 
 - add:
 
@@ -77,12 +77,6 @@ plotDens(
   bandwidth passed to
   [`stats::density()`](https://rdrr.io/r/stats/density.html) or
   `cdplot`.
-
-- type:
-
-  character string specifying the plot type. One of `"density"`,
-  `"conditional"`, or `NULL` (default, determined by
-  `resolveFormula()`'s design classification).
 
 - col:
 
@@ -109,11 +103,48 @@ plotDens(
 
   logical, `NA`, or list controlling background grid.
 
+- legend:
+
+  controls the legend, drawn only for more than one curve, with the
+  group names (the level names for the formula method, the names of the
+  data arguments otherwise). `TRUE` (default) draws it with default
+  settings, `FALSE`/`NULL`/`NA` suppress it, a named list is passed on
+  to [`graphics::legend()`](https://rdrr.io/r/graphics/legend.html)
+  (e.g. `list(x = "topleft")`).
+
 - stamp:
 
   controls the corner stamp. `.useTheme` (default) resolves to
   `getTheme()$stamp`. `TRUE`/`FALSE`/`NULL`, or an explicit string, as
   for [`.withGraphicsState()`](graphics-framework.md) (internal).
+
+- formula:
+
+  a formula of the form `y ~ group` (or `y ~ a:b` for the cells of
+  several grouping variables), `y ~ x` (`x` numeric, conditional
+  density), or `y ~ x | group`. `y ~ a + b` is not accepted, see
+  [`bedrock::resolveFormula()`](https://andrisignorell.github.io/bedrock/reference/resolveFormula.html).
+
+- data:
+
+  an optional data frame containing the variables in the formula.
+
+- subset:
+
+  an optional expression indicating which observations to use, evaluated
+  in `data` (`subset = len > 10`), as in
+  [`boxplot()`](https://rdrr.io/r/graphics/boxplot.html).
+
+- na.action:
+
+  a function specifying how missing values are handled, defaults to
+  [`na.omit()`](https://rdrr.io/r/stats/na.fail.html).
+
+- type:
+
+  character string specifying the plot type. One of `"density"`,
+  `"conditional"`, or `NULL` (default, determined by
+  `resolveFormula()`'s design classification).
 
 ## Value
 
@@ -176,5 +207,9 @@ plotDens(y ~ x, fill = c("red", "blue"))
 
 # conditional density, stratified by group
 plotDens(y ~ x | g)
+
+
+# subset and the cells of two grouping variables
+plotDens(len ~ supp:dose, ToothGrowth, subset = dose > 0.5)
 
 ```

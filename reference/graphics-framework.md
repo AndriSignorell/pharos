@@ -206,6 +206,14 @@ Deliberately *not* saved/restored: `oma`/`omi`. Restoring these resets
 the multi-figure state and thereby destroys user-defined `mfrow`/
 [`layout()`](https://rdrr.io/r/graphics/layout.html) arrangements
 between panels (each `par(omi = ...)` call restarts the page).
+Exception: with `resetLayout = TRUE` the calling function has set up its
+own layout and thus owns the page; `oma` is then restored after the
+layout reset.
+
+Deliberately *not* saved/restored: `oma`/`omi`. Restoring these resets
+the multi-figure state and thereby destroys user-defined `mfrow`/
+[`layout()`](https://rdrr.io/r/graphics/layout.html) arrangements
+between panels (each `par(omi = ...)` call restarts the page).
 
 Warnings inside `expr` are raised immediately (`warn = 1`) so they
 appear in the context of the failing plot call rather than being

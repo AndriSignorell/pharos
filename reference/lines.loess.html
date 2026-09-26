@@ -17,7 +17,7 @@ together with an optional confidence band."><meta property="og:image" content="/
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.955</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.956</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -105,12 +105,13 @@ two-color pair (see <a href="theme.html">theme</a>).</p></dd>
 <dt id="arg-bandargs">bandArgs<a class="anchor" aria-label="anchor" href="#arg-bandargs"></a></dt>
 <dd><p>controls the confidence band. May be <code>TRUE</code>,
 <code>FALSE</code>, <code>NULL</code>, <code>NA</code>, or a named list. The confidence
-level is specified via <code>conf.level</code>. Default is
-<code>list(conf.level = 0.95)</code>.</p></dd>
+level is specified via <code>conf.level</code>, all other elements are graphical
+parameters of the band. Default is <code>list(conf.level = 0.95)</code>.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>currently ignored.</p></dd>
+<dd><p>further graphical parameters passed to <code><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines()</a></code> for the
+smoother.</p></dd>
 
 </dl></div>
     <div class="section level2">

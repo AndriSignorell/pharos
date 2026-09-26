@@ -101,7 +101,7 @@ devices."><meta property="og:image" content="/logo.png"></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.955</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.956</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -309,6 +309,12 @@ valid <code><a href="https://rdrr.io/r/graphics/grid.html" class="external-link"
 <code>plot*()</code> function routes its drawing code through here, so state
 restoration and stamping never have to be handled at individual call
 sites.</p>
+<p>Deliberately <em>not</em> saved/restored: <code>oma</code>/<code>omi</code>. Restoring these resets
+the multi-figure state and thereby destroys user-defined <code>mfrow</code>/
+<code><a href="https://rdrr.io/r/graphics/layout.html" class="external-link">layout()</a></code> arrangements between panels (each <code>par(omi = ...)</code> call
+restarts the page). Exception: with <code>resetLayout = TRUE</code> the calling
+function has set up its own layout and thus owns the page; <code>oma</code> is
+then restored after the layout reset.</p>
 <p>Deliberately <em>not</em> saved/restored: <code>oma</code>/<code>omi</code>. Restoring these resets
 the multi-figure state and thereby destroys user-defined <code>mfrow</code>/
 <code><a href="https://rdrr.io/r/graphics/layout.html" class="external-link">layout()</a></code> arrangements between panels (each <code>par(omi = ...)</code> call

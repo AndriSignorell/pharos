@@ -15,7 +15,7 @@ designed to stay performant even for very large vectors (n ~ 1e6-1e7)."><meta pr
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.955</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.956</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -83,13 +83,9 @@ designed to stay performant even for very large vectors (n ~ 1e6-1e7).</p>
 <span>  na.action <span class="op">=</span> <span class="va">na.omit</span>,</span>
 <span>  main <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  xlab <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  ylab <span class="op">=</span> <span class="st">""</span>,</span>
 <span>  xlim <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  breaks <span class="op">=</span> <span class="fl">1000</span>,</span>
 <span>  col <span class="op">=</span> <span class="va">.useTheme</span>,</span>
 <span>  lwd <span class="op">=</span> <span class="fl">2</span>,</span>
-<span>  grid <span class="op">=</span> <span class="va">.useTheme</span>,</span>
-<span>  box <span class="op">=</span> <span class="va">.useTheme</span>,</span>
 <span>  legend <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  stamp <span class="op">=</span> <span class="va">.useTheme</span>,</span>
 <span>  <span class="va">...</span></span>
@@ -101,7 +97,8 @@ designed to stay performant even for very large vectors (n ~ 1e6-1e7).</p>
 
 
 <dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
-<dd><p>numeric vector of the observations for the ECDF.</p></dd>
+<dd><p>numeric vector of the observations for the ECDF. Missing values
+are removed.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
@@ -180,15 +177,19 @@ a string, or a named list of arguments for <code><a href="stamp.html">stamp()</a
 
 
 <dt id="arg-formula">formula<a class="anchor" aria-label="anchor" href="#arg-formula"></a></dt>
-<dd><p>a formula of the form <code>y ~ x</code>.</p></dd>
+<dd><p>a formula of the form <code>y ~ group</code>, one ECDF per group, or
+<code>y ~ a:b</code> for the cells of several grouping variables. <code>y ~ a + b</code> is
+not accepted, see <code><a href="https://andrisignorell.github.io/bedrock/reference/resolveFormula.html" class="external-link">bedrock::resolveFormula()</a></code>.</p></dd>
 
 
 <dt id="arg-data">data<a class="anchor" aria-label="anchor" href="#arg-data"></a></dt>
-<dd><p>an optional data frame containing variables in the formula.</p></dd>
+<dd><p>an optional data frame containing the variables in the
+formula.</p></dd>
 
 
 <dt id="arg-subset">subset<a class="anchor" aria-label="anchor" href="#arg-subset"></a></dt>
-<dd><p>optional expression indicating which observations to use.</p></dd>
+<dd><p>an optional expression indicating which observations to
+use, evaluated in <code>data</code> (<code>subset = len &gt; 10</code>), as in <code><a href="https://rdrr.io/r/graphics/boxplot.html" class="external-link">boxplot()</a></code>.</p></dd>
 
 
 <dt id="arg-na-action">na.action<a class="anchor" aria-label="anchor" href="#arg-na-action"></a></dt>
@@ -197,9 +198,10 @@ Defaults to <code>na.omit</code>.</p></dd>
 
 
 <dt id="arg-legend">legend<a class="anchor" aria-label="anchor" href="#arg-legend"></a></dt>
-<dd><p>logical or list controlling the legend. If <code>TRUE</code>, a legend
-is drawn using the column names of the data. If a list is supplied, its
-elements are passed to the internal legend drawing routine.</p></dd>
+<dd><p>controls the legend of the formula method, drawn with the
+group levels. <code>TRUE</code> (default) draws it with default settings,
+<code>FALSE</code>/<code>NULL</code>/<code>NA</code> suppress it, a named list is passed on to
+<code><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">graphics::legend()</a></code> (e.g. <code>list(x = "topleft")</code>).</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -256,6 +258,10 @@ a skewed or heavy-tailed distribution, nor lost in the tails).</p>
 <span class="r-in"><span><span class="co"># grouped ECDFs via the formula interface</span></span></span>
 <span class="r-in"><span><span class="fu">plotECDF</span><span class="op">(</span><span class="va">Sepal.Length</span> <span class="op">~</span> <span class="va">Species</span>, data <span class="op">=</span> <span class="va">iris</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plotECDF-4.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># subset and the cells of two grouping variables</span></span></span>
+<span class="r-in"><span><span class="fu">plotECDF</span><span class="op">(</span><span class="va">len</span> <span class="op">~</span> <span class="va">supp</span><span class="op">:</span><span class="va">dose</span>, <span class="va">ToothGrowth</span>, subset <span class="op">=</span> <span class="va">dose</span> <span class="op">&gt;</span> <span class="fl">0.5</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="plotECDF-5.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

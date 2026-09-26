@@ -33,13 +33,9 @@ plotECDF(
   na.action = na.omit,
   main = NULL,
   xlab = NULL,
-  ylab = "",
   xlim = NULL,
-  breaks = 1000,
   col = .useTheme,
   lwd = 2,
-  grid = .useTheme,
-  box = .useTheme,
   legend = TRUE,
   stamp = .useTheme,
   ...
@@ -50,7 +46,8 @@ plotECDF(
 
 - x:
 
-  numeric vector of the observations for the ECDF.
+  numeric vector of the observations for the ECDF. Missing values are
+  removed.
 
 - ...:
 
@@ -130,15 +127,20 @@ plotECDF(
 
 - formula:
 
-  a formula of the form `y ~ x`.
+  a formula of the form `y ~ group`, one ECDF per group, or `y ~ a:b`
+  for the cells of several grouping variables. `y ~ a + b` is not
+  accepted, see
+  [`bedrock::resolveFormula()`](https://andrisignorell.github.io/bedrock/reference/resolveFormula.html).
 
 - data:
 
-  an optional data frame containing variables in the formula.
+  an optional data frame containing the variables in the formula.
 
 - subset:
 
-  optional expression indicating which observations to use.
+  an optional expression indicating which observations to use, evaluated
+  in `data` (`subset = len > 10`), as in
+  [`boxplot()`](https://rdrr.io/r/graphics/boxplot.html).
 
 - na.action:
 
@@ -147,9 +149,11 @@ plotECDF(
 
 - legend:
 
-  logical or list controlling the legend. If `TRUE`, a legend is drawn
-  using the column names of the data. If a list is supplied, its
-  elements are passed to the internal legend drawing routine.
+  controls the legend of the formula method, drawn with the group
+  levels. `TRUE` (default) draws it with default settings,
+  `FALSE`/`NULL`/`NA` suppress it, a named list is passed on to
+  [`graphics::legend()`](https://rdrr.io/r/graphics/legend.html) (e.g.
+  `list(x = "topleft")`).
 
 ## Value
 
@@ -203,5 +207,9 @@ plotECDF(x, breaks = NULL)
 
 # grouped ECDFs via the formula interface
 plotECDF(Sepal.Length ~ Species, data = iris)
+
+
+# subset and the cells of two grouping variables
+plotECDF(len ~ supp:dose, ToothGrowth, subset = dose > 0.5)
 
 ```

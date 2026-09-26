@@ -20,7 +20,7 @@ plotBox(
   col = NULL,
   grid = TRUE,
   means = TRUE,
-  stamp = TRUE,
+  stamp = .useTheme,
   ...
 )
 
@@ -33,10 +33,6 @@ plotBox(
   main = NULL,
   xlab = "",
   ylab = "",
-  ylim = NULL,
-  col = NULL,
-  grid = TRUE,
-  stamp = TRUE,
   ...
 )
 ```
@@ -61,7 +57,9 @@ plotBox(
 
 - main:
 
-  main title of the plot.
+  main title of the plot. `NULL` (default) derives the title from the
+  input: the formula, or `x ~ g` for the default method. `""`, `NA`, or
+  `FALSE` suppress the title and compact the top margin.
 
 - xlab:
 
@@ -78,7 +76,8 @@ plotBox(
 
 - col:
 
-  vector of colors. If `NULL`, a palette is generated automatically.
+  vector of fill colors, recycled over the groups. `NULL` (default) uses
+  `"grey90"`.
 
 - grid:
 
@@ -112,19 +111,24 @@ plotBox(
 
 - formula:
 
-  A formula of the form `y ~ group`.
+  a formula of the form `y ~ group`, or `y ~ a:b` for the cells of
+  several grouping variables. `y ~ a + b` is not accepted, see
+  [`bedrock::resolveFormula()`](https://andrisignorell.github.io/bedrock/reference/resolveFormula.html).
 
 - data:
 
-  an optional data frame containing variables in the formula.
+  an optional data frame containing the variables in the formula.
 
 - subset:
 
-  optional expression indicating which observations to use.
+  an optional expression indicating which observations to use, evaluated
+  in `data` (`subset = len > 10`), as in
+  [`boxplot()`](https://rdrr.io/r/graphics/boxplot.html).
 
 - na.action:
 
-  a function specifying how missing values are handled.
+  a function specifying how missing values are handled, defaults to
+  [`na.omit()`](https://rdrr.io/r/stats/na.fail.html).
 
 ## Value
 
@@ -166,5 +170,9 @@ plotBox(x)
 plotBox(x, g)
 
 plotBox(x ~ g)
+
+# data, subset and the cells of two grouping variables
+plotBox(len ~ supp, ToothGrowth, subset = dose > 0.5)
+plotBox(len ~ supp:dose, ToothGrowth)
 } # }
 ```

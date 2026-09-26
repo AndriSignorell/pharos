@@ -29,33 +29,22 @@ plotViolin(
   lwd = 1,
   box = TRUE,
   grid = NA,
-  quantiles = NULL
+  quantiles = NULL,
+  stamp = .useTheme
 )
 
 # S3 method for class 'formula'
 plotViolin(
   formula,
-  data = NULL,
+  data,
   subset,
   na.action = na.omit,
   ...,
   main = NULL,
   xlab = "",
   ylab = "",
-  xlim = NULL,
-  ylim = NULL,
   horizontal = FALSE,
-  at = NULL,
-  names = NULL,
-  add = FALSE,
-  bw = "nrd0",
-  trim = TRUE,
-  col = "grey80",
-  border = "black",
-  lwd = 1,
-  box = TRUE,
-  grid = NA,
-  quantiles = NULL
+  names = NULL
 )
 ```
 
@@ -70,13 +59,21 @@ plotViolin(
   additional data vectors (unnamed) or graphical parameters passed to
   [`par()`](https://rdrr.io/r/graphics/par.html).
 
-- main, xlab, ylab:
+- main:
 
-  plot labels.
+  main title. `NULL` (default) derives the title from the input: the
+  names of the data arguments, or the formula. `""`, `NA`, or `FALSE`
+  suppress the title and compact the top margin.
+
+- xlab, ylab:
+
+  axis labels. For the formula method, empty labels default to the
+  grouping variable and the response.
 
 - xlim, ylim:
 
-  axis limits.
+  axis limits. `NULL` (default) uses the range of the densities, padded
+  by 2%; given limits are used as they are.
 
 - horizontal:
 
@@ -135,21 +132,33 @@ plotViolin(
   optional numeric vector of probabilities for drawing quantile lines
   inside each violin.
 
+- stamp:
+
+  controls the corner stamp. `.useTheme` (default) resolves to
+  `getTheme()$stamp`. `TRUE`/`FALSE`/`NULL`, a string, or a named list
+  for [`stamp()`](stamp.md).
+
 - formula:
 
-  A formula of the form y ~ group.
+  a formula of the form `y ~ group`, or `y ~ a:b` for the cells of
+  several grouping variables. `y ~ a + b` is not accepted (unlike
+  [`boxplot()`](https://rdrr.io/r/graphics/boxplot.html)), see
+  [`bedrock::resolveFormula()`](https://andrisignorell.github.io/bedrock/reference/resolveFormula.html).
 
 - data:
 
-  optional data frame.
+  an optional data frame containing the variables in the formula.
 
 - subset:
 
-  optional subset expression.
+  an optional expression indicating which observations to use, evaluated
+  in `data` (`subset = len > 10`), as in
+  [`boxplot()`](https://rdrr.io/r/graphics/boxplot.html).
 
 - na.action:
 
-  function to handle missing values.
+  a function specifying how missing values are handled, defaults to
+  [`na.omit()`](https://rdrr.io/r/stats/na.fail.html).
 
 ## Value
 
@@ -228,5 +237,9 @@ df <- data.frame(
 )
 
 plotViolin(value ~ group, data = df)
+
+
+# subset and the cells of two grouping variables
+plotViolin(len ~ supp:dose, ToothGrowth, subset = len > 8)
 
 ```

@@ -13,6 +13,7 @@ plotRidge(
   add = FALSE,
   bw = "nrd0",
   scale = 1,
+  normalize = c("global", "group"),
   spacing = 1,
   col = NULL,
   border = NULL,
@@ -20,35 +21,24 @@ plotRidge(
   lty = 1,
   fill = TRUE,
   grid = NA,
-  main = "",
+  main = NULL,
   xlab = "",
   ylab = "",
   xlim = NULL,
-  ylim = NULL
+  ylim = NULL,
+  stamp = .useTheme
 )
 
 # S3 method for class 'formula'
 plotRidge(
   formula,
-  data = NULL,
+  data,
   subset,
   na.action = na.omit,
   ...,
-  add = FALSE,
-  bw = "nrd0",
-  scale = 1,
-  spacing = 1,
-  col = NULL,
-  border = NULL,
-  lwd = 1,
-  lty = 1,
-  fill = TRUE,
-  grid = NA,
-  main = "",
+  main = NULL,
   xlab = "",
-  ylab = "",
-  xlim = NULL,
-  ylim = NULL
+  ylab = ""
 )
 ```
 
@@ -56,12 +46,12 @@ plotRidge(
 
 - x:
 
-  A numeric vector, or a list of numeric vectors representing groups.
+  a numeric vector, or a list of numeric vectors representing groups.
 
 - ...:
 
-  additional graphical parameters passed to
-  [`par()`](https://rdrr.io/r/graphics/par.html).
+  further numeric vectors (unnamed), each forming a group, or graphical
+  parameters passed to [`par()`](https://rdrr.io/r/graphics/par.html).
 
 - add:
 
@@ -76,17 +66,28 @@ plotRidge(
 
   scaling factor for density height.
 
+- normalize:
+
+  how the density heights are scaled to `scale`: `"global"` (default)
+  divides all densities by the highest peak of all groups, so that
+  heights stay comparable across groups (as in ggridges); `"group"`
+  divides each density by its own peak, so that every ridge reaches the
+  full height. Use the latter when a single narrow group would otherwise
+  flatten all others.
+
 - spacing:
 
   vertical spacing between ridges.
 
 - col:
 
-  fill color(s).
+  fill color(s), recycled over the groups. `NULL` (default) uses the
+  palette.
 
 - border:
 
-  border color(s).
+  border color(s), recycled over the groups. `NULL` (default) uses
+  `col`.
 
 - lwd:
 
@@ -104,29 +105,47 @@ plotRidge(
 
   logical, `NA`, or list controlling grid.
 
-- main, xlab, ylab:
+- main:
 
-  plot labels.
+  main title. `NULL` (default) derives the title from the input: the
+  names of the data arguments, or the formula. `""`, `NA`, or `FALSE`
+  suppress the title and compact the top margin.
+
+- xlab, ylab:
+
+  axis labels. For the formula method, empty labels default to the
+  response and the grouping variable.
 
 - xlim, ylim:
 
   axis limits.
 
+- stamp:
+
+  controls the corner stamp. `.useTheme` (default) resolves to
+  `getTheme()$stamp`. `TRUE`/`FALSE`/`NULL`, a string, or a named list
+  for [`stamp()`](stamp.md).
+
 - formula:
 
-  A formula of the form `y ~ group`.
+  a formula of the form `y ~ group`, or `y ~ a:b` for the cells of
+  several grouping variables. `y ~ a + b` is not accepted, see
+  [`bedrock::resolveFormula()`](https://andrisignorell.github.io/bedrock/reference/resolveFormula.html).
 
 - data:
 
-  optional data frame.
+  an optional data frame containing the variables in the formula.
 
 - subset:
 
-  optional subset expression.
+  an optional expression indicating which observations to use, evaluated
+  in `data` (`subset = len > 10`), as in
+  [`boxplot()`](https://rdrr.io/r/graphics/boxplot.html).
 
 - na.action:
 
-  function to handle missing values.
+  a function specifying how missing values are handled, defaults to
+  [`na.omit()`](https://rdrr.io/r/stats/na.fail.html).
 
 ## Value
 
@@ -152,5 +171,15 @@ df <- data.frame(
 )
 
 plotRidge(value ~ group, data = df)
+
+
+# subset and the cells of two grouping variables
+plotRidge(len ~ supp:dose, ToothGrowth, subset = len > 8)
+
+
+# the narrow group VC:0.5 flattens all others; scale each ridge to its
+# own peak instead
+plotRidge(len ~ supp:dose, ToothGrowth, subset = len > 8,
+          normalize = "group")
 
 ```

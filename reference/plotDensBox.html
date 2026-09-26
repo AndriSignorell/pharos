@@ -19,7 +19,7 @@ median, spread, and outliers."><meta property="og:image" content="/logo.png"></h
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.955</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.956</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,7 +68,7 @@ median, spread, and outliers.</p>
 <span><span class="fu">plotDensBox</span><span class="op">(</span></span>
 <span>  <span class="va">x</span>,</span>
 <span>  g <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  main <span class="op">=</span> <span class="st">""</span>,</span>
+<span>  main <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  xlab <span class="op">=</span> <span class="st">""</span>,</span>
 <span>  ylab <span class="op">=</span> <span class="st">""</span>,</span>
 <span>  xlim <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -77,7 +77,7 @@ median, spread, and outliers.</p>
 <span>  grid <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  densArgs <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  boxArgs <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  stamp <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  stamp <span class="op">=</span> <span class="va">.useTheme</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -87,16 +87,8 @@ median, spread, and outliers.</p>
 <span>  <span class="va">data</span>,</span>
 <span>  <span class="va">subset</span>,</span>
 <span>  na.action <span class="op">=</span> <span class="va">na.omit</span>,</span>
-<span>  main <span class="op">=</span> <span class="st">""</span>,</span>
+<span>  main <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  xlab <span class="op">=</span> <span class="st">""</span>,</span>
-<span>  ylab <span class="op">=</span> <span class="st">""</span>,</span>
-<span>  xlim <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  layout_heights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">1.4</span><span class="op">)</span>,</span>
-<span>  col <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  grid <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  densArgs <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  boxArgs <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  stamp <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -119,19 +111,24 @@ median, spread, and outliers.</p>
 
 
 <dt id="arg-main">main<a class="anchor" aria-label="anchor" href="#arg-main"></a></dt>
-<dd><p>main title of the plot.</p></dd>
+<dd><p>main title of the plot. <code>NULL</code> (default) derives the title
+from the input: the formula, or <code>x</code> resp. <code>x ~ g</code> for the default
+method. <code>""</code>, <code>NA</code>, or <code>FALSE</code> suppress the title and its outer
+margin.</p></dd>
 
 
 <dt id="arg-xlab">xlab<a class="anchor" aria-label="anchor" href="#arg-xlab"></a></dt>
-<dd><p>label for the x-axis.</p></dd>
+<dd><p>label for the x-axis, drawn below the boxplot. For the
+formula method, an empty label defaults to the response.</p></dd>
 
 
 <dt id="arg-ylab">ylab<a class="anchor" aria-label="anchor" href="#arg-ylab"></a></dt>
-<dd><p>label for the y-axis.</p></dd>
+<dd><p>label for the y-axis of the density panel.</p></dd>
 
 
 <dt id="arg-xlim">xlim<a class="anchor" aria-label="anchor" href="#arg-xlim"></a></dt>
-<dd><p>numeric vector of length 2 specifying the x-axis limits.</p></dd>
+<dd><p>numeric vector of length 2 specifying the x-axis limits.
+<code>NULL</code> (default) covers the data and the tails of the densities.</p></dd>
 
 
 <dt id="arg-layout-heights">layout_heights<a class="anchor" aria-label="anchor" href="#arg-layout-heights"></a></dt>
@@ -140,7 +137,8 @@ heights of the density plot (top) and boxplot (bottom).</p></dd>
 
 
 <dt id="arg-col">col<a class="anchor" aria-label="anchor" href="#arg-col"></a></dt>
-<dd><p>vector of colors. If <code>NULL</code>, a palette is generated.</p></dd>
+<dd><p>vector of colors, recycled over the groups. If <code>NULL</code>, a
+palette is generated.</p></dd>
 
 
 <dt id="arg-grid">grid<a class="anchor" aria-label="anchor" href="#arg-grid"></a></dt>
@@ -172,23 +170,30 @@ Can be:</p><ul><li><p><code>TRUE</code>: use default boxplot settings</p></li>
 
 
 <dt id="arg-stamp">stamp<a class="anchor" aria-label="anchor" href="#arg-stamp"></a></dt>
-<dd><p>optional annotation passed to the plotting framework.</p></dd>
+<dd><p>controls the corner stamp. <code>.useTheme</code> (default)
+resolves to <code>getTheme()$stamp</code>. <code>TRUE</code>/<code>FALSE</code>/<code>NULL</code>, a string, or a
+named list for <code><a href="stamp.html">stamp()</a></code>.</p></dd>
 
 
 <dt id="arg-formula">formula<a class="anchor" aria-label="anchor" href="#arg-formula"></a></dt>
-<dd><p>A formula of the form <code>y ~ group</code>.</p></dd>
+<dd><p>a formula of the form <code>y ~ group</code>, or <code>y ~ a:b</code> for the
+cells of several grouping variables. <code>y ~ a + b</code> is not accepted, see
+<code><a href="https://andrisignorell.github.io/bedrock/reference/resolveFormula.html" class="external-link">bedrock::resolveFormula()</a></code>.</p></dd>
 
 
 <dt id="arg-data">data<a class="anchor" aria-label="anchor" href="#arg-data"></a></dt>
-<dd><p>an optional data frame containing variables in the formula.</p></dd>
+<dd><p>an optional data frame containing the variables in the
+formula.</p></dd>
 
 
 <dt id="arg-subset">subset<a class="anchor" aria-label="anchor" href="#arg-subset"></a></dt>
-<dd><p>optional expression indicating which observations to use.</p></dd>
+<dd><p>an optional expression indicating which observations to
+use, evaluated in <code>data</code> (<code>subset = len &gt; 10</code>), as in <code><a href="https://rdrr.io/r/graphics/boxplot.html" class="external-link">boxplot()</a></code>.</p></dd>
 
 
 <dt id="arg-na-action">na.action<a class="anchor" aria-label="anchor" href="#arg-na-action"></a></dt>
-<dd><p>a function specifying how missing values are handled.</p></dd>
+<dd><p>a function specifying how missing values are handled,
+defaults to <code><a href="https://rdrr.io/r/stats/na.fail.html" class="external-link">na.omit()</a></code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -246,6 +251,9 @@ variable is provided, densities and boxplots are drawn for each group.</p>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">plotDensBox</span><span class="op">(</span><span class="va">x</span> <span class="op">~</span> <span class="va">g</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># subset and the cells of two grouping variables</span></span></span>
+<span class="r-in"><span><span class="fu">plotDensBox</span><span class="op">(</span><span class="va">len</span> <span class="op">~</span> <span class="va">supp</span><span class="op">:</span><span class="va">dose</span>, <span class="va">ToothGrowth</span>, subset <span class="op">=</span> <span class="va">dose</span> <span class="op">&gt;</span> <span class="fl">0.5</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

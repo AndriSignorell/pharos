@@ -52,12 +52,14 @@ lines(
 - bandArgs:
 
   controls the confidence band. May be `TRUE`, `FALSE`, `NULL`, `NA`, or
-  a named list. The confidence level is specified via `conf.level`.
-  Default is `list(conf.level = 0.95)`.
+  a named list. The confidence level is specified via `conf.level`, all
+  other elements are graphical parameters of the band. Default is
+  `list(conf.level = 0.95)`.
 
 - ...:
 
-  currently ignored.
+  further graphical parameters passed to
+  [`lines()`](https://rdrr.io/r/graphics/lines.html) for the smoother.
 
 ## Details
 

@@ -17,7 +17,7 @@ boxplot-like interface and supports both default and formula methods."><meta pro
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.955</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.956</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -81,33 +81,22 @@ boxplot-like interface and supports both default and formula methods.</p>
 <span>  lwd <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  box <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  grid <span class="op">=</span> <span class="cn">NA</span>,</span>
-<span>  quantiles <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  quantiles <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  stamp <span class="op">=</span> <span class="va">.useTheme</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for class 'formula'</span></span>
 <span><span class="fu">plotViolin</span><span class="op">(</span></span>
 <span>  <span class="va">formula</span>,</span>
-<span>  data <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">data</span>,</span>
 <span>  <span class="va">subset</span>,</span>
 <span>  na.action <span class="op">=</span> <span class="va">na.omit</span>,</span>
 <span>  <span class="va">...</span>,</span>
 <span>  main <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  xlab <span class="op">=</span> <span class="st">""</span>,</span>
 <span>  ylab <span class="op">=</span> <span class="st">""</span>,</span>
-<span>  xlim <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  ylim <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  horizontal <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  at <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  names <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  add <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  bw <span class="op">=</span> <span class="st">"nrd0"</span>,</span>
-<span>  trim <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  col <span class="op">=</span> <span class="st">"grey80"</span>,</span>
-<span>  border <span class="op">=</span> <span class="st">"black"</span>,</span>
-<span>  lwd <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  box <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  grid <span class="op">=</span> <span class="cn">NA</span>,</span>
-<span>  quantiles <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  names <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -124,12 +113,20 @@ boxplot-like interface and supports both default and formula methods.</p>
 passed to <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par()</a></code>.</p></dd>
 
 
-<dt id="arg-main-xlab-ylab">main, xlab, ylab<a class="anchor" aria-label="anchor" href="#arg-main-xlab-ylab"></a></dt>
-<dd><p>plot labels.</p></dd>
+<dt id="arg-main">main<a class="anchor" aria-label="anchor" href="#arg-main"></a></dt>
+<dd><p>main title. <code>NULL</code> (default) derives the title from the
+input: the names of the data arguments, or the formula. <code>""</code>, <code>NA</code>, or
+<code>FALSE</code> suppress the title and compact the top margin.</p></dd>
+
+
+<dt id="arg-xlab-ylab">xlab, ylab<a class="anchor" aria-label="anchor" href="#arg-xlab-ylab"></a></dt>
+<dd><p>axis labels. For the formula method, empty labels
+default to the grouping variable and the response.</p></dd>
 
 
 <dt id="arg-xlim-ylim">xlim, ylim<a class="anchor" aria-label="anchor" href="#arg-xlim-ylim"></a></dt>
-<dd><p>axis limits.</p></dd>
+<dd><p>axis limits. <code>NULL</code> (default) uses the range of the
+densities, padded by 2%; given limits are used as they are.</p></dd>
 
 
 <dt id="arg-horizontal">horizontal<a class="anchor" aria-label="anchor" href="#arg-horizontal"></a></dt>
@@ -189,20 +186,31 @@ reach into implausible values (e.g. scores above 100 or below 0).</p></dd>
 quantile lines inside each violin.</p></dd>
 
 
+<dt id="arg-stamp">stamp<a class="anchor" aria-label="anchor" href="#arg-stamp"></a></dt>
+<dd><p>controls the corner stamp. <code>.useTheme</code> (default)
+resolves to <code>getTheme()$stamp</code>. <code>TRUE</code>/<code>FALSE</code>/<code>NULL</code>, a string, or a
+named list for <code><a href="stamp.html">stamp()</a></code>.</p></dd>
+
+
 <dt id="arg-formula">formula<a class="anchor" aria-label="anchor" href="#arg-formula"></a></dt>
-<dd><p>A formula of the form y ~ group.</p></dd>
+<dd><p>a formula of the form <code>y ~ group</code>, or <code>y ~ a:b</code> for the
+cells of several grouping variables. <code>y ~ a + b</code> is not accepted (unlike
+<code><a href="https://rdrr.io/r/graphics/boxplot.html" class="external-link">boxplot()</a></code>), see <code><a href="https://andrisignorell.github.io/bedrock/reference/resolveFormula.html" class="external-link">bedrock::resolveFormula()</a></code>.</p></dd>
 
 
 <dt id="arg-data">data<a class="anchor" aria-label="anchor" href="#arg-data"></a></dt>
-<dd><p>optional data frame.</p></dd>
+<dd><p>an optional data frame containing the variables in the
+formula.</p></dd>
 
 
 <dt id="arg-subset">subset<a class="anchor" aria-label="anchor" href="#arg-subset"></a></dt>
-<dd><p>optional subset expression.</p></dd>
+<dd><p>an optional expression indicating which observations to
+use, evaluated in <code>data</code> (<code>subset = len &gt; 10</code>), as in <code><a href="https://rdrr.io/r/graphics/boxplot.html" class="external-link">boxplot()</a></code>.</p></dd>
 
 
 <dt id="arg-na-action">na.action<a class="anchor" aria-label="anchor" href="#arg-na-action"></a></dt>
-<dd><p>function to handle missing values.</p></dd>
+<dd><p>a function specifying how missing values are handled,
+defaults to <code><a href="https://rdrr.io/r/stats/na.fail.html" class="external-link">na.omit()</a></code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -281,6 +289,10 @@ via a flexible interface using <code>TRUE</code>, <code>FALSE</code>, <code>NA</
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">plotViolin</span><span class="op">(</span><span class="va">value</span> <span class="op">~</span> <span class="va">group</span>, data <span class="op">=</span> <span class="va">df</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plotViolin-6.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># subset and the cells of two grouping variables</span></span></span>
+<span class="r-in"><span><span class="fu">plotViolin</span><span class="op">(</span><span class="va">len</span> <span class="op">~</span> <span class="va">supp</span><span class="op">:</span><span class="va">dose</span>, <span class="va">ToothGrowth</span>, subset <span class="op">=</span> <span class="va">len</span> <span class="op">&gt;</span> <span class="fl">8</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="plotViolin-7.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

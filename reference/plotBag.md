@@ -12,11 +12,11 @@ plotBag(x, ...)
 
 # S3 method for class 'formula'
 plotBag(
-  x,
-  data = NULL,
+  formula,
+  data,
   subset,
   na.action = na.omit,
-  main = "",
+  main = NULL,
   xlab = NULL,
   ylab = NULL,
   ...
@@ -25,14 +25,14 @@ plotBag(
 # Default S3 method
 plotBag(
   x,
-  main = "",
-  xlab = "",
-  ylab = "",
+  main = NULL,
+  xlab = NULL,
+  ylab = NULL,
   xlim = NULL,
   ylim = NULL,
   factor = 3,
   eps = 0.00000001,
-  dither = TRUE,
+  dither = FALSE,
   points = TRUE,
   bag = TRUE,
   loop = TRUE,
@@ -41,7 +41,7 @@ plotBag(
   median = TRUE,
   grid = FALSE,
   box = TRUE,
-  stamp = NULL,
+  stamp = .useTheme,
   ...
 )
 ```
@@ -51,12 +51,18 @@ plotBag(
 - x:
 
   a numeric matrix or data frame with exactly two columns, or a formula
-  of the form `y ~ x` (see the formula method).
+  of the form `y ~ x` (see the formula method). Incomplete rows are
+  removed.
 
 - ...:
 
   additional graphical parameters passed to
   [`par()`](https://rdrr.io/r/graphics/par.html).
+
+- formula:
+
+  a formula of the form `y ~ x`, where both variables are numeric. `x`
+  is drawn on the horizontal, `y` on the vertical axis.
 
 - data:
 
@@ -64,7 +70,9 @@ plotBag(
 
 - subset:
 
-  an optional expression indicating which observations to use.
+  an optional expression indicating which observations to use, evaluated
+  in `data` (`subset = Weight > 2500`), as in
+  [`plot.formula()`](https://rdrr.io/r/graphics/plot.formula.html).
 
 - na.action:
 
@@ -72,14 +80,21 @@ plotBag(
   [`stats::na.omit()`](https://rdrr.io/r/stats/na.fail.html), as the
   depth computation requires complete pairs.
 
-- main, xlab, ylab:
+- main:
 
-  character strings for plot annotations. The formula method derives
-  `xlab` and `ylab` from the variable names if they are not supplied.
+  main title. `NULL` (default) derives the title from the input: the
+  formula, or the name of `x`. `""`, `NA`, or `FALSE` suppress the title
+  and compact the top margin.
+
+- xlab, ylab:
+
+  axis labels. `NULL` (default) uses the variable names of the formula,
+  resp. the column names of `x` (empty if it has none).
 
 - xlim, ylim:
 
-  numeric vectors of length 2 specifying axis limits.
+  numeric vectors of length 2 specifying axis limits. `NULL` (default)
+  uses the range of the data, extended to the fence if it is drawn.
 
 - factor:
 
@@ -87,11 +102,14 @@ plotBag(
 
 - eps:
 
-  numeric tolerance used in depth computation and geometry.
+  numeric tolerance used in depth computation and geometry, relative to
+  the standardized coordinates.
 
 - dither:
 
-  logical, whether to add small noise to break ties.
+  logical, whether to add small noise (order `eps`) to the data. Default
+  `FALSE`: ties are handled exactly, and dithering would only break
+  duplicates apart and so lower their depth.
 
 - points, bag, loop, fence, out, median, grid, box:
 
@@ -99,13 +117,9 @@ plotBag(
 
 - stamp:
 
-  optional stamp passed to
-  [`.withGraphicsState()`](graphics-framework.md).
-
-- formula:
-
-  a formula of the form `y ~ x`, where both variables are numeric. `x`
-  is drawn on the horizontal, `y` on the vertical axis.
+  controls the corner stamp. `.useTheme` (default) resolves to
+  `getTheme()$stamp`. `TRUE`/`FALSE`/`NULL`, a string, or a named list
+  for [`stamp()`](stamp.md).
 
 ## Value
 
@@ -161,9 +175,10 @@ sample depth regions rather than exact isodepth contours. Borderline
 outlier classifications may therefore differ slightly from other
 implementations (e.g. aplpack).
 
-Exact ties and collinear configurations violate the general-position
-assumption of the depth algorithm; `dither` (default `TRUE`) adds
-negligible noise (order `eps`) to break them.
+The depth computation handles exact ties and collinear configurations
+(e.g. discrete data) exactly; no dithering is needed. All computations
+run on standardized coordinates, so the result does not depend on the
+units of measurement.
 
 ## Element Control
 
@@ -251,7 +266,12 @@ plotBag(x, points = FALSE, median = FALSE)
 plotBag(Disp ~ Weight, data = cardata)
 
 
-# example of Rousseeuw et al. (1999): car weight vs engine displacement
-plotBag(cardata, xlab = "Weight", ylab = "Displacement")
+# subset, evaluated in data
+plotBag(Disp ~ Weight, data = cardata, subset = Weight > 2500)
+
+
+# example of Rousseeuw et al. (1999): car weight vs engine displacement;
+# the axis labels default to the column names
+plotBag(cardata)
 
 ```

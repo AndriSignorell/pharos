@@ -19,7 +19,7 @@ inflated by factor, not drawn) are flagged as outliers."><meta property="og:imag
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.955</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.956</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -66,11 +66,11 @@ inflated by <code>factor</code>, not drawn) are flagged as outliers.</p>
 <span></span>
 <span><span class="co"># S3 method for class 'formula'</span></span>
 <span><span class="fu">plotBag</span><span class="op">(</span></span>
-<span>  <span class="va">x</span>,</span>
-<span>  data <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">formula</span>,</span>
+<span>  <span class="va">data</span>,</span>
 <span>  <span class="va">subset</span>,</span>
 <span>  na.action <span class="op">=</span> <span class="va">na.omit</span>,</span>
-<span>  main <span class="op">=</span> <span class="st">""</span>,</span>
+<span>  main <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  xlab <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  ylab <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  <span class="va">...</span></span>
@@ -79,14 +79,14 @@ inflated by <code>factor</code>, not drawn) are flagged as outliers.</p>
 <span><span class="co"># Default S3 method</span></span>
 <span><span class="fu">plotBag</span><span class="op">(</span></span>
 <span>  <span class="va">x</span>,</span>
-<span>  main <span class="op">=</span> <span class="st">""</span>,</span>
-<span>  xlab <span class="op">=</span> <span class="st">""</span>,</span>
-<span>  ylab <span class="op">=</span> <span class="st">""</span>,</span>
+<span>  main <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  xlab <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  ylab <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  xlim <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  ylim <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  factor <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>  eps <span class="op">=</span> <span class="fl">0.00000001</span>,</span>
-<span>  dither <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  dither <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  points <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  bag <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  loop <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -95,7 +95,7 @@ inflated by <code>factor</code>, not drawn) are flagged as outliers.</p>
 <span>  median <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  grid <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  box <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  stamp <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  stamp <span class="op">=</span> <span class="va">.useTheme</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -106,11 +106,18 @@ inflated by <code>factor</code>, not drawn) are flagged as outliers.</p>
 
 <dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
 <dd><p>a numeric matrix or data frame with exactly two columns, or a
-formula of the form <code>y ~ x</code> (see the formula method).</p></dd>
+formula of the form <code>y ~ x</code> (see the formula method). Incomplete rows
+are removed.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>additional graphical parameters passed to <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par()</a></code>.</p></dd>
+
+
+<dt id="arg-formula">formula<a class="anchor" aria-label="anchor" href="#arg-formula"></a></dt>
+<dd><p>a formula of the form <code>y ~ x</code>, where both variables
+are numeric. <code>x</code> is drawn on the horizontal, <code>y</code> on the
+vertical axis.</p></dd>
 
 
 <dt id="arg-data">data<a class="anchor" aria-label="anchor" href="#arg-data"></a></dt>
@@ -120,7 +127,8 @@ formula of the form <code>y ~ x</code> (see the formula method).</p></dd>
 
 <dt id="arg-subset">subset<a class="anchor" aria-label="anchor" href="#arg-subset"></a></dt>
 <dd><p>an optional expression indicating which observations to
-use.</p></dd>
+use, evaluated in <code>data</code> (<code>subset = Weight &gt; 2500</code>), as in
+<code><a href="https://rdrr.io/r/graphics/plot.formula.html" class="external-link">plot.formula()</a></code>.</p></dd>
 
 
 <dt id="arg-na-action">na.action<a class="anchor" aria-label="anchor" href="#arg-na-action"></a></dt>
@@ -129,14 +137,21 @@ Defaults to <code><a href="https://rdrr.io/r/stats/na.fail.html" class="external
 requires complete pairs.</p></dd>
 
 
-<dt id="arg-main-xlab-ylab">main, xlab, ylab<a class="anchor" aria-label="anchor" href="#arg-main-xlab-ylab"></a></dt>
-<dd><p>character strings for plot annotations. The
-formula method derives <code>xlab</code> and <code>ylab</code> from the variable
-names if they are not supplied.</p></dd>
+<dt id="arg-main">main<a class="anchor" aria-label="anchor" href="#arg-main"></a></dt>
+<dd><p>main title. <code>NULL</code> (default) derives the title from the
+input: the formula, or the name of <code>x</code>. <code>""</code>, <code>NA</code>, or <code>FALSE</code>
+suppress the title and compact the top margin.</p></dd>
+
+
+<dt id="arg-xlab-ylab">xlab, ylab<a class="anchor" aria-label="anchor" href="#arg-xlab-ylab"></a></dt>
+<dd><p>axis labels. <code>NULL</code> (default) uses the variable names
+of the formula, resp. the column names of <code>x</code> (empty if it has none).</p></dd>
 
 
 <dt id="arg-xlim-ylim">xlim, ylim<a class="anchor" aria-label="anchor" href="#arg-xlim-ylim"></a></dt>
-<dd><p>numeric vectors of length 2 specifying axis limits.</p></dd>
+<dd><p>numeric vectors of length 2 specifying axis limits.
+<code>NULL</code> (default) uses the range of the data, extended to the fence if
+it is drawn.</p></dd>
 
 
 <dt id="arg-factor">factor<a class="anchor" aria-label="anchor" href="#arg-factor"></a></dt>
@@ -144,11 +159,14 @@ names if they are not supplied.</p></dd>
 
 
 <dt id="arg-eps">eps<a class="anchor" aria-label="anchor" href="#arg-eps"></a></dt>
-<dd><p>numeric tolerance used in depth computation and geometry.</p></dd>
+<dd><p>numeric tolerance used in depth computation and geometry,
+relative to the standardized coordinates.</p></dd>
 
 
 <dt id="arg-dither">dither<a class="anchor" aria-label="anchor" href="#arg-dither"></a></dt>
-<dd><p>logical, whether to add small noise to break ties.</p></dd>
+<dd><p>logical, whether to add small noise (order <code>eps</code>) to the
+data. Default <code>FALSE</code>: ties are handled exactly, and dithering would
+only break duplicates apart and so lower their depth.</p></dd>
 
 
 <dt id="arg-points-bag-loop-fence-out-median-grid-box">points, bag, loop, fence, out, median, grid, box<a class="anchor" aria-label="anchor" href="#arg-points-bag-loop-fence-out-median-grid-box"></a></dt>
@@ -156,13 +174,9 @@ names if they are not supplied.</p></dd>
 
 
 <dt id="arg-stamp">stamp<a class="anchor" aria-label="anchor" href="#arg-stamp"></a></dt>
-<dd><p>optional stamp passed to <code><a href="graphics-framework.html">.withGraphicsState()</a></code>.</p></dd>
-
-
-<dt id="arg-formula">formula<a class="anchor" aria-label="anchor" href="#arg-formula"></a></dt>
-<dd><p>a formula of the form <code>y ~ x</code>, where both variables
-are numeric. <code>x</code> is drawn on the horizontal, <code>y</code> on the
-vertical axis.</p></dd>
+<dd><p>controls the corner stamp. <code>.useTheme</code> (default)
+resolves to <code>getTheme()$stamp</code>. <code>TRUE</code>/<code>FALSE</code>/<code>NULL</code>, a string, or a
+named list for <code><a href="stamp.html">stamp()</a></code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -202,9 +216,10 @@ median is not computed via <code>HALFMED</code>, and the bag interpolates
 hulls of sample depth regions rather than exact isodepth contours.
 Borderline outlier classifications may therefore differ slightly from
 other implementations (e.g. <span class="pkg">aplpack</span>).</p>
-<p>Exact ties and collinear configurations violate the general-position
-assumption of the depth algorithm; <code>dither</code> (default <code>TRUE</code>)
-adds negligible noise (order <code>eps</code>) to break them.</p>
+<p>The depth computation handles exact ties and collinear configurations
+(e.g. discrete data) exactly; no dithering is needed. All computations
+run on standardized coordinates, so the result does not depend on the
+units of measurement.</p>
     </div>
     <div class="section level2">
     <h2 id="element-control">Element Control<a class="anchor" aria-label="anchor" href="#element-control"></a></h2>
@@ -284,9 +299,14 @@ depth, <em>Applied Statistics</em>, vol. 45, no. 4, 516–526.</p>
 <span class="r-in"><span><span class="fu">plotBag</span><span class="op">(</span><span class="va">Disp</span> <span class="op">~</span> <span class="va">Weight</span>, data <span class="op">=</span> <span class="va">cardata</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plotBag-4.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># example of Rousseeuw et al. (1999): car weight vs engine displacement</span></span></span>
-<span class="r-in"><span><span class="fu">plotBag</span><span class="op">(</span><span class="va">cardata</span>, xlab <span class="op">=</span> <span class="st">"Weight"</span>, ylab <span class="op">=</span> <span class="st">"Displacement"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># subset, evaluated in data</span></span></span>
+<span class="r-in"><span><span class="fu">plotBag</span><span class="op">(</span><span class="va">Disp</span> <span class="op">~</span> <span class="va">Weight</span>, data <span class="op">=</span> <span class="va">cardata</span>, subset <span class="op">=</span> <span class="va">Weight</span> <span class="op">&gt;</span> <span class="fl">2500</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plotBag-5.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># example of Rousseeuw et al. (1999): car weight vs engine displacement;</span></span></span>
+<span class="r-in"><span><span class="co"># the axis labels default to the column names</span></span></span>
+<span class="r-in"><span><span class="fu">plotBag</span><span class="op">(</span><span class="va">cardata</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="plotBag-6.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

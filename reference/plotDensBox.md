@@ -14,7 +14,7 @@ plotDensBox(x, ...)
 plotDensBox(
   x,
   g = NULL,
-  main = "",
+  main = NULL,
   xlab = "",
   ylab = "",
   xlim = NULL,
@@ -23,7 +23,7 @@ plotDensBox(
   grid = TRUE,
   densArgs = TRUE,
   boxArgs = TRUE,
-  stamp = NULL,
+  stamp = .useTheme,
   ...
 )
 
@@ -33,16 +33,8 @@ plotDensBox(
   data,
   subset,
   na.action = na.omit,
-  main = "",
+  main = NULL,
   xlab = "",
-  ylab = "",
-  xlim = NULL,
-  layout_heights = c(2, 1.4),
-  col = NULL,
-  grid = TRUE,
-  densArgs = TRUE,
-  boxArgs = TRUE,
-  stamp = NULL,
   ...
 )
 ```
@@ -65,19 +57,23 @@ plotDensBox(
 
 - main:
 
-  main title of the plot.
+  main title of the plot. `NULL` (default) derives the title from the
+  input: the formula, or `x` resp. `x ~ g` for the default method. `""`,
+  `NA`, or `FALSE` suppress the title and its outer margin.
 
 - xlab:
 
-  label for the x-axis.
+  label for the x-axis, drawn below the boxplot. For the formula method,
+  an empty label defaults to the response.
 
 - ylab:
 
-  label for the y-axis.
+  label for the y-axis of the density panel.
 
 - xlim:
 
-  numeric vector of length 2 specifying the x-axis limits.
+  numeric vector of length 2 specifying the x-axis limits. `NULL`
+  (default) covers the data and the tails of the densities.
 
 - layout_heights:
 
@@ -86,7 +82,8 @@ plotDensBox(
 
 - col:
 
-  vector of colors. If `NULL`, a palette is generated.
+  vector of colors, recycled over the groups. If `NULL`, a palette is
+  generated.
 
 - grid:
 
@@ -126,23 +123,30 @@ plotDensBox(
 
 - stamp:
 
-  optional annotation passed to the plotting framework.
+  controls the corner stamp. `.useTheme` (default) resolves to
+  `getTheme()$stamp`. `TRUE`/`FALSE`/`NULL`, a string, or a named list
+  for [`stamp()`](stamp.md).
 
 - formula:
 
-  A formula of the form `y ~ group`.
+  a formula of the form `y ~ group`, or `y ~ a:b` for the cells of
+  several grouping variables. `y ~ a + b` is not accepted, see
+  [`bedrock::resolveFormula()`](https://andrisignorell.github.io/bedrock/reference/resolveFormula.html).
 
 - data:
 
-  an optional data frame containing variables in the formula.
+  an optional data frame containing the variables in the formula.
 
 - subset:
 
-  optional expression indicating which observations to use.
+  an optional expression indicating which observations to use, evaluated
+  in `data` (`subset = len > 10`), as in
+  [`boxplot()`](https://rdrr.io/r/graphics/boxplot.html).
 
 - na.action:
 
-  a function specifying how missing values are handled.
+  a function specifying how missing values are handled, defaults to
+  [`na.omit()`](https://rdrr.io/r/stats/na.fail.html).
 
 ## Value
 
@@ -201,5 +205,8 @@ plotDensBox(
 )
 
 plotDensBox(x ~ g)
+
+# subset and the cells of two grouping variables
+plotDensBox(len ~ supp:dose, ToothGrowth, subset = dose > 0.5)
 } # }
 ```
