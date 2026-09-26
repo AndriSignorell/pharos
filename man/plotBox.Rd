@@ -18,7 +18,7 @@ plotBox(x, ...)
   col = NULL,
   grid = TRUE,
   means = TRUE,
-  stamp = TRUE,
+  stamp = .useTheme,
   ...
 )
 
@@ -30,10 +30,6 @@ plotBox(x, ...)
   main = NULL,
   xlab = "",
   ylab = "",
-  ylim = NULL,
-  col = NULL,
-  grid = TRUE,
-  stamp = TRUE,
   ...
 )
 }
@@ -46,7 +42,9 @@ remaining arguments are forwarded to \code{\link[graphics:boxplot]{graphics::box
 
 \item{g}{optional grouping variable (ignored if a formula is used).}
 
-\item{main}{main title of the plot.}
+\item{main}{main title of the plot. \code{NULL} (default) derives the title
+from the input: the formula, or \code{x ~ g} for the default method.
+\code{""}, \code{NA}, or \code{FALSE} suppress the title and compact the top margin.}
 
 \item{xlab}{label for the x-axis.}
 
@@ -55,8 +53,8 @@ remaining arguments are forwarded to \code{\link[graphics:boxplot]{graphics::box
 \item{ylim}{numeric vector of length 2 specifying the y-axis limits.
 If \code{NULL} (default), the range of \code{x} is used.}
 
-\item{col}{vector of colors. If \code{NULL}, a palette is generated
-automatically.}
+\item{col}{vector of fill colors, recycled over the groups. \code{NULL}
+(default) uses \code{"grey90"}.}
 
 \item{grid}{controls drawing of the background grid.
 Can be:
@@ -82,13 +80,18 @@ Supported arguments: \code{col}, \code{pch}, \code{cex},
 resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/\code{NULL},
 or an explicit string, as for \code{.withGraphicsState()} (internal).}
 
-\item{formula}{A formula of the form \code{y ~ group}.}
+\item{formula}{a formula of the form \code{y ~ group}, or \code{y ~ a:b} for the
+cells of several grouping variables. \code{y ~ a + b} is not accepted, see
+\code{\link[bedrock:resolveFormula]{bedrock::resolveFormula()}}.}
 
-\item{data}{an optional data frame containing variables in the formula.}
+\item{data}{an optional data frame containing the variables in the
+formula.}
 
-\item{subset}{optional expression indicating which observations to use.}
+\item{subset}{an optional expression indicating which observations to
+use, evaluated in \code{data} (\code{subset = len > 10}), as in \code{\link[=boxplot]{boxplot()}}.}
 
-\item{na.action}{a function specifying how missing values are handled.}
+\item{na.action}{a function specifying how missing values are handled,
+defaults to \code{\link[=na.omit]{na.omit()}}.}
 }
 \value{
 Invisibly returns \code{NULL}.
@@ -117,6 +120,10 @@ plotBox(x)
 plotBox(x, g)
 
 plotBox(x ~ g)
+
+# data, subset and the cells of two grouping variables
+plotBox(len ~ supp, ToothGrowth, subset = dose > 0.5)
+plotBox(len ~ supp:dose, ToothGrowth)
 }
 
 }

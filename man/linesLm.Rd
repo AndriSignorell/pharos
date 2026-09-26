@@ -46,17 +46,17 @@
 
 \item{cbandArgs}{controls the confidence band. May be \code{TRUE},
 \code{FALSE}, \code{NULL}, \code{NA}, or a named list. The confidence
-level is specified via \code{conf.level}. Default is
-\code{list(conf.level=0.95)}.}
+level is specified via \code{conf.level}, all other elements are graphical
+parameters of the band. Default is \code{list(conf.level=0.95)}.}
 
-\item{pbandArgs}{controls the prediction band. May be \code{TRUE},
-\code{FALSE}, \code{NULL}, \code{NA}, or a named list. The confidence
-level is specified via \code{conf.level}. Default is \code{NA}.}
+\item{pbandArgs}{controls the prediction band, as \code{cbandArgs}. Default
+is \code{NA}.}
 
 \item{xpred}{optional numeric vector defining the range over which
 predictions should be calculated.}
 
-\item{\dots}{currently ignored.}
+\item{\dots}{further graphical parameters passed to \code{\link[=lines]{lines()}} for the
+fitted line.}
 }
 \value{
 No return value; called for its side effect.
@@ -68,7 +68,10 @@ line together with optional confidence and prediction bands.
 }
 \details{
 In contrast to \code{\link[=abline]{abline()}}, polynomial models and transformed
-predictors are supported as long as the model contains exactly one predictor.
+predictors are supported as long as the model contains exactly one predictor
+variable. A polynomial, \code{y ~ poly(x, 2)} or \code{y ~ x + I(x^2)}, is drawn
+against \code{x}; a single transformed term such as \code{y ~ log(x)} is drawn
+against the transformed values, matching \code{plot(y ~ log(x))}.
 
 Confidence and prediction bands are controlled via \code{cbandArgs} and
 \code{pbandArgs}. These arguments can be:

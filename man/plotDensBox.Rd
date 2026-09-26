@@ -11,7 +11,7 @@ plotDensBox(x, ...)
 \method{plotDensBox}{default}(
   x,
   g = NULL,
-  main = "",
+  main = NULL,
   xlab = "",
   ylab = "",
   xlim = NULL,
@@ -20,7 +20,7 @@ plotDensBox(x, ...)
   grid = TRUE,
   densArgs = TRUE,
   boxArgs = TRUE,
-  stamp = NULL,
+  stamp = .useTheme,
   ...
 )
 
@@ -29,16 +29,8 @@ plotDensBox(x, ...)
   data,
   subset,
   na.action = na.omit,
-  main = "",
+  main = NULL,
   xlab = "",
-  ylab = "",
-  xlim = NULL,
-  layout_heights = c(2, 1.4),
-  col = NULL,
-  grid = TRUE,
-  densArgs = TRUE,
-  boxArgs = TRUE,
-  stamp = NULL,
   ...
 )
 }
@@ -50,18 +42,24 @@ plotDensBox(x, ...)
 
 \item{g}{optional grouping variable (ignored if a formula is used).}
 
-\item{main}{main title of the plot.}
+\item{main}{main title of the plot. \code{NULL} (default) derives the title
+from the input: the formula, or \code{x} resp. \code{x ~ g} for the default
+method. \code{""}, \code{NA}, or \code{FALSE} suppress the title and its outer
+margin.}
 
-\item{xlab}{label for the x-axis.}
+\item{xlab}{label for the x-axis, drawn below the boxplot. For the
+formula method, an empty label defaults to the response.}
 
-\item{ylab}{label for the y-axis.}
+\item{ylab}{label for the y-axis of the density panel.}
 
-\item{xlim}{numeric vector of length 2 specifying the x-axis limits.}
+\item{xlim}{numeric vector of length 2 specifying the x-axis limits.
+\code{NULL} (default) covers the data and the tails of the densities.}
 
 \item{layout_heights}{numeric vector of length 2 specifying the relative
 heights of the density plot (top) and boxplot (bottom).}
 
-\item{col}{vector of colors. If \code{NULL}, a palette is generated.}
+\item{col}{vector of colors, recycled over the groups. If \code{NULL}, a
+palette is generated.}
 
 \item{grid}{controls drawing of the background grid.
 Can be:
@@ -91,15 +89,22 @@ Can be:
 \code{\link[graphics:boxplot]{graphics::boxplot()}}
 }}
 
-\item{stamp}{optional annotation passed to the plotting framework.}
+\item{stamp}{controls the corner stamp. \code{.useTheme} (default)
+resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/\code{NULL}, a string, or a
+named list for \code{\link[=stamp]{stamp()}}.}
 
-\item{formula}{A formula of the form \code{y ~ group}.}
+\item{formula}{a formula of the form \code{y ~ group}, or \code{y ~ a:b} for the
+cells of several grouping variables. \code{y ~ a + b} is not accepted, see
+\code{\link[bedrock:resolveFormula]{bedrock::resolveFormula()}}.}
 
-\item{data}{an optional data frame containing variables in the formula.}
+\item{data}{an optional data frame containing the variables in the
+formula.}
 
-\item{subset}{optional expression indicating which observations to use.}
+\item{subset}{an optional expression indicating which observations to
+use, evaluated in \code{data} (\code{subset = len > 10}), as in \code{\link[=boxplot]{boxplot()}}.}
 
-\item{na.action}{a function specifying how missing values are handled.}
+\item{na.action}{a function specifying how missing values are handled,
+defaults to \code{\link[=na.omit]{na.omit()}}.}
 }
 \value{
 Invisibly returns \code{NULL}.
@@ -144,6 +149,9 @@ plotDensBox(
 )
 
 plotDensBox(x ~ g)
+
+# subset and the cells of two grouping variables
+plotDensBox(len ~ supp:dose, ToothGrowth, subset = dose > 0.5)
 }
 
 }

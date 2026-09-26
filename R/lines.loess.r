@@ -22,9 +22,10 @@
 #' @param n number of points used for plotting the fit.
 #' @param bandArgs controls the confidence band. May be `TRUE`,
 #'   `FALSE`, `NULL`, `NA`, or a named list. The confidence
-#'   level is specified via `conf.level`. Default is
-#'   `list(conf.level = 0.95)`.
-#' @param \dots currently ignored.
+#'   level is specified via `conf.level`, all other elements are graphical
+#'   parameters of the band. Default is `list(conf.level = 0.95)`.
+#' @param \dots further graphical parameters passed to [lines()] for the
+#'   smoother.
 #'
 #' @note Loess can result in substantial computational load for large datasets.
 #'
@@ -73,40 +74,33 @@ lines.loess <- function(
     length.out = n
   )
   
-  conf.level <- if (is.list(bandArgs))
-    bandArgs$conf.level %||% 0.95
-  else
-    0.95
+  # the band is computed only when it is drawn: with se = FALSE, predict()
+  # returns a plain vector, and fit$fit in the band's defaults worked only
+  # because callIf() leaves its defaults unevaluated for a suppressed band
+  bandOn <- !isFALSE(bandArgs) && !is.null(bandArgs) && !bedrock::isNA(bandArgs)
   
-  fit <- predict(
-    x,
-    newdata = newx,
-    se = !isFALSE(bandArgs) &&
-      !is.null(bandArgs) &&
-      !isNA(bandArgs)
-  )
+  fit <- predict(x, newdata = newx, se = bandOn)
   
-  callIf(
-    .drawBandCI,
-    bandArgs,
-    defaults = list(
-      x = newx,
-      ci = {
-        z <- qnorm((1 - conf.level) / 2)
-        
-        cbind(
-          fit$fit + fit$se.fit * z,
-          fit$fit - fit$se.fit * z
-        )
-      },
-      col = col
-    ),
-    forbidden = "conf.level",
-    warn = FALSE
-  )
-  
-  if (is.list(fit))
+  if (bandOn) {
+    
+    conf.level <- (if (is.list(bandArgs)) bandArgs$conf.level) %||% 0.95
+    z <- qnorm((1 - conf.level) / 2)
+    
+    bedrock::callIf(
+      .drawBandCI,
+      bandArgs,
+      defaults = list(
+        x  = newx,
+        ci = cbind(fit$fit + fit$se.fit * z,
+                   fit$fit - fit$se.fit * z),
+        col = col
+      ),
+      forbidden = "conf.level",
+      warn = FALSE
+    )
+    
     fit <- fit$fit
+  }
   
   lines(
     x = newx,
@@ -114,8 +108,9 @@ lines.loess <- function(
     col = col,
     lwd = lwd,
     lty = lty,
-    type = type
+    type = type,
+    ...
   )
   
+  invisible(NULL)
 }
-

@@ -6,7 +6,10 @@
 #' line together with optional confidence and prediction bands.
 #'
 #' In contrast to [abline()], polynomial models and transformed
-#' predictors are supported as long as the model contains exactly one predictor.
+#' predictors are supported as long as the model contains exactly one predictor
+#' variable. A polynomial, `y ~ poly(x, 2)` or `y ~ x + I(x^2)`, is drawn
+#' against `x`; a single transformed term such as `y ~ log(x)` is drawn
+#' against the transformed values, matching `plot(y ~ log(x))`.
 #'
 #' Confidence and prediction bands are controlled via `cbandArgs` and
 #' `pbandArgs`. These arguments can be:
@@ -24,14 +27,14 @@
 #' @param n number of points used for plotting the fit.
 #' @param cbandArgs controls the confidence band. May be `TRUE`,
 #'   `FALSE`, `NULL`, `NA`, or a named list. The confidence
-#'   level is specified via `conf.level`. Default is
-#'   `list(conf.level=0.95)`.
-#' @param pbandArgs controls the prediction band. May be `TRUE`,
-#'   `FALSE`, `NULL`, `NA`, or a named list. The confidence
-#'   level is specified via `conf.level`. Default is `NA`.
+#'   level is specified via `conf.level`, all other elements are graphical
+#'   parameters of the band. Default is `list(conf.level=0.95)`.
+#' @param pbandArgs controls the prediction band, as `cbandArgs`. Default
+#'   is `NA`.
 #' @param xpred optional numeric vector defining the range over which
 #'   predictions should be calculated.
-#' @param \dots currently ignored.
+#' @param \dots further graphical parameters passed to [lines()] for the
+#'   fitted line.
 #'
 #' @return No return value; called for its side effect.
 #'
@@ -73,7 +76,8 @@ lines.lm <- function(
     lty = lty,
     type = type,
     cbandArgs = cbandArgs,
-    pbandArgs = pbandArgs
+    pbandArgs = pbandArgs,
+    ...
   )
   
 }
@@ -112,7 +116,8 @@ lines.lmlog <- function(
     lty = lty,
     type = type,
     cbandArgs = cbandArgs,
-    pbandArgs = pbandArgs
+    pbandArgs = pbandArgs,
+    ...
   )
   
 }
@@ -139,22 +144,20 @@ lines.lmlog <- function(
     xpred = NULL
 ) {
   
-  if (is.null(xpred)) {
-    
-    if (!is.null(model$model)) {
-      
-      xpred <- model$model[[predictor]]
-      
-    } else if (!is.null(model$call$data)) {
-      
-      xpred <- eval(
-        model$call$data,
-        envir = environment(formula(model))
-      )[[predictor]]
-      
-    }
-    
-  }
+  # The predictor is searched in the model frame, then in the data of the
+  # call, then in the formula's environment. The model frame alone does not
+  # hold it for poly(x, 2) (the column is the basis matrix "poly(x, 2)"),
+  # and the data was only consulted when there was no model frame at all -
+  # so y ~ poly(x, 2) always failed without xpred.
+  if (is.null(xpred))
+    xpred <- model$model[[predictor]]
+  
+  if (is.null(xpred) && !is.null(model$call$data))
+    xpred <- eval(model$call$data,
+                  envir = environment(formula(model)))[[predictor]]
+  
+  if (is.null(xpred))
+    xpred <- get0(predictor, envir = environment(formula(model)))
   
   if (is.null(xpred))
     stop(
@@ -186,15 +189,29 @@ lines.lmlog <- function(
   
   rhs <- formula(model)[[3]]
   
-  if (
-    is.call(rhs) &&
-    identical(rhs[[1]], as.name("poly"))
-  ) {
-    rawx
-  } else {
-    eval(rhs, rawx)
-  }
+  # Only a single, transformed term is drawn against its transformed values
+  # (y ~ log(x) as in plot(y ~ log(x))). A polynomial is drawn against x:
+  # evaluating the whole right-hand side of y ~ x + I(x^2) computed x + x^2
+  # as the x-coordinates.
+  singleTerm <- length(attr(terms(formula(model)), "term.labels")) == 1L
+  isPoly     <- is.call(rhs) && identical(rhs[[1]], as.name("poly"))
   
+  if (singleTerm && !isPoly)
+    eval(rhs, rawx)
+  else
+    rawx
+  
+}
+
+
+# The confidence level of a band spec: NULL if the band is suppressed,
+# otherwise conf.level from the list or 0.95. The spec itself is not routed
+# into the interval calculation - apart from conf.level it holds graphical
+# parameters of the band.
+.bandLevel <- function(spec) {
+  if (isFALSE(spec) || is.null(spec) || bedrock::isNA(spec))
+    return(NULL)
+  (if (is.list(spec)) spec$conf.level) %||% 0.95
 }
 
 
@@ -248,29 +265,19 @@ lines.lmlog <- function(
   
   newx <- .getPlotX(x, rawx)
   
-  ci <- callIf(
-    .calcInterval,
-    cbandArgs,
-    defaults = list(
-      model = x,
-      newdata = rawx,
-      interval = "confidence",
-      conf.level = 0.95
-    ),
-    forbidden = c("col", "border")
-  )
+  # conf.level only, see .bandLevel(): with the whole spec, every graphical
+  # parameter other than col/border reached .calcInterval()
+  # (cbandArgs = list(lty = 2) failed with "unused argument")
+  cLevel <- .bandLevel(cbandArgs)
+  pLevel <- .bandLevel(pbandArgs)
   
-  pci <- callIf(
-    .calcInterval,
-    pbandArgs,
-    defaults = list(
-      model = x,
-      newdata = rawx,
-      interval = "prediction",
-      conf.level = 0.95
-    ),
-    forbidden = c("col", "border")
-  )
+  ci  <- if (!is.null(cLevel))
+    .calcInterval(x, newdata = rawx, interval = "confidence",
+                  conf.level = cLevel)
+  
+  pci <- if (!is.null(pLevel))
+    .calcInterval(x, newdata = rawx, interval = "prediction",
+                  conf.level = pLevel)
   
   list(
     x = newx,
@@ -289,10 +296,11 @@ lines.lmlog <- function(
     lty = "solid",
     type = "l",
     cbandArgs = list(conf.level = 0.95),
-    pbandArgs = NA
+    pbandArgs = NA,
+    ...
 ) {
   
-  callIf(
+  bedrock::callIf(
     .drawBandCI,
     pbandArgs,
     defaults = list(
@@ -304,7 +312,7 @@ lines.lmlog <- function(
     warn = FALSE
   )
   
-  callIf(
+  bedrock::callIf(
     .drawBandCI,
     cbandArgs,
     defaults = list(
@@ -322,9 +330,11 @@ lines.lmlog <- function(
     col = col,
     lwd = lwd,
     lty = lty,
-    type = type
+    type = type,
+    ...
   )
   
+  invisible(NULL)
 }
 
 

@@ -32,10 +32,11 @@ two-color pair (see \link{theme}).}
 
 \item{bandArgs}{controls the confidence band. May be \code{TRUE},
 \code{FALSE}, \code{NULL}, \code{NA}, or a named list. The confidence
-level is specified via \code{conf.level}. Default is
-\code{list(conf.level = 0.95)}.}
+level is specified via \code{conf.level}, all other elements are graphical
+parameters of the band. Default is \code{list(conf.level = 0.95)}.}
 
-\item{\dots}{currently ignored.}
+\item{\dots}{further graphical parameters passed to \code{\link[=lines]{lines()}} for the
+smoother.}
 }
 \description{
 Add a loess smoother to an existing plot. The function first calculates

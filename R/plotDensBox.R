@@ -9,21 +9,32 @@
 #' @param x numeric vector, or a formula of the form `x ~ g`.
 #' @param g optional grouping variable (ignored if a formula is used).
 #'
-#' @param formula A formula of the form `y ~ group`.
-#' @param data an optional data frame containing variables in the formula.
-#' @param subset optional expression indicating which observations to use.
-#' @param na.action a function specifying how missing values are handled.
+#' @param formula a formula of the form `y ~ group`, or `y ~ a:b` for the
+#'   cells of several grouping variables. `y ~ a + b` is not accepted, see
+#'   [bedrock::resolveFormula()].
+#' @param data an optional data frame containing the variables in the
+#'   formula.
+#' @param subset an optional expression indicating which observations to
+#'   use, evaluated in `data` (`subset = len > 10`), as in [boxplot()].
+#' @param na.action a function specifying how missing values are handled,
+#'   defaults to [na.omit()].
 #'
-#' @param main main title of the plot.
-#' @param xlab label for the x-axis.
-#' @param ylab label for the y-axis.
+#' @param main main title of the plot. `NULL` (default) derives the title
+#'   from the input: the formula, or `x` resp. `x ~ g` for the default
+#'   method. `""`, `NA`, or `FALSE` suppress the title and its outer
+#'   margin.
+#' @param xlab label for the x-axis, drawn below the boxplot. For the
+#'   formula method, an empty label defaults to the response.
+#' @param ylab label for the y-axis of the density panel.
 #'
 #' @param xlim numeric vector of length 2 specifying the x-axis limits.
+#'   `NULL` (default) covers the data and the tails of the densities.
 #'
 #' @param layout_heights numeric vector of length 2 specifying the relative
 #' heights of the density plot (top) and boxplot (bottom).
 #'
-#' @param col vector of colors. If `NULL`, a palette is generated.
+#' @param col vector of colors, recycled over the groups. If `NULL`, a
+#'   palette is generated.
 #'
 #' @param grid controls drawing of the background grid.
 #'   Can be:
@@ -53,7 +64,9 @@
 #'       [graphics::boxplot()]
 #'   }
 #'
-#' @param stamp optional annotation passed to the plotting framework.
+#' @param stamp controls the corner stamp. `.useTheme` (default)
+#'   resolves to `getTheme()$stamp`. `TRUE`/`FALSE`/`NULL`, a string, or a
+#'   named list for [stamp()].
 #'
 #' @param ... further graphical parameters passed to
 #'   [graphics::par()] via the internal framework.
@@ -99,6 +112,9 @@
 #' )
 #'
 #' plotDensBox(x ~ g)
+#'
+#' # subset and the cells of two grouping variables
+#' plotDensBox(len ~ supp:dose, ToothGrowth, subset = dose > 0.5)
 #' }
 #'
 
@@ -120,7 +136,7 @@ plotDensBox.default <- function(
   x,
   g = NULL,
   
-  main = "",
+  main = NULL,
   xlab = "",
   ylab = "",
   
@@ -135,10 +151,15 @@ plotDensBox.default <- function(
   densArgs = TRUE,
   boxArgs  = TRUE,
   
-  stamp = NULL,
+  stamp = .useTheme,
   
   ...
 ) {
+  
+  mc   <- match.call()
+  main <- .resolveTitle(main, default =
+    if (is.null(mc$g)) deparse1(mc$x)
+    else paste(deparse1(mc$x), "~", deparse1(mc$g)))
   
   .withGraphicsState({
     
@@ -155,9 +176,6 @@ plotDensBox.default <- function(
       g <- factor(g)
       split_x <- split(x, g)
     }
-    
-    if (is.null(xlim))
-      xlim <- range(x, na.rm = TRUE)
     
     ng <- length(split_x)
     
@@ -177,16 +195,22 @@ plotDensBox.default <- function(
     # Density plot
     # ====================================================================
     
+    # outer margin for the title only if there is one
     par(mar = c(0, 4.5, 1, 1),
-        oma = c(0, 0, 4, 0))
+        oma = c(0, 0, if (nzchar(main)) 3 else 0, 0))
     
     # --- Density precalculation -----------------------------------------
+    # A group with fewer than 2 values gets no density (density() fails on
+    # it). The list keeps one entry per group, NULL for a missing density:
+    # Filter()ing the NULLs out shifted the colours of all later groups.
     dens_list <- lapply(
       
       split_x,
       
-      function(v)
-        callIf(
+      function(v) {
+        if (sum(!is.na(v)) < 2L)
+          return(NULL)
+        bedrock::callIf(
           stats::density,
           densArgs,
           defaults = list(
@@ -194,25 +218,21 @@ plotDensBox.default <- function(
             na.rm = TRUE
           )
         )
+      }
     )
     
-    dens_list <- Filter(
-      Negate(is.null),
-      dens_list
-    )
+    hasDens <- !vapply(dens_list, is.null, NA)
     
-    ymax <- if (length(dens_list)) {
-      
-      max(sapply(
-        dens_list,
-        function(d)
-          max(d$y, na.rm = TRUE)
-      ))
-      
-    } else {
-      
+    ymax <- if (any(hasDens))
+      max(vapply(dens_list[hasDens], function(d) max(d$y, na.rm = TRUE), 0))
+    else
       1
-    }
+    
+    # x-axis: the data and the tails of the densities, which range(x) cut
+    # off; shared by both panels
+    if (is.null(xlim))
+      xlim <- range(x, unlist(lapply(dens_list[hasDens], `[[`, "x")),
+                    na.rm = TRUE)
     
     # --- Empty plot ------------------------------------------------------
     plot(
@@ -226,17 +246,15 @@ plotDensBox.default <- function(
     )
     
     # --- Grid ------------------------------------------------------------
-    callIf(
+    bedrock::callIf(
       graphics::grid,
       grid,
       defaults = list(col = "grey85")
     )
     
     # --- Density lines ---------------------------------------------------
-    if (length(dens_list)) {
+    for (i in which(hasDens)) {
       
-      for (i in seq_along(dens_list)) {
-        
         d <- dens_list[[i]]
         
         lines(
@@ -245,16 +263,16 @@ plotDensBox.default <- function(
           col = col[i],
           lwd = 2
         )
-      }
     }
     
     # ====================================================================
     # Boxplot
     # ====================================================================
     
-    par(mar = c(3.5, 4.5, 1, 1))
+    # room for xlab below the axis labels (title() puts it on line 3)
+    par(mar = c(if (nzchar(xlab)) 4.5 else 3, 4.5, 1, 1))
     
-    callIf(
+    bedrock::callIf(
       
       graphics::boxplot,
       
@@ -273,6 +291,10 @@ plotDensBox.default <- function(
     )
     
     axis(1)
+    
+    # xlab was accepted but never drawn
+    if (nzchar(xlab))
+      title(xlab = xlab)
     
     if (!is.null(names(split_x))) {
       
@@ -306,69 +328,33 @@ plotDensBox.formula <- function(
   subset,
   na.action = na.omit,
   
-  main = "",
+  main = NULL,
   xlab = "",
-  ylab = "",
-  
-  xlim = NULL,
-  
-  layout_heights = c(2, 1.4),
-  
-  col = NULL,
-  
-  grid = TRUE,
-  
-  densArgs = TRUE,
-  boxArgs  = TRUE,
-  
-  stamp = NULL,
   
   ...
 ) {
   
-  args <- list(
-    formula   = formula,
-    na.action = na.action,
-    allowed   = c(
-      "two-sample-independent",
-      "n-sample-independent"
-    )
+  # formula, data and subset are forwarded unevaluated, so that 'subset' is
+  # evaluated in 'data' as in boxplot(); y ~ a:b yields the cells as one
+  # grouping factor, y ~ a + b is rejected
+  r <- bedrock::resolveFormulaFromCall(
+    allowed   = c("two-sample-independent", "n-sample-independent"),
+    na.action = na.action
   )
   
-  if (!missing(data))
-    args$data <- data
-  
-  if (!missing(subset))
-    args$subset <- substitute(subset)
-  
-  r <- do.call( bedrock::resolveFormula, args )
-  
-  x <- r$x
-  g <- r$group
-  
-  if (!nzchar(main))
-    main <- r$dataName
+  main <- .resolveTitle(main, default = r$dataName)
   
   if (!nzchar(xlab))
-    xlab <- names(r$mf)[1]
+    xlab <- deparse1(formula[[2L]])   # response, below the boxplot
   
-  if (!nzchar(ylab))
-    ylab <- names(r$mf)[2]
-  
+  # ylab is left to the caller: it labels the density axis, the group
+  # names already label the boxplot. The remaining arguments (xlim, col,
+  # densArgs, boxArgs, stamp, ...) reach the default method through ...
   plotDensBox.default(
-    x = x,
-    g = g,
+    x    = r$x,
+    g    = r$group,
     main = main,
     xlab = xlab,
-    ylab = ylab,
-    xlim = xlim,
-    layout_heights = layout_heights,
-    col = col,
-    grid = grid,
-    densArgs = densArgs,
-    boxArgs = boxArgs,
-    stamp = stamp,
     ...
   )
 }
-

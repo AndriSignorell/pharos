@@ -8,20 +8,27 @@
 #' @param x numeric vector, or a formula of the form `x ~ g`.
 #' @param g optional grouping variable (ignored if a formula is used).
 #'
-#' @param formula A formula of the form `y ~ group`.
-#' @param data an optional data frame containing variables in the formula.
-#' @param subset optional expression indicating which observations to use.
-#' @param na.action a function specifying how missing values are handled.
+#' @param formula a formula of the form `y ~ group`, or `y ~ a:b` for the
+#'   cells of several grouping variables. `y ~ a + b` is not accepted, see
+#'   [bedrock::resolveFormula()].
+#' @param data an optional data frame containing the variables in the
+#'   formula.
+#' @param subset an optional expression indicating which observations to
+#'   use, evaluated in `data` (`subset = len > 10`), as in [boxplot()].
+#' @param na.action a function specifying how missing values are handled,
+#'   defaults to [na.omit()].
 #'
-#' @param main main title of the plot.
+#' @param main main title of the plot. `NULL` (default) derives the title
+#'   from the input: the formula, or `x ~ g` for the default method.
+#'   `""`, `NA`, or `FALSE` suppress the title and compact the top margin.
 #' @param xlab label for the x-axis.
 #' @param ylab label for the y-axis.
 #'
 #' @param ylim numeric vector of length 2 specifying the y-axis limits.
 #'   If `NULL` (default), the range of `x` is used.
 #'
-#' @param col vector of colors. If `NULL`, a palette is generated
-#'   automatically.
+#' @param col vector of fill colors, recycled over the groups. `NULL`
+#'   (default) uses `"grey90"`.
 #'
 #' @param grid controls drawing of the background grid.
 #'   Can be:
@@ -76,6 +83,10 @@
 #' plotBox(x, g)
 #'
 #' plotBox(x ~ g)
+#'
+#' # data, subset and the cells of two grouping variables
+#' plotBox(len ~ supp, ToothGrowth, subset = dose > 0.5)
+#' plotBox(len ~ supp:dose, ToothGrowth)
 #' }
 #'
 
@@ -109,7 +120,7 @@ plotBox.default <- function(
   
   means = TRUE,
   
-  stamp = TRUE,
+  stamp = .useTheme,
 
   ...
 ) {
@@ -121,8 +132,12 @@ plotBox.default <- function(
                 nx=NA, ny=NULL)
   )
   
+  # the default method's arguments are x and g; mc$y does not exist and
+  # gave the title "NULL ~ x"
   mc   <- match.call()
-  main <- .resolveTitle(main, default = paste(deparse(mc$y), "~", deparse(mc$x)))
+  main <- .resolveTitle(main, default =
+    if (is.null(mc$g)) deparse1(mc$x)
+    else paste(deparse1(mc$x), "~", deparse1(mc$g)))
   
   .withGraphicsState({
     
@@ -159,8 +174,7 @@ plotBox.default <- function(
     # ====================================================================
     
     ylim <- ylim %||% range(x, na.rm = TRUE)
-    ng_xlim <- if (is.null(g)) 1L else nlevels(factor(g))
-    xlim_box <- c(0.5, ng_xlim + 0.5)
+    xlim_box <- c(0.5, ng + 0.5)
     
     plot.new()
     plot.window(xlim = xlim_box, ylim = ylim)
@@ -226,8 +240,9 @@ plotBox.default <- function(
       title(ylab = ylab)
     
     
-  }, stamp = stamp,
-  resetLayout = TRUE)
+  # no resetLayout: plotBox() draws a single panel and sets up no layout of
+  # its own, so resetting it would destroy a user's mfrow/layout()
+  }, stamp = stamp)
   
   invisible(NULL)
 }
@@ -247,56 +262,32 @@ plotBox.formula <- function(
   xlab = "",
   ylab = "",
   
-  ylim = NULL,
-  
-  col = NULL,
-  
-  grid = TRUE,
-  
-  stamp = TRUE,
-  
   ...
 ) {
   
-  args <- list(
-    formula   = formula,
-    na.action = na.action,
-    allowed   = c(
-      "two-sample-independent",
-      "n-sample-independent"
-    )
+  # formula, data and subset are forwarded unevaluated, so that 'subset' is
+  # evaluated in 'data' as in boxplot()
+  r <- bedrock::resolveFormulaFromCall(
+    allowed   = c("two-sample-independent", "n-sample-independent"),
+    na.action = na.action
   )
-  
-  if (!missing(data))
-    args$data <- data
-  
-  if (!missing(subset))
-    args$subset <- substitute(subset)
-  
-  r <- do.call( bedrock::resolveFormula, args )
-  
-  x <- r$x
-  g <- r$group
   
   main <- .resolveTitle(main, default = r$dataName)
 
+  # labels from the formula, not from the model frame: for y ~ a:b the
+  # second column of the model frame holds only a
   if (!nzchar(xlab))
-    xlab <- names(r$mf)[2]   # grouping variable on x-axis
+    xlab <- deparse1(formula[[3L]])   # grouping on the x-axis
   
   if (!nzchar(ylab))
-    ylab <- names(r$mf)[1]   # response variable on y-axis
+    ylab <- deparse1(formula[[2L]])   # response on the y-axis
   
   plotBox.default(
-    x = x,
-    g = g,
+    x    = r$x,
+    g    = r$group,
     main = main,
     xlab = xlab,
     ylab = ylab,
-    ylim = ylim,
-    col = col,
-    grid = grid,
-    stamp = stamp,
-    
     ...
   )
 }

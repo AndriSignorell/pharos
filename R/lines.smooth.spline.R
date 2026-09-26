@@ -13,7 +13,9 @@
 #' @name splineCI
 #' @aliases lines.splineX lines.SplineX
 #' @inheritParams Formulas
-#' @param weights optional vector of weights of the same length as x.
+#' @param weights optional vector of weights, a column of `data` or a
+#'   vector of the length of the original data. It is subject to `subset`
+#'   and `na.action` like the variables of the formula.
 #' @param x spline object returned by `splineX()`.
 #' @param col line color of the smoother.
 #' @param lwd line width.
@@ -21,10 +23,12 @@
 #' @param type plotting type passed to [lines()].
 #' @param bandArgs controls the confidence band. May be `TRUE`,
 #'   `FALSE`, `NULL`, `NA`, or a named list. The confidence
-#'   level is specified via `conf.level`. Default is
+#'   level is specified via `conf.level`, all other elements are
+#'   graphical parameters of the band. Default is
 #'   `list(conf.level = 0.95)`.
-#' @param \dots further arguments passed to
-#'   [stats::smooth.spline()].
+#' @param \dots for `splineX()`, further arguments passed to
+#'   [stats::smooth.spline()]; for `lines()`, further graphical parameters
+#'   passed to [lines()].
 #'
 #' @examples
 #' op <- par(no.readonly = TRUE)
@@ -38,6 +42,11 @@
 #'
 #' plot(dist ~ speed, cars)
 #' lines(splineX(dist ~ speed, cars))
+#'
+#' # subset and weights, both evaluated in data
+#' plot(dist ~ speed, cars)
+#' lines(splineX(dist ~ speed, cars, subset = speed > 10,
+#'               weights = sqrt(speed)))
 #'
 #' plot(dist ~ speed, cars)
 #' lines(
@@ -88,46 +97,36 @@ splineX.formula <- function(
     ...
 ) {
   
-  if (!inherits(formula, "formula"))
-    stop("'formula' must be a formula")
-  
-  if (length(attr(terms(formula), "term.labels")) != 1)
-    stop("Formula must be of the form y ~ x")
-  
-  args <- list(
-    formula = formula,
-    na.action = na.action,
-    allowed = "numeric-numeric"
+  # formula, data and subset are forwarded unevaluated, so that 'subset' is
+  # evaluated in 'data' as in lm(); resolveFormula() also checks for a
+  # single numeric predictor
+  r <- bedrock::resolveFormulaFromCall(
+    allowed   = "numeric-numeric",
+    na.action = na.action
   )
-  
-  if (!missing(data))
-    args$data <- data
-  
-  if (!missing(subset))
-    args$subset <- substitute(subset)
-  
-  d <- do.call(bedrock::resolveFormula, args)
-  
-  mf <- d$mf
-  
-  y <- mf[[1]]
-  x <- mf[[2]]
   
   w <- NULL
   
   if (!missing(weights)) {
     
-    w <- eval(
-      substitute(weights),
-      envir = mf,
-      enclos = parent.frame()
-    )
+    # Evaluated in 'data', not in the model frame: the model frame holds
+    # only the variables of the formula, so a weights column was never
+    # found. The result has the length of the original data and is aligned
+    # with the model frame via r$rows, which accounts for subset and
+    # na.action.
+    w <- eval(substitute(weights),
+              envir  = if (missing(data)) environment(formula) else data,
+              enclos = environment(formula))
     
+    if (is.null(r$rows))
+      stop("'weights' cannot be aligned with the model frame", call. = FALSE)
+    
+    w <- w[r$rows]
   }
   
   res <- stats::smooth.spline(
-    x = x,
-    y = y,
+    x = r$predictor,
+    y = r$x,
     w = w,
     ...
   )
@@ -176,28 +175,31 @@ lines.SplineX <- function(
     x = x$x
   )
   
-  ci <- callIf(
-    .calcSplineCI,
-    bandArgs,
-    defaults = list(
-      spline = x,
-      fit = fit,
-      conf.level = 0.95
-    ),
-    forbidden = c("col", "border")
-  )
+  # conf.level is taken out here, the other elements of bandArgs style the
+  # band: routing the whole list through callIf() into .calcSplineCI()
+  # handed it every graphical parameter (bandArgs = list(lty = 2) failed
+  # with "unused argument")
+  bandOn <- !isFALSE(bandArgs) && !is.null(bandArgs) &&
+            !bedrock::isNA(bandArgs)
   
-  callIf(
-    .drawBandCI,
-    bandArgs,
-    defaults = list(
-      x = fit$x,
-      ci = ci,
-      col = col
-    ),
-    forbidden = "conf.level",
-    warn = FALSE
-  )
+  if (bandOn) {
+    
+    confLevel <- (if (is.list(bandArgs)) bandArgs$conf.level) %||% 0.95
+    
+    ci <- .calcSplineCI(spline = x, fit = fit, conf.level = confLevel)
+    
+    bedrock::callIf(
+      .drawBandCI,
+      bandArgs,
+      defaults = list(
+        x = fit$x,
+        ci = ci,
+        col = col
+      ),
+      forbidden = "conf.level",
+      warn = FALSE
+    )
+  }
   
   lines(
     x = fit$x,
@@ -205,7 +207,9 @@ lines.SplineX <- function(
     col = col,
     lwd = lwd,
     lty = lty,
-    type = type
+    type = type,
+    ...
   )
   
+  invisible(NULL)
 }

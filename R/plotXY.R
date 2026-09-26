@@ -6,9 +6,11 @@
 #' @param x numeric vector of x-values, or a formula of the form `y ~ x`.
 #' @param y numeric vector of y-values (ignored if a formula is used).
 #'
-#' @param formula a formula of the form `y ~ x`.
+#' @param formula a formula of the form `y ~ x`, both numeric.
 #' @param data an optional data frame containing variables in the formula.
-#' @param subset optional expression indicating which observations to use.
+#' @param subset an optional expression indicating which observations to
+#'   use, evaluated in `data` (`subset = delivery_min < 40`), as in
+#'   [plot.formula()].
 #' @param na.action a function specifying how missing values are handled.
 #'   Defaults to `na.omit`.
 #'
@@ -130,6 +132,10 @@
 #'
 #' # No title, compact top margin
 #' plotXY(temperature ~ delivery_min, bedrock::Pizza, main = "")
+#'
+#' # subset, evaluated in data
+#' plotXY(temperature ~ delivery_min, bedrock::Pizza,
+#'        subset = area == "Camden")
 #' }
 #'
 
@@ -179,7 +185,12 @@ plotXY.default <- function(
 ) {
   
   mc   <- match.call()
-  main <- .resolveTitle(main, default = paste(deparse(mc$y), "~", deparse(mc$x)))
+  main <- .resolveTitle(main, default = paste(deparse1(mc$y), "~", deparse1(mc$x)))
+  
+  if (!is.numeric(x) || !is.numeric(y))
+    stop("'x' and 'y' must be numeric", call. = FALSE)
+  if (length(x) != length(y))
+    stop("'x' and 'y' must have the same length", call. = FALSE)
   
   col <- .useThemeValue(col, "points", "col")
   bg  <- .useThemeValue(bg,  "points", "bg")
@@ -215,43 +226,41 @@ plotXY.default <- function(
     if (nzchar(xlab)) title(xlab = xlab)
     if (nzchar(ylab)) title(ylab = ylab)
     
-    # --- lm line -------------------------------------------------
+    # --- smoothers ----------------------------------------------
+    # The fits are computed only for an active component. callIf() would
+    # not force its defaults for a suppressed component either (they are a
+    # promise, and 'arg' is checked first), but the explicit condition does
+    # not rely on that.
+    # Note: 'lm' and 'loess' are also the names of the arguments; in call
+    # position R skips the non-function values and finds stats::lm/loess.
+    isOn <- function(spec)
+      !isFALSE(spec) && !is.null(spec) && !bedrock::isNA(spec)
+
     twin      <- getTheme()$twin
     lm_col    <- twin[1]
     loess_col <- twin[2]
-    
-    bedrock::callIf(lines, lm,
-                    defaults = list(
-                      x   = lm(y ~ x),
-                      col = lm_col,
-                      lwd = 1.5
-                    ))
-    
-    # --- loess line ----------------------------------------------
-    bedrock::callIf(lines, loess,
-                    defaults = list(
-                      x   = loess(y ~ x),
-                      col = loess_col,
-                      lwd = 1.5
-                    ))
-    
-    # --- legend --------------------------------------------------
-    show_legend <- (!isFALSE(lm)  && !is.null(lm)  && !bedrock::isNA(lm)) ||
-      (!isFALSE(loess) && !is.null(loess) && !bedrock::isNA(loess))
-    
-    if (show_legend) {
-      leg_labels <- character(0)
-      leg_fill   <- character(0)
-      
-      if (!isFALSE(lm) && !is.null(lm) && !bedrock::isNA(lm)) {
-        leg_labels <- c(leg_labels, "linear")
-        leg_fill   <- c(leg_fill,   lm_col)
-      }
-      if (!isFALSE(loess) && !is.null(loess) && !bedrock::isNA(loess)) {
-        leg_labels <- c(leg_labels, "loess")
-        leg_fill   <- c(leg_fill,   loess_col)
-      }
 
+    if (isOn(lm))
+      bedrock::callIf(lines, lm,
+                      defaults = list(
+                        x   = lm(y ~ x),
+                        col = lm_col,
+                        lwd = 1.5
+                      ))
+
+    if (isOn(loess))
+      bedrock::callIf(lines, loess,
+                      defaults = list(
+                        x   = loess(y ~ x),
+                        col = loess_col,
+                        lwd = 1.5
+                      ))
+
+    # --- legend --------------------------------------------------
+    leg_labels <- c("linear", "loess")[c(isOn(lm), isOn(loess))]
+    leg_fill   <- c(lm_col,   loess_col)[c(isOn(lm), isOn(loess))]
+
+    if (length(leg_labels))
       bedrock::callIf(graphics::legend, legend,
                       defaults = .legendDefaults(list(
                         x        = "topright",
@@ -261,8 +270,6 @@ plotXY.default <- function(
                         bg       = addOpacity("white")
                       )),
                       forbidden = c("legend", "fill"))
-      
-    }
     
   }, stamp = stamp)
   
@@ -284,64 +291,29 @@ plotXY.formula <- function(
   xlab = "",
   ylab = "",
   
-  xlim = NULL,
-  ylim = NULL,
-  
-  col    = .useTheme,
-  bg     = .useTheme,
-  pch    = .useTheme,
-  cex    = .useTheme,
-  
-  grid   = .useTheme,
-  lm     = TRUE,
-  loess  = TRUE,
-  legend = TRUE,
-  box    = .useTheme,
-  
-  stamp  = .useTheme,
   ...
 ) {
   
-  args <- list(
-    formula   = formula,
-    na.action = na.action,
-    allowed   = "numeric-numeric"
+  # formula, data and subset are forwarded unevaluated, so that 'subset' is
+  # evaluated in 'data' as in plot.formula()
+  r <- bedrock::resolveFormulaFromCall(
+    allowed   = "numeric-numeric",
+    na.action = na.action
   )
-  
-  if (!missing(data))
-    args$data <- data
-  
-  if (!missing(subset))
-    args$subset <- substitute(subset)
-  
-  r <- do.call(bedrock::resolveFormula, args)
-  
-  x <- r$predictor
-  y <- r$x
   
   main <- .resolveTitle(main, default = r$dataName)
   
   if (!nzchar(xlab)) xlab <- names(r$mf)[2]
   if (!nzchar(ylab)) ylab <- names(r$mf)[1]
   
+  # the remaining arguments (xlim, col, lm, loess, stamp, ...) reach the
+  # default method through ...
   plotXY.default(
-    x      = x,
-    y      = y,
-    main   = main,
-    xlab   = xlab,
-    ylab   = ylab,
-    xlim   = xlim,
-    ylim   = ylim,
-    col    = col,
-    bg     = bg,
-    pch    = pch,
-    cex    = cex,
-    grid   = grid,
-    lm     = lm,
-    loess  = loess,
-    legend = legend,
-    box    = box,
-    stamp  = stamp,
+    x    = r$predictor,
+    y    = r$x,
+    main = main,
+    xlab = xlab,
+    ylab = ylab,
     ...
   )
 }

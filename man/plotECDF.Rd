@@ -31,20 +31,17 @@ plotECDF(x, ...)
   na.action = na.omit,
   main = NULL,
   xlab = NULL,
-  ylab = "",
   xlim = NULL,
-  breaks = 1000,
   col = .useTheme,
   lwd = 2,
-  grid = .useTheme,
-  box = .useTheme,
   legend = TRUE,
   stamp = .useTheme,
   ...
 )
 }
 \arguments{
-\item{x}{numeric vector of the observations for the ECDF.}
+\item{x}{numeric vector of the observations for the ECDF. Missing values
+are removed.}
 
 \item{\dots}{further graphical parameters passed to \code{\link[=par]{par()}} via
 the internal framework.}
@@ -99,18 +96,23 @@ or a named list, as for \code{\link[graphics:box]{graphics::box()}}.}
 resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/\code{NULL},
 a string, or a named list of arguments for \code{stamp()}.}
 
-\item{formula}{a formula of the form \code{y ~ x}.}
+\item{formula}{a formula of the form \code{y ~ group}, one ECDF per group, or
+\code{y ~ a:b} for the cells of several grouping variables. \code{y ~ a + b} is
+not accepted, see \code{\link[bedrock:resolveFormula]{bedrock::resolveFormula()}}.}
 
-\item{data}{an optional data frame containing variables in the formula.}
+\item{data}{an optional data frame containing the variables in the
+formula.}
 
-\item{subset}{optional expression indicating which observations to use.}
+\item{subset}{an optional expression indicating which observations to
+use, evaluated in \code{data} (\code{subset = len > 10}), as in \code{\link[=boxplot]{boxplot()}}.}
 
 \item{na.action}{a function specifying how missing values are handled.
 Defaults to \code{na.omit}.}
 
-\item{legend}{logical or list controlling the legend. If \code{TRUE}, a legend
-is drawn using the column names of the data. If a list is supplied, its
-elements are passed to the internal legend drawing routine.}
+\item{legend}{controls the legend of the formula method, drawn with the
+group levels. \code{TRUE} (default) draws it with default settings,
+\code{FALSE}/\code{NULL}/\code{NA} suppress it, a named list is passed on to
+\code{\link[graphics:legend]{graphics::legend()}} (e.g. \code{list(x = "topleft")}).}
 }
 \value{
 Invisibly returns \code{NULL}.
@@ -146,6 +148,9 @@ plotECDF(x, breaks = NULL)
 
 # grouped ECDFs via the formula interface
 plotECDF(Sepal.Length ~ Species, data = iris)
+
+# subset and the cells of two grouping variables
+plotECDF(len ~ supp:dose, ToothGrowth, subset = dose > 0.5)
 
 }
 \seealso{

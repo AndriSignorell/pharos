@@ -18,6 +18,12 @@
 //   5. Outliers = points outside the fence.
 //   6. Loop = convex hull of the non-outlying points (inside the fence).
 //
+// All geometry is computed on standardized coordinates (centered, divided
+// by the standard deviation per axis) and transformed back at the end.
+// Halfspace depth is affine invariant, so this changes nothing but the
+// meaning of the absolute tolerance 'eps', which becomes relative to the
+// spread of the data.
+//
 // Entry point: bagplot_compute_cpp(xy, factor, eps, dither)
 
 #include <Rcpp.h>
@@ -109,10 +115,16 @@ static int tukdepth(double u, double v,
   }
   if (nu >= nn) return nz;
   
-  // Mergesort betas with antipodal angles, update F array
+  // Mergesort betas with antipodal angles, update F array.
+  // pidx starts one before nu: it is incremented before the first write,
+  // which must go to f[nu] (Fortran: I = NU, I = I + 1, F(I) with 1-based
+  // I, i.e. F(NU + 1)). Starting at nu shifted every entry of F by one;
+  // with data in general position this happened to cancel out, but with
+  // points collinear on both sides of (u,v) - ties, discrete data - the
+  // depth was wrong by up to several units.
   int ja = 0, jb = 0;
   double alphk = beta[0], betak = beta[nu] - PI;
-  int nn2 = nn * 2, pidx = nu, nf = nn;
+  int nn2 = nn * 2, pidx = nu - 1, nf = nn;
   
   for (int j = 0; j < nn2; ++j) {
     if (alphk + epsi < betak) {
@@ -259,24 +271,42 @@ static double ray_hull_dist(double cx, double cy, double ux, double uy,
 List bagplot_compute_cpp(NumericMatrix xy,
                          double factor = 3.0,
                          double eps    = 1e-8,
-                         bool   dither = true) {
+                         bool   dither = false) {
 
   int n = xy.nrow();
   if (n < 3) stop("bagplot_compute_cpp: need at least 3 data points.");
 
-  std::vector<double> x(n), y(n);
-  for (int i = 0; i < n; ++i) { x[i] = xy(i,0); y[i] = xy(i,1); }
+  for (int i = 0; i < n; ++i)
+    if (!R_finite(xy(i,0)) || !R_finite(xy(i,1)))
+      stop("bagplot_compute_cpp: xy must not contain missing or infinite values.");
 
-  // Tiny dithering to break exact ties / collinearities
+  // Standardize: the tolerances below are absolute, so on the raw scale the
+  // result depended on the unit of measurement (data in 1e-9 units made all
+  // points coincide). Depth is affine invariant, the back-transformation at
+  // the end restores the original scale.
+  double mx = 0, my = 0;
+  for (int i = 0; i < n; ++i) { mx += xy(i,0); my += xy(i,1); }
+  mx /= n; my /= n;
+  double sdx = 0, sdy = 0;
+  for (int i = 0; i < n; ++i) {
+    sdx += (xy(i,0)-mx)*(xy(i,0)-mx); sdy += (xy(i,1)-my)*(xy(i,1)-my);
+  }
+  sdx = std::sqrt(sdx/n); sdy = std::sqrt(sdy/n);
+  if (!(sdx > 0)) sdx = 1.0;               // constant axis: collinear data,
+  if (!(sdy > 0)) sdy = 1.0;               // handled as degenerate below
+
+  std::vector<double> x(n), y(n);
+  for (int i = 0; i < n; ++i) {
+    x[i] = (xy(i,0) - mx) / sdx;
+    y[i] = (xy(i,1) - my) / sdy;
+  }
+
+  // Optional tiny dithering (off by default). Since the depth routine
+  // handles ties and collinear points exactly, dithering is no longer
+  // needed; it would only break duplicates apart and so underestimate the
+  // depth of tied observations.
   if (dither) {
-    double sx = 0, sy = 0;
-    for (int i = 0; i < n; ++i) { sx += x[i]; sy += y[i]; }
-    sx /= n; sy /= n;
-    double vx = 0, vy = 0;
-    for (int i = 0; i < n; ++i) {
-      vx += (x[i]-sx)*(x[i]-sx); vy += (y[i]-sy)*(y[i]-sy);
-    }
-    double noise = eps * std::max(std::sqrt(vx/n), std::sqrt(vy/n)) * 100.0;
+    double noise = eps * 100.0;            // coordinates are standardized
     int nrun = 12345;
     for (int i = 0; i < n; ++i) {
       double r;
@@ -343,7 +373,7 @@ List bagplot_compute_cpp(NumericMatrix xy,
     NumericVector dep_r(n);
     for (int i = 0; i < n; ++i) dep_r[i] = depths[i];
     return List::create(
-      Named("center")   = NumericVector::create(med_x, med_y),
+      Named("center")   = NumericVector::create(mx + med_x * sdx, my + med_y * sdy),
       Named("depth")    = k1,
       Named("bag")      = e,
       Named("fence")    = clone(e),
@@ -360,7 +390,11 @@ List bagplot_compute_cpp(NumericMatrix xy,
   for (size_t i = 0; i < ivx.size(); ++i)
     angs.push_back(std::atan2(ivy[i] - med_y, ivx[i] - med_x));
   std::sort(angs.begin(), angs.end());
-  angs.erase(std::unique(angs.begin(), angs.end()), angs.end());
+  // with a tolerance: a vertex shared by both hulls yields two angles that
+  // differ in the last bits only, and exact comparison kept both
+  angs.erase(std::unique(angs.begin(), angs.end(),
+                         [](double a, double b) { return std::abs(a - b) < 1e-12; }),
+             angs.end());
 
   // radial distances to both hull boundaries per direction
   int na = (int)angs.size();
@@ -434,13 +468,24 @@ List bagplot_compute_cpp(NumericMatrix xy,
   hullPoly(keep_x, keep_y, loop_x, loop_y);
 
   // ---- Build result matrices ----
-  auto asMat = [](const std::vector<double>& mx, const std::vector<double>& my) {
-    int m = (int)mx.size();
+  auto asMat = [](const std::vector<double>& ux, const std::vector<double>& uy) {
+    int m = (int)ux.size();
     NumericMatrix out(m, 2);
-    for (int i = 0; i < m; ++i) { out(i,0) = mx[i]; out(i,1) = my[i]; }
+    for (int i = 0; i < m; ++i) { out(i,0) = ux[i]; out(i,1) = uy[i]; }
     colnames(out) = CharacterVector::create("x", "y");
     return out;
   };
+
+  // back to the original scale (the loop and the outliers are built from
+  // the original values already)
+  auto unscale = [&](std::vector<double>& ux, std::vector<double>& uy) {
+    for (size_t i = 0; i < ux.size(); ++i) {
+      ux[i] = mx + ux[i] * sdx;
+      uy[i] = my + uy[i] * sdy;
+    }
+  };
+  unscale(bag_x, bag_y);
+  unscale(fence_x, fence_y);
 
   int no = (int)out_idx.size();
   NumericMatrix out_mat(no, 2);
@@ -454,7 +499,7 @@ List bagplot_compute_cpp(NumericMatrix xy,
   for (int i = 0; i < n; ++i) dep_r[i] = depths[i];
 
   return List::create(
-    Named("center")   = NumericVector::create(med_x, med_y),
+    Named("center")   = NumericVector::create(mx + med_x * sdx, my + med_y * sdy),
     Named("depth")    = k1,
     Named("bag")      = asMat(bag_x, bag_y),
     Named("fence")    = asMat(fence_x, fence_y),

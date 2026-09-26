@@ -9,28 +9,50 @@
 #' Each density is normalized and vertically offset, improving readability
 #' compared to overlaid density plots.
 #'
-#' @param x A numeric vector, or a list of numeric vectors representing groups.
-#' @param ... additional graphical parameters passed to `par()`.
+#' @param x a numeric vector, or a list of numeric vectors representing
+#'   groups.
+#' @param ... further numeric vectors (unnamed), each forming a group, or
+#'   graphical parameters passed to `par()`.
 #'
-#' @param formula A formula of the form `y ~ group`.
-#' @param data optional data frame.
-#' @param subset optional subset expression.
-#' @param na.action function to handle missing values.
+#' @param formula a formula of the form `y ~ group`, or `y ~ a:b` for the
+#'   cells of several grouping variables. `y ~ a + b` is not accepted, see
+#'   [bedrock::resolveFormula()].
+#' @param data an optional data frame containing the variables in the
+#'   formula.
+#' @param subset an optional expression indicating which observations to
+#'   use, evaluated in `data` (`subset = len > 10`), as in [boxplot()].
+#' @param na.action a function specifying how missing values are handled,
+#'   defaults to [na.omit()].
 #'
 #' @param add logical; if `TRUE`, adds to an existing plot.
 #' @param bw bandwidth for [stats::density()].
 #' @param scale scaling factor for density height.
+#' @param normalize how the density heights are scaled to `scale`:
+#'   `"global"` (default) divides all densities by the highest peak of all
+#'   groups, so that heights stay comparable across groups (as in ggridges);
+#'   `"group"` divides each density by its own peak, so that every ridge
+#'   reaches the full height. Use the latter when a single narrow group
+#'   would otherwise flatten all others.
 #' @param spacing vertical spacing between ridges.
 #'
-#' @param col fill color(s).
-#' @param border border color(s).
+#' @param col fill color(s), recycled over the groups. `NULL` (default)
+#'   uses the palette.
+#' @param border border color(s), recycled over the groups. `NULL` (default)
+#'   uses `col`.
 #' @param lwd line width(s).
 #' @param lty line type(s).
 #' @param fill logical; fill area under densities.
 #' @param grid logical, `NA`, or list controlling grid.
 #'
-#' @param main,xlab,ylab plot labels.
+#' @param main main title. `NULL` (default) derives the title from the
+#'   input: the names of the data arguments, or the formula. `""`, `NA`, or
+#'   `FALSE` suppress the title and compact the top margin.
+#' @param xlab,ylab axis labels. For the formula method, empty labels
+#'   default to the response and the grouping variable.
 #' @param xlim,ylim axis limits.
+#' @param stamp controls the corner stamp. `.useTheme` (default)
+#'   resolves to `getTheme()$stamp`. `TRUE`/`FALSE`/`NULL`, a string, or a
+#'   named list for [stamp()].
 #'
 #' @return Invisibly returns `NULL`.
 #'
@@ -42,6 +64,14 @@
 #' )
 #'
 #' plotRidge(value ~ group, data = df)
+#'
+#' # subset and the cells of two grouping variables
+#' plotRidge(len ~ supp:dose, ToothGrowth, subset = len > 8)
+#'
+#' # the narrow group VC:0.5 flattens all others; scale each ridge to its
+#' # own peak instead
+#' plotRidge(len ~ supp:dose, ToothGrowth, subset = len > 8,
+#'           normalize = "group")
 #'
 #' @seealso [plotDens()]
 #' @concept base-graphics
@@ -76,6 +106,7 @@ plotRidge.default <- function(
   add = FALSE,
   bw = "nrd0",
   scale = 1,
+  normalize = c("global", "group"),
   spacing = 1,
   
   # STYLE
@@ -87,26 +118,43 @@ plotRidge.default <- function(
   grid = NA,
   
   # LABELS
-  main = "",
+  main = NULL,
   xlab = "",
   ylab = "",
   
   # AXES
   xlim = NULL,
-  ylim = NULL
+  ylim = NULL,
+  
+  stamp = .useTheme
   
 ) {
   
+  m    <- match.call(expand.dots = FALSE)
   dots <- list(...)
-  named <- names(dots) != ""
   
-  groups <- if (is.list(x)) x else c(list(x), dots[!named])
+  normalize <- match.arg(normalize)
+  
+  # names(dots) is NULL when no argument in ... is named; the comparison
+  # then gave logical(0), and every further data vector was dropped:
+  # plotRidge(x, y) drew x only
+  dotNames <- names(dots) %||% character(length(dots))
+  unnamed  <- !nzchar(dotNames)
+  
+  groups <- if (is.list(x)) x else c(list(x), dots[unnamed])
   n <- length(groups)
   
   if (n == 0) stop("invalid input")
   
+  # the data arguments as written, e.g. "x", "y": ridge labels for
+  # separate vectors, and the default title
+  argNames <- if (is.list(x)) deparse1(m$x)
+              else vapply(c(list(m$x), m$...[unnamed]), deparse1, "")
+  
+  main <- .resolveTitle(main, default = paste(argNames, collapse = ", "))
+  
   if (is.null(names(groups)))
-    names(groups) <- seq_len(n)
+    names(groups) <- if (is.list(x)) seq_len(n) else argNames
   
   # --- densities ----------------------------------------------
   
@@ -123,25 +171,30 @@ plotRidge.default <- function(
   
   if (n == 0) stop("no valid groups")
   
-  # normalize heights
+  # normalize heights: to the highest peak of all groups (comparable
+  # heights), or each to its own peak (every ridge at full height)
   maxy <- max(unlist(lapply(dens_list, `[[`, "y")))
   dens_list <- lapply(dens_list, function(d) {
-    d$y <- d$y / maxy * scale
+    d$y <- d$y / (if (normalize == "global") maxy else max(d$y)) * scale
     d
   })
   
   # --- ranges --------------------------------------------------
   
   xr <- range(unlist(lapply(dens_list, `[[`, "x")), na.rm = TRUE)
-  yr <- c(0, n * spacing + scale)
+  # the top ridge starts at (n - 1) * spacing and reaches 'scale' above
+  # it; n * spacing left an empty band of one spacing at the top
+  yr <- c(0, ((n - 1) * spacing + scale) * 1.04)
   
   xlim <- xlim %||% xr
   ylim <- ylim %||% yr
   
   # --- colors --------------------------------------------------
   
-  if (is.null(col))
-    col <- .getOption("palette", grDevices::palette())[seq_len(n)]
+  # recycled: a single colour (col = "red") coloured the first ridge only,
+  # the others got NA and were invisible
+  col    <- rep_len(col %||% .getOption("palette", grDevices::palette()), n)
+  border <- rep_len(border %||% col, n)
   
   # --- theme ---------------------------------------------------
   
@@ -153,7 +206,7 @@ plotRidge.default <- function(
   
   .withGraphicsState({
     
-    .applyParFromDots(...)
+    .applyParFromDots(..., defaults = list(mar = c(top = .marTop(main))))
     
     if (!add) {
       plot(NA,
@@ -181,7 +234,7 @@ plotRidge.default <- function(
           c(d$x, rev(d$x)),
           c(y_offset + d$y, rep(y_offset, length(d$y))),
           col = adjustcolor(col[i], alpha.f = 0.4),
-          border = border %||% col[i],
+          border = border[i],
           lwd = lwd,
           lty = lty
         )
@@ -201,7 +254,9 @@ plotRidge.default <- function(
          labels = names(groups),
          las = 1)
     
-  })
+  }, stamp = stamp)
+  
+  invisible(NULL)
 }
 
 
@@ -212,71 +267,37 @@ plotRidge.default <- function(
 #' @export
 plotRidge.formula <- function(
     formula,
-    data = NULL,
+    data,
     subset,
     na.action = na.omit,
     ...,
-    add = FALSE,
-    bw = "nrd0",
-    scale = 1,
-    spacing = 1,
-    col = NULL,
-    border = NULL,
-    lwd = 1,
-    lty = 1,
-    fill = TRUE,
-    grid = NA,
-    main = "",
+    main = NULL,
     xlab = "",
-    ylab = "",
-    xlim = NULL,
-    ylim = NULL
+    ylab = ""
 ) {
   
-  if (missing(formula) || length(formula) != 3L)
-    stop("'formula' missing or incorrect")
-  
-  args <- list(
-    formula   = formula,
-    na.action = na.action,
-    allowed   = c(
-      "two-sample-independent",
-      "n-sample-independent"
-    )
+  # formula, data and subset are forwarded unevaluated, so that 'subset' is
+  # evaluated in 'data' as in boxplot(); y ~ a:b yields the cells as one
+  # grouping factor, y ~ a + b is rejected
+  r <- bedrock::resolveFormulaFromCall(
+    allowed   = c("two-sample-independent", "n-sample-independent"),
+    na.action = na.action
   )
   
-  if (!missing(data))
-    args$data <- data
+  splitData <- split(r$x, r$group)
   
-  if (!missing(subset))
-    args$subset <- substitute(subset)
+  main <- .resolveTitle(main, default = r$dataName)
   
-  d <- do.call(bedrock::resolveFormula, args)
+  if (!nzchar(xlab)) xlab <- deparse1(formula[[2L]])   # response
+  if (!nzchar(ylab)) ylab <- deparse1(formula[[3L]])   # grouping
   
-  splitData <- split(d$x, d$group)
-  
-  if (xlab == "")
-    xlab <- deparse(formula[[2]])
-  
-  plotRidge(
+  # the remaining arguments (bw, scale, col, ...) reach the default method
+  # through ...
+  plotRidge.default(
     splitData,
-    add = add,
-    bw = bw,
-    scale = scale,
-    spacing = spacing,
-    col = col,
-    border = border,
-    lwd = lwd,
-    lty = lty,
-    fill = fill,
-    grid = grid,
     main = main,
     xlab = xlab,
     ylab = ylab,
-    xlim = xlim,
-    ylim = ylim,
     ...
   )
 }
-
-

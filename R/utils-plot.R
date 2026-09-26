@@ -119,6 +119,13 @@ fcol <- .pal_data$discrete$helsana
 #' restoration and stamping never have to be handled at individual call
 #' sites.
 #'
+#' Deliberately *not* saved/restored: `oma`/`omi`. Restoring these resets
+#' the multi-figure state and thereby destroys user-defined `mfrow`/
+#' `layout()` arrangements between panels (each `par(omi = ...)` call
+#' restarts the page). Exception: with `resetLayout = TRUE` the calling
+#' function has set up its own layout and thus owns the page; `oma` is
+#' then restored after the layout reset.
+#' 
 #' @param expr the plot expression, evaluated in the caller's frame via
 #'   `eval.parent(substitute(expr))` so that promises and local variables
 #'   resolve as if the code ran inline.
@@ -150,7 +157,7 @@ fcol <- .pal_data$discrete$helsana
 #' @rdname graphics-framework
 #' @export
 .withGraphicsState <- function(expr, stamp = .useTheme, resetLayout = FALSE) {
-
+  
   keep <- c(
     "mar","mai","cex","cex.axis","cex.lab","cex.main","cex.sub",
     "las","tck","mgp","xaxs","yaxs","xaxt","yaxt",
@@ -164,36 +171,41 @@ fcol <- .pal_data$discrete$helsana
   )
 
   op <- par(keep)
-
+  # a function that resets the layout owns the whole page, so its outer
+  # margins may be restored as well (see Details)
+  omaOld <- if (resetLayout) par("oma")
+  
   withr::defer(par(op))
   withr::local_options(warn = 1)
-
+  
   # 'stamp' may be .useTheme/TRUE/FALSE/NULL/NA (toggle), a bare string or
   # an expression (= the stamp text itself), or a list of arguments for
   # stamp() (e.g. list(text = "...", las = 2)).
   stampArgs <- if (is.list(stamp)) stamp else list(text = stamp)
-
+  
   ok <- FALSE
-
+  
   on.exit({
     if (ok)
+      tryCatch(do.call(pharos::stamp, stampArgs), error = function(e) NULL)
+    
+    if (ok && resetLayout) {
       # 'stamp' here refers to the exported pharos::stamp() function, not
       # the local formal argument 'stamp' of this call - R's function
       # lookup skips non-functions in call position, so the name resolves
       # correctly despite the clash.
-      tryCatch(do.call(pharos::stamp, stampArgs), error = function(e) NULL)
-
-    if (ok && resetLayout)
       tryCatch(layout(matrix(1)), error = function(e) NULL)
-
+      # after the stamp, which may sit in the outer margin
+      par(oma = omaOld)
+    }
+    
   }, add = TRUE)
-
+  
   eval.parent(substitute(expr))
-
+  
   ok <- TRUE
   invisible(NULL)
 }
-
 
 
 

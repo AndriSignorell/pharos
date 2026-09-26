@@ -12,6 +12,7 @@
   add = FALSE,
   bw = "nrd0",
   scale = 1,
+  normalize = c("global", "group"),
   spacing = 1,
   col = NULL,
   border = NULL,
@@ -19,40 +20,31 @@
   lty = 1,
   fill = TRUE,
   grid = NA,
-  main = "",
+  main = NULL,
   xlab = "",
   ylab = "",
   xlim = NULL,
-  ylim = NULL
+  ylim = NULL,
+  stamp = .useTheme
 )
 
 \method{plotRidge}{formula}(
   formula,
-  data = NULL,
+  data,
   subset,
   na.action = na.omit,
   ...,
-  add = FALSE,
-  bw = "nrd0",
-  scale = 1,
-  spacing = 1,
-  col = NULL,
-  border = NULL,
-  lwd = 1,
-  lty = 1,
-  fill = TRUE,
-  grid = NA,
-  main = "",
+  main = NULL,
   xlab = "",
-  ylab = "",
-  xlim = NULL,
-  ylim = NULL
+  ylab = ""
 )
 }
 \arguments{
-\item{x}{A numeric vector, or a list of numeric vectors representing groups.}
+\item{x}{a numeric vector, or a list of numeric vectors representing
+groups.}
 
-\item{...}{additional graphical parameters passed to \code{par()}.}
+\item{...}{further numeric vectors (unnamed), each forming a group, or
+graphical parameters passed to \code{par()}.}
 
 \item{add}{logical; if \code{TRUE}, adds to an existing plot.}
 
@@ -60,11 +52,20 @@
 
 \item{scale}{scaling factor for density height.}
 
+\item{normalize}{how the density heights are scaled to \code{scale}:
+\code{"global"} (default) divides all densities by the highest peak of all
+groups, so that heights stay comparable across groups (as in ggridges);
+\code{"group"} divides each density by its own peak, so that every ridge
+reaches the full height. Use the latter when a single narrow group
+would otherwise flatten all others.}
+
 \item{spacing}{vertical spacing between ridges.}
 
-\item{col}{fill color(s).}
+\item{col}{fill color(s), recycled over the groups. \code{NULL} (default)
+uses the palette.}
 
-\item{border}{border color(s).}
+\item{border}{border color(s), recycled over the groups. \code{NULL} (default)
+uses \code{col}.}
 
 \item{lwd}{line width(s).}
 
@@ -74,17 +75,31 @@
 
 \item{grid}{logical, \code{NA}, or list controlling grid.}
 
-\item{main, xlab, ylab}{plot labels.}
+\item{main}{main title. \code{NULL} (default) derives the title from the
+input: the names of the data arguments, or the formula. \code{""}, \code{NA}, or
+\code{FALSE} suppress the title and compact the top margin.}
+
+\item{xlab, ylab}{axis labels. For the formula method, empty labels
+default to the response and the grouping variable.}
 
 \item{xlim, ylim}{axis limits.}
 
-\item{formula}{A formula of the form \code{y ~ group}.}
+\item{stamp}{controls the corner stamp. \code{.useTheme} (default)
+resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/\code{NULL}, a string, or a
+named list for \code{\link[=stamp]{stamp()}}.}
 
-\item{data}{optional data frame.}
+\item{formula}{a formula of the form \code{y ~ group}, or \code{y ~ a:b} for the
+cells of several grouping variables. \code{y ~ a + b} is not accepted, see
+\code{\link[bedrock:resolveFormula]{bedrock::resolveFormula()}}.}
 
-\item{subset}{optional subset expression.}
+\item{data}{an optional data frame containing the variables in the
+formula.}
 
-\item{na.action}{function to handle missing values.}
+\item{subset}{an optional expression indicating which observations to
+use, evaluated in \code{data} (\code{subset = len > 10}), as in \code{\link[=boxplot]{boxplot()}}.}
+
+\item{na.action}{a function specifying how missing values are handled,
+defaults to \code{\link[=na.omit]{na.omit()}}.}
 }
 \value{
 Invisibly returns \code{NULL}.
@@ -106,6 +121,14 @@ df <- data.frame(
 )
 
 plotRidge(value ~ group, data = df)
+
+# subset and the cells of two grouping variables
+plotRidge(len ~ supp:dose, ToothGrowth, subset = len > 8)
+
+# the narrow group VC:0.5 flattens all others; scale each ridge to its
+# own peak instead
+plotRidge(len ~ supp:dose, ToothGrowth, subset = len > 8,
+          normalize = "group")
 
 }
 \seealso{

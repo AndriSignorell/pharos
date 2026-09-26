@@ -28,8 +28,9 @@ splineX(x, ...)
 \arguments{
 \item{x}{spline object returned by \code{splineX()}.}
 
-\item{\dots}{further arguments passed to
-\code{\link[stats:smooth.spline]{stats::smooth.spline()}}.}
+\item{\dots}{for \code{splineX()}, further arguments passed to
+\code{\link[stats:smooth.spline]{stats::smooth.spline()}}; for \code{lines()}, further graphical parameters
+passed to \code{\link[=lines]{lines()}}.}
 
 \item{formula}{A formula of the form \code{lhs ~ rhs}, where \code{lhs}
 gives the response values and \code{rhs} the corresponding groups
@@ -47,7 +48,9 @@ to be used in the analysis.}
 the data contain \code{NA}s. Defaults to
 \code{getOption("na.action")}.}
 
-\item{weights}{optional vector of weights of the same length as x.}
+\item{weights}{optional vector of weights, a column of \code{data} or a
+vector of the length of the original data. It is subject to \code{subset}
+and \code{na.action} like the variables of the formula.}
 
 \item{col}{line color of the smoother.}
 
@@ -59,7 +62,8 @@ the data contain \code{NA}s. Defaults to
 
 \item{bandArgs}{controls the confidence band. May be \code{TRUE},
 \code{FALSE}, \code{NULL}, \code{NA}, or a named list. The confidence
-level is specified via \code{conf.level}. Default is
+level is specified via \code{conf.level}, all other elements are
+graphical parameters of the band. Default is
 \code{list(conf.level = 0.95)}.}
 }
 \description{
@@ -85,6 +89,11 @@ lines(splineX(y ~ x))
 
 plot(dist ~ speed, cars)
 lines(splineX(dist ~ speed, cars))
+
+# subset and weights, both evaluated in data
+plot(dist ~ speed, cars)
+lines(splineX(dist ~ speed, cars, subset = speed > 10,
+              weights = sqrt(speed)))
 
 plot(dist ~ speed, cars)
 lines(

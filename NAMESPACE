@@ -240,6 +240,7 @@ importFrom(bedrock,
   naReplace,
   recycle,
   resolveFormula,
+  resolveFormulaFromCall,
   revX,
   setNamesX,
   sortX

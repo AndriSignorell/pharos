@@ -176,6 +176,13 @@ sites.
 Deliberately \emph{not} saved/restored: \code{oma}/\code{omi}. Restoring these resets
 the multi-figure state and thereby destroys user-defined \code{mfrow}/
 \code{layout()} arrangements between panels (each \code{par(omi = ...)} call
+restarts the page). Exception: with \code{resetLayout = TRUE} the calling
+function has set up its own layout and thus owns the page; \code{oma} is
+then restored after the layout reset.
+
+Deliberately \emph{not} saved/restored: \code{oma}/\code{omi}. Restoring these resets
+the multi-figure state and thereby destroys user-defined \code{mfrow}/
+\code{layout()} arrangements between panels (each \code{par(omi = ...)} call
 restarts the page).
 
 Warnings inside \code{expr} are raised immediately (\code{warn = 1}) so they

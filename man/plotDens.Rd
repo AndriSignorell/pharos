@@ -2,10 +2,30 @@
 % Please edit documentation in R/plotDens.R
 \name{plotDens}
 \alias{plotDens}
+\alias{plotDens.default}
 \alias{plotDens.formula}
 \title{Grouped Density Plot}
 \usage{
 plotDens(x, ...)
+
+\method{plotDens}{default}(
+  x,
+  ...,
+  main = NULL,
+  xlab = "",
+  ylab = "density",
+  xlim = NULL,
+  ylim = NULL,
+  add = FALSE,
+  bw = "nrd0",
+  col = NULL,
+  lwd = 2,
+  lty = 1,
+  fill = FALSE,
+  grid = NULL,
+  legend = TRUE,
+  stamp = .useTheme
+)
 
 \method{plotDens}{formula}(
   formula,
@@ -16,17 +36,7 @@ plotDens(x, ...)
   main = NULL,
   xlab = "",
   ylab = NULL,
-  xlim = NULL,
-  ylim = NULL,
-  add = FALSE,
-  bw = "nrd0",
-  type = NULL,
-  col = NULL,
-  lwd = 2,
-  lty = 1,
-  fill = FALSE,
-  grid = NA,
-  stamp = TRUE
+  type = NULL
 )
 }
 \arguments{
@@ -35,26 +45,19 @@ plotDens(x, ...)
 \item{...}{additional data vectors (unnamed, default method) or
 graphical parameters passed to \code{par()}.}
 
-\item{formula}{A formula of the form \code{y ~ group}, \code{y ~ x}
-(\code{x} numeric, conditional density), or \code{y ~ x | group}.}
+\item{main}{main title. \code{NULL} (default) derives the title from the
+input: the names of the data arguments, or the formula. \code{""}, \code{NA}, or
+\code{FALSE} suppress the title and compact the top margin.}
 
-\item{data}{optional data frame.}
+\item{xlab, ylab}{axis labels.}
 
-\item{subset}{optional subset expression.}
-
-\item{na.action}{function to handle missing values.}
-
-\item{main, xlab, ylab}{plot labels.}
-
-\item{xlim, ylim}{axis limits.}
+\item{xlim, ylim}{axis limits. \code{NULL} (default) uses the range of the
+densities, the y-axis starting at 0 (\code{c(0, 1)} for a conditional
+density).}
 
 \item{add}{logical; if \code{TRUE}, adds to an existing plot.}
 
 \item{bw}{bandwidth passed to \code{\link[stats:density]{stats::density()}} or \code{cdplot}.}
-
-\item{type}{character string specifying the plot type. One of
-\code{"density"}, \code{"conditional"}, or \code{NULL} (default,
-determined by \code{resolveFormula()}'s design classification).}
 
 \item{col}{line color(s).}
 
@@ -72,9 +75,33 @@ the regions below/above the boundary curve.}
 
 \item{grid}{logical, \code{NA}, or list controlling background grid.}
 
+\item{legend}{controls the legend, drawn only for more than one curve,
+with the group names (the level names for the formula method, the
+names of the data arguments otherwise). \code{TRUE} (default) draws it with
+default settings, \code{FALSE}/\code{NULL}/\code{NA} suppress it, a named list is
+passed on to \code{\link[graphics:legend]{graphics::legend()}} (e.g. \code{list(x = "topleft")}).}
+
 \item{stamp}{controls the corner stamp. \code{.useTheme} (default)
 resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/\code{NULL},
 or an explicit string, as for \code{.withGraphicsState()} (internal).}
+
+\item{formula}{a formula of the form \code{y ~ group} (or \code{y ~ a:b} for the
+cells of several grouping variables), \code{y ~ x} (\code{x} numeric,
+conditional density), or \code{y ~ x | group}. \code{y ~ a + b} is not accepted,
+see \code{\link[bedrock:resolveFormula]{bedrock::resolveFormula()}}.}
+
+\item{data}{an optional data frame containing the variables in the
+formula.}
+
+\item{subset}{an optional expression indicating which observations to
+use, evaluated in \code{data} (\code{subset = len > 10}), as in \code{\link[=boxplot]{boxplot()}}.}
+
+\item{na.action}{a function specifying how missing values are handled,
+defaults to \code{\link[=na.omit]{na.omit()}}.}
+
+\item{type}{character string specifying the plot type. One of
+\code{"density"}, \code{"conditional"}, or \code{NULL} (default,
+determined by \code{resolveFormula()}'s design classification).}
 }
 \value{
 Invisibly returns \code{NULL}.
@@ -119,6 +146,9 @@ plotDens(y ~ x, fill = c("red", "blue"))
 
 # conditional density, stratified by group
 plotDens(y ~ x | g)
+
+# subset and the cells of two grouping variables
+plotDens(len ~ supp:dose, ToothGrowth, subset = dose > 0.5)
 
 }
 \seealso{

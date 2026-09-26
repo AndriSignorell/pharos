@@ -20,11 +20,16 @@
 #'
 #' @name plotECDF
 #' 
-#' @param x numeric vector of the observations for the ECDF.
+#' @param x numeric vector of the observations for the ECDF. Missing values
+#'   are removed.
 #'
-#' @param formula a formula of the form `y ~ x`.
-#' @param data an optional data frame containing variables in the formula.
-#' @param subset optional expression indicating which observations to use.
+#' @param formula a formula of the form `y ~ group`, one ECDF per group, or
+#'   `y ~ a:b` for the cells of several grouping variables. `y ~ a + b` is
+#'   not accepted, see [bedrock::resolveFormula()].
+#' @param data an optional data frame containing the variables in the
+#'   formula.
+#' @param subset an optional expression indicating which observations to
+#'   use, evaluated in `data` (`subset = len > 10`), as in [boxplot()].
 #' @param na.action a function specifying how missing values are handled.
 #'   Defaults to `na.omit`.
 #'   
@@ -70,9 +75,10 @@
 #'   resolves to `getTheme()$stamp`. `TRUE`/`FALSE`/`NULL`,
 #'   a string, or a named list of arguments for `stamp()`.
 #'
-#' @param legend logical or list controlling the legend. If `TRUE`, a legend
-#'   is drawn using the column names of the data. If a list is supplied, its
-#'   elements are passed to the internal legend drawing routine.
+#' @param legend controls the legend of the formula method, drawn with the
+#'   group levels. `TRUE` (default) draws it with default settings,
+#'   `FALSE`/`NULL`/`NA` suppress it, a named list is passed on to
+#'   [graphics::legend()] (e.g. `list(x = "topleft")`).
 #'   
 #' @param \dots further graphical parameters passed to [par()] via
 #'   the internal framework.
@@ -94,6 +100,9 @@
 #'
 #' # grouped ECDFs via the formula interface
 #' plotECDF(Sepal.Length ~ Species, data = iris)
+#'
+#' # subset and the cells of two grouping variables
+#' plotECDF(len ~ supp:dose, ToothGrowth, subset = dose > 0.5)
 #'
 
 #' @family plot.univariate  
@@ -138,12 +147,20 @@ plotECDF.default <- function(
 ) {
   
   mc   <- match.call()
-  main <- .resolveTitle(main, default = deparse(mc$x))
+  main <- .resolveTitle(main, default = deparse1(mc$x))
   
   if (is.null(xlab))
-    xlab <- deparse(mc$x)
+    xlab <- deparse1(mc$x)
   
   col <- .useThemeValue(col, "twin")[1]
+  
+  # missing values are removed: they counted in n, so the curve never
+  # reached 1, and range() and quantile() failed on them
+  if (!is.numeric(x))
+    stop("'x' must be numeric", call. = FALSE)
+  x <- x[!is.na(x)]
+  if (!length(x))
+    stop("'x' contains no non-missing values", call. = FALSE)
   
   n <- length(x)
   useFull <- is.null(breaks) || isFALSE(breaks) || is.infinite(breaks) || n <= breaks
@@ -157,12 +174,6 @@ plotECDF.default <- function(
     xp <- as.numeric(stats::quantile(x, probs = p, names = FALSE, type = 7))
     yp <- p
   }
-  
-  mc   <- tryCatch(
-    match.call(),
-    error = function(e) NULL
-  )
-  main <- .resolveTitle(main, default = if (!is.null(mc)) deparse(mc$x) else "")
   
   
   .withGraphicsState({
@@ -226,19 +237,13 @@ plotECDF.formula <- function(
   # LABELS
   main = NULL,
   xlab = NULL,
-  ylab = "",
   
   # AXES
   xlim = NULL,
   
-  # STRUCTURE
-  breaks = 1000,
-  
   # STYLE
   col  = .useTheme,
   lwd  = 2,
-  grid = .useTheme,
-  box  = .useTheme,
   
   # FEATURES
   legend = TRUE,
@@ -249,23 +254,20 @@ plotECDF.formula <- function(
   ...
 ) {
   
-  args <- list(
-    formula   = formula,
-    na.action = na.action,
-    allowed   = c("two-sample-independent", "n-sample-independent")
+  # formula, data and subset are forwarded unevaluated, so that 'subset' is
+  # evaluated in 'data' as in boxplot(); y ~ a:b yields the cells as one
+  # grouping factor, y ~ a + b is rejected
+  r <- bedrock::resolveFormulaFromCall(
+    allowed   = c("two-sample-independent", "n-sample-independent"),
+    na.action = na.action
   )
-  
-  if (!missing(data))   args$data   <- data
-  if (!missing(subset)) args$subset <- substitute(subset)
-  
-  r <- do.call(bedrock::resolveFormula, args)
   
   groups    <- split(r$x, r$group)
   groupLevs <- levels(r$group)
   ng        <- length(groups)
   
   main <- .resolveTitle(main, default = r$dataName)
-  if (is.null(xlab)) xlab <- names(r$mf)[1]
+  if (is.null(xlab)) xlab <- deparse1(formula[[2L]])
   
   if (identical(col, .useTheme))
     col <- pal(getTheme()$palette, n = ng)
@@ -274,16 +276,17 @@ plotECDF.formula <- function(
   if (is.null(xlim))
     xlim <- range(r$x, na.rm = TRUE)
   
+  # one ECDF per group, the first one sets up the plot; the remaining
+  # arguments (ylab, breaks, grid, box, ...) reach the default method
+  # through ...
   for (i in seq_len(ng)) {
     
     plotECDF.default(
       groups[[i]],
-      main = main, xlab = xlab, ylab = ylab,
+      main = main, xlab = xlab,
       xlim = xlim,
-      breaks = breaks,
       add = (i > 1),
       col = col[i], lwd = lwd,
-      grid = grid, box = box,
       stamp = if (i == 1) stamp else FALSE,
       ...
     )
@@ -304,4 +307,3 @@ plotECDF.formula <- function(
   
   invisible(NULL)
 }
-

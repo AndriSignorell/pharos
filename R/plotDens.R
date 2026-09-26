@@ -26,14 +26,24 @@
 #' @param ... additional data vectors (unnamed, default method) or
 #'   graphical parameters passed to `par()`.
 #'
-#' @param formula A formula of the form `y ~ group`, `y ~ x`
-#'   (`x` numeric, conditional density), or `y ~ x | group`.
-#' @param data optional data frame.
-#' @param subset optional subset expression.
-#' @param na.action function to handle missing values.
+#' @param formula a formula of the form `y ~ group` (or `y ~ a:b` for the
+#'   cells of several grouping variables), `y ~ x` (`x` numeric,
+#'   conditional density), or `y ~ x | group`. `y ~ a + b` is not accepted,
+#'   see [bedrock::resolveFormula()].
+#' @param data an optional data frame containing the variables in the
+#'   formula.
+#' @param subset an optional expression indicating which observations to
+#'   use, evaluated in `data` (`subset = len > 10`), as in [boxplot()].
+#' @param na.action a function specifying how missing values are handled,
+#'   defaults to [na.omit()].
 #'
-#' @param main,xlab,ylab plot labels.
-#' @param xlim,ylim axis limits.
+#' @param main main title. `NULL` (default) derives the title from the
+#'   input: the names of the data arguments, or the formula. `""`, `NA`, or
+#'   `FALSE` suppress the title and compact the top margin.
+#' @param xlab,ylab axis labels.
+#' @param xlim,ylim axis limits. `NULL` (default) uses the range of the
+#'   densities, the y-axis starting at 0 (`c(0, 1)` for a conditional
+#'   density).
 #'
 #' @param add logical; if `TRUE`, adds to an existing plot.
 #' @param bw bandwidth passed to [stats::density()] or `cdplot`.
@@ -52,6 +62,11 @@
 #'   `TRUE` for cdplot-style grey shading, or a vector of 2 colors for
 #'   the regions below/above the boundary curve.
 #' @param grid logical, `NA`, or list controlling background grid.
+#' @param legend controls the legend, drawn only for more than one curve,
+#'   with the group names (the level names for the formula method, the
+#'   names of the data arguments otherwise). `TRUE` (default) draws it with
+#'   default settings, `FALSE`/`NULL`/`NA` suppress it, a named list is
+#'   passed on to [graphics::legend()] (e.g. `list(x = "topleft")`).
 #'
 #' @param stamp controls the corner stamp. `.useTheme` (default)
 #'   resolves to `getTheme()$stamp`. `TRUE`/`FALSE`/`NULL`,
@@ -77,6 +92,9 @@
 #' # conditional density, stratified by group
 #' plotDens(y ~ x | g)
 #'
+#' # subset and the cells of two grouping variables
+#' plotDens(len ~ supp:dose, ToothGrowth, subset = dose > 0.5)
+#'
 #' @seealso [stats::density()], [graphics::cdplot()],
 #'   [bedrock::resolveFormula()]
 #' 
@@ -100,6 +118,8 @@ plotDens <- function(x, ...) {
 }
 
 
+#' @rdname plotDens
+#' @method plotDens default
 #' @export
 plotDens.default <- function(
     
@@ -125,20 +145,37 @@ plotDens.default <- function(
   lty = 1,
   fill = FALSE,
   grid = NULL,
+  legend = TRUE,
   
   # FRAMEWORK
-  stamp = TRUE
+  stamp = .useTheme
   
 ) {
   
+  m    <- match.call(expand.dots = FALSE)
   dots <- list(...)
-  named <- names(dots) != ""
   
-  groups <- if (is.list(x)) x else c(list(x), dots[!named])
+  # names(dots) is NULL when no argument in ... is named; the comparison
+  # then gave logical(0), and every further data vector was dropped:
+  # plotDens(x, y) drew x only
+  dotNames <- names(dots) %||% character(length(dots))
+  unnamed  <- !nzchar(dotNames)
+  
+  groups <- if (is.list(x)) x else c(list(x), dots[unnamed])
   n <- length(groups)
   
   if (n == 0)
     stop("invalid input")
+  
+  # the data arguments as written: legend labels for separate vectors, and
+  # the default title
+  argNames <- if (is.list(x)) deparse1(m$x)
+              else vapply(c(list(m$x), m$...[unnamed]), deparse1, "")
+  
+  if (is.null(names(groups)))
+    names(groups) <- if (is.list(x)) seq_len(n) else argNames
+  
+  main <- .resolveTitle(main, default = paste(argNames, collapse = ", "))
   
   dens_list <- lapply(groups, function(xi) {
     xi <- xi[!is.na(xi)]
@@ -155,7 +192,9 @@ plotDens.default <- function(
     stop("no valid groups")
   
   xr <- range(unlist(lapply(dens_list, `[[`, "x")), na.rm = TRUE)
-  yr <- range(unlist(lapply(dens_list, `[[`, "y")), na.rm = TRUE)
+  # from 0: range() of the densities started at their smallest value, so
+  # the axis floated above 0 and a fill reached below the plot region
+  yr <- c(0, max(unlist(lapply(dens_list, `[[`, "y")), na.rm = TRUE))
   
   xlim <- xlim %||% xr
   ylim <- ylim %||% yr
@@ -224,6 +263,8 @@ plotDens.default <- function(
             lty = lty[i])
     }
     
+    .densLegend(legend, names(groups), col, lwd, lty)
+    
   }, stamp=stamp)
   
   invisible(NULL)
@@ -245,7 +286,7 @@ plotDens.default <- function(
 #'   needed since there is only one curve.
 #' @param main,xlab,ylab plot labels.
 #' @param xlim,ylim axis limits.
-#' @param add,bw,col,lwd,lty,grid see [plotDens()].
+#' @param add,bw,col,lwd,lty,grid,legend,stamp see [plotDens()].
 #' @param fill `FALSE` (default, no fill), `TRUE` (cdplot-style
 #'   grey shading), or a vector of 2 colors for the regions below/above the
 #'   boundary curve, representing `P(y = levels(y)[1] | x)` and
@@ -282,8 +323,9 @@ plotDens.default <- function(
   lty = 1,
   fill = FALSE,
   grid = NA,
+  legend = TRUE,
   
-  stamp = TRUE,
+  stamp = .useTheme,
 
   ...
 ) {
@@ -351,7 +393,7 @@ plotDens.default <- function(
       plot(
         NA,
         xlim = range(ptx),
-        ylim = c(0, 1),
+        ylim = ylim %||% c(0, 1),
         main = main,
         xlab = xlab,
         ylab = ylab,
@@ -365,6 +407,8 @@ plotDens.default <- function(
       defaults = th$grid[!startsWith(names(th$grid), "group.")]
     )
     
+    rightEnd <- numeric(n)
+    
     for (i in seq_len(n)) {
       
       idx <- g == lev[i]
@@ -372,6 +416,9 @@ plotDens.default <- function(
       fit <- cdplot(y[idx] ~ x[idx], plot = FALSE, bw = bw)
       fx  <- fit[[1]]
       yy  <- fx(ptx)
+      
+      # level of the curve over the right third, for placing the legend
+      rightEnd[i] <- mean(yy[ptx >= quantile(ptx, 2/3)], na.rm = TRUE)
       
       if (doFill) {
         polygon(c(ptx, rev(ptx)), c(rep(0, length(ptx)), rev(yy)),
@@ -382,6 +429,11 @@ plotDens.default <- function(
       
       lines(ptx, yy, col = col[i], lwd = lwd[i], lty = lty[i])
     }
+    
+    # the probabilities span 0..1: put the legend where the curves are not,
+    # at the right edge
+    .densLegend(legend, lev, col, lwd, lty,
+                x = if (mean(rightEnd) > 0.5) "bottomright" else "topright")
     
   }, stamp=stamp)
   
@@ -407,45 +459,26 @@ plotDens.formula <- function(
   xlab = "",
   ylab = NULL,
   
-  # AXES
-  xlim = NULL,
-  ylim = NULL,
-  
   # STRUCTURE
-  add = FALSE,
-  bw = "nrd0",
-  type = NULL,
+  type = NULL
   
-  # STYLE
-  col = NULL,
-  lwd = 2,
-  lty = 1,
-  fill = FALSE,
-  grid = NA,
-
-  stamp = TRUE
-
 ) {
   
-  args <- list(
-    formula   = formula,
-    na.action = na.action,
+  # formula, data and subset are forwarded unevaluated, so that 'subset' is
+  # evaluated in 'data' as in boxplot(); y ~ a:b yields the cells as one
+  # grouping factor, y ~ a + b is rejected
+  r <- bedrock::resolveFormulaFromCall(
     allowed   = c(
       "one-sample",
       "two-sample-independent",
       "n-sample-independent",
       "n-sample-dependent",
       "numeric-numeric"
-    )
+    ),
+    na.action = na.action
   )
   
-  if (!missing(data))
-    args$data <- data
-  
-  if (!missing(subset))
-    args$subset <- substitute(subset)
-  
-  r <- do.call(bedrock::resolveFormula, args)
+  main <- .resolveTitle(main, default = r$dataName)
   
   # ============================================================
   # type = NULL: defer to resolveFormula()'s own classification -
@@ -492,13 +525,11 @@ plotDens.formula <- function(
     if (is.null(ylab))
       ylab <- "density"
     
-    plotDens(
+    # the remaining arguments (xlim, bw, col, fill, legend, stamp, ...)
+    # reach the default method through ...
+    plotDens.default(
       split_data,
       main = main, xlab = xlab, ylab = ylab,
-      xlim = xlim, ylim = ylim,
-      add = add, bw = bw,
-      col = col, lwd = lwd, lty = lty, fill = fill, grid = grid,
-      stamp = stamp,
       ...
     )
     
@@ -543,13 +574,31 @@ plotDens.formula <- function(
   .plotDensConditional(
     y = yVal, x = xVal, g = gVal,
     main = main, xlab = xlab, ylab = ylab,
-    xlim = xlim, ylim = ylim,
-    add = add, bw = bw,
-    col = col, lwd = lwd, lty = lty, fill = fill, grid = grid,
-    stamp = stamp,
     ...
   )
   
   invisible(NULL)
 }
 
+
+
+# legend for more than one curve, shared by the density and the
+# conditional engine
+.densLegend <- function(legend, labels, col, lwd, lty, x = "topright") {
+  if (length(labels) < 2L)
+    return(invisible())
+  bedrock::callIf(
+    graphics::legend,
+    legend,
+    defaults = .legendDefaults(list(
+      x      = x,
+      inset  = 0.02,
+      legend = labels,
+      col    = col,
+      lwd    = lwd,
+      lty    = lty,
+      bty    = "n"
+    )),
+    forbidden = "legend"
+  )
+}

@@ -9,11 +9,11 @@
 plotBag(x, ...)
 
 \method{plotBag}{formula}(
-  x,
-  data = NULL,
+  formula,
+  data,
   subset,
   na.action = na.omit,
-  main = "",
+  main = NULL,
   xlab = NULL,
   ylab = NULL,
   ...
@@ -21,14 +21,14 @@ plotBag(x, ...)
 
 \method{plotBag}{default}(
   x,
-  main = "",
-  xlab = "",
-  ylab = "",
+  main = NULL,
+  xlab = NULL,
+  ylab = NULL,
   xlim = NULL,
   ylim = NULL,
   factor = 3,
   eps = 0.00000001,
-  dither = TRUE,
+  dither = FALSE,
   points = TRUE,
   bag = TRUE,
   loop = TRUE,
@@ -37,45 +37,57 @@ plotBag(x, ...)
   median = TRUE,
   grid = FALSE,
   box = TRUE,
-  stamp = NULL,
+  stamp = .useTheme,
   ...
 )
 }
 \arguments{
 \item{x}{a numeric matrix or data frame with exactly two columns, or a
-formula of the form \code{y ~ x} (see the formula method).}
+formula of the form \code{y ~ x} (see the formula method). Incomplete rows
+are removed.}
 
 \item{...}{additional graphical parameters passed to \code{par()}.}
+
+\item{formula}{a formula of the form \code{y ~ x}, where both variables
+are numeric. \code{x} is drawn on the horizontal, \code{y} on the
+vertical axis.}
 
 \item{data}{an optional data frame containing the variables in
 \code{formula}.}
 
 \item{subset}{an optional expression indicating which observations to
-use.}
+use, evaluated in \code{data} (\code{subset = Weight > 2500}), as in
+\code{\link[=plot.formula]{plot.formula()}}.}
 
 \item{na.action}{a function specifying how missing values are handled.
 Defaults to \code{\link[stats:na.omit]{stats::na.omit()}}, as the depth computation
 requires complete pairs.}
 
-\item{main, xlab, ylab}{character strings for plot annotations. The
-formula method derives \code{xlab} and \code{ylab} from the variable
-names if they are not supplied.}
+\item{main}{main title. \code{NULL} (default) derives the title from the
+input: the formula, or the name of \code{x}. \code{""}, \code{NA}, or \code{FALSE}
+suppress the title and compact the top margin.}
 
-\item{xlim, ylim}{numeric vectors of length 2 specifying axis limits.}
+\item{xlab, ylab}{axis labels. \code{NULL} (default) uses the variable names
+of the formula, resp. the column names of \code{x} (empty if it has none).}
+
+\item{xlim, ylim}{numeric vectors of length 2 specifying axis limits.
+\code{NULL} (default) uses the range of the data, extended to the fence if
+it is drawn.}
 
 \item{factor}{inflation factor for the fence (default: 3).}
 
-\item{eps}{numeric tolerance used in depth computation and geometry.}
+\item{eps}{numeric tolerance used in depth computation and geometry,
+relative to the standardized coordinates.}
 
-\item{dither}{logical, whether to add small noise to break ties.}
+\item{dither}{logical, whether to add small noise (order \code{eps}) to the
+data. Default \code{FALSE}: ties are handled exactly, and dithering would
+only break duplicates apart and so lower their depth.}
 
 \item{points, bag, loop, fence, out, median, grid, box}{object-oriented control of plot elements (see Details).}
 
-\item{stamp}{optional stamp passed to \code{.withGraphicsState()}.}
-
-\item{formula}{a formula of the form \code{y ~ x}, where both variables
-are numeric. \code{x} is drawn on the horizontal, \code{y} on the
-vertical axis.}
+\item{stamp}{controls the corner stamp. \code{.useTheme} (default)
+resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/\code{NULL}, a string, or a
+named list for \code{\link[=stamp]{stamp()}}.}
 }
 \value{
 Invisibly returns a list of class \code{"bagplot"} with
@@ -127,9 +139,10 @@ hulls of sample depth regions rather than exact isodepth contours.
 Borderline outlier classifications may therefore differ slightly from
 other implementations (e.g. \pkg{aplpack}).
 
-Exact ties and collinear configurations violate the general-position
-assumption of the depth algorithm; \code{dither} (default \code{TRUE})
-adds negligible noise (order \code{eps}) to break them.
+The depth computation handles exact ties and collinear configurations
+(e.g. discrete data) exactly; no dithering is needed. All computations
+run on standardized coordinates, so the result does not depend on the
+units of measurement.
 }
 \section{Element Control}{
 
@@ -190,8 +203,12 @@ plotBag(x, points = FALSE, median = FALSE)
 # formula interface
 plotBag(Disp ~ Weight, data = cardata)
 
-# example of Rousseeuw et al. (1999): car weight vs engine displacement
-plotBag(cardata, xlab = "Weight", ylab = "Displacement")
+# subset, evaluated in data
+plotBag(Disp ~ Weight, data = cardata, subset = Weight > 2500)
+
+# example of Rousseeuw et al. (1999): car weight vs engine displacement;
+# the axis labels default to the column names
+plotBag(cardata)
 
 }
 \references{

@@ -37,18 +37,6 @@ plotXY(x, ...)
   main = NULL,
   xlab = "",
   ylab = "",
-  xlim = NULL,
-  ylim = NULL,
-  col = .useTheme,
-  bg = .useTheme,
-  pch = .useTheme,
-  cex = .useTheme,
-  grid = .useTheme,
-  lm = TRUE,
-  loess = TRUE,
-  legend = TRUE,
-  box = .useTheme,
-  stamp = .useTheme,
   ...
 )
 }
@@ -145,11 +133,13 @@ active theme's \code{twin} colors (\code{getTheme()$twin}).}
 resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
 \code{NULL}, a string, or a named list for \code{\link[=stamp]{stamp()}}.}
 
-\item{formula}{a formula of the form \code{y ~ x}.}
+\item{formula}{a formula of the form \code{y ~ x}, both numeric.}
 
 \item{data}{an optional data frame containing variables in the formula.}
 
-\item{subset}{optional expression indicating which observations to use.}
+\item{subset}{an optional expression indicating which observations to
+use, evaluated in \code{data} (\code{subset = delivery_min < 40}), as in
+\code{\link[=plot.formula]{plot.formula()}}.}
 
 \item{na.action}{a function specifying how missing values are handled.
 Defaults to \code{na.omit}.}
@@ -190,6 +180,10 @@ plotXY(temperature ~ delivery_min, bedrock::Pizza,
 
 # No title, compact top margin
 plotXY(temperature ~ delivery_min, bedrock::Pizza, main = "")
+
+# subset, evaluated in data
+plotXY(temperature ~ delivery_min, bedrock::Pizza,
+       subset = area == "Camden")
 }
 
 }

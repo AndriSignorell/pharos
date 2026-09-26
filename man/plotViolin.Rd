@@ -27,32 +27,21 @@ plotViolin(x, ...)
   lwd = 1,
   box = TRUE,
   grid = NA,
-  quantiles = NULL
+  quantiles = NULL,
+  stamp = .useTheme
 )
 
 \method{plotViolin}{formula}(
   formula,
-  data = NULL,
+  data,
   subset,
   na.action = na.omit,
   ...,
   main = NULL,
   xlab = "",
   ylab = "",
-  xlim = NULL,
-  ylim = NULL,
   horizontal = FALSE,
-  at = NULL,
-  names = NULL,
-  add = FALSE,
-  bw = "nrd0",
-  trim = TRUE,
-  col = "grey80",
-  border = "black",
-  lwd = 1,
-  box = TRUE,
-  grid = NA,
-  quantiles = NULL
+  names = NULL
 )
 }
 \arguments{
@@ -61,9 +50,15 @@ plotViolin(x, ...)
 \item{...}{additional data vectors (unnamed) or graphical parameters
 passed to \code{par()}.}
 
-\item{main, xlab, ylab}{plot labels.}
+\item{main}{main title. \code{NULL} (default) derives the title from the
+input: the names of the data arguments, or the formula. \code{""}, \code{NA}, or
+\code{FALSE} suppress the title and compact the top margin.}
 
-\item{xlim, ylim}{axis limits.}
+\item{xlab, ylab}{axis labels. For the formula method, empty labels
+default to the grouping variable and the response.}
+
+\item{xlim, ylim}{axis limits. \code{NULL} (default) uses the range of the
+densities, padded by 2\%; given limits are used as they are.}
 
 \item{horizontal}{logical; if \code{TRUE}, draws horizontal violins.}
 
@@ -98,13 +93,22 @@ reach into implausible values (e.g. scores above 100 or below 0).}
 \item{quantiles}{optional numeric vector of probabilities for drawing
 quantile lines inside each violin.}
 
-\item{formula}{A formula of the form y ~ group.}
+\item{stamp}{controls the corner stamp. \code{.useTheme} (default)
+resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/\code{NULL}, a string, or a
+named list for \code{\link[=stamp]{stamp()}}.}
 
-\item{data}{optional data frame.}
+\item{formula}{a formula of the form \code{y ~ group}, or \code{y ~ a:b} for the
+cells of several grouping variables. \code{y ~ a + b} is not accepted (unlike
+\code{\link[=boxplot]{boxplot()}}), see \code{\link[bedrock:resolveFormula]{bedrock::resolveFormula()}}.}
 
-\item{subset}{optional subset expression.}
+\item{data}{an optional data frame containing the variables in the
+formula.}
 
-\item{na.action}{function to handle missing values.}
+\item{subset}{an optional expression indicating which observations to
+use, evaluated in \code{data} (\code{subset = len > 10}), as in \code{\link[=boxplot]{boxplot()}}.}
+
+\item{na.action}{a function specifying how missing values are handled,
+defaults to \code{\link[=na.omit]{na.omit()}}.}
 }
 \value{
 Invisibly returns \code{NULL}.
@@ -164,6 +168,9 @@ df <- data.frame(
 )
 
 plotViolin(value ~ group, data = df)
+
+# subset and the cells of two grouping variables
+plotViolin(len ~ supp:dose, ToothGrowth, subset = len > 8)
 
 }
 \seealso{
