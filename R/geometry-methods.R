@@ -54,7 +54,6 @@ polygon <- function(x, ...) UseMethod("polygon")
 #' @param col fill colour.
 #' @param lty line type.
 #' @param fillOddEven logical; should the odd-even rule be used for filling?
-
 #' 
 #' @export
 polygon.default <- graphics::polygon
@@ -148,6 +147,8 @@ polygon.geometryCollection <- function(x, ...) {
   invisible(x)
   
 }
+
+
 #' @export
 points.geometryCollection <- function(x, ...) {
   for (geom in x)

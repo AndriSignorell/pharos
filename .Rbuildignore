@@ -9,5 +9,5 @@
 Rplots.pdf
 desktop\.ini$
 prepare.R
-
+^dev$
 ^\.github$
