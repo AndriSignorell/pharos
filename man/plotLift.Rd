@@ -142,7 +142,7 @@ set it via the \code{nBins} argument of \code{alloy::lift()}.
 }
 \examples{
 \dontrun{
-fitLogit <- alloy::fitMod(admit ~ gre + gpa + rank, Admit, fitfn = "logit")
+fitLogit <- alloy::fitMod(admit ~ gre + gpa + rank, Admit, engine = "logit")
 lft <- alloy::lift(fitLogit)
 
 plotLift(lft)

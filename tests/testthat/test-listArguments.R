@@ -123,6 +123,24 @@ test_that("plotFacet takes strip labels in the strip list and par through the do
 })
 
 
+test_that("plotWeb takes the label texts as vector or in a list", {
+
+  localDevice()
+  m <- cor(mtcars[, 1:5])
+
+  expect_silent(plotWeb(m, stamp = FALSE))
+  expect_silent(plotWeb(m, labels = FALSE, stamp = FALSE))
+  expect_silent(plotWeb(m, labels = LETTERS[1:5], stamp = FALSE))
+  expect_silent(plotWeb(m, labels = list(LETTERS[1:5], cex = 0.8), stamp = FALSE))
+  expect_silent(plotWeb(m, labels = list(text = LETTERS[1:5], las = 2), stamp = FALSE))
+  expect_silent(plotWeb(m, labels = list(las = 2), stamp = FALSE))
+
+  # the former element name must not be ignored silently
+  expect_error(plotWeb(m, labels = list(labels = LETTERS[1:5])),
+               "unknown element\\(s\\) in 'labels': 'labels'")
+})
+
+
 test_that("polarGrid takes the label size as cex", {
 
   localDevice()

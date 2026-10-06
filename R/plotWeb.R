@@ -30,11 +30,11 @@
 #'
 #' @param labels controls node labels around the circle. `TRUE`
 #'   (default) draws labels using `colnames(m)` with default styling.
-#'   `FALSE`/`NA`/`NULL` suppresses labels. A named list
-#'   overrides individual settings:
+#'   `FALSE`/`NA`/`NULL` suppresses labels. A character vector is
+#'   taken as the label texts. A list holds the texts and the details:
 #'   \describe{
-#'     \item{`labels`}{character vector of label texts; defaults to
-#'       `colnames(m)`}
+#'     \item{`text`}{character vector of label texts (or the one unnamed
+#'       element of the list); defaults to `colnames(m)`}
 #'     \item{`las`}{orientation: `1` horizontal (default),
 #'       `2` radial, `3` vertical}
 #'     \item{`adj`}{label adjustment (0/0.5/1); `NULL` (default)
@@ -71,7 +71,7 @@
 #' plotWeb(m, main = "Swiss correlation")
 #'
 #' # custom labels (abbreviations)
-#' plotWeb(m, labels = list(labels = abbreviate(colnames(m), 4), cex = 0.9))
+#' plotWeb(m, labels = list(abbreviate(colnames(m), 4), cex = 0.9))
 #'
 #' # show only significant correlations
 #' p <- outer(
@@ -137,20 +137,20 @@ plotWeb <- function(m,
     xylab  <- polToCart(r = 3 + dist, theta = angles)
     
     # --- labels ---
-    # 'labels' element in the list overrides colnames(m) as label text;
-    # all other elements (las, adj, cex) control appearance.
-    labDefaults <- list(
-      labels = colnames(m),
-      las    = 1L,
-      adj    = NULL,
-      cex    = 1.0
-    )
+    # TRUE/FALSE/NA/NULL switch the labels on or off; a character vector
+    # is the label text, a list holds the text ('text', or its one unnamed
+    # element) and the appearance (las, adj, cex)
+    labDefaults <- list(las = 1L, adj = NULL, cex = 1.0)
     
-    labSpec <- .resolveSpec(labels, labDefaults)
+    labSpec <- if (is.list(labels) ||
+                   (is.character(labels) && !all(is.na(labels))))
+      .valueSpec(labels, "text", labDefaults, arg = "labels")
+    else
+      .resolveSpec(labels, c(list(text = NULL), labDefaults))
     
     if (!is.null(labSpec)) {
       
-      node.labels <- labSpec$labels
+      node.labels <- labSpec$text %||% colnames(m)
       las         <- labSpec$las
       adj         <- labSpec$adj
       labCex      <- labSpec$cex

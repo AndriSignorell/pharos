@@ -41,11 +41,11 @@ matrix values.}
 
 \item{labels}{controls node labels around the circle. \code{TRUE}
 (default) draws labels using \code{colnames(m)} with default styling.
-\code{FALSE}/\code{NA}/\code{NULL} suppresses labels. A named list
-overrides individual settings:
+\code{FALSE}/\code{NA}/\code{NULL} suppresses labels. A character vector is
+taken as the label texts. A list holds the texts and the details:
 \describe{
-\item{\code{labels}}{character vector of label texts; defaults to
-\code{colnames(m)}}
+\item{\code{text}}{character vector of label texts (or the one unnamed
+element of the list); defaults to \code{colnames(m)}}
 \item{\code{las}}{orientation: \code{1} horizontal (default),
 \code{2} radial, \code{3} vertical}
 \item{\code{adj}}{label adjustment (0/0.5/1); \code{NULL} (default)
@@ -93,7 +93,7 @@ m <- cor(swiss)
 plotWeb(m, main = "Swiss correlation")
 
 # custom labels (abbreviations)
-plotWeb(m, labels = list(labels = abbreviate(colnames(m), 4), cex = 0.9))
+plotWeb(m, labels = list(abbreviate(colnames(m), 4), cex = 0.9))
 
 # show only significant correlations
 p <- outer(
