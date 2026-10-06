@@ -6,7 +6,7 @@
 #' optionally be overlaid.
 #'
 #' @param x numeric vector, or a formula of the form `x ~ g`.
-#' @param g optional grouping variable (ignored if a formula is used).
+#' @param groups optional grouping variable (ignored if a formula is used).
 #'
 #' @param formula a formula of the form `y ~ group`, or `y ~ a:b` for the
 #'   cells of several grouping variables. `y ~ a + b` is not accepted, see
@@ -106,7 +106,7 @@ plotBox <- function(x, ...) {
 plotBox.default <- function(
     
   x,
-  g = NULL,
+  groups = NULL,
   
   main = NULL,
   xlab = "",
@@ -132,12 +132,12 @@ plotBox.default <- function(
                 nx=NA, ny=NULL)
   )
   
-  # the default method's arguments are x and g; mc$y does not exist and
+  # the default method's arguments are x and groups; mc$y does not exist and
   # gave the title "NULL ~ x"
   mc   <- match.call()
   main <- .resolveTitle(main, default =
-    if (is.null(mc$g)) deparse1(mc$x)
-    else paste(deparse1(mc$x), "~", deparse1(mc$g)))
+    if (is.null(mc$groups)) deparse1(mc$x)
+    else paste(deparse1(mc$x), "~", deparse1(mc$groups)))
   
   .withGraphicsState({
     
@@ -150,15 +150,15 @@ plotBox.default <- function(
     )
     
     # --- Prepare data ----------------------------------------------------
-    if (is.null(g)) {
+    if (is.null(groups)) {
       
       split_x <- list(x)
       names(split_x) <- ""
       
     } else {
       
-      g <- factor(g)
-      split_x <- split(x, g)
+      groups <- factor(groups)
+      split_x <- split(x, groups)
     }
     
     ng <- length(split_x)
@@ -186,18 +186,18 @@ plotBox.default <- function(
     
     # --- boxplot --------------------------------------------------
     
-    if (is.null(g)) {
+    if (is.null(groups)) {
       boxplot(x, add = TRUE, col = col, 
               boxlty = 0, medcol="grey50", ...)
     } else {
-      boxplot(x ~ g, add = TRUE, col = col, 
+      boxplot(x ~ groups, add = TRUE, col = col, 
               boxlty = 0, medcol="grey50", ...)
     }
     
-    if (is.null(g)) {
+    if (is.null(groups)) {
       axis(1, at = 1, labels = "")
     } else {
-      axis(1, at = seq(ng), labels = levels(g))
+      axis(1, at = seq(ng), labels = levels(groups))
     }
     axis(2)
     box()
@@ -207,8 +207,8 @@ plotBox.default <- function(
     bedrock::callIf(.meansBx, means,
                     defaults = list(
                       x = seq(ng),
-                      y = if (is.null(g)) mean(x, na.rm = TRUE)
-                      else tapply(x, g, mean, na.rm = TRUE),
+                      y = if (is.null(groups)) mean(x, na.rm = TRUE)
+                      else tapply(x, groups, mean, na.rm = TRUE),
                       ytot = mean(x, na.rm = TRUE),
                       col = "darkblue",
                       pch = 4,
@@ -221,10 +221,10 @@ plotBox.default <- function(
     
     # --- group n --------------------------------------------------
 
-    n_per_group <- if (is.null(g)) {
+    n_per_group <- if (is.null(groups)) {
       sum(!is.na(x))
     } else {
-      tapply(x, g, function(z) sum(!is.na(z)))
+      tapply(x, groups, function(z) sum(!is.na(z)))
     }
     
     mtext(text = sprintf("n = %s", fm(n_per_group, fmt = "abs.sty")),
@@ -284,7 +284,7 @@ plotBox.formula <- function(
   
   plotBox.default(
     x    = r$x,
-    g    = r$group,
+    groups    = r$group,
     main = main,
     xlab = xlab,
     ylab = ylab,

@@ -25,7 +25,7 @@ addOpacity("yellow", 0.2)
 addOpacity(2, 0.5)   # red
 
 canvas(3)
-polygon(circle(x=c(-1,0,1), y=c(1,-1,1), radius=2), 
+polygonX(circle(x=c(-1,0,1), y=c(1,-1,1), radius=2), 
         col=addOpacity(2:4, 0.4))
 
 x <- rnorm(15000)
@@ -45,7 +45,7 @@ Other color.manipulation:
 \code{\link[=darken]{darken()}},
 \code{\link[=fade]{fade()}},
 \code{\link[=lighten]{lighten()}},
-\code{\link[=mixColors]{mixColors()}}
+\code{\link[=mixCol]{mixCol()}}
 }
 \concept{color}
 \concept{color.manipulation}

@@ -4,10 +4,10 @@
 \alias{hexToCol}
 \title{Convert Hex Colors to Named R Colors}
 \usage{
-hexToCol(hex, method = c("rgb", "hsv"), metric = c("euclidean", "manhattan"))
+hexToCol(col, method = c("rgb", "hsv"), metric = c("euclidean", "manhattan"))
 }
 \arguments{
-\item{hex}{character vector of hexadecimal colors.}
+\item{col}{character vector of hexadecimal colors.}
 
 \item{method}{color space used for matching.}
 

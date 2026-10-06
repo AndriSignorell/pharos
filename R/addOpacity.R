@@ -16,7 +16,7 @@
 #' addOpacity(2, 0.5)   # red
 #' 
 #' canvas(3)
-#' polygon(circle(x=c(-1,0,1), y=c(1,-1,1), radius=2), 
+#' polygonX(circle(x=c(-1,0,1), y=c(1,-1,1), radius=2), 
 #'         col=addOpacity(2:4, 0.4))
 #' 
 #' x <- rnorm(15000)

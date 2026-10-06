@@ -20,10 +20,10 @@
 #' 
 #' rgbToLong(matrix(c(162,42,42), nrow=3))
 #' 
-#' colToRGB("peachpuff")
-#' colToRGB(c(blu = "royalblue", reddish = "tomato")) # names kept
+#' colToRgb("peachpuff")
+#' colToRgb(c(blu = "royalblue", reddish = "tomato")) # names kept
 #' 
-#' colToRGB(1:8)
+#' colToRgb(1:8)
 #' 
 #' 
 #' @seealso [grDevices::col2rgb], [color-conversion-overview]
@@ -32,7 +32,7 @@
 #'
 #'
 #' @export
-colToRGB <- function(col, useAlphaChannel = FALSE)
+colToRgb <- function(col, useAlphaChannel = FALSE)
   col2rgb(col, alpha = useAlphaChannel)
 
 
@@ -40,7 +40,7 @@ colToRGB <- function(col, useAlphaChannel = FALSE)
 #'
 #' Convert hexadecimal color strings to an RGB matrix.
 #'
-#' @param hex character vector of hexadecimal colors.
+#' @param col character vector of hexadecimal colors.
 #'
 #' @return Integer matrix with RGB rows.
 #'
@@ -51,21 +51,21 @@ colToRGB <- function(col, useAlphaChannel = FALSE)
 #'
 #'
 #' @export
-hexToRGB <- function(hex) {
+hexToRgb <- function(col) {
   
-  hex <- gsub("^#", "", hex)
+  col <- gsub("^#", "", col)
   
-  if (all(is.na(hex)))
-    return(matrix(NA, nrow = 3, ncol = length(hex)))
+  if (all(is.na(col)))
+    return(matrix(NA, nrow = 3, ncol = length(col)))
   
-  if (any(nchar(hex) == 8)) {
-    hex[nchar(hex) == 6] <- paste0(hex[nchar(hex) == 6], "FF")
+  if (any(nchar(col) == 8)) {
+    col[nchar(col) == 6] <- paste0(col[nchar(col) == 6], "FF")
     nChan <- 4
   } else {
     nChan <- 3
   }
   
-  x <- sapply(hex, function(z)
+  x <- sapply(col, function(z)
     c(
       red   = strtoi(substr(z, 1, 2), 16L),
       green = strtoi(substr(z, 3, 4), 16L),
@@ -77,7 +77,7 @@ hexToRGB <- function(hex) {
   res <- cbind(x[1:nChan, ])
   
   if (ncol(res) == 1L)
-    colnames(res) <- hex
+    colnames(res) <- col
   
   res
 }
@@ -158,8 +158,8 @@ rgbToCol <- function(col,
   
   if (method == "hsv") {
     
-    col <- colToHSV(col)
-    colTab <- colToHSV(colors())
+    col <- colToHsv(col)
+    colTab <- colToHsv(colors())
     
   } else {
     
@@ -196,7 +196,7 @@ rgbToCol <- function(col,
 #' Convert hexadecimal colors to the nearest named R colors.
 #'
 #' @inheritParams rgbToCol
-#' @param hex character vector of hexadecimal colors.
+#' @param col character vector of hexadecimal colors.
 #'
 #' @return Character vector of named R colors.
 #'
@@ -205,11 +205,11 @@ rgbToCol <- function(col,
 #' @concept color-conversion
 #'
 #' @export
-hexToCol <- function(hex,
+hexToCol <- function(col,
                      method = c("rgb", "hsv"),
                      metric = c("euclidean", "manhattan")) {
   
-  rgbToCol(hex, method = method, metric = metric)
+  rgbToCol(col, method = method, metric = metric)
 }
 
 
@@ -228,8 +228,8 @@ hexToCol <- function(hex,
 #' @concept color-conversion
 #'
 #' @export
-colToHSV <- function(col, useAlphaChannel = FALSE)
-  rgb2hsv(colToRGB(col, useAlphaChannel = useAlphaChannel))
+colToHsv <- function(col, useAlphaChannel = FALSE)
+  rgb2hsv(colToRgb(col, useAlphaChannel = useAlphaChannel))
 
 
 #' Convert RGB to Long Integers
@@ -262,7 +262,7 @@ rgbToLong <- function(col)
 #' @concept color-conversion
 #'
 #' @export
-longToRGB <- function(col)
+longToRgb <- function(col)
   sapply(
     col,
     function(x)
@@ -404,16 +404,16 @@ cmykToRgb <- function(col, maxColorValue = 1) {
 # # DescTools Backward Compatibility Aliases - docu
 # # =========================================================
 # 
-# colToRgb  <- colToRGB
-# colToHsv  <- colToHSV
+# colToRgb  <- colToRgb
+# colToHsv  <- colToHsv
 # 
 # rgbToCol  <- rgbToCol
 # 
-# hexToRgb  <- hexToRGB
+# hexToRgb  <- hexToRgb
 # rgbToHex  <- rgbToHex
 # 
 # rgbToLong <- rgbToLong
-# longToRgb <- longToRGB
+# longToRgb <- longToRgb
 # 
 # rgbToCmy  <- rgbToCmy
 # cmyToCmyk <- cmyToCmyk

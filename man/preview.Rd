@@ -28,7 +28,7 @@ The default method simply calls \code{print()}, so \code{preview()} is
 always safe to call even for types with no dedicated method.
 }
 \seealso{
-\code{\link[=as.html]{as.html()}}
+\code{\link[=asHtml]{asHtml()}}
 }
 \concept{annotation}
 \concept{graphics.utils}

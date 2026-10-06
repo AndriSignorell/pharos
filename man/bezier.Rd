@@ -4,14 +4,14 @@
 \alias{bezier}
 \title{Bézier Geometry}
 \usage{
-bezier(x, y = NULL, numPoints = 100)
+bezier(x, y = NULL, nPoints = 100)
 }
 \arguments{
 \item{x, y}{numeric vectors of control points.
 Alternatively, \code{x} may be a list with components
 \code{x} and \code{y}.}
 
-\item{numPoints}{number of points used to approximate the curve.}
+\item{nPoints}{number of points used to approximate the curve.}
 }
 \value{
 An object inheriting from class
@@ -46,7 +46,7 @@ Other geometry.structures:
 \code{\link[=band]{band()}},
 \code{\link[=circle]{circle()}},
 \code{\link[=ellipse]{ellipse()}},
-\code{\link[=polygon]{polygon()}},
+\code{\link[=polygonX]{polygonX()}},
 \code{\link[=regPolygon]{regPolygon()}},
 \code{\link[=ring]{ring()}}
 }

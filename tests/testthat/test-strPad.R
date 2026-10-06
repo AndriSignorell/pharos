@@ -14,7 +14,7 @@ test_that("strPad pads left adjusted strings", {
 
 test_that("strPad pads right adjusted strings", {
   expect_equal(
-    strPad("abc", width = 5, adj = "right"),
+    strPad("abc", width = 5, align = "right"),
     "  abc"
   )
 })
@@ -22,7 +22,7 @@ test_that("strPad pads right adjusted strings", {
 
 test_that("strPad pads centered strings", {
   expect_equal(
-    strPad("abc", width = 5, adj = "center"),
+    strPad("abc", width = 5, align = "center"),
     " abc "
   )
 })

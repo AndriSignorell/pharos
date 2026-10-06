@@ -11,8 +11,8 @@
 #' against `x`; a single transformed term such as `y ~ log(x)` is drawn
 #' against the transformed values, matching `plot(y ~ log(x))`.
 #'
-#' Confidence and prediction bands are controlled via `cbandArgs` and
-#' `pbandArgs`. These arguments can be:
+#' Confidence and prediction bands are controlled via `cband` and
+#' `pband`. These arguments can be:
 #' \itemize{
 #'   \item `FALSE`, `NULL` or `NA`: suppress the band
 #'   \item `TRUE`: draw the band with default settings
@@ -25,11 +25,11 @@
 #' @param lty line type.
 #' @param type plotting type passed to [lines()].
 #' @param n number of points used for plotting the fit.
-#' @param cbandArgs controls the confidence band. May be `TRUE`,
+#' @param cband controls the confidence band. May be `TRUE`,
 #'   `FALSE`, `NULL`, `NA`, or a named list. The confidence
 #'   level is specified via `conf.level`, all other elements are graphical
 #'   parameters of the band. Default is `list(conf.level=0.95)`.
-#' @param pbandArgs controls the prediction band, as `cbandArgs`. Default
+#' @param pband controls the prediction band, as `cband`. Default
 #'   is `NA`.
 #' @param xpred optional numeric vector defining the range over which
 #'   predictions should be calculated.
@@ -55,8 +55,8 @@ lines.lm <- function(
     lty = "solid",
     type = "l",
     n = 100,
-    cbandArgs = list(conf.level = 0.95),
-    pbandArgs = NA,
+    cband = list(conf.level = 0.95),
+    pband = NA,
     xpred = NULL,
     ...
 ) {
@@ -64,8 +64,8 @@ lines.lm <- function(
   z <- .calcTrendline(
     x,
     n = n,
-    cbandArgs = cbandArgs,
-    pbandArgs = pbandArgs,
+    cband = cband,
+    pband = pband,
     xpred = xpred
   )
   
@@ -75,8 +75,8 @@ lines.lm <- function(
     lwd = lwd,
     lty = lty,
     type = type,
-    cbandArgs = cbandArgs,
-    pbandArgs = pbandArgs,
+    cband = cband,
+    pband = pband,
     ...
   )
   
@@ -93,8 +93,8 @@ lines.lmlog <- function(
     lty = "solid",
     type = "l",
     n = 100,
-    cbandArgs = list(conf.level = 0.95),
-    pbandArgs = NA,
+    cband = list(conf.level = 0.95),
+    pband = NA,
     xpred = NULL,
     ...
 ) {
@@ -102,8 +102,8 @@ lines.lmlog <- function(
   z <- .calcTrendline(
     x,
     n = n,
-    cbandArgs = cbandArgs,
-    pbandArgs = pbandArgs,
+    cband = cband,
+    pband = pband,
     xpred = xpred
   )
   
@@ -115,8 +115,8 @@ lines.lmlog <- function(
     lwd = lwd,
     lty = lty,
     type = type,
-    cbandArgs = cbandArgs,
-    pbandArgs = pbandArgs,
+    cband = cband,
+    pband = pband,
     ...
   )
   
@@ -247,8 +247,8 @@ lines.lmlog <- function(
 .calcTrendline <- function(
     x,
     n = 100,
-    cbandArgs = list(conf.level = 0.95),
-    pbandArgs = NA,
+    cband = list(conf.level = 0.95),
+    pband = NA,
     xpred = NULL
 ) {
   
@@ -267,9 +267,9 @@ lines.lmlog <- function(
   
   # conf.level only, see .bandLevel(): with the whole spec, every graphical
   # parameter other than col/border reached .calcInterval()
-  # (cbandArgs = list(lty = 2) failed with "unused argument")
-  cLevel <- .bandLevel(cbandArgs)
-  pLevel <- .bandLevel(pbandArgs)
+  # (cband = list(lty = 2) failed with "unused argument")
+  cLevel <- .bandLevel(cband)
+  pLevel <- .bandLevel(pband)
   
   ci  <- if (!is.null(cLevel))
     .calcInterval(x, newdata = rawx, interval = "confidence",
@@ -295,14 +295,14 @@ lines.lmlog <- function(
     lwd = 2,
     lty = "solid",
     type = "l",
-    cbandArgs = list(conf.level = 0.95),
-    pbandArgs = NA,
+    cband = list(conf.level = 0.95),
+    pband = NA,
     ...
 ) {
   
   bedrock::callIf(
     .drawBandCI,
-    pbandArgs,
+    pband,
     defaults = list(
       x = z$x,
       ci = z$pci,
@@ -314,7 +314,7 @@ lines.lmlog <- function(
   
   bedrock::callIf(
     .drawBandCI,
-    cbandArgs,
+    cband,
     defaults = list(
       x = z$x,
       ci = z$ci,

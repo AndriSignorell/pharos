@@ -43,9 +43,10 @@
 #'
 #'
 #' @export
-strTrim <- function(x, pattern = " \t\n", method = "both") {
+strTrim <- function(x, pattern = " \t\n",
+                    method = c("both", "left", "right")) {
   
-  method <- match.arg(method, c("both", "left", "right"))
+  method <- match.arg(method)
   
   if (method == "both") {
     stringi::stri_trim_both(x)

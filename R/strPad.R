@@ -12,7 +12,7 @@
 #' left to NULL, it will be set to the length of the largest string in x.
 #' @param pad string to pad with. Will be repeated as often as necessary.
 #' Default is " ".
-#' @param adj adjustment of the old string, one of `"left"`,
+#' @param align adjustment of the old string, one of `"left"`,
 #' `"right"`, `"center"`. If set to `"left"` the old string will
 #' be adjusted on the left and the new characters will be filled in on the
 #' right side.
@@ -36,9 +36,10 @@
 #'
 #'
 #' @export
-strPad <- function(x, width = NULL, pad = " ", adj = "left") {
+strPad <- function(x, width = NULL, pad = " ",
+                   align = c("left", "right", "center")) {
   
-  adj <- match.arg(adj, c("left", "right", "center"))
+  align <- match.arg(align)
   
   if (is.null(width)) {
     width <- max(stringi::stri_length(x), na.rm = TRUE)
@@ -58,9 +59,9 @@ strPad <- function(x, width = NULL, pad = " ", adj = "left") {
   left_pad  <- sapply(free %/% 2, make_pad)
   right_pad <- sapply(free - free %/% 2, make_pad)
   
-  if (adj == "left") {
+  if (align == "left") {
     res <- paste0(x, sapply(free, make_pad))
-  } else if (adj == "right") {
+  } else if (align == "right") {
     res <- paste0(sapply(free, make_pad), x)
   } else {
     res <- paste0(left_pad, x, right_pad)

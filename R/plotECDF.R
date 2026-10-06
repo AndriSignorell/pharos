@@ -85,7 +85,7 @@
 #' 
 #' @return Invisibly returns `NULL`.
 #' 
-#' @seealso [plot.ecdf()], [plotFdist()],
+#' @seealso [plot.ecdf()], [plotFreqDist()],
 #'   [theme]
 #' 
 #' @examples

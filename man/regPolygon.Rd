@@ -4,14 +4,14 @@
 \alias{regPolygon}
 \title{Regular Polygon Geometry}
 \usage{
-regPolygon(x = 0, y = 0, radius = 1, numVertices = 6, startAngle = 0)
+regPolygon(x = 0, y = 0, radius = 1, nVertices = 6, startAngle = 0)
 }
 \arguments{
 \item{x, y}{centre coordinates.}
 
 \item{radius}{circumradius.}
 
-\item{numVertices}{number of vertices.}
+\item{nVertices}{number of vertices.}
 
 \item{startAngle}{staring angle in radians.}
 }
@@ -28,7 +28,7 @@ Other geometry.structures:
 \code{\link[=bezier]{bezier()}},
 \code{\link[=circle]{circle()}},
 \code{\link[=ellipse]{ellipse()}},
-\code{\link[=polygon]{polygon()}},
+\code{\link[=polygonX]{polygonX()}},
 \code{\link[=ring]{ring()}}
 }
 \concept{geometry}

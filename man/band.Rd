@@ -41,7 +41,7 @@ pred <- predict(
 
 plot(y ~ x)
 
-polygon(
+polygonX(
   band(
     x = new,
     y = pred[,2:3]
@@ -61,7 +61,7 @@ Other geometry.structures:
 \code{\link[=bezier]{bezier()}},
 \code{\link[=circle]{circle()}},
 \code{\link[=ellipse]{ellipse()}},
-\code{\link[=polygon]{polygon()}},
+\code{\link[=polygonX]{polygonX()}},
 \code{\link[=regPolygon]{regPolygon()}},
 \code{\link[=ring]{ring()}}
 }

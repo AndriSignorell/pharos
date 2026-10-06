@@ -20,8 +20,8 @@ boxedText(x, ...)
   col = NULL,
   font = NULL,
   srt = 0,
-  xpad = 0.2,
-  ypad = 0.2,
+  xPad = 0.2,
+  yPad = 0.2,
   density = NULL,
   angle = 45,
   bg = NA,
@@ -75,7 +75,7 @@ vectors. These default to the values of the global graphical parameters in
 
 \item{srt}{the string rotation in degrees.}
 
-\item{xpad, ypad}{the proportion of the rectangles to the extent of the text
+\item{xPad, yPad}{the proportion of the rectangles to the extent of the text
 within.}
 
 \item{density}{the density of shading lines, in lines per inch. The default
@@ -120,7 +120,7 @@ given by x and y, surrounded by a rectangle.
 canvas(xpd=TRUE)
 
 boxedText(0, 0, adj=0, label="This is boxed text", srt=seq(0,360,20), 
-          xpad=.3, ypad=.3)
+          xPad=.3, yPad=.3)
 points(0,0, pch=15)
 
 plot(mpg ~ hp, data=mtcars, type="n", main="MT cars mpg/hp (log-log)", 

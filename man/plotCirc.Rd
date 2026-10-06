@@ -6,16 +6,21 @@
 \usage{
 plotCirc(
   x,
+  main = NULL,
+  gap = 5,
   sector = TRUE,
   ribbon = TRUE,
   labels = TRUE,
-  gap = 5,
-  main = NULL,
+  stamp = .useTheme,
   ...
 )
 }
 \arguments{
 \item{x}{A numeric matrix. Rows and columns define the connections between sectors.}
+
+\item{main}{character. Main title of the plot.}
+
+\item{gap}{numeric. Gap between sectors in degrees.}
 
 \item{sector}{sector styling. Can be:
 \itemize{
@@ -40,9 +45,9 @@ Colors are recycled to match the number of row categories (\code{nrow(x)}).}
 \item or a list with parameters passed to internal label drawing.
 }}
 
-\item{gap}{numeric. Gap between sectors in degrees.}
-
-\item{main}{character. Main title of the plot.}
+\item{stamp}{controls the corner stamp. \code{.useTheme} (default)
+resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
+\code{NULL}, a string, or a named list for \code{\link[=stamp]{stamp()}}.}
 
 \item{...}{additional graphical parameters passed to internal plotting functions.}
 }

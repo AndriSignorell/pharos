@@ -14,7 +14,7 @@ textLegend(
   lwd = par("lwd"),
   cex = par("cex"),
   main = NULL,
-  mindist = NULL
+  minDist = NULL
 )
 }
 \arguments{
@@ -47,7 +47,7 @@ spacing.}
 \item{main}{optional title for the legend, drawn at the top of the
 plot region. Default is \code{NULL} (none).}
 
-\item{mindist}{minimal vertical distance between labels in user
+\item{minDist}{minimal vertical distance between labels in user
 coordinates, passed to \code{spreadOut()}. Default is
 \code{1.2 * strheight("M") * cex}.}
 }

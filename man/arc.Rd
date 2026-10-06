@@ -11,7 +11,7 @@ arc(
   radiusY = radiusX,
   startAngle = 0,
   endAngle = 2 * pi,
-  numPoints = 100
+  nPoints = 100
 )
 }
 \arguments{
@@ -21,7 +21,7 @@ arc(
 
 \item{startAngle, endAngle}{start and end angle in radians}
 
-\item{numPoints}{number of points used to approximate the arc}
+\item{nPoints}{number of points used to approximate the arc}
 }
 \value{
 An object inheriting from class \code{"arcGeometry"}.
@@ -35,7 +35,7 @@ Other geometry.structures:
 \code{\link[=bezier]{bezier()}},
 \code{\link[=circle]{circle()}},
 \code{\link[=ellipse]{ellipse()}},
-\code{\link[=polygon]{polygon()}},
+\code{\link[=polygonX]{polygonX()}},
 \code{\link[=regPolygon]{regPolygon()}},
 \code{\link[=ring]{ring()}}
 }

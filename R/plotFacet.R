@@ -42,7 +42,7 @@
 #' it `csi`, the physical size of a margin line) in layouts with more
 #' than two regions, which would make the realized panel margins deviate
 #' from the computed layout. The function therefore controls the character
-#' size deterministically via its `cex` argument and sets the panel
+#' size deterministically via `cex` (see `...`) and sets the panel
 #' margins in inches (`mai`/`omi`), so that all plot regions are
 #' exactly equal in size.
 #'
@@ -50,19 +50,14 @@
 #'   components `x` and `y`.
 #' @param dim integer vector of length 2, the number of rows and columns
 #'   of the panel matrix, `c(nrow, ncol)`.
-#' @param panelFun the panel function, called per panel as
-#'   `panelFun(x, y, col, pch, ...)` with a fully set up coordinate
+#' @param FUN the panel function, called per panel as
+#'   `FUN(x, y, col, pch, ...)` with a fully set up coordinate
 #'   system. Components of a sample beyond `x` and `y` are
 #'   passed on under their own names, so a panel can carry per-panel data
 #'   of its own - confidence bounds, weights, labels. They are only passed
-#'   to a `panelFun` that can accept them (a matching formal, or
+#'   to a `FUN` that can accept them (a matching formal, or
 #'   `...`), so panel functions written for the two-component form
 #'   keep working unchanged.
-#' @param cols the colors for the panels, recycled to the number of
-#'   samples. Default is `hcl.colors(n, "Dark 3")`.
-#' @param stripLabels the labels for the panel strips. Default is
-#'   `names(samples)` where the samples are named, otherwise the
-#'   sequence along `samples`.
 #' @param main the main title, placed in the outer margin.
 #' @param xlab,ylab the axis labels, placed in the outer margins.
 #' @param xlim,ylim the axis limits. A numeric vector of length 2 (or
@@ -71,24 +66,22 @@
 #'   scale, taken from its own sample. A *list* of length 2 vectors,
 #'   one per sample, does the same with limits you choose; a list of
 #'   length 1 is recycled. See the section on free scales.
-#' @param mar the margins around the whole panel matrix in lines,
-#'   `c(bottom, left, top, right)`. The bottom and left margins hold
-#'   the axis annotation of the outer panels.
-#' @param oma the outer margins in lines, holding `xlab`, `ylab`
-#'   and `main`.
 #' @param horiz the horizontal gap between adjacent columns in margin
 #'   lines.
 #' @param vert the vertical gap between adjacent rows in margin lines.
 #'   Default is `horiz`, yielding physically equal gaps.
-#' @param strip controls the panel strips, evaluated by
-#'   [bedrock::callIf]: `TRUE` (default) draws strips with default
-#'   settings, `FALSE`/`NULL`/`NA` suppresses them (no
-#'   space is reserved), a named list is passed as arguments to
-#'   [titleRect()], e.g.
-#'   `list(bg = "steelblue", col = "white", line = 1.5)`. The
-#'   `label` argument is set per panel from `stripLabels` and
-#'   cannot be overridden.
+#' @param col the colors for the panels, recycled to the number of
+#'   samples. Default is `hcl.colors(n, "Dark 3")`.
 #' @param bg the background color of the plot regions.
+#' @param strip controls the panel strips: `TRUE` (default) draws strips
+#'   with default settings, `FALSE`/`NULL`/`NA` suppresses them (no
+#'   space is reserved), a named list sets the details. Its element
+#'   `labels` holds the strip labels (default: `names(samples)` where the
+#'   samples are named, otherwise the sequence along `samples`); all
+#'   other elements are passed as arguments to [titleRect()], e.g.
+#'   `list(labels = vars, bg = "steelblue", col = "white", line = 1.5)`.
+#'   The `label` argument of `titleRect()` is set per panel and cannot be
+#'   overridden.
 #' @param grid controls the grid lines, evaluated by [bedrock::callIf]:
 #'   `TRUE` (default) draws grid lines at the positions of
 #'   [axTicks()] with default settings
@@ -97,13 +90,21 @@
 #'   [abline()], e.g. `list(col = "white", lty = "dotted")`.
 #'   The default positions `v` and `h` can be overridden, e.g.
 #'   `list(v = seq(0, 20, 5))`.
-#' @param cex the character expansion used inside the panels (axis
-#'   annotation, strip labels, panel content) and as unit for the panel
-#'   margin lines. Default is 0.66, matching R's own reduction in
-#'   multi-figure layouts. Set deterministically after each
-#'   `plot.new()`, see Details.
-#' @param pch the plotting character, passed to `panelFun`.
-#' @param \dots the dots are passed to `panelFun`.
+#' @param stamp controls the corner stamp. `.useTheme` (default)
+#'   resolves to `getTheme()$stamp`. `TRUE`/`FALSE`/
+#'   `NULL`, a string, or a named list for [stamp()].
+#' @param \dots further arguments passed to `FUN`. Three graphical
+#'   parameters are picked up here and define the page geometry instead:
+#'   `mar`, the margins around the whole panel matrix in lines,
+#'   `c(bottom, left, top, right)`, default `c(2.5, 2.5, 0.5, 0.5)` (the
+#'   bottom and left margins hold the axis annotation of the outer
+#'   panels); `oma`, the outer margins in lines, holding `xlab`, `ylab`
+#'   and `main`, default `c(3, 3, 4, 1.2)`; and `cex`, the character
+#'   expansion used inside the panels (axis annotation, strip labels,
+#'   panel content) and as unit for the panel margin lines, default 0.66,
+#'   matching R's own reduction in multi-figure layouts (set
+#'   deterministically after each `plot.new()`, see Details). `pch`
+#'   defaults to 16 and is passed to `FUN`.
 #'
 #' @return Invisibly returns a list with the realized geometry:
 #'   `horiz`, `vert`, `strip_line` (reserved strip height
@@ -119,7 +120,7 @@
 #'   abline(lm(y ~ x), lwd = 1)
 #' }
 #'
-#' plotFacet(samples, dim = c(5, 5), panelFun = my_panel,
+#' plotFacet(samples, dim = c(5, 5), FUN = my_panel,
 #'            xlab = "Time", ylab = "Weight", main = "ChickWeight",
 #'            strip = list(bg = "grey80", cex = 0.8))
 #'
@@ -140,7 +141,7 @@
 #'   points(x, y, col = col, pch = pch)
 #' }
 #'
-#' plotFacet(setNames(samples, vars), dim = c(2, 2), panelFun = panelBand,
+#' plotFacet(setNames(samples, vars), dim = c(2, 2), FUN = panelBand,
 #'           xlim = "free", ylab = "mpg",
 #'           main = "mpg against four predictors")
 #'
@@ -152,25 +153,28 @@
 #'
 #' @export
 plotFacet <- function(
+    # --- DATA ---
     samples,
     dim,
-    panelFun,
-    cols = NULL,
-    stripLabels = NULL,
+    FUN,
+    # --- LABELS ---
     main = "",
     xlab = "",
     ylab = "",
+    # --- AXES ---
     xlim = NULL,
     ylim = NULL,
-    mar = c(2.5, 2.5, 0.5, 0.5),
-    oma = c(3, 3, 4, 1.2),
+    # --- STRUCTURE ---
     horiz = 1,
     vert = NULL,
-    strip = TRUE,
+    # --- STYLE ---
+    col = NULL,
     bg = "grey95",
+    # --- FEATURES ---
+    strip = TRUE,
     grid = TRUE,
-    cex = 0.66,
-    pch = 16,
+    # --- FRAMEWORK ---
+    stamp = .useTheme,
     ...
 ) {
 
@@ -187,7 +191,7 @@ plotFacet <- function(
   # x and y are the contract - everything else in a sample is optional
   # extra data for the panel function. Checked here because the failure
   # otherwise surfaces inside the panel call, where it reads as a problem
-  # with panelFun.
+  # with FUN.
   bad <- which(!vapply(samples,
                        function(z) all(c("x", "y") %in% names(z)),
                        logical(1L)))
@@ -197,14 +201,37 @@ plotFacet <- function(
       bad[1L], paste(names(samples[[bad[1L]]]), collapse = ", ")),
       domain = NA)
 
-  if (is.null(cols))
-    cols <- grDevices::hcl.colors(n, "Dark 3")
-  cols <- rep(cols, length.out = n)
+  if (is.null(col))
+    col <- grDevices::hcl.colors(n, "Dark 3")
+  col <- rep(col, length.out = n)
 
-  # a named list of samples names its own panels; the index is the last
-  # resort, not the default
+  # graphical parameters travel through the dots: 'mar', 'oma' and 'cex'
+  # define the page geometry and are consumed here, everything else -
+  # 'pch' included - is handed on to FUN
+  dots <- list(...)
+  mar <- dots[["mar"]] %||% c(2.5, 2.5, 0.5, 0.5)
+  oma <- dots[["oma"]] %||% c(3, 3, 4, 1.2)
+  cex <- dots[["cex"]] %||% 0.66
+  dots[c("mar", "oma", "cex")] <- NULL
+  if (is.null(dots[["pch"]]))
+    dots[["pch"]] <- 16
+  stopifnot(is.numeric(mar), length(mar) == 4L,
+            is.numeric(oma), length(oma) == 4L,
+            is.numeric(cex), length(cex) == 1L)
+
+  # the strip labels are part of the strip specification; a named list of
+  # samples names its own panels, the index is the last resort
+  stripLabels <- NULL
+  if (is.list(strip)) {
+    stripLabels <- strip[["labels"]]
+    strip[["labels"]] <- NULL
+    # nothing but labels given: strips with default settings
+    if (!length(strip))
+      strip <- TRUE
+  }
   if (is.null(stripLabels))
     stripLabels <- names(samples) %||% seq_len(n)
+  stripLabels <- rep(stripLabels, length.out = n)
 
   # margin lines have the same physical size horizontally and vertically
   # (mai = mar * csi * mex on all four sides), so no aspect correction needed
@@ -216,7 +243,7 @@ plotFacet <- function(
   strip_defaults <- list(bg = "grey85", border = 1, line = 1.2)
   strip_on <- !isFALSE(strip) && !is.null(strip) && !isNA(strip)
   strip_line <- if (!strip_on) 0
-                else if (is.list(strip)) strip$line %||% strip_defaults$line
+                else if (is.list(strip)) strip[["line"]] %||% strip_defaults$line
                 else strip_defaults$line
 
   # grid defaults; positions v/h are added per panel from axTicks()
@@ -264,64 +291,73 @@ plotFacet <- function(
   fig_w <- plot_w + (left_mars + right_mars) * line_in
   fig_h <- plot_h + (top_mars + bottom_mars) * line_in
 
-  lay <- matrix(seq_len(n_panels), nrow = nr, ncol = nc, byrow = TRUE)
-  layout(lay, widths = fig_w, heights = fig_h)
-  # outer margins in inches: independent of any later csi changes
-  par(omi = oma * line_full)
+  .withGraphicsState({
 
-  for (i in seq_len(n_panels)) {
+    lay <- matrix(seq_len(n_panels), nrow = nr, ncol = nc, byrow = TRUE)
+    layout(lay, widths = fig_w, heights = fig_h)
+    # outer margins in inches: independent of any later csi changes
+    par(omi = oma * line_full)
 
-    row_i <- (i - 1) %/% nc + 1
-    col_i <- (i - 1) %%  nc + 1
+    for (i in seq_len(n_panels)) {
 
-    # panel margins in inches: par(mar) would be converted with the csi
-    # that plot.new() shrinks in multi-figure layouts, distorting the
-    # plot region sizes
-    par(mai = c(bottom_mars[row_i], left_mars[col_i],
-                top_mars[row_i],    right_mars[col_i]) * line_in)
+      row_i <- (i - 1) %/% nc + 1
+      col_i <- (i - 1) %%  nc + 1
 
-    if (i > n) {
+      # panel margins in inches: par(mar) would be converted with the csi
+      # that plot.new() shrinks in multi-figure layouts, distorting the
+      # plot region sizes
+      par(mai = c(bottom_mars[row_i], left_mars[col_i],
+                  top_mars[row_i],    right_mars[col_i]) * line_in)
+
+      if (i > n) {
+        plot.new()
+        next
+      }
+
+      s <- samples[[i]]
+
       plot.new()
-      next
+      # override the automatic multi-figure cex reduction deterministically
+      par(cex = cex)
+      plot.window(xlim = xlim$lim[[i]], ylim = ylim$lim[[i]])
+      usr <- par("usr")
+
+      # background and grid; default grid positions at the axis ticks,
+      # overridable via grid = list(v = ..., h = ...)
+      rect(usr[1], usr[3], usr[2], usr[4], col = bg, border = NA)
+      callIf(abline, grid,
+             defaults = c(list(v = axTicks(1), h = axTicks(2)),
+                          grid_defaults))
+
+      # axes on the outer panels only - unless the dimension is free, where
+      # every panel carries its own
+      if (free_x || row_i == nr) axis(1)
+      if (free_y || col_i == 1)  axis(2, las = 1)
+
+      # panel content; components beyond x and y travel under their own names
+      do.call(FUN,
+              .panelArgs(FUN, s,
+                         c(list(col = col[i]), dots)))
+      box()
+
+      # strip above the plot region, in the reserved top margin;
+      # 'label' is set per panel and must not be overridden (warn once only)
+      callIf(titleRect, strip,
+             defaults = c(list(label = stripLabels[i]), strip_defaults),
+             forbidden = "label", warn = i == 1)
     }
 
-    s <- samples[[i]]
+    # outer annotation with explicit full-size cex (par("cex") is 'cex' here)
+    if (nzchar(xlab)) mtext(xlab, side = 1, outer = TRUE, line = 1, cex = 1)
+    if (nzchar(ylab)) mtext(ylab, side = 2, outer = TRUE, line = 1, cex = 1)
+    if (nzchar(main)) mtext(main, side = 3, outer = TRUE, line = 1.5, cex = 1.2)
 
-    plot.new()
-    # override the automatic multi-figure cex reduction deterministically
-    par(cex = cex)
-    plot.window(xlim = xlim$lim[[i]], ylim = ylim$lim[[i]])
-    usr <- par("usr")
+    # the stamp belongs in the corner of the page, not in the corner
+    # inside the outer margins, where it would sit on the axis annotation
+    # of the last panel
+    par(omi = c(0, 0, 0, 0))
 
-    # background and grid; default grid positions at the axis ticks,
-    # overridable via grid = list(v = ..., h = ...)
-    rect(usr[1], usr[3], usr[2], usr[4], col = bg, border = NA)
-    callIf(abline, grid,
-           defaults = c(list(v = axTicks(1), h = axTicks(2)),
-                        grid_defaults))
-
-    # axes on the outer panels only - unless the dimension is free, where
-    # every panel carries its own
-    if (free_x || row_i == nr) axis(1)
-    if (free_y || col_i == 1)  axis(2, las = 1)
-
-    # panel content; components beyond x and y travel under their own names
-    do.call(panelFun,
-            .panelArgs(panelFun, s,
-                       c(list(col = cols[i], pch = pch), list(...))))
-    box()
-
-    # strip above the plot region, in the reserved top margin;
-    # 'label' is set per panel and must not be overridden (warn once only)
-    callIf(titleRect, strip,
-           defaults = c(list(label = stripLabels[i]), strip_defaults),
-           forbidden = "label", warn = i == 1)
-  }
-
-  # outer annotation with explicit full-size cex (par("cex") is 'cex' here)
-  if (nzchar(xlab)) mtext(xlab, side = 1, outer = TRUE, line = 1, cex = 1)
-  if (nzchar(ylab)) mtext(ylab, side = 2, outer = TRUE, line = 1, cex = 1)
-  if (nzchar(main)) mtext(main, side = 3, outer = TRUE, line = 1.5, cex = 1.2)
+  }, stamp = stamp)
 
   invisible(list(
     horiz = horiz,

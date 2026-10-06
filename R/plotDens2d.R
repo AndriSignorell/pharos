@@ -52,6 +52,9 @@
 #'   resolves to `getTheme()$box`. `TRUE`/`FALSE`/`NA`,
 #'   or a named list, as for [graphics::box()].
 #'
+#' @param stamp controls the corner stamp. `.useTheme` (default)
+#'   resolves to `getTheme()$stamp`. `TRUE`/`FALSE`/
+#'   `NULL`, a string, or a named list for [stamp()].
 #' @param ... additional graphical parameters passed to underlying plotting functions.
 #'
 #' @return
@@ -90,26 +93,33 @@
 #'
 #'
 #' @export
-plotDens2D <- function( x, y, 
-                        
-                        # LABELS
-                        main = NULL,
-                        xlab = NULL,
-                        ylab = NULL,                    
-                        
-                        # AXES
-                        xlim = NULL, 
-                        ylim = NULL, 
-                        
-                        # STRUCTURE
-                        type=c("contour", "image", "persp"),
-                        
-                        # STYLE
-                        col  = rev(pal("red-black", n = 100)),
-                        grid = .useTheme,
-                        box  = .useTheme,
-                        
-                        ... ) {
+plotDens2D <- function(
+    # DATA
+    x,
+    y,
+
+    # LABELS
+    main = NULL,
+    xlab = NULL,
+    ylab = NULL,
+
+    # AXES
+    xlim = NULL,
+    ylim = NULL,
+
+    # STRUCTURE
+    type = c("contour", "image", "persp"),
+
+    # STYLE
+    col  = rev(pal("red-black", n = 100)),
+    grid = .useTheme,
+    box  = .useTheme,
+
+    # FRAMEWORK
+    stamp = .useTheme,
+
+    ...
+) {
   
   
   .withGraphicsState({
@@ -147,7 +157,7 @@ plotDens2D <- function( x, y,
     .drawBox(box)
     
     
-  })
+  }, stamp = stamp)
   
   invisible(res)
   

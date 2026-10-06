@@ -48,10 +48,10 @@
 #'
 #' @examples
 #' cols <- c("black", "white", "red", "blue", "yellow", "#777777")
-#' contrastColor(cols)
+#' contrastCol(cols)
 #'
 #' # custom text colors
-#' contrastColor(cols, light = "#FFFFFF", dark = "#222222")
+#' contrastCol(cols, light = "#FFFFFF", dark = "#222222")
 #'
 
   
@@ -62,7 +62,7 @@
 #'
 #'
 #' @export
-contrastColor <- function(col,
+contrastCol <- function(col,
                           light = "white",
                           dark = "black") {
   

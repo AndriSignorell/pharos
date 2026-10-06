@@ -5,7 +5,7 @@
 #' predictions from a `loess` object and then adds the fitted smoother
 #' together with an optional confidence band.
 #'
-#' The confidence band is controlled via `bandArgs`. This argument may be:
+#' The confidence band is controlled via `band`. This argument may be:
 #' \itemize{
 #'   \item `FALSE`, `NULL` or `NA`: suppress the band
 #'   \item `TRUE`: draw the band with default settings
@@ -20,7 +20,7 @@
 #' @param lty line type.
 #' @param type plotting type passed to [lines()].
 #' @param n number of points used for plotting the fit.
-#' @param bandArgs controls the confidence band. May be `TRUE`,
+#' @param band controls the confidence band. May be `TRUE`,
 #'   `FALSE`, `NULL`, `NA`, or a named list. The confidence
 #'   level is specified via `conf.level`, all other elements are graphical
 #'   parameters of the band. Default is `list(conf.level = 0.95)`.
@@ -39,7 +39,7 @@
 #' plot(dist ~ speed, cars)
 #' lines(
 #'   loess(dist ~ speed, cars),
-#'   bandArgs = list(
+#'   band = list(
 #'     conf.level = 0.99,
 #'     col = addOpacity("red", 0.4),
 #'     border = "black"
@@ -62,7 +62,7 @@ lines.loess <- function(
     lty = "solid",
     type = "l",
     n = 100,
-    bandArgs = list(conf.level = 0.95),
+    band = list(conf.level = 0.95),
     ...
 ) {
   
@@ -77,18 +77,18 @@ lines.loess <- function(
   # the band is computed only when it is drawn: with se = FALSE, predict()
   # returns a plain vector, and fit$fit in the band's defaults worked only
   # because callIf() leaves its defaults unevaluated for a suppressed band
-  bandOn <- !isFALSE(bandArgs) && !is.null(bandArgs) && !bedrock::isNA(bandArgs)
+  bandOn <- !isFALSE(band) && !is.null(band) && !bedrock::isNA(band)
   
   fit <- predict(x, newdata = newx, se = bandOn)
   
   if (bandOn) {
     
-    conf.level <- (if (is.list(bandArgs)) bandArgs$conf.level) %||% 0.95
+    conf.level <- (if (is.list(band)) band$conf.level) %||% 0.95
     z <- qnorm((1 - conf.level) / 2)
     
     bedrock::callIf(
       .drawBandCI,
-      bandArgs,
+      band,
       defaults = list(
         x  = newx,
         ci = cbind(fit$fit + fit$se.fit * z,

@@ -12,8 +12,8 @@ plotLines(
   ylab = "",
   xlim = NULL,
   ylim = NULL,
-  xaxt = NULL,
-  yaxt = NULL,
+  xax = NULL,
+  yax = NULL,
   lty = 1,
   lwd = 2,
   col = .useTheme,
@@ -40,7 +40,7 @@ and compact the top margin.}
 
 \item{xlim, ylim}{limits for the axes.}
 
-\item{xaxt, yaxt}{axis specification passed to \code{\link[graphics:axis]{graphics::axis()}}.}
+\item{xax, yax}{axis specification passed to \code{\link[graphics:axis]{graphics::axis()}}.}
 
 \item{lty}{line type(s).}
 
@@ -115,7 +115,7 @@ Other plot.univariate:
 \code{\link[=plotDensBox]{plotDensBox()}},
 \code{\link[=plotDot]{plotDot()}},
 \code{\link[=plotECDF]{plotECDF()}},
-\code{\link[=plotFdist]{plotFdist()}},
+\code{\link[=plotFreqDist]{plotFreqDist()}},
 \code{\link[=plotQQ]{plotQQ()}},
 \code{\link[=plotViolin]{plotViolin()}}
 }

@@ -12,15 +12,15 @@
 #'
 #' | From \\ To | Col | Hex | HSV | RGB |
 #' |---|---|---|---|---|
-#' | **Col** | - | [colToHex()] | [colToHSV()] | [colToRGB()] |
-#' | **Hex** | [hexToCol()] | - | . | [hexToRGB()] |
+#' | **Col** | - | [colToHex()] | [colToHsv()] | [colToRgb()] |
+#' | **Hex** | [hexToCol()] | - | . | [hexToRgb()] |
 #' | **HSV** | . | . | - | . |
 #' | **RGB** | [rgbToCol()] | [rgbToHex()] | . | - |
 #'
 #' *"Col" is any valid R color specification (name, hex string, or
 #' palette index) as accepted by* [grDevices::col2rgb()].
 #' No function starts from HSV: it is only ever a conversion target
-#' (via [colToHSV()]), not a source -- see the note below the
+#' (via [colToHsv()]), not a source -- see the note below the
 #' second table for the reason this gap is left open.
 #'
 #' @section RGB, CMY, CMYK, and long integer:
@@ -29,7 +29,7 @@
 #' |---|---|---|---|---|
 #' | **CMY**  | - | [cmyToCmyk()] | . | . |
 #' | **CMYK** | [cmykToCmy()] | - | . | [cmykToRgb()] |
-#' | **Long** | . | . | - | [longToRGB()] |
+#' | **Long** | . | . | - | [longToRgb()] |
 #' | **RGB**  | [rgbToCmy()] | . | [rgbToLong()] | - |
 #'
 #' @section Not part of either conversion matrix:
@@ -46,7 +46,7 @@
 #' [grDevices::hsv()], which builds a hex color string
 #' directly from h/s/v values -- the same role [rgb()]
 #' plays for RGB triplets. pharos deliberately doesn't duplicate it;
-#' chain `hsv()` into [colToRGB()] or
+#' chain `hsv()` into [colToRgb()] or
 #' [colToHex()] instead (see examples).
 #'
 #' @examples
@@ -57,10 +57,10 @@
 #' c(0.2, 0.6, 0.9) |> cmyToCmyk() |> cmykToRgb()
 #'
 #' # Long integer -> R color name: Long -> RGB -> Col
-#' 255 |> longToRGB() |> rgbToCol()
+#' 255 |> longToRgb() |> rgbToCol()
 #'
 #' # HSV -> RGB: base R's hsv() bridges the gap noted above
-#' hsv(h = 0.6, s = 0.8, v = 0.9) |> colToRGB()
+#' hsv(h = 0.6, s = 0.8, v = 0.9) |> colToRgb()
 #'
 #' @name color-conversion-overview
 #' @seealso [grDevices::col2rgb()], [grDevices::hsv()]

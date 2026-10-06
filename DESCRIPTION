@@ -1,6 +1,6 @@
 Package: pharos
 Title: Descriptive Statistics Graphics and Utilities
-Version: 0.0.0.956
+Version: 0.0.0.958
 Authors@R: c(
   person(given="Andri", family="Signorell", 
          email = "andri@signorell.net", 

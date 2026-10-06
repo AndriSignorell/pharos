@@ -18,6 +18,9 @@
 #' @param col color for points/lines.
 #' @param border color for border in case of type `polygon`.
 #' @param add logical; if `TRUE`, adds to an existing plot.
+#' @param stamp controls the corner stamp. `.useTheme` (default)
+#'   resolves to `getTheme()$stamp`. `TRUE`/`FALSE`/
+#'   `NULL`, a string, or a named list for [stamp()].
 #' @param ... additional graphical parameters passed to base plotting functions.
 #'
 #' @details
@@ -48,14 +51,30 @@
 #'
 #'
 #' @export
-plotPolar <- function(r, theta = NULL
-                      
-                      , main = NULL 
-                      , type = "p"
-                      , rlim = NULL
-                      , col = NULL
-                      , border = NULL
-                      , add = FALSE, ...) {
+plotPolar <- function(
+    # DATA
+    r,
+    theta = NULL,
+
+    # LABELS
+    main = NULL,
+
+    # AXES
+    rlim = NULL,
+
+    # STRUCTURE
+    type = "p",
+    add  = FALSE,
+
+    # STYLE
+    col    = NULL,
+    border = NULL,
+
+    # FRAMEWORK
+    stamp = .useTheme,
+
+    ...
+) {
   
 # these are all params, to be set in ...
 # , lwd = par("lwd"), lty = par("lty")
@@ -109,7 +128,7 @@ plotPolar <- function(r, theta = NULL
       }
     }
   
-  })  
+  }, stamp = stamp)
   
 }
 

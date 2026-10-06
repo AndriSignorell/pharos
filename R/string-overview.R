@@ -28,7 +28,7 @@
 #'
 #' | Function | Purpose |
 #' |---|---|
-#' | [strCountW()] | Count words in strings |
+#' | [strCountWords()] | Count words in strings |
 #' | [strDist()] | Compute distances between strings |
 #' | [strIsNumeric()] | Check if character strings represent numeric values |
 #' | [strLen()] | String length |

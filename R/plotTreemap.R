@@ -5,13 +5,21 @@
 #' corresponding value in `x`. Optionally, rectangles can be grouped into
 #' higher-level regions.
 #'
-#' The appearance of individual rectangles and groups is controlled through the
-#' `area`, `labels`, `groupArea`, and `groupLabels`
-#' arguments. These accept logical values, vectors, or lists.
+#' The appearance of individual rectangles is controlled through the
+#' `area` and `labels` arguments, that of the groups through the elements
+#' `area` and `labels` of a `groups` list. These accept logical values,
+#' vectors, or lists.
 #'
 #' @param x numeric vector of positive values determining the rectangle sizes.
 #' @param groups optional grouping variable. Values sharing the same group are
-#'   placed within a common enclosing region.
+#'   placed within a common enclosing region. A list sets the appearance
+#'   of the group regions as well: it holds the grouping variable (element
+#'   `by`, or the one unnamed element) and the elements `area` and
+#'   `labels`, which follow the conventions of the arguments `area` and
+#'   `labels`, e.g.
+#'   `groups = list(grp, area = list(border = "black", lwd = 2))`. By
+#'   default, group names are used as labels when more than one group is
+#'   present.
 #' @param area controls the appearance of individual rectangles.
 #'   \itemize{
 #'     \item `NULL` or `TRUE`: use defaults.
@@ -28,12 +36,10 @@
 #'     \item List: label properties such as `text`, `col`, and
 #'       `cex`.
 #'   }
-#' @param groupArea controls the appearance of enclosing group regions.
-#'   Uses the same conventions as `area`.
-#' @param groupLabels controls the labels of enclosing group regions.
-#'   Uses the same conventions as `labels`. By default, group names are
-#'   used when more than one group is present.
 #' @param main main title of the plot.
+#' @param stamp controls the corner stamp. `.useTheme` (default)
+#'   resolves to `getTheme()$stamp`. `TRUE`/`FALSE`/
+#'   `NULL`, a string, or a named list for [stamp()].
 #' @param ... additional graphical parameters passed to
 #'   `.applyParFromDots()`.
 #'
@@ -42,8 +48,8 @@
 #' `groups` is supplied, a treemap is first constructed for the groups,
 #' and each group's area is then subdivided among its members.
 #'
-#' The arguments `area`, `labels`, `groupArea`, and
-#' `groupLabels` provide a flexible interface for controlling the
+#' The arguments `area` and `labels` - and their counterparts in a
+#' `groups` list - provide a flexible interface for controlling the
 #' appearance of the plot while keeping the main function signature compact.
 #'
 #' @return Invisibly returns a list containing the coordinates of group centres
@@ -63,16 +69,14 @@
 #'
 #' plotTreemap(
 #'   x,
-#'   groups = grp,
-#'   groupLabels = TRUE
+#'   groups = list(grp, labels = TRUE)
 #' )
 #'
 #' plotTreemap(
 #'   x,
-#'   groups = grp,
+#'   groups = list(grp, area = list(border = "black", lwd = 2)),
 #'   area = terrain.colors(length(x)),
-#'   labels = FALSE,
-#'   groupArea = list(border = "black", lwd = 2)
+#'   labels = FALSE
 #' )
 #'
 
@@ -84,23 +88,33 @@
 #'
 #' @export
 plotTreemap <- function(
+    # DATA
     x,
     groups = NULL,
-    
-    area = NULL,
-    labels = NULL,
-    
-    groupArea = NULL,
-    groupLabels = NULL,
-    
+
+    # LABELS
     main = NULL,
-    
+
+    # FEATURES
+    area   = NULL,
+    labels = NULL,
+
+    # FRAMEWORK
+    stamp = .useTheme,
     ...
 ) {
   
   .withGraphicsState({
     
     .applyParFromDots(...)
+    
+    # groups: the grouping variable, or a list with the variable and the
+    # appearance of the group regions
+    groupSpec   <- .valueSpec(groups, "by", list(area = NULL, labels = NULL),
+                              arg = "groups")
+    groups      <- groupSpec$by
+    groupArea   <- groupSpec$area
+    groupLabels <- groupSpec$labels
     
     if(is.null(groups))
       groups <- rep(1, length(x))
@@ -263,7 +277,7 @@ plotTreemap <- function(
       
     }
     
-  })
+  }, stamp = stamp)
   
   invisible(res)
   

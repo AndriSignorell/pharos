@@ -18,7 +18,7 @@
 #' Performance: for very large vectors (n > 1e7) the density curve, ECDF,
 #' and semi-transparent boxplot outliers will still take noticeable time.
 #' For exploratory work on very large data, consider sampling first:
-#' `plotFdist(x[sample(length(x), 5000)])`.
+#' `plotFreqDist(x[sample(length(x), 5000)])`.
 #'
 #' @param x numeric vector whose distribution is to be plotted.
 #'
@@ -83,16 +83,16 @@
 #'   [theme]
 #'
 #' @examples
-#' plotFdist(faithful$eruptions)
+#' plotFreqDist(faithful$eruptions)
 #'
 #' # custom histogram breaks, density color, boxplot styling
-#' plotFdist(faithful$eruptions,
+#' plotFreqDist(faithful$eruptions,
 #'   hist    = list(breaks = 50),
 #'   dens    = list(col = "olivedrab4"),
 #'   boxplot = list(col = "olivedrab2", pch.mean = NA, col.meanci = NA))
 #'
 #' # no density, no ecdf, add rug instead
-#' plotFdist(faithful$eruptions,
+#' plotFreqDist(faithful$eruptions,
 #'   dens = FALSE, ecdf = FALSE,
 #'   hist = list(xaxt = "s"),
 #'   rug  = TRUE,
@@ -101,10 +101,10 @@
 #'
 #' # overlay a normal density curve
 #' x <- rnorm(1000)
-#' plotFdist(x, curve = TRUE, boxplot = FALSE, ecdf = FALSE)
+#' plotFreqDist(x, curve = TRUE, boxplot = FALSE, ecdf = FALSE)
 #'
 #' # compare with a t-distribution curve
-#' plotFdist(x,
+#' plotFreqDist(x,
 #'   curve   = list(expr = "dt(x, df=2)", col = "darkgreen"),
 #'   boxplot = FALSE, ecdf = FALSE)
 #'
@@ -112,7 +112,7 @@
 #' ozone <- airquality$Ozone
 #' m <- mean(ozone, na.rm = TRUE)
 #' v <- var(ozone, na.rm = TRUE)
-#' plotFdist(ozone,
+#' plotFreqDist(ozone,
 #'   hist       = list(breaks = 15),
 #'   curve      = list(expr = "dgamma(x, shape = m^2/v, scale = v/m)",
 #'                     col = "navajowhite3"),
@@ -125,7 +125,7 @@
 #'
 #'
 #' @export
-plotFdist <- function(x,
+plotFreqDist <- function(x,
                       
                       # LABELS
                       main  = NULL,
@@ -197,7 +197,7 @@ plotFdist <- function(x,
   # function objects passed through do.call(). A character 'expr' is
   # parsed and evaluated in the caller's environment (penv), so that
   # local variables referenced in the string resolve correctly even when
-  # plotFdist() is called inside another function.
+  # plotFreqDist() is called inside another function.
   .drawCurve <- function(args, penv) {
     e <- args$expr
     if (is.character(e))

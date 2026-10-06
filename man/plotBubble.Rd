@@ -10,18 +10,19 @@
   x,
   y,
   area,
-  ...,
+  main = "",
+  xlab = "",
+  ylab = "",
+  xlim = NULL,
+  ylim = NULL,
   add = FALSE,
   col = NA,
   border = NULL,
   cex = 1,
   grid = NA,
-  xlim = NULL,
-  ylim = NULL,
   na.rm = FALSE,
-  main = "",
-  xlab = "",
-  ylab = ""
+  stamp = .useTheme,
+  ...
 )
 
 \method{plotBubble}{formula}(
@@ -29,17 +30,17 @@
   data = NULL,
   subset,
   na.action = na.omit,
-  ...,
+  main = "",
+  xlab = "",
+  ylab = "",
+  xlim = NULL,
+  ylim = NULL,
   add = FALSE,
   col = NA,
   border = NULL,
   cex = 1,
   grid = NA,
-  xlim = NULL,
-  ylim = NULL,
-  main = "",
-  xlab = "",
-  ylab = ""
+  ...
 )
 }
 \arguments{
@@ -49,7 +50,9 @@
 
 \item{area}{numeric vector controlling bubble sizes (interpreted as area).}
 
-\item{...}{additional graphical parameters passed to \code{par()}.}
+\item{main, xlab, ylab}{plot labels.}
+
+\item{xlim, ylim}{axis limits.}
 
 \item{add}{logical; if \code{TRUE}, adds to an existing plot.}
 
@@ -61,11 +64,13 @@
 
 \item{grid}{logical, \code{NA}, or list controlling background grid.}
 
-\item{xlim, ylim}{axis limits.}
-
 \item{na.rm}{logical; remove missing values.}
 
-\item{main, xlab, ylab}{plot labels.}
+\item{stamp}{controls the corner stamp. \code{.useTheme} (default)
+resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
+\code{NULL}, a string, or a named list for \code{\link[=stamp]{stamp()}}.}
+
+\item{...}{additional graphical parameters passed to \code{par()}.}
 
 \item{formula}{A formula of the form \code{y ~ x | area}.}
 

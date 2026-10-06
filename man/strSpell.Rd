@@ -4,7 +4,7 @@
 \alias{strSpell}
 \title{Spell Strings Using Phonetic Alphabets}
 \usage{
-strSpell(x, upr = "CAP", type = c("NATO", "Morse"))
+strSpell(x, upr = "CAP", type = c("nato", "morse"))
 }
 \arguments{
 \item{x}{a character vector (typically of length 1)}
@@ -14,8 +14,8 @@ Default is \code{"CAP"}. If \code{NA}, no prefix is added.}
 
 \item{type}{character string specifying the encoding system:
 \itemize{
-\item \code{"NATO"}: NATO phonetic alphabet (default)
-\item \code{"Morse"}: Morse code
+\item \code{"nato"}: NATO phonetic alphabet (default)
+\item \code{"morse"}: Morse code
 }}
 }
 \value{
@@ -30,7 +30,7 @@ representations using either the NATO phonetic alphabet or Morse code.
 Letters (A–Z, a–z) and digits (0–9) are mapped to their corresponding
 phonetic representations. Other characters are returned unchanged.
 
-For \code{type = "NATO"}, uppercase letters can optionally be prefixed
+For \code{type = "nato"}, uppercase letters can optionally be prefixed
 (e.g., \code{"CAP Alfa"}) to distinguish them from lowercase letters.
 
 The function uses Unicode-aware character splitting via
@@ -44,7 +44,7 @@ strSpell("ABC")
 strSpell("A1B2")
 
 # Morse code
-strSpell("SOS", type = "Morse")
+strSpell("SOS", type = "morse")
 
 # without uppercase prefix
 strSpell("ABC", upr = NA)

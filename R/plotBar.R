@@ -56,7 +56,7 @@
 #' @param text optional list of arguments passed to [barText()]
 #'   to draw value labels on bars.
 #'
-#' @param connlines optional list of arguments controlling connecting
+#' @param connLines optional list of arguments controlling connecting
 #'   lines between stacked bars. Only supported when
 #'   `beside = FALSE`.
 #'
@@ -105,7 +105,7 @@
 #' m <- matrix(c(3,2,4,1,5,2), nrow = 2)
 #' plotBar(m,
 #'         text = list(pos = "mid"),
-#'         connlines = list(col = "black"))
+#'         connLines = list(col = "black"))
 #'
 #' # Grouped bars
 #' plotBar(VADeaths,
@@ -131,7 +131,7 @@
 #'         beside=TRUE, 
 #'         text = list(col="red", bg=addOpacity("white", 0.7), border=NA))
 #' 
-#' plotBar(VADeaths, connlines = list(lwd=1, col="blue"), 
+#' plotBar(VADeaths, connLines = list(lwd=1, col="blue"), 
 #'         box=FALSE, las=1, main="Connecting Lines")
 #' 
 #' ptab <- proportions(VADeaths, margin=2)
@@ -141,7 +141,7 @@
 #'         col=(cols <- gray.colors(nrow(VADeaths))),
 #'         beside=FALSE, mar=c(right=5),
 #'         text = list(labels=fm(ptab, fmt="%"), border=NA, 
-#'                     col=contrastColor(cols)))
+#'                     col=contrastCol(cols)))
 #' legend(x="right", fill=cols, legend=rownames(VADeaths))
 #' 
 #' plotBar(VADeaths/1e3,  box=FALSE, bg="lightyellow", main="VADeaths",
@@ -181,7 +181,7 @@ plotBar <- function(height,
                     
                     # FEATURES
                     text = NULL,
-                    connlines = NULL,
+                    connLines = NULL,
                     
                     # FRAMEWORK
                     stamp = .useTheme,
@@ -267,7 +267,7 @@ plotBar <- function(height,
             ...)
     
     # --- Connecting Lines (stacked only) ---
-    if (!is.null(connlines)) {
+    if (!is.null(connLines)) {
       
       if (isTRUE(beside)) {
         warning("Connecting lines only supported for stacked barplots.")
@@ -276,7 +276,7 @@ plotBar <- function(height,
         
         bedrock::callIf(
           .drawConnLines,
-          connlines,
+          connLines,
           defaults = list(
             height = height,
             b      = b,
@@ -297,14 +297,14 @@ plotBar <- function(height,
                     text,
                     defaults = list(
                       height = height,
-                      b      = b,
+                      mids   = b,
                       horiz  = horiz,
                       beside = beside,
                       labels = height,
                       pos    = "mid",
                       offset = 0
                     ),
-                    forbidden = c("height","b","horiz", "beside"),
+                    forbidden = c("height","mids","horiz", "beside"),
                     warn = TRUE
     )
     

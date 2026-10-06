@@ -7,15 +7,16 @@
 plotArea(
   x,
   y,
-  prop = FALSE,
-  col = NULL,
+  main = NULL,
   xlab = "",
   ylab = "",
   xlim = NULL,
   ylim = NULL,
+  prop = FALSE,
+  col = NULL,
+  grid = .useTheme,
   legend = TRUE,
-  main = NULL,
-  grid = TRUE,
+  stamp = .useTheme,
   ...
 )
 }
@@ -27,10 +28,7 @@ x positions and columns to individual areas.}
 \item{y}{optional numeric vector or matrix giving the y-values. If supplied,
 \code{x} is interpreted as the x-coordinates.}
 
-\item{prop}{logical indicating whether rows should be converted to
-proportions so that stacked areas sum to one.}
-
-\item{col}{fill colours used for the areas.}
+\item{main}{main title of the plot.}
 
 \item{xlab}{label for the x-axis.}
 
@@ -40,14 +38,22 @@ proportions so that stacked areas sum to one.}
 
 \item{ylim}{limits for the y-axis.}
 
+\item{prop}{logical indicating whether rows should be converted to
+proportions so that stacked areas sum to one.}
+
+\item{col}{fill colours used for the areas.}
+
+\item{grid}{controls the background grid. \code{.useTheme} (default) follows
+the active theme (\code{getTheme()$grid}), \code{TRUE} draws it, \code{FALSE}, \code{NULL}
+or \code{NA} suppress it, and a named list is passed to \code{\link[graphics:grid]{graphics::grid()}}.}
+
 \item{legend}{logical or list controlling the legend. If \code{TRUE}, a legend
 is drawn using the column names of the data. If a list is supplied, its
 elements are passed to the internal legend drawing routine.}
 
-\item{main}{main title of the plot.}
-
-\item{grid}{logical or list controlling the background grid. If \code{TRUE},
-a default grid is drawn.}
+\item{stamp}{controls the corner stamp. \code{.useTheme} (default)
+resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
+\code{NULL}, a string, or a named list for \code{\link[=stamp]{stamp()}}.}
 
 \item{...}{additional graphical parameters passed to \code{\link[graphics:par]{graphics::par()}}
 via \code{.applyParFromDots()} and to the plotting functions.}
@@ -111,7 +117,7 @@ Other plot.univariate:
 \code{\link[=plotDensBox]{plotDensBox()}},
 \code{\link[=plotDot]{plotDot()}},
 \code{\link[=plotECDF]{plotECDF()}},
-\code{\link[=plotFdist]{plotFdist()}},
+\code{\link[=plotFreqDist]{plotFreqDist()}},
 \code{\link[=plotLines]{plotLines()}},
 \code{\link[=plotQQ]{plotQQ()}},
 \code{\link[=plotViolin]{plotViolin()}}

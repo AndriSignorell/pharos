@@ -7,7 +7,7 @@
 \alias{as.CI.list}
 \alias{as.CI.CI}
 \alias{as.CI.default}
-\alias{is.CI}
+\alias{isCI}
 \title{Confidence Interval Objects}
 \usage{
 as.CI(x, ...)
@@ -22,10 +22,10 @@ as.CI(x, ...)
 
 \method{as.CI}{default}(x, ...)
 
-is.CI(x)
+isCI(x)
 }
 \arguments{
-\item{x}{object to convert or, for \code{is.CI()}, object to test}
+\item{x}{object to convert or, for \code{isCI()}, object to test}
 
 \item{...}{further arguments passed to methods}
 
@@ -40,7 +40,7 @@ limits}
 \value{
 \code{as.CI()} returns a data frame of class \code{"CI"} containing
 the columns \code{est}, \code{lci}, and \code{uci}, followed by any
-grouping columns; \code{is.CI()} returns a single logical value
+grouping columns; \code{isCI()} returns a single logical value
 }
 \description{
 Converts common confidence interval representations into a standardized
@@ -95,7 +95,7 @@ x <- matrix(
 
 ci <- as.CI(x)
 ci
-is.CI(ci)
+isCI(ci)
 
 # display the estimates and confidence intervals
 plotDot(ci)

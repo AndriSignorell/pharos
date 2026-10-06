@@ -6,11 +6,11 @@
 \usage{
 plotLift(
   x,
-  type = c("cumulative", "gain", "decile"),
   main = NULL,
   xlab = NULL,
   ylab = NULL,
   ylim = NULL,
+  type = c("cumulative", "gain", "decile"),
   col = .useTheme,
   lwd = 2,
   grid = .useTheme,
@@ -26,10 +26,6 @@ plotLift(
 \item{x}{an object of class \code{"Lift"}, as returned by
 \code{alloy::lift()}.}
 
-\item{type}{the curve to draw. One of \code{"cumulative"} (cumulative
-lift over depth, the default), \code{"gain"} (share of all positives
-captured, over depth), or \code{"decile"} (per-group lift as bars).}
-
 \item{main}{main title of the plot. \code{NULL} (default) derives a title
 from \code{deparse(substitute(x))}. \code{""}, \code{NA}, or
 \code{FALSE} suppress the title entirely (and compact the top margin
@@ -43,6 +39,10 @@ from \code{type}.}
 
 \item{ylim}{numeric vector of length 2; y-axis limits. \code{NULL}
 (default) spans the curve together with the baseline.}
+
+\item{type}{the curve to draw. One of \code{"cumulative"} (cumulative
+lift over depth, the default), \code{"gain"} (share of all positives
+captured, over depth), or \code{"decile"} (per-group lift as bars).}
 
 \item{col}{color of the curve or the bars. \code{.useTheme} (default)
 resolves to \code{getTheme()$twin[1]} - a single accent color,

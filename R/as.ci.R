@@ -5,7 +5,7 @@
 #' object of class `"CI"`. The standardized representation removes the
 #' ambiguity between ordinary numeric data and confidence interval data.
 #'
-#' @param x object to convert or, for `is.CI()`, object to test
+#' @param x object to convert or, for `isCI()`, object to test
 #' @param estimate name of the data-frame column containing the point estimates
 #' @param lower name of the data-frame column containing the lower confidence
 #'   limits
@@ -46,7 +46,7 @@
 #'
 #' @return `as.CI()` returns a data frame of class `"CI"` containing
 #'   the columns `est`, `lci`, and `uci`, followed by any
-#'   grouping columns; `is.CI()` returns a single logical value
+#'   grouping columns; `isCI()` returns a single logical value
 #'
 #' @examples
 #' # matrix containing estimate, lower limit, and upper limit
@@ -65,7 +65,7 @@
 #'
 #' ci <- as.CI(x)
 #' ci
-#' is.CI(ci)
+#' isCI(ci)
 #'
 #' # display the estimates and confidence intervals
 #' plotDot(ci)
@@ -312,7 +312,7 @@ as.CI.default <- function(x, ...) {
 
 #' @rdname as.CI
 #' @export
-is.CI <- function(x) {
+isCI <- function(x) {
   inherits(x, "CI")
 }
 

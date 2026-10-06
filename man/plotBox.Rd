@@ -10,7 +10,7 @@ plotBox(x, ...)
 
 \method{plotBox}{default}(
   x,
-  g = NULL,
+  groups = NULL,
   main = NULL,
   xlab = "",
   ylab = "",
@@ -40,7 +40,7 @@ plotBox(x, ...)
 internal graphics framework are applied via \code{par()};
 remaining arguments are forwarded to \code{\link[graphics:boxplot]{graphics::boxplot()}}.}
 
-\item{g}{optional grouping variable (ignored if a formula is used).}
+\item{groups}{optional grouping variable (ignored if a formula is used).}
 
 \item{main}{main title of the plot. \code{NULL} (default) derives the title
 from the input: the formula, or \code{x ~ g} for the default method.
@@ -139,7 +139,7 @@ Other plot.univariate:
 \code{\link[=plotDensBox]{plotDensBox()}},
 \code{\link[=plotDot]{plotDot()}},
 \code{\link[=plotECDF]{plotECDF()}},
-\code{\link[=plotFdist]{plotFdist()}},
+\code{\link[=plotFreqDist]{plotFreqDist()}},
 \code{\link[=plotLines]{plotLines()}},
 \code{\link[=plotQQ]{plotQQ()}},
 \code{\link[=plotViolin]{plotViolin()}}

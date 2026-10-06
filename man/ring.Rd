@@ -11,7 +11,7 @@ ring(
   outerRadius = 1,
   startAngle = 0,
   endAngle = 2 * pi,
-  numPoints = 100
+  nPoints = 100
 )
 }
 \arguments{
@@ -23,7 +23,7 @@ ring(
 
 \item{startAngle, endAngle}{start and end angle in radians.}
 
-\item{numPoints}{number of points used for each boundary.}
+\item{nPoints}{number of points used for each boundary.}
 }
 \value{
 An object inheriting from class \code{"ringGeometry"} or a
@@ -39,7 +39,7 @@ Other geometry.structures:
 \code{\link[=bezier]{bezier()}},
 \code{\link[=circle]{circle()}},
 \code{\link[=ellipse]{ellipse()}},
-\code{\link[=polygon]{polygon()}},
+\code{\link[=polygonX]{polygonX()}},
 \code{\link[=regPolygon]{regPolygon()}}
 }
 \concept{geometry}

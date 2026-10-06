@@ -8,7 +8,7 @@
 #' the gap. 
 #' 
 #' @name axTicks
-#' @aliases axTicks.POSIXct axTicks.Date
+#' @aliases axTicksPosixct axTicksDate
 #' @param side see [graphics::axis] 
 #' @param x,at date-time or date object.
 #' @param format see [base::strptime]
@@ -31,7 +31,7 @@
 #'   r <- as.POSIXct(round(range(time), "hours"))
 #'   axis.POSIXct(1, at = seq(r[1], r[2], by = "hour"), format = "%H")
 #'   # place the grid
-#'   abline(v=axTicks.POSIXct(1, at = seq(r[1], r[2], by = "hour"), format = "%H"),
+#'   abline(v=axTicksPosixct(1, at = seq(r[1], r[2], by = "hour"), format = "%H"),
 #'          col="grey", lty="dotted")
 #' })
 #' 
@@ -44,7 +44,7 @@
 #'
 #' @rdname axTicks
 #' @export
-axTicks.POSIXct <- function (side, x, at, format, labels = TRUE, ...) {
+axTicksPosixct <- function (side, x, at, format, labels = TRUE, ...) {
   
   # This is completely original R-code with one exception:
   # Not an axis is drawn but z are returned.
@@ -146,7 +146,7 @@ axTicks.POSIXct <- function (side, x, at, format, labels = TRUE, ...) {
 
 #' @rdname axTicks
 #' @export
-axTicks.Date <- function(side = 1, x, ...) {
+axTicksDate <- function(side = 1, x, ...) {
   ##  This functions is almost a copy of axis.Date
   x <- as.Date(x)
   range <- par("usr")[if (side%%2)

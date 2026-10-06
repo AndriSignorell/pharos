@@ -21,8 +21,12 @@
 #'   is drawn using the column names of the data. If a list is supplied, its
 #'   elements are passed to the internal legend drawing routine.
 #' @param main main title of the plot.
-#' @param grid logical or list controlling the background grid. If `TRUE`,
-#'   a default grid is drawn.
+#' @param grid controls the background grid. `.useTheme` (default) follows
+#'   the active theme (`getTheme()$grid`), `TRUE` draws it, `FALSE`, `NULL`
+#'   or `NA` suppress it, and a named list is passed to [graphics::grid()].
+#' @param stamp controls the corner stamp. `.useTheme` (default)
+#'   resolves to `getTheme()$stamp`. `TRUE`/`FALSE`/
+#'   `NULL`, a string, or a named list for [stamp()].
 #' @param ... additional graphical parameters passed to [graphics::par()]
 #'   via `.applyParFromDots()` and to the plotting functions.
 #'
@@ -78,16 +82,32 @@
 #'
 #' @export
 plotArea <- function(
-    x, y,
-    prop = FALSE,
-    col = NULL,
+    # DATA
+    x,
+    y,
+
+    # LABELS
+    main = NULL,
     xlab = "",
     ylab = "",
+
+    # AXES
     xlim = NULL,
     ylim = NULL,
+
+    # STRUCTURE
+    prop = FALSE,
+
+    # STYLE
+    col  = NULL,
+    grid = .useTheme,
+
+    # FEATURES
     legend = TRUE,
-    main = NULL,
-    grid = TRUE,
+
+    # FRAMEWORK
+    stamp = .useTheme,
+
     ...
 ) {
   
@@ -217,8 +237,7 @@ plotArea <- function(
     
     # grid on top of polygons
     
-    bedrock::callIf(
-      graphics::grid,
+    .drawGrid(
       grid,
       defaults = list(
         nx  = NA,
@@ -247,7 +266,7 @@ plotArea <- function(
       
     }
     
-  })
+  }, stamp = stamp)
   
   invisible(
     list(

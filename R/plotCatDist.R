@@ -19,11 +19,14 @@
 #' @param col fill color for bars.
 #' @param border logical; draw borders around bars.
 #'
-#' @param maxlablen integer; maximum length of category labels before truncation.
-#' @param maxcats optional maximum number of categories to display (truncates if exceeded).
+#' @param maxLabLen integer; maximum length of category labels before truncation.
+#' @param maxCats optional maximum number of categories to display (truncates if exceeded).
 #'
 #' @param main plot title.
 #'
+#' @param stamp controls the corner stamp. `.useTheme` (default)
+#'   resolves to `getTheme()$stamp`. `TRUE`/`FALSE`/
+#'   `NULL`, a string, or a named list for [stamp()].
 #' @param ... further graphical parameters passed to `par()`.
 #'
 #' @details
@@ -36,10 +39,10 @@
 #' If `type = "both"`, both views are shown side by side.
 #'
 #' Long labels are truncated, and large category sets can be limited via
-#' `maxcats`.
+#' `maxCats`.
 #'
 #' Raw categorical data and their pre-tabulated form are treated identically.
-#' When categories are truncated via `maxcats`, proportions remain based
+#' When categories are truncated via `maxCats`, proportions remain based
 #' on the total frequency before truncation.
 #'
 #' @return Invisibly returns a list with frequencies and proportions.
@@ -58,7 +61,7 @@
 #'
 #' # Many categories (truncation)
 #' x2 <- factor(sample(letters, 200, TRUE))
-#' plotCatDist(x2, maxcats = 10)
+#' plotCatDist(x2, maxCats = 10)
 #'
 
 
@@ -69,14 +72,25 @@
 #'
 #' @export
 plotCatDist <- function(
+    # DATA
     x,
-    type = c("both", "freq", "perc"),
-    ecdf = FALSE,
-    col = "grey80",
-    border = FALSE,
-    maxlablen = 25,
-    maxcats = NULL,
+
+    # LABELS
     main = NULL,
+
+    # STRUCTURE
+    type      = c("both", "freq", "perc"),
+    ecdf      = FALSE,
+    maxCats   = NULL,
+    maxLabLen = 25,
+
+    # STYLE
+    col    = "grey80",
+    border = FALSE,
+
+    # FRAMEWORK
+    stamp = .useTheme,
+
     ...
 ) {
   
@@ -114,8 +128,8 @@ plotCatDist <- function(
     # ── Truncate categories ──────────────────────────────────────
     trunc_fg <- FALSE
     
-    if (!is.null(maxcats) && k > maxcats) {
-      tab <- tab[seq_len(maxcats)]
+    if (!is.null(maxCats) && k > maxCats) {
+      tab <- tab[seq_len(maxCats)]
       trunc_fg <- TRUE
     }
     
@@ -125,8 +139,8 @@ plotCatDist <- function(
     if (is.null(labs))
       labs <- as.character(seq_along(tab))
     
-    if (max(nchar(labs)) > maxlablen) {
-      labs <- strTrunc(labs, maxlablen)
+    if (max(nchar(labs)) > maxLabLen) {
+      labs <- strTrunc(labs, maxLabLen)
     }
     
     names(tab) <- labs
@@ -207,7 +221,7 @@ plotCatDist <- function(
       
     }
     
-  }, resetLayout = TRUE)
+  }, stamp = stamp, resetLayout = TRUE)
   
   invisible(list(freq = tab, prop = p))
 }

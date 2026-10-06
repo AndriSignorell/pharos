@@ -11,8 +11,8 @@ plotCor(
   ylab = NULL,
   xax = TRUE,
   yax = TRUE,
+  minCor = 0,
   cluster = FALSE,
-  mincor = 0,
   triangle = c("full", "upper", "lower"),
   diag = TRUE,
   col = .useTheme,
@@ -20,6 +20,7 @@ plotCor(
   box = .useTheme,
   legend = TRUE,
   text = FALSE,
+  stamp = .useTheme,
   ...
 )
 }
@@ -37,11 +38,11 @@ Supported values are
 \item{\code{list(...)}}{custom axis parameters passed to \code{\link[graphics:axis]{graphics::axis()}}}
 }}
 
+\item{minCor}{numeric threshold; correlations with absolute value
+smaller than this are suppressed (set to \code{NA}).}
+
 \item{cluster}{logical; if \code{TRUE}, variables are reordered by
 hierarchical clustering to place similar correlations together.}
-
-\item{mincor}{numeric threshold; correlations with absolute value
-smaller than this are suppressed (set to \code{NA}).}
 
 \item{triangle}{which part of the matrix to display.
 One of
@@ -80,6 +81,10 @@ Supported values are
 \item{\code{TRUE}}{default labels based on the correlation values}
 \item{\code{list(...)}}{custom parameters passed to the internal text drawing routine}
 }}
+
+\item{stamp}{controls the corner stamp. \code{.useTheme} (default)
+resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
+\code{NULL}, a string, or a named list for \code{\link[=stamp]{stamp()}}.}
 
 \item{...}{additional graphical parameters passed to
 \code{\link[graphics:par]{graphics::par()}} and \code{\link[graphics:image]{graphics::image()}}.}
@@ -141,16 +146,16 @@ plotCor(m,
 # hide grid
 plotCor(m, grid = FALSE)
 
-plotCor(m, cols=colorRampPalette(c("red", "black", "green"), space = "rgb")(20))
-plotCor(m, cols=colorRampPalette(c("red", "black", "green"), space = "rgb")(20),
-         args.colLegend=NA)
+plotCor(m, col=colorRampPalette(c("red", "black", "green"), space = "rgb")(20))
+plotCor(m, col=colorRampPalette(c("red", "black", "green"), space = "rgb")(20),
+         legend=FALSE)
 
 m <- cor(mtcars)
 plotCor(m, col=pal("red-white-blue-1", 100), border="grey",
-         args.colLegend=list(labels=format(seq(-1,1,.25), digits=2), frame="grey"))
+         legend=list(labels=format(seq(-1,1,.25), digits=2), box=list(border="grey")))
 
 # display only correlation with a value > 0.7
-plotCor(m, mincor = 0.7)
+plotCor(m, minCor = 0.7)
 x <- matrix(rep(1:ncol(m),each=ncol(m)), ncol=ncol(m))
 y <- matrix(rep(ncol(m):1,ncol(m)), ncol=ncol(m))
 txt <- format(m, digits=3)
@@ -160,7 +165,7 @@ idx <- upper.tri(matrix(x, ncol=ncol(m)), diag=FALSE)
 text(x=x[idx], y=y[idx], label=txt[idx], cex=0.8, xpd=TRUE)
 
 # put similiar correlations together
-plotCor(m, clust=TRUE)
+plotCor(m, cluster=TRUE)
 
 # same as
 idx <- order.dendrogram(as.dendrogram(
@@ -183,9 +188,9 @@ dimnames(p) <- list(vars, vars)
 m[p > 0.05] <- NA
 
 plotCor(m, mar=c(8,8,8,8), yaxt="n",
-         args.colLegend = list(x="bottom", inset=-.15, horiz=TRUE, 
-                                 height=abs(lineToUser(line = 2.5, side = 1)), 
-                                 width=ncol(m)))
+         legend = list(x="bottom", inset=-.15, horiz=TRUE, 
+                       height=abs(lineToUser(line = 2.5, side = 1)), 
+                       width=ncol(m)))
 mtext(text = rev(rownames(m)), side = 4, at=1:ncol(m), las=1, line = -5, cex=0.8)
 
 }

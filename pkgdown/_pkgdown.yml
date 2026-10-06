@@ -48,7 +48,7 @@ reference:
   - plotDensBox
   - plotDot
   - plotECDF
-  - plotFdist
+  - plotFreqDist
   - plotLines
   - plotQQ
   - plotRidge
@@ -131,7 +131,7 @@ reference:
   - canvas
   - circle
   - ellipse
-  - polygon
+  - polygonX
   - regPolygon
   - ring
   # geometry.conversion -- Coordinate and angular conversions
@@ -153,12 +153,12 @@ reference:
   - cmykToRgb
   - cmyToCmyk
   - colToHex
-  - colToHSV
-  - colToRGB
+  - colToHsv
+  - colToRgb
   - grayScale
   - hexToCol
-  - hexToRGB
-  - longToRGB
+  - hexToRgb
+  - longToRgb
   - rgbToCmy
   - rgbToCol
   - rgbToHex
@@ -166,12 +166,12 @@ reference:
   # color.manipulation -- Transparency, mixing, and contrast
   - addOpacity
   - colToOpaque
-  - contrastColor
+  - contrastCol
   - darken
   - fade
-  - findColor
+  - findCol
   - lighten
-  - mixColors
+  - mixCol
   # color.palettes -- Palette construction and discovery
   - hcol
   - pal
@@ -203,7 +203,7 @@ reference:
   # string.overview -- Entry point for string utilities
   - string-overview
   # string.inspect -- Length, positions, distance, and numeric content
-  - strCountW
+  - strCountWords
   - strDist
   - strIsNumeric
   - strLen
@@ -231,11 +231,11 @@ reference:
     HTML markup, embedded files and images, and self-contained HTML tables.
   contents:
   # html.objects -- HTML-aware objects and previews
-  - as.html
+  - asHtml
   - preview.html
   # html.embedding -- Files, plots, and encoded resources
-  - as.fileLink
-  - as.img
+  - asFileLink
+  - asImg
   - embedFile
   # html.markup -- Escaping, notation, and tables
   - escapeHtml

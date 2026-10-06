@@ -12,8 +12,8 @@
   lty = "solid",
   type = "l",
   n = 100,
-  cbandArgs = list(conf.level = 0.95),
-  pbandArgs = NA,
+  cband = list(conf.level = 0.95),
+  pband = NA,
   xpred = NULL,
   ...
 )
@@ -25,8 +25,8 @@
   lty = "solid",
   type = "l",
   n = 100,
-  cbandArgs = list(conf.level = 0.95),
-  pbandArgs = NA,
+  cband = list(conf.level = 0.95),
+  pband = NA,
   xpred = NULL,
   ...
 )
@@ -44,12 +44,12 @@
 
 \item{n}{number of points used for plotting the fit.}
 
-\item{cbandArgs}{controls the confidence band. May be \code{TRUE},
+\item{cband}{controls the confidence band. May be \code{TRUE},
 \code{FALSE}, \code{NULL}, \code{NA}, or a named list. The confidence
 level is specified via \code{conf.level}, all other elements are graphical
 parameters of the band. Default is \code{list(conf.level=0.95)}.}
 
-\item{pbandArgs}{controls the prediction band, as \code{cbandArgs}. Default
+\item{pband}{controls the prediction band, as \code{cband}. Default
 is \code{NA}.}
 
 \item{xpred}{optional numeric vector defining the range over which
@@ -73,8 +73,8 @@ variable. A polynomial, \code{y ~ poly(x, 2)} or \code{y ~ x + I(x^2)}, is drawn
 against \code{x}; a single transformed term such as \code{y ~ log(x)} is drawn
 against the transformed values, matching \code{plot(y ~ log(x))}.
 
-Confidence and prediction bands are controlled via \code{cbandArgs} and
-\code{pbandArgs}. These arguments can be:
+Confidence and prediction bands are controlled via \code{cband} and
+\code{pband}. These arguments can be:
 \itemize{
 \item \code{FALSE}, \code{NULL} or \code{NA}: suppress the band
 \item \code{TRUE}: draw the band with default settings

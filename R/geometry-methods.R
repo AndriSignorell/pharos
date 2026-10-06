@@ -11,7 +11,7 @@
 #' [circle()], [ellipse()], [regPolygon()]
 #' and [ring()] are dispatched to specialised methods.
 
-#' @aliases polygon.ringGeometry polygon.polygonGeometry polygon.geometryCollection
+#' @aliases polygonX.ringGeometry polygonX.polygonGeometry polygonX.geometryCollection
 #'
 #' @param x an object to be drawn.
 #' @param ... further arguments passed to the corresponding method.
@@ -22,15 +22,15 @@
 #' @examples
 #' canvas()
 #'
-#' polygon(
+#' polygonX(
 #'   circle(radius = 1),
 #'   col = "lightblue"
 #' )
 #'
-#' polygon(
+#' polygonX(
 #'   regPolygon(
 #'     radius = 0.7,
-#'     numVertices = 5
+#'     nVertices = 5
 #'   ),
 #'   border = "red"
 #' )
@@ -42,10 +42,10 @@
 #'
 #'
 #' @export
-polygon <- function(x, ...) UseMethod("polygon")
+polygonX <- function(x, ...) UseMethod("polygonX")
 
 
-#' @rdname polygon
+#' @rdname polygonX
 #'
 #' @param y numeric vector of y-coordinates.
 #' @param density density of shading lines.
@@ -56,11 +56,11 @@ polygon <- function(x, ...) UseMethod("polygon")
 #' @param fillOddEven logical; should the odd-even rule be used for filling?
 #' 
 #' @export
-polygon.default <- graphics::polygon
+polygonX.default <- graphics::polygon
 
 
 
-#' @rdname polygon
+#' @rdname polygonX
 #'
 #' @param rule character string specifying the filling rule passed to
 #'   [graphics::polypath()]. One of `"evenodd"` or
@@ -68,7 +68,7 @@ polygon.default <- graphics::polygon
 #'
 
 #' @export
-polygon.ringGeometry <- function(x, rule = "evenodd", ...) {
+polygonX.ringGeometry <- function(x, rule = "evenodd", ...) {
   
   graphics::polypath(
     x$x,
@@ -81,9 +81,9 @@ polygon.ringGeometry <- function(x, rule = "evenodd", ...) {
   
 }
 
-#' @rdname polygon
+#' @rdname polygonX
 #' @export
-polygon.polygonGeometry <- function(x, ...) {
+polygonX.polygonGeometry <- function(x, ...) {
   
   graphics::polygon(
     x$x,
@@ -117,7 +117,7 @@ lines.geometryCollection <- function(x, ...) {
 }
 
 #' @export
-polygon.geometryCollection <- function(x, ...) {
+polygonX.geometryCollection <- function(x, ...) {
   
   dots <- list(...)
   
@@ -138,7 +138,7 @@ polygon.geometryCollection <- function(x, ...) {
     })
     
     do.call(
-      polygon,
+      polygonX,
       c(list(x[[i]]), args)
     )
     

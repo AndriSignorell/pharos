@@ -34,6 +34,9 @@
 #'
 #' @param main character. Main title of the plot.
 #'
+#' @param stamp controls the corner stamp. `.useTheme` (default)
+#'   resolves to `getTheme()$stamp`. `TRUE`/`FALSE`/
+#'   `NULL`, a string, or a named list for [stamp()].
 #' @param ... additional graphical parameters passed to internal plotting functions.
 #'
 #' @details
@@ -85,22 +88,24 @@
 #'
 #' @export
 plotCirc <- function(
-    
-  # DATA
-  x,
-  
-  # STYLE (object-based!)
-  sector = TRUE,
-  ribbon = TRUE,
-  labels = TRUE,
-  
-  gap = 5,
+    # DATA
+    x,
 
-  # LABELS
-  main = NULL
-  , ...
-  
-  
+    # LABELS
+    main = NULL,
+
+    # STRUCTURE
+    gap = 5,
+
+    # FEATURES
+    sector = TRUE,
+    ribbon = TRUE,
+    labels = TRUE,
+
+    # FRAMEWORK
+    stamp = .useTheme,
+
+    ...
 ) {
   
   if (!is.matrix(x))
@@ -153,7 +158,7 @@ plotCirc <- function(
     # --- sectors ----------------------------------------------
     
 
-    polygon(ring(
+    polygonX(ring(
       innerRadius = innerR,
       outerRadius = outerR,
       startAngle = mpts[seq_along(mpts) %% 2 == 1],
@@ -168,14 +173,14 @@ plotCirc <- function(
     tab <- x
     
     if(is.vector(sector))
-      sector <- recycle(col=sector, border="grey", maxdim=nc+nr)
+      sector <- recycle(col=sector, border="grey", maxDim=nc+nr)
     else
-      sector <- recycle(sector, maxdim=nc+nr)
+      sector <- recycle(sector, maxDim=nc+nr)
     
     if(is.vector(ribbon))
-      ribbon <- recycle(col=ribbon, border="grey", maxdim=nc+nr)
+      ribbon <- recycle(col=ribbon, border="grey", maxDim=nc+nr)
     else
-      ribbon <- recycle(ribbon, maxdim=nc+nr)
+      ribbon <- recycle(ribbon, maxDim=nc+nr)
     
     
     acol <- sector$col
@@ -229,7 +234,7 @@ plotCirc <- function(
       defaults=list(pos=pos, labels=rev(LETTERS[1:(nr + nc)]),
                     cex = 1, col="black", las=1, adj=NULL, nr=nr, nc=nc))
     
-  })
+  }, stamp = stamp)
   
   invisible(pos)
   

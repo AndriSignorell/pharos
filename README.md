@@ -40,7 +40,7 @@ remotes::install_github("AndriSignorell/pharos")
 
 ### 🔹 Univariate and Distribution Plots
 
--   `plotFdist()`, `plotDens()`, `plotECDF()`, `plotProbDist()`
+-   `plotFreqDist()`, `plotDens()`, `plotECDF()`, `plotProbDist()`
 -   `plotBox()`, `plotViolin()`, `plotRidge()`, `plotDensBox()`
 -   `plotDot()`, `plotBar()`, `plotBag()`, `plotQQ()`
 
@@ -71,17 +71,17 @@ remotes::install_github("AndriSignorell/pharos")
 
 ### 🔹 Colour
 
--   Conversions: `colToHex()`, `colToRGB()`, `colToHSV()`,
-    `hexToRGB()`, `rgbToCmy()`, `cmykToRgb()`, `longToRGB()`
+-   Conversions: `colToHex()`, `colToRgb()`, `colToHsv()`,
+    `hexToRgb()`, `rgbToCmy()`, `cmykToRgb()`, `longToRgb()`
 -   Manipulation: `addOpacity()`, `fade()`, `darken()`, `lighten()`,
-    `shade()`, `mixColors()`, `contrastColor()`, `grayScale()`
--   Palettes: `pal()`, `palNames()`, `hcol()`, `findColor()`,
+    `shade()`, `mixCol()`, `contrastCol()`, `grayScale()`
+-   Palettes: `pal()`, `palNames()`, `hcol()`, `findCol()`,
     `setBackCol()`
 
 ### 🔹 Geometry
 
 -   `arc()`, `bezier()`, `circle()`, `ellipse()`, `ring()`,
-    `polygon()`, `regPolygon()`, `polarGrid()`
+    `polygonX()`, `regPolygon()`, `polarGrid()`
 -   `rotate()`, `transformXY()`, coordinate conversions, degree/radian
     conversion, `convUnit()`
 
@@ -93,8 +93,8 @@ remotes::install_github("AndriSignorell/pharos")
 
 ### 🔹 HTML Output
 
--   `as.html()`, `toHtmlTable()`, `escapeHtml()`, `htmlNotation()`,
-    `htmlSubscript()`, `as.img()`, `as.fileLink()`, `embedFile()`,
+-   `asHtml()`, `toHtmlTable()`, `escapeHtml()`, `htmlNotation()`,
+    `htmlSubscript()`, `asImg()`, `asFileLink()`, `embedFile()`,
     `preview()`
 
 ## 🚀 Design Principles
@@ -113,7 +113,7 @@ remotes::install_github("AndriSignorell/pharos")
 library(pharos)
 
 # distribution overview: histogram, density, boxplot, ecdf in one panel
-plotFdist(rnorm(500))
+plotFreqDist(rnorm(500))
 
 # named plot positions without arithmetic
 plot(rnorm(20), type = "n")
@@ -125,7 +125,7 @@ fade(pal("dark"), 0.4)
 
 # faceting with a panel function
 plotFacet(split(iris$Sepal.Length, iris$Species),
-          dim = c(1, 3), panelFun = plotDens)
+          dim = c(1, 3), FUN = plotDens)
 ```
 
 ## 🧱 The Suite

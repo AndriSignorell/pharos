@@ -8,8 +8,8 @@
 #'   Default is `"CAP"`. If `NA`, no prefix is added.
 #' @param type character string specifying the encoding system:
 #' \itemize{
-#'   \item `"NATO"`: NATO phonetic alphabet (default)
-#'   \item `"Morse"`: Morse code
+#'   \item `"nato"`: NATO phonetic alphabet (default)
+#'   \item `"morse"`: Morse code
 #' }
 #'
 #' @return A character vector with each character of `x` replaced by its
@@ -19,7 +19,7 @@
 #' Letters (A–Z, a–z) and digits (0–9) are mapped to their corresponding
 #' phonetic representations. Other characters are returned unchanged.
 #'
-#' For `type = "NATO"`, uppercase letters can optionally be prefixed
+#' For `type = "nato"`, uppercase letters can optionally be prefixed
 #' (e.g., `"CAP Alfa"`) to distinguish them from lowercase letters.
 #'
 #' The function uses Unicode-aware character splitting via
@@ -36,7 +36,7 @@
 #' strSpell("A1B2")
 #'
 #' # Morse code
-#' strSpell("SOS", type = "Morse")
+#' strSpell("SOS", type = "morse")
 #'
 #' # without uppercase prefix
 #' strSpell("ABC", upr = NA)
@@ -52,14 +52,14 @@
 #'
 #'
 #' @export
-strSpell <- function(x, upr = "CAP", type = c("NATO", "Morse")) {
+strSpell <- function(x, upr = "CAP", type = c("nato", "morse")) {
   
   type <- match.arg(type)
   upr <- naReplace(upr, "")
   
   chars <- stringi::stri_split_boundaries(x, type = "character")[[1]]
   
-  if (type == "NATO") {
+  if (type == "nato") {
     
     letters_map <- setNames(
       c("Alfa","Bravo","Charlie","Delta","Echo","Foxtrot","Golf","Hotel",

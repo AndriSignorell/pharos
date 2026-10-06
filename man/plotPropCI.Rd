@@ -7,15 +7,15 @@
 plotPropCI(
   x,
   main = NULL,
-  labels = c("", ""),
   xlab = "",
   xlim = c(0, 1),
-  col = .useTheme,
-  ci.col = addOpacity("grey80", 0.12),
-  border = NA,
   ciLevels = seq(0.99, 0.8, by = -0.01),
+  col = .useTheme,
+  ciCol = addOpacity("grey80", 0.12),
+  border = NA,
   grid = .useTheme,
   box = FALSE,
+  labels = c("", ""),
   legend = TRUE,
   stamp = .useTheme,
   ...
@@ -31,13 +31,15 @@ from \code{deparse(substitute(x))}. \code{""}, \code{NA}, or \code{FALSE}
 suppress the title and compact the top margin. Any other string is used
 as given.}
 
-\item{labels}{character vector of length 2 with labels for the two
-categories, displayed at the top of the plot. Default \code{c("", "")}.}
-
 \item{xlab}{label for the x-axis. Default \code{""}.}
 
 \item{xlim}{numeric vector of length 2 for the x-axis limits.
 Default \code{c(0, 1)}.}
+
+\item{ciLevels}{numeric vector of confidence levels for the nested bands.
+Default \code{seq(0.99, 0.80, by = -0.01)} (20 bands, 99\\% down to
+80\\% in 1\\% steps). Draw order does not affect the result, since all
+bands share the same translucent color and no border.}
 
 \item{col}{character vector of length 2 specifying fill colours for the
 stacked bar. \code{.useTheme} (default) resolves to
@@ -47,7 +49,7 @@ is purely "first label gets the first color"; unlike
 negative sign convention here, since proportions of two arbitrary
 categories (e.g. "yes"/"no") have no inherent sign.}
 
-\item{ci.col}{colour for the confidence interval bands. Default is a
+\item{ciCol}{colour for the confidence interval bands. Default is a
 semi-transparent grey (\code{addOpacity("grey80", 0.12)}). Deliberately
 not theme-driven (like the sequential scales in
 \code{\link[=plotDens2D]{plotDens2D()}}/\code{\link[=plotHeatmap]{plotHeatmap()}}): this is a
@@ -56,11 +58,6 @@ gradient via overdraw), not a categorical or diverging color choice.}
 
 \item{border}{border colour for the confidence interval bands and the
 stacked bar. Default \code{NA} (no border).}
-
-\item{ciLevels}{numeric vector of confidence levels for the nested bands.
-Default \code{seq(0.99, 0.80, by = -0.01)} (20 bands, 99\\% down to
-80\\% in 1\\% steps). Draw order does not affect the result, since all
-bands share the same translucent color and no border.}
 
 \item{grid}{controls drawing of the background grid (vertical lines at
 the proportion ticks only - there is no meaningful horizontal grid
@@ -72,6 +69,9 @@ the active theme (\code{getTheme()$grid}). \code{TRUE}/\code{FALSE}/
 frame, consistent with this chart's minimal "Few"-style appearance).
 \code{TRUE}/\code{NA}, or a named list, as for
 \code{\link[graphics:box]{graphics::box()}}.}
+
+\item{labels}{character vector of length 2 with labels for the two
+categories, displayed at the top of the plot. Default \code{c("", "")}.}
 
 \item{legend}{controls the legend explaining the CI band range.
 \code{TRUE} (default) draws it. \code{FALSE}/\code{NA} suppresses it.

@@ -114,7 +114,8 @@
 #' @param x a 2-way contingency table, matrix, or array coercible via
 #'   `as.table()`. Higher-dimensional arrays must be collapsed first, e.g.
 #'   via `apply(x, c(1,2), sum)`.
-#' @param main character. Plot title. Default `""` (no title).
+#' @param main character. Plot title. `NULL` (default) takes the expression
+#'   passed as `x`; `""`, `NA` or `FALSE` suppress the title.
 #' @param xlab,ylab character or `NULL`. Axis labels. Default `NULL`
 #'   (no labels), since the category levels together with `main` and the
 #'   legend title are usually self-explanatory.
@@ -140,11 +141,11 @@
 #' @param labels character, one of `"p"`, `"n"`, `"none"`. Cell labels
 #'   showing the proportion of the table total (`"p"`), the absolute
 #'   frequency (`"n"`), or no labels (`"none"`). Labels are only drawn for
-#'   tiles large enough to hold them. Default `"p"`.
-#' @param labCex numeric. Character expansion factor for cell labels.
-#'   Default `0.8`.
-#' @param labDigits integer. Number of decimal digits for percentage cell
-#'   labels when `labels = "p"`. Default `1`.
+#'   tiles large enough to hold them. Default `"p"`. A list sets the
+#'   details: the type (element `type`, or the one unnamed element), the
+#'   character expansion factor `cex` (default `0.8`) and the number of
+#'   decimal digits `digits` for percentages (default `1`), e.g.
+#'   `labels = list("p", cex = 0.7, digits = 0)`.
 #' @param stamp controls the corner stamp. `.useTheme` (default)
 #'   resolves to `getTheme()$stamp`. `TRUE`/`FALSE`/
 #'   `NULL`, or an explicit string, as for
@@ -188,7 +189,7 @@
 #' @export
 plotMosaic <- function(x,
                        # LABELS
-                       main      = "",
+                       main      = NULL,
                        xlab      = NULL,
                        ylab      = NULL,
                        
@@ -204,15 +205,19 @@ plotMosaic <- function(x,
                        # FEATURES
                        legend    = TRUE,
                        labels    = c("p", "n", "none"),
-                       labCex    = 0.8,
-                       labDigits = 1,
                        
                        # FRAMEWORK
                        stamp = .useTheme,
                        
                        ...) {
   
-  labels <- match.arg(labels)
+  # labels: the type, or a list with the type and details
+  labelSpec <- .valueSpec(labels, "type", list(cex = 0.8, digits = 1),
+                          arg = "labels")
+  labels    <- match.arg(labelSpec$type, c("p", "n", "none"))
+
+  mc   <- match.call()
+  main <- .resolveTitle(main, default = deparse1(mc$x))
   tiles  <- .computeMosaicTiles(x, swap = swap)
   varNames <- attr(tiles, "varNames")
   rowVar <- varNames[1]; colVar <- varNames[2]
@@ -265,7 +270,7 @@ plotMosaic <- function(x,
     if (labels != "none") {
       labTxt <- switch(labels,
                        n = fm(tiles$n, digits = 0),
-                       p = paste0(fm(tiles$p * 100, digits = labDigits), "%")
+                       p = paste0(fm(tiles$p * 100, digits = labelSpec$digits), "%")
       )
       
       show <- (tiles$x1 - tiles$x0) > 0.03 &
@@ -274,7 +279,7 @@ plotMosaic <- function(x,
       
       text((tiles$x0 + tiles$x1)[show] / 2,
            (tiles$y0 + tiles$y1)[show] / 2,
-           labels = labTxt[show], cex = labCex)
+           labels = labTxt[show], cex = labelSpec$cex)
     }
     
     if (horiz) {

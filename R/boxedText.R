@@ -37,7 +37,7 @@
 #' vectors. These default to the values of the global graphical parameters in
 #' `par()`. 
 #' @param srt the string rotation in degrees.  
-#' @param xpad,ypad the proportion of the rectangles to the extent of the text
+#' @param xPad,yPad the proportion of the rectangles to the extent of the text
 #' within. 
 #' @param density the density of shading lines, in lines per inch. The default
 #' value of `NULL` means that no shading lines are drawn.  A zero value of
@@ -74,7 +74,7 @@
 #' canvas(xpd=TRUE)
 #' 
 #' boxedText(0, 0, adj=0, label="This is boxed text", srt=seq(0,360,20), 
-#'           xpad=.3, ypad=.3)
+#'           xPad=.3, yPad=.3)
 #' points(0,0, pch=15)
 #' 
 #' plot(mpg ~ hp, data=mtcars, type="n", main="MT cars mpg/hp (log-log)", 
@@ -105,7 +105,7 @@ boxedText.default <- function(
     labels = NULL,
     adj = NULL, pos = NULL, offset = 0.5,
     vfont = NULL, cex = 1, col = NULL, font = NULL,
-    srt = 0, xpad = 0.2, ypad = 0.2,
+    srt = 0, xPad = 0.2, yPad = 0.2,
     density = NULL, angle = 45,
     bg = NA, border = par("fg"),
     lty = par("lty"), lwd = par("lwd"),
@@ -175,8 +175,8 @@ boxedText.default <- function(
                       units = "inches")
     
     # --- symmetrisches Padding ---
-    pad_x <- w_in * xpad
-    pad_y <- h_in * ypad
+    pad_x <- w_in * xPad
+    pad_y <- h_in * yPad
     
     # --- Box relativ zu adj (wie text.default) ---
     xl <- xi_in - adj[1] * w_in - pad_x

@@ -3,7 +3,7 @@
 #'
 #' Evaluates a plotting expression in a temporary PNG device and returns
 #' the resulting image as a self-contained, base64-encoded \verb{<img>}
-#' tag (class `"html"`, see [as.html()]), suitable for
+#' tag (class `"html"`, see [asHtml()]), suitable for
 #' embedding directly in HTML text -- a report, a question, an e-mail.
 #'
 #' The expression is passed unevaluated and carries its own environment, so
@@ -22,12 +22,12 @@
 #'   \verb{<img>} tag with a `data:image/png;base64,...` source
 #'
 #' @examples
-#' img <- as.img(plot(1:10))
+#' img <- asImg(plot(1:10))
 #'
 #' # several statements, and local variables
 #' f <- function(n) {
 #'   x <- seq_len(n)
-#'   as.img({
+#'   asImg({
 #'     plot(x, x^2, type = "b")
 #'     abline(h = mean(x^2), lty = 2)
 #'   })
@@ -39,7 +39,7 @@
 #' @concept formatting
 #'
 #' @export
-as.img <- function(expr, width = 520, height = 440, res = 96, ...) {
+asImg <- function(expr, width = 520, height = 440, res = 96, ...) {
 
   fn <- tempfile(fileext = ".png")
   on.exit(unlink(fn), add = TRUE)
@@ -55,5 +55,5 @@ as.img <- function(expr, width = 520, height = 440, res = 96, ...) {
       expr
   }, finally = grDevices::dev.off())
 
-  as.html(gettextf('<img src="data:image/png;base64,%s">', embedFile(fn)))
+  asHtml(gettextf('<img src="data:image/png;base64,%s">', embedFile(fn)))
 }

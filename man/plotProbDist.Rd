@@ -7,15 +7,16 @@
 plotProbDist(
   breaks,
   FUN,
-  main = "",
+  main = NULL,
+  ylab = "density",
   xlim = NULL,
   col = NULL,
   density = 7,
-  ylab = "density",
+  grid = .useTheme,
+  box = .useTheme,
   areaLabels = NULL,
   breakLabels = NULL,
-  grid = FALSE,
-  box = .useTheme,
+  stamp = .useTheme,
   ...
 )
 }
@@ -27,8 +28,11 @@ shaded areas. The first and last value define the plot range passed to
 \item{FUN}{the distribution density function to plot, typically of the form
 \code{function(x) dnorm(x, mean=0, sd=1)}.}
 
-\item{main}{main title for the plot. \code{NULL} or \code{""} suppresses
-the title and reduces the top margin automatically.}
+\item{main}{main title for the plot. \code{NULL} (default) takes the
+expression passed as \code{FUN}; \code{""}, \code{NA} or \code{FALSE} suppress the title and
+reduce the top margin.}
+
+\item{ylab}{label for the y-axis. Default is \code{"density"}.}
 
 \item{xlim}{numeric vector of length 2. x-axis limits passed to
 \code{\link[=curve]{curve()}}.}
@@ -39,7 +43,14 @@ number of areas. Defaults to the "helsana" palette.}
 \item{density}{density of shading lines passed to \code{\link[=shade]{shade()}}.
 Default is \code{7}.}
 
-\item{ylab}{label for the y-axis. Default is \code{"density"}.}
+\item{grid}{controls the background grid. \code{.useTheme} (default) follows
+the active theme, \code{TRUE} draws it, \code{FALSE}, \code{NULL} or \code{NA} suppress it.
+A named list overrides individual arguments passed to \code{\link[=grid]{grid()}}.}
+
+\item{box}{controls the plot box. \code{.useTheme} (default) uses the
+current theme setting. \code{TRUE}/\code{FALSE} forces the box on or off.
+A named list overrides individual arguments passed to
+\code{\link[=box]{box()}}.}
 
 \item{areaLabels}{controls labels placed in the centre of each shaded area.
 \code{NULL} (default) suppresses labels. \code{TRUE} uses
@@ -54,15 +65,9 @@ points via \code{\link[=mtext]{mtext()}}. \code{NULL} (default) suppresses label
 sets explicit labels. A named list overrides individual arguments
 (e.g. \code{list(cex = 1.8, font = 1)}).}
 
-\item{grid}{controls background grid. \code{FALSE} (default) suppresses the
-grid. \code{TRUE} or \code{.useTheme} draws a grid according to the
-current theme. A named list overrides individual arguments passed to
-\code{\link[=grid]{grid()}}.}
-
-\item{box}{controls the plot box. \code{.useTheme} (default) uses the
-current theme setting. \code{TRUE}/\code{FALSE} forces the box on or off.
-A named list overrides individual arguments passed to
-\code{\link[=box]{box()}}.}
+\item{stamp}{controls the corner stamp. \code{.useTheme} (default)
+resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
+\code{NULL}, a string, or a named list for \code{\link[=stamp]{stamp()}}.}
 
 \item{\dots}{further graphical parameters passed to \code{\link[=curve]{curve()}}
 and \code{.applyParFromDots()}, e.g. \code{las}, \code{col.axis}.}

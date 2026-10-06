@@ -8,7 +8,7 @@
 #' function [findInterval()] is set to TRUE. This will ensure that
 #' all values on the right edge of the range are assigned a color. How values
 #' outside the boundaries of minX and maxX should be handled can be
-#' controlled by `allInside`. Set this value to TRUE, if those values
+#' controlled by `all.inside`. Set this value to TRUE, if those values
 #' should get the colors at the edges or set it to FALSE, if they should remain
 #' white (which is the default).
 #' 
@@ -22,7 +22,7 @@
 #' left to the default `NULL` `min(pretty(x))` will be used.
 #' @param maxX the x-value to be used for the right edge of the last color. If
 #' left to the default `NULL` `max(pretty(x))` will be used.
-#' @param allInside logical; if true, the returned indices are coerced into
+#' @param all.inside logical; if true, the returned indices are coerced into
 #' `1, ..., N-1`, i.e., `0` is mapped to `1` and `N` to
 #' `N-1`.
 #' 
@@ -33,7 +33,7 @@
 #' @examples
 #' 
 #' 
-#' canvas(7, main="Use of function findColor()")
+#' canvas(7, main="Use of function findCol()")
 #' 
 #' # get some data
 #' x <- c(23, 56, 96)
@@ -42,7 +42,7 @@
 #' colLegend(x="bottomleft", col=cols, labels=seq(0, 100, 10), cex=0.8)
 #' 
 #' # and now the color coding of x:
-#' (xcols <- findColor(x, cols, minX=0, maxX=100))
+#' (xcols <- findCol(x, cols, minX=0, maxX=100))
 #' 
 #' # this should be the same as
 #' cols[x+1]
@@ -51,7 +51,7 @@
 #' y0 <- c(-5, -2, 1)
 #' text(x=1, y=max(y0)+2, labels="Color coding of x:")
 #' text(x=1.5, y=y0, labels=x)
-#' polygon(regPolygon(x=3, y=y0, numVertices=4, startAngle=pi/4), col=xcols)
+#' polygonX(regPolygon(x=3, y=y0, nVertices=4, startAngle=pi/4), col=xcols)
 #' text(x=6, y=y0, labels=xcols)
 #' 
 #' # how does the function select colors?
@@ -63,10 +63,10 @@
 #' x <- c(-0.2, 0, 0.15, 0.55, .75, 1, 1.3)
 #' arrows(x0 = x, y0 = 0.6, y1 = 0.8, angle = 15, length = .2)
 #' text(x=x, y = 0.5, labels = x, adj = c(0.5,0.5))
-#' text(x=x, y = 0.4, labels = names(findColor(x, col=cols,
-#'    minX = 0, maxX = 1, allInside = TRUE)), adj = c(0.5,0.5))
-#' text(x=x, y = 0.3, labels = names(findColor(x, col=cols,
-#'    minX = 0, maxX = 1, allInside = FALSE)), adj = c(0.5,0.5))
+#' text(x=x, y = 0.4, labels = names(findCol(x, col=cols,
+#'    minX = 0, maxX = 1, all.inside = TRUE)), adj = c(0.5,0.5))
+#' text(x=x, y = 0.3, labels = names(findCol(x, col=cols,
+#'    minX = 0, maxX = 1, all.inside = FALSE)), adj = c(0.5,0.5))
 
 
 
@@ -78,8 +78,8 @@
 #'
 #'
 #' @export
-findColor <- function(x, col=rev(heat.colors(100)), minX=NULL, maxX=NULL,
-                      allInside = FALSE){
+findCol <- function(x, col=rev(heat.colors(100)), minX=NULL, maxX=NULL,
+                      all.inside = FALSE){
   
   if(is.null(minX)) minX <- min(pretty(x))
   if(is.null(maxX)) maxX <- max(pretty(x))
@@ -91,7 +91,7 @@ findColor <- function(x, col=rev(heat.colors(100)), minX=NULL, maxX=NULL,
   col.idx <- findInterval(x, seq(colrange[1], colrange[2], 
                                  length = length(col) + 1), 
                           rightmost.closed=TRUE, 
-                          all.inside=allInside)
+                          all.inside=all.inside)
   
   # Index 0 does not exist in the color vector
   col.idx[col.idx==0] <- NA  

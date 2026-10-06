@@ -6,12 +6,13 @@
 \usage{
 plotQQ(
   x,
-  qdist = stats::qnorm,
+  qFun = qnorm,
   main = NULL,
   xlab = NULL,
   ylab = NULL,
   datax = FALSE,
   add = FALSE,
+  cex = .useTheme,
   grid = .useTheme,
   box = .useTheme,
   cband = list(conf.level = 0.95),
@@ -23,7 +24,7 @@ plotQQ(
 \arguments{
 \item{x}{the data sample}
 
-\item{qdist}{the quantile function of the assumed distribution. Can either
+\item{qFun}{the quantile function of the assumed distribution. Can either
 be given as simple function name or defined as own function using the
 required arguments. Default is \code{qnorm()}. See examples.}
 
@@ -38,6 +39,9 @@ required arguments. Default is \code{qnorm()}. See examples.}
 
 \item{add}{logical specifying if the points should be added to an already
 existing plot; defaults to \code{FALSE}.}
+
+\item{cex}{character expansion factor for the points. \code{.useTheme}
+(default) resolves to \code{getTheme()$points$cex}.}
 
 \item{grid}{controls drawing of the background grid. \code{.useTheme}
 (default) follows the active theme (\code{getTheme()$grid}).
@@ -97,11 +101,11 @@ y <- rexp(100, 1/10)
 plotQQ(y, function(p) qexp(p, rate=1/10))
 
 w <- rweibull(100, shape=2)
-plotQQ(w, qdist = function(p) qweibull(p, shape=4))
+plotQQ(w, qFun = function(p) qweibull(p, shape=4))
 
 z <- rchisq(100, df=5)
 plotQQ(z, function(p) qchisq(p, df=5),
-       args.qqline=list(col=2, probs=c(0.1, 0.6)),
+       qqline=list(col=2, probs=c(0.1, 0.6)),
        main=expression("Q-Q plot for" ~~ {chi^2}[nu == 3]))
 abline(0,1)
 
@@ -111,7 +115,7 @@ plotQQ(y, function(p) qexp(p, rate=1/10), cband = list(conf.level = 0.90))
 # add 5 random sets
 for(i in 1:5){
   z <- rchisq(100, df=5)
-  plotQQ(z, function(p) qchisq(p, df=5), add=TRUE, args.qqline = NA,
+  plotQQ(z, function(p) qchisq(p, df=5), add=TRUE, qqline = FALSE,
          col="grey", lty="dotted")
 }
 
@@ -132,7 +136,7 @@ Other plot.univariate:
 \code{\link[=plotDensBox]{plotDensBox()}},
 \code{\link[=plotDot]{plotDot()}},
 \code{\link[=plotECDF]{plotECDF()}},
-\code{\link[=plotFdist]{plotFdist()}},
+\code{\link[=plotFreqDist]{plotFreqDist()}},
 \code{\link[=plotLines]{plotLines()}},
 \code{\link[=plotViolin]{plotViolin()}}
 }

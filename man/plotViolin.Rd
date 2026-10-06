@@ -16,17 +16,17 @@ plotViolin(x, ...)
   ylab = "",
   xlim = NULL,
   ylim = NULL,
-  horizontal = FALSE,
+  bw = "nrd0",
+  trim = TRUE,
+  horiz = FALSE,
   at = NULL,
   names = NULL,
   add = FALSE,
-  bw = "nrd0",
-  trim = TRUE,
   col = "grey80",
   border = "black",
   lwd = 1,
-  box = TRUE,
   grid = NA,
+  box = TRUE,
   quantiles = NULL,
   stamp = .useTheme
 )
@@ -36,12 +36,12 @@ plotViolin(x, ...)
   data,
   subset,
   na.action = na.omit,
-  ...,
   main = NULL,
   xlab = "",
   ylab = "",
-  horizontal = FALSE,
-  names = NULL
+  horiz = FALSE,
+  names = NULL,
+  ...
 )
 }
 \arguments{
@@ -60,14 +60,6 @@ default to the grouping variable and the response.}
 \item{xlim, ylim}{axis limits. \code{NULL} (default) uses the range of the
 densities, padded by 2\%; given limits are used as they are.}
 
-\item{horizontal}{logical; if \code{TRUE}, draws horizontal violins.}
-
-\item{at}{numeric positions of the groups.}
-
-\item{names}{optional group labels.}
-
-\item{add}{logical; if \code{TRUE}, adds to an existing plot.}
-
 \item{bw}{bandwidth specification passed to \code{density()}.}
 
 \item{trim}{logical. If \code{TRUE} (default), the kernel density
@@ -79,16 +71,24 @@ called with its own defaults, which extend the tails up to
 \code{cut * bw} beyond \code{range(x)} and may produce violins that
 reach into implausible values (e.g. scores above 100 or below 0).}
 
+\item{horiz}{logical; if \code{TRUE}, draws horizontal violins.}
+
+\item{at}{numeric positions of the groups.}
+
+\item{names}{optional group labels.}
+
+\item{add}{logical; if \code{TRUE}, adds to an existing plot.}
+
 \item{col}{fill color(s) of the violins.}
 
 \item{border}{border color(s) of the violins.}
 
 \item{lwd}{line width for violin borders.}
 
+\item{grid}{logical, \code{NA}, or list controlling background grid.}
+
 \item{box}{logical or list controlling the boxplot overlay
 (see Details).}
-
-\item{grid}{logical, \code{NA}, or list controlling background grid.}
 
 \item{quantiles}{optional numeric vector of probabilities for drawing
 quantile lines inside each violin.}
@@ -146,7 +146,7 @@ y <- rnorm(100, 1)
 plotViolin(x, y)
 
 # horizontal violins
-plotViolin(x, y, horizontal = TRUE)
+plotViolin(x, y, horiz = TRUE)
 
 # with quantiles
 plotViolin(x, y, quantiles = c(0.25, 0.5, 0.75))
@@ -185,7 +185,7 @@ Other plot.univariate:
 \code{\link[=plotDensBox]{plotDensBox()}},
 \code{\link[=plotDot]{plotDot()}},
 \code{\link[=plotECDF]{plotECDF()}},
-\code{\link[=plotFdist]{plotFdist()}},
+\code{\link[=plotFreqDist]{plotFreqDist()}},
 \code{\link[=plotLines]{plotLines()}},
 \code{\link[=plotQQ]{plotQQ()}}
 }

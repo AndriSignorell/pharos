@@ -8,12 +8,14 @@
 #' @param x numeric vector of x-values.
 #' @param y numeric vector of y-values.
 #'
-#' @param bins number of hexagons across the x-axis.
+#' @param nBins number of hexagons across the x-axis.
 #'
 #' @param col colours used for the count scale. If `NULL`, a default
 #'   sequential palette is used.
 #' @param border border colour of the hexagons.
-#' @param grid logical or list controlling the background grid.
+#' @param grid controls the background grid. `.useTheme` (default) follows
+#'   the active theme (`getTheme()$grid`), `TRUE` draws it, `FALSE`, `NULL`
+#'   or `NA` suppress it, and a named list is passed to [graphics::grid()].
 #'
 #' @param xlim limits for the x-axis.
 #' @param ylim limits for the y-axis.
@@ -21,6 +23,10 @@
 #' @param main main title.
 #' @param xlab label for the x-axis.
 #' @param ylab label for the y-axis.
+#'
+#' @param stamp controls the corner stamp. `.useTheme` (default)
+#'   resolves to `getTheme()$stamp`. `TRUE`/`FALSE`/
+#'   `NULL`, a string, or a named list for [stamp()].
 #'
 #' @param ... additional graphical parameters passed to
 #'   `.applyParFromDots()`.
@@ -36,30 +42,31 @@
 #'
 #' @export
 plotHexbin <- function(
-    
-  # DATA
-  x,
-  y,
-  
-  # STRUCTURE
-  bins = 30,
-  
-  # STYLE
-  col = NULL,
-  border = NA,
-  grid = FALSE,
-  
-  # AXES
-  xlim = NULL,
-  ylim = NULL,
-  
-  # LABELS
-  main = NULL,
-  xlab = "",
-  ylab = "",
-  
-  ...
-  
+    # DATA
+    x,
+    y,
+
+    # LABELS
+    main = NULL,
+    xlab = "",
+    ylab = "",
+
+    # AXES
+    xlim = NULL,
+    ylim = NULL,
+
+    # STATISTICS
+    nBins = 30,
+
+    # STYLE
+    col    = NULL,
+    border = NA,
+    grid   = .useTheme,
+
+    # FRAMEWORK
+    stamp = .useTheme,
+
+    ...
 ) {
   
   # --- checks -------------------------------------------------------------
@@ -70,8 +77,8 @@ plotHexbin <- function(
   if (!is.numeric(x) || !is.numeric(y))
     stop("'x' and 'y' must be numeric")
   
-  if (!is.numeric(bins) || length(bins) != 1L || bins <= 0)
-    stop("'bins' must be a positive integer")
+  if (!is.numeric(nBins) || length(nBins) != 1L || nBins <= 0)
+    stop("'nBins' must be a positive integer")
   
   if (!requireNamespace("hexbin", quietly = TRUE))
     stop("Package 'hexbin' needed.")
@@ -101,7 +108,7 @@ plotHexbin <- function(
     hb <- hexbin::hexbin(
       x,
       y,
-      xbins = bins
+      xbins = nBins
     )
     
     coords <- hexbin::hcell2xy(hb)
@@ -126,8 +133,7 @@ plotHexbin <- function(
     
     # --- grid -------------------------------------------------------------
     
-    bedrock::callIf(
-      graphics::grid,
+    .drawGrid(
       grid,
       defaults = list(
         col = "grey90",
@@ -137,7 +143,7 @@ plotHexbin <- function(
     
     # --- hex geometry -----------------------------------------------------
     
-    dx <- diff(range(coords$x)) / bins
+    dx <- diff(range(coords$x)) / nBins
     dy <- dx * 2 / sqrt(3)
     
     # --- colours ----------------------------------------------------------
@@ -171,7 +177,7 @@ plotHexbin <- function(
       
     }
     
-  })
+  }, stamp = stamp)
   
   invisible(
     list(

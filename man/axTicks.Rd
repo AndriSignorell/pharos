@@ -2,13 +2,13 @@
 % Please edit documentation in R/axTicks.R
 \name{axTicks}
 \alias{axTicks}
-\alias{axTicks.POSIXct}
-\alias{axTicks.Date}
+\alias{axTicksPosixct}
+\alias{axTicksDate}
 \title{Compute Axis Tickmark Locations (For POSIXct Axis)}
 \usage{
-axTicks.POSIXct(side, x, at, format, labels = TRUE, ...)
+axTicksPosixct(side, x, at, format, labels = TRUE, ...)
 
-axTicks.Date(side = 1, x, ...)
+axTicksDate(side = 1, x, ...)
 }
 \arguments{
 \item{side}{see \link[graphics:axis]{graphics::axis}}
@@ -46,7 +46,7 @@ with(beaver1, {
   r <- as.POSIXct(round(range(time), "hours"))
   axis.POSIXct(1, at = seq(r[1], r[2], by = "hour"), format = "\%H")
   # place the grid
-  abline(v=axTicks.POSIXct(1, at = seq(r[1], r[2], by = "hour"), format = "\%H"),
+  abline(v=axTicksPosixct(1, at = seq(r[1], r[2], by = "hour"), format = "\%H"),
          col="grey", lty="dotted")
 })
 

@@ -4,7 +4,7 @@
 \alias{canvas}
 \title{Canvas for Geometric Plotting}
 \usage{
-canvas(xlim = NULL, ylim = xlim, main = NULL, asp = 1, usrbg = "white", ...)
+canvas(xlim = NULL, ylim = xlim, main = NULL, asp = 1, bg = "white", ...)
 }
 \arguments{
 \item{xlim, ylim}{the xlims and ylims for the plot. Default is c(-1, 1).}
@@ -14,7 +14,7 @@ canvas(xlim = NULL, ylim = xlim, main = NULL, asp = 1, usrbg = "white", ...)
 \item{asp}{numeric, giving the aspect ratio y/x. (See
 \code{\link[=plot.window]{plot.window()}} for details. Default is 1.}
 
-\item{usrbg}{the color of the user space of the plot, defaults to "white".}
+\item{bg}{the color of the user space of the plot, defaults to "white".}
 
 \item{\dots}{additional arguments are passed to the \code{plot()} command.}
 }

@@ -4,14 +4,14 @@
 \alias{circle}
 \title{Circle Geometry}
 \usage{
-circle(x = 0, y = 0, radius = 1, numPoints = 100)
+circle(x = 0, y = 0, radius = 1, nPoints = 100)
 }
 \arguments{
 \item{x, y}{centre coordinates.}
 
 \item{radius}{circle radius.}
 
-\item{numPoints}{number of points used to approximate the circle.}
+\item{nPoints}{number of points used to approximate the circle.}
 }
 \value{
 An object inheriting from class \code{"circleGeometry"}.
@@ -25,7 +25,7 @@ Other geometry.structures:
 \code{\link[=band]{band()}},
 \code{\link[=bezier]{bezier()}},
 \code{\link[=ellipse]{ellipse()}},
-\code{\link[=polygon]{polygon()}},
+\code{\link[=polygonX]{polygonX()}},
 \code{\link[=regPolygon]{regPolygon()}},
 \code{\link[=ring]{ring()}}
 }

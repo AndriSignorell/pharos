@@ -36,7 +36,7 @@
 #' @param xlim,ylim axis limits. `NULL` (default) uses the range of the
 #'   densities, padded by 2%; given limits are used as they are.
 #'
-#' @param horizontal logical; if `TRUE`, draws horizontal violins.
+#' @param horiz logical; if `TRUE`, draws horizontal violins.
 #' @param at numeric positions of the groups.
 #' @param names optional group labels.
 #' @param add logical; if `TRUE`, adds to an existing plot.
@@ -85,7 +85,7 @@
 #' plotViolin(x, y)
 #'
 #' # horizontal violins
-#' plotViolin(x, y, horizontal = TRUE)
+#' plotViolin(x, y, horiz = TRUE)
 #'
 #' # with quantiles
 #' plotViolin(x, y, quantiles = c(0.25, 0.5, 0.75))
@@ -127,41 +127,41 @@ plotViolin <- function(x, ...) {
 #' @method plotViolin default
 #' @export
 plotViolin.default <- function(
-    
-  # DATA
-  x,
-  
-  ...,
-  
-  # LABELS
-  main = NULL,
-  xlab = "",
-  ylab = "",
-  
-  # AXES
-  xlim = NULL,
-  ylim = NULL,
-  
-  # STRUCTURE
-  horizontal = FALSE,
-  at = NULL,
-  names = NULL,
-  add = FALSE,
-  bw = "nrd0",
-  trim = TRUE,
-  
-  # STYLE
-  col = "grey80",
-  border = "black",
-  lwd = 1,
-  box = TRUE,
-  grid = NA,
-  
-  # FEATURES
-  quantiles = NULL,
-  
-  stamp = .useTheme
-  
+    # DATA
+    x,
+    ...,
+
+    # LABELS
+    main = NULL,
+    xlab = "",
+    ylab = "",
+
+    # AXES
+    xlim = NULL,
+    ylim = NULL,
+
+    # STATISTICS
+    bw   = "nrd0",
+    trim = TRUE,
+
+    # STRUCTURE
+    horiz = FALSE,
+    at    = NULL,
+    names = NULL,
+    add   = FALSE,
+
+    # STYLE
+    col    = "grey80",
+    border = "black",
+    lwd    = 1,
+    grid   = NA,
+    box    = TRUE,
+
+    # FEATURES
+    quantiles = NULL,
+
+    # FRAMEWORK
+    stamp = .useTheme
 ) {
   
   m <- match.call(expand.dots = FALSE)
@@ -221,7 +221,7 @@ plotViolin.default <- function(
   valueLim <- dens_range + c(-0.02, 0.02) * diff(dens_range)
   groupLim <- range(at) + c(-0.5, 0.5)
   
-  if (!horizontal) {
+  if (!horiz) {
     xlim <- xlim %||% groupLim
     ylim <- ylim %||% valueLim
   } else {
@@ -279,7 +279,7 @@ plotViolin.default <- function(
       
       y <- dens$y / max(dens$y) * 0.4
       
-      if (!horizontal) {
+      if (!horiz) {
         polygon(
           c(at[i] + y, rev(at[i] - y)),
           c(dens$x, rev(dens$x)),
@@ -305,7 +305,7 @@ plotViolin.default <- function(
         
         qs <- quantile(xi, probs = quantiles)
         
-        if (!horizontal) {
+        if (!horiz) {
           segments(at[i] - 0.1, qs,
                    at[i] + 0.1, qs)
         } else {
@@ -318,13 +318,13 @@ plotViolin.default <- function(
     # --- box overlay --------------------------------------------
     
     bedrock::callIf(
-      fun = boxplot,
+      FUN = boxplot,
       arg = box,
       defaults = list(
         x = groups,
         at = at,
         add = TRUE,
-        horizontal = horizontal,
+        horizontal = horiz,
         axes = FALSE,
         outline = FALSE,
         boxwex = 0.1
@@ -333,7 +333,7 @@ plotViolin.default <- function(
     
     # --- axes ---------------------------------------------------
     
-    if (!horizontal) {
+    if (!horiz) {
       axis(1, at = at, labels = names)
       axis(2)
     } else {
@@ -353,23 +353,22 @@ plotViolin.default <- function(
 #' @method plotViolin formula
 #' @export
 plotViolin.formula <- function(
-    
-  # DATA
-  formula,
-  data,
-  subset,
-  na.action = na.omit,
-  
-  ...,
-  
-  # LABELS
-  main = NULL,
-  xlab = "",
-  ylab = "",
-  
-  horizontal = FALSE,
-  names = NULL
-  
+    # DATA
+    formula,
+    data,
+    subset,
+    na.action = na.omit,
+
+    # LABELS
+    main = NULL,
+    xlab = "",
+    ylab = "",
+
+    # STRUCTURE
+    horiz = FALSE,
+    names = NULL,
+
+    ...
 ) {
   
   # formula, data and subset are forwarded unevaluated, so that 'subset' is
@@ -389,8 +388,8 @@ plotViolin.formula <- function(
   grpName <- deparse1(formula[[3L]])
   resName <- deparse1(formula[[2L]])
   
-  if (!nzchar(xlab)) xlab <- if (horizontal) resName else grpName
-  if (!nzchar(ylab)) ylab <- if (horizontal) grpName else resName
+  if (!nzchar(xlab)) xlab <- if (horiz) resName else grpName
+  if (!nzchar(ylab)) ylab <- if (horiz) grpName else resName
   
   # --- call default method --------------------------------------
   # the remaining arguments (xlim, bw, col, box, ...) reach the default
@@ -401,7 +400,7 @@ plotViolin.formula <- function(
     main       = main,
     xlab       = xlab,
     ylab       = ylab,
-    horizontal = horizontal,
+    horiz      = horiz,
     names      = names %||% base::names(split_data),
     ...
   )

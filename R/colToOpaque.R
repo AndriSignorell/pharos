@@ -37,20 +37,20 @@ colToOpaque <- function(col, opacity=NULL, bg=NULL){
   # https://graphicdesign.stackexchange.com/questions/113007/how-to-determine-the-equivalent-opaque-rgb-color-for-a-given-partially-transpare
   # round(255 - opacity * (255-colToRgb(col)))
   if(is.null(bg))
-    bg <- colToRGB("white")
+    bg <- colToRgb("white")
   
   if(is.null(opacity)){
     # try to get the alpha channel from the color
     # this generates an incomprehensible error message, if there's no 4th dim:
     # Error in sapply(col, HexToRgb)[4, ] : subscript out of bounds
-    opacity <- sapply(col, hexToRGB)[4,] / 255
+    opacity <- sapply(col, hexToRgb)[4,] / 255
     
   } else {
     opacity[na <- (opacity < 0 | opacity > 1)] <- NA
   }
   
   # recycle col and opacity
-  lst <- recycle(rgb=lapply(col, hexToRGB), opacity=opacity)
+  lst <- recycle(rgb=lapply(col, hexToRgb), opacity=opacity)
   
   
   # algorithm:    res <- round(bg - opacity * (bg - col))

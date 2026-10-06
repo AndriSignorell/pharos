@@ -16,7 +16,7 @@
 #' The default method simply calls `print()`, so `preview()` is
 #' always safe to call even for types with no dedicated method.
 #'
-#' @seealso [as.html()]
+#' @seealso [asHtml()]
 #'
 
 #' @family graphics.utils  

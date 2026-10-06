@@ -8,16 +8,17 @@ plotTernary(
   x,
   y = NULL,
   z = NULL,
-  ...,
+  main = "",
+  xlim = c(-1, 1),
+  ylim = c(-0.5, 1),
   add = FALSE,
   col = NULL,
   pch = 16,
   cex = 1,
   grid = NA,
-  lbl = NULL,
-  main = "",
-  xlim = c(-1, 1),
-  ylim = c(-0.5, 1)
+  labels = NULL,
+  stamp = .useTheme,
+  ...
 )
 }
 \arguments{
@@ -29,7 +30,9 @@ Otherwise, \code{x} must contain exactly three columns.}
 
 \item{z}{optional numeric vector for the third component.}
 
-\item{...}{additional graphical parameters passed to \code{par()}.}
+\item{main}{plot title.}
+
+\item{xlim, ylim}{plot limits (usually left at defaults).}
 
 \item{add}{logical; if \code{TRUE}, adds to an existing plot.}
 
@@ -41,11 +44,13 @@ Otherwise, \code{x} must contain exactly three columns.}
 
 \item{grid}{logical, \code{NA}, or list controlling the ternary grid.}
 
-\item{lbl}{character vector of length 3 specifying axis labels.}
+\item{labels}{character vector of length 3 specifying axis labels.}
 
-\item{main}{plot title.}
+\item{stamp}{controls the corner stamp. \code{.useTheme} (default)
+resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
+\code{NULL}, a string, or a named list for \code{\link[=stamp]{stamp()}}.}
 
-\item{xlim, ylim}{plot limits (usually left at defaults).}
+\item{...}{additional graphical parameters passed to \code{par()}.}
 }
 \value{
 Invisibly returns \code{NULL}.
@@ -74,7 +79,7 @@ plotTernary(x, y, z)
 
 # matrix input
 M <- cbind(x, y, z)
-plotTernary(M, lbl = c("A", "B", "C"))
+plotTernary(M, labels = c("A", "B", "C"))
 
 }
 \seealso{

@@ -11,6 +11,7 @@ plotBinaryTree(
   horiz = FALSE,
   text = TRUE,
   line = TRUE,
+  stamp = .useTheme,
   ...
 )
 }
@@ -27,6 +28,10 @@ of \code{\link[=boxedText]{boxedText()}} (besides geometry and label).}
 
 \item{line}{properties of the line segments (\code{col},
 \code{lwd}, \code{lty}).}
+
+\item{stamp}{controls the corner stamp. \code{.useTheme} (default)
+resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
+\code{NULL}, a string, or a named list for \code{\link[=stamp]{stamp()}}.}
 
 \item{\dots}{the dots are sent to \code{\link[=canvas]{canvas()}}.}
 }

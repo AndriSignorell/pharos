@@ -22,7 +22,7 @@
 #' @param n integer; the number of x values at which to evaluate. Default is
 #' 101. 
 #' @param xname character string giving the name to be used for the x axis.
-#' @param \dots the dots are passed on to [polygon()]. 
+#' @param \dots the dots are passed on to [graphics::polygon()]. 
 #' 
 #' @return A list with components `x` and `y` of the points that were
 #' drawn is returned invisibly. 
@@ -36,7 +36,7 @@
 #'       col=c("deeppink4", "skyblue3"), density=c(20, 7))
 #' 
 #' 
-#' @seealso [polygon()], [curve()] 
+#' @seealso [graphics::polygon()], [curve()] 
 #' 
 #' @family plot.distribution
 #' @concept geometry

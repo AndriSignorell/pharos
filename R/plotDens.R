@@ -122,34 +122,37 @@ plotDens <- function(x, ...) {
 #' @method plotDens default
 #' @export
 plotDens.default <- function(
-    
-  # DATA
-  x, ...,
-  
-  # LABELS
-  main = NULL,
-  xlab = "",
-  ylab = "density",
-  
-  # AXES
-  xlim = NULL,
-  ylim = NULL,
-  
-  # STRUCTURE
-  add = FALSE,
-  bw = "nrd0",
-  
-  # STYLE
-  col = NULL,
-  lwd = 2,
-  lty = 1,
-  fill = FALSE,
-  grid = NULL,
-  legend = TRUE,
-  
-  # FRAMEWORK
-  stamp = .useTheme
-  
+    # DATA
+    x,
+    ...,
+
+    # LABELS
+    main = NULL,
+    xlab = "",
+    ylab = "density",
+
+    # AXES
+    xlim = NULL,
+    ylim = NULL,
+
+    # STATISTICS
+    bw = "nrd0",
+
+    # STRUCTURE
+    add = FALSE,
+
+    # STYLE
+    col  = NULL,
+    lwd  = 2,
+    lty  = 1,
+    fill = FALSE,
+    grid = NULL,
+
+    # FEATURES
+    legend = TRUE,
+
+    # FRAMEWORK
+    stamp = .useTheme
 ) {
   
   m    <- match.call(expand.dots = FALSE)
@@ -300,34 +303,40 @@ plotDens.default <- function(
 #'
 #' @noRd
 .plotDensConditional <- function(
-    
-  # DATA
-  y, x, g,
-  
-  # LABELS
-  main = "",
-  xlab = "x",
-  ylab = NULL,
-  
-  # AXES
-  xlim = NULL,
-  ylim = NULL,
-  
-  # STRUCTURE
-  add = FALSE,
-  bw = "nrd0",
-  
-  # STYLE
-  col = NULL,
-  lwd = 2,
-  lty = 1,
-  fill = FALSE,
-  grid = NA,
-  legend = TRUE,
-  
-  stamp = .useTheme,
+    # DATA
+    y,
+    x,
+    g,
 
-  ...
+    # LABELS
+    main = "",
+    xlab = "x",
+    ylab = NULL,
+
+    # AXES
+    xlim = NULL,
+    ylim = NULL,
+
+    # STATISTICS
+    bw = "nrd0",
+
+    # STRUCTURE
+    add = FALSE,
+
+    # STYLE
+    col  = NULL,
+    lwd  = 2,
+    lty  = 1,
+    fill = FALSE,
+    grid = NA,
+
+    # FEATURES
+    legend = TRUE,
+
+    # FRAMEWORK
+    stamp = .useTheme,
+
+    ...
 ) {
   
   if (!is.factor(y)) y <- factor(y)
@@ -445,23 +454,21 @@ plotDens.default <- function(
 #' @method plotDens formula
 #' @export
 plotDens.formula <- function(
-    
-  # DATA
-  formula,
-  data,
-  subset,
-  na.action = na.omit,
-  
-  ...,
-  
-  # LABELS
-  main = NULL,
-  xlab = "",
-  ylab = NULL,
-  
-  # STRUCTURE
-  type = NULL
-  
+    # DATA
+    formula,
+    data,
+    subset,
+    na.action = na.omit,
+
+    # LABELS
+    main = NULL,
+    xlab = "",
+    ylab = NULL,
+
+    # STRUCTURE
+    type = NULL,
+
+    ...
 ) {
   
   # formula, data and subset are forwarded unevaluated, so that 'subset' is

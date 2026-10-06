@@ -15,9 +15,9 @@
 #' @seealso [stringi::stri_count_words()]
 #'
 #' @examples
-#' strCountW("This is a sentence.")
+#' strCountWords("This is a sentence.")
 #'
-#' strCountW(c("One word", "Two words here", NA))
+#' strCountWords(c("One word", "Two words here", NA))
 #'
 
 
@@ -31,7 +31,7 @@
 #'
 #'
 #' @export
-strCountW <- function(x) {
+strCountWords <- function(x) {
   stringi::stri_count_words(x)
 }
 

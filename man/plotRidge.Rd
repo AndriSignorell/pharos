@@ -9,10 +9,15 @@
 \method{plotRidge}{default}(
   x,
   ...,
-  add = FALSE,
+  main = NULL,
+  xlab = "",
+  ylab = "",
+  xlim = NULL,
+  ylim = NULL,
   bw = "nrd0",
-  scale = 1,
   normalize = c("global", "group"),
+  add = FALSE,
+  scale = 1,
   spacing = 1,
   col = NULL,
   border = NULL,
@@ -20,11 +25,6 @@
   lty = 1,
   fill = TRUE,
   grid = NA,
-  main = NULL,
-  xlab = "",
-  ylab = "",
-  xlim = NULL,
-  ylim = NULL,
   stamp = .useTheme
 )
 
@@ -33,10 +33,10 @@
   data,
   subset,
   na.action = na.omit,
-  ...,
   main = NULL,
   xlab = "",
-  ylab = ""
+  ylab = "",
+  ...
 )
 }
 \arguments{
@@ -46,11 +46,16 @@ groups.}
 \item{...}{further numeric vectors (unnamed), each forming a group, or
 graphical parameters passed to \code{par()}.}
 
-\item{add}{logical; if \code{TRUE}, adds to an existing plot.}
+\item{main}{main title. \code{NULL} (default) derives the title from the
+input: the names of the data arguments, or the formula. \code{""}, \code{NA}, or
+\code{FALSE} suppress the title and compact the top margin.}
+
+\item{xlab, ylab}{axis labels. For the formula method, empty labels
+default to the response and the grouping variable.}
+
+\item{xlim, ylim}{axis limits.}
 
 \item{bw}{bandwidth for \code{\link[stats:density]{stats::density()}}.}
-
-\item{scale}{scaling factor for density height.}
 
 \item{normalize}{how the density heights are scaled to \code{scale}:
 \code{"global"} (default) divides all densities by the highest peak of all
@@ -58,6 +63,10 @@ groups, so that heights stay comparable across groups (as in ggridges);
 \code{"group"} divides each density by its own peak, so that every ridge
 reaches the full height. Use the latter when a single narrow group
 would otherwise flatten all others.}
+
+\item{add}{logical; if \code{TRUE}, adds to an existing plot.}
+
+\item{scale}{scaling factor for density height.}
 
 \item{spacing}{vertical spacing between ridges.}
 
@@ -74,15 +83,6 @@ uses \code{col}.}
 \item{fill}{logical; fill area under densities.}
 
 \item{grid}{logical, \code{NA}, or list controlling grid.}
-
-\item{main}{main title. \code{NULL} (default) derives the title from the
-input: the names of the data arguments, or the formula. \code{""}, \code{NA}, or
-\code{FALSE} suppress the title and compact the top margin.}
-
-\item{xlab, ylab}{axis labels. For the formula method, empty labels
-default to the response and the grouping variable.}
-
-\item{xlim, ylim}{axis limits.}
 
 \item{stamp}{controls the corner stamp. \code{.useTheme} (default)
 resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/\code{NULL}, a string, or a

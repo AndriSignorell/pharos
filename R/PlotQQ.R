@@ -9,7 +9,7 @@
 #' those into quantiles by means of the defined assumed distribution. 
 #' 
 #' @param x the data sample 
-#' @param qdist the quantile function of the assumed distribution. Can either
+#' @param qFun the quantile function of the assumed distribution. Can either
 #' be given as simple function name or defined as own function using the
 #' required arguments. Default is `qnorm()`. See examples.
 #' 
@@ -22,6 +22,8 @@
 #' @param add logical specifying if the points should be added to an already
 #' existing plot; defaults to `FALSE`.
 #' 
+#' @param cex character expansion factor for the points. `.useTheme`
+#'   (default) resolves to `getTheme()$points$cex`.
 #' @param grid controls drawing of the background grid. `.useTheme`
 #'   (default) follows the active theme (`getTheme()$grid`).
 #'   `TRUE`/`FALSE`/`NA`, or a named list, as for
@@ -69,11 +71,11 @@
 #' plotQQ(y, function(p) qexp(p, rate=1/10))
 #' 
 #' w <- rweibull(100, shape=2)
-#' plotQQ(w, qdist = function(p) qweibull(p, shape=4))
+#' plotQQ(w, qFun = function(p) qweibull(p, shape=4))
 #' 
 #' z <- rchisq(100, df=5)
 #' plotQQ(z, function(p) qchisq(p, df=5),
-#'        args.qqline=list(col=2, probs=c(0.1, 0.6)),
+#'        qqline=list(col=2, probs=c(0.1, 0.6)),
 #'        main=expression("Q-Q plot for" ~~ {chi^2}[nu == 3]))
 #' abline(0,1)
 #' 
@@ -83,7 +85,7 @@
 #' # add 5 random sets
 #' for(i in 1:5){
 #'   z <- rchisq(100, df=5)
-#'   plotQQ(z, function(p) qchisq(p, df=5), add=TRUE, args.qqline = NA,
+#'   plotQQ(z, function(p) qchisq(p, df=5), add=TRUE, qqline = FALSE,
 #'          col="grey", lty="dotted")
 #' }
 #' 
@@ -97,26 +99,34 @@
 #'
 #'
 #' @export
-plotQQ <- function(x, qdist=stats::qnorm, 
-                   
-                   # LABELS
-                   main=NULL, xlab=NULL, ylab=NULL, 
-                   
-                   # STRUCTURE
-                   datax = FALSE, add=FALSE,
-                   
-                   # STYLE
-                   grid = .useTheme, 
-                   box  = .useTheme,
-                   
-                   # FEATURES
-                   cband  = list(conf.level = 0.95), 
-                   qqline = TRUE, 
-                   
-                   # FRAMEWORK
-                   stamp = .useTheme,
-                   
-                   ...) {
+plotQQ <- function(
+    # DATA
+    x,
+    qFun = qnorm,
+
+    # LABELS
+    main = NULL,
+    xlab = NULL,
+    ylab = NULL,
+
+    # STRUCTURE
+    datax = FALSE,
+    add   = FALSE,
+
+    # STYLE
+    cex  = .useTheme,
+    grid = .useTheme,
+    box  = .useTheme,
+
+    # FEATURES
+    cband  = list(conf.level = 0.95),
+    qqline = TRUE,
+
+    # FRAMEWORK
+    stamp = .useTheme,
+
+    ...
+) {
   
   
   .withGraphicsState({
@@ -131,7 +141,7 @@ plotQQ <- function(x, qdist=stats::qnorm,
     # resolve main BEFORE applying par defaults, the top margin 
     # depends on it
     main <- main %||% gettextf("Q-Q-Plot (%s)", 
-                               deparse(substitute(qdist))[1L])
+                               deparse(substitute(qFun))[1L])
     
     .applyParFromDots(..., 
                       defaults=list(
@@ -145,7 +155,7 @@ plotQQ <- function(x, qdist=stats::qnorm,
     
     y <- sort(x)
     p <- stats::ppoints(y)
-    x <- qdist(p)
+    x <- qFun(p)
     
     if(datax){
       # Should data values be on the x-axis?
@@ -170,8 +180,8 @@ plotQQ <- function(x, qdist=stats::qnorm,
     }
     
     
-    # conf.level lebt in cband (konsistent mit lines.loess()'s bandArgs /
-    # plot.Lc()'s cbandArgs), wird aber hier herausgeloest, BEVOR die
+    # conf.level lebt in cband (konsistent mit lines.loess()'s band /
+    # plot.Lc()'s cband), wird aber hier herausgeloest, BEVOR die
     # Liste an callIf() weitergeht - sonst haelt 'forbidden' es faelschlich
     # fuer einen Missbrauchsfall und warnt bei jedem normalen Aufruf,
     # auch wenn niemand etwas falsch gemacht hat.
@@ -189,7 +199,7 @@ plotQQ <- function(x, qdist=stats::qnorm,
                       col    = addOpacity(getTheme()$twin[1], 0.25), 
                       border = NA,
                       ci     = .create.qqplot.fit.confidence.interval(
-                        y, distribution = qdist, 
+                        y, distribution = qFun, 
                         conf=confLevel, conf.method = "pointwise")
                     ),
                     forbidden = "ci",
@@ -201,7 +211,7 @@ plotQQ <- function(x, qdist=stats::qnorm,
       defaults = list(
         x=x, y=y,
         pch = 21,
-        cex = 1,
+        cex = .useThemeValue(cex, "points", "cex"),
         bg = addOpacity("white", 0.8)
       ),
       user = list(...)
@@ -212,7 +222,7 @@ plotQQ <- function(x, qdist=stats::qnorm,
       qqline,
       defaults = list(
         y     = y,
-        qdist = qdist,
+        qFun  = qFun,
         probs = c(0.25, 0.75),
         qtype = 7,
         col   = par("fg"),
@@ -231,7 +241,7 @@ plotQQ <- function(x, qdist=stats::qnorm,
 .drawConfBandQQ <- function(col = addOpacity("grey", opacity = 0.5), border=NA, 
                             ci ){
   
-  polygon(band(x = c(ci$z, rev(ci$z)),
+  polygonX(band(x = c(ci$z, rev(ci$z)),
            y = c(ci$upper.pw, rev(ci$lower.pw))), 
            col  = col, border = border)
   
@@ -410,7 +420,7 @@ plotQQ <- function(x, qdist=stats::qnorm,
 }
 
 
-.drawQQline <- function(y, qdist,
+.drawQQline <- function(y, qFun,
                         probs = c(0.25, 0.75),
                         qtype = 7,
                         col = par("fg"),
@@ -424,7 +434,7 @@ plotQQ <- function(x, qdist=stats::qnorm,
     na.rm = TRUE
   )
   
-  lx <- qdist(probs)
+  lx <- qFun(probs)
   
   slope <- diff(ly) / diff(lx)
   intercept <- ly[1L] - slope * lx[1L]

@@ -21,7 +21,7 @@
 #' 
 #' @param height either a vector or matrix of values describing the bars which
 #' make up the plot exactly as used for creating the barplot. 
-#' @param b the returned mid points as returned by `b <- barplot(...)`. 
+#' @param mids the returned mid points as returned by `b <- barplot(...)`. 
 #' @param labels the labels to be placed on the bars. 
 #' @param beside a logical value. If `FALSE`, the columns of height are
 #' portrayed as stacked bars, and if `TRUE` the columns are portrayed as
@@ -35,8 +35,8 @@
 #' @param adj one or two values in \verb{[0, 1]} which specify the x (and optionally
 #' y) adjustment of the labels. On most devices values outside that interval
 #' will also work.
-#' @param pos one of `"topout"`, `"topin"`, `"mid"`,
-#' `"bottomin"`, `"bottomout"`, defining if the labels should be
+#' @param pos one of `"top-out"`, `"top-in"`, `"mid"`,
+#' `"bottom-in"`, `"bottom-out"`, defining if the labels should be
 #' placed on top of the bars (inside or outside) or at the bottom of the bars
 #' (inside or outside).
 #' @param offset a vector indicating how much the bars should be shifted
@@ -56,18 +56,18 @@
 #' 
 #' # more complicated
 #' b <- barplot(VADeaths, horiz = FALSE, col="steelblue", beside = TRUE)
-#' barText(VADeaths, b=b, horiz = FALSE, beside = TRUE, cex=0.8)
-#' barText(VADeaths, b=b, horiz = FALSE, beside = TRUE, cex=0.8, pos="bottomin",
+#' barText(VADeaths, mids=b, horiz = FALSE, beside = TRUE, cex=0.8)
+#' barText(VADeaths, mids=b, horiz = FALSE, beside = TRUE, cex=0.8, pos="bottom-in",
 #'         col="white", font=2)
 #' 
 #' b <- barplot(VADeaths, horiz = TRUE, col="steelblue", beside = TRUE)
-#' barText(VADeaths, b=b, horiz = TRUE, beside = TRUE, cex=0.8)
+#' barText(VADeaths, mids=b, horiz = TRUE, beside = TRUE, cex=0.8)
 #' 
 #' b <- barplot(VADeaths)
-#' barText(VADeaths, b=b)
+#' barText(VADeaths, mids=b)
 #' 
 #' b <- barplot(VADeaths, horiz = TRUE)
-#' barText(VADeaths, b=b, horiz = TRUE, col="red", cex=1.5)
+#' barText(VADeaths, mids=b, horiz = TRUE, col="red", cex=1.5)
 #' 
 #' @family graphics.annotation
 #' @concept annotation
@@ -75,10 +75,10 @@
 #'
 #'
 #' @export
-barText <- function(height, b, labels = height, beside = FALSE, horiz = FALSE,
+barText <- function(height, mids, labels = height, beside = FALSE, horiz = FALSE,
                     cex = par("cex"),
                     adj = NULL,
-                    pos = c("topout", "topin", "mid", "bottomin", "bottomout"),
+                    pos = c("top-out", "top-in", "mid", "bottom-in", "bottom-out"),
                     offset = 0, col = NULL, ...) {
   
   pos <- match.arg(pos)
@@ -122,28 +122,28 @@ barText <- function(height, b, labels = height, beside = FALSE, horiz = FALSE,
       shift <- 1.2 * sign(height) * char_w
       
       x <- switch(pos,
-                  topout    = height + offset + shift,
-                  topin     = height + offset - shift,
-                  mid       = offset + height / 2,
-                  bottomin  = offset + shift,
-                  bottomout = offset - shift
+                  "top-out"    = height + offset + shift,
+                  "top-in"     = height + offset - shift,
+                  mid          = offset + height / 2,
+                  "bottom-in"  = offset + shift,
+                  "bottom-out" = offset - shift
       )
       
       adjx <- switch(pos,
-                     topout    = -sign(height),
-                     topin     =  sign(height),
-                     mid       =  0.5,
-                     bottomin  = -sign(height),
-                     bottomout =  sign(height)
+                     "top-out"    = -sign(height),
+                     "top-in"     =  sign(height),
+                     mid          =  0.5,
+                     "bottom-in"  = -sign(height),
+                     "bottom-out" =  sign(height)
       )
       
-      pp <- recycle(b = b, x = x, labels = labels,
+      pp <- recycle(b = mids, x = x, labels = labels,
                     adjx = adjx, adjy = adjy)
       
       for (i in seq_len(attr(pp, "maxdim"))) {
         with(pp,
              .btext(
-               x = x[i], y = b[i],
+               x = x[i], y = mids[i],
                labels = labels[i],
                adj = c(adjx[i], adjy[i]),
                cex = cex, col = col, xpd = TRUE, ...
@@ -160,14 +160,14 @@ barText <- function(height, b, labels = height, beside = FALSE, horiz = FALSE,
     shift <- sign(height) * char_h
     
     y <- switch(pos,
-                topout    = height + offset + shift,
-                topin     = height + offset - shift,
-                mid       = offset + height / 2,
-                bottomin  = offset + shift,
-                bottomout = offset - shift
+                "top-out"    = height + offset + shift,
+                "top-in"     = height + offset - shift,
+                mid          = offset + height / 2,
+                "bottom-in"  = offset + shift,
+                "bottom-out" = offset - shift
     )
     
-    .btext(x = b, y = y, labels = labels,
+    .btext(x = mids, y = y, labels = labels,
            adj = adj, cex = cex, col = col,
            xpd = TRUE, ...)
     
@@ -183,33 +183,33 @@ barText <- function(height, b, labels = height, beside = FALSE, horiz = FALSE,
   cum_height <- apply(offset + height, 2, cumsum)
   
   x <- switch(pos,
-              topout    = t(cum_height + sign(height) * shift),
-              topin     = t(cum_height - sign(height) * shift),
-              mid       = t(apply(offset + height, 2, midx,
+              "top-out"    = t(cum_height + sign(height) * shift),
+              "top-in"     = t(cum_height - sign(height) * shift),
+              mid          = t(apply(offset + height, 2, midx,
                                   inclZero = TRUE, cumulate = TRUE)),
-              bottomin  = t(head(rbind(0, cum_height), -1) +
+              "bottom-in"  = t(head(rbind(0, cum_height), -1) +
                               sign(height) * shift),
-              bottomout = t(head(rbind(0, cum_height), -1) -
+              "bottom-out" = t(head(rbind(0, cum_height), -1) -
                               sign(height) * shift)
   )
   
   adj_base <- switch(pos,
-                     topout    = 0,
-                     topin     = 1,
-                     mid       = 0.5,
-                     bottomin  = 0,
-                     bottomout = 1
+                     "top-out"    = 0,
+                     "top-in"     = 1,
+                     mid          = 0.5,
+                     "bottom-in"  = 0,
+                     "bottom-out" = 1
   )
   
   if (is.null(adj)) adj <- 0.5
   
   if (horiz) {
-    .btext(x = x, y = b,
+    .btext(x = x, y = mids,
            labels = t(labels),
            adj = c(adj_base, 0.5),
            cex = cex, col = col, ...)
   } else {
-    .btext(x = b, y = x,
+    .btext(x = mids, y = x,
            labels = t(labels),
            adj = c(0.5, adj_base),
            cex = cex, col = col, ...)

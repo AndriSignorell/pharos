@@ -10,8 +10,9 @@
 #'   [shade()]; interior values are the actual boundaries.
 #' @param FUN the distribution density function to plot, typically of the form
 #'   `function(x) dnorm(x, mean=0, sd=1)`.
-#' @param main main title for the plot. `NULL` or `""` suppresses
-#'   the title and reduces the top margin automatically.
+#' @param main main title for the plot. `NULL` (default) takes the
+#'   expression passed as `FUN`; `""`, `NA` or `FALSE` suppress the title and
+#'   reduce the top margin.
 #' @param xlim numeric vector of length 2. x-axis limits passed to
 #'   [curve()].
 #' @param col color(s) for the shaded areas. Recycled if shorter than the
@@ -30,14 +31,16 @@
 #'   `TRUE` uses `LETTERS` as default labels. A character vector
 #'   sets explicit labels. A named list overrides individual arguments
 #'   (e.g. `list(cex = 1.8, font = 1)`).
-#' @param grid controls background grid. `FALSE` (default) suppresses the
-#'   grid. `TRUE` or `.useTheme` draws a grid according to the
-#'   current theme. A named list overrides individual arguments passed to
-#'   [grid()].
+#' @param grid controls the background grid. `.useTheme` (default) follows
+#'   the active theme, `TRUE` draws it, `FALSE`, `NULL` or `NA` suppress it.
+#'   A named list overrides individual arguments passed to [grid()].
 #' @param box controls the plot box. `.useTheme` (default) uses the
 #'   current theme setting. `TRUE`/`FALSE` forces the box on or off.
 #'   A named list overrides individual arguments passed to
 #'   [box()].
+#' @param stamp controls the corner stamp. `.useTheme` (default)
+#'   resolves to `getTheme()$stamp`. `TRUE`/`FALSE`/
+#'   `NULL`, a string, or a named list for [stamp()].
 #' @param \dots further graphical parameters passed to [curve()]
 #'   and `.applyParFromDots()`, e.g. `las`, `col.axis`.
 #'
@@ -80,15 +83,38 @@
 #'
 #'
 #' @export
-plotProbDist <- function(breaks, FUN, main = "",
-                         xlim = NULL,
-                         col = NULL, density = 7, ylab = "density",
-                         areaLabels = NULL,
-                         breakLabels = NULL,
-                         grid = FALSE,
-                         box  = .useTheme,
-                         ...) {
+plotProbDist <- function(
+    # DATA
+    breaks,
+    FUN,
+
+    # LABELS
+    main = NULL,
+    ylab = "density",
+
+    # AXES
+    xlim = NULL,
+
+    # STYLE
+    col     = NULL,
+    density = 7,
+    grid    = .useTheme,
+    box     = .useTheme,
+
+    # FEATURES
+    areaLabels  = NULL,
+    breakLabels = NULL,
+
+    # FRAMEWORK
+    stamp = .useTheme,
+
+    ...
+) {
   
+  # the default title is the density as the caller wrote it
+  mc   <- match.call()
+  main <- .resolveTitle(main, default = deparse1(mc$FUN))
+
   .withGraphicsState({
     
     .applyParFromDots(...,
@@ -140,6 +166,6 @@ plotProbDist <- function(breaks, FUN, main = "",
       )
     )
     
-  })
+  }, stamp = stamp)
 }
 

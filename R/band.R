@@ -33,7 +33,7 @@
 #'
 #' plot(y ~ x)
 #'
-#' polygon(
+#' polygonX(
 #'   band(
 #'     x = new,
 #'     y = pred[,2:3]

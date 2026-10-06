@@ -42,7 +42,7 @@ Other color.manipulation:
 \code{\link[=darken]{darken()}},
 \code{\link[=fade]{fade()}},
 \code{\link[=lighten]{lighten()}},
-\code{\link[=mixColors]{mixColors()}}
+\code{\link[=mixCol]{mixCol()}}
 }
 \concept{color}
 \concept{color.manipulation}

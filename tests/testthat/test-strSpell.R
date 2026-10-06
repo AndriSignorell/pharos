@@ -14,7 +14,7 @@ test_that("strSpell converts to NATO alphabet", {
 
 test_that("strSpell converts to Morse code", {
   expect_equal(
-    strSpell("SOS", type = "Morse"),
+    strSpell("SOS", type = "morse"),
     c("...", "---", "...")
   )
 })

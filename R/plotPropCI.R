@@ -29,7 +29,7 @@
 #'   [plotCor()]/[plotWeb()], there is no positive/
 #'   negative sign convention here, since proportions of two arbitrary
 #'   categories (e.g. "yes"/"no") have no inherent sign.
-#' @param ci.col colour for the confidence interval bands. Default is a
+#' @param ciCol colour for the confidence interval bands. Default is a
 #'   semi-transparent grey (`addOpacity("grey80", 0.12)`). Deliberately
 #'   not theme-driven (like the sequential scales in
 #'   [plotDens2D()]/[plotHeatmap()]): this is a
@@ -93,33 +93,34 @@
 #'
 #' @export
 plotPropCI <- function(
-    
-  # DATA
-  x,
-  
-  # LABELS
-  main   = NULL,
-  labels = c("", ""),
-  xlab   = "",
-  
-  # AXES
-  xlim = c(0, 1),
-  
-  # STYLE
-  col      = .useTheme,
-  ci.col   = addOpacity("grey80", 0.12),
-  border   = NA,
-  ciLevels = seq(0.99, 0.80, by = -0.01),
-  grid     = .useTheme,
-  box      = FALSE,
-  
-  # FEATURES
-  legend = TRUE,
-  
-  # FRAMEWORK
-  stamp = .useTheme,
-  
-  ...
+    # DATA
+    x,
+
+    # LABELS
+    main = NULL,
+    xlab = "",
+
+    # AXES
+    xlim = c(0, 1),
+
+    # STATISTICS
+    ciLevels = seq(0.99, 0.80, by = -0.01),
+
+    # STYLE
+    col    = .useTheme,
+    ciCol  = addOpacity("grey80", 0.12),
+    border = NA,
+    grid   = .useTheme,
+    box    = FALSE,
+
+    # FEATURES
+    labels = c("", ""),
+    legend = TRUE,
+
+    # FRAMEWORK
+    stamp = .useTheme,
+
+    ...
 ) {
   
   mc           <- match.call()
@@ -199,7 +200,7 @@ plotPropCI <- function(
         ybottom = b - bar.width / 2,
         xright  = ci[, "uci"],
         ytop    = b + bar.width / 2,
-        col     = ci.col,
+        col     = ciCol,
         border  = border
       )
     }
@@ -233,7 +234,7 @@ plotPropCI <- function(
         legend = sprintf("%s%% \u2013 %s%% CI",
                          round(min(ciLevels) * 100),
                          round(max(ciLevels) * 100)),
-        fill   = ci.col,
+        fill   = ciCol,
         bty    = "n",
         inset  = c(-0.045, -0.24),
         xpd    = NA

@@ -14,11 +14,11 @@
 #' The curve of `plot.Lc()` is drawn by `lines.Lc()` and the
 #' symbols by `points.Lc()`, so all three methods share one code path
 #' and one set of semantics - including the confidence band, which is
-#' controlled by `cbandArgs` in `plot.Lc()` exactly as it is in
+#' controlled by `cband` in `plot.Lc()` exactly as it is in
 #' `lines.Lc()`.  Pass a list of arguments to
 #' `DescToolsX::predict.Lc()` to control the bootstrap (e.g.
-#' `cbandArgs = list(conf.level = 0.90, n = 500)`).  Set
-#' `cbandArgs = NA` (default) to suppress the band.  Note that
+#' `cband = list(conf.level = 0.90, n = 500)`).  Set
+#' `cband = NA` (default) to suppress the band.  Note that
 #' `line = FALSE` suppresses the band along with the curve.
 #'
 #' With `general = TRUE` the generalized Lorenz curve is displayed.
@@ -83,7 +83,7 @@
 #'   `lines.Lc()`.  Default is `1`.
 #' @param pch plotting symbol, used by `points.Lc()` only.  Default is
 #'   `16`.
-#' @param cbandArgs used by `plot.Lc()` and `lines.Lc()`.
+#' @param cband used by `plot.Lc()` and `lines.Lc()`.
 #'   `NA` to suppress the confidence band (default), or a list of
 #'   arguments passed to `DescToolsX::predict.Lc()` to control
 #'   bootstrap confidence intervals.
@@ -129,7 +129,7 @@ NULL
 
   keep <- c(
     # lines.Lc() formals
-    "general", "cbandArgs",
+    "general", "cband",
     # graphical parameters honoured by plot.xy()
     "lwd", "lty", "type", "pch", "cex", "bg",
     "lend", "ljoin", "lmitre", "xpd"
@@ -168,7 +168,7 @@ plot.Lc <- function(
   box = .useTheme,
 
   # FEATURES
-  cbandArgs = NA,
+  cband = NA,
 
   stamp = .useTheme,
   ...
@@ -247,7 +247,7 @@ plot.Lc <- function(
 
     # --- Lorenz curve, incl. confidence band ---
     # Delegated to lines.Lc() so that plot(), lines() and the LcList
-    # methods share one implementation - notably for cbandArgs.
+    # methods share one implementation - notably for cband.
     callIf(
       graphics::lines,
       line,
@@ -257,7 +257,7 @@ plot.Lc <- function(
         col = col %||% "black",
         lty = 1,
         lwd = 2,
-        cbandArgs = cbandArgs)
+        cband = cband)
     )
 
     # --- box ---
@@ -299,7 +299,7 @@ lines.Lc <- function(
   lty = 1,
 
   # FEATURES
-  cbandArgs = NA,
+  cband = NA,
 
   ...
 
@@ -314,7 +314,7 @@ lines.Lc <- function(
   # --- confidence band ---
   ci <- callIf(
     predict,
-    cbandArgs,
+    cband,
     defaults = list(
       object = x,
       conf.level = 0.95,
@@ -325,7 +325,7 @@ lines.Lc <- function(
 
   callIf(
     .drawBandCI,
-    cbandArgs,
+    cband,
     defaults = list(
       x = ci$p,
       ci = cbind(ci$lci, ci$uci),

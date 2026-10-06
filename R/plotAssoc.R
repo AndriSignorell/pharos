@@ -64,7 +64,7 @@
 #'   Friendly, M. (1992). Graphical methods for categorical data.
 #'   *SAS User Group International Conference Proceedings*, 17, 190--200.
 #'
-#' @seealso [graphics::mosaicplot], `DescToolsX::conf`
+#' @seealso [graphics::mosaicplot], `DescToolsX::confusion`
 #'
 #' @examples
 #' tab <- table(bedrock::Pizza$driver, bedrock::Pizza$area)

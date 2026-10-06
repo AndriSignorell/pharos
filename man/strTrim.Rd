@@ -4,7 +4,7 @@
 \alias{strTrim}
 \title{Remove Leading/Trailing Whitespace From A String}
 \usage{
-strTrim(x, pattern = " \\t\\n", method = "both")
+strTrim(x, pattern = " \\t\\n", method = c("both", "left", "right"))
 }
 \arguments{
 \item{x}{the string to be trimmed}

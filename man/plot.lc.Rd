@@ -23,12 +23,12 @@
   eqline = TRUE,
   grid = .useTheme,
   box = .useTheme,
-  cbandArgs = NA,
+  cband = NA,
   stamp = .useTheme,
   ...
 )
 
-\method{lines}{Lc}(x, general = FALSE, col = NULL, lwd = 2, lty = 1, cbandArgs = NA, ...)
+\method{lines}{Lc}(x, general = FALSE, col = NULL, lwd = 2, lty = 1, cband = NA, ...)
 
 \method{points}{Lc}(x, general = FALSE, pch = 16, col = NULL, ...)
 
@@ -93,7 +93,7 @@ plot region, used by \code{plot.Lc()} only.  \code{.useTheme}
 force drawing/suppression, and a named list is forwarded to
 \code{\link[graphics:grid]{graphics::grid()}} resp. \code{\link[graphics:box]{graphics::box()}}.}
 
-\item{cbandArgs}{used by \code{plot.Lc()} and \code{lines.Lc()}.
+\item{cband}{used by \code{plot.Lc()} and \code{lines.Lc()}.
 \code{NA} to suppress the confidence band (default), or a list of
 arguments passed to \code{DescToolsX::predict.Lc()} to control
 bootstrap confidence intervals.}
@@ -139,11 +139,11 @@ recycled to the number of groups otherwise.
 The curve of \code{plot.Lc()} is drawn by \code{lines.Lc()} and the
 symbols by \code{points.Lc()}, so all three methods share one code path
 and one set of semantics - including the confidence band, which is
-controlled by \code{cbandArgs} in \code{plot.Lc()} exactly as it is in
+controlled by \code{cband} in \code{plot.Lc()} exactly as it is in
 \code{lines.Lc()}.  Pass a list of arguments to
 \code{DescToolsX::predict.Lc()} to control the bootstrap (e.g.
-\code{cbandArgs = list(conf.level = 0.90, n = 500)}).  Set
-\code{cbandArgs = NA} (default) to suppress the band.  Note that
+\code{cband = list(conf.level = 0.90, n = 500)}).  Set
+\code{cband = NA} (default) to suppress the band.  Note that
 \code{line = FALSE} suppresses the band along with the curve.
 
 With \code{general = TRUE} the generalized Lorenz curve is displayed.

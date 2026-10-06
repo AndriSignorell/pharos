@@ -321,7 +321,7 @@ fcol <- .pal_data$discrete$helsana
 #' @rdname graphics-framework
 #' @export
 .marTop <- function(main) {
-  noTitle <- isFALSE(main) || identical(main, "") || isTRUE(is.na(main))
+  noTitle <- isFALSE(main) || identical(main, "") || isNA(main)
   if (noTitle) 2.1 else 4.1
 }
 
@@ -376,7 +376,7 @@ fcol <- .pal_data$discrete$helsana
   if (is.null(main))
     return(default)
 
-  noTitle <- isFALSE(main) || identical(main, "") || isTRUE(is.na(main))
+  noTitle <- isFALSE(main) || identical(main, "") || isNA(main)
 
   if (noTitle) "" else main
 }
@@ -442,7 +442,7 @@ fcol <- .pal_data$discrete$helsana
 #' @param cex character expansion used for measuring; defaults to
 #'   `par("cex.axis")`.
 #' @param pad additional padding in lines.
-#' @param axis.line offset of the axis labels from the plot region, in
+#' @param axisLine offset of the axis labels from the plot region, in
 #'   lines (corresponds to the second element of `mgp`).
 #'
 #' @return A single numeric: the required margin size in lines (ceiling),
@@ -456,7 +456,7 @@ fcol <- .pal_data$discrete$helsana
                           side = 2,
                           cex = par("cex.axis"),
                           pad = 0.5,
-                          axis.line = 1) {
+                          axisLine = 1) {
 
   if(length(labels) == 0)
     return(0)
@@ -470,7 +470,7 @@ fcol <- .pal_data$discrete$helsana
 
   lines <- size / lineHeight
 
-  ceiling(lines + axis.line + pad)
+  ceiling(lines + axisLine + pad)
 }
 
 
@@ -491,7 +491,7 @@ fcol <- .pal_data$discrete$helsana
 #' @param cex character expansion used for measuring; defaults to
 #'   `par("cex")`.
 #' @param pad additional padding in lines.
-#' @param axis.line offset of the axis labels from the plot region, in
+#' @param axisLine offset of the axis labels from the plot region, in
 #'   lines.
 #'
 #' @return A single numeric: the required margin size in lines (ceiling).
@@ -503,7 +503,7 @@ fcol <- .pal_data$discrete$helsana
                          las = par("las"),
                          cex = par("cex"),
                          pad = 0,
-                         axis.line = 0) {
+                         axisLine = 0) {
 
   if(is.null(labels) || !length(labels))
     return(0)
@@ -520,7 +520,7 @@ fcol <- .pal_data$discrete$helsana
   lineHeight <- par("csi") * par("mex")
 
   ceiling(
-    1.15 * (size / lineHeight + axis.line + pad)
+    1.15 * (size / lineHeight + axisLine + pad)
   )
 
 }
@@ -543,7 +543,7 @@ fcol <- .pal_data$discrete$helsana
 #' @param cex character expansion used for measuring; defaults to
 #'   `par("cex.axis")`.
 #' @param pad additional padding in lines.
-#' @param axis.line offset of the axis labels from the plot region, in
+#' @param axisLine offset of the axis labels from the plot region, in
 #'   lines.
 #'
 #' @return Invisibly `NULL`; called for its side effect on `par("mar")`.
@@ -554,7 +554,7 @@ fcol <- .pal_data$discrete$helsana
                           las = par("las"),
                           cex = par("cex.axis"),
                           pad = 0.5,
-                          axis.line = 1) {
+                          axisLine = 1) {
 
   if(is.null(labels) || !length(labels))
     return(invisible())
@@ -565,7 +565,7 @@ fcol <- .pal_data$discrete$helsana
     las       = las,
     cex       = cex,
     pad       = pad,
-    axis.line = axis.line
+    axisLine = axisLine
   )
 
   mar <- par("mar")
@@ -776,6 +776,51 @@ fcol <- .pal_data$discrete$helsana
     return(.modifyListSafe(defaults, clean))
   }
   defaults
+}
+
+
+
+#' Resolve a Value-or-List Argument
+#'
+#' An argument that takes either a bare value or a list holding that value
+#' plus details - `labels = "p"` or `labels = list("p", cex = 0.8)` -
+#' replaces a family of prefixed formals (`labels`, `labCex`, ...). In the
+#' list the value stands under `name` or as the one unnamed element, the
+#' idiom of `title(main = list("text", cex = 1.5))`.
+#'
+#' @param x the argument as given by the user.
+#' @param name the element name of the value.
+#' @param defaults named list of the details and their defaults.
+#' @param arg the name of the argument, for the error message.
+#'
+#' @return A named list: the value under `name` (`NULL` if not given),
+#'   followed by the details, merged over `defaults`. Unknown elements are
+#'   an error, as a mistyped name would otherwise go unnoticed.
+#'
+#' @noRd
+.valueSpec <- function(x, name, defaults, arg = name) {
+
+  res <- c(stats::setNames(list(NULL), name), defaults)
+
+  if (!is.list(x)) {
+    res[name] <- list(x)
+    return(res)
+  }
+
+  nms <- names(x) %||% rep("", length(x))
+  if (sum(!nzchar(nms)) == 1L)
+    nms[!nzchar(nms)] <- name
+  names(x) <- nms
+
+  bad <- setdiff(nms, names(res))
+  if (length(bad))
+    stop(gettextf("unknown element(s) in '%s': %s; allowed are %s",
+                  arg,
+                  paste(sQuote(bad, FALSE), collapse = ", "),
+                  paste(sQuote(names(res), FALSE), collapse = ", ")),
+         call. = FALSE, domain = NA)
+
+  .modifyListSafe(res, x)
 }
 
 

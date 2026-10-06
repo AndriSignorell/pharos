@@ -4,7 +4,7 @@
 #' Converts a matrix (or vector) to a \verb{<table>} HTML fragment, with
 #' optional row/column headers, caption, per-column alignment and widths.
 #' The result has class `c("html", "character")` (see
-#' [as.html()]) and prints as a formatted text table via
+#' [asHtml()]) and prints as a formatted text table via
 #' [preview.html()].
 #'
 #' @param m a matrix or vector
@@ -14,13 +14,13 @@
 #' @param bodyAlign horizontal alignment of body cells
 #'   (`"left"`, `"center"`, `"right"`), recycled to the
 #'   number of columns
-#' @param valign vertical alignment of body cells (HTML `valign`
+#' @param vAlign vertical alignment of body cells (HTML `valign`
 #'   attribute: `"top"`, `"middle"`, `"bottom"`), recycled
 #'   to the number of columns
 #' @param width column width(s) (HTML `width` attribute), recycled
 #'   to the number of columns including an optional rowname column; use
 #'   `NA` for columns without an explicit width
-#' @param cellpadding HTML `cellpadding` attribute
+#' @param cellPadding HTML `cellpadding` attribute
 #' @param border HTML `border` attribute
 #' @param tableWidth overall table width (HTML `width` attribute on
 #'   \verb{<table>}), or `NA` for none
@@ -41,7 +41,7 @@
 #'
 #' @export
 toHtmlTable <- function(m, sepCol = FALSE, caption = "", bodyAlign = "center",
-                        valign = "top", width = NULL, cellpadding = 3,
+                        vAlign = "top", width = NULL, cellPadding = 3,
                         border = 0, tableWidth = NA,
                         captionAlign = "center", frame = TRUE,
                         rowNames = TRUE, colNames = TRUE) {
@@ -74,8 +74,8 @@ toHtmlTable <- function(m, sepCol = FALSE, caption = "", bodyAlign = "center",
   bodyAlign <- rep(bodyAlign, length.out = ncol(m))
   bodyAlign <- t(replicate(n = nrow(m), bodyAlign))
   
-  valign <- rep(valign, length.out = ncol(m))
-  valign <- t(replicate(n = nrow(m), valign))
+  vAlign <- rep(vAlign, length.out = ncol(m))
+  vAlign <- t(replicate(n = nrow(m), vAlign))
   
   trow <- function(z) gettextf("<tr>%s</tr>", paste(z, collapse = ""))
   
@@ -84,7 +84,7 @@ toHtmlTable <- function(m, sepCol = FALSE, caption = "", bodyAlign = "center",
                              t(replicate(expr = (width), n = nrow(m)))[, -1]
                            else
                              t(replicate(expr = (width), n = nrow(m))),
-                           bodyAlign, valign, unname(m)), .Dim = dim(m))
+                           bodyAlign, vAlign, unname(m)), .Dim = dim(m))
   
   col_x <- NA_character_
   
@@ -125,7 +125,7 @@ toHtmlTable <- function(m, sepCol = FALSE, caption = "", bodyAlign = "center",
   res <- gettextf('<table border=%s cellpadding=%s data-mce-style="background-color: #e1e7e9;"%s %s>%s
                  <tbody>%s %s</tbody></table>',
                   dQuote(border, q = FALSE),
-                  dQuote(cellpadding, q = FALSE),
+                  dQuote(cellPadding, q = FALSE),
                   ifelse(identical(tableWidth, NA), "", tableWidth),
                   ifelse(frame, 'frame="hsides" rules="groups"', ""),
                   ifelse(caption == "", "", gettextf('<caption>%s</caption>', caption)),
@@ -133,7 +133,7 @@ toHtmlTable <- function(m, sepCol = FALSE, caption = "", bodyAlign = "center",
                          gettextf("<thead> <tr> %s </tr> </thead>", paste(col_x, collapse = "\n"))),
                   paste(apply(tt, 1, trow), collapse = "\n"))
   
-  as.html(res)
+  asHtml(res)
   
 }
 

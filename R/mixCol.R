@@ -25,7 +25,7 @@
 #'
 #'
 #' @export
-mixColors <- function(col1, col2, weights = 0.5) {
+mixCol <- function(col1, col2, weights = 0.5) {
   
   if (!is.numeric(weights) || length(weights) != 1L ||
       is.na(weights) || weights < 0 || weights > 1)

@@ -11,13 +11,13 @@ plotHeatmap(
   ylab = "",
   xlim = NULL,
   ylim = NULL,
+  zlim = NULL,
   scale = c("count", "prop", "row", "col"),
   col = .useTheme,
   border = NA,
   naCol = "gray90",
-  text = FALSE,
-  zlim = NULL,
   box = .useTheme,
+  text = FALSE,
   stamp = .useTheme,
   ...
 )
@@ -44,6 +44,9 @@ string is used as given (resolved internally via
 
 \item{xlim, ylim}{numeric vectors of length 2 specifying axis limits.}
 
+\item{zlim}{numeric vector of length 2 specifying the range used for
+color scaling. If \code{NULL}, the range of the data is used.}
+
 \item{scale}{character specifying how values are computed:
 \describe{
 \item{\code{"count"}}{absolute frequencies}
@@ -62,12 +65,6 @@ diverging \code{twin} pair, neither of which fits a heat scale.}
 
 \item{naCol}{color used for missing values.}
 
-\item{text}{logical; if \code{TRUE}, cell values are printed on top of
-the tiles using \code{fm()} formatting.}
-
-\item{zlim}{numeric vector of length 2 specifying the range used for
-color scaling. If \code{NULL}, the range of the data is used.}
-
 \item{box}{controls drawing of the outer frame around the tile grid,
 drawn via \code{rect()} at the exact cell boundaries rather than
 \code{\link[graphics:box]{graphics::box()}} (the initial plot suppresses the
@@ -75,6 +72,9 @@ standard box via \code{frame.plot = FALSE}, since cell bounds differ
 from the default plot region). \code{.useTheme} (default) resolves
 border color/width from \code{getTheme()$box}. \code{TRUE}/\code{FALSE},
 or a named list overriding \code{rect()} arguments for this call only.}
+
+\item{text}{logical; if \code{TRUE}, cell values are printed on top of
+the tiles using \code{fm()} formatting.}
 
 \item{stamp}{controls the corner stamp. \code{.useTheme} (default)
 resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/

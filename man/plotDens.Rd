@@ -16,8 +16,8 @@ plotDens(x, ...)
   ylab = "density",
   xlim = NULL,
   ylim = NULL,
-  add = FALSE,
   bw = "nrd0",
+  add = FALSE,
   col = NULL,
   lwd = 2,
   lty = 1,
@@ -32,11 +32,11 @@ plotDens(x, ...)
   data,
   subset,
   na.action = na.omit,
-  ...,
   main = NULL,
   xlab = "",
   ylab = NULL,
-  type = NULL
+  type = NULL,
+  ...
 )
 }
 \arguments{
@@ -55,9 +55,9 @@ input: the names of the data arguments, or the formula. \code{""}, \code{NA}, or
 densities, the y-axis starting at 0 (\code{c(0, 1)} for a conditional
 density).}
 
-\item{add}{logical; if \code{TRUE}, adds to an existing plot.}
-
 \item{bw}{bandwidth passed to \code{\link[stats:density]{stats::density()}} or \code{cdplot}.}
+
+\item{add}{logical; if \code{TRUE}, adds to an existing plot.}
 
 \item{col}{line color(s).}
 
@@ -163,7 +163,7 @@ Other plot.univariate:
 \code{\link[=plotDensBox]{plotDensBox()}},
 \code{\link[=plotDot]{plotDot()}},
 \code{\link[=plotECDF]{plotECDF()}},
-\code{\link[=plotFdist]{plotFdist()}},
+\code{\link[=plotFreqDist]{plotFreqDist()}},
 \code{\link[=plotLines]{plotLines()}},
 \code{\link[=plotQQ]{plotQQ()}},
 \code{\link[=plotViolin]{plotViolin()}}

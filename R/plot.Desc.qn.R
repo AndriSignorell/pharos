@@ -266,7 +266,7 @@ plot.Desc.qn <- function(x,
                # no toggle exists) - boxHere has no effect here.
                pharos::plotBox(
                  x    = xOk,
-                 g    = yOk,
+                 groups    = yOk,
                  main = .main(.panelDefault("Boxplot")),
                  xlab = yLab,
                  ylab = resolveYlab(4),

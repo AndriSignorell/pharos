@@ -6,7 +6,7 @@ library(testthat)
 
 test_that("strTrunc truncates strings", {
   expect_equal(
-    strTrunc("abcdef", maxlen = 3),
+    strTrunc("abcdef", maxLen = 3),
     "abc..."
   )
 })
@@ -14,7 +14,7 @@ test_that("strTrunc truncates strings", {
 
 test_that("strTrunc leaves short strings unchanged", {
   expect_equal(
-    strTrunc("abc", maxlen = 10),
+    strTrunc("abc", maxLen = 10),
     "abc"
   )
 })
@@ -22,7 +22,7 @@ test_that("strTrunc leaves short strings unchanged", {
 
 test_that("strTrunc respects word boundaries", {
   expect_equal(
-    strTrunc("hello world", maxlen = 8, wbound = TRUE),
+    strTrunc("hello world", maxLen = 8, wordBound = TRUE),
     "hello..."
   )
 })
@@ -35,8 +35,8 @@ test_that("strTrunc preserves NA", {
 
 test_that("strTrunc rejects negative maxlen", {
   expect_error(
-    strTrunc("abc", maxlen = -1),
-    "maxlen"
+    strTrunc("abc", maxLen = -1),
+    "maxLen"
   )
 })
 

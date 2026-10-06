@@ -85,15 +85,14 @@
 #'
 #' @export
 strDist <- function(x, y,
-                    method = "levenshtein",
+                    method = c("levenshtein", "normlevenshtein", "hamming"),
                     mismatch = 1,
                     gap = 1,
                     ignoreCase = FALSE) {
   
   # source MKmisc, Author: Matthias Kohl
   
-  method <- match.arg(method,
-                      c("levenshtein", "normlevenshtein", "hamming"))
+  method <- match.arg(method)
   
   if (!is.character(x))
     stop("Argument 'x' must be character.")

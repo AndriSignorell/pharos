@@ -5,22 +5,22 @@
 \title{Draw a Polar Grid with Optional Labels}
 \usage{
 polarGrid(
-  nr = NULL,
-  ntheta = NULL,
+  nRadial = NULL,
+  nAngular = NULL,
+  radialLabels = NULL,
+  angleLabels = NULL,
+  labelRadians = FALSE,
   col = "lightgray",
   lty = "dotted",
   lwd = par("lwd"),
-  rlabels = NULL,
-  alabels = NULL,
-  lblradians = FALSE,
-  cex.lab = 1,
+  cex = 1,
   las = 1,
   adj = NULL,
   dist = NULL
 )
 }
 \arguments{
-\item{nr}{numeric or vector controlling radial grid lines:
+\item{nRadial}{numeric or vector controlling radial grid lines:
 \describe{
 \item{\code{NULL}}{Uses default "pretty" axis values.}
 \item{single numeric}{Number of radial grid lines.}
@@ -28,7 +28,7 @@ polarGrid(
 \item{all \code{NA}}{Suppress radial grid lines.}
 }}
 
-\item{ntheta}{numeric or vector controlling angular grid lines:
+\item{nAngular}{numeric or vector controlling angular grid lines:
 \describe{
 \item{\code{NULL}}{Uses 12 equally spaced angles.}
 \item{single numeric}{Number of angular divisions.}
@@ -36,24 +36,24 @@ polarGrid(
 \item{all \code{NA}}{Suppress angular grid lines.}
 }}
 
+\item{radialLabels}{optional labels for radial grid lines (excluding zero).
+If \code{NULL}, labels are generated automatically.
+Use \code{NA} to suppress labels.}
+
+\item{angleLabels}{optional labels for angular grid lines.
+If \code{NULL}, labels are generated automatically (degrees or radians).
+Use \code{NA} to suppress labels.}
+
+\item{labelRadians}{logical; if \code{TRUE}, angle labels are shown in radians,
+otherwise in degrees.}
+
 \item{col}{color of grid lines.}
 
 \item{lty}{line type for grid lines.}
 
 \item{lwd}{line width for grid lines.}
 
-\item{rlabels}{optional labels for radial grid lines (excluding zero).
-If \code{NULL}, labels are generated automatically.
-Use \code{NA} to suppress labels.}
-
-\item{alabels}{optional labels for angular grid lines.
-If \code{NULL}, labels are generated automatically (degrees or radians).
-Use \code{NA} to suppress labels.}
-
-\item{lblradians}{logical; if \code{TRUE}, angle labels are shown in radians,
-otherwise in degrees.}
-
-\item{cex.lab}{character expansion factor for labels.}
+\item{cex}{character expansion factor for the labels.}
 
 \item{las}{integer controlling label orientation (as in \code{\link[graphics:par]{graphics::par()}}).}
 
@@ -84,10 +84,10 @@ polarGrid()
 
 # custom grid
 plot(0, 0, type = "n", xlim = c(-2, 2), ylim = c(-2, 2), asp = 1)
-polarGrid(nr = 4, ntheta = 8, col = "gray")
+polarGrid(nRadial = 4, nAngular = 8, col = "gray")
 
 # suppress labels
-polarGrid(rlabels = NA, alabels = NA)
+polarGrid(radialLabels = NA, angleLabels = NA)
 
 
 }

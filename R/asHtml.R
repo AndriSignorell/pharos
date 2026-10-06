@@ -10,7 +10,7 @@
 #' @return `x`, with class `"html"` added
 #'
 #' @examples
-#' as.html("<b>bold</b>")
+#' asHtml("<b>bold</b>")
 #'
 #' @family html  
 #' @concept html
@@ -18,7 +18,7 @@
 #'
 #'
 #' @export
-as.html <- function(x) {
+asHtml <- function(x) {
   structure(x, class = "html")
 }
 

@@ -21,7 +21,7 @@
 #'
 #' @param lty line type(s).
 #' @param lwd line width(s).
-#' @param xaxt,yaxt axis specification passed to [graphics::axis()].
+#' @param xax,yax axis specification passed to [graphics::axis()].
 #'
 #' @param col colours for the lines. `.useTheme` (default) resolves to
 #'   `pal(getTheme()$palette)`, the active theme's qualitative palette.
@@ -87,8 +87,8 @@ plotLines <- function(x, y,
                       # AXES
                       xlim = NULL,
                       ylim = NULL,
-                      xaxt = NULL,
-                      yaxt = NULL,
+                      xax = NULL,
+                      yax = NULL,
                       
                       # STRUCTURE
                       lty = 1,
@@ -164,14 +164,14 @@ plotLines <- function(x, y,
         xlim = xlim,
         ylim = ylim,
         xaxt = "n",
-        yaxt = yaxt,
+        yaxt = yax,
         main = main,
         xlab = xlab,
         ylab = ylab,
         ...
       )
       
-      if (!identical(xaxt, "n")) {
+      if (!identical(xax, "n")) {
         if (!is.null(rownames(z)) && y.missing)
           axis(1, at = seq_len(nrow(z)), labels = rownames(z))
         else

@@ -29,7 +29,7 @@ behavior. They fall into two groups:
 
 \strong{Information} -- inspect properties of strings without changing them:\tabular{ll}{
    Function \tab Purpose \cr
-   \code{\link[=strCountW]{strCountW()}} \tab Count words in strings \cr
+   \code{\link[=strCountWords]{strCountWords()}} \tab Count words in strings \cr
    \code{\link[=strDist]{strDist()}} \tab Compute distances between strings \cr
    \code{\link[=strIsNumeric]{strIsNumeric()}} \tab Check if character strings represent numeric values \cr
    \code{\link[=strLen]{strLen()}} \tab String length \cr

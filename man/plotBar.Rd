@@ -17,7 +17,7 @@ plotBar(
   grid = .useTheme,
   box = FALSE,
   text = NULL,
-  connlines = NULL,
+  connLines = NULL,
   stamp = .useTheme,
   ...
 )
@@ -70,7 +70,7 @@ or a named list, as for \code{grid}.}
 \item{text}{optional list of arguments passed to \code{\link[=barText]{barText()}}
 to draw value labels on bars.}
 
-\item{connlines}{optional list of arguments controlling connecting
+\item{connLines}{optional list of arguments controlling connecting
 lines between stacked bars. Only supported when
 \code{beside = FALSE}.}
 
@@ -128,7 +128,7 @@ plotBar(1:5, grid = TRUE)
 m <- matrix(c(3,2,4,1,5,2), nrow = 2)
 plotBar(m,
         text = list(pos = "mid"),
-        connlines = list(col = "black"))
+        connLines = list(col = "black"))
 
 # Grouped bars
 plotBar(VADeaths,
@@ -154,7 +154,7 @@ plotBar(VADeaths, ylim=c(0,80),
         beside=TRUE, 
         text = list(col="red", bg=addOpacity("white", 0.7), border=NA))
 
-plotBar(VADeaths, connlines = list(lwd=1, col="blue"), 
+plotBar(VADeaths, connLines = list(lwd=1, col="blue"), 
         box=FALSE, las=1, main="Connecting Lines")
 
 ptab <- proportions(VADeaths, margin=2)
@@ -164,7 +164,7 @@ plotBar(ptab,
         col=(cols <- gray.colors(nrow(VADeaths))),
         beside=FALSE, mar=c(right=5),
         text = list(labels=fm(ptab, fmt="\%"), border=NA, 
-                    col=contrastColor(cols)))
+                    col=contrastCol(cols)))
 legend(x="right", fill=cols, legend=rownames(VADeaths))
 
 plotBar(VADeaths/1e3,  box=FALSE, bg="lightyellow", main="VADeaths",
@@ -186,7 +186,7 @@ Other plot.univariate:
 \code{\link[=plotDensBox]{plotDensBox()}},
 \code{\link[=plotDot]{plotDot()}},
 \code{\link[=plotECDF]{plotECDF()}},
-\code{\link[=plotFdist]{plotFdist()}},
+\code{\link[=plotFreqDist]{plotFreqDist()}},
 \code{\link[=plotLines]{plotLines()}},
 \code{\link[=plotQQ]{plotQQ()}},
 \code{\link[=plotViolin]{plotViolin()}}

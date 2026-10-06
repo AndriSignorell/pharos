@@ -16,6 +16,7 @@ plotDens2D(
   col = rev(pal("red-black", n = 100)),
   grid = .useTheme,
   box = .useTheme,
+  stamp = .useTheme,
   ...
 )
 }
@@ -48,6 +49,10 @@ diverging \code{twin} pair, neither of which fits a density surface.}
 \item{box}{controls drawing of the plot box. \code{.useTheme} (default)
 resolves to \code{getTheme()$box}. \code{TRUE}/\code{FALSE}/\code{NA},
 or a named list, as for \code{\link[graphics:box]{graphics::box()}}.}
+
+\item{stamp}{controls the corner stamp. \code{.useTheme} (default)
+resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
+\code{NULL}, a string, or a named list for \code{\link[=stamp]{stamp()}}.}
 
 \item{...}{additional graphical parameters passed to underlying plotting functions.}
 }

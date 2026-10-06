@@ -10,16 +10,16 @@ plotDensBox(x, ...)
 
 \method{plotDensBox}{default}(
   x,
-  g = NULL,
+  groups = NULL,
   main = NULL,
   xlab = "",
   ylab = "",
   xlim = NULL,
-  layout_heights = c(2, 1.4),
+  heights = c(2, 1.4),
   col = NULL,
   grid = TRUE,
-  densArgs = TRUE,
-  boxArgs = TRUE,
+  dens = TRUE,
+  box = TRUE,
   stamp = .useTheme,
   ...
 )
@@ -40,7 +40,7 @@ plotDensBox(x, ...)
 \item{...}{further graphical parameters passed to
 \code{\link[graphics:par]{graphics::par()}} via the internal framework.}
 
-\item{g}{optional grouping variable (ignored if a formula is used).}
+\item{groups}{optional grouping variable (ignored if a formula is used).}
 
 \item{main}{main title of the plot. \code{NULL} (default) derives the title
 from the input: the formula, or \code{x} resp. \code{x ~ g} for the default
@@ -55,7 +55,7 @@ formula method, an empty label defaults to the response.}
 \item{xlim}{numeric vector of length 2 specifying the x-axis limits.
 \code{NULL} (default) covers the data and the tails of the densities.}
 
-\item{layout_heights}{numeric vector of length 2 specifying the relative
+\item{heights}{numeric vector of length 2 specifying the relative
 heights of the density plot (top) and boxplot (bottom).}
 
 \item{col}{vector of colors, recycled over the groups. If \code{NULL}, a
@@ -69,7 +69,7 @@ Can be:
 \item a named list: arguments passed to \code{\link[graphics:grid]{graphics::grid()}}
 }}
 
-\item{densArgs}{controls density estimation via
+\item{dens}{controls density estimation via
 \code{\link[stats:density]{stats::density()}}.
 Can be:
 \itemize{
@@ -79,7 +79,7 @@ Can be:
 \code{\link[stats:density]{stats::density()}}
 }}
 
-\item{boxArgs}{controls drawing of boxplots via
+\item{box}{controls drawing of boxplots via
 \code{\link[graphics:boxplot]{graphics::boxplot()}}.
 Can be:
 \itemize{
@@ -139,13 +139,13 @@ plotDensBox(x, g)
 
 plotDensBox(
   x,
-  densArgs = list(adjust = 2),
-  boxArgs  = list(notch = TRUE)
+  dens = list(adjust = 2),
+  box  = list(notch = TRUE)
 )
 
 plotDensBox(
   x,
-  boxArgs = FALSE
+  box = FALSE
 )
 
 plotDensBox(x ~ g)
@@ -168,7 +168,7 @@ Other plot.univariate:
 \code{\link[=plotDens]{plotDens()}},
 \code{\link[=plotDot]{plotDot()}},
 \code{\link[=plotECDF]{plotECDF()}},
-\code{\link[=plotFdist]{plotFdist()}},
+\code{\link[=plotFreqDist]{plotFreqDist()}},
 \code{\link[=plotLines]{plotLines()}},
 \code{\link[=plotQQ]{plotQQ()}},
 \code{\link[=plotViolin]{plotViolin()}}

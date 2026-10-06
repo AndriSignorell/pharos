@@ -15,6 +15,9 @@
 #' @param main an overall title for the plot
 #' @param ylab a title for the y axis: see [title()]. 
 #' @param \dots the dots are passed to the plot command. 
+#' @param stamp controls the corner stamp. `.useTheme` (default)
+#'   resolves to `getTheme()$stamp`. `TRUE`/`FALSE`/
+#'   `NULL`, a string, or a named list for [stamp()].
 #' 
 #' @note Rewritten based on ideas of M.Huerzeler
 #' @seealso [ts()]
@@ -30,9 +33,22 @@
 #'
 #'
 #' @export
-plotTimeSeries <- function (x, maxLag = 10 * log10(length(x)), 
-                            ylab = NULL,
-                            main=NULL,  ...) {
+plotTimeSeries <- function (
+    # DATA
+    x,
+
+    # LABELS
+    main = NULL,
+    ylab = NULL,
+
+    # STATISTICS
+    maxLag = 10 * log10(length(x)),
+
+    # FRAMEWORK
+    stamp = .useTheme,
+
+    ...
+) {
 
     if (!is.null(dim(x))) 
       stop("plotTimeserie() requires univariate time series")
@@ -58,7 +74,7 @@ plotTimeSeries <- function (x, maxLag = 10 * log10(length(x)),
       # we changed layout, so set it back here
       layout(1)
       
-    })
+    }, stamp = stamp)
     
     invisible(x)
     

@@ -142,33 +142,35 @@
 #'
 #' @export
 plotLift <- function(
+    # DATA
+    x,
 
-  x,
+    # LABELS
+    main = NULL,
+    xlab = NULL,
+    ylab = NULL,
 
-  # STRUCTURE
-  type = c("cumulative", "gain", "decile"),
+    # AXES
+    ylim = NULL,
 
-  # LABELS
-  main = NULL,
-  xlab = NULL,
-  ylab = NULL,
+    # STRUCTURE
+    type = c("cumulative", "gain", "decile"),
 
-  # AXES
-  ylim = NULL,
+    # STYLE
+    col  = .useTheme,
+    lwd  = 2,
+    grid = .useTheme,
+    box  = .useTheme,
 
-  # STYLE
-  col  = .useTheme,
-  lwd  = 2,
-  grid = .useTheme,
-  box  = .useTheme,
+    # FEATURES
+    baseline = TRUE,
+    perfect  = FALSE,
+    legend   = TRUE,
 
-  # FEATURES
-  baseline = TRUE,
-  perfect  = FALSE,
-  legend   = TRUE,
+    # FRAMEWORK
+    stamp = .useTheme,
 
-  stamp = .useTheme,
-  ...
+    ...
 ) {
 
   mc <- match.call()

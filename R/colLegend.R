@@ -16,7 +16,22 @@
 #'   `"topright"`, `"right"`, `"center"`.
 #' @param y top y-coordinate of the legend when `x` is numeric.
 #' @param col vector of colors.
-#' @param labels optional vector of labels.
+#' @param labels optional vector of labels, or a list holding the labels
+#'   (element `text`, or the one unnamed element) and their placement
+#'   relative to the color blocks in the element `adj`:
+#'   \describe{
+#'     \item{`"edge"`}{
+#'       (default) Labels are aligned with the strip edges.
+#'     }
+#'     \item{`"center"`}{
+#'       Labels are centered within color blocks.
+#'     }
+#'   }
+#'   E.g. `labels = list(1:5, adj = "center")`.
+#' @param title optional title, or a list holding the title (element
+#'   `text`, or the one unnamed element) and its horizontal adjustment
+#'   in the element `adj` (default 0.5, centered), e.g.
+#'   `title = list("From black to red", adj = 0)`.
 #' @param width width of the legend in user coordinates.
 #' @param height height of the legend in user coordinates.
 #' @param horiz logical; if `TRUE`, draw horizontally.
@@ -34,19 +49,8 @@
 #'     \item `TRUE`: draw box with defaults
 #'     \item named list of arguments passed to [rect()]
 #'   }
-#' @param labelAdj placement of labels relative to the color blocks:
-#'   \describe{
-#'     \item{`"edge"`}{
-#'       Labels are aligned with the strip edges.
-#'     }
-#'     \item{`"center"`}{
-#'       Labels are centered within color blocks.
-#'     }
-#'   }
 #' @param adj text alignment passed to [text()].
 #' @param cex character expansion for labels.
-#' @param title optional title.
-#' @param titleAdj horizontal title adjustment.
 #' @param ... additional arguments passed to [text()].
 #'
 #' @return
@@ -71,7 +75,7 @@
 #' 
 #' # B: Center the labels
 #' colLegend(x=1, y=9, height=6, col=colorRampPalette(c("blue", "white", "red"),
-#'   space = "rgb")(5), labels=1:5, labelAdj = "center")
+#'   space = "rgb")(5), labels=list(1:5, adj = "center"))
 #' 
 #' # C: Outer frame
 #' colLegend(x=3, y=9, height=6, col=colorRampPalette(c("blue", "white", "red"),
@@ -92,7 +96,7 @@
 #' # G
 #' colLegend(x=1, y=12, width=6, height=1, col=colorRampPalette(c("black","blue",
 #'             "green","yellow","red"), space = "rgb")(10), horiz=TRUE, 
-#'             border="black", title="From black to red", titleAdj=0)
+#'             border="black", title=list("From black to red", adj=0))
 #' 
 #' text(x = c(8,0.5,2.5,4.5,0.5,0.5,0.5)+.2, y=c(14,9,9,9,2,14,12), LETTERS[1:7], cex=2)
 #' 
@@ -110,6 +114,7 @@ colLegend <- function(
     y = NULL,
     col = rev(heat.colors(100)),
     labels = NULL,
+    title = NULL,
     width = NULL,
     height = NULL,
     horiz = FALSE,
@@ -119,16 +124,21 @@ colLegend <- function(
     region = c("plot", "figure", "device"),
     border = NA,
     box = FALSE,
-    labelAdj = c("edge", "center"),
     adj = NULL,
     cex = 1,
-    title = NULL,
-    titleAdj = 0.5,
     ...
 ) {
   
-  region   <- match.arg(region)
-  labelAdj <- match.arg(labelAdj)
+  region <- match.arg(region)
+  
+  # labels and title: the bare text, or a list with the text and details
+  labelSpec <- .valueSpec(labels, "text", list(adj = "edge"), arg = "labels")
+  labels    <- labelSpec$text
+  labelAdj  <- match.arg(labelSpec$adj, c("edge", "center"))
+  
+  titleSpec <- .valueSpec(title, "text", list(adj = 0.5), arg = "title")
+  title     <- titleSpec$text
+  titleAdj  <- titleSpec$adj
   
   if (is.null(adj)) {
     adj <- if (horiz) c(0.5, 1) else c(1, 0.5)
@@ -338,4 +348,3 @@ colLegend <- function(
   ))
   
 }
-

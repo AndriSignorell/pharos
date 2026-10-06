@@ -4,14 +4,14 @@
 \alias{ellipse}
 \title{Ellipse Geometry}
 \usage{
-ellipse(x = 0, y = 0, radiusX = 1, radiusY = radiusX, numPoints = 100)
+ellipse(x = 0, y = 0, radiusX = 1, radiusY = radiusX, nPoints = 100)
 }
 \arguments{
 \item{x, y}{centre coordinates.}
 
 \item{radiusX, radiusY}{horizontal and vertical radius.}
 
-\item{numPoints}{number of points used to approximate the ellipse.}
+\item{nPoints}{number of points used to approximate the ellipse.}
 }
 \value{
 An object inheriting from class \code{"ellipseGeometry"}.
@@ -28,7 +28,7 @@ Other geometry.structures:
 \code{\link[=band]{band()}},
 \code{\link[=bezier]{bezier()}},
 \code{\link[=circle]{circle()}},
-\code{\link[=polygon]{polygon()}},
+\code{\link[=polygonX]{polygonX()}},
 \code{\link[=regPolygon]{regPolygon()}},
 \code{\link[=ring]{ring()}}
 }

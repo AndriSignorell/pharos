@@ -6,7 +6,7 @@
 \usage{
 plotMosaic(
   x,
-  main = "",
+  main = NULL,
   xlab = NULL,
   ylab = NULL,
   swap = FALSE,
@@ -16,8 +16,6 @@ plotMosaic(
   border = "white",
   legend = TRUE,
   labels = c("p", "n", "none"),
-  labCex = 0.8,
-  labDigits = 1,
   stamp = .useTheme,
   ...
 )
@@ -27,7 +25,8 @@ plotMosaic(
 \code{as.table()}. Higher-dimensional arrays must be collapsed first, e.g.
 via \code{apply(x, c(1,2), sum)}.}
 
-\item{main}{character. Plot title. Default \code{""} (no title).}
+\item{main}{character. Plot title. \code{NULL} (default) takes the expression
+passed as \code{x}; \code{""}, \code{NA} or \code{FALSE} suppress the title.}
 
 \item{xlab, ylab}{character or \code{NULL}. Axis labels. Default \code{NULL}
 (no labels), since the category levels together with \code{main} and the
@@ -61,13 +60,11 @@ Default \code{TRUE}.}
 \item{labels}{character, one of \code{"p"}, \code{"n"}, \code{"none"}. Cell labels
 showing the proportion of the table total (\code{"p"}), the absolute
 frequency (\code{"n"}), or no labels (\code{"none"}). Labels are only drawn for
-tiles large enough to hold them. Default \code{"p"}.}
-
-\item{labCex}{numeric. Character expansion factor for cell labels.
-Default \code{0.8}.}
-
-\item{labDigits}{integer. Number of decimal digits for percentage cell
-labels when \code{labels = "p"}. Default \code{1}.}
+tiles large enough to hold them. Default \code{"p"}. A list sets the
+details: the type (element \code{type}, or the one unnamed element), the
+character expansion factor \code{cex} (default \code{0.8}) and the number of
+decimal digits \code{digits} for percentages (default \code{1}), e.g.
+\code{labels = list("p", cex = 0.7, digits = 0)}.}
 
 \item{stamp}{controls the corner stamp. \code{.useTheme} (default)
 resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/

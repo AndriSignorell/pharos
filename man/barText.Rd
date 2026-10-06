@@ -6,13 +6,13 @@
 \usage{
 barText(
   height,
-  b,
+  mids,
   labels = height,
   beside = FALSE,
   horiz = FALSE,
   cex = par("cex"),
   adj = NULL,
-  pos = c("topout", "topin", "mid", "bottomin", "bottomout"),
+  pos = c("top-out", "top-in", "mid", "bottom-in", "bottom-out"),
   offset = 0,
   col = NULL,
   ...
@@ -22,7 +22,7 @@ barText(
 \item{height}{either a vector or matrix of values describing the bars which
 make up the plot exactly as used for creating the barplot.}
 
-\item{b}{the returned mid points as returned by \code{b <- barplot(...)}.}
+\item{mids}{the returned mid points as returned by \code{b <- barplot(...)}.}
 
 \item{labels}{the labels to be placed on the bars.}
 
@@ -42,8 +42,8 @@ and \code{NA} are equivalent to \code{1.0}.}
 y) adjustment of the labels. On most devices values outside that interval
 will also work.}
 
-\item{pos}{one of \code{"topout"}, \code{"topin"}, \code{"mid"},
-\code{"bottomin"}, \code{"bottomout"}, defining if the labels should be
+\item{pos}{one of \code{"top-out"}, \code{"top-in"}, \code{"mid"},
+\code{"bottom-in"}, \code{"bottom-out"}, defining if the labels should be
 placed on top of the bars (inside or outside) or at the bottom of the bars
 (inside or outside).}
 
@@ -86,18 +86,18 @@ barText(x, b, x)
 
 # more complicated
 b <- barplot(VADeaths, horiz = FALSE, col="steelblue", beside = TRUE)
-barText(VADeaths, b=b, horiz = FALSE, beside = TRUE, cex=0.8)
-barText(VADeaths, b=b, horiz = FALSE, beside = TRUE, cex=0.8, pos="bottomin",
+barText(VADeaths, mids=b, horiz = FALSE, beside = TRUE, cex=0.8)
+barText(VADeaths, mids=b, horiz = FALSE, beside = TRUE, cex=0.8, pos="bottom-in",
         col="white", font=2)
 
 b <- barplot(VADeaths, horiz = TRUE, col="steelblue", beside = TRUE)
-barText(VADeaths, b=b, horiz = TRUE, beside = TRUE, cex=0.8)
+barText(VADeaths, mids=b, horiz = TRUE, beside = TRUE, cex=0.8)
 
 b <- barplot(VADeaths)
-barText(VADeaths, b=b)
+barText(VADeaths, mids=b)
 
 b <- barplot(VADeaths, horiz = TRUE)
-barText(VADeaths, b=b, horiz = TRUE, col="red", cex=1.5)
+barText(VADeaths, mids=b, horiz = TRUE, col="red", cex=1.5)
 
 }
 \seealso{

@@ -154,7 +154,7 @@ plotECDF(len ~ supp:dose, ToothGrowth, subset = dose > 0.5)
 
 }
 \seealso{
-\code{\link[=plot.ecdf]{plot.ecdf()}}, \code{\link[=plotFdist]{plotFdist()}},
+\code{\link[=plot.ecdf]{plot.ecdf()}}, \code{\link[=plotFreqDist]{plotFreqDist()}},
 \link{theme}
 
 Other plot.univariate:
@@ -165,7 +165,7 @@ Other plot.univariate:
 \code{\link[=plotDens]{plotDens()}},
 \code{\link[=plotDensBox]{plotDensBox()}},
 \code{\link[=plotDot]{plotDot()}},
-\code{\link[=plotFdist]{plotFdist()}},
+\code{\link[=plotFreqDist]{plotFreqDist()}},
 \code{\link[=plotLines]{plotLines()}},
 \code{\link[=plotQQ]{plotQQ()}},
 \code{\link[=plotViolin]{plotViolin()}}

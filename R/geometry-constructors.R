@@ -7,7 +7,7 @@
 #' @param x,y coordinates of the arc centre
 #' @param radiusX,radiusY horizontal and vertical radius
 #' @param startAngle,endAngle start and end angle in radians
-#' @param numPoints number of points used to approximate the arc
+#' @param nPoints number of points used to approximate the arc
 #'
 #' @return
 #' An object inheriting from class `"arcGeometry"`.
@@ -24,7 +24,7 @@ arc <- function(
     radiusY = radiusX,
     startAngle = 0,
     endAngle = 2*pi,
-    numPoints = 100
+    nPoints = 100
 ) {
   
   args <- recycle(
@@ -34,7 +34,7 @@ arc <- function(
     radiusY    = radiusY,
     startAngle = startAngle,
     endAngle   = endAngle,
-    numPoints  = numPoints
+    numPoints  = nPoints
   )
   
   res <- vector("list", attr(args, "maxdim"))
@@ -72,7 +72,7 @@ arc <- function(
 #'
 #' @param x,y centre coordinates.
 #' @param radius circle radius.
-#' @param numPoints number of points used to approximate the circle.
+#' @param nPoints number of points used to approximate the circle.
 #'
 #' @return
 #' An object inheriting from class `"circleGeometry"`.
@@ -86,7 +86,7 @@ circle <- function(
     x = 0,
     y = 0,
     radius = 1,
-    numPoints = 100
+    nPoints = 100
 ) {
   
   res <- arc(
@@ -96,7 +96,7 @@ circle <- function(
     radiusY = radius,
     startAngle = 0,
     endAngle = 2*pi,
-    numPoints = numPoints
+    nPoints = nPoints
   )
 
   res <- .setGeometryClass(
@@ -117,7 +117,7 @@ circle <- function(
 #'
 #' @param x,y centre coordinates.
 #' @param radiusX,radiusY horizontal and vertical radius.
-#' @param numPoints number of points used to approximate the ellipse.
+#' @param nPoints number of points used to approximate the ellipse.
 #'
 #' @return
 #' An object inheriting from class `"ellipseGeometry"`.
@@ -132,7 +132,7 @@ ellipse <- function(
     y = 0,
     radiusX = 1,
     radiusY = radiusX,
-    numPoints = 100
+    nPoints = 100
 ) {
   
   res <- arc(
@@ -142,7 +142,7 @@ ellipse <- function(
     radiusY = radiusY,
     startAngle = 0,
     endAngle = 2*pi,
-    numPoints = numPoints
+    nPoints = nPoints
   )
   
   res <- .setGeometryClass(
@@ -160,7 +160,7 @@ ellipse <- function(
 #'
 #' @param x,y centre coordinates.
 #' @param radius circumradius.
-#' @param numVertices number of vertices.
+#' @param nVertices number of vertices.
 #' @param startAngle staring angle in radians.
 #'
 #' @return
@@ -175,7 +175,7 @@ regPolygon <- function(
     x = 0,
     y = 0,
     radius = 1,
-    numVertices = 6,
+    nVertices = 6,
     startAngle = 0
 ) {
   
@@ -186,7 +186,7 @@ regPolygon <- function(
     radiusY = radius,
     startAngle = startAngle,
     endAngle = startAngle + 2*pi,
-    numPoints = numVertices + 1L
+    nPoints = nVertices + 1L
   )
   
   res$x <- res$x[-length(res$x)]
@@ -209,7 +209,7 @@ regPolygon <- function(
 #' @param innerRadius radius of the inner boundary.
 #' @param outerRadius radius of the outer boundary.
 #' @param startAngle,endAngle start and end angle in radians.
-#' @param numPoints number of points used for each boundary.
+#' @param nPoints number of points used for each boundary.
 #'
 #' @return
 #' An object inheriting from class `"ringGeometry"` or a
@@ -227,7 +227,7 @@ ring <- function(
     outerRadius = 1,
     startAngle = 0,
     endAngle = 2*pi,
-    numPoints = 100
+    nPoints = 100
 ) {
   
   args <- recycle(
@@ -237,7 +237,7 @@ ring <- function(
     outerRadius = outerRadius,
     startAngle  = startAngle,
     endAngle    = endAngle,
-    numPoints   = numPoints
+    numPoints   = nPoints
   )
   
   if(any(args$innerRadius >= args$outerRadius))
@@ -257,14 +257,14 @@ ring <- function(
         x = args$x[i],
         y = args$y[i],
         radius = args$outerRadius[i],
-        numPoints = args$numPoints[i]
+        nPoints = args$numPoints[i]
       )
       
       inner <- circle(
         x = args$x[i],
         y = args$y[i],
         radius = args$innerRadius[i],
-        numPoints = args$numPoints[i]
+        nPoints = args$numPoints[i]
       )
       
       res[[i]] <- .newGeometry(
@@ -282,7 +282,7 @@ ring <- function(
         radiusY = args$outerRadius[i],
         startAngle = args$startAngle[i],
         endAngle = args$endAngle[i],
-        numPoints = args$numPoints[i]
+        nPoints = args$numPoints[i]
       )
       
       inner <- arc(
@@ -292,7 +292,7 @@ ring <- function(
         radiusY = args$innerRadius[i],
         startAngle = args$startAngle[i],
         endAngle = args$endAngle[i],
-        numPoints = args$numPoints[i]
+        nPoints = args$numPoints[i]
       )
       
       res[[i]] <- .newGeometry(

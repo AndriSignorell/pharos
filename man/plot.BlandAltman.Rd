@@ -16,7 +16,7 @@
   grid = TRUE,
   meanLine = TRUE,
   limits = TRUE,
-  conf.band = FALSE,
+  cband = FALSE,
   trend = FALSE,
   showText = TRUE,
   stamp = NULL,
@@ -46,7 +46,7 @@
 
 \item{limits}{logical; draw the limits of agreement.}
 
-\item{conf.band}{logical; draw confidence bands.}
+\item{cband}{logical; draw confidence bands.}
 
 \item{trend}{logical; draw a regression line of
 differences versus means.}

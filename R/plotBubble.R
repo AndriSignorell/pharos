@@ -39,6 +39,9 @@
 #' @param data optional data frame.
 #' @param subset optional subset expression.
 #' @param na.action function to handle missing values.
+#' @param stamp controls the corner stamp. `.useTheme` (default)
+#'   resolves to `getTheme()$stamp`. `TRUE`/`FALSE`/
+#'   `NULL`, a string, or a named list for [stamp()].
 #'
 #' @return Invisibly returns `NULL`.
 #' 
@@ -89,33 +92,36 @@ plotBubble <- function(x, ...) {
 #' @method plotBubble default
 #' @export
 plotBubble.default <- function(
-    
-  # DATA
-  x, y, area,
-  
-  ...,
-  
-  # STRUCTURE
-  add = FALSE,
-  
-  # STYLE
-  col = NA,
-  border = NULL,
-  cex = 1,
-  grid = NA,
-  
-  # AXES
-  xlim = NULL,
-  ylim = NULL,
-  
-  # DATA HANDLING
-  na.rm = FALSE,
-  
-  # LABELS
-  main = "",
-  xlab = "",
-  ylab = ""
-  
+    # DATA
+    x,
+    y,
+    area,
+
+    # LABELS
+    main = "",
+    xlab = "",
+    ylab = "",
+
+    # AXES
+    xlim = NULL,
+    ylim = NULL,
+
+    # STRUCTURE
+    add = FALSE,
+
+    # STYLE
+    col    = NA,
+    border = NULL,
+    cex    = 1,
+    grid   = NA,
+
+    # DATA HANDLING
+    na.rm = FALSE,
+
+    # FRAMEWORK
+    stamp = .useTheme,
+
+    ...
 ) {
   
   # --- data prep ------------------------------------------------
@@ -133,7 +139,7 @@ plotBubble.default <- function(
   
   d.frm <- bedrock::sortX(
     d.frm,
-    ord = 3,
+    by = 3,
     decreasing = TRUE
   )
   
@@ -220,7 +226,7 @@ plotBubble.default <- function(
     
     # --- draw bubbles -------------------------------------------
     
-    polygon(
+    polygonX(
       ellipse(
         x       = d.frm$x,
         y       = d.frm$y,
@@ -231,7 +237,7 @@ plotBubble.default <- function(
       border = d.frm$border
     )
     
-  })
+  }, stamp = stamp)
   
   invisible(d.frm)
   
@@ -243,33 +249,31 @@ plotBubble.default <- function(
 #' @method plotBubble formula
 #' @export
 plotBubble.formula <- function(
-    
-  # DATA
-  formula,
-  data = NULL,
-  subset,
-  na.action = na.omit,
-  
-  ...,
-  
-  # STRUCTURE
-  add = FALSE,
-  
-  # STYLE
-  col = NA,
-  border = NULL,
-  cex = 1,
-  grid = NA,
-  
-  # AXES
-  xlim = NULL,
-  ylim = NULL,
-  
-  # LABELS
-  main = "",
-  xlab = "",
-  ylab = ""
-  
+    # DATA
+    formula,
+    data      = NULL,
+    subset,
+    na.action = na.omit,
+
+    # LABELS
+    main = "",
+    xlab = "",
+    ylab = "",
+
+    # AXES
+    xlim = NULL,
+    ylim = NULL,
+
+    # STRUCTURE
+    add = FALSE,
+
+    # STYLE
+    col    = NA,
+    border = NULL,
+    cex    = 1,
+    grid   = NA,
+
+    ...
 ) {
   
   # --- formula parsing -----------------------------------------

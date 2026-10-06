@@ -9,9 +9,9 @@ toHtmlTable(
   sepCol = FALSE,
   caption = "",
   bodyAlign = "center",
-  valign = "top",
+  vAlign = "top",
   width = NULL,
-  cellpadding = 3,
+  cellPadding = 3,
   border = 0,
   tableWidth = NA,
   captionAlign = "center",
@@ -32,7 +32,7 @@ column between each pair of columns}
 (\code{"left"}, \code{"center"}, \code{"right"}), recycled to the
 number of columns}
 
-\item{valign}{vertical alignment of body cells (HTML \code{valign}
+\item{vAlign}{vertical alignment of body cells (HTML \code{valign}
 attribute: \code{"top"}, \code{"middle"}, \code{"bottom"}), recycled
 to the number of columns}
 
@@ -40,7 +40,7 @@ to the number of columns}
 to the number of columns including an optional rowname column; use
 \code{NA} for columns without an explicit width}
 
-\item{cellpadding}{HTML \code{cellpadding} attribute}
+\item{cellPadding}{HTML \code{cellpadding} attribute}
 
 \item{border}{HTML \code{border} attribute}
 
@@ -65,16 +65,16 @@ an object of class \code{c("html", "character")}
 Converts a matrix (or vector) to a \verb{<table>} HTML fragment, with
 optional row/column headers, caption, per-column alignment and widths.
 The result has class \code{c("html", "character")} (see
-\code{\link[=as.html]{as.html()}}) and prints as a formatted text table via
+\code{\link[=asHtml]{asHtml()}}) and prints as a formatted text table via
 \code{\link[=preview.html]{preview.html()}}.
 }
 \seealso{
 \link[bedrock:appendEnum]{bedrock::appendEnum}
 
 Other html:
-\code{\link[=as.fileLink]{as.fileLink()}},
-\code{\link[=as.html]{as.html()}},
-\code{\link[=as.img]{as.img()}},
+\code{\link[=asFileLink]{asFileLink()}},
+\code{\link[=asHtml]{asHtml()}},
+\code{\link[=asImg]{asImg()}},
 \code{\link[=embedFile]{embedFile()}},
 \code{\link[=escapeHtml]{escapeHtml()}},
 \code{\link{htmlNotation}},

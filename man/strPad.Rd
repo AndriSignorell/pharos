@@ -4,7 +4,7 @@
 \alias{strPad}
 \title{Pad a String With Justification}
 \usage{
-strPad(x, width = NULL, pad = " ", adj = "left")
+strPad(x, width = NULL, pad = " ", align = c("left", "right", "center"))
 }
 \arguments{
 \item{x}{a vector of strings to be padded}
@@ -15,7 +15,7 @@ left to NULL, it will be set to the length of the largest string in x.}
 \item{pad}{string to pad with. Will be repeated as often as necessary.
 Default is " ".}
 
-\item{adj}{adjustment of the old string, one of \code{"left"},
+\item{align}{adjustment of the old string, one of \code{"left"},
 \code{"right"}, \code{"center"}. If set to \code{"left"} the old string will
 be adjusted on the left and the new characters will be filled in on the
 right side.}

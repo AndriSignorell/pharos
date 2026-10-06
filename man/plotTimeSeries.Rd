@@ -6,21 +6,26 @@
 \usage{
 plotTimeSeries(
   x,
-  maxLag = 10 * log10(length(x)),
-  ylab = NULL,
   main = NULL,
+  ylab = NULL,
+  maxLag = 10 * log10(length(x)),
+  stamp = .useTheme,
   ...
 )
 }
 \arguments{
 \item{x}{univariate time series.}
 
-\item{maxLag}{integer. Defines the number of lags to be displayed. The
-default is 10 * log10(length(series)).}
+\item{main}{an overall title for the plot}
 
 \item{ylab}{a title for the y axis: see \code{\link[=title]{title()}}.}
 
-\item{main}{an overall title for the plot}
+\item{maxLag}{integer. Defines the number of lags to be displayed. The
+default is 10 * log10(length(series)).}
+
+\item{stamp}{controls the corner stamp. \code{.useTheme} (default)
+resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
+\code{NULL}, a string, or a named list for \code{\link[=stamp]{stamp()}}.}
 
 \item{\dots}{the dots are passed to the plot command.}
 }

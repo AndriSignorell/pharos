@@ -4,12 +4,12 @@
 \alias{spreadOut}
 \title{Spread Out a Vector of Numbers To a Minimum Interval}
 \usage{
-spreadOut(x, mindist = NULL, cex = 1)
+spreadOut(x, minDist = NULL, cex = 1)
 }
 \arguments{
 \item{x}{a numeric vector which may contain \code{NA}s.}
 
-\item{mindist}{the minimum interval between any two values. If this is left
+\item{minDist}{the minimum interval between any two values. If this is left
 to \code{NULL} (default) the function will check if a plot is open and then
 use 90\%\% of \code{\link[=strheight]{strheight()}}.}
 
@@ -31,7 +31,7 @@ overlap.
 \code{spreadOut()} starts at or near the middle of the vector and increases
 the intervals between the ordered values. \code{NA}s are preserved.
 \code{spreadOut()} first tries to spread groups of values with intervals
-less than \code{mindist} out neatly away from the mean of the group. If this
+less than \code{minDist} out neatly away from the mean of the group. If this
 doesn't entirely succeed, a second pass that forces values away from the
 middle is performed.
 

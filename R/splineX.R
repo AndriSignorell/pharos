@@ -3,7 +3,7 @@
 #'
 #' Fit a smoothing spline and optionally add confidence bands.
 #'
-#' Confidence bands are controlled via `bandArgs`. These arguments can be:
+#' Confidence bands are controlled via `band`. These arguments can be:
 #' \itemize{
 #'   \item `FALSE`, `NULL` or `NA`: suppress the band
 #'   \item `TRUE`: draw the band with default settings
@@ -21,7 +21,7 @@
 #' @param lwd line width.
 #' @param lty line type.
 #' @param type plotting type passed to [lines()].
-#' @param bandArgs controls the confidence band. May be `TRUE`,
+#' @param band controls the confidence band. May be `TRUE`,
 #'   `FALSE`, `NULL`, `NA`, or a named list. The confidence
 #'   level is specified via `conf.level`, all other elements are
 #'   graphical parameters of the band. Default is
@@ -51,7 +51,7 @@
 #' plot(dist ~ speed, cars)
 #' lines(
 #'   splineX(dist ~ speed, cars),
-#'   bandArgs = list(
+#'   band = list(
 #'     conf.level = 0.99,
 #'     col = addOpacity("red", 0.3),
 #'     border = "black"
@@ -166,7 +166,7 @@ lines.SplineX <- function(
     lwd = 2,
     lty = "solid",
     type = "l",
-    bandArgs = list(conf.level = 0.95),
+    band = list(conf.level = 0.95),
     ...
 ) {
   
@@ -175,22 +175,22 @@ lines.SplineX <- function(
     x = x$x
   )
   
-  # conf.level is taken out here, the other elements of bandArgs style the
+  # conf.level is taken out here, the other elements of band style the
   # band: routing the whole list through callIf() into .calcSplineCI()
-  # handed it every graphical parameter (bandArgs = list(lty = 2) failed
+  # handed it every graphical parameter (band = list(lty = 2) failed
   # with "unused argument")
-  bandOn <- !isFALSE(bandArgs) && !is.null(bandArgs) &&
-            !bedrock::isNA(bandArgs)
+  bandOn <- !isFALSE(band) && !is.null(band) &&
+            !bedrock::isNA(band)
   
   if (bandOn) {
     
-    confLevel <- (if (is.list(bandArgs)) bandArgs$conf.level) %||% 0.95
+    confLevel <- (if (is.list(band)) band$conf.level) %||% 0.95
     
     ci <- .calcSplineCI(spline = x, fit = fit, conf.level = confLevel)
     
     bedrock::callIf(
       .drawBandCI,
-      bandArgs,
+      band,
       defaults = list(
         x = fit$x,
         ci = ci,

@@ -25,7 +25,7 @@ infinite limits.}
 
 \item{xname}{character string giving the name to be used for the x axis.}
 
-\item{\dots}{the dots are passed on to \code{\link[=polygon]{polygon()}}.}
+\item{\dots}{the dots are passed on to \code{\link[graphics:polygon]{graphics::polygon()}}.}
 }
 \value{
 A list with components \code{x} and \code{y} of the points that were
@@ -54,7 +54,7 @@ shade(dt(x, df=5), breaks=c(-6, qt(0.025, df=5), qt(0.975, df=5), 6),
 
 }
 \seealso{
-\code{\link[=polygon]{polygon()}}, \code{\link[=curve]{curve()}}
+\code{\link[graphics:polygon]{graphics::polygon()}}, \code{\link[=curve]{curve()}}
 
 Other plot.distribution:
 \code{\link[=plotFun]{plotFun()}},

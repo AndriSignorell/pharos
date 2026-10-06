@@ -8,11 +8,12 @@ plotPolar(
   r,
   theta = NULL,
   main = NULL,
-  type = "p",
   rlim = NULL,
+  type = "p",
+  add = FALSE,
   col = NULL,
   border = NULL,
-  add = FALSE,
+  stamp = .useTheme,
   ...
 )
 }
@@ -24,6 +25,8 @@ Must match the dimensions of \code{r}. If \code{NULL}, equally spaced angles are
 
 \item{main}{optional plot title.}
 
+\item{rlim}{numeric limit for radial axis. If \code{NULL}, determined automatically.}
+
 \item{type}{character vector specifying plot type for each series:
 \describe{
 \item{"p"}{points}
@@ -31,13 +34,15 @@ Must match the dimensions of \code{r}. If \code{NULL}, equally spaced angles are
 \item{"h"}{radial segments ("histogram"-style)}
 }}
 
-\item{rlim}{numeric limit for radial axis. If \code{NULL}, determined automatically.}
+\item{add}{logical; if \code{TRUE}, adds to an existing plot.}
 
 \item{col}{color for points/lines.}
 
 \item{border}{color for border in case of type \code{polygon}.}
 
-\item{add}{logical; if \code{TRUE}, adds to an existing plot.}
+\item{stamp}{controls the corner stamp. \code{.useTheme} (default)
+resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
+\code{NULL}, a string, or a named list for \code{\link[=stamp]{stamp()}}.}
 
 \item{...}{additional graphical parameters passed to base plotting functions.}
 }

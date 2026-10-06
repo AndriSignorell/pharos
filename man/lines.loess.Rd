@@ -11,7 +11,7 @@
   lty = "solid",
   type = "l",
   n = 100,
-  bandArgs = list(conf.level = 0.95),
+  band = list(conf.level = 0.95),
   ...
 )
 }
@@ -30,7 +30,7 @@ two-color pair (see \link{theme}).}
 
 \item{n}{number of points used for plotting the fit.}
 
-\item{bandArgs}{controls the confidence band. May be \code{TRUE},
+\item{band}{controls the confidence band. May be \code{TRUE},
 \code{FALSE}, \code{NULL}, \code{NA}, or a named list. The confidence
 level is specified via \code{conf.level}, all other elements are graphical
 parameters of the band. Default is \code{list(conf.level = 0.95)}.}
@@ -44,7 +44,7 @@ predictions from a \code{loess} object and then adds the fitted smoother
 together with an optional confidence band.
 }
 \details{
-The confidence band is controlled via \code{bandArgs}. This argument may be:
+The confidence band is controlled via \code{band}. This argument may be:
 \itemize{
 \item \code{FALSE}, \code{NULL} or \code{NA}: suppress the band
 \item \code{TRUE}: draw the band with default settings
@@ -64,7 +64,7 @@ lines(loess(y ~ x))
 plot(dist ~ speed, cars)
 lines(
   loess(dist ~ speed, cars),
-  bandArgs = list(
+  band = list(
     conf.level = 0.99,
     col = addOpacity("red", 0.4),
     border = "black"

@@ -4,12 +4,12 @@
 \alias{strAbbr}
 \title{Abbreviate Strings Uniquely}
 \usage{
-strAbbr(x, minchar = 1, method = c("left", "fix"))
+strAbbr(x, minChar = 1, method = c("left", "fix"))
 }
 \arguments{
 \item{x}{a character vector}
 
-\item{minchar}{integer; minimum number of characters to retain}
+\item{minChar}{integer; minimum number of characters to retain}
 
 \item{method}{character string specifying the abbreviation strategy:
 \itemize{
@@ -28,7 +28,7 @@ distinguishable within the input vector.
 }
 \details{
 The function ensures that abbreviations are unique (within the given
-vector) while respecting the minimum length \code{minchar}.
+vector) while respecting the minimum length \code{minChar}.
 
 For \code{method = "left"}, each string is shortened individually to the
 shortest prefix that distinguishes it from all others.

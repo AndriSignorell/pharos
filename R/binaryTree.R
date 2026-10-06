@@ -23,6 +23,9 @@
 #' @param text properties of the text, can be any of the arguments
 #'  of [boxedText()] (besides geometry and label). 
 #' @param \dots the dots are sent to [canvas()]. 
+#' @param stamp controls the corner stamp. `.useTheme` (default)
+#'   resolves to `getTheme()$stamp`. `TRUE`/`FALSE`/
+#'   `NULL`, a string, or a named list for [stamp()].
 #' 
 #' @return an integer vector of length n 
 #' 
@@ -62,8 +65,25 @@
 #'
 #'
 #' @export
-plotBinaryTree <- function(x, main = "Binary tree", horiz = FALSE,
-                        text=TRUE, line=TRUE, ...) {
+plotBinaryTree <- function(
+    # DATA
+    x,
+
+    # LABELS
+    main = "Binary tree",
+
+    # STRUCTURE
+    horiz = FALSE,
+
+    # FEATURES
+    text = TRUE,
+    line = TRUE,
+
+    # FRAMEWORK
+    stamp = .useTheme,
+
+    ...
+) {
   
 
   col <- "black"
@@ -162,14 +182,14 @@ plotBinaryTree <- function(x, main = "Binary tree", horiz = FALSE,
             defaults = list(
               x = df$xpos, y = df$ypos, 
               labels = df$x,
-              xpad = 0.5, ypad = 0.5,
+              xPad = 0.5, yPad = 0.5,
               border = FALSE, bg=addOpacity("white", 0.9)
             ),
             forbidden = c("x","y","labels"),
             warn = TRUE
     )
 
-  })
+  }, stamp = stamp)
   
   invisible(df)
   

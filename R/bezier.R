@@ -6,7 +6,7 @@
 #' @param x,y numeric vectors of control points.
 #'   Alternatively, `x` may be a list with components
 #'   `x` and `y`.
-#' @param numPoints number of points used to approximate the curve.
+#' @param nPoints number of points used to approximate the curve.
 #'
 #' @return
 #' An object inheriting from class
@@ -42,7 +42,7 @@
 bezier <- function(
     x,
     y = NULL,
-    numPoints = 100
+    nPoints = 100
 ) {
   
   if(is.list(x)) {
@@ -61,32 +61,32 @@ bezier <- function(
   if(length(x) < 3L)
     stop("At least 3 control points are required.")
   
-  if(!is.numeric(numPoints) ||
-     length(numPoints) != 1L ||
-     is.na(numPoints) ||
-     numPoints < 2L ||
-     numPoints %% 1 != 0)
-    stop("'numPoints' must be an integer >= 2.")
+  if(!is.numeric(nPoints) ||
+     length(nPoints) != 1L ||
+     is.na(nPoints) ||
+     nPoints < 2L ||
+     nPoints %% 1 != 0)
+    stop("'nPoints' must be an integer >= 2.")
   
   n <- length(x)
   
-  X <- Y <- numeric(numPoints)
+  X <- Y <- numeric(nPoints)
   
   Z <- seq(
     0,
     1,
-    length.out = numPoints
+    length.out = nPoints
   )
   
   X[1L] <- x[1L]
-  X[numPoints] <- x[n]
+  X[nPoints] <- x[n]
   
   Y[1L] <- y[1L]
-  Y[numPoints] <- y[n]
+  Y[nPoints] <- y[n]
   
-  if(numPoints > 2L) {
+  if(nPoints > 2L) {
     
-    for(i in 2:(numPoints - 1L)) {
+    for(i in 2:(nPoints - 1L)) {
       
       z <- Z[i]
       

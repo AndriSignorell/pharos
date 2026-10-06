@@ -6,13 +6,14 @@
 \usage{
 plotCatDist(
   x,
+  main = NULL,
   type = c("both", "freq", "perc"),
   ecdf = FALSE,
+  maxCats = NULL,
+  maxLabLen = 25,
   col = "grey80",
   border = FALSE,
-  maxlablen = 25,
-  maxcats = NULL,
-  main = NULL,
+  stamp = .useTheme,
   ...
 )
 }
@@ -21,6 +22,8 @@ plotCatDist(
 or a numeric vector of precomputed frequencies. Unnamed numeric frequency
 vectors are labelled by their positions.}
 
+\item{main}{plot title.}
+
 \item{type}{character; one of \code{"both"}, \code{"freq"}, \code{"perc"}.
 Controls whether absolute frequencies, relative frequencies, or both
 are displayed.}
@@ -28,15 +31,17 @@ are displayed.}
 \item{ecdf}{logical; if \code{TRUE}, cumulative proportions are shown
 instead of simple relative frequencies.}
 
+\item{maxCats}{optional maximum number of categories to display (truncates if exceeded).}
+
+\item{maxLabLen}{integer; maximum length of category labels before truncation.}
+
 \item{col}{fill color for bars.}
 
 \item{border}{logical; draw borders around bars.}
 
-\item{maxlablen}{integer; maximum length of category labels before truncation.}
-
-\item{maxcats}{optional maximum number of categories to display (truncates if exceeded).}
-
-\item{main}{plot title.}
+\item{stamp}{controls the corner stamp. \code{.useTheme} (default)
+resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
+\code{NULL}, a string, or a named list for \code{\link[=stamp]{stamp()}}.}
 
 \item{...}{further graphical parameters passed to \code{par()}.}
 }
@@ -58,10 +63,10 @@ The function produces horizontal bar plots:
 If \code{type = "both"}, both views are shown side by side.
 
 Long labels are truncated, and large category sets can be limited via
-\code{maxcats}.
+\code{maxCats}.
 
 Raw categorical data and their pre-tabulated form are treated identically.
-When categories are truncated via \code{maxcats}, proportions remain based
+When categories are truncated via \code{maxCats}, proportions remain based
 on the total frequency before truncation.
 }
 \examples{
@@ -78,7 +83,7 @@ plotCatDist(x, ecdf = TRUE)
 
 # Many categories (truncation)
 x2 <- factor(sample(letters, 200, TRUE))
-plotCatDist(x2, maxcats = 10)
+plotCatDist(x2, maxCats = 10)
 
 }
 \seealso{
@@ -90,7 +95,7 @@ Other plot.univariate:
 \code{\link[=plotDensBox]{plotDensBox()}},
 \code{\link[=plotDot]{plotDot()}},
 \code{\link[=plotECDF]{plotECDF()}},
-\code{\link[=plotFdist]{plotFdist()}},
+\code{\link[=plotFreqDist]{plotFreqDist()}},
 \code{\link[=plotLines]{plotLines()}},
 \code{\link[=plotQQ]{plotQQ()}},
 \code{\link[=plotViolin]{plotViolin()}}

@@ -41,7 +41,7 @@
 #'   spacing.
 #' @param main optional title for the legend, drawn at the top of the
 #'   plot region. Default is `NULL` (none).
-#' @param mindist minimal vertical distance between labels in user
+#' @param minDist minimal vertical distance between labels in user
 #'   coordinates, passed to `spreadOut()`. Default is
 #'   `1.2 * strheight("M") * cex`.
 #'
@@ -78,7 +78,7 @@ textLegend <- function(y, labels = names(y),
                        line = c(1, 1), width = 1,
                        col = par("fg"), lty = par("lty"), lwd = par("lwd"),
                        cex = par("cex"), main = NULL,
-                       mindist = NULL) {
+                       minDist = NULL) {
   
   # y:      vertical anchor positions in user coordinates, typically the
   #         last observed value per series, in *series order* -- the
@@ -106,8 +106,8 @@ textLegend <- function(y, labels = names(y),
   # resolve vertical label collisions; mindist scales with the *effective*
   # cex (after callIf merging), so a user cex in the legend list
   # automatically widens the spacing -- no peeking from the caller needed
-  mindist <- mindist %||% (1.2 * strheight("M") * cex)
-  ypos    <- spreadOut(y, mindist = mindist)
+  minDist <- minDist %||% (1.2 * strheight("M") * cex)
+  ypos    <- spreadOut(y, minDist = minDist)
   
   line    <- rep(line, length.out = 2)
   txtline <- line[1] + naReplace(width + (!is.na(width)) * line[2], 0)

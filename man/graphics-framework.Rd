@@ -33,7 +33,7 @@
   las = par("las"),
   cex = par("cex"),
   pad = 0,
-  axis.line = 0
+  axisLine = 0
 )
 }
 \arguments{
@@ -92,7 +92,7 @@ the axis.}
 
 \item{pad}{additional padding in lines.}
 
-\item{axis.line}{offset of the axis labels from the plot region, in
+\item{axisLine}{offset of the axis labels from the plot region, in
 lines.}
 }
 \value{

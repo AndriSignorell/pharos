@@ -17,7 +17,7 @@
 #' @return The function invisibly returns a list of the coordinates for the
 #' rotated shape(s). 
 #' 
-#' @seealso [polygon()], [regPolygon()],
+#' @seealso [polygonX()], [regPolygon()],
 #' [ellipse()], [arc()] 
 
 
@@ -25,7 +25,7 @@
 #' op <- par(no.readonly = TRUE)
 #' # let's have a triangle
 #' canvas(main="Rotation")
-#' x <- regPolygon(numVertices=3)
+#' x <- regPolygon(nVertices=3)
 #' 
 #' # and rotate
 #' sapply( (0:3) * pi/6, function(theta) {

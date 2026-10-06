@@ -31,6 +31,11 @@
 #'   `.useTheme` uses the point settings of the active theme. A plotting
 #'   symbol or a named list containing parameters such as `pch`,
 #'   `col`, `bg`, and `cex` can also be supplied
+#' @param cex character expansion factor for the points. `.useTheme`
+#'   (default) resolves to `getTheme()$points$cex`.
+#' @param stamp controls the corner stamp. `.useTheme` (default)
+#'   resolves to `getTheme()$stamp`. `TRUE`/`FALSE`/
+#'   `NULL`, a string, or a named list for [stamp()].
 #' @param ... additional graphical parameters passed to
 #'   [graphics::par()]
 #'
@@ -130,7 +135,7 @@
 #'   pch = 4
 #' )
 #'
-#' @seealso [as.CI()], [is.CI()],
+#' @seealso [as.CI()], [isCI()],
 #'   [graphics::dotchart()]
 #'
 #' @family plot.univariate  
@@ -139,36 +144,68 @@
 #' @concept dotchart
 #'
 #' @export
-plotDot <- function(x, 
-                    items = NULL,
-                    groups = NULL,
-                    main=NULL, 
-                    xlim = NULL,
-                    gap = 1,
-                    axes = TRUE,
-                    xax = NULL, 
-                    box = .useTheme,
-                    grid = .useTheme,
-                    pch = .useTheme, 
-                    ...) {
+plotDot <- function(
+    # DATA
+    x,
+
+    # LABELS
+    main = NULL,
+
+    # AXES
+    xlim = NULL,
+    xax  = NULL,
+    axes = TRUE,
+
+    # STRUCTURE
+    items  = NULL,
+    groups = NULL,
+    gap    = 1,
+
+    # STYLE
+    pch  = .useTheme,
+    cex  = .useTheme,
+    grid = .useTheme,
+    box  = .useTheme,
+
+    # FRAMEWORK
+    stamp = .useTheme,
+
+    ...
+) {
   UseMethod("plotDot")
 }
 
 
 
 #' @export
-plotDot.default <- function(x, 
-                            items = NULL,
-                            groups = NULL,
-                            main=NULL, 
-                            xlim = NULL,
-                            gap = 1,
-                            axes = TRUE,
-                            xax = NULL, 
-                            box = .useTheme,
-                            grid = .useTheme,
-                            pch = .useTheme, 
-                            ...) {
+plotDot.default <- function(
+    # DATA
+    x,
+
+    # LABELS
+    main = NULL,
+
+    # AXES
+    xlim = NULL,
+    xax  = NULL,
+    axes = TRUE,
+
+    # STRUCTURE
+    items  = NULL,
+    groups = NULL,
+    gap    = 1,
+
+    # STYLE
+    pch  = .useTheme,
+    cex  = .useTheme,
+    grid = .useTheme,
+    box  = .useTheme,
+
+    # FRAMEWORK
+    stamp = .useTheme,
+
+    ...
+) {
   
   
   gridSpec <- .resolveToggle(grid, getTheme()$grid)
@@ -177,6 +214,15 @@ plotDot.default <- function(x,
     pt  <- getTheme()$points
     pch <- list(pch = pt$pch, col = pt$col, bg = pt$bg, cex = pt$cex)
   }
+
+  # cex is the size of the points and ends up in the point specification:
+  # an explicit value wins, the theme fills in where a pch list has none
+  if (!is.list(pch))
+    pch <- list(pch = pch)
+  if (!identical(cex, .useTheme))
+    pch$cex <- cex
+  else if (is.null(pch$cex))
+    pch$cex <- getTheme()$points$cex
   
   
   x <- .normalizeDotData(x)
@@ -333,7 +379,7 @@ plotDot.default <- function(x,
     )
     
     
-  })
+  }, stamp = stamp)
   
   invisible(list(
     ypos = ypos,

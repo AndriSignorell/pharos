@@ -126,7 +126,7 @@ Friendly, M. (1992). Graphical methods for categorical data.
 \emph{SAS User Group International Conference Proceedings}, 17, 190--200.
 }
 \seealso{
-\link[graphics:mosaicplot]{graphics::mosaicplot}, \code{DescToolsX::conf}
+\link[graphics:mosaicplot]{graphics::mosaicplot}, \code{DescToolsX::confusion}
 
 Other plot.bivariate:
 \code{\link[=plotBag]{plotBag()}},

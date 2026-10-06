@@ -7,7 +7,7 @@
 #' median, spread, and outliers.
 #'
 #' @param x numeric vector, or a formula of the form `x ~ g`.
-#' @param g optional grouping variable (ignored if a formula is used).
+#' @param groups optional grouping variable (ignored if a formula is used).
 #'
 #' @param formula a formula of the form `y ~ group`, or `y ~ a:b` for the
 #'   cells of several grouping variables. `y ~ a + b` is not accepted, see
@@ -30,7 +30,7 @@
 #' @param xlim numeric vector of length 2 specifying the x-axis limits.
 #'   `NULL` (default) covers the data and the tails of the densities.
 #'
-#' @param layout_heights numeric vector of length 2 specifying the relative
+#' @param heights numeric vector of length 2 specifying the relative
 #' heights of the density plot (top) and boxplot (bottom).
 #'
 #' @param col vector of colors, recycled over the groups. If `NULL`, a
@@ -44,7 +44,7 @@
 #'     \item a named list: arguments passed to [graphics::grid()]
 #'   }
 #'
-#' @param densArgs controls density estimation via
+#' @param dens controls density estimation via
 #'   [stats::density()].
 #'   Can be:
 #'   \itemize{
@@ -54,7 +54,7 @@
 #'       [stats::density()]
 #'   }
 #'
-#' @param boxArgs controls drawing of boxplots via
+#' @param box controls drawing of boxplots via
 #'   [graphics::boxplot()].
 #'   Can be:
 #'   \itemize{
@@ -102,13 +102,13 @@
 #'
 #' plotDensBox(
 #'   x,
-#'   densArgs = list(adjust = 2),
-#'   boxArgs  = list(notch = TRUE)
+#'   dens = list(adjust = 2),
+#'   box  = list(notch = TRUE)
 #' )
 #'
 #' plotDensBox(
 #'   x,
-#'   boxArgs = FALSE
+#'   box = FALSE
 #' )
 #'
 #' plotDensBox(x ~ g)
@@ -134,7 +134,7 @@ plotDensBox <- function(x, ...) {
 plotDensBox.default <- function(
     
   x,
-  g = NULL,
+  groups = NULL,
   
   main = NULL,
   xlab = "",
@@ -142,14 +142,14 @@ plotDensBox.default <- function(
   
   xlim = NULL,
   
-  layout_heights = c(2, 1.4),
+  heights = c(2, 1.4),
   
   col = NULL,
   
   grid = TRUE,
   
-  densArgs = TRUE,
-  boxArgs  = TRUE,
+  dens = TRUE,
+  box  = TRUE,
   
   stamp = .useTheme,
   
@@ -158,23 +158,23 @@ plotDensBox.default <- function(
   
   mc   <- match.call()
   main <- .resolveTitle(main, default =
-    if (is.null(mc$g)) deparse1(mc$x)
-    else paste(deparse1(mc$x), "~", deparse1(mc$g)))
+    if (is.null(mc$groups)) deparse1(mc$x)
+    else paste(deparse1(mc$x), "~", deparse1(mc$groups)))
   
   .withGraphicsState({
     
     .applyParFromDots(...)
     
     # --- Prepare data ----------------------------------------------------
-    if (is.null(g)) {
+    if (is.null(groups)) {
       
       split_x <- list(x)
       names(split_x) <- ""
       
     } else {
       
-      g <- factor(g)
-      split_x <- split(x, g)
+      groups <- factor(groups)
+      split_x <- split(x, groups)
     }
     
     ng <- length(split_x)
@@ -188,7 +188,7 @@ plotDensBox.default <- function(
     # --- Layout ----------------------------------------------------------
     layout(
       matrix(c(1, 2), nrow = 2),
-      heights = layout_heights
+      heights = heights
     )
     
     # ====================================================================
@@ -212,7 +212,7 @@ plotDensBox.default <- function(
           return(NULL)
         bedrock::callIf(
           stats::density,
-          densArgs,
+          dens,
           defaults = list(
             x = v,
             na.rm = TRUE
@@ -276,7 +276,7 @@ plotDensBox.default <- function(
       
       graphics::boxplot,
       
-      boxArgs,
+      box,
       
       defaults = list(
         x = split_x,
@@ -349,10 +349,10 @@ plotDensBox.formula <- function(
   
   # ylab is left to the caller: it labels the density axis, the group
   # names already label the boxplot. The remaining arguments (xlim, col,
-  # densArgs, boxArgs, stamp, ...) reach the default method through ...
+  # dens, box, stamp, ...) reach the default method through ...
   plotDensBox.default(
     x    = r$x,
-    g    = r$group,
+    groups    = r$group,
     main = main,
     xlab = xlab,
     ...

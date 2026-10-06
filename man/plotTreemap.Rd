@@ -7,11 +7,10 @@
 plotTreemap(
   x,
   groups = NULL,
+  main = NULL,
   area = NULL,
   labels = NULL,
-  groupArea = NULL,
-  groupLabels = NULL,
-  main = NULL,
+  stamp = .useTheme,
   ...
 )
 }
@@ -19,7 +18,16 @@ plotTreemap(
 \item{x}{numeric vector of positive values determining the rectangle sizes.}
 
 \item{groups}{optional grouping variable. Values sharing the same group are
-placed within a common enclosing region.}
+placed within a common enclosing region. A list sets the appearance
+of the group regions as well: it holds the grouping variable (element
+\code{by}, or the one unnamed element) and the elements \code{area} and
+\code{labels}, which follow the conventions of the arguments \code{area} and
+\code{labels}, e.g.
+\code{groups = list(grp, area = list(border = "black", lwd = 2))}. By
+default, group names are used as labels when more than one group is
+present.}
+
+\item{main}{main title of the plot.}
 
 \item{area}{controls the appearance of individual rectangles.
 \itemize{
@@ -39,14 +47,9 @@ and \code{lwd}.
 \code{cex}.
 }}
 
-\item{groupArea}{controls the appearance of enclosing group regions.
-Uses the same conventions as \code{area}.}
-
-\item{groupLabels}{controls the labels of enclosing group regions.
-Uses the same conventions as \code{labels}. By default, group names are
-used when more than one group is present.}
-
-\item{main}{main title of the plot.}
+\item{stamp}{controls the corner stamp. \code{.useTheme} (default)
+resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
+\code{NULL}, a string, or a named list for \code{\link[=stamp]{stamp()}}.}
 
 \item{...}{additional graphical parameters passed to
 \code{.applyParFromDots()}.}
@@ -61,16 +64,17 @@ corresponding value in \code{x}. Optionally, rectangles can be grouped into
 higher-level regions.
 }
 \details{
-The appearance of individual rectangles and groups is controlled through the
-\code{area}, \code{labels}, \code{groupArea}, and \code{groupLabels}
-arguments. These accept logical values, vectors, or lists.
+The appearance of individual rectangles is controlled through the
+\code{area} and \code{labels} arguments, that of the groups through the elements
+\code{area} and \code{labels} of a \code{groups} list. These accept logical values,
+vectors, or lists.
 
 Individual rectangles are sized according to the values in \code{x}. When
 \code{groups} is supplied, a treemap is first constructed for the groups,
 and each group's area is then subdivided among its members.
 
-The arguments \code{area}, \code{labels}, \code{groupArea}, and
-\code{groupLabels} provide a flexible interface for controlling the
+The arguments \code{area} and \code{labels} - and their counterparts in a
+\code{groups} list - provide a flexible interface for controlling the
 appearance of the plot while keeping the main function signature compact.
 }
 \examples{
@@ -87,16 +91,14 @@ grp <- c("G1", "G1", "G1", "G2", "G2", "G2")
 
 plotTreemap(
   x,
-  groups = grp,
-  groupLabels = TRUE
+  groups = list(grp, labels = TRUE)
 )
 
 plotTreemap(
   x,
-  groups = grp,
+  groups = list(grp, area = list(border = "black", lwd = 2)),
   area = terrain.colors(length(x)),
-  labels = FALSE,
-  groupArea = list(border = "black", lwd = 2)
+  labels = FALSE
 )
 
 }

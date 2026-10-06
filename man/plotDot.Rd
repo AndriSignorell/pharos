@@ -6,16 +6,18 @@
 \usage{
 plotDot(
   x,
-  items = NULL,
-  groups = NULL,
   main = NULL,
   xlim = NULL,
-  gap = 1,
-  axes = TRUE,
   xax = NULL,
-  box = .useTheme,
-  grid = .useTheme,
+  axes = TRUE,
+  items = NULL,
+  groups = NULL,
+  gap = 1,
   pch = .useTheme,
+  cex = .useTheme,
+  grid = .useTheme,
+  box = .useTheme,
+  stamp = .useTheme,
   ...
 )
 }
@@ -24,38 +26,45 @@ plotDot(
 are a numeric vector, a numeric matrix, a three-dimensional numeric array,
 or a \code{"CI"} object created with \code{\link[=as.CI]{as.CI()}}}
 
+\item{main}{optional main title}
+
+\item{xlim}{numeric vector containing the limits of the horizontal axis;
+by default, the range of all estimates and confidence limits}
+
+\item{xax}{optional specification for the horizontal axis, interpreted by
+the internal axis renderer}
+
+\item{axes}{logical; whether the horizontal and item axes are drawn}
+
 \item{items}{optional character vector containing the item labels; defaults
 to the row names or first dimension names of \code{x}}
 
 \item{groups}{optional character vector containing the group labels;
 defaults to the column names or third dimension names of \code{x}}
 
-\item{main}{optional main title}
-
-\item{xlim}{numeric vector containing the limits of the horizontal axis;
-by default, the range of all estimates and confidence limits}
-
 \item{gap}{non-negative numeric value controlling the vertical space
 between groups}
 
-\item{axes}{logical; whether the horizontal and item axes are drawn}
+\item{pch}{specification for the estimate points. The default
+\code{.useTheme} uses the point settings of the active theme. A plotting
+symbol or a named list containing parameters such as \code{pch},
+\code{col}, \code{bg}, and \code{cex} can also be supplied}
 
-\item{xax}{optional specification for the horizontal axis, interpreted by
-the internal axis renderer}
-
-\item{box}{specification controlling the plot box. The default
-\code{.useTheme} uses the active theme. A logical value, \code{NA}, or
-a named list of graphical parameters can also be supplied}
+\item{cex}{character expansion factor for the points. \code{.useTheme}
+(default) resolves to \code{getTheme()$points$cex}.}
 
 \item{grid}{specification controlling the horizontal item and group grid
 lines. The default \code{.useTheme} follows the active theme. A logical
 value, \code{NA}, or a named list of graphical parameters can also be
 supplied}
 
-\item{pch}{specification for the estimate points. The default
-\code{.useTheme} uses the point settings of the active theme. A plotting
-symbol or a named list containing parameters such as \code{pch},
-\code{col}, \code{bg}, and \code{cex} can also be supplied}
+\item{box}{specification controlling the plot box. The default
+\code{.useTheme} uses the active theme. A logical value, \code{NA}, or
+a named list of graphical parameters can also be supplied}
+
+\item{stamp}{controls the corner stamp. \code{.useTheme} (default)
+resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
+\code{NULL}, a string, or a named list for \code{\link[=stamp]{stamp()}}.}
 
 \item{...}{additional graphical parameters passed to
 \code{\link[graphics:par]{graphics::par()}}}
@@ -164,7 +173,7 @@ points(
 
 }
 \seealso{
-\code{\link[=as.CI]{as.CI()}}, \code{\link[=is.CI]{is.CI()}},
+\code{\link[=as.CI]{as.CI()}}, \code{\link[=isCI]{isCI()}},
 \code{\link[graphics:dotchart]{graphics::dotchart()}}
 
 Other plot.univariate:
@@ -175,7 +184,7 @@ Other plot.univariate:
 \code{\link[=plotDens]{plotDens()}},
 \code{\link[=plotDensBox]{plotDensBox()}},
 \code{\link[=plotECDF]{plotECDF()}},
-\code{\link[=plotFdist]{plotFdist()}},
+\code{\link[=plotFreqDist]{plotFreqDist()}},
 \code{\link[=plotLines]{plotLines()}},
 \code{\link[=plotQQ]{plotQQ()}},
 \code{\link[=plotViolin]{plotViolin()}}

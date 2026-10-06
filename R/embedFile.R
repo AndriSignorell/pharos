@@ -1,8 +1,8 @@
 
 #' Base64-encode a file
 #'
-#' The building block behind [as.img()] and
-#' [as.fileLink()]: reads a file and returns its contents
+#' The building block behind [asImg()] and
+#' [asFileLink()]: reads a file and returns its contents
 #' base64-encoded, ready to be placed in a data URI or in any container
 #' format that carries binary payloads as text.
 #'
@@ -36,7 +36,7 @@ embedFile <- function(path) {
 #' Turns a file into a download link that carries the file with it: the
 #' contents travel base64-encoded inside the `href`, so the resulting
 #' HTML needs no server and no accompanying assets. The counterpart of
-#' [as.img()] for non-image files -- a data set next to a table,
+#' [asImg()] for non-image files -- a data set next to a table,
 #' a script next to its output.
 #'
 #' Browsers limit the size of a data URI, so this suits spreadsheets and
@@ -51,14 +51,14 @@ embedFile <- function(path) {
 #' @examples
 #' fn <- tempfile(fileext = ".csv")
 #' write.csv(head(iris), fn, row.names = FALSE)
-#' as.fileLink(fn, label = "iris")
+#' asFileLink(fn, label = "iris")
 #' unlink(fn)
 #'
 #' @family html
 #' @concept html
 #'
 #' @export
-as.fileLink <- function(path, label = NULL, type = NULL) {
+asFileLink <- function(path, label = NULL, type = NULL) {
 
   name <- basename(path)
 
@@ -72,7 +72,7 @@ as.fileLink <- function(path, label = NULL, type = NULL) {
                    "pdf"  = "application/pdf",
                    "application/octet-stream")
 
-  as.html(gettextf('<a href="data:%s;base64,%s" download="%s">%s</a>',
+  asHtml(gettextf('<a href="data:%s;base64,%s" download="%s">%s</a>',
                    type, embedFile(path), name,
                    if (is.null(label)) name else label))
 }

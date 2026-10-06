@@ -6,13 +6,13 @@
 
 test_that("colToOpaque against white: fully opaque input unchanged", {
   hex <- colToHex("red")
-  res <- colToOpaque(hex, opacity = 1, bg = colToRGB("white"))
+  res <- colToOpaque(hex, opacity = 1, bg = colToRgb("white"))
   expect_equal(tolower(unname(res)), tolower(hex))
 })
 
 test_that("colToOpaque against white: opacity=0 returns white", {
   hex <- colToHex("red")
-  res <- colToOpaque(hex, opacity = 0, bg = colToRGB("white"))
+  res <- colToOpaque(hex, opacity = 0, bg = colToRgb("white"))
   expect_equal(tolower(unname(res)), "#ffffff")
 })
 

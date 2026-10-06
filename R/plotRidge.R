@@ -97,37 +97,38 @@ plotRidge <- function(x, ...) {
 #' @method plotRidge default
 #' @export
 plotRidge.default <- function(
-    
-  # DATA
-  x,
-  ...,
-  
-  # STRUCTURE
-  add = FALSE,
-  bw = "nrd0",
-  scale = 1,
-  normalize = c("global", "group"),
-  spacing = 1,
-  
-  # STYLE
-  col = NULL,
-  border = NULL,
-  lwd = 1,
-  lty = 1,
-  fill = TRUE,
-  grid = NA,
-  
-  # LABELS
-  main = NULL,
-  xlab = "",
-  ylab = "",
-  
-  # AXES
-  xlim = NULL,
-  ylim = NULL,
-  
-  stamp = .useTheme
-  
+    # DATA
+    x,
+    ...,
+
+    # LABELS
+    main = NULL,
+    xlab = "",
+    ylab = "",
+
+    # AXES
+    xlim = NULL,
+    ylim = NULL,
+
+    # STATISTICS
+    bw        = "nrd0",
+    normalize = c("global", "group"),
+
+    # STRUCTURE
+    add     = FALSE,
+    scale   = 1,
+    spacing = 1,
+
+    # STYLE
+    col    = NULL,
+    border = NULL,
+    lwd    = 1,
+    lty    = 1,
+    fill   = TRUE,
+    grid   = NA,
+
+    # FRAMEWORK
+    stamp = .useTheme
 ) {
   
   m    <- match.call(expand.dots = FALSE)
@@ -266,14 +267,18 @@ plotRidge.default <- function(
 #' @method plotRidge formula
 #' @export
 plotRidge.formula <- function(
+    # DATA
     formula,
     data,
     subset,
     na.action = na.omit,
-    ...,
+
+    # LABELS
     main = NULL,
     xlab = "",
-    ylab = ""
+    ylab = "",
+
+    ...
 ) {
   
   # formula, data and subset are forwarded unevaluated, so that 'subset' is

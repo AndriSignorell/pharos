@@ -95,37 +95,35 @@
 #'
 #' @export
 plotHeatmap <- function(
-    
-  # DATA
-  x,
-  
-  # LABELS
-  main = NULL,
-  xlab = "",
-  ylab = "",
-  
-  # AXES
-  xlim = NULL,
-  ylim = NULL,
-  
-  # STRUCTURE
-  scale = c("count", "prop", "row", "col"),
-  
-  # STYLE
-  col = .useTheme,
-  border = NA,
-  naCol = "gray90",
-  
-  # FEATURES
-  text = FALSE,
-  zlim = NULL,
-  box = .useTheme,
-  
-  # FRAMEWORK
-  stamp = .useTheme,
-  
-  ...
-  
+    # DATA
+    x,
+
+    # LABELS
+    main = NULL,
+    xlab = "",
+    ylab = "",
+
+    # AXES
+    xlim = NULL,
+    ylim = NULL,
+    zlim = NULL,
+
+    # STATISTICS
+    scale = c("count", "prop", "row", "col"),
+
+    # STYLE
+    col    = .useTheme,
+    border = NA,
+    naCol  = "gray90",
+    box    = .useTheme,
+
+    # FEATURES
+    text = FALSE,
+
+    # FRAMEWORK
+    stamp = .useTheme,
+
+    ...
 ) {
   
   # Default title follows the same "substitute magic" convention as

@@ -8,15 +8,15 @@
 #' 
 #' 
 #' @param x a vector of strings
-#' @param maxlen the maximum length of the returned strings (NOT counting the
-#' appended ellipsis). `maxlen` is recycled.
+#' @param maxLen the maximum length of the returned strings (NOT counting the
+#' appended ellipsis). `maxLen` is recycled.
 #' @param ellipsis the string to be appended, if the string is longer than the
 #' given maximal length. The default is `"..."`.
-#' @param wbound logical. Determines if the maximal length should be reduced to
+#' @param wordBound logical. Determines if the maximal length should be reduced to
 #' the next smaller word boundary and so words are not chopped. Default is
 #' `FALSE`.
 #' @return The string(s) passed as \samp{x} now with a maximum length of
-#' \samp{maxlen} + 3 (for the ellipsis).
+#' \samp{maxLen} + 3 (for the ellipsis).
 #' 
 #' @seealso [strAlign()], [strPad()]
 #' 
@@ -26,18 +26,18 @@
 #'        "whereas this is a much longer story, which could not be told shorter")
 #' 
 #' # simple truncation on 10 characters
-#' strTrunc(x, maxlen=10)
+#' strTrunc(x, maxLen=10)
 #' 
 #' # NAs remain NA
-#' strTrunc(c(x, NA_character_), maxlen=15, wbound=TRUE)
+#' strTrunc(c(x, NA_character_), maxLen=15, wordBound=TRUE)
 #' 
 #' # using word boundaries
 #' for(i in 0:20)
-#'   print(strTrunc(x, maxlen=i, wbound=TRUE))
+#'   print(strTrunc(x, maxLen=i, wordBound=TRUE))
 #' 
 #' # compare
 #' for(i in 0:20)
-#'   print(strTrunc(x, maxlen=i, wbound=FALSE))
+#'   print(strTrunc(x, maxLen=i, wordBound=FALSE))
 #' 
 
 
@@ -52,12 +52,12 @@
 #'
 #' @export
 strTrunc <- function(x,
-                     maxlen = 20,
+                     maxLen = 20,
                      ellipsis = "...",
-                     wbound = FALSE) {
+                     wordBound = FALSE) {
   
-  if (any(maxlen < 0, na.rm = TRUE)) {
-    stop("'maxlen' must be >= 0")
+  if (any(maxLen < 0, na.rm = TRUE)) {
+    stop("'maxLen' must be >= 0")
   }
   
   valid <- !is.na(x)
@@ -65,13 +65,13 @@ strTrunc <- function(x,
   x2 <- x
   x2[!valid] <- ""
   
-  maxlen <- rep(maxlen, length.out = length(x2))
+  maxLen <- rep(maxLen, length.out = length(x2))
   
-  if (wbound) {
+  if (wordBound) {
     
     x2 <- stringi::stri_extract_first_regex(
       x2,
-      paste0("^.{0,", maxlen, "}(?=\\b)")
+      paste0("^.{0,", maxLen, "}(?=\\b)")
     )
     
     # remove trailing whitespace before adding ellipsis
@@ -79,11 +79,11 @@ strTrunc <- function(x,
     
   } else {
     
-    x2 <- stringi::stri_sub(x2, 1, maxlen)
+    x2 <- stringi::stri_sub(x2, 1, maxLen)
   }
   
   res <- ifelse(
-    stringi::stri_length(x) > maxlen,
+    stringi::stri_length(x) > maxLen,
     paste0(x2, ellipsis),
     x2
   )

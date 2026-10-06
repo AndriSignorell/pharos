@@ -14,8 +14,8 @@ function. RGB is the hub between the two tables below.
 \section{R color, hex, HSV, and RGB}{
 \tabular{lllll}{
    From \\ To \tab Col \tab Hex \tab HSV \tab RGB \cr
-   \strong{Col} \tab - \tab \code{\link[=colToHex]{colToHex()}} \tab \code{\link[=colToHSV]{colToHSV()}} \tab \code{\link[=colToRGB]{colToRGB()}} \cr
-   \strong{Hex} \tab \code{\link[=hexToCol]{hexToCol()}} \tab - \tab . \tab \code{\link[=hexToRGB]{hexToRGB()}} \cr
+   \strong{Col} \tab - \tab \code{\link[=colToHex]{colToHex()}} \tab \code{\link[=colToHsv]{colToHsv()}} \tab \code{\link[=colToRgb]{colToRgb()}} \cr
+   \strong{Hex} \tab \code{\link[=hexToCol]{hexToCol()}} \tab - \tab . \tab \code{\link[=hexToRgb]{hexToRgb()}} \cr
    \strong{HSV} \tab . \tab . \tab - \tab . \cr
    \strong{RGB} \tab \code{\link[=rgbToCol]{rgbToCol()}} \tab \code{\link[=rgbToHex]{rgbToHex()}} \tab . \tab - \cr
 }
@@ -24,7 +24,7 @@ function. RGB is the hub between the two tables below.
 \emph{"Col" is any valid R color specification (name, hex string, or
 palette index) as accepted by} \code{\link[grDevices:col2rgb]{grDevices::col2rgb()}}.
 No function starts from HSV: it is only ever a conversion target
-(via \code{\link[=colToHSV]{colToHSV()}}), not a source -- see the note below the
+(via \code{\link[=colToHsv]{colToHsv()}}), not a source -- see the note below the
 second table for the reason this gap is left open.
 }
 
@@ -33,7 +33,7 @@ second table for the reason this gap is left open.
    From \\ To \tab CMY \tab CMYK \tab Long \tab RGB \cr
    \strong{CMY} \tab - \tab \code{\link[=cmyToCmyk]{cmyToCmyk()}} \tab . \tab . \cr
    \strong{CMYK} \tab \code{\link[=cmykToCmy]{cmykToCmy()}} \tab - \tab . \tab \code{\link[=cmykToRgb]{cmykToRgb()}} \cr
-   \strong{Long} \tab . \tab . \tab - \tab \code{\link[=longToRGB]{longToRGB()}} \cr
+   \strong{Long} \tab . \tab . \tab - \tab \code{\link[=longToRgb]{longToRgb()}} \cr
    \strong{RGB} \tab \code{\link[=rgbToCmy]{rgbToCmy()}} \tab . \tab \code{\link[=rgbToLong]{rgbToLong()}} \tab - \cr
 }
 }
@@ -54,7 +54,7 @@ Base R already provides the HSV -> Col/Hex direction via
 \code{\link[grDevices:hsv]{grDevices::hsv()}}, which builds a hex color string
 directly from h/s/v values -- the same role \code{\link[=rgb]{rgb()}}
 plays for RGB triplets. pharos deliberately doesn't duplicate it;
-chain \code{hsv()} into \code{\link[=colToRGB]{colToRGB()}} or
+chain \code{hsv()} into \code{\link[=colToRgb]{colToRgb()}} or
 \code{\link[=colToHex]{colToHex()}} instead (see examples).
 }
 
@@ -66,10 +66,10 @@ chain \code{hsv()} into \code{\link[=colToRGB]{colToRGB()}} or
 c(0.2, 0.6, 0.9) |> cmyToCmyk() |> cmykToRgb()
 
 # Long integer -> R color name: Long -> RGB -> Col
-255 |> longToRGB() |> rgbToCol()
+255 |> longToRgb() |> rgbToCol()
 
 # HSV -> RGB: base R's hsv() bridges the gap noted above
-hsv(h = 0.6, s = 0.8, v = 0.9) |> colToRGB()
+hsv(h = 0.6, s = 0.8, v = 0.9) |> colToRgb()
 
 }
 \seealso{

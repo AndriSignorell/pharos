@@ -21,7 +21,7 @@
 #' @param grid logical; draw a background grid.
 #' @param meanLine logical; draw the bias line.
 #' @param limits logical; draw the limits of agreement.
-#' @param conf.band logical; draw confidence bands.
+#' @param cband logical; draw confidence bands.
 #' @param trend logical; draw a regression line of
 #' differences versus means.
 #' @param showText logical; annotate bias and limits.
@@ -57,7 +57,7 @@ plot.BlandAltman <- function(
     meanLine = TRUE,
     limits = TRUE,
     
-    conf.band = FALSE,
+    cband = FALSE,
     trend = FALSE,
     
     showText = TRUE,
@@ -102,7 +102,7 @@ plot.BlandAltman <- function(
     if(grid)
       graphics::grid()
     
-    if(conf.band){
+    if(cband){
       
       rect(
         xlim[1], x$biasCI[1],

@@ -7,7 +7,7 @@
 strDist(
   x,
   y,
-  method = "levenshtein",
+  method = c("levenshtein", "normlevenshtein", "hamming"),
   mismatch = 1,
   gap = 1,
   ignoreCase = FALSE

@@ -20,6 +20,10 @@
 #' @param y optional numeric vector for the second component.
 #' @param z optional numeric vector for the third component.
 #'
+#' @param stamp controls the corner stamp. `.useTheme` (default)
+#'   resolves to `getTheme()$stamp`. `TRUE`/`FALSE`/
+#'   `NULL`, a string, or a named list for [stamp()].
+#'
 #' @param ... additional graphical parameters passed to `par()`.
 #'
 #' @param col point color(s).
@@ -28,7 +32,7 @@
 #'
 #' @param grid logical, `NA`, or list controlling the ternary grid.
 #'
-#' @param lbl character vector of length 3 specifying axis labels.
+#' @param labels character vector of length 3 specifying axis labels.
 #' @param main plot title.
 #'
 #' @param xlim,ylim plot limits (usually left at defaults).
@@ -47,7 +51,7 @@
 #'
 #' # matrix input
 #' M <- cbind(x, y, z)
-#' plotTernary(M, lbl = c("A", "B", "C"))
+#' plotTernary(M, labels = c("A", "B", "C"))
 #'
 #' @seealso [plotDens()], [plotRidge()]
 
@@ -59,46 +63,49 @@
 #'
 #' @export
 plotTernary <- function(
-    
-  # DATA
-  x,
-  y = NULL,
-  z = NULL,
-  
-  ...,
-  
-  # STRUCTURE
-  add = FALSE,
-  
-  # STYLE
-  col = NULL,
-  pch = 16,
-  cex = 1,
-  grid = NA,
-  
-  # LABELS
-  lbl = NULL,
-  main = "",
-  
-  # AXES / FRAME
-  xlim = c(-1, 1),
-  ylim = c(-0.5, 1)
-  
+    # DATA
+    x,
+    y = NULL,
+    z = NULL,
+
+    # LABELS
+    main = "",
+
+    # AXES
+    xlim = c(-1, 1),
+    ylim = c(-0.5, 1),
+
+    # STRUCTURE
+    add = FALSE,
+
+    # STYLE
+    col  = NULL,
+    pch  = 16,
+    cex  = 1,
+    grid = NA,
+
+    # FEATURES
+    labels = NULL,
+
+    # FRAMEWORK
+    stamp = .useTheme,
+
+    ...
 ) {
   
   # --- data parsing --------------------------------------------
   
   if (!(is.null(y) && is.null(z))) {
     
-    if (is.null(lbl))
-      lbl <- c(names(x), names(y), names(z))
+    if (is.null(labels))
+      labels <- c(names(x), names(y), names(z))
     
     x <- cbind(x, y, z)
     
   } else {
     
-    if (is.null(lbl))
-      lbl <- colnames(x)
+    if (is.null(labels))
+      labels <- colnames(x)
     
     x <- as.matrix(x)
   }
@@ -181,22 +188,22 @@ plotTernary <- function(
     
     # --- triangle ----------------------------------------------
     
-    tri <- regPolygon(numVertices = 3, startAngle =pi / 2, radius = 1)
+    tri <- regPolygon(nVertices = 3, startAngle =pi / 2, radius = 1)
     
-    polygon(tri,
+    polygonX(tri,
             border = th$border$col,
             lwd = th$border$lwd,
             col = NA)
     
     # --- labels ------------------------------------------------
     
-    if (!is.null(lbl)) {
+    if (!is.null(labels)) {
       
       eps <- 0.15
-      pts <- regPolygon(numVertices = 3, startAngle = pi / 2,
+      pts <- regPolygon(nVertices = 3, startAngle = pi / 2,
                         radius = 1 + eps)
       
-      text(pts, labels = lbl[c(1, 3, 2)])
+      text(pts, labels = labels[c(1, 3, 2)])
     }
     
     # --- points ------------------------------------------------
@@ -206,7 +213,7 @@ plotTernary <- function(
            pch = th$point$pch,
            cex = th$point$cex)
     
-  })
+  }, stamp = stamp)
 }
 
 

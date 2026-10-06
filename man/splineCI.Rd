@@ -21,7 +21,7 @@ splineX(x, ...)
   lwd = 2,
   lty = "solid",
   type = "l",
-  bandArgs = list(conf.level = 0.95),
+  band = list(conf.level = 0.95),
   ...
 )
 }
@@ -60,7 +60,7 @@ and \code{na.action} like the variables of the formula.}
 
 \item{type}{plotting type passed to \code{\link[=lines]{lines()}}.}
 
-\item{bandArgs}{controls the confidence band. May be \code{TRUE},
+\item{band}{controls the confidence band. May be \code{TRUE},
 \code{FALSE}, \code{NULL}, \code{NA}, or a named list. The confidence
 level is specified via \code{conf.level}, all other elements are
 graphical parameters of the band. Default is
@@ -70,7 +70,7 @@ graphical parameters of the band. Default is
 Fit a smoothing spline and optionally add confidence bands.
 }
 \details{
-Confidence bands are controlled via \code{bandArgs}. These arguments can be:
+Confidence bands are controlled via \code{band}. These arguments can be:
 \itemize{
 \item \code{FALSE}, \code{NULL} or \code{NA}: suppress the band
 \item \code{TRUE}: draw the band with default settings
@@ -98,7 +98,7 @@ lines(splineX(dist ~ speed, cars, subset = speed > 10,
 plot(dist ~ speed, cars)
 lines(
   splineX(dist ~ speed, cars),
-  bandArgs = list(
+  band = list(
     conf.level = 0.99,
     col = addOpacity("red", 0.3),
     border = "black"

@@ -7,15 +7,16 @@
 plotHexbin(
   x,
   y,
-  bins = 30,
-  col = NULL,
-  border = NA,
-  grid = FALSE,
-  xlim = NULL,
-  ylim = NULL,
   main = NULL,
   xlab = "",
   ylab = "",
+  xlim = NULL,
+  ylim = NULL,
+  nBins = 30,
+  col = NULL,
+  border = NA,
+  grid = .useTheme,
+  stamp = .useTheme,
   ...
 )
 }
@@ -24,24 +25,30 @@ plotHexbin(
 
 \item{y}{numeric vector of y-values.}
 
-\item{bins}{number of hexagons across the x-axis.}
+\item{main}{main title.}
+
+\item{xlab}{label for the x-axis.}
+
+\item{ylab}{label for the y-axis.}
+
+\item{xlim}{limits for the x-axis.}
+
+\item{ylim}{limits for the y-axis.}
+
+\item{nBins}{number of hexagons across the x-axis.}
 
 \item{col}{colours used for the count scale. If \code{NULL}, a default
 sequential palette is used.}
 
 \item{border}{border colour of the hexagons.}
 
-\item{grid}{logical or list controlling the background grid.}
+\item{grid}{controls the background grid. \code{.useTheme} (default) follows
+the active theme (\code{getTheme()$grid}), \code{TRUE} draws it, \code{FALSE}, \code{NULL}
+or \code{NA} suppress it, and a named list is passed to \code{\link[graphics:grid]{graphics::grid()}}.}
 
-\item{xlim}{limits for the x-axis.}
-
-\item{ylim}{limits for the y-axis.}
-
-\item{main}{main title.}
-
-\item{xlab}{label for the x-axis.}
-
-\item{ylab}{label for the y-axis.}
+\item{stamp}{controls the corner stamp. \code{.useTheme} (default)
+resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
+\code{NULL}, a string, or a named list for \code{\link[=stamp]{stamp()}}.}
 
 \item{...}{additional graphical parameters passed to
 \code{.applyParFromDots()}.}

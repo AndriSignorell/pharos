@@ -10,18 +10,21 @@
 #' @param x a data.frame to be analysed. 
 #' @param col the colour of the missings. 
 #' @param bg the background colour of the plot. 
-#' @param clust logical, defining if the missings should be clustered. Default
+#' @param cluster logical, defining if the missings should be clustered. Default
 #' is `FALSE`. 
 #' @param main the main title. 
 #' @param \dots the dots are passed to [plot()]. 
-#' @return if clust is set to TRUE, the new order will be returned invisibly.
+#' @param stamp controls the corner stamp. `.useTheme` (default)
+#'   resolves to `getTheme()$stamp`. `TRUE`/`FALSE`/
+#'   `NULL`, a string, or a named list for [stamp()].
+#' @return if `cluster` is set to TRUE, the new order will be returned invisibly.
 #' @note Following an idea of Henk Harmsen <henk@@carbonmetrics.com> 
 #' @seealso [hclust()], [bedrock::countCompCases()] 
 #' 
 #' @examples
 #' 
 #' plotMiss(airquality, main="Missing data (in orignal order)")
-#' plotMiss(airquality, main="Missing data (clustered)", clust=TRUE)
+#' plotMiss(airquality, main="Missing data (clustered)", cluster=TRUE)
 #'
 
 
@@ -31,10 +34,25 @@
 #'
 #'
 #' @export 
-plotMiss <- function(x, 
-                     col = "deeppink4", bg=fade("navajowhite3", 0.3), 
-                     clust=FALSE,
-                     main = NULL, ...){
+plotMiss <- function(
+    # DATA
+    x,
+
+    # LABELS
+    main = NULL,
+
+    # STRUCTURE
+    cluster = FALSE,
+
+    # STYLE
+    col = "deeppink4",
+    bg  = fade("navajowhite3", 0.3),
+
+    # FRAMEWORK
+    stamp = .useTheme,
+
+    ...
+){
   
   .withGraphicsState({
 
@@ -84,12 +102,12 @@ plotMiss <- function(x,
     
     canvas(xlim=c(0, nrow(x)+1), ylim=c(0, n), 
            asp=NA, xpd=TRUE, mar = c(5.1, lmar, .marTop(main), rmar), 
-           main=main, usrbg=bg, ...)
+           main=main, bg=bg, ...)
     
     axis(side = 1)
     
     
-    if(clust){
+    if(cluster){
       orderIndex <- order.dendrogram(
                        as.dendrogram(hclust(dist(missingIndex * 1), 
                                              method = "mcquitty")))
@@ -120,7 +138,7 @@ plotMiss <- function(x,
 
   invisible(res)
   
-  })
+  }, stamp = stamp)
   
 }
 

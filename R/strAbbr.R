@@ -5,7 +5,7 @@
 #' distinguishable within the input vector.
 #'
 #' @param x a character vector
-#' @param minchar integer; minimum number of characters to retain
+#' @param minChar integer; minimum number of characters to retain
 #' @param method character string specifying the abbreviation strategy:
 #' \itemize{
 #'   \item `"left"`: abbreviate each string individually to the shortest
@@ -18,7 +18,7 @@
 #'
 #' @details
 #' The function ensures that abbreviations are unique (within the given
-#' vector) while respecting the minimum length `minchar`.
+#' vector) while respecting the minimum length `minChar`.
 #'
 #' For `method = "left"`, each string is shortened individually to the
 #' shortest prefix that distinguishes it from all others.
@@ -55,7 +55,7 @@
 #'
 #' @export
 strAbbr <- function(x,
-                    minchar = 1,
+                    minChar = 1,
                     method = c("left", "fix")) {
   
   method <- match.arg(method)
@@ -64,7 +64,7 @@ strAbbr <- function(x,
   
   if (method == "left") {
     
-    idx <- rep(minchar, length(x))
+    idx <- rep(minChar, length(x))
     maxlen <- max(nlen, na.rm = TRUE)
     
     repeat {
@@ -84,12 +84,12 @@ strAbbr <- function(x,
     
   } else {
     
-    i <- minchar
+    i <- minChar
     while (sum(duplicated(stringi::stri_sub(x, 1, i))) > 0) {
       i <- i + 1
     }
     
-    res <- stringi::stri_sub(x, 1, pmax(minchar, i))
+    res <- stringi::stri_sub(x, 1, pmax(minChar, i))
   }
   
   res

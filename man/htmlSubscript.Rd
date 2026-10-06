@@ -25,9 +25,9 @@ such as \eqn{x_i}.
 }
 \seealso{
 Other html:
-\code{\link[=as.fileLink]{as.fileLink()}},
-\code{\link[=as.html]{as.html()}},
-\code{\link[=as.img]{as.img()}},
+\code{\link[=asFileLink]{asFileLink()}},
+\code{\link[=asHtml]{asHtml()}},
+\code{\link[=asImg]{asImg()}},
 \code{\link[=embedFile]{embedFile()}},
 \code{\link[=escapeHtml]{escapeHtml()}},
 \code{\link{htmlNotation}},

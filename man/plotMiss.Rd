@@ -6,29 +6,34 @@
 \usage{
 plotMiss(
   x,
+  main = NULL,
+  cluster = FALSE,
   col = "deeppink4",
   bg = fade("navajowhite3", 0.3),
-  clust = FALSE,
-  main = NULL,
+  stamp = .useTheme,
   ...
 )
 }
 \arguments{
 \item{x}{a data.frame to be analysed.}
 
+\item{main}{the main title.}
+
+\item{cluster}{logical, defining if the missings should be clustered. Default
+is \code{FALSE}.}
+
 \item{col}{the colour of the missings.}
 
 \item{bg}{the background colour of the plot.}
 
-\item{clust}{logical, defining if the missings should be clustered. Default
-is \code{FALSE}.}
-
-\item{main}{the main title.}
+\item{stamp}{controls the corner stamp. \code{.useTheme} (default)
+resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
+\code{NULL}, a string, or a named list for \code{\link[=stamp]{stamp()}}.}
 
 \item{\dots}{the dots are passed to \code{\link[=plot]{plot()}}.}
 }
 \value{
-if clust is set to TRUE, the new order will be returned invisibly.
+if \code{cluster} is set to TRUE, the new order will be returned invisibly.
 }
 \description{
 Takes a data frame and displays the location of missing data. The missings
@@ -44,7 +49,7 @@ Following an idea of Henk Harmsen \href{mailto:henk@carbonmetrics.com}{henk@carb
 \examples{
 
 plotMiss(airquality, main="Missing data (in orignal order)")
-plotMiss(airquality, main="Missing data (clustered)", clust=TRUE)
+plotMiss(airquality, main="Missing data (clustered)", cluster=TRUE)
 
 }
 \seealso{

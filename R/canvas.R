@@ -11,7 +11,7 @@
 #' @param main the main title on top of the plot. 
 #' @param asp numeric, giving the aspect ratio y/x. (See
 #' [plot.window()] for details. Default is 1. 
-#' @param usrbg the color of the user space of the plot, defaults to "white".
+#' @param bg the color of the user space of the plot, defaults to "white".
 #' @param \dots additional arguments are passed to the `plot()` command.
 #' 
 #' @return a list of all the previous values of the parameters changed
@@ -30,7 +30,7 @@
 #'
 #' @export
 canvas <- function(xlim=NULL, ylim=xlim, main=NULL, 
-                   asp=1, usrbg="white", ...){
+                   asp=1, bg="white", ...){
 
   .applyParFromDots(...)
 
@@ -51,10 +51,10 @@ canvas <- function(xlim=NULL, ylim=xlim, main=NULL,
         xlab="", ylab="", frame.plot = FALSE, ...)
   
   
-  if(usrbg != "white"){
+  if(bg != "white"){
     usr <- par("usr")
     rect(xleft=usr[1], ybottom=usr[3], 
-         xright=usr[2], ytop=usr[4], col=usrbg, border=NA)
+         xright=usr[2], ytop=usr[4], col=bg, border=NA)
   }
 
   invisible()
