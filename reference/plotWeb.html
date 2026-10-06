@@ -19,7 +19,7 @@ to the absolute value of the matrix entry and color indicating its sign."><meta 
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.958</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.959</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -116,10 +116,10 @@ matrix values.</p></dd>
 <dt id="arg-labels">labels<a class="anchor" aria-label="anchor" href="#arg-labels"></a></dt>
 <dd><p>controls node labels around the circle. <code>TRUE</code>
 (default) draws labels using <code>colnames(m)</code> with default styling.
-<code>FALSE</code>/<code>NA</code>/<code>NULL</code> suppresses labels. A named list
-overrides individual settings:</p><dl><dt><code>labels</code></dt>
-<dd><p>character vector of label texts; defaults to
-<code>colnames(m)</code></p></dd>
+<code>FALSE</code>/<code>NA</code>/<code>NULL</code> suppresses labels. A character vector is
+taken as the label texts. A list holds the texts and the details:</p><dl><dt><code>text</code></dt>
+<dd><p>character vector of label texts (or the one unnamed
+element of the list); defaults to <code>colnames(m)</code></p></dd>
 
 <dt><code>las</code></dt>
 <dd><p>orientation: <code>1</code> horizontal (default),
@@ -197,7 +197,7 @@ the same order as <code>m[lower.tri(m)]</code>.</p>
 <span class="r-plt img"><img src="plotWeb-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># custom labels (abbreviations)</span></span></span>
-<span class="r-in"><span><span class="fu">plotWeb</span><span class="op">(</span><span class="va">m</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/abbreviate.html" class="external-link">abbreviate</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span>, <span class="fl">4</span><span class="op">)</span>, cex <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">plotWeb</span><span class="op">(</span><span class="va">m</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/abbreviate.html" class="external-link">abbreviate</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span>, <span class="fl">4</span><span class="op">)</span>, cex <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plotWeb-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># show only significant correlations</span></span></span>

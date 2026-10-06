@@ -59,11 +59,13 @@ plotWeb(
 
   controls node labels around the circle. `TRUE` (default) draws labels
   using `colnames(m)` with default styling. `FALSE`/`NA`/`NULL`
-  suppresses labels. A named list overrides individual settings:
+  suppresses labels. A character vector is taken as the label texts. A
+  list holds the texts and the details:
 
-  `labels`
+  `text`
 
-  :   character vector of label texts; defaults to `colnames(m)`
+  :   character vector of label texts (or the one unnamed element of the
+      list); defaults to `colnames(m)`
 
   `las`
 
@@ -137,7 +139,7 @@ plotWeb(m, main = "Swiss correlation")
 
 
 # custom labels (abbreviations)
-plotWeb(m, labels = list(labels = abbreviate(colnames(m), 4), cex = 0.9))
+plotWeb(m, labels = list(abbreviate(colnames(m), 4), cex = 0.9))
 
 
 # show only significant correlations
