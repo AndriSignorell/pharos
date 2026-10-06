@@ -26,4 +26,4 @@ Character vector of colors.
 
 Other color.manipulation: [`addOpacity()`](addOpacity.md),
 [`colToOpaque()`](colToOpaque.md), [`darken()`](darken.md),
-[`lighten()`](lighten.md), [`mixColors()`](mixColors.md)
+[`lighten()`](lighten.md), [`mixCol()`](mixCol.md)

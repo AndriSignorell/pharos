@@ -81,7 +81,7 @@ to absorb rounding and font metric differences across devices.
   las = par("las"),
   cex = par("cex"),
   pad = 0,
-  axis.line = 0
+  axisLine = 0
 )
 ```
 
@@ -170,7 +170,7 @@ to absorb rounding and font metric differences across devices.
 
   additional padding in lines.
 
-- axis.line:
+- axisLine:
 
   offset of the axis labels from the plot region, in lines.
 

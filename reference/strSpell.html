@@ -15,7 +15,7 @@ representations using either the NATO phonetic alphabet or Morse code."><meta pr
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.956</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.958</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,7 +56,7 @@ representations using either the NATO phonetic alphabet or Morse code.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">strSpell</span><span class="op">(</span><span class="va">x</span>, upr <span class="op">=</span> <span class="st">"CAP"</span>, type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NATO"</span>, <span class="st">"Morse"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">strSpell</span><span class="op">(</span><span class="va">x</span>, upr <span class="op">=</span> <span class="st">"CAP"</span>, type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"nato"</span>, <span class="st">"morse"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -73,8 +73,8 @@ Default is <code>"CAP"</code>. If <code>NA</code>, no prefix is added.</p></dd>
 
 
 <dt id="arg-type">type<a class="anchor" aria-label="anchor" href="#arg-type"></a></dt>
-<dd><p>character string specifying the encoding system:</p><ul><li><p><code>"NATO"</code>: NATO phonetic alphabet (default)</p></li>
-<li><p><code>"Morse"</code>: Morse code</p></li>
+<dd><p>character string specifying the encoding system:</p><ul><li><p><code>"nato"</code>: NATO phonetic alphabet (default)</p></li>
+<li><p><code>"morse"</code>: Morse code</p></li>
 </ul></dd>
 
 </dl></div>
@@ -87,7 +87,7 @@ phonetic representation.</p>
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Letters (A–Z, a–z) and digits (0–9) are mapped to their corresponding
 phonetic representations. Other characters are returned unchanged.</p>
-<p>For <code>type = "NATO"</code>, uppercase letters can optionally be prefixed
+<p>For <code>type = "nato"</code>, uppercase letters can optionally be prefixed
 (e.g., <code>"CAP Alfa"</code>) to distinguish them from lowercase letters.</p>
 <p>The function uses Unicode-aware character splitting via
 <code><a href="https://rdrr.io/pkg/stringi/man/stri_split_boundaries.html" class="external-link">stringi::stri_split_boundaries()</a></code>.</p>
@@ -110,7 +110,7 @@ phonetic representations. Other characters are returned unchanged.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "CAP Alfa"  "One"       "CAP Bravo" "Two"      </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Morse code</span></span></span>
-<span class="r-in"><span><span class="fu">strSpell</span><span class="op">(</span><span class="st">"SOS"</span>, type <span class="op">=</span> <span class="st">"Morse"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">strSpell</span><span class="op">(</span><span class="st">"SOS"</span>, type <span class="op">=</span> <span class="st">"morse"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "..." "---" "..."</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># without uppercase prefix</span></span></span>

@@ -19,7 +19,7 @@ median, spread, and outliers."><meta property="og:image" content="/logo.png"></h
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.956</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.958</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,16 +67,16 @@ median, spread, and outliers.</p>
 <span><span class="co"># Default S3 method</span></span>
 <span><span class="fu">plotDensBox</span><span class="op">(</span></span>
 <span>  <span class="va">x</span>,</span>
-<span>  g <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  groups <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  main <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  xlab <span class="op">=</span> <span class="st">""</span>,</span>
 <span>  ylab <span class="op">=</span> <span class="st">""</span>,</span>
 <span>  xlim <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  layout_heights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">1.4</span><span class="op">)</span>,</span>
+<span>  heights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">1.4</span><span class="op">)</span>,</span>
 <span>  col <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  grid <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  densArgs <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  boxArgs <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  dens <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  box <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  stamp <span class="op">=</span> <span class="va">.useTheme</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span>
@@ -106,7 +106,7 @@ median, spread, and outliers.</p>
 <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">graphics::par()</a></code> via the internal framework.</p></dd>
 
 
-<dt id="arg-g">g<a class="anchor" aria-label="anchor" href="#arg-g"></a></dt>
+<dt id="arg-groups">groups<a class="anchor" aria-label="anchor" href="#arg-groups"></a></dt>
 <dd><p>optional grouping variable (ignored if a formula is used).</p></dd>
 
 
@@ -131,7 +131,7 @@ formula method, an empty label defaults to the response.</p></dd>
 <code>NULL</code> (default) covers the data and the tails of the densities.</p></dd>
 
 
-<dt id="arg-layout-heights">layout_heights<a class="anchor" aria-label="anchor" href="#arg-layout-heights"></a></dt>
+<dt id="arg-heights">heights<a class="anchor" aria-label="anchor" href="#arg-heights"></a></dt>
 <dd><p>numeric vector of length 2 specifying the relative
 heights of the density plot (top) and boxplot (bottom).</p></dd>
 
@@ -149,7 +149,7 @@ Can be:</p><ul><li><p><code>TRUE</code>: draw grid with default settings</p></li
 </ul></dd>
 
 
-<dt id="arg-densargs">densArgs<a class="anchor" aria-label="anchor" href="#arg-densargs"></a></dt>
+<dt id="arg-dens">dens<a class="anchor" aria-label="anchor" href="#arg-dens"></a></dt>
 <dd><p>controls density estimation via
 <code><a href="https://rdrr.io/r/stats/density.html" class="external-link">stats::density()</a></code>.
 Can be:</p><ul><li><p><code>TRUE</code>: use default density settings</p></li>
@@ -159,7 +159,7 @@ Can be:</p><ul><li><p><code>TRUE</code>: use default density settings</p></li>
 </ul></dd>
 
 
-<dt id="arg-boxargs">boxArgs<a class="anchor" aria-label="anchor" href="#arg-boxargs"></a></dt>
+<dt id="arg-box">box<a class="anchor" aria-label="anchor" href="#arg-box"></a></dt>
 <dd><p>controls drawing of boxplots via
 <code><a href="https://rdrr.io/r/graphics/boxplot.html" class="external-link">graphics::boxplot()</a></code>.
 Can be:</p><ul><li><p><code>TRUE</code>: use default boxplot settings</p></li>
@@ -223,7 +223,7 @@ variable is provided, densities and boxplots are drawn for each group.</p>
 <code><a href="plotDens.html">plotDens()</a></code>,
 <code><a href="plotDot.html">plotDot()</a></code>,
 <code><a href="plotECDF.html">plotECDF()</a></code>,
-<code><a href="plotFdist.html">plotFdist()</a></code>,
+<code><a href="plotFreqDist.html">plotFreqDist()</a></code>,
 <code><a href="plotLines.html">plotLines()</a></code>,
 <code><a href="plotQQ.html">plotQQ()</a></code>,
 <code><a href="plotViolin.html">plotViolin()</a></code></p></div>
@@ -241,13 +241,13 @@ variable is provided, densities and boxplots are drawn for each group.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">plotDensBox</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="va">x</span>,</span></span>
-<span class="r-in"><span>  densArgs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>adjust <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  boxArgs  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>notch <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  dens <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>adjust <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  box  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>notch <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">plotDensBox</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="va">x</span>,</span></span>
-<span class="r-in"><span>  boxArgs <span class="op">=</span> <span class="cn">FALSE</span></span></span>
+<span class="r-in"><span>  box <span class="op">=</span> <span class="cn">FALSE</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">plotDensBox</span><span class="op">(</span><span class="va">x</span> <span class="op">~</span> <span class="va">g</span><span class="op">)</span></span></span>

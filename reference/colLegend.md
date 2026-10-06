@@ -10,6 +10,7 @@ colLegend(
   y = NULL,
   col = rev(heat.colors(100)),
   labels = NULL,
+  title = NULL,
   width = NULL,
   height = NULL,
   horiz = FALSE,
@@ -19,11 +20,8 @@ colLegend(
   region = c("plot", "figure", "device"),
   border = NA,
   box = FALSE,
-  labelAdj = c("edge", "center"),
   adj = NULL,
   cex = 1,
-  title = NULL,
-  titleAdj = 0.5,
   ...
 )
 ```
@@ -46,7 +44,26 @@ colLegend(
 
 - labels:
 
-  optional vector of labels.
+  optional vector of labels, or a list holding the labels (element
+  `text`, or the one unnamed element) and their placement relative to
+  the color blocks in the element `adj`:
+
+  `"edge"`
+
+  :   (default) Labels are aligned with the strip edges.
+
+  `"center"`
+
+  :   Labels are centered within color blocks.
+
+  E.g. `labels = list(1:5, adj = "center")`.
+
+- title:
+
+  optional title, or a list holding the title (element `text`, or the
+  one unnamed element) and its horizontal adjustment in the element
+  `adj` (default 0.5, centered), e.g.
+  `title = list("From black to red", adj = 0)`.
 
 - width:
 
@@ -93,18 +110,6 @@ colLegend(
   - named list of arguments passed to
     [`rect()`](https://rdrr.io/r/graphics/rect.html)
 
-- labelAdj:
-
-  placement of labels relative to the color blocks:
-
-  `"edge"`
-
-  :   Labels are aligned with the strip edges.
-
-  `"center"`
-
-  :   Labels are centered within color blocks.
-
 - adj:
 
   text alignment passed to
@@ -113,14 +118,6 @@ colLegend(
 - cex:
 
   character expansion for labels.
-
-- title:
-
-  optional title.
-
-- titleAdj:
-
-  horizontal title adjustment.
 
 - ...:
 
@@ -168,7 +165,7 @@ colLegend(x="right", inset=5, labels=c(1:10))
 
 # B: Center the labels
 colLegend(x=1, y=9, height=6, col=colorRampPalette(c("blue", "white", "red"),
-  space = "rgb")(5), labels=1:5, labelAdj = "center")
+  space = "rgb")(5), labels=list(1:5, adj = "center"))
 
 # C: Outer frame
 colLegend(x=3, y=9, height=6, col=colorRampPalette(c("blue", "white", "red"),
@@ -189,7 +186,7 @@ colLegend(x=1, y=14, width=6, height=0.5, col=colorRampPalette(
 # G
 colLegend(x=1, y=12, width=6, height=1, col=colorRampPalette(c("black","blue",
             "green","yellow","red"), space = "rgb")(10), horiz=TRUE, 
-            border="black", title="From black to red", titleAdj=0)
+            border="black", title=list("From black to red", adj=0))
 
 text(x = c(8,0.5,2.5,4.5,0.5,0.5,0.5)+.2, y=c(14,9,9,9,2,14,12), LETTERS[1:7], cex=2)
 

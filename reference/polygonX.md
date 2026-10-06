@@ -1,0 +1,111 @@
+# Draw Polygonal Geometries
+
+Generic function for drawing polygon-based geometry objects. This
+function extends graphics::polygon() with support for geometry objects
+such as circle(), ellipse(), regPolygon() and ring() and further remains
+fully compatible with its original interface. \#' For ordinary
+coordinate vectors the call is forwarded to
+[`graphics::polygon()`](https://rdrr.io/r/graphics/polygon.html).
+Geometry objects such as [`circle()`](circle.md),
+[`ellipse()`](ellipse.md), [`regPolygon()`](regPolygon.md) and
+[`ring()`](ring.md) are dispatched to specialised methods.
+
+## Usage
+
+``` r
+polygonX(x, ...)
+
+# Default S3 method
+polygonX(
+  x,
+  y = NULL,
+  density = NULL,
+  angle = 45,
+  border = NULL,
+  col = NA,
+  lty = par("lty"),
+  ...,
+  fillOddEven = FALSE
+)
+
+# S3 method for class 'ringGeometry'
+polygonX(x, rule = "evenodd", ...)
+
+# S3 method for class 'polygonGeometry'
+polygonX(x, ...)
+```
+
+## Arguments
+
+- x:
+
+  an object to be drawn.
+
+- ...:
+
+  further arguments passed to the corresponding method.
+
+- y:
+
+  numeric vector of y-coordinates.
+
+- density:
+
+  density of shading lines.
+
+- angle:
+
+  angle of shading lines in degrees.
+
+- border:
+
+  border colour.
+
+- col:
+
+  fill colour.
+
+- lty:
+
+  line type.
+
+- fillOddEven:
+
+  logical; should the odd-even rule be used for filling?
+
+- rule:
+
+  character string specifying the filling rule passed to
+  [`graphics::polypath()`](https://rdrr.io/r/graphics/polypath.html).
+  One of `"evenodd"` or `"winding"`.
+
+## Value
+
+Invisibly returns `x`.
+
+## See also
+
+Other geometry.structures: [`arc()`](arc.md), [`band()`](band.md),
+[`bezier()`](bezier.md), [`circle()`](circle.md),
+[`ellipse()`](ellipse.md), [`regPolygon()`](regPolygon.md),
+[`ring()`](ring.md)
+
+## Examples
+
+``` r
+canvas()
+
+polygonX(
+  circle(radius = 1),
+  col = "lightblue"
+)
+
+polygonX(
+  regPolygon(
+    radius = 0.7,
+    nVertices = 5
+  ),
+  border = "red"
+)
+
+```

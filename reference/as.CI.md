@@ -24,14 +24,14 @@ as.CI(x, ...)
 # Default S3 method
 as.CI(x, ...)
 
-is.CI(x)
+isCI(x)
 ```
 
 ## Arguments
 
 - x:
 
-  object to convert or, for `is.CI()`, object to test
+  object to convert or, for `isCI()`, object to test
 
 - ...:
 
@@ -52,7 +52,7 @@ is.CI(x)
 ## Value
 
 `as.CI()` returns a data frame of class `"CI"` containing the columns
-`est`, `lci`, and `uci`, followed by any grouping columns; `is.CI()`
+`est`, `lci`, and `uci`, followed by any grouping columns; `isCI()`
 returns a single logical value
 
 ## Details
@@ -119,7 +119,7 @@ ci
 #> A  10   8  12
 #> B  20  18  22
 #> C  30  28  32
-is.CI(ci)
+isCI(ci)
 #> [1] TRUE
 
 # display the estimates and confidence intervals

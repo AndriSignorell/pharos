@@ -12,7 +12,7 @@ arc(
   radiusY = radiusX,
   startAngle = 0,
   endAngle = 2 * pi,
-  numPoints = 100
+  nPoints = 100
 )
 ```
 
@@ -30,7 +30,7 @@ arc(
 
   start and end angle in radians
 
-- numPoints:
+- nPoints:
 
   number of points used to approximate the arc
 
@@ -42,5 +42,5 @@ An object inheriting from class `"arcGeometry"`.
 
 Other geometry.structures: [`band()`](band.md), [`bezier()`](bezier.md),
 [`circle()`](circle.md), [`ellipse()`](ellipse.md),
-[`polygon()`](polygon.md), [`regPolygon()`](regPolygon.md),
+[`polygonX()`](polygonX.md), [`regPolygon()`](regPolygon.md),
 [`ring()`](ring.md)

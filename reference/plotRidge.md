@@ -10,10 +10,15 @@ Each group is displayed as a density curve shifted along the y-axis.
 plotRidge(
   x,
   ...,
-  add = FALSE,
+  main = NULL,
+  xlab = "",
+  ylab = "",
+  xlim = NULL,
+  ylim = NULL,
   bw = "nrd0",
-  scale = 1,
   normalize = c("global", "group"),
+  add = FALSE,
+  scale = 1,
   spacing = 1,
   col = NULL,
   border = NULL,
@@ -21,11 +26,6 @@ plotRidge(
   lty = 1,
   fill = TRUE,
   grid = NA,
-  main = NULL,
-  xlab = "",
-  ylab = "",
-  xlim = NULL,
-  ylim = NULL,
   stamp = .useTheme
 )
 
@@ -35,10 +35,10 @@ plotRidge(
   data,
   subset,
   na.action = na.omit,
-  ...,
   main = NULL,
   xlab = "",
-  ylab = ""
+  ylab = "",
+  ...
 )
 ```
 
@@ -53,18 +53,25 @@ plotRidge(
   further numeric vectors (unnamed), each forming a group, or graphical
   parameters passed to [`par()`](https://rdrr.io/r/graphics/par.html).
 
-- add:
+- main:
 
-  logical; if `TRUE`, adds to an existing plot.
+  main title. `NULL` (default) derives the title from the input: the
+  names of the data arguments, or the formula. `""`, `NA`, or `FALSE`
+  suppress the title and compact the top margin.
+
+- xlab, ylab:
+
+  axis labels. For the formula method, empty labels default to the
+  response and the grouping variable.
+
+- xlim, ylim:
+
+  axis limits.
 
 - bw:
 
   bandwidth for
   [`stats::density()`](https://rdrr.io/r/stats/density.html).
-
-- scale:
-
-  scaling factor for density height.
 
 - normalize:
 
@@ -74,6 +81,14 @@ plotRidge(
   divides each density by its own peak, so that every ridge reaches the
   full height. Use the latter when a single narrow group would otherwise
   flatten all others.
+
+- add:
+
+  logical; if `TRUE`, adds to an existing plot.
+
+- scale:
+
+  scaling factor for density height.
 
 - spacing:
 
@@ -104,21 +119,6 @@ plotRidge(
 - grid:
 
   logical, `NA`, or list controlling grid.
-
-- main:
-
-  main title. `NULL` (default) derives the title from the input: the
-  names of the data arguments, or the formula. `""`, `NA`, or `FALSE`
-  suppress the title and compact the top margin.
-
-- xlab, ylab:
-
-  axis labels. For the formula method, empty labels default to the
-  response and the grouping variable.
-
-- xlim, ylim:
-
-  axis limits.
 
 - stamp:
 

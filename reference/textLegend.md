@@ -19,7 +19,7 @@ textLegend(
   lwd = par("lwd"),
   cex = par("cex"),
   main = NULL,
-  mindist = NULL
+  minDist = NULL
 )
 ```
 
@@ -62,7 +62,7 @@ textLegend(
   optional title for the legend, drawn at the top of the plot region.
   Default is `NULL` (none).
 
-- mindist:
+- minDist:
 
   minimal vertical distance between labels in user coordinates, passed
   to [`spreadOut()`](spreadOut.md). Default is

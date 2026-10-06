@@ -38,7 +38,7 @@ shape(s).
 
 ## See also
 
-[`polygon()`](polygon.md), [`regPolygon()`](regPolygon.md),
+[`polygonX()`](polygonX.md), [`regPolygon()`](regPolygon.md),
 [`ellipse()`](ellipse.md), [`arc()`](arc.md)
 
 Other geometry.transformation: [`transformXY()`](transformXY.md)
@@ -49,7 +49,7 @@ Other geometry.transformation: [`transformXY()`](transformXY.md)
 op <- par(no.readonly = TRUE)
 # let's have a triangle
 canvas(main="Rotation")
-x <- regPolygon(numVertices=3)
+x <- regPolygon(nVertices=3)
 
 # and rotate
 sapply( (0:3) * pi/6, function(theta) {

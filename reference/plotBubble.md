@@ -11,18 +11,19 @@ plotBubble(
   x,
   y,
   area,
-  ...,
+  main = "",
+  xlab = "",
+  ylab = "",
+  xlim = NULL,
+  ylim = NULL,
   add = FALSE,
   col = NA,
   border = NULL,
   cex = 1,
   grid = NA,
-  xlim = NULL,
-  ylim = NULL,
   na.rm = FALSE,
-  main = "",
-  xlab = "",
-  ylab = ""
+  stamp = .useTheme,
+  ...
 )
 
 # S3 method for class 'formula'
@@ -31,17 +32,17 @@ plotBubble(
   data = NULL,
   subset,
   na.action = na.omit,
-  ...,
+  main = "",
+  xlab = "",
+  ylab = "",
+  xlim = NULL,
+  ylim = NULL,
   add = FALSE,
   col = NA,
   border = NULL,
   cex = 1,
   grid = NA,
-  xlim = NULL,
-  ylim = NULL,
-  main = "",
-  xlab = "",
-  ylab = ""
+  ...
 )
 ```
 
@@ -59,10 +60,13 @@ plotBubble(
 
   numeric vector controlling bubble sizes (interpreted as area).
 
-- ...:
+- main, xlab, ylab:
 
-  additional graphical parameters passed to
-  [`par()`](https://rdrr.io/r/graphics/par.html).
+  plot labels.
+
+- xlim, ylim:
+
+  axis limits.
 
 - add:
 
@@ -84,17 +88,20 @@ plotBubble(
 
   logical, `NA`, or list controlling background grid.
 
-- xlim, ylim:
-
-  axis limits.
-
 - na.rm:
 
   logical; remove missing values.
 
-- main, xlab, ylab:
+- stamp:
 
-  plot labels.
+  controls the corner stamp. `.useTheme` (default) resolves to
+  `getTheme()$stamp`. `TRUE`/`FALSE`/ `NULL`, a string, or a named list
+  for [`stamp()`](stamp.md).
+
+- ...:
+
+  additional graphical parameters passed to
+  [`par()`](https://rdrr.io/r/graphics/par.html).
 
 - formula:
 

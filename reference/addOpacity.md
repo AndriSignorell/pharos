@@ -28,7 +28,7 @@ Character vector of hexadecimal colors with alpha channel.
 
 Other color.manipulation: [`colToOpaque()`](colToOpaque.md),
 [`darken()`](darken.md), [`fade()`](fade.md), [`lighten()`](lighten.md),
-[`mixColors()`](mixColors.md)
+[`mixCol()`](mixCol.md)
 
 ## Examples
 
@@ -43,7 +43,7 @@ addOpacity(2, 0.5)   # red
 #> [1] "#DF536B80"
 
 canvas(3)
-polygon(circle(x=c(-1,0,1), y=c(1,-1,1), radius=2), 
+polygonX(circle(x=c(-1,0,1), y=c(1,-1,1), radius=2), 
         col=addOpacity(2:4, 0.4))
 
 

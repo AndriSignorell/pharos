@@ -17,7 +17,7 @@ proportions (ECDF-style) can be displayed."><meta property="og:image" content="/
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.956</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.958</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,13 +61,14 @@ proportions (ECDF-style) can be displayed.</p>
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plotCatDist</span><span class="op">(</span></span>
 <span>  <span class="va">x</span>,</span>
+<span>  main <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"both"</span>, <span class="st">"freq"</span>, <span class="st">"perc"</span><span class="op">)</span>,</span>
 <span>  ecdf <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  maxCats <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  maxLabLen <span class="op">=</span> <span class="fl">25</span>,</span>
 <span>  col <span class="op">=</span> <span class="st">"grey80"</span>,</span>
 <span>  border <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  maxlablen <span class="op">=</span> <span class="fl">25</span>,</span>
-<span>  maxcats <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  main <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  stamp <span class="op">=</span> <span class="va">.useTheme</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -82,6 +83,10 @@ or a numeric vector of precomputed frequencies. Unnamed numeric frequency
 vectors are labelled by their positions.</p></dd>
 
 
+<dt id="arg-main">main<a class="anchor" aria-label="anchor" href="#arg-main"></a></dt>
+<dd><p>plot title.</p></dd>
+
+
 <dt id="arg-type">type<a class="anchor" aria-label="anchor" href="#arg-type"></a></dt>
 <dd><p>character; one of <code>"both"</code>, <code>"freq"</code>, <code>"perc"</code>.
 Controls whether absolute frequencies, relative frequencies, or both
@@ -93,6 +98,14 @@ are displayed.</p></dd>
 instead of simple relative frequencies.</p></dd>
 
 
+<dt id="arg-maxcats">maxCats<a class="anchor" aria-label="anchor" href="#arg-maxcats"></a></dt>
+<dd><p>optional maximum number of categories to display (truncates if exceeded).</p></dd>
+
+
+<dt id="arg-maxlablen">maxLabLen<a class="anchor" aria-label="anchor" href="#arg-maxlablen"></a></dt>
+<dd><p>integer; maximum length of category labels before truncation.</p></dd>
+
+
 <dt id="arg-col">col<a class="anchor" aria-label="anchor" href="#arg-col"></a></dt>
 <dd><p>fill color for bars.</p></dd>
 
@@ -101,16 +114,10 @@ instead of simple relative frequencies.</p></dd>
 <dd><p>logical; draw borders around bars.</p></dd>
 
 
-<dt id="arg-maxlablen">maxlablen<a class="anchor" aria-label="anchor" href="#arg-maxlablen"></a></dt>
-<dd><p>integer; maximum length of category labels before truncation.</p></dd>
-
-
-<dt id="arg-maxcats">maxcats<a class="anchor" aria-label="anchor" href="#arg-maxcats"></a></dt>
-<dd><p>optional maximum number of categories to display (truncates if exceeded).</p></dd>
-
-
-<dt id="arg-main">main<a class="anchor" aria-label="anchor" href="#arg-main"></a></dt>
-<dd><p>plot title.</p></dd>
+<dt id="arg-stamp">stamp<a class="anchor" aria-label="anchor" href="#arg-stamp"></a></dt>
+<dd><p>controls the corner stamp. <code>.useTheme</code> (default)
+resolves to <code>getTheme()$stamp</code>. <code>TRUE</code>/<code>FALSE</code>/
+<code>NULL</code>, a string, or a named list for <code><a href="stamp.html">stamp()</a></code>.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
@@ -127,9 +134,9 @@ instead of simple relative frequencies.</p></dd>
 <li><p>Relative frequencies (percentages) or cumulative proportions</p></li>
 </ul><p>If <code>type = "both"</code>, both views are shown side by side.</p>
 <p>Long labels are truncated, and large category sets can be limited via
-<code>maxcats</code>.</p>
+<code>maxCats</code>.</p>
 <p>Raw categorical data and their pre-tabulated form are treated identically.
-When categories are truncated via <code>maxcats</code>, proportions remain based
+When categories are truncated via <code>maxCats</code>, proportions remain based
 on the total frequency before truncation.</p>
     </div>
     <div class="section level2">
@@ -142,7 +149,7 @@ on the total frequency before truncation.</p>
 <code><a href="plotDensBox.html">plotDensBox()</a></code>,
 <code><a href="plotDot.html">plotDot()</a></code>,
 <code><a href="plotECDF.html">plotECDF()</a></code>,
-<code><a href="plotFdist.html">plotFdist()</a></code>,
+<code><a href="plotFreqDist.html">plotFreqDist()</a></code>,
 <code><a href="plotLines.html">plotLines()</a></code>,
 <code><a href="plotQQ.html">plotQQ()</a></code>,
 <code><a href="plotViolin.html">plotViolin()</a></code></p></div>
@@ -167,7 +174,7 @@ on the total frequency before truncation.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Many categories (truncation)</span></span></span>
 <span class="r-in"><span><span class="va">x2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">letters</span>, <span class="fl">200</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">plotCatDist</span><span class="op">(</span><span class="va">x2</span>, maxcats <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">plotCatDist</span><span class="op">(</span><span class="va">x2</span>, maxCats <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plotCatDist-5.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

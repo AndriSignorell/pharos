@@ -5,7 +5,7 @@ Convert any valid R color specification to HSV.
 ## Usage
 
 ``` r
-colToHSV(col, useAlphaChannel = FALSE)
+colToHsv(col, useAlphaChannel = FALSE)
 ```
 
 ## Arguments

@@ -6,7 +6,7 @@ distinguishable within the input vector.
 ## Usage
 
 ``` r
-strAbbr(x, minchar = 1, method = c("left", "fix"))
+strAbbr(x, minChar = 1, method = c("left", "fix"))
 ```
 
 ## Arguments
@@ -15,7 +15,7 @@ strAbbr(x, minchar = 1, method = c("left", "fix"))
 
   a character vector
 
-- minchar:
+- minChar:
 
   integer; minimum number of characters to retain
 
@@ -36,7 +36,7 @@ A character vector of abbreviated strings.
 ## Details
 
 The function ensures that abbreviations are unique (within the given
-vector) while respecting the minimum length `minchar`.
+vector) while respecting the minimum length `minChar`.
 
 For `method = "left"`, each string is shortened individually to the
 shortest prefix that distinguishes it from all others.

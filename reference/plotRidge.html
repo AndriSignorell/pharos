@@ -15,7 +15,7 @@ Each group is displayed as a density curve shifted along the y-axis."><meta prop
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.956</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.958</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,10 +60,15 @@ Each group is displayed as a density curve shifted along the y-axis.</p>
 <span><span class="fu">plotRidge</span><span class="op">(</span></span>
 <span>  <span class="va">x</span>,</span>
 <span>  <span class="va">...</span>,</span>
-<span>  add <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  main <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  xlab <span class="op">=</span> <span class="st">""</span>,</span>
+<span>  ylab <span class="op">=</span> <span class="st">""</span>,</span>
+<span>  xlim <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  ylim <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  bw <span class="op">=</span> <span class="st">"nrd0"</span>,</span>
-<span>  scale <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  normalize <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"global"</span>, <span class="st">"group"</span><span class="op">)</span>,</span>
+<span>  add <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  scale <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  spacing <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  col <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  border <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -71,11 +76,6 @@ Each group is displayed as a density curve shifted along the y-axis.</p>
 <span>  lty <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  fill <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  grid <span class="op">=</span> <span class="cn">NA</span>,</span>
-<span>  main <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  xlab <span class="op">=</span> <span class="st">""</span>,</span>
-<span>  ylab <span class="op">=</span> <span class="st">""</span>,</span>
-<span>  xlim <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  ylim <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  stamp <span class="op">=</span> <span class="va">.useTheme</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -85,10 +85,10 @@ Each group is displayed as a density curve shifted along the y-axis.</p>
 <span>  <span class="va">data</span>,</span>
 <span>  <span class="va">subset</span>,</span>
 <span>  na.action <span class="op">=</span> <span class="va">na.omit</span>,</span>
-<span>  <span class="va">...</span>,</span>
 <span>  main <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  xlab <span class="op">=</span> <span class="st">""</span>,</span>
-<span>  ylab <span class="op">=</span> <span class="st">""</span></span>
+<span>  ylab <span class="op">=</span> <span class="st">""</span>,</span>
+<span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -106,16 +106,23 @@ groups.</p></dd>
 graphical parameters passed to <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par()</a></code>.</p></dd>
 
 
-<dt id="arg-add">add<a class="anchor" aria-label="anchor" href="#arg-add"></a></dt>
-<dd><p>logical; if <code>TRUE</code>, adds to an existing plot.</p></dd>
+<dt id="arg-main">main<a class="anchor" aria-label="anchor" href="#arg-main"></a></dt>
+<dd><p>main title. <code>NULL</code> (default) derives the title from the
+input: the names of the data arguments, or the formula. <code>""</code>, <code>NA</code>, or
+<code>FALSE</code> suppress the title and compact the top margin.</p></dd>
+
+
+<dt id="arg-xlab-ylab">xlab, ylab<a class="anchor" aria-label="anchor" href="#arg-xlab-ylab"></a></dt>
+<dd><p>axis labels. For the formula method, empty labels
+default to the response and the grouping variable.</p></dd>
+
+
+<dt id="arg-xlim-ylim">xlim, ylim<a class="anchor" aria-label="anchor" href="#arg-xlim-ylim"></a></dt>
+<dd><p>axis limits.</p></dd>
 
 
 <dt id="arg-bw">bw<a class="anchor" aria-label="anchor" href="#arg-bw"></a></dt>
 <dd><p>bandwidth for <code><a href="https://rdrr.io/r/stats/density.html" class="external-link">stats::density()</a></code>.</p></dd>
-
-
-<dt id="arg-scale">scale<a class="anchor" aria-label="anchor" href="#arg-scale"></a></dt>
-<dd><p>scaling factor for density height.</p></dd>
 
 
 <dt id="arg-normalize">normalize<a class="anchor" aria-label="anchor" href="#arg-normalize"></a></dt>
@@ -125,6 +132,14 @@ groups, so that heights stay comparable across groups (as in ggridges);
 <code>"group"</code> divides each density by its own peak, so that every ridge
 reaches the full height. Use the latter when a single narrow group
 would otherwise flatten all others.</p></dd>
+
+
+<dt id="arg-add">add<a class="anchor" aria-label="anchor" href="#arg-add"></a></dt>
+<dd><p>logical; if <code>TRUE</code>, adds to an existing plot.</p></dd>
+
+
+<dt id="arg-scale">scale<a class="anchor" aria-label="anchor" href="#arg-scale"></a></dt>
+<dd><p>scaling factor for density height.</p></dd>
 
 
 <dt id="arg-spacing">spacing<a class="anchor" aria-label="anchor" href="#arg-spacing"></a></dt>
@@ -155,21 +170,6 @@ uses <code>col</code>.</p></dd>
 
 <dt id="arg-grid">grid<a class="anchor" aria-label="anchor" href="#arg-grid"></a></dt>
 <dd><p>logical, <code>NA</code>, or list controlling grid.</p></dd>
-
-
-<dt id="arg-main">main<a class="anchor" aria-label="anchor" href="#arg-main"></a></dt>
-<dd><p>main title. <code>NULL</code> (default) derives the title from the
-input: the names of the data arguments, or the formula. <code>""</code>, <code>NA</code>, or
-<code>FALSE</code> suppress the title and compact the top margin.</p></dd>
-
-
-<dt id="arg-xlab-ylab">xlab, ylab<a class="anchor" aria-label="anchor" href="#arg-xlab-ylab"></a></dt>
-<dd><p>axis labels. For the formula method, empty labels
-default to the response and the grouping variable.</p></dd>
-
-
-<dt id="arg-xlim-ylim">xlim, ylim<a class="anchor" aria-label="anchor" href="#arg-xlim-ylim"></a></dt>
-<dd><p>axis limits.</p></dd>
 
 
 <dt id="arg-stamp">stamp<a class="anchor" aria-label="anchor" href="#arg-stamp"></a></dt>

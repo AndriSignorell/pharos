@@ -24,10 +24,10 @@ a character vector with the diacritic's HTML entity appended
 
 ## See also
 
-Other html: [`as.fileLink()`](as.fileLink.md),
-[`as.html()`](as.html.md), [`as.img()`](as.img.md),
-[`embedFile()`](embedFile.md), [`escapeHtml()`](escapeHtml.md),
-[`htmlSubscript`](htmlSubscript.md), [`toHtmlTable()`](toHtmlTable.md)
+Other html: [`asFileLink()`](asFileLink.md), [`asHtml()`](asHtml.md),
+[`asImg()`](asImg.md), [`embedFile()`](embedFile.md),
+[`escapeHtml()`](escapeHtml.md), [`htmlSubscript`](htmlSubscript.md),
+[`toHtmlTable()`](toHtmlTable.md)
 
 ## Examples
 

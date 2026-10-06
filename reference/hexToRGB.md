@@ -5,12 +5,12 @@ Convert hexadecimal color strings to an RGB matrix.
 ## Usage
 
 ``` r
-hexToRGB(hex)
+hexToRgb(col)
 ```
 
 ## Arguments
 
-- hex:
+- col:
 
   character vector of hexadecimal colors.
 

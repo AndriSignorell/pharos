@@ -36,7 +36,7 @@ Typically used to represent confidence or prediction bands.
 
 Other geometry.structures: [`arc()`](arc.md), [`bezier()`](bezier.md),
 [`circle()`](circle.md), [`ellipse()`](ellipse.md),
-[`polygon()`](polygon.md), [`regPolygon()`](regPolygon.md),
+[`polygonX()`](polygonX.md), [`regPolygon()`](regPolygon.md),
 [`ring()`](ring.md)
 
 ## Examples
@@ -57,7 +57,7 @@ pred <- predict(
 
 plot(y ~ x)
 
-polygon(
+polygonX(
   band(
     x = new,
     y = pred[,2:3]

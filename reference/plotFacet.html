@@ -21,7 +21,7 @@ height, as the strip space is reserved separately in the layout."><meta property
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.956</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.958</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,23 +68,19 @@ height, as the strip space is reserved separately in the layout.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plotFacet</span><span class="op">(</span></span>
 <span>  <span class="va">samples</span>,</span>
 <span>  <span class="va">dim</span>,</span>
-<span>  <span class="va">panelFun</span>,</span>
-<span>  cols <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  stripLabels <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">FUN</span>,</span>
 <span>  main <span class="op">=</span> <span class="st">""</span>,</span>
 <span>  xlab <span class="op">=</span> <span class="st">""</span>,</span>
 <span>  ylab <span class="op">=</span> <span class="st">""</span>,</span>
 <span>  xlim <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  ylim <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2.5</span>, <span class="fl">2.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span><span class="op">)</span>,</span>
-<span>  oma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">1.2</span><span class="op">)</span>,</span>
 <span>  horiz <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  vert <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  strip <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  col <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  bg <span class="op">=</span> <span class="st">"grey95"</span>,</span>
+<span>  strip <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  grid <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  cex <span class="op">=</span> <span class="fl">0.66</span>,</span>
-<span>  pch <span class="op">=</span> <span class="fl">16</span>,</span>
+<span>  stamp <span class="op">=</span> <span class="va">.useTheme</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -103,26 +99,15 @@ components <code>x</code> and <code>y</code>.</p></dd>
 of the panel matrix, <code>c(nrow, ncol)</code>.</p></dd>
 
 
-<dt id="arg-panelfun">panelFun<a class="anchor" aria-label="anchor" href="#arg-panelfun"></a></dt>
+<dt id="arg-fun">FUN<a class="anchor" aria-label="anchor" href="#arg-fun"></a></dt>
 <dd><p>the panel function, called per panel as
-<code>panelFun(x, y, col, pch, ...)</code> with a fully set up coordinate
+<code>FUN(x, y, col, pch, ...)</code> with a fully set up coordinate
 system. Components of a sample beyond <code>x</code> and <code>y</code> are
 passed on under their own names, so a panel can carry per-panel data
 of its own - confidence bounds, weights, labels. They are only passed
-to a <code>panelFun</code> that can accept them (a matching formal, or
+to a <code>FUN</code> that can accept them (a matching formal, or
 <code>...</code>), so panel functions written for the two-component form
 keep working unchanged.</p></dd>
-
-
-<dt id="arg-cols">cols<a class="anchor" aria-label="anchor" href="#arg-cols"></a></dt>
-<dd><p>the colors for the panels, recycled to the number of
-samples. Default is <code>hcl.colors(n, "Dark 3")</code>.</p></dd>
-
-
-<dt id="arg-striplabels">stripLabels<a class="anchor" aria-label="anchor" href="#arg-striplabels"></a></dt>
-<dd><p>the labels for the panel strips. Default is
-<code>names(samples)</code> where the samples are named, otherwise the
-sequence along <code>samples</code>.</p></dd>
 
 
 <dt id="arg-main">main<a class="anchor" aria-label="anchor" href="#arg-main"></a></dt>
@@ -142,17 +127,6 @@ one per sample, does the same with limits you choose; a list of
 length 1 is recycled. See the section on free scales.</p></dd>
 
 
-<dt id="arg-mar">mar<a class="anchor" aria-label="anchor" href="#arg-mar"></a></dt>
-<dd><p>the margins around the whole panel matrix in lines,
-<code>c(bottom, left, top, right)</code>. The bottom and left margins hold
-the axis annotation of the outer panels.</p></dd>
-
-
-<dt id="arg-oma">oma<a class="anchor" aria-label="anchor" href="#arg-oma"></a></dt>
-<dd><p>the outer margins in lines, holding <code>xlab</code>, <code>ylab</code>
-and <code>main</code>.</p></dd>
-
-
 <dt id="arg-horiz">horiz<a class="anchor" aria-label="anchor" href="#arg-horiz"></a></dt>
 <dd><p>the horizontal gap between adjacent columns in margin
 lines.</p></dd>
@@ -163,19 +137,25 @@ lines.</p></dd>
 Default is <code>horiz</code>, yielding physically equal gaps.</p></dd>
 
 
-<dt id="arg-strip">strip<a class="anchor" aria-label="anchor" href="#arg-strip"></a></dt>
-<dd><p>controls the panel strips, evaluated by
-<a href="https://andrisignorell.github.io/bedrock/reference/callIf.html" class="external-link">bedrock::callIf</a>: <code>TRUE</code> (default) draws strips with default
-settings, <code>FALSE</code>/<code>NULL</code>/<code>NA</code> suppresses them (no
-space is reserved), a named list is passed as arguments to
-<code><a href="titleRect.html">titleRect()</a></code>, e.g.
-<code>list(bg = "steelblue", col = "white", line = 1.5)</code>. The
-<code>label</code> argument is set per panel from <code>stripLabels</code> and
-cannot be overridden.</p></dd>
+<dt id="arg-col">col<a class="anchor" aria-label="anchor" href="#arg-col"></a></dt>
+<dd><p>the colors for the panels, recycled to the number of
+samples. Default is <code>hcl.colors(n, "Dark 3")</code>.</p></dd>
 
 
 <dt id="arg-bg">bg<a class="anchor" aria-label="anchor" href="#arg-bg"></a></dt>
 <dd><p>the background color of the plot regions.</p></dd>
+
+
+<dt id="arg-strip">strip<a class="anchor" aria-label="anchor" href="#arg-strip"></a></dt>
+<dd><p>controls the panel strips: <code>TRUE</code> (default) draws strips
+with default settings, <code>FALSE</code>/<code>NULL</code>/<code>NA</code> suppresses them (no
+space is reserved), a named list sets the details. Its element
+<code>labels</code> holds the strip labels (default: <code>names(samples)</code> where the
+samples are named, otherwise the sequence along <code>samples</code>); all
+other elements are passed as arguments to <code><a href="titleRect.html">titleRect()</a></code>, e.g.
+<code>list(labels = vars, bg = "steelblue", col = "white", line = 1.5)</code>.
+The <code>label</code> argument of <code><a href="titleRect.html">titleRect()</a></code> is set per panel and cannot be
+overridden.</p></dd>
 
 
 <dt id="arg-grid">grid<a class="anchor" aria-label="anchor" href="#arg-grid"></a></dt>
@@ -189,20 +169,25 @@ The default positions <code>v</code> and <code>h</code> can be overridden, e.g.
 <code>list(v = seq(0, 20, 5))</code>.</p></dd>
 
 
-<dt id="arg-cex">cex<a class="anchor" aria-label="anchor" href="#arg-cex"></a></dt>
-<dd><p>the character expansion used inside the panels (axis
-annotation, strip labels, panel content) and as unit for the panel
-margin lines. Default is 0.66, matching R's own reduction in
-multi-figure layouts. Set deterministically after each
-<code><a href="https://rdrr.io/r/graphics/frame.html" class="external-link">plot.new()</a></code>, see Details.</p></dd>
-
-
-<dt id="arg-pch">pch<a class="anchor" aria-label="anchor" href="#arg-pch"></a></dt>
-<dd><p>the plotting character, passed to <code>panelFun</code>.</p></dd>
+<dt id="arg-stamp">stamp<a class="anchor" aria-label="anchor" href="#arg-stamp"></a></dt>
+<dd><p>controls the corner stamp. <code>.useTheme</code> (default)
+resolves to <code>getTheme()$stamp</code>. <code>TRUE</code>/<code>FALSE</code>/
+<code>NULL</code>, a string, or a named list for <code><a href="stamp.html">stamp()</a></code>.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>the dots are passed to <code>panelFun</code>.</p></dd>
+<dd><p>further arguments passed to <code>FUN</code>. Three graphical
+parameters are picked up here and define the page geometry instead:
+<code>mar</code>, the margins around the whole panel matrix in lines,
+<code>c(bottom, left, top, right)</code>, default <code>c(2.5, 2.5, 0.5, 0.5)</code> (the
+bottom and left margins hold the axis annotation of the outer
+panels); <code>oma</code>, the outer margins in lines, holding <code>xlab</code>, <code>ylab</code>
+and <code>main</code>, default <code>c(3, 3, 4, 1.2)</code>; and <code>cex</code>, the character
+expansion used inside the panels (axis annotation, strip labels,
+panel content) and as unit for the panel margin lines, default 0.66,
+matching R's own reduction in multi-figure layouts (set
+deterministically after each <code><a href="https://rdrr.io/r/graphics/frame.html" class="external-link">plot.new()</a></code>, see Details). <code>pch</code>
+defaults to 16 and is passed to <code>FUN</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -248,7 +233,7 @@ rows.</p>
 it <code>csi</code>, the physical size of a margin line) in layouts with more
 than two regions, which would make the realized panel margins deviate
 from the computed layout. The function therefore controls the character
-size deterministically via its <code>cex</code> argument and sets the panel
+size deterministically via <code>cex</code> (see <code>...</code>) and sets the panel
 margins in inches (<code>mai</code>/<code>omi</code>), so that all plot regions are
 exactly equal in size.</p>
     </div>
@@ -275,7 +260,7 @@ exactly equal in size.</p>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x</span><span class="op">)</span>, lwd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">plotFacet</span><span class="op">(</span><span class="va">samples</span>, dim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span>, panelFun <span class="op">=</span> <span class="va">my_panel</span>,</span></span>
+<span class="r-in"><span><span class="fu">plotFacet</span><span class="op">(</span><span class="va">samples</span>, dim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span>, FUN <span class="op">=</span> <span class="va">my_panel</span>,</span></span>
 <span class="r-in"><span>           xlab <span class="op">=</span> <span class="st">"Time"</span>, ylab <span class="op">=</span> <span class="st">"Weight"</span>, main <span class="op">=</span> <span class="st">"ChickWeight"</span>,</span></span>
 <span class="r-in"><span>           strip <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>bg <span class="op">=</span> <span class="st">"grey80"</span>, cex <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plotFacet-1.png" alt="" width="700" height="433"></span>
@@ -293,11 +278,11 @@ exactly equal in size.</p>
 <span class="r-in"><span><span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">panelBand</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">lci</span>, <span class="va">uci</span>, <span class="va">col</span>, <span class="va">pch</span> <span class="op">=</span> <span class="fl">16</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="polygon.html">polygon</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">x</span>, <span class="fu"><a href="https://rdrr.io/r/base/rev.html" class="external-link">rev</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">uci</span>, <span class="fu"><a href="https://rdrr.io/r/base/rev.html" class="external-link">rev</a></span><span class="op">(</span><span class="va">lci</span><span class="op">)</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"grey85"</span>, border <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/polygon.html" class="external-link">polygon</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">x</span>, <span class="fu"><a href="https://rdrr.io/r/base/rev.html" class="external-link">rev</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">uci</span>, <span class="fu"><a href="https://rdrr.io/r/base/rev.html" class="external-link">rev</a></span><span class="op">(</span><span class="va">lci</span><span class="op">)</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"grey85"</span>, border <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, col <span class="op">=</span> <span class="va">col</span>, pch <span class="op">=</span> <span class="va">pch</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">plotFacet</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/setNames.html" class="external-link">setNames</a></span><span class="op">(</span><span class="va">samples</span>, <span class="va">vars</span><span class="op">)</span>, dim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span>, panelFun <span class="op">=</span> <span class="va">panelBand</span>,</span></span>
+<span class="r-in"><span><span class="fu">plotFacet</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/setNames.html" class="external-link">setNames</a></span><span class="op">(</span><span class="va">samples</span>, <span class="va">vars</span><span class="op">)</span>, dim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span>, FUN <span class="op">=</span> <span class="va">panelBand</span>,</span></span>
 <span class="r-in"><span>          xlim <span class="op">=</span> <span class="st">"free"</span>, ylab <span class="op">=</span> <span class="st">"mpg"</span>,</span></span>
 <span class="r-in"><span>          main <span class="op">=</span> <span class="st">"mpg against four predictors"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plotFacet-2.png" alt="" width="700" height="433"></span>

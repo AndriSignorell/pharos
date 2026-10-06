@@ -17,7 +17,7 @@ y coordinates. Multiple series are displayed as stacked areas."><meta property="
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.956</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.958</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,15 +62,16 @@ The function accepts either a matrix of values or separate <code>x</code> and
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plotArea</span><span class="op">(</span></span>
 <span>  <span class="va">x</span>,</span>
 <span>  <span class="va">y</span>,</span>
-<span>  prop <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  col <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  main <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  xlab <span class="op">=</span> <span class="st">""</span>,</span>
 <span>  ylab <span class="op">=</span> <span class="st">""</span>,</span>
 <span>  xlim <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  ylim <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  prop <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  col <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  grid <span class="op">=</span> <span class="va">.useTheme</span>,</span>
 <span>  legend <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  main <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  grid <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  stamp <span class="op">=</span> <span class="va">.useTheme</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -90,13 +91,8 @@ x positions and columns to individual areas.</p></dd>
 <code>x</code> is interpreted as the x-coordinates.</p></dd>
 
 
-<dt id="arg-prop">prop<a class="anchor" aria-label="anchor" href="#arg-prop"></a></dt>
-<dd><p>logical indicating whether rows should be converted to
-proportions so that stacked areas sum to one.</p></dd>
-
-
-<dt id="arg-col">col<a class="anchor" aria-label="anchor" href="#arg-col"></a></dt>
-<dd><p>fill colours used for the areas.</p></dd>
+<dt id="arg-main">main<a class="anchor" aria-label="anchor" href="#arg-main"></a></dt>
+<dd><p>main title of the plot.</p></dd>
 
 
 <dt id="arg-xlab">xlab<a class="anchor" aria-label="anchor" href="#arg-xlab"></a></dt>
@@ -115,19 +111,31 @@ proportions so that stacked areas sum to one.</p></dd>
 <dd><p>limits for the y-axis.</p></dd>
 
 
+<dt id="arg-prop">prop<a class="anchor" aria-label="anchor" href="#arg-prop"></a></dt>
+<dd><p>logical indicating whether rows should be converted to
+proportions so that stacked areas sum to one.</p></dd>
+
+
+<dt id="arg-col">col<a class="anchor" aria-label="anchor" href="#arg-col"></a></dt>
+<dd><p>fill colours used for the areas.</p></dd>
+
+
+<dt id="arg-grid">grid<a class="anchor" aria-label="anchor" href="#arg-grid"></a></dt>
+<dd><p>controls the background grid. <code>.useTheme</code> (default) follows
+the active theme (<code>getTheme()$grid</code>), <code>TRUE</code> draws it, <code>FALSE</code>, <code>NULL</code>
+or <code>NA</code> suppress it, and a named list is passed to <code><a href="https://rdrr.io/r/graphics/grid.html" class="external-link">graphics::grid()</a></code>.</p></dd>
+
+
 <dt id="arg-legend">legend<a class="anchor" aria-label="anchor" href="#arg-legend"></a></dt>
 <dd><p>logical or list controlling the legend. If <code>TRUE</code>, a legend
 is drawn using the column names of the data. If a list is supplied, its
 elements are passed to the internal legend drawing routine.</p></dd>
 
 
-<dt id="arg-main">main<a class="anchor" aria-label="anchor" href="#arg-main"></a></dt>
-<dd><p>main title of the plot.</p></dd>
-
-
-<dt id="arg-grid">grid<a class="anchor" aria-label="anchor" href="#arg-grid"></a></dt>
-<dd><p>logical or list controlling the background grid. If <code>TRUE</code>,
-a default grid is drawn.</p></dd>
+<dt id="arg-stamp">stamp<a class="anchor" aria-label="anchor" href="#arg-stamp"></a></dt>
+<dd><p>controls the corner stamp. <code>.useTheme</code> (default)
+resolves to <code>getTheme()$stamp</code>. <code>TRUE</code>/<code>FALSE</code>/
+<code>NULL</code>, a string, or a named list for <code><a href="stamp.html">stamp()</a></code>.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
@@ -162,7 +170,7 @@ so the stacked areas sum to one.</p>
 <code><a href="plotDensBox.html">plotDensBox()</a></code>,
 <code><a href="plotDot.html">plotDot()</a></code>,
 <code><a href="plotECDF.html">plotECDF()</a></code>,
-<code><a href="plotFdist.html">plotFdist()</a></code>,
+<code><a href="plotFreqDist.html">plotFreqDist()</a></code>,
 <code><a href="plotLines.html">plotLines()</a></code>,
 <code><a href="plotQQ.html">plotQQ()</a></code>,
 <code><a href="plotViolin.html">plotViolin()</a></code></p></div>

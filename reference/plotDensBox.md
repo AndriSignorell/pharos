@@ -13,16 +13,16 @@ plotDensBox(x, ...)
 # Default S3 method
 plotDensBox(
   x,
-  g = NULL,
+  groups = NULL,
   main = NULL,
   xlab = "",
   ylab = "",
   xlim = NULL,
-  layout_heights = c(2, 1.4),
+  heights = c(2, 1.4),
   col = NULL,
   grid = TRUE,
-  densArgs = TRUE,
-  boxArgs = TRUE,
+  dens = TRUE,
+  box = TRUE,
   stamp = .useTheme,
   ...
 )
@@ -51,7 +51,7 @@ plotDensBox(
   [`graphics::par()`](https://rdrr.io/r/graphics/par.html) via the
   internal framework.
 
-- g:
+- groups:
 
   optional grouping variable (ignored if a formula is used).
 
@@ -75,7 +75,7 @@ plotDensBox(
   numeric vector of length 2 specifying the x-axis limits. `NULL`
   (default) covers the data and the tails of the densities.
 
-- layout_heights:
+- heights:
 
   numeric vector of length 2 specifying the relative heights of the
   density plot (top) and boxplot (bottom).
@@ -96,7 +96,7 @@ plotDensBox(
   - a named list: arguments passed to
     [`graphics::grid()`](https://rdrr.io/r/graphics/grid.html)
 
-- densArgs:
+- dens:
 
   controls density estimation via
   [`stats::density()`](https://rdrr.io/r/stats/density.html). Can be:
@@ -108,7 +108,7 @@ plotDensBox(
   - a named list: additional arguments passed to
     [`stats::density()`](https://rdrr.io/r/stats/density.html)
 
-- boxArgs:
+- box:
 
   controls drawing of boxplots via
   [`graphics::boxplot()`](https://rdrr.io/r/graphics/boxplot.html). Can
@@ -179,7 +179,7 @@ Other plot.univariate: [`plotArea()`](plotArea.md),
 [`plotBar()`](plotBar.md), [`plotBox()`](plotBox.md),
 [`plotCatDist()`](plotCatDist.md), [`plotDens()`](plotDens.md),
 [`plotDot()`](plotDot.md), [`plotECDF()`](plotECDF.md),
-[`plotFdist()`](plotFdist.md), [`plotLines()`](plotLines.md),
+[`plotFreqDist()`](plotFreqDist.md), [`plotLines()`](plotLines.md),
 [`plotQQ()`](plotQQ.md), [`plotViolin()`](plotViolin.md)
 
 ## Examples
@@ -195,13 +195,13 @@ plotDensBox(x, g)
 
 plotDensBox(
   x,
-  densArgs = list(adjust = 2),
-  boxArgs  = list(notch = TRUE)
+  dens = list(adjust = 2),
+  box  = list(notch = TRUE)
 )
 
 plotDensBox(
   x,
-  boxArgs = FALSE
+  box = FALSE
 )
 
 plotDensBox(x ~ g)

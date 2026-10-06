@@ -5,7 +5,7 @@ Create a circular geometry.
 ## Usage
 
 ``` r
-circle(x = 0, y = 0, radius = 1, numPoints = 100)
+circle(x = 0, y = 0, radius = 1, nPoints = 100)
 ```
 
 ## Arguments
@@ -18,7 +18,7 @@ circle(x = 0, y = 0, radius = 1, numPoints = 100)
 
   circle radius.
 
-- numPoints:
+- nPoints:
 
   number of points used to approximate the circle.
 
@@ -30,5 +30,5 @@ An object inheriting from class `"circleGeometry"`.
 
 Other geometry.structures: [`arc()`](arc.md), [`band()`](band.md),
 [`bezier()`](bezier.md), [`ellipse()`](ellipse.md),
-[`polygon()`](polygon.md), [`regPolygon()`](regPolygon.md),
+[`polygonX()`](polygonX.md), [`regPolygon()`](regPolygon.md),
 [`ring()`](ring.md)

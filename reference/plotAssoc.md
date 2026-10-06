@@ -122,7 +122,7 @@ Group International Conference Proceedings*, 17, 190–200.
 ## See also
 
 [graphics::mosaicplot](https://rdrr.io/r/graphics/mosaicplot.html),
-`DescToolsX::conf`
+`DescToolsX::confusion`
 
 Other plot.bivariate: [`plotBag()`](plotBag.md),
 [`plotCor()`](plotCor.md), [`plotDens2D()`](plotDens2D.md),

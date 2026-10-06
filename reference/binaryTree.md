@@ -12,6 +12,7 @@ plotBinaryTree(
   horiz = FALSE,
   text = TRUE,
   line = TRUE,
+  stamp = .useTheme,
   ...
 )
 ```
@@ -39,6 +40,12 @@ plotBinaryTree(
 - line:
 
   properties of the line segments (`col`, `lwd`, `lty`).
+
+- stamp:
+
+  controls the corner stamp. `.useTheme` (default) resolves to
+  `getTheme()$stamp`. `TRUE`/`FALSE`/ `NULL`, a string, or a named list
+  for [`stamp()`](stamp.md).
 
 - ...:
 

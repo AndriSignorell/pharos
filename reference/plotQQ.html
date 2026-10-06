@@ -17,7 +17,7 @@ parameters. Confidence bands are provided by default."><meta property="og:image"
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.956</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.958</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,12 +61,13 @@ parameters. Confidence bands are provided by default.</p>
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plotQQ</span><span class="op">(</span></span>
 <span>  <span class="va">x</span>,</span>
-<span>  qdist <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">qnorm</a></span>,</span>
+<span>  qFun <span class="op">=</span> <span class="va">qnorm</span>,</span>
 <span>  main <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  xlab <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  ylab <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  datax <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  add <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  cex <span class="op">=</span> <span class="va">.useTheme</span>,</span>
 <span>  grid <span class="op">=</span> <span class="va">.useTheme</span>,</span>
 <span>  box <span class="op">=</span> <span class="va">.useTheme</span>,</span>
 <span>  cband <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span>,</span>
@@ -84,7 +85,7 @@ parameters. Confidence bands are provided by default.</p>
 <dd><p>the data sample</p></dd>
 
 
-<dt id="arg-qdist">qdist<a class="anchor" aria-label="anchor" href="#arg-qdist"></a></dt>
+<dt id="arg-qfun">qFun<a class="anchor" aria-label="anchor" href="#arg-qfun"></a></dt>
 <dd><p>the quantile function of the assumed distribution. Can either
 be given as simple function name or defined as own function using the
 required arguments. Default is <code><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">qnorm()</a></code>. See examples.</p></dd>
@@ -110,6 +111,11 @@ required arguments. Default is <code><a href="https://rdrr.io/r/stats/Normal.htm
 <dt id="arg-add">add<a class="anchor" aria-label="anchor" href="#arg-add"></a></dt>
 <dd><p>logical specifying if the points should be added to an already
 existing plot; defaults to <code>FALSE</code>.</p></dd>
+
+
+<dt id="arg-cex">cex<a class="anchor" aria-label="anchor" href="#arg-cex"></a></dt>
+<dd><p>character expansion factor for the points. <code>.useTheme</code>
+(default) resolves to <code>getTheme()$points$cex</code>.</p></dd>
 
 
 <dt id="arg-grid">grid<a class="anchor" aria-label="anchor" href="#arg-grid"></a></dt>
@@ -189,7 +195,7 @@ based on an algorithm published in the package
 <code><a href="plotDensBox.html">plotDensBox()</a></code>,
 <code><a href="plotDot.html">plotDot()</a></code>,
 <code><a href="plotECDF.html">plotECDF()</a></code>,
-<code><a href="plotFdist.html">plotFdist()</a></code>,
+<code><a href="plotFreqDist.html">plotFreqDist()</a></code>,
 <code><a href="plotLines.html">plotLines()</a></code>,
 <code><a href="plotViolin.html">plotViolin()</a></code></p></div>
     </div>
@@ -202,20 +208,13 @@ based on an algorithm published in the package
 <span class="r-plt img"><img src="plotQQ-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">w</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Weibull.html" class="external-link">rweibull</a></span><span class="op">(</span><span class="fl">100</span>, shape<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">plotQQ</span><span class="op">(</span><span class="va">w</span>, qdist <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">p</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/stats/Weibull.html" class="external-link">qweibull</a></span><span class="op">(</span><span class="va">p</span>, shape<span class="op">=</span><span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">plotQQ</span><span class="op">(</span><span class="va">w</span>, qFun <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">p</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/stats/Weibull.html" class="external-link">qweibull</a></span><span class="op">(</span><span class="va">p</span>, shape<span class="op">=</span><span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plotQQ-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Chisquare.html" class="external-link">rchisq</a></span><span class="op">(</span><span class="fl">100</span>, df<span class="op">=</span><span class="fl">5</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">plotQQ</span><span class="op">(</span><span class="va">z</span>, <span class="kw">function</span><span class="op">(</span><span class="va">p</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/stats/Chisquare.html" class="external-link">qchisq</a></span><span class="op">(</span><span class="va">p</span>, df<span class="op">=</span><span class="fl">5</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>       args.qqline<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>col<span class="op">=</span><span class="fl">2</span>, probs<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.6</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>       qqline<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>col<span class="op">=</span><span class="fl">2</span>, probs<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.6</span><span class="op">)</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>       main<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="st">"Q-Q plot for"</span> <span class="op">~</span><span class="op">~</span> <span class="op">{</span><span class="va">chi</span><span class="op">^</span><span class="fl">2</span><span class="op">}</span><span class="op">[</span><span class="va">nu</span> <span class="op">==</span> <span class="fl">3</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>is.na() applied to non-(list or vector) of type 'expression'</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>"args.qqline" is not a graphical parameter</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>"args.qqline" is not a graphical parameter</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>"args.qqline" is not a graphical parameter</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>"args.qqline" is not a graphical parameter</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>"args.qqline" is not a graphical parameter</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>"args.qqline" is not a graphical parameter</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plotQQ-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
@@ -225,14 +224,9 @@ based on an algorithm published in the package
 <span class="r-in"><span><span class="co"># add 5 random sets</span></span></span>
 <span class="r-in"><span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span><span class="op">{</span></span></span>
 <span class="r-in"><span>  <span class="va">z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Chisquare.html" class="external-link">rchisq</a></span><span class="op">(</span><span class="fl">100</span>, df<span class="op">=</span><span class="fl">5</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="fu">plotQQ</span><span class="op">(</span><span class="va">z</span>, <span class="kw">function</span><span class="op">(</span><span class="va">p</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/stats/Chisquare.html" class="external-link">qchisq</a></span><span class="op">(</span><span class="va">p</span>, df<span class="op">=</span><span class="fl">5</span><span class="op">)</span>, add<span class="op">=</span><span class="cn">TRUE</span>, args.qqline <span class="op">=</span> <span class="cn">NA</span>,</span></span>
+<span class="r-in"><span>  <span class="fu">plotQQ</span><span class="op">(</span><span class="va">z</span>, <span class="kw">function</span><span class="op">(</span><span class="va">p</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/stats/Chisquare.html" class="external-link">qchisq</a></span><span class="op">(</span><span class="va">p</span>, df<span class="op">=</span><span class="fl">5</span><span class="op">)</span>, add<span class="op">=</span><span class="cn">TRUE</span>, qqline <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
 <span class="r-in"><span>         col<span class="op">=</span><span class="st">"grey"</span>, lty<span class="op">=</span><span class="st">"dotted"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>"args.qqline" is not a graphical parameter</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>"args.qqline" is not a graphical parameter</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>"args.qqline" is not a graphical parameter</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>"args.qqline" is not a graphical parameter</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>"args.qqline" is not a graphical parameter</span>
 <span class="r-plt img"><img src="plotQQ-4.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

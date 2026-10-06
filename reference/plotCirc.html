@@ -17,7 +17,7 @@ flexible styling via object-based arguments."><meta property="og:image" content=
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.956</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.958</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,11 +61,12 @@ flexible styling via object-based arguments.</p>
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plotCirc</span><span class="op">(</span></span>
 <span>  <span class="va">x</span>,</span>
+<span>  main <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  gap <span class="op">=</span> <span class="fl">5</span>,</span>
 <span>  sector <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  ribbon <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  labels <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  gap <span class="op">=</span> <span class="fl">5</span>,</span>
-<span>  main <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  stamp <span class="op">=</span> <span class="va">.useTheme</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -76,6 +77,14 @@ flexible styling via object-based arguments.</p>
 
 <dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
 <dd><p>A numeric matrix. Rows and columns define the connections between sectors.</p></dd>
+
+
+<dt id="arg-main">main<a class="anchor" aria-label="anchor" href="#arg-main"></a></dt>
+<dd><p>character. Main title of the plot.</p></dd>
+
+
+<dt id="arg-gap">gap<a class="anchor" aria-label="anchor" href="#arg-gap"></a></dt>
+<dd><p>numeric. Gap between sectors in degrees.</p></dd>
 
 
 <dt id="arg-sector">sector<a class="anchor" aria-label="anchor" href="#arg-sector"></a></dt>
@@ -99,12 +108,10 @@ flexible styling via object-based arguments.</p>
 </ul></dd>
 
 
-<dt id="arg-gap">gap<a class="anchor" aria-label="anchor" href="#arg-gap"></a></dt>
-<dd><p>numeric. Gap between sectors in degrees.</p></dd>
-
-
-<dt id="arg-main">main<a class="anchor" aria-label="anchor" href="#arg-main"></a></dt>
-<dd><p>character. Main title of the plot.</p></dd>
+<dt id="arg-stamp">stamp<a class="anchor" aria-label="anchor" href="#arg-stamp"></a></dt>
+<dd><p>controls the corner stamp. <code>.useTheme</code> (default)
+resolves to <code>getTheme()$stamp</code>. <code>TRUE</code>/<code>FALSE</code>/
+<code>NULL</code>, a string, or a named list for <code><a href="stamp.html">stamp()</a></code>.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>

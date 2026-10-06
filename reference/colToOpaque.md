@@ -41,7 +41,7 @@ color.
 
 Other color.manipulation: [`addOpacity()`](addOpacity.md),
 [`darken()`](darken.md), [`fade()`](fade.md), [`lighten()`](lighten.md),
-[`mixColors()`](mixColors.md)
+[`mixCol()`](mixCol.md)
 
 ## Examples
 

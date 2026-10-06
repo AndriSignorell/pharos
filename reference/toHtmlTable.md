@@ -3,7 +3,7 @@
 Converts a matrix (or vector) to a `<table>` HTML fragment, with
 optional row/column headers, caption, per-column alignment and widths.
 The result has class `c("html", "character")` (see
-[`as.html()`](as.html.md)) and prints as a formatted text table via
+[`asHtml()`](asHtml.md)) and prints as a formatted text table via
 [`preview.html()`](preview.html.md).
 
 ## Usage
@@ -14,9 +14,9 @@ toHtmlTable(
   sepCol = FALSE,
   caption = "",
   bodyAlign = "center",
-  valign = "top",
+  vAlign = "top",
   width = NULL,
-  cellpadding = 3,
+  cellPadding = 3,
   border = 0,
   tableWidth = NA,
   captionAlign = "center",
@@ -46,7 +46,7 @@ toHtmlTable(
   horizontal alignment of body cells (`"left"`, `"center"`, `"right"`),
   recycled to the number of columns
 
-- valign:
+- vAlign:
 
   vertical alignment of body cells (HTML `valign` attribute: `"top"`,
   `"middle"`, `"bottom"`), recycled to the number of columns
@@ -57,7 +57,7 @@ toHtmlTable(
   columns including an optional rowname column; use `NA` for columns
   without an explicit width
 
-- cellpadding:
+- cellPadding:
 
   HTML `cellpadding` attribute
 
@@ -97,7 +97,7 @@ an object of class `c("html", "character")`
 
 [bedrock::appendEnum](https://andrisignorell.github.io/bedrock/reference/appendEnum.html)
 
-Other html: [`as.fileLink()`](as.fileLink.md),
-[`as.html()`](as.html.md), [`as.img()`](as.img.md),
-[`embedFile()`](embedFile.md), [`escapeHtml()`](escapeHtml.md),
-[`htmlNotation`](htmlNotation.md), [`htmlSubscript`](htmlSubscript.md)
+Other html: [`asFileLink()`](asFileLink.md), [`asHtml()`](asHtml.md),
+[`asImg()`](asImg.md), [`embedFile()`](embedFile.md),
+[`escapeHtml()`](escapeHtml.md), [`htmlNotation`](htmlNotation.md),
+[`htmlSubscript`](htmlSubscript.md)

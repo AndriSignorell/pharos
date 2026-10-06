@@ -21,7 +21,7 @@ centre, lighter at the edges."><meta property="og:image" content="/logo.png"></h
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.956</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.958</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,15 +68,15 @@ centre, lighter at the edges.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plotPropCI</span><span class="op">(</span></span>
 <span>  <span class="va">x</span>,</span>
 <span>  main <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">""</span>, <span class="st">""</span><span class="op">)</span>,</span>
 <span>  xlab <span class="op">=</span> <span class="st">""</span>,</span>
 <span>  xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,</span>
-<span>  col <span class="op">=</span> <span class="va">.useTheme</span>,</span>
-<span>  ci.col <span class="op">=</span> <span class="fu"><a href="addOpacity.html">addOpacity</a></span><span class="op">(</span><span class="st">"grey80"</span>, <span class="fl">0.12</span><span class="op">)</span>,</span>
-<span>  border <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  ciLevels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.99</span>, <span class="fl">0.8</span>, by <span class="op">=</span> <span class="op">-</span><span class="fl">0.01</span><span class="op">)</span>,</span>
+<span>  col <span class="op">=</span> <span class="va">.useTheme</span>,</span>
+<span>  ciCol <span class="op">=</span> <span class="fu"><a href="addOpacity.html">addOpacity</a></span><span class="op">(</span><span class="st">"grey80"</span>, <span class="fl">0.12</span><span class="op">)</span>,</span>
+<span>  border <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  grid <span class="op">=</span> <span class="va">.useTheme</span>,</span>
 <span>  box <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">""</span>, <span class="st">""</span><span class="op">)</span>,</span>
 <span>  legend <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  stamp <span class="op">=</span> <span class="va">.useTheme</span>,</span>
 <span>  <span class="va">...</span></span>
@@ -100,11 +100,6 @@ suppress the title and compact the top margin. Any other string is used
 as given.</p></dd>
 
 
-<dt id="arg-labels">labels<a class="anchor" aria-label="anchor" href="#arg-labels"></a></dt>
-<dd><p>character vector of length 2 with labels for the two
-categories, displayed at the top of the plot. Default <code>c("", "")</code>.</p></dd>
-
-
 <dt id="arg-xlab">xlab<a class="anchor" aria-label="anchor" href="#arg-xlab"></a></dt>
 <dd><p>label for the x-axis. Default <code>""</code>.</p></dd>
 
@@ -112,6 +107,13 @@ categories, displayed at the top of the plot. Default <code>c("", "")</code>.</p
 <dt id="arg-xlim">xlim<a class="anchor" aria-label="anchor" href="#arg-xlim"></a></dt>
 <dd><p>numeric vector of length 2 for the x-axis limits.
 Default <code>c(0, 1)</code>.</p></dd>
+
+
+<dt id="arg-cilevels">ciLevels<a class="anchor" aria-label="anchor" href="#arg-cilevels"></a></dt>
+<dd><p>numeric vector of confidence levels for the nested bands.
+Default <code>seq(0.99, 0.80, by = -0.01)</code> (20 bands, 99\<!-- % down to -->
+80\<!-- % in 1\\% steps). Draw order does not affect the result, since all -->
+bands share the same translucent color and no border.</p></dd>
 
 
 <dt id="arg-col">col<a class="anchor" aria-label="anchor" href="#arg-col"></a></dt>
@@ -124,7 +126,7 @@ negative sign convention here, since proportions of two arbitrary
 categories (e.g. "yes"/"no") have no inherent sign.</p></dd>
 
 
-<dt id="arg-ci-col">ci.col<a class="anchor" aria-label="anchor" href="#arg-ci-col"></a></dt>
+<dt id="arg-cicol">ciCol<a class="anchor" aria-label="anchor" href="#arg-cicol"></a></dt>
 <dd><p>colour for the confidence interval bands. Default is a
 semi-transparent grey (<code>addOpacity("grey80", 0.12)</code>). Deliberately
 not theme-driven (like the sequential scales in
@@ -136,13 +138,6 @@ gradient via overdraw), not a categorical or diverging color choice.</p></dd>
 <dt id="arg-border">border<a class="anchor" aria-label="anchor" href="#arg-border"></a></dt>
 <dd><p>border colour for the confidence interval bands and the
 stacked bar. Default <code>NA</code> (no border).</p></dd>
-
-
-<dt id="arg-cilevels">ciLevels<a class="anchor" aria-label="anchor" href="#arg-cilevels"></a></dt>
-<dd><p>numeric vector of confidence levels for the nested bands.
-Default <code>seq(0.99, 0.80, by = -0.01)</code> (20 bands, 99\<!-- % down to -->
-80\<!-- % in 1\\% steps). Draw order does not affect the result, since all -->
-bands share the same translucent color and no border.</p></dd>
 
 
 <dt id="arg-grid">grid<a class="anchor" aria-label="anchor" href="#arg-grid"></a></dt>
@@ -158,6 +153,11 @@ the active theme (<code>getTheme()$grid</code>). <code>TRUE</code>/<code>FALSE</
 frame, consistent with this chart's minimal "Few"-style appearance).
 <code>TRUE</code>/<code>NA</code>, or a named list, as for
 <code><a href="https://rdrr.io/r/graphics/box.html" class="external-link">graphics::box()</a></code>.</p></dd>
+
+
+<dt id="arg-labels">labels<a class="anchor" aria-label="anchor" href="#arg-labels"></a></dt>
+<dd><p>character vector of length 2 with labels for the two
+categories, displayed at the top of the plot. Default <code>c("", "")</code>.</p></dd>
 
 
 <dt id="arg-legend">legend<a class="anchor" aria-label="anchor" href="#arg-legend"></a></dt>

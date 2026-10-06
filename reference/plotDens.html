@@ -15,7 +15,7 @@ classical density plots and conditional density plots."><meta property="og:image
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.956</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.958</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,8 +67,8 @@ classical density plots and conditional density plots.</p>
 <span>  ylab <span class="op">=</span> <span class="st">"density"</span>,</span>
 <span>  xlim <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  ylim <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  add <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  bw <span class="op">=</span> <span class="st">"nrd0"</span>,</span>
+<span>  add <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  col <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  lwd <span class="op">=</span> <span class="fl">2</span>,</span>
 <span>  lty <span class="op">=</span> <span class="fl">1</span>,</span>
@@ -84,11 +84,11 @@ classical density plots and conditional density plots.</p>
 <span>  <span class="va">data</span>,</span>
 <span>  <span class="va">subset</span>,</span>
 <span>  na.action <span class="op">=</span> <span class="va">na.omit</span>,</span>
-<span>  <span class="va">...</span>,</span>
 <span>  main <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  xlab <span class="op">=</span> <span class="st">""</span>,</span>
 <span>  ylab <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  type <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  type <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -121,12 +121,12 @@ densities, the y-axis starting at 0 (<code>c(0, 1)</code> for a conditional
 density).</p></dd>
 
 
-<dt id="arg-add">add<a class="anchor" aria-label="anchor" href="#arg-add"></a></dt>
-<dd><p>logical; if <code>TRUE</code>, adds to an existing plot.</p></dd>
-
-
 <dt id="arg-bw">bw<a class="anchor" aria-label="anchor" href="#arg-bw"></a></dt>
 <dd><p>bandwidth passed to <code><a href="https://rdrr.io/r/stats/density.html" class="external-link">stats::density()</a></code> or <code>cdplot</code>.</p></dd>
+
+
+<dt id="arg-add">add<a class="anchor" aria-label="anchor" href="#arg-add"></a></dt>
+<dd><p>logical; if <code>TRUE</code>, adds to an existing plot.</p></dd>
 
 
 <dt id="arg-col">col<a class="anchor" aria-label="anchor" href="#arg-col"></a></dt>
@@ -229,7 +229,7 @@ design system using <code><a href="https://andrisignorell.github.io/bedrock/refe
 <code><a href="plotDensBox.html">plotDensBox()</a></code>,
 <code><a href="plotDot.html">plotDot()</a></code>,
 <code><a href="plotECDF.html">plotECDF()</a></code>,
-<code><a href="plotFdist.html">plotFdist()</a></code>,
+<code><a href="plotFreqDist.html">plotFreqDist()</a></code>,
 <code><a href="plotLines.html">plotLines()</a></code>,
 <code><a href="plotQQ.html">plotQQ()</a></code>,
 <code><a href="plotViolin.html">plotViolin()</a></code></p></div>

@@ -17,7 +17,7 @@ and connecting lines for stacked barplots."><meta property="og:image" content="/
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.956</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.958</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,7 +72,7 @@ and connecting lines for stacked barplots.</p>
 <span>  grid <span class="op">=</span> <span class="va">.useTheme</span>,</span>
 <span>  box <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  text <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  connlines <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  connLines <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  stamp <span class="op">=</span> <span class="va">.useTheme</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -153,7 +153,7 @@ or a named list, as for <code>grid</code>.</p></dd>
 to draw value labels on bars.</p></dd>
 
 
-<dt id="arg-connlines">connlines<a class="anchor" aria-label="anchor" href="#arg-connlines"></a></dt>
+<dt id="arg-connlines">connLines<a class="anchor" aria-label="anchor" href="#arg-connlines"></a></dt>
 <dd><p>optional list of arguments controlling connecting
 lines between stacked bars. Only supported when
 <code>beside = FALSE</code>.</p></dd>
@@ -208,7 +208,7 @@ explicit argument  &gt;  function-specific default  &gt;  active theme (getTheme
 <code><a href="plotDensBox.html">plotDensBox()</a></code>,
 <code><a href="plotDot.html">plotDot()</a></code>,
 <code><a href="plotECDF.html">plotECDF()</a></code>,
-<code><a href="plotFdist.html">plotFdist()</a></code>,
+<code><a href="plotFreqDist.html">plotFreqDist()</a></code>,
 <code><a href="plotLines.html">plotLines()</a></code>,
 <code><a href="plotQQ.html">plotQQ()</a></code>,
 <code><a href="plotViolin.html">plotViolin()</a></code></p></div>
@@ -228,7 +228,7 @@ explicit argument  &gt;  function-specific default  &gt;  active theme (getTheme
 <span class="r-in"><span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">1</span>,<span class="fl">5</span>,<span class="fl">2</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">plotBar</span><span class="op">(</span><span class="va">m</span>,</span></span>
 <span class="r-in"><span>        text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>pos <span class="op">=</span> <span class="st">"mid"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>        connlines <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>col <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>        connLines <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>col <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plotBar-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Grouped bars</span></span></span>
@@ -259,7 +259,7 @@ explicit argument  &gt;  function-specific default  &gt;  active theme (getTheme
 <span class="r-in"><span>        text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>col<span class="op">=</span><span class="st">"red"</span>, bg<span class="op">=</span><span class="fu"><a href="addOpacity.html">addOpacity</a></span><span class="op">(</span><span class="st">"white"</span>, <span class="fl">0.7</span><span class="op">)</span>, border<span class="op">=</span><span class="cn">NA</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plotBar-7.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">plotBar</span><span class="op">(</span><span class="va">VADeaths</span>, connlines <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>lwd<span class="op">=</span><span class="fl">1</span>, col<span class="op">=</span><span class="st">"blue"</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span><span class="fu">plotBar</span><span class="op">(</span><span class="va">VADeaths</span>, connLines <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>lwd<span class="op">=</span><span class="fl">1</span>, col<span class="op">=</span><span class="st">"blue"</span><span class="op">)</span>, </span></span>
 <span class="r-in"><span>        box<span class="op">=</span><span class="cn">FALSE</span>, las<span class="op">=</span><span class="fl">1</span>, main<span class="op">=</span><span class="st">"Connecting Lines"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plotBar-8.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
@@ -270,7 +270,7 @@ explicit argument  &gt;  function-specific default  &gt;  active theme (getTheme
 <span class="r-in"><span>        col<span class="op">=</span><span class="op">(</span><span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/gray.colors.html" class="external-link">gray.colors</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">VADeaths</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>        beside<span class="op">=</span><span class="cn">FALSE</span>, mar<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>right<span class="op">=</span><span class="fl">5</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>        text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>labels<span class="op">=</span><span class="fu"><a href="fm.html">fm</a></span><span class="op">(</span><span class="va">ptab</span>, fmt<span class="op">=</span><span class="st">"%"</span><span class="op">)</span>, border<span class="op">=</span><span class="cn">NA</span>, </span></span>
-<span class="r-in"><span>                    col<span class="op">=</span><span class="fu"><a href="contrastColor.html">contrastColor</a></span><span class="op">(</span><span class="va">cols</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>                    col<span class="op">=</span><span class="fu"><a href="contrastCol.html">contrastCol</a></span><span class="op">(</span><span class="va">cols</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"right"</span>, fill<span class="op">=</span><span class="va">cols</span>, legend<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">VADeaths</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plotBar-9.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>

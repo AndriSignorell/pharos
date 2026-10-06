@@ -12,23 +12,19 @@ height, as the strip space is reserved separately in the layout.
 plotFacet(
   samples,
   dim,
-  panelFun,
-  cols = NULL,
-  stripLabels = NULL,
+  FUN,
   main = "",
   xlab = "",
   ylab = "",
   xlim = NULL,
   ylim = NULL,
-  mar = c(2.5, 2.5, 0.5, 0.5),
-  oma = c(3, 3, 4, 1.2),
   horiz = 1,
   vert = NULL,
-  strip = TRUE,
+  col = NULL,
   bg = "grey95",
+  strip = TRUE,
   grid = TRUE,
-  cex = 0.66,
-  pch = 16,
+  stamp = .useTheme,
   ...
 )
 ```
@@ -45,25 +41,15 @@ plotFacet(
   integer vector of length 2, the number of rows and columns of the
   panel matrix, `c(nrow, ncol)`.
 
-- panelFun:
+- FUN:
 
-  the panel function, called per panel as
-  `panelFun(x, y, col, pch, ...)` with a fully set up coordinate system.
-  Components of a sample beyond `x` and `y` are passed on under their
-  own names, so a panel can carry per-panel data of its own - confidence
-  bounds, weights, labels. They are only passed to a `panelFun` that can
-  accept them (a matching formal, or `...`), so panel functions written
-  for the two-component form keep working unchanged.
-
-- cols:
-
-  the colors for the panels, recycled to the number of samples. Default
-  is `hcl.colors(n, "Dark 3")`.
-
-- stripLabels:
-
-  the labels for the panel strips. Default is `names(samples)` where the
-  samples are named, otherwise the sequence along `samples`.
+  the panel function, called per panel as `FUN(x, y, col, pch, ...)`
+  with a fully set up coordinate system. Components of a sample beyond
+  `x` and `y` are passed on under their own names, so a panel can carry
+  per-panel data of its own - confidence bounds, weights, labels. They
+  are only passed to a `FUN` that can accept them (a matching formal, or
+  `...`), so panel functions written for the two-component form keep
+  working unchanged.
 
 - main:
 
@@ -82,16 +68,6 @@ plotFacet(
   you choose; a list of length 1 is recycled. See the section on free
   scales.
 
-- mar:
-
-  the margins around the whole panel matrix in lines,
-  `c(bottom, left, top, right)`. The bottom and left margins hold the
-  axis annotation of the outer panels.
-
-- oma:
-
-  the outer margins in lines, holding `xlab`, `ylab` and `main`.
-
 - horiz:
 
   the horizontal gap between adjacent columns in margin lines.
@@ -101,19 +77,26 @@ plotFacet(
   the vertical gap between adjacent rows in margin lines. Default is
   `horiz`, yielding physically equal gaps.
 
-- strip:
+- col:
 
-  controls the panel strips, evaluated by
-  [bedrock::callIf](https://andrisignorell.github.io/bedrock/reference/callIf.html):
-  `TRUE` (default) draws strips with default settings,
-  `FALSE`/`NULL`/`NA` suppresses them (no space is reserved), a named
-  list is passed as arguments to [`titleRect()`](titleRect.md), e.g.
-  `list(bg = "steelblue", col = "white", line = 1.5)`. The `label`
-  argument is set per panel from `stripLabels` and cannot be overridden.
+  the colors for the panels, recycled to the number of samples. Default
+  is `hcl.colors(n, "Dark 3")`.
 
 - bg:
 
   the background color of the plot regions.
+
+- strip:
+
+  controls the panel strips: `TRUE` (default) draws strips with default
+  settings, `FALSE`/`NULL`/`NA` suppresses them (no space is reserved),
+  a named list sets the details. Its element `labels` holds the strip
+  labels (default: `names(samples)` where the samples are named,
+  otherwise the sequence along `samples`); all other elements are passed
+  as arguments to [`titleRect()`](titleRect.md), e.g.
+  `list(labels = vars, bg = "steelblue", col = "white", line = 1.5)`.
+  The `label` argument of [`titleRect()`](titleRect.md) is set per panel
+  and cannot be overridden.
 
 - grid:
 
@@ -127,21 +110,26 @@ plotFacet(
   `list(col = "white", lty = "dotted")`. The default positions `v` and
   `h` can be overridden, e.g. `list(v = seq(0, 20, 5))`.
 
-- cex:
+- stamp:
 
-  the character expansion used inside the panels (axis annotation, strip
-  labels, panel content) and as unit for the panel margin lines. Default
-  is 0.66, matching R's own reduction in multi-figure layouts. Set
-  deterministically after each
-  [`plot.new()`](https://rdrr.io/r/graphics/frame.html), see Details.
-
-- pch:
-
-  the plotting character, passed to `panelFun`.
+  controls the corner stamp. `.useTheme` (default) resolves to
+  `getTheme()$stamp`. `TRUE`/`FALSE`/ `NULL`, a string, or a named list
+  for [`stamp()`](stamp.md).
 
 - ...:
 
-  the dots are passed to `panelFun`.
+  further arguments passed to `FUN`. Three graphical parameters are
+  picked up here and define the page geometry instead: `mar`, the
+  margins around the whole panel matrix in lines,
+  `c(bottom, left, top, right)`, default `c(2.5, 2.5, 0.5, 0.5)` (the
+  bottom and left margins hold the axis annotation of the outer panels);
+  `oma`, the outer margins in lines, holding `xlab`, `ylab` and `main`,
+  default `c(3, 3, 4, 1.2)`; and `cex`, the character expansion used
+  inside the panels (axis annotation, strip labels, panel content) and
+  as unit for the panel margin lines, default 0.66, matching R's own
+  reduction in multi-figure layouts (set deterministically after each
+  [`plot.new()`](https://rdrr.io/r/graphics/frame.html), see Details).
+  `pch` defaults to 16 and is passed to `FUN`.
 
 ## Value
 
@@ -187,7 +175,7 @@ Note that [`plot.new()`](https://rdrr.io/r/graphics/frame.html) silently
 reduces `cex` (and with it `csi`, the physical size of a margin line) in
 layouts with more than two regions, which would make the realized panel
 margins deviate from the computed layout. The function therefore
-controls the character size deterministically via its `cex` argument and
+controls the character size deterministically via `cex` (see `...`) and
 sets the panel margins in inches (`mai`/`omi`), so that all plot regions
 are exactly equal in size.
 
@@ -214,7 +202,7 @@ my_panel <- function(x, y, col, pch = 16, ...) {
   abline(lm(y ~ x), lwd = 1)
 }
 
-plotFacet(samples, dim = c(5, 5), panelFun = my_panel,
+plotFacet(samples, dim = c(5, 5), FUN = my_panel,
            xlab = "Time", ylab = "Weight", main = "ChickWeight",
            strip = list(bg = "grey80", cex = 0.8))
 
@@ -236,7 +224,7 @@ panelBand <- function(x, y, lci, uci, col, pch = 16, ...) {
   points(x, y, col = col, pch = pch)
 }
 
-plotFacet(setNames(samples, vars), dim = c(2, 2), panelFun = panelBand,
+plotFacet(setNames(samples, vars), dim = c(2, 2), FUN = panelBand,
           xlim = "free", ylab = "mpg",
           main = "mpg against four predictors")
 

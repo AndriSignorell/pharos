@@ -25,10 +25,10 @@ a character vector: `x` followed by `<sub>i</sub>`
 
 ## See also
 
-Other html: [`as.fileLink()`](as.fileLink.md),
-[`as.html()`](as.html.md), [`as.img()`](as.img.md),
-[`embedFile()`](embedFile.md), [`escapeHtml()`](escapeHtml.md),
-[`htmlNotation`](htmlNotation.md), [`toHtmlTable()`](toHtmlTable.md)
+Other html: [`asFileLink()`](asFileLink.md), [`asHtml()`](asHtml.md),
+[`asImg()`](asImg.md), [`embedFile()`](embedFile.md),
+[`escapeHtml()`](escapeHtml.md), [`htmlNotation`](htmlNotation.md),
+[`toHtmlTable()`](toHtmlTable.md)
 
 ## Examples
 

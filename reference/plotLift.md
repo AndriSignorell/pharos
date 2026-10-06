@@ -11,11 +11,11 @@ acting on a random share of the same size.
 ``` r
 plotLift(
   x,
-  type = c("cumulative", "gain", "decile"),
   main = NULL,
   xlab = NULL,
   ylab = NULL,
   ylim = NULL,
+  type = c("cumulative", "gain", "decile"),
   col = .useTheme,
   lwd = 2,
   grid = .useTheme,
@@ -33,12 +33,6 @@ plotLift(
 - x:
 
   an object of class `"Lift"`, as returned by `alloy::lift()`.
-
-- type:
-
-  the curve to draw. One of `"cumulative"` (cumulative lift over depth,
-  the default), `"gain"` (share of all positives captured, over depth),
-  or `"decile"` (per-group lift as bars).
 
 - main:
 
@@ -59,6 +53,12 @@ plotLift(
 
   numeric vector of length 2; y-axis limits. `NULL` (default) spans the
   curve together with the baseline.
+
+- type:
+
+  the curve to draw. One of `"cumulative"` (cumulative lift over depth,
+  the default), `"gain"` (share of all positives captured, over depth),
+  or `"decile"` (per-group lift as bars).
 
 - col:
 

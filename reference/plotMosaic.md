@@ -10,7 +10,7 @@ palette, optional legend).
 ``` r
 plotMosaic(
   x,
-  main = "",
+  main = NULL,
   xlab = NULL,
   ylab = NULL,
   swap = FALSE,
@@ -20,8 +20,6 @@ plotMosaic(
   border = "white",
   legend = TRUE,
   labels = c("p", "n", "none"),
-  labCex = 0.8,
-  labDigits = 1,
   stamp = .useTheme,
   ...
 )
@@ -37,7 +35,8 @@ plotMosaic(
 
 - main:
 
-  character. Plot title. Default `""` (no title).
+  character. Plot title. `NULL` (default) takes the expression passed as
+  `x`; `""`, `NA` or `FALSE` suppress the title.
 
 - xlab, ylab:
 
@@ -86,16 +85,11 @@ plotMosaic(
   character, one of `"p"`, `"n"`, `"none"`. Cell labels showing the
   proportion of the table total (`"p"`), the absolute frequency (`"n"`),
   or no labels (`"none"`). Labels are only drawn for tiles large enough
-  to hold them. Default `"p"`.
-
-- labCex:
-
-  numeric. Character expansion factor for cell labels. Default `0.8`.
-
-- labDigits:
-
-  integer. Number of decimal digits for percentage cell labels when
-  `labels = "p"`. Default `1`.
+  to hold them. Default `"p"`. A list sets the details: the type
+  (element `type`, or the one unnamed element), the character expansion
+  factor `cex` (default `0.8`) and the number of decimal digits `digits`
+  for percentages (default `1`), e.g.
+  `labels = list("p", cex = 0.7, digits = 0)`.
 
 - stamp:
 

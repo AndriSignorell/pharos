@@ -7,15 +7,15 @@ plot. Optionally includes labels for radii and angles.
 
 ``` r
 polarGrid(
-  nr = NULL,
-  ntheta = NULL,
+  nRadial = NULL,
+  nAngular = NULL,
+  radialLabels = NULL,
+  angleLabels = NULL,
+  labelRadians = FALSE,
   col = "lightgray",
   lty = "dotted",
   lwd = par("lwd"),
-  rlabels = NULL,
-  alabels = NULL,
-  lblradians = FALSE,
-  cex.lab = 1,
+  cex = 1,
   las = 1,
   adj = NULL,
   dist = NULL
@@ -24,7 +24,7 @@ polarGrid(
 
 ## Arguments
 
-- nr:
+- nRadial:
 
   numeric or vector controlling radial grid lines:
 
@@ -44,7 +44,7 @@ polarGrid(
 
   :   Suppress radial grid lines.
 
-- ntheta:
+- nAngular:
 
   numeric or vector controlling angular grid lines:
 
@@ -64,6 +64,22 @@ polarGrid(
 
   :   Suppress angular grid lines.
 
+- radialLabels:
+
+  optional labels for radial grid lines (excluding zero). If `NULL`,
+  labels are generated automatically. Use `NA` to suppress labels.
+
+- angleLabels:
+
+  optional labels for angular grid lines. If `NULL`, labels are
+  generated automatically (degrees or radians). Use `NA` to suppress
+  labels.
+
+- labelRadians:
+
+  logical; if `TRUE`, angle labels are shown in radians, otherwise in
+  degrees.
+
 - col:
 
   color of grid lines.
@@ -76,25 +92,9 @@ polarGrid(
 
   line width for grid lines.
 
-- rlabels:
+- cex:
 
-  optional labels for radial grid lines (excluding zero). If `NULL`,
-  labels are generated automatically. Use `NA` to suppress labels.
-
-- alabels:
-
-  optional labels for angular grid lines. If `NULL`, labels are
-  generated automatically (degrees or radians). Use `NA` to suppress
-  labels.
-
-- lblradians:
-
-  logical; if `TRUE`, angle labels are shown in radians, otherwise in
-  degrees.
-
-- cex.lab:
-
-  character expansion factor for labels.
+  character expansion factor for the labels.
 
 - las:
 
@@ -141,10 +141,10 @@ polarGrid()
 
 # custom grid
 plot(0, 0, type = "n", xlim = c(-2, 2), ylim = c(-2, 2), asp = 1)
-polarGrid(nr = 4, ntheta = 8, col = "gray")
+polarGrid(nRadial = 4, nAngular = 8, col = "gray")
 
 # suppress labels
-polarGrid(rlabels = NA, alabels = NA)
+polarGrid(radialLabels = NA, angleLabels = NA)
 
 
 ```

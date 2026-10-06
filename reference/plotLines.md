@@ -17,8 +17,8 @@ plotLines(
   ylab = "",
   xlim = NULL,
   ylim = NULL,
-  xaxt = NULL,
-  yaxt = NULL,
+  xax = NULL,
+  yax = NULL,
   lty = 1,
   lwd = 2,
   col = .useTheme,
@@ -57,7 +57,7 @@ plotLines(
 
   limits for the axes.
 
-- xaxt, yaxt:
+- xax, yax:
 
   axis specification passed to
   [`graphics::axis()`](https://rdrr.io/r/graphics/axis.html).
@@ -129,7 +129,7 @@ Other plot.univariate: [`plotArea()`](plotArea.md),
 [`plotBar()`](plotBar.md), [`plotBox()`](plotBox.md),
 [`plotCatDist()`](plotCatDist.md), [`plotDens()`](plotDens.md),
 [`plotDensBox()`](plotDensBox.md), [`plotDot()`](plotDot.md),
-[`plotECDF()`](plotECDF.md), [`plotFdist()`](plotFdist.md),
+[`plotECDF()`](plotECDF.md), [`plotFreqDist()`](plotFreqDist.md),
 [`plotQQ()`](plotQQ.md), [`plotViolin()`](plotViolin.md)
 
 ## Examples

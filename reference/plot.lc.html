@@ -19,7 +19,7 @@ and points() add to an existing plot.'><meta property="og:image" content="/logo.
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.956</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.958</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -77,13 +77,13 @@ and <code><a href="https://rdrr.io/r/graphics/points.html" class="external-link"
 <span>  eqline <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  grid <span class="op">=</span> <span class="va">.useTheme</span>,</span>
 <span>  box <span class="op">=</span> <span class="va">.useTheme</span>,</span>
-<span>  cbandArgs <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  cband <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  stamp <span class="op">=</span> <span class="va">.useTheme</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for class 'Lc'</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">x</span>, general <span class="op">=</span> <span class="cn">FALSE</span>, col <span class="op">=</span> <span class="cn">NULL</span>, lwd <span class="op">=</span> <span class="fl">2</span>, lty <span class="op">=</span> <span class="fl">1</span>, cbandArgs <span class="op">=</span> <span class="cn">NA</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">x</span>, general <span class="op">=</span> <span class="cn">FALSE</span>, col <span class="op">=</span> <span class="cn">NULL</span>, lwd <span class="op">=</span> <span class="fl">2</span>, lty <span class="op">=</span> <span class="fl">1</span>, cband <span class="op">=</span> <span class="cn">NA</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for class 'Lc'</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span><span class="va">x</span>, general <span class="op">=</span> <span class="cn">FALSE</span>, pch <span class="op">=</span> <span class="fl">16</span>, col <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span>
@@ -174,7 +174,7 @@ force drawing/suppression, and a named list is forwarded to
 <code><a href="https://rdrr.io/r/graphics/grid.html" class="external-link">graphics::grid()</a></code> resp. <code><a href="https://rdrr.io/r/graphics/box.html" class="external-link">graphics::box()</a></code>.</p></dd>
 
 
-<dt id="arg-cbandargs">cbandArgs<a class="anchor" aria-label="anchor" href="#arg-cbandargs"></a></dt>
+<dt id="arg-cband">cband<a class="anchor" aria-label="anchor" href="#arg-cband"></a></dt>
 <dd><p>used by <code>plot.Lc()</code> and <code>lines.Lc()</code>.
 <code>NA</code> to suppress the confidence band (default), or a list of
 arguments passed to <code>DescToolsX::predict.Lc()</code> to control
@@ -227,11 +227,11 @@ recycled to the number of groups otherwise.</p>
 <p>The curve of <code>plot.Lc()</code> is drawn by <code>lines.Lc()</code> and the
 symbols by <code>points.Lc()</code>, so all three methods share one code path
 and one set of semantics - including the confidence band, which is
-controlled by <code>cbandArgs</code> in <code>plot.Lc()</code> exactly as it is in
+controlled by <code>cband</code> in <code>plot.Lc()</code> exactly as it is in
 <code>lines.Lc()</code>.  Pass a list of arguments to
 <code>DescToolsX::predict.Lc()</code> to control the bootstrap (e.g.
-<code>cbandArgs = list(conf.level = 0.90, n = 500)</code>).  Set
-<code>cbandArgs = NA</code> (default) to suppress the band.  Note that
+<code>cband = list(conf.level = 0.90, n = 500)</code>).  Set
+<code>cband = NA</code> (default) to suppress the band.  Note that
 <code>line = FALSE</code> suppresses the band along with the curve.</p>
 <p>With <code>general = TRUE</code> the generalized Lorenz curve is displayed.
 It ends at the mean rather than at 1, so the default <code>ylim</code> and the

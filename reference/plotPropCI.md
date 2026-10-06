@@ -12,15 +12,15 @@ centre, lighter at the edges.
 plotPropCI(
   x,
   main = NULL,
-  labels = c("", ""),
   xlab = "",
   xlim = c(0, 1),
-  col = .useTheme,
-  ci.col = addOpacity("grey80", 0.12),
-  border = NA,
   ciLevels = seq(0.99, 0.8, by = -0.01),
+  col = .useTheme,
+  ciCol = addOpacity("grey80", 0.12),
+  border = NA,
   grid = .useTheme,
   box = FALSE,
+  labels = c("", ""),
   legend = TRUE,
   stamp = .useTheme,
   ...
@@ -41,11 +41,6 @@ plotPropCI(
   `deparse(substitute(x))`. `""`, `NA`, or `FALSE` suppress the title
   and compact the top margin. Any other string is used as given.
 
-- labels:
-
-  character vector of length 2 with labels for the two categories,
-  displayed at the top of the plot. Default `c("", "")`.
-
 - xlab:
 
   label for the x-axis. Default `""`.
@@ -53,6 +48,12 @@ plotPropCI(
 - xlim:
 
   numeric vector of length 2 for the x-axis limits. Default `c(0, 1)`.
+
+- ciLevels:
+
+  numeric vector of confidence levels for the nested bands. Default
+  `seq(0.99, 0.80, by = -0.01)` (20 bands, 99\\ 80\\ bands share the
+  same translucent color and no border.
 
 - col:
 
@@ -64,7 +65,7 @@ plotPropCI(
   positive/ negative sign convention here, since proportions of two
   arbitrary categories (e.g. "yes"/"no") have no inherent sign.
 
-- ci.col:
+- ciCol:
 
   colour for the confidence interval bands. Default is a
   semi-transparent grey (`addOpacity("grey80", 0.12)`). Deliberately not
@@ -78,12 +79,6 @@ plotPropCI(
 
   border colour for the confidence interval bands and the stacked bar.
   Default `NA` (no border).
-
-- ciLevels:
-
-  numeric vector of confidence levels for the nested bands. Default
-  `seq(0.99, 0.80, by = -0.01)` (20 bands, 99\\ 80\\ bands share the
-  same translucent color and no border.
 
 - grid:
 
@@ -99,6 +94,11 @@ plotPropCI(
   consistent with this chart's minimal "Few"-style appearance).
   `TRUE`/`NA`, or a named list, as for
   [`graphics::box()`](https://rdrr.io/r/graphics/box.html).
+
+- labels:
+
+  character vector of length 2 with labels for the two categories,
+  displayed at the top of the plot. Default `c("", "")`.
 
 - legend:
 

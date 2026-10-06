@@ -20,7 +20,7 @@ lines(
   lwd = 2,
   lty = "solid",
   type = "l",
-  bandArgs = list(conf.level = 0.95),
+  band = list(conf.level = 0.95),
   ...
 )
 ```
@@ -84,7 +84,7 @@ lines(
   plotting type passed to
   [`lines()`](https://rdrr.io/r/graphics/lines.html).
 
-- bandArgs:
+- band:
 
   controls the confidence band. May be `TRUE`, `FALSE`, `NULL`, `NA`, or
   a named list. The confidence level is specified via `conf.level`, all
@@ -93,7 +93,7 @@ lines(
 
 ## Details
 
-Confidence bands are controlled via `bandArgs`. These arguments can be:
+Confidence bands are controlled via `band`. These arguments can be:
 
 - `FALSE`, `NULL` or `NA`: suppress the band
 
@@ -133,7 +133,7 @@ lines(splineX(dist ~ speed, cars, subset = speed > 10,
 plot(dist ~ speed, cars)
 lines(
   splineX(dist ~ speed, cars),
-  bandArgs = list(
+  band = list(
     conf.level = 0.99,
     col = addOpacity("red", 0.3),
     border = "black"

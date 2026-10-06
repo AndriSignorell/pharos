@@ -17,7 +17,7 @@ Several series of estimates can be arranged in labelled groups."><meta property=
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.956</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.958</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,16 +61,18 @@ Several series of estimates can be arranged in labelled groups.</p>
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plotDot</span><span class="op">(</span></span>
 <span>  <span class="va">x</span>,</span>
-<span>  items <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  groups <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  main <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  xlim <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  gap <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  axes <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  xax <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  box <span class="op">=</span> <span class="va">.useTheme</span>,</span>
-<span>  grid <span class="op">=</span> <span class="va">.useTheme</span>,</span>
+<span>  axes <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  items <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  groups <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  gap <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  pch <span class="op">=</span> <span class="va">.useTheme</span>,</span>
+<span>  cex <span class="op">=</span> <span class="va">.useTheme</span>,</span>
+<span>  grid <span class="op">=</span> <span class="va">.useTheme</span>,</span>
+<span>  box <span class="op">=</span> <span class="va">.useTheme</span>,</span>
+<span>  stamp <span class="op">=</span> <span class="va">.useTheme</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -85,6 +87,24 @@ are a numeric vector, a numeric matrix, a three-dimensional numeric array,
 or a <code>"CI"</code> object created with <code><a href="as.CI.html">as.CI()</a></code></p></dd>
 
 
+<dt id="arg-main">main<a class="anchor" aria-label="anchor" href="#arg-main"></a></dt>
+<dd><p>optional main title</p></dd>
+
+
+<dt id="arg-xlim">xlim<a class="anchor" aria-label="anchor" href="#arg-xlim"></a></dt>
+<dd><p>numeric vector containing the limits of the horizontal axis;
+by default, the range of all estimates and confidence limits</p></dd>
+
+
+<dt id="arg-xax">xax<a class="anchor" aria-label="anchor" href="#arg-xax"></a></dt>
+<dd><p>optional specification for the horizontal axis, interpreted by
+the internal axis renderer</p></dd>
+
+
+<dt id="arg-axes">axes<a class="anchor" aria-label="anchor" href="#arg-axes"></a></dt>
+<dd><p>logical; whether the horizontal and item axes are drawn</p></dd>
+
+
 <dt id="arg-items">items<a class="anchor" aria-label="anchor" href="#arg-items"></a></dt>
 <dd><p>optional character vector containing the item labels; defaults
 to the row names or first dimension names of <code>x</code></p></dd>
@@ -95,33 +115,21 @@ to the row names or first dimension names of <code>x</code></p></dd>
 defaults to the column names or third dimension names of <code>x</code></p></dd>
 
 
-<dt id="arg-main">main<a class="anchor" aria-label="anchor" href="#arg-main"></a></dt>
-<dd><p>optional main title</p></dd>
-
-
-<dt id="arg-xlim">xlim<a class="anchor" aria-label="anchor" href="#arg-xlim"></a></dt>
-<dd><p>numeric vector containing the limits of the horizontal axis;
-by default, the range of all estimates and confidence limits</p></dd>
-
-
 <dt id="arg-gap">gap<a class="anchor" aria-label="anchor" href="#arg-gap"></a></dt>
 <dd><p>non-negative numeric value controlling the vertical space
 between groups</p></dd>
 
 
-<dt id="arg-axes">axes<a class="anchor" aria-label="anchor" href="#arg-axes"></a></dt>
-<dd><p>logical; whether the horizontal and item axes are drawn</p></dd>
+<dt id="arg-pch">pch<a class="anchor" aria-label="anchor" href="#arg-pch"></a></dt>
+<dd><p>specification for the estimate points. The default
+<code>.useTheme</code> uses the point settings of the active theme. A plotting
+symbol or a named list containing parameters such as <code>pch</code>,
+<code>col</code>, <code>bg</code>, and <code>cex</code> can also be supplied</p></dd>
 
 
-<dt id="arg-xax">xax<a class="anchor" aria-label="anchor" href="#arg-xax"></a></dt>
-<dd><p>optional specification for the horizontal axis, interpreted by
-the internal axis renderer</p></dd>
-
-
-<dt id="arg-box">box<a class="anchor" aria-label="anchor" href="#arg-box"></a></dt>
-<dd><p>specification controlling the plot box. The default
-<code>.useTheme</code> uses the active theme. A logical value, <code>NA</code>, or
-a named list of graphical parameters can also be supplied</p></dd>
+<dt id="arg-cex">cex<a class="anchor" aria-label="anchor" href="#arg-cex"></a></dt>
+<dd><p>character expansion factor for the points. <code>.useTheme</code>
+(default) resolves to <code>getTheme()$points$cex</code>.</p></dd>
 
 
 <dt id="arg-grid">grid<a class="anchor" aria-label="anchor" href="#arg-grid"></a></dt>
@@ -131,11 +139,16 @@ value, <code>NA</code>, or a named list of graphical parameters can also be
 supplied</p></dd>
 
 
-<dt id="arg-pch">pch<a class="anchor" aria-label="anchor" href="#arg-pch"></a></dt>
-<dd><p>specification for the estimate points. The default
-<code>.useTheme</code> uses the point settings of the active theme. A plotting
-symbol or a named list containing parameters such as <code>pch</code>,
-<code>col</code>, <code>bg</code>, and <code>cex</code> can also be supplied</p></dd>
+<dt id="arg-box">box<a class="anchor" aria-label="anchor" href="#arg-box"></a></dt>
+<dd><p>specification controlling the plot box. The default
+<code>.useTheme</code> uses the active theme. A logical value, <code>NA</code>, or
+a named list of graphical parameters can also be supplied</p></dd>
+
+
+<dt id="arg-stamp">stamp<a class="anchor" aria-label="anchor" href="#arg-stamp"></a></dt>
+<dd><p>controls the corner stamp. <code>.useTheme</code> (default)
+resolves to <code>getTheme()$stamp</code>. <code>TRUE</code>/<code>FALSE</code>/
+<code>NULL</code>, a string, or a named list for <code><a href="stamp.html">stamp()</a></code>.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
@@ -182,7 +195,7 @@ corresponding settings of the active theme.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="as.CI.html">as.CI()</a></code>, <code><a href="as.CI.html">is.CI()</a></code>,
+    <div class="dont-index"><p><code><a href="as.CI.html">as.CI()</a></code>, <code><a href="as.CI.html">isCI()</a></code>,
 <code><a href="https://rdrr.io/r/graphics/dotchart.html" class="external-link">graphics::dotchart()</a></code></p>
 <p>Other plot.univariate:
 <code><a href="plotArea.html">plotArea()</a></code>,
@@ -192,7 +205,7 @@ corresponding settings of the active theme.</p>
 <code><a href="plotDens.html">plotDens()</a></code>,
 <code><a href="plotDensBox.html">plotDensBox()</a></code>,
 <code><a href="plotECDF.html">plotECDF()</a></code>,
-<code><a href="plotFdist.html">plotFdist()</a></code>,
+<code><a href="plotFreqDist.html">plotFreqDist()</a></code>,
 <code><a href="plotLines.html">plotLines()</a></code>,
 <code><a href="plotQQ.html">plotQQ()</a></code>,
 <code><a href="plotViolin.html">plotViolin()</a></code></p></div>

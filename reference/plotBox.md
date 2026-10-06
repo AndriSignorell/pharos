@@ -12,7 +12,7 @@ plotBox(x, ...)
 # Default S3 method
 plotBox(
   x,
-  g = NULL,
+  groups = NULL,
   main = NULL,
   xlab = "",
   ylab = "",
@@ -51,7 +51,7 @@ plotBox(
   are forwarded to
   [`graphics::boxplot()`](https://rdrr.io/r/graphics/boxplot.html).
 
-- g:
+- groups:
 
   optional grouping variable (ignored if a formula is used).
 
@@ -155,7 +155,7 @@ Other plot.univariate: [`plotArea()`](plotArea.md),
 [`plotBar()`](plotBar.md), [`plotCatDist()`](plotCatDist.md),
 [`plotDens()`](plotDens.md), [`plotDensBox()`](plotDensBox.md),
 [`plotDot()`](plotDot.md), [`plotECDF()`](plotECDF.md),
-[`plotFdist()`](plotFdist.md), [`plotLines()`](plotLines.md),
+[`plotFreqDist()`](plotFreqDist.md), [`plotLines()`](plotLines.md),
 [`plotQQ()`](plotQQ.md), [`plotViolin()`](plotViolin.md)
 
 ## Examples

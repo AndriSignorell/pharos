@@ -8,10 +8,11 @@ missings can be clustered and be displayed together.
 ``` r
 plotMiss(
   x,
+  main = NULL,
+  cluster = FALSE,
   col = "deeppink4",
   bg = fade("navajowhite3", 0.3),
-  clust = FALSE,
-  main = NULL,
+  stamp = .useTheme,
   ...
 )
 ```
@@ -22,6 +23,15 @@ plotMiss(
 
   a data.frame to be analysed.
 
+- main:
+
+  the main title.
+
+- cluster:
+
+  logical, defining if the missings should be clustered. Default is
+  `FALSE`.
+
 - col:
 
   the colour of the missings.
@@ -30,14 +40,11 @@ plotMiss(
 
   the background colour of the plot.
 
-- clust:
+- stamp:
 
-  logical, defining if the missings should be clustered. Default is
-  `FALSE`.
-
-- main:
-
-  the main title.
+  controls the corner stamp. `.useTheme` (default) resolves to
+  `getTheme()$stamp`. `TRUE`/`FALSE`/ `NULL`, a string, or a named list
+  for [`stamp()`](stamp.md).
 
 - ...:
 
@@ -46,7 +53,7 @@ plotMiss(
 
 ## Value
 
-if clust is set to TRUE, the new order will be returned invisibly.
+if `cluster` is set to TRUE, the new order will be returned invisibly.
 
 ## Details
 
@@ -75,6 +82,6 @@ Other plot.special: [`plotBinaryTree()`](binaryTree.md),
 
 plotMiss(airquality, main="Missing data (in orignal order)")
 
-plotMiss(airquality, main="Missing data (clustered)", clust=TRUE)
+plotMiss(airquality, main="Missing data (clustered)", cluster=TRUE)
 
 ```

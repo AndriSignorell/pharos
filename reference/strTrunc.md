@@ -8,7 +8,7 @@ justify the strings if needed.
 ## Usage
 
 ``` r
-strTrunc(x, maxlen = 20, ellipsis = "...", wbound = FALSE)
+strTrunc(x, maxLen = 20, ellipsis = "...", wordBound = FALSE)
 ```
 
 ## Arguments
@@ -17,17 +17,17 @@ strTrunc(x, maxlen = 20, ellipsis = "...", wbound = FALSE)
 
   a vector of strings
 
-- maxlen:
+- maxLen:
 
   the maximum length of the returned strings (NOT counting the appended
-  ellipsis). `maxlen` is recycled.
+  ellipsis). `maxLen` is recycled.
 
 - ellipsis:
 
   the string to be appended, if the string is longer than the given
   maximal length. The default is `"..."`.
 
-- wbound:
+- wordBound:
 
   logical. Determines if the maximal length should be reduced to the
   next smaller word boundary and so words are not chopped. Default is
@@ -35,7 +35,7 @@ strTrunc(x, maxlen = 20, ellipsis = "...", wbound = FALSE)
 
 ## Value
 
-The string(s) passed as `x` now with a maximum length of `maxlen` + 3
+The string(s) passed as `x` now with a maximum length of `maxLen` + 3
 (for the ellipsis).
 
 ## See also
@@ -53,17 +53,17 @@ x <- c("this is short", "and this is a longer text",
        "whereas this is a much longer story, which could not be told shorter")
 
 # simple truncation on 10 characters
-strTrunc(x, maxlen=10)
+strTrunc(x, maxLen=10)
 #> [1] "this is sh..." "and this i..." "whereas th..."
 
 # NAs remain NA
-strTrunc(c(x, NA_character_), maxlen=15, wbound=TRUE)
+strTrunc(c(x, NA_character_), maxLen=15, wordBound=TRUE)
 #> [1] "this is short"      "and this is a..."   "whereas this is..."
 #> [4] NA                  
 
 # using word boundaries
 for(i in 0:20)
-  print(strTrunc(x, maxlen=i, wbound=TRUE))
+  print(strTrunc(x, maxLen=i, wordBound=TRUE))
 #> [1] "..." "..." "..."
 #> [1] "..." "..." "..."
 #> [1] "..." "..." "..."
@@ -89,7 +89,7 @@ for(i in 0:20)
 
 # compare
 for(i in 0:20)
-  print(strTrunc(x, maxlen=i, wbound=FALSE))
+  print(strTrunc(x, maxLen=i, wordBound=FALSE))
 #> [1] "..." "..." "..."
 #> [1] "t..." "a..." "w..."
 #> [1] "th..." "an..." "wh..."

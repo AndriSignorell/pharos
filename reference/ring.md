@@ -12,7 +12,7 @@ ring(
   outerRadius = 1,
   startAngle = 0,
   endAngle = 2 * pi,
-  numPoints = 100
+  nPoints = 100
 )
 ```
 
@@ -34,7 +34,7 @@ ring(
 
   start and end angle in radians.
 
-- numPoints:
+- nPoints:
 
   number of points used for each boundary.
 
@@ -47,5 +47,5 @@ An object inheriting from class `"ringGeometry"` or a
 
 Other geometry.structures: [`arc()`](arc.md), [`band()`](band.md),
 [`bezier()`](bezier.md), [`circle()`](circle.md),
-[`ellipse()`](ellipse.md), [`polygon()`](polygon.md),
+[`ellipse()`](ellipse.md), [`polygonX()`](polygonX.md),
 [`regPolygon()`](regPolygon.md)

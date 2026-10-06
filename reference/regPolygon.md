@@ -5,7 +5,7 @@ Create a regular polygon.
 ## Usage
 
 ``` r
-regPolygon(x = 0, y = 0, radius = 1, numVertices = 6, startAngle = 0)
+regPolygon(x = 0, y = 0, radius = 1, nVertices = 6, startAngle = 0)
 ```
 
 ## Arguments
@@ -18,7 +18,7 @@ regPolygon(x = 0, y = 0, radius = 1, numVertices = 6, startAngle = 0)
 
   circumradius.
 
-- numVertices:
+- nVertices:
 
   number of vertices.
 
@@ -34,5 +34,5 @@ An object inheriting from class `"regPolygonGeometry"`.
 
 Other geometry.structures: [`arc()`](arc.md), [`band()`](band.md),
 [`bezier()`](bezier.md), [`circle()`](circle.md),
-[`ellipse()`](ellipse.md), [`polygon()`](polygon.md),
+[`ellipse()`](ellipse.md), [`polygonX()`](polygonX.md),
 [`ring()`](ring.md)

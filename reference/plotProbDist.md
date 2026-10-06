@@ -10,15 +10,16 @@ probability masses in statistics teaching materials.
 plotProbDist(
   breaks,
   FUN,
-  main = "",
+  main = NULL,
+  ylab = "density",
   xlim = NULL,
   col = NULL,
   density = 7,
-  ylab = "density",
+  grid = .useTheme,
+  box = .useTheme,
   areaLabels = NULL,
   breakLabels = NULL,
-  grid = FALSE,
-  box = .useTheme,
+  stamp = .useTheme,
   ...
 )
 ```
@@ -38,8 +39,13 @@ plotProbDist(
 
 - main:
 
-  main title for the plot. `NULL` or `""` suppresses the title and
-  reduces the top margin automatically.
+  main title for the plot. `NULL` (default) takes the expression passed
+  as `FUN`; `""`, `NA` or `FALSE` suppress the title and reduce the top
+  margin.
+
+- ylab:
+
+  label for the y-axis. Default is `"density"`.
 
 - xlim:
 
@@ -56,9 +62,19 @@ plotProbDist(
   density of shading lines passed to [`shade()`](shade.md). Default is
   `7`.
 
-- ylab:
+- grid:
 
-  label for the y-axis. Default is `"density"`.
+  controls the background grid. `.useTheme` (default) follows the active
+  theme, `TRUE` draws it, `FALSE`, `NULL` or `NA` suppress it. A named
+  list overrides individual arguments passed to
+  [`grid()`](https://rdrr.io/r/graphics/grid.html).
+
+- box:
+
+  controls the plot box. `.useTheme` (default) uses the current theme
+  setting. `TRUE`/`FALSE` forces the box on or off. A named list
+  overrides individual arguments passed to
+  [`box()`](https://rdrr.io/r/graphics/box.html).
 
 - areaLabels:
 
@@ -77,19 +93,11 @@ plotProbDist(
   character vector sets explicit labels. A named list overrides
   individual arguments (e.g. `list(cex = 1.8, font = 1)`).
 
-- grid:
+- stamp:
 
-  controls background grid. `FALSE` (default) suppresses the grid.
-  `TRUE` or `.useTheme` draws a grid according to the current theme. A
-  named list overrides individual arguments passed to
-  [`grid()`](https://rdrr.io/r/graphics/grid.html).
-
-- box:
-
-  controls the plot box. `.useTheme` (default) uses the current theme
-  setting. `TRUE`/`FALSE` forces the box on or off. A named list
-  overrides individual arguments passed to
-  [`box()`](https://rdrr.io/r/graphics/box.html).
+  controls the corner stamp. `.useTheme` (default) resolves to
+  `getTheme()$stamp`. `TRUE`/`FALSE`/ `NULL`, a string, or a named list
+  for [`stamp()`](stamp.md).
 
 - ...:
 
@@ -141,7 +149,6 @@ plotProbDist(breaks  = c(0, 15, 35),
              col     = c("deeppink4", "skyblue3"),
              density = c(0, 20),
              breakLabels = list(text="B"))
-#> Warning: is.na() applied to non-(list or vector) of type 'expression'
 
 
 ```

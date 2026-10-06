@@ -14,13 +14,13 @@ or on the bottom of a barplot (side by side or stacked).
 ``` r
 barText(
   height,
-  b,
+  mids,
   labels = height,
   beside = FALSE,
   horiz = FALSE,
   cex = par("cex"),
   adj = NULL,
-  pos = c("topout", "topin", "mid", "bottomin", "bottomout"),
+  pos = c("top-out", "top-in", "mid", "bottom-in", "bottom-out"),
   offset = 0,
   col = NULL,
   ...
@@ -34,7 +34,7 @@ barText(
   either a vector or matrix of values describing the bars which make up
   the plot exactly as used for creating the barplot.
 
-- b:
+- mids:
 
   the returned mid points as returned by `b <- barplot(...)`.
 
@@ -68,9 +68,10 @@ barText(
 
 - pos:
 
-  one of `"topout"`, `"topin"`, `"mid"`, `"bottomin"`, `"bottomout"`,
-  defining if the labels should be placed on top of the bars (inside or
-  outside) or at the bottom of the bars (inside or outside).
+  one of `"top-out"`, `"top-in"`, `"mid"`, `"bottom-in"`,
+  `"bottom-out"`, defining if the labels should be placed on top of the
+  bars (inside or outside) or at the bottom of the bars (inside or
+  outside).
 
 - offset:
 
@@ -120,20 +121,20 @@ barText(x, b, x)
 
 # more complicated
 b <- barplot(VADeaths, horiz = FALSE, col="steelblue", beside = TRUE)
-barText(VADeaths, b=b, horiz = FALSE, beside = TRUE, cex=0.8)
-barText(VADeaths, b=b, horiz = FALSE, beside = TRUE, cex=0.8, pos="bottomin",
+barText(VADeaths, mids=b, horiz = FALSE, beside = TRUE, cex=0.8)
+barText(VADeaths, mids=b, horiz = FALSE, beside = TRUE, cex=0.8, pos="bottom-in",
         col="white", font=2)
 
 
 b <- barplot(VADeaths, horiz = TRUE, col="steelblue", beside = TRUE)
-barText(VADeaths, b=b, horiz = TRUE, beside = TRUE, cex=0.8)
+barText(VADeaths, mids=b, horiz = TRUE, beside = TRUE, cex=0.8)
 
 
 b <- barplot(VADeaths)
-barText(VADeaths, b=b)
+barText(VADeaths, mids=b)
 
 
 b <- barplot(VADeaths, horiz = TRUE)
-barText(VADeaths, b=b, horiz = TRUE, col="red", cex=1.5)
+barText(VADeaths, mids=b, horiz = TRUE, col="red", cex=1.5)
 
 ```

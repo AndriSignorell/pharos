@@ -6,9 +6,9 @@ default, gives the at values which axis.POSIXct(side, x) would use.
 ## Usage
 
 ``` r
-axTicks.POSIXct(side, x, at, format, labels = TRUE, ...)
+axTicksPosixct(side, x, at, format, labels = TRUE, ...)
 
-axTicks.Date(side = 1, x, ...)
+axTicksDate(side = 1, x, ...)
 ```
 
 ## Arguments
@@ -69,7 +69,7 @@ with(beaver1, {
   r <- as.POSIXct(round(range(time), "hours"))
   axis.POSIXct(1, at = seq(r[1], r[2], by = "hour"), format = "%H")
   # place the grid
-  abline(v=axTicks.POSIXct(1, at = seq(r[1], r[2], by = "hour"), format = "%H"),
+  abline(v=axTicksPosixct(1, at = seq(r[1], r[2], by = "hour"), format = "%H"),
          col="grey", lty="dotted")
 })
 

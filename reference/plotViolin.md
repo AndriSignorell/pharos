@@ -18,17 +18,17 @@ plotViolin(
   ylab = "",
   xlim = NULL,
   ylim = NULL,
-  horizontal = FALSE,
+  bw = "nrd0",
+  trim = TRUE,
+  horiz = FALSE,
   at = NULL,
   names = NULL,
   add = FALSE,
-  bw = "nrd0",
-  trim = TRUE,
   col = "grey80",
   border = "black",
   lwd = 1,
-  box = TRUE,
   grid = NA,
+  box = TRUE,
   quantiles = NULL,
   stamp = .useTheme
 )
@@ -39,12 +39,12 @@ plotViolin(
   data,
   subset,
   na.action = na.omit,
-  ...,
   main = NULL,
   xlab = "",
   ylab = "",
-  horizontal = FALSE,
-  names = NULL
+  horiz = FALSE,
+  names = NULL,
+  ...
 )
 ```
 
@@ -75,22 +75,6 @@ plotViolin(
   axis limits. `NULL` (default) uses the range of the densities, padded
   by 2%; given limits are used as they are.
 
-- horizontal:
-
-  logical; if `TRUE`, draws horizontal violins.
-
-- at:
-
-  numeric positions of the groups.
-
-- names:
-
-  optional group labels.
-
-- add:
-
-  logical; if `TRUE`, adds to an existing plot.
-
 - bw:
 
   bandwidth specification passed to
@@ -107,6 +91,22 @@ plotViolin(
   `range(x)` and may produce violins that reach into implausible values
   (e.g. scores above 100 or below 0).
 
+- horiz:
+
+  logical; if `TRUE`, draws horizontal violins.
+
+- at:
+
+  numeric positions of the groups.
+
+- names:
+
+  optional group labels.
+
+- add:
+
+  logical; if `TRUE`, adds to an existing plot.
+
 - col:
 
   fill color(s) of the violins.
@@ -119,13 +119,13 @@ plotViolin(
 
   line width for violin borders.
 
-- box:
-
-  logical or list controlling the boxplot overlay (see Details).
-
 - grid:
 
   logical, `NA`, or list controlling background grid.
+
+- box:
+
+  logical or list controlling the boxplot overlay (see Details).
 
 - quantiles:
 
@@ -197,7 +197,7 @@ Other plot.univariate: [`plotArea()`](plotArea.md),
 [`plotBar()`](plotBar.md), [`plotBox()`](plotBox.md),
 [`plotCatDist()`](plotCatDist.md), [`plotDens()`](plotDens.md),
 [`plotDensBox()`](plotDensBox.md), [`plotDot()`](plotDot.md),
-[`plotECDF()`](plotECDF.md), [`plotFdist()`](plotFdist.md),
+[`plotECDF()`](plotECDF.md), [`plotFreqDist()`](plotFreqDist.md),
 [`plotLines()`](plotLines.md), [`plotQQ()`](plotQQ.md)
 
 ## Examples
@@ -211,7 +211,7 @@ plotViolin(x, y)
 
 
 # horizontal violins
-plotViolin(x, y, horizontal = TRUE)
+plotViolin(x, y, horiz = TRUE)
 
 
 # with quantiles

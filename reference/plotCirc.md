@@ -9,11 +9,12 @@ graphics and supports flexible styling via object-based arguments.
 ``` r
 plotCirc(
   x,
+  main = NULL,
+  gap = 5,
   sector = TRUE,
   ribbon = TRUE,
   labels = TRUE,
-  gap = 5,
-  main = NULL,
+  stamp = .useTheme,
   ...
 )
 ```
@@ -24,6 +25,14 @@ plotCirc(
 
   A numeric matrix. Rows and columns define the connections between
   sectors.
+
+- main:
+
+  character. Main title of the plot.
+
+- gap:
+
+  numeric. Gap between sectors in degrees.
 
 - sector:
 
@@ -60,13 +69,11 @@ plotCirc(
 
   - or a list with parameters passed to internal label drawing.
 
-- gap:
+- stamp:
 
-  numeric. Gap between sectors in degrees.
-
-- main:
-
-  character. Main title of the plot.
+  controls the corner stamp. `.useTheme` (default) resolves to
+  `getTheme()$stamp`. `TRUE`/`FALSE`/ `NULL`, a string, or a named list
+  for [`stamp()`](stamp.md).
 
 - ...:
 

@@ -181,13 +181,13 @@ the tails).
 ## See also
 
 [`plot.ecdf()`](https://rdrr.io/r/stats/ecdf.html),
-[`plotFdist()`](plotFdist.md), [theme](theme.md)
+[`plotFreqDist()`](plotFreqDist.md), [theme](theme.md)
 
 Other plot.univariate: [`plotArea()`](plotArea.md),
 [`plotBar()`](plotBar.md), [`plotBox()`](plotBox.md),
 [`plotCatDist()`](plotCatDist.md), [`plotDens()`](plotDens.md),
 [`plotDensBox()`](plotDensBox.md), [`plotDot()`](plotDot.md),
-[`plotFdist()`](plotFdist.md), [`plotLines()`](plotLines.md),
+[`plotFreqDist()`](plotFreqDist.md), [`plotLines()`](plotLines.md),
 [`plotQQ()`](plotQQ.md), [`plotViolin()`](plotViolin.md)
 
 ## Examples

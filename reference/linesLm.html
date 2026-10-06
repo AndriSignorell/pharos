@@ -17,7 +17,7 @@ line together with optional confidence and prediction bands."><meta property="og
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.956</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.958</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,8 +67,8 @@ line together with optional confidence and prediction bands.</p>
 <span>  lty <span class="op">=</span> <span class="st">"solid"</span>,</span>
 <span>  type <span class="op">=</span> <span class="st">"l"</span>,</span>
 <span>  n <span class="op">=</span> <span class="fl">100</span>,</span>
-<span>  cbandArgs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span>,</span>
-<span>  pbandArgs <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  cband <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span>,</span>
+<span>  pband <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  xpred <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span>
@@ -81,8 +81,8 @@ line together with optional confidence and prediction bands.</p>
 <span>  lty <span class="op">=</span> <span class="st">"solid"</span>,</span>
 <span>  type <span class="op">=</span> <span class="st">"l"</span>,</span>
 <span>  n <span class="op">=</span> <span class="fl">100</span>,</span>
-<span>  cbandArgs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span>,</span>
-<span>  pbandArgs <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  cband <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span>,</span>
+<span>  pband <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  xpred <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -116,15 +116,15 @@ line together with optional confidence and prediction bands.</p>
 <dd><p>number of points used for plotting the fit.</p></dd>
 
 
-<dt id="arg-cbandargs">cbandArgs<a class="anchor" aria-label="anchor" href="#arg-cbandargs"></a></dt>
+<dt id="arg-cband">cband<a class="anchor" aria-label="anchor" href="#arg-cband"></a></dt>
 <dd><p>controls the confidence band. May be <code>TRUE</code>,
 <code>FALSE</code>, <code>NULL</code>, <code>NA</code>, or a named list. The confidence
 level is specified via <code>conf.level</code>, all other elements are graphical
 parameters of the band. Default is <code>list(conf.level=0.95)</code>.</p></dd>
 
 
-<dt id="arg-pbandargs">pbandArgs<a class="anchor" aria-label="anchor" href="#arg-pbandargs"></a></dt>
-<dd><p>controls the prediction band, as <code>cbandArgs</code>. Default
+<dt id="arg-pband">pband<a class="anchor" aria-label="anchor" href="#arg-pband"></a></dt>
+<dd><p>controls the prediction band, as <code>cband</code>. Default
 is <code>NA</code>.</p></dd>
 
 
@@ -149,8 +149,8 @@ predictors are supported as long as the model contains exactly one predictor
 variable. A polynomial, <code>y ~ poly(x, 2)</code> or <code>y ~ x + I(x^2)</code>, is drawn
 against <code>x</code>; a single transformed term such as <code>y ~ log(x)</code> is drawn
 against the transformed values, matching <code>plot(y ~ log(x))</code>.</p>
-<p>Confidence and prediction bands are controlled via <code>cbandArgs</code> and
-<code>pbandArgs</code>. These arguments can be:</p><ul><li><p><code>FALSE</code>, <code>NULL</code> or <code>NA</code>: suppress the band</p></li>
+<p>Confidence and prediction bands are controlled via <code>cband</code> and
+<code>pband</code>. These arguments can be:</p><ul><li><p><code>FALSE</code>, <code>NULL</code> or <code>NA</code>: suppress the band</p></li>
 <li><p><code>TRUE</code>: draw the band with default settings</p></li>
 <li><p>a named list: customize the band appearance and confidence level</p></li>
 </ul></div>

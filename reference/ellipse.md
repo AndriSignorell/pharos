@@ -5,7 +5,7 @@ Create an elliptic geometry.
 ## Usage
 
 ``` r
-ellipse(x = 0, y = 0, radiusX = 1, radiusY = radiusX, numPoints = 100)
+ellipse(x = 0, y = 0, radiusX = 1, radiusY = radiusX, nPoints = 100)
 ```
 
 ## Arguments
@@ -18,7 +18,7 @@ ellipse(x = 0, y = 0, radiusX = 1, radiusY = radiusX, numPoints = 100)
 
   horizontal and vertical radius.
 
-- numPoints:
+- nPoints:
 
   number of points used to approximate the ellipse.
 
@@ -34,5 +34,5 @@ Use [`rotate()`](rotate.md) to rotate the resulting geometry.
 
 Other geometry.structures: [`arc()`](arc.md), [`band()`](band.md),
 [`bezier()`](bezier.md), [`circle()`](circle.md),
-[`polygon()`](polygon.md), [`regPolygon()`](regPolygon.md),
+[`polygonX()`](polygonX.md), [`regPolygon()`](regPolygon.md),
 [`ring()`](ring.md)

@@ -15,7 +15,7 @@ lines(
   lty = "solid",
   type = "l",
   n = 100,
-  bandArgs = list(conf.level = 0.95),
+  band = list(conf.level = 0.95),
   ...
 )
 ```
@@ -49,7 +49,7 @@ lines(
 
   number of points used for plotting the fit.
 
-- bandArgs:
+- band:
 
   controls the confidence band. May be `TRUE`, `FALSE`, `NULL`, `NA`, or
   a named list. The confidence level is specified via `conf.level`, all
@@ -63,7 +63,7 @@ lines(
 
 ## Details
 
-The confidence band is controlled via `bandArgs`. This argument may be:
+The confidence band is controlled via `band`. This argument may be:
 
 - `FALSE`, `NULL` or `NA`: suppress the band
 
@@ -97,7 +97,7 @@ lines(loess(y ~ x))
 plot(dist ~ speed, cars)
 lines(
   loess(dist ~ speed, cars),
-  bandArgs = list(
+  band = list(
     conf.level = 0.99,
     col = addOpacity("red", 0.4),
     border = "black"

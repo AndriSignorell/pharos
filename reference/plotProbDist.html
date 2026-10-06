@@ -17,7 +17,7 @@ in statistics teaching materials."><meta property="og:image" content="/logo.png"
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.956</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.958</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,15 +62,16 @@ in statistics teaching materials.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plotProbDist</span><span class="op">(</span></span>
 <span>  <span class="va">breaks</span>,</span>
 <span>  <span class="va">FUN</span>,</span>
-<span>  main <span class="op">=</span> <span class="st">""</span>,</span>
+<span>  main <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  ylab <span class="op">=</span> <span class="st">"density"</span>,</span>
 <span>  xlim <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  col <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  density <span class="op">=</span> <span class="fl">7</span>,</span>
-<span>  ylab <span class="op">=</span> <span class="st">"density"</span>,</span>
+<span>  grid <span class="op">=</span> <span class="va">.useTheme</span>,</span>
+<span>  box <span class="op">=</span> <span class="va">.useTheme</span>,</span>
 <span>  areaLabels <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  breakLabels <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  grid <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  box <span class="op">=</span> <span class="va">.useTheme</span>,</span>
+<span>  stamp <span class="op">=</span> <span class="va">.useTheme</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -91,8 +92,13 @@ shaded areas. The first and last value define the plot range passed to
 
 
 <dt id="arg-main">main<a class="anchor" aria-label="anchor" href="#arg-main"></a></dt>
-<dd><p>main title for the plot. <code>NULL</code> or <code>""</code> suppresses
-the title and reduces the top margin automatically.</p></dd>
+<dd><p>main title for the plot. <code>NULL</code> (default) takes the
+expression passed as <code>FUN</code>; <code>""</code>, <code>NA</code> or <code>FALSE</code> suppress the title and
+reduce the top margin.</p></dd>
+
+
+<dt id="arg-ylab">ylab<a class="anchor" aria-label="anchor" href="#arg-ylab"></a></dt>
+<dd><p>label for the y-axis. Default is <code>"density"</code>.</p></dd>
 
 
 <dt id="arg-xlim">xlim<a class="anchor" aria-label="anchor" href="#arg-xlim"></a></dt>
@@ -110,8 +116,17 @@ number of areas. Defaults to the "helsana" palette.</p></dd>
 Default is <code>7</code>.</p></dd>
 
 
-<dt id="arg-ylab">ylab<a class="anchor" aria-label="anchor" href="#arg-ylab"></a></dt>
-<dd><p>label for the y-axis. Default is <code>"density"</code>.</p></dd>
+<dt id="arg-grid">grid<a class="anchor" aria-label="anchor" href="#arg-grid"></a></dt>
+<dd><p>controls the background grid. <code>.useTheme</code> (default) follows
+the active theme, <code>TRUE</code> draws it, <code>FALSE</code>, <code>NULL</code> or <code>NA</code> suppress it.
+A named list overrides individual arguments passed to <code><a href="https://rdrr.io/r/graphics/grid.html" class="external-link">grid()</a></code>.</p></dd>
+
+
+<dt id="arg-box">box<a class="anchor" aria-label="anchor" href="#arg-box"></a></dt>
+<dd><p>controls the plot box. <code>.useTheme</code> (default) uses the
+current theme setting. <code>TRUE</code>/<code>FALSE</code> forces the box on or off.
+A named list overrides individual arguments passed to
+<code><a href="https://rdrr.io/r/graphics/box.html" class="external-link">box()</a></code>.</p></dd>
 
 
 <dt id="arg-arealabels">areaLabels<a class="anchor" aria-label="anchor" href="#arg-arealabels"></a></dt>
@@ -131,18 +146,10 @@ sets explicit labels. A named list overrides individual arguments
 (e.g. <code>list(cex = 1.8, font = 1)</code>).</p></dd>
 
 
-<dt id="arg-grid">grid<a class="anchor" aria-label="anchor" href="#arg-grid"></a></dt>
-<dd><p>controls background grid. <code>FALSE</code> (default) suppresses the
-grid. <code>TRUE</code> or <code>.useTheme</code> draws a grid according to the
-current theme. A named list overrides individual arguments passed to
-<code><a href="https://rdrr.io/r/graphics/grid.html" class="external-link">grid()</a></code>.</p></dd>
-
-
-<dt id="arg-box">box<a class="anchor" aria-label="anchor" href="#arg-box"></a></dt>
-<dd><p>controls the plot box. <code>.useTheme</code> (default) uses the
-current theme setting. <code>TRUE</code>/<code>FALSE</code> forces the box on or off.
-A named list overrides individual arguments passed to
-<code><a href="https://rdrr.io/r/graphics/box.html" class="external-link">box()</a></code>.</p></dd>
+<dt id="arg-stamp">stamp<a class="anchor" aria-label="anchor" href="#arg-stamp"></a></dt>
+<dd><p>controls the corner stamp. <code>.useTheme</code> (default)
+resolves to <code>getTheme()$stamp</code>. <code>TRUE</code>/<code>FALSE</code>/
+<code>NULL</code>, a string, or a named list for <code><a href="stamp.html">stamp()</a></code>.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
@@ -193,7 +200,6 @@ and <code><a href="graphics-framework.html">.applyParFromDots()</a></code>, e.g.
 <span class="r-in"><span>             col     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"deeppink4"</span>, <span class="st">"skyblue3"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>             density <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">20</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>             breakLabels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>text<span class="op">=</span><span class="st">"B"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>is.na() applied to non-(list or vector) of type 'expression'</span>
 <span class="r-plt img"><img src="plotProbDist-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>

@@ -9,13 +9,14 @@ proportions (ECDF-style) can be displayed.
 ``` r
 plotCatDist(
   x,
+  main = NULL,
   type = c("both", "freq", "perc"),
   ecdf = FALSE,
+  maxCats = NULL,
+  maxLabLen = 25,
   col = "grey80",
   border = FALSE,
-  maxlablen = 25,
-  maxcats = NULL,
-  main = NULL,
+  stamp = .useTheme,
   ...
 )
 ```
@@ -28,6 +29,10 @@ plotCatDist(
   numeric vector of precomputed frequencies. Unnamed numeric frequency
   vectors are labelled by their positions.
 
+- main:
+
+  plot title.
+
 - type:
 
   character; one of `"both"`, `"freq"`, `"perc"`. Controls whether
@@ -38,6 +43,15 @@ plotCatDist(
   logical; if `TRUE`, cumulative proportions are shown instead of simple
   relative frequencies.
 
+- maxCats:
+
+  optional maximum number of categories to display (truncates if
+  exceeded).
+
+- maxLabLen:
+
+  integer; maximum length of category labels before truncation.
+
 - col:
 
   fill color for bars.
@@ -46,18 +60,11 @@ plotCatDist(
 
   logical; draw borders around bars.
 
-- maxlablen:
+- stamp:
 
-  integer; maximum length of category labels before truncation.
-
-- maxcats:
-
-  optional maximum number of categories to display (truncates if
-  exceeded).
-
-- main:
-
-  plot title.
+  controls the corner stamp. `.useTheme` (default) resolves to
+  `getTheme()$stamp`. `TRUE`/`FALSE`/ `NULL`, a string, or a named list
+  for [`stamp()`](stamp.md).
 
 - ...:
 
@@ -79,10 +86,10 @@ The function produces horizontal bar plots:
 If `type = "both"`, both views are shown side by side.
 
 Long labels are truncated, and large category sets can be limited via
-`maxcats`.
+`maxCats`.
 
 Raw categorical data and their pre-tabulated form are treated
-identically. When categories are truncated via `maxcats`, proportions
+identically. When categories are truncated via `maxCats`, proportions
 remain based on the total frequency before truncation.
 
 ## See also
@@ -91,7 +98,7 @@ Other plot.univariate: [`plotArea()`](plotArea.md),
 [`plotBar()`](plotBar.md), [`plotBox()`](plotBox.md),
 [`plotDens()`](plotDens.md), [`plotDensBox()`](plotDensBox.md),
 [`plotDot()`](plotDot.md), [`plotECDF()`](plotECDF.md),
-[`plotFdist()`](plotFdist.md), [`plotLines()`](plotLines.md),
+[`plotFreqDist()`](plotFreqDist.md), [`plotLines()`](plotLines.md),
 [`plotQQ()`](plotQQ.md), [`plotViolin()`](plotViolin.md)
 
 ## Examples
@@ -114,6 +121,6 @@ plotCatDist(x, ecdf = TRUE)
 
 # Many categories (truncation)
 x2 <- factor(sample(letters, 200, TRUE))
-plotCatDist(x2, maxcats = 10)
+plotCatDist(x2, maxCats = 10)
 
 ```

@@ -9,11 +9,12 @@ plotPolar(
   r,
   theta = NULL,
   main = NULL,
-  type = "p",
   rlim = NULL,
+  type = "p",
+  add = FALSE,
   col = NULL,
   border = NULL,
-  add = FALSE,
+  stamp = .useTheme,
   ...
 )
 ```
@@ -34,6 +35,10 @@ plotPolar(
 
   optional plot title.
 
+- rlim:
+
+  numeric limit for radial axis. If `NULL`, determined automatically.
+
 - type:
 
   character vector specifying plot type for each series:
@@ -50,9 +55,9 @@ plotPolar(
 
   :   radial segments ("histogram"-style)
 
-- rlim:
+- add:
 
-  numeric limit for radial axis. If `NULL`, determined automatically.
+  logical; if `TRUE`, adds to an existing plot.
 
 - col:
 
@@ -62,9 +67,11 @@ plotPolar(
 
   color for border in case of type `polygon`.
 
-- add:
+- stamp:
 
-  logical; if `TRUE`, adds to an existing plot.
+  controls the corner stamp. `.useTheme` (default) resolves to
+  `getTheme()$stamp`. `TRUE`/`FALSE`/ `NULL`, a string, or a named list
+  for [`stamp()`](stamp.md).
 
 - ...:
 

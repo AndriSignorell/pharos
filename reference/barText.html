@@ -27,7 +27,7 @@ barplot (side by side or stacked)."><meta property="og:image" content="/logo.png
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.956</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.958</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -76,13 +76,13 @@ barplot (side by side or stacked).</p>
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">barText</span><span class="op">(</span></span>
 <span>  <span class="va">height</span>,</span>
-<span>  <span class="va">b</span>,</span>
+<span>  <span class="va">mids</span>,</span>
 <span>  labels <span class="op">=</span> <span class="va">height</span>,</span>
 <span>  beside <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  horiz <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  cex <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>,</span>
 <span>  adj <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  pos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"topout"</span>, <span class="st">"topin"</span>, <span class="st">"mid"</span>, <span class="st">"bottomin"</span>, <span class="st">"bottomout"</span><span class="op">)</span>,</span>
+<span>  pos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"top-out"</span>, <span class="st">"top-in"</span>, <span class="st">"mid"</span>, <span class="st">"bottom-in"</span>, <span class="st">"bottom-out"</span><span class="op">)</span>,</span>
 <span>  offset <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  col <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  <span class="va">...</span></span>
@@ -98,7 +98,7 @@ barplot (side by side or stacked).</p>
 make up the plot exactly as used for creating the barplot.</p></dd>
 
 
-<dt id="arg-b">b<a class="anchor" aria-label="anchor" href="#arg-b"></a></dt>
+<dt id="arg-mids">mids<a class="anchor" aria-label="anchor" href="#arg-mids"></a></dt>
 <dd><p>the returned mid points as returned by <code>b &lt;- barplot(...)</code>.</p></dd>
 
 
@@ -131,8 +131,8 @@ will also work.</p></dd>
 
 
 <dt id="arg-pos">pos<a class="anchor" aria-label="anchor" href="#arg-pos"></a></dt>
-<dd><p>one of <code>"topout"</code>, <code>"topin"</code>, <code>"mid"</code>,
-<code>"bottomin"</code>, <code>"bottomout"</code>, defining if the labels should be
+<dd><p>one of <code>"top-out"</code>, <code>"top-in"</code>, <code>"mid"</code>,
+<code>"bottom-in"</code>, <code>"bottom-out"</code>, defining if the labels should be
 placed on top of the bars (inside or outside) or at the bottom of the bars
 (inside or outside).</p></dd>
 
@@ -185,21 +185,21 @@ clipped. This can be avoided by setting <code>xpd=TRUE</code>.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># more complicated</span></span></span>
 <span class="r-in"><span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/barplot.html" class="external-link">barplot</a></span><span class="op">(</span><span class="va">VADeaths</span>, horiz <span class="op">=</span> <span class="cn">FALSE</span>, col<span class="op">=</span><span class="st">"steelblue"</span>, beside <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">barText</span><span class="op">(</span><span class="va">VADeaths</span>, b<span class="op">=</span><span class="va">b</span>, horiz <span class="op">=</span> <span class="cn">FALSE</span>, beside <span class="op">=</span> <span class="cn">TRUE</span>, cex<span class="op">=</span><span class="fl">0.8</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">barText</span><span class="op">(</span><span class="va">VADeaths</span>, b<span class="op">=</span><span class="va">b</span>, horiz <span class="op">=</span> <span class="cn">FALSE</span>, beside <span class="op">=</span> <span class="cn">TRUE</span>, cex<span class="op">=</span><span class="fl">0.8</span>, pos<span class="op">=</span><span class="st">"bottomin"</span>,</span></span>
+<span class="r-in"><span><span class="fu">barText</span><span class="op">(</span><span class="va">VADeaths</span>, mids<span class="op">=</span><span class="va">b</span>, horiz <span class="op">=</span> <span class="cn">FALSE</span>, beside <span class="op">=</span> <span class="cn">TRUE</span>, cex<span class="op">=</span><span class="fl">0.8</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">barText</span><span class="op">(</span><span class="va">VADeaths</span>, mids<span class="op">=</span><span class="va">b</span>, horiz <span class="op">=</span> <span class="cn">FALSE</span>, beside <span class="op">=</span> <span class="cn">TRUE</span>, cex<span class="op">=</span><span class="fl">0.8</span>, pos<span class="op">=</span><span class="st">"bottom-in"</span>,</span></span>
 <span class="r-in"><span>        col<span class="op">=</span><span class="st">"white"</span>, font<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="barText-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/barplot.html" class="external-link">barplot</a></span><span class="op">(</span><span class="va">VADeaths</span>, horiz <span class="op">=</span> <span class="cn">TRUE</span>, col<span class="op">=</span><span class="st">"steelblue"</span>, beside <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">barText</span><span class="op">(</span><span class="va">VADeaths</span>, b<span class="op">=</span><span class="va">b</span>, horiz <span class="op">=</span> <span class="cn">TRUE</span>, beside <span class="op">=</span> <span class="cn">TRUE</span>, cex<span class="op">=</span><span class="fl">0.8</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">barText</span><span class="op">(</span><span class="va">VADeaths</span>, mids<span class="op">=</span><span class="va">b</span>, horiz <span class="op">=</span> <span class="cn">TRUE</span>, beside <span class="op">=</span> <span class="cn">TRUE</span>, cex<span class="op">=</span><span class="fl">0.8</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="barText-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/barplot.html" class="external-link">barplot</a></span><span class="op">(</span><span class="va">VADeaths</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">barText</span><span class="op">(</span><span class="va">VADeaths</span>, b<span class="op">=</span><span class="va">b</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">barText</span><span class="op">(</span><span class="va">VADeaths</span>, mids<span class="op">=</span><span class="va">b</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="barText-4.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/barplot.html" class="external-link">barplot</a></span><span class="op">(</span><span class="va">VADeaths</span>, horiz <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">barText</span><span class="op">(</span><span class="va">VADeaths</span>, b<span class="op">=</span><span class="va">b</span>, horiz <span class="op">=</span> <span class="cn">TRUE</span>, col<span class="op">=</span><span class="st">"red"</span>, cex<span class="op">=</span><span class="fl">1.5</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">barText</span><span class="op">(</span><span class="va">VADeaths</span>, mids<span class="op">=</span><span class="va">b</span>, horiz <span class="op">=</span> <span class="cn">TRUE</span>, col<span class="op">=</span><span class="st">"red"</span>, cex<span class="op">=</span><span class="fl">1.5</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="barText-5.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

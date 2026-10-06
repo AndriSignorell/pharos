@@ -18,7 +18,7 @@ plot(
   grid = TRUE,
   meanLine = TRUE,
   limits = TRUE,
-  conf.band = FALSE,
+  cband = FALSE,
   trend = FALSE,
   showText = TRUE,
   stamp = NULL,
@@ -72,7 +72,7 @@ plot(
 
   logical; draw the limits of agreement.
 
-- conf.band:
+- cband:
 
   logical; draw confidence bands.
 

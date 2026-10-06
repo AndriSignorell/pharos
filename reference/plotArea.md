@@ -10,15 +10,16 @@ coordinates. Multiple series are displayed as stacked areas.
 plotArea(
   x,
   y,
-  prop = FALSE,
-  col = NULL,
+  main = NULL,
   xlab = "",
   ylab = "",
   xlim = NULL,
   ylim = NULL,
+  prop = FALSE,
+  col = NULL,
+  grid = .useTheme,
   legend = TRUE,
-  main = NULL,
-  grid = TRUE,
+  stamp = .useTheme,
   ...
 )
 ```
@@ -36,14 +37,9 @@ plotArea(
   optional numeric vector or matrix giving the y-values. If supplied,
   `x` is interpreted as the x-coordinates.
 
-- prop:
+- main:
 
-  logical indicating whether rows should be converted to proportions so
-  that stacked areas sum to one.
-
-- col:
-
-  fill colours used for the areas.
+  main title of the plot.
 
 - xlab:
 
@@ -61,20 +57,33 @@ plotArea(
 
   limits for the y-axis.
 
+- prop:
+
+  logical indicating whether rows should be converted to proportions so
+  that stacked areas sum to one.
+
+- col:
+
+  fill colours used for the areas.
+
+- grid:
+
+  controls the background grid. `.useTheme` (default) follows the active
+  theme (`getTheme()$grid`), `TRUE` draws it, `FALSE`, `NULL` or `NA`
+  suppress it, and a named list is passed to
+  [`graphics::grid()`](https://rdrr.io/r/graphics/grid.html).
+
 - legend:
 
   logical or list controlling the legend. If `TRUE`, a legend is drawn
   using the column names of the data. If a list is supplied, its
   elements are passed to the internal legend drawing routine.
 
-- main:
+- stamp:
 
-  main title of the plot.
-
-- grid:
-
-  logical or list controlling the background grid. If `TRUE`, a default
-  grid is drawn.
+  controls the corner stamp. `.useTheme` (default) resolves to
+  `getTheme()$stamp`. `TRUE`/`FALSE`/ `NULL`, a string, or a named list
+  for [`stamp()`](stamp.md).
 
 - ...:
 
@@ -114,7 +123,7 @@ Other plot.univariate: [`plotBar()`](plotBar.md),
 [`plotBox()`](plotBox.md), [`plotCatDist()`](plotCatDist.md),
 [`plotDens()`](plotDens.md), [`plotDensBox()`](plotDensBox.md),
 [`plotDot()`](plotDot.md), [`plotECDF()`](plotECDF.md),
-[`plotFdist()`](plotFdist.md), [`plotLines()`](plotLines.md),
+[`plotFreqDist()`](plotFreqDist.md), [`plotLines()`](plotLines.md),
 [`plotQQ()`](plotQQ.md), [`plotViolin()`](plotViolin.md)
 
 ## Examples

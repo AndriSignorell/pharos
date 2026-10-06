@@ -21,8 +21,8 @@ boxedText(
   col = NULL,
   font = NULL,
   srt = 0,
-  xpad = 0.2,
-  ypad = 0.2,
+  xPad = 0.2,
+  yPad = 0.2,
   density = NULL,
   angle = 45,
   bg = NA,
@@ -99,7 +99,7 @@ boxedText(formula, data = parent.frame(), ..., subset)
 
   the string rotation in degrees.
 
-- xpad, ypad:
+- xPad, yPad:
 
   the proportion of the rectangles to the extent of the text within.
 
@@ -170,7 +170,7 @@ Other graphics.annotation: [`barText()`](barText.md),
 canvas(xpd=TRUE)
 
 boxedText(0, 0, adj=0, label="This is boxed text", srt=seq(0,360,20), 
-          xpad=.3, ypad=.3)
+          xPad=.3, yPad=.3)
 points(0,0, pch=15)
 
 

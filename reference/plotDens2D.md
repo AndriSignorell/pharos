@@ -18,6 +18,7 @@ plotDens2D(
   col = rev(pal("red-black", n = 100)),
   grid = .useTheme,
   box = .useTheme,
+  stamp = .useTheme,
   ...
 )
 ```
@@ -70,6 +71,12 @@ plotDens2D(
   controls drawing of the plot box. `.useTheme` (default) resolves to
   `getTheme()$box`. `TRUE`/`FALSE`/`NA`, or a named list, as for
   [`graphics::box()`](https://rdrr.io/r/graphics/box.html).
+
+- stamp:
+
+  controls the corner stamp. `.useTheme` (default) resolves to
+  `getTheme()$stamp`. `TRUE`/`FALSE`/ `NULL`, a string, or a named list
+  for [`stamp()`](stamp.md).
 
 - ...:
 

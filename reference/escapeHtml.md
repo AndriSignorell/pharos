@@ -31,10 +31,10 @@ for text placed inside an attribute value rather than between tags.
 
 ## See also
 
-Other html: [`as.fileLink()`](as.fileLink.md),
-[`as.html()`](as.html.md), [`as.img()`](as.img.md),
-[`embedFile()`](embedFile.md), [`htmlNotation`](htmlNotation.md),
-[`htmlSubscript`](htmlSubscript.md), [`toHtmlTable()`](toHtmlTable.md)
+Other html: [`asFileLink()`](asFileLink.md), [`asHtml()`](asHtml.md),
+[`asImg()`](asImg.md), [`embedFile()`](embedFile.md),
+[`htmlNotation`](htmlNotation.md), [`htmlSubscript`](htmlSubscript.md),
+[`toHtmlTable()`](toHtmlTable.md)
 
 ## Examples
 

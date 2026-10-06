@@ -16,7 +16,7 @@ Plots for distributions, grouped data, functions, and time series.
   Intervals
 - [`plotECDF()`](plotECDF.md) : Empirical Cumulative Distribution
   Function
-- [`plotFdist()`](plotFdist.md) : Frequency Distribution Plot
+- [`plotFreqDist()`](plotFreqDist.md) : Frequency Distribution Plot
 - [`plotLines()`](plotLines.md) : Line Plot for Multiple Series
 - [`plotQQ()`](plotQQ.md) : QQ-Plot for Any Distribution
 - [`plotRidge(`*`<default>`*`)`](plotRidge.md)
@@ -103,7 +103,7 @@ Plot annotation, axes, smoothers, themes, and graphics-state helpers.
 - [`axisBreak()`](axisBreak.md) : Place a Break Mark on an Axis
 - [`axisFmt()`](axisFmt.md) : Draw an Axis With Formatted or Rotated
   Labels
-- [`axTicks.POSIXct()`](axTicks.md) [`axTicks.Date()`](axTicks.md) :
+- [`axTicksPosixct()`](axTicks.md) [`axTicksDate()`](axTicks.md) :
   Compute Axis Tickmark Locations (For POSIXct Axis)
 - [`barText()`](barText.md) : Place Value Labels on a Barplot
 - [`boxedText()`](boxedText.md) : Add Text in a Box to a Plot
@@ -147,7 +147,7 @@ Geometric structures, coordinate conversions, and transformations.
 - [`canvas()`](canvas.md) : Canvas for Geometric Plotting
 - [`circle()`](circle.md) : Circle Geometry
 - [`ellipse()`](ellipse.md) : Ellipse Geometry
-- [`polygon()`](polygon.md) : Draw Polygonal Geometries
+- [`polygonX()`](polygonX.md) : Draw Polygonal Geometries
 - [`regPolygon()`](regPolygon.md) : Regular Polygon Geometry
 - [`ring()`](ring.md) : Ring Geometry
 - [`polToCart()`](coordinate-conversions.md)
@@ -174,12 +174,12 @@ Colour conversion, manipulation, lookup, and palette construction.
 - [`cmykToRgb()`](CMYKToRGB.md) : Convert CMYK to RGB
 - [`cmyToCmyk()`](CMYToCMYK.md) : Convert CMY to CMYK
 - [`colToHex()`](colToHex.md) : Convert R Colors to Hexadecimal Colors
-- [`colToHSV()`](colToHSV.md) : Convert R Colors to HSV
-- [`colToRGB()`](colToRGB.md) : Convert R Colors to RGB
+- [`colToHsv()`](colToHSV.md) : Convert R Colors to HSV
+- [`colToRgb()`](colToRGB.md) : Convert R Colors to RGB
 - [`grayScale()`](grayscale.md) : Convert Colors to grayScale
 - [`hexToCol()`](hexToCol.md) : Convert Hex Colors to Named R Colors
-- [`hexToRGB()`](hexToRGB.md) : Convert Hex Colors to RGB
-- [`longToRGB()`](longToRGB.md) : Convert Long Integers to RGB
+- [`hexToRgb()`](hexToRGB.md) : Convert Hex Colors to RGB
+- [`longToRgb()`](longToRGB.md) : Convert Long Integers to RGB
 - [`rgbToCmy()`](RGBToCMY.md) : Convert RGB to CMY
 - [`rgbToCol()`](RGBToCol.md) : Convert RGB Colors to the Nearest Named
   R Color
@@ -188,13 +188,13 @@ Colour conversion, manipulation, lookup, and palette construction.
 - [`addOpacity()`](addOpacity.md) : Add an Alpha Channel to Colors
 - [`colToOpaque()`](colToOpaque.md) : Equivalent Opaque Color for
   Transparent Color
-- [`contrastColor()`](contrastColor.md) : Choose Optimal Text Color
-  Based on WCAG Contrast
+- [`contrastCol()`](contrastCol.md) : Choose Optimal Text Color Based on
+  WCAG Contrast
 - [`darken()`](darken.md) : Darken Colors
 - [`fade()`](fade.md) : Fade Colors
-- [`findColor()`](findColor.md) : Get Color on a Defined Color Range
+- [`findCol()`](findCol.md) : Get Color on a Defined Color Range
 - [`lighten()`](lighten.md) : Lighten Colors
-- [`mixColors()`](mixColors.md) : Mix Colors
+- [`mixCol()`](mixCol.md) : Mix Colors
 - [`hcol()`](hcol.md) : Helsana Colors
 - [`pal()`](pal.md) [`plot(`*`<Palette>`*`)`](pal.md) : Get a Color
   Palette
@@ -208,7 +208,7 @@ Formatting of values and confidence intervals, units, and table helpers.
 - [`fmCI()`](fmCI.md) : Format Confidence Intervals
 - [`styles()`](style.md) [`style()`](style.md)
   [`print(`*`<Style>`*`)`](style.md) : Format Styles
-- [`as.CI()`](as.CI.md) [`is.CI()`](as.CI.md) : Confidence Interval
+- [`as.CI()`](as.CI.md) [`isCI()`](as.CI.md) : Confidence Interval
   Objects
 - [`convUnit()`](convUnit.md) : Symbolic Unit Conversion Engine
 - [`print(`*`<Unit>`*`)`](print.Unit.md) : Print Object with Unit
@@ -224,7 +224,7 @@ Formatting of values and confidence intervals, units, and table helpers.
 String inspection, extraction, transformation, and formatting.
 
 - [`string-overview`](string-overview.md) : String Functions in pharos
-- [`strCountW()`](strCountW.md) : Count Words in Strings
+- [`strCountWords()`](strCountWords.md) : Count Words in Strings
 - [`strDist()`](strDist.md) : Compute Distances Between Strings
 - [`strIsNumeric()`](strIsNumeric.md) : Check if Character Strings
   Represent Numeric Values
@@ -256,12 +256,12 @@ String inspection, extraction, transformation, and formatting.
 
 HTML markup, embedded files and images, and self-contained HTML tables.
 
-- [`as.html()`](as.html.md) : Mark a character vector as HTML
+- [`asHtml()`](asHtml.md) : Mark a character vector as HTML
 - [`preview(`*`<html>`*`)`](preview.html.md) : Print HTML markup as
   readable text
-- [`as.fileLink()`](as.fileLink.md) : Link to a self-contained embedded
+- [`asFileLink()`](asFileLink.md) : Link to a self-contained embedded
   file
-- [`as.img()`](as.img.md) : Embed a plot as an inline HTML image
+- [`asImg()`](asImg.md) : Embed a plot as an inline HTML image
 - [`embedFile()`](embedFile.md) : Base64-encode a file
 - [`escapeHtml()`](escapeHtml.md) : Escape HTML special characters
 - [`htmlHat()`](htmlNotation.md) [`htmlBar()`](htmlNotation.md) : HTML

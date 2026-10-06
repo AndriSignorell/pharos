@@ -29,7 +29,7 @@ They fall into two groups:
 |  |  |
 |----|----|
 | Function | Purpose |
-| [`strCountW()`](strCountW.md) | Count words in strings |
+| [`strCountWords()`](strCountWords.md) | Count words in strings |
 | [`strDist()`](strDist.md) | Compute distances between strings |
 | [`strIsNumeric()`](strIsNumeric.md) | Check if character strings represent numeric values |
 | [`strLen()`](strLen.md) | String length |

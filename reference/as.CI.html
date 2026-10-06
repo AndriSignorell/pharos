@@ -17,7 +17,7 @@ ambiguity between ordinary numeric data and confidence interval data.'><meta pro
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.956</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.958</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -76,7 +76,7 @@ ambiguity between ordinary numeric data and confidence interval data.</p>
 <span><span class="co"># Default S3 method</span></span>
 <span><span class="fu">as.CI</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">is.CI</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">isCI</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -84,7 +84,7 @@ ambiguity between ordinary numeric data and confidence interval data.</p>
 
 
 <dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
-<dd><p>object to convert or, for <code>is.CI()</code>, object to test</p></dd>
+<dd><p>object to convert or, for <code>isCI()</code>, object to test</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
@@ -109,7 +109,7 @@ limits</p></dd>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p><code>as.CI()</code> returns a data frame of class <code>"CI"</code> containing
 the columns <code>est</code>, <code>lci</code>, and <code>uci</code>, followed by any
-grouping columns; <code>is.CI()</code> returns a single logical value</p>
+grouping columns; <code>isCI()</code> returns a single logical value</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -164,7 +164,7 @@ interpreted as grouped estimates rather than as confidence interval data.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> A  10   8  12</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> B  20  18  22</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> C  30  28  32</span>
-<span class="r-in"><span><span class="fu">is.CI</span><span class="op">(</span><span class="va">ci</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">isCI</span><span class="op">(</span><span class="va">ci</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># display the estimates and confidence intervals</span></span></span>

@@ -15,7 +15,7 @@ distinguishable within the input vector."><meta property="og:image" content="/lo
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.956</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.958</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,7 +56,7 @@ distinguishable within the input vector.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">strAbbr</span><span class="op">(</span><span class="va">x</span>, minchar <span class="op">=</span> <span class="fl">1</span>, method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"left"</span>, <span class="st">"fix"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">strAbbr</span><span class="op">(</span><span class="va">x</span>, minChar <span class="op">=</span> <span class="fl">1</span>, method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"left"</span>, <span class="st">"fix"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -67,7 +67,7 @@ distinguishable within the input vector.</p>
 <dd><p>a character vector</p></dd>
 
 
-<dt id="arg-minchar">minchar<a class="anchor" aria-label="anchor" href="#arg-minchar"></a></dt>
+<dt id="arg-minchar">minChar<a class="anchor" aria-label="anchor" href="#arg-minchar"></a></dt>
 <dd><p>integer; minimum number of characters to retain</p></dd>
 
 
@@ -86,7 +86,7 @@ they are distinguishable</p></li>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>The function ensures that abbreviations are unique (within the given
-vector) while respecting the minimum length <code>minchar</code>.</p>
+vector) while respecting the minimum length <code>minChar</code>.</p>
 <p>For <code>method = "left"</code>, each string is shortened individually to the
 shortest prefix that distinguishes it from all others.</p>
 <p>For <code>method = "fix"</code>, a single prefix length is chosen such that all

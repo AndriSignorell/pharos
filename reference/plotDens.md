@@ -17,8 +17,8 @@ plotDens(
   ylab = "density",
   xlim = NULL,
   ylim = NULL,
-  add = FALSE,
   bw = "nrd0",
+  add = FALSE,
   col = NULL,
   lwd = 2,
   lty = 1,
@@ -34,11 +34,11 @@ plotDens(
   data,
   subset,
   na.action = na.omit,
-  ...,
   main = NULL,
   xlab = "",
   ylab = NULL,
-  type = NULL
+  type = NULL,
+  ...
 )
 ```
 
@@ -68,15 +68,15 @@ plotDens(
   axis limits. `NULL` (default) uses the range of the densities, the
   y-axis starting at 0 (`c(0, 1)` for a conditional density).
 
-- add:
-
-  logical; if `TRUE`, adds to an existing plot.
-
 - bw:
 
   bandwidth passed to
   [`stats::density()`](https://rdrr.io/r/stats/density.html) or
   `cdplot`.
+
+- add:
+
+  logical; if `TRUE`, adds to an existing plot.
 
 - col:
 
@@ -182,7 +182,7 @@ Other plot.univariate: [`plotArea()`](plotArea.md),
 [`plotBar()`](plotBar.md), [`plotBox()`](plotBox.md),
 [`plotCatDist()`](plotCatDist.md), [`plotDensBox()`](plotDensBox.md),
 [`plotDot()`](plotDot.md), [`plotECDF()`](plotECDF.md),
-[`plotFdist()`](plotFdist.md), [`plotLines()`](plotLines.md),
+[`plotFreqDist()`](plotFreqDist.md), [`plotLines()`](plotLines.md),
 [`plotQQ()`](plotQQ.md), [`plotViolin()`](plotViolin.md)
 
 ## Examples

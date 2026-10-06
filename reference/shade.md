@@ -47,7 +47,8 @@ shade(expr, col = par("fg"), breaks, density = 10, n = 101, xname = "x", ...)
 
 - ...:
 
-  the dots are passed on to [`polygon()`](polygon.md).
+  the dots are passed on to
+  [`graphics::polygon()`](https://rdrr.io/r/graphics/polygon.html).
 
 ## Value
 
@@ -61,7 +62,7 @@ significance tests.
 
 ## See also
 
-[`polygon()`](polygon.md),
+[`graphics::polygon()`](https://rdrr.io/r/graphics/polygon.html),
 [`curve()`](https://rdrr.io/r/graphics/curve.html)
 
 Other plot.distribution: [`plotFun()`](plotFun.md),

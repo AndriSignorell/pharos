@@ -15,7 +15,7 @@ and the size of each bubble is proportional to area."><meta property="og:image" 
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.956</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.958</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,18 +61,19 @@ and the size of each bubble is proportional to <code>area</code>.</p>
 <span>  <span class="va">x</span>,</span>
 <span>  <span class="va">y</span>,</span>
 <span>  <span class="va">area</span>,</span>
-<span>  <span class="va">...</span>,</span>
+<span>  main <span class="op">=</span> <span class="st">""</span>,</span>
+<span>  xlab <span class="op">=</span> <span class="st">""</span>,</span>
+<span>  ylab <span class="op">=</span> <span class="st">""</span>,</span>
+<span>  xlim <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  ylim <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  add <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  col <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  border <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  cex <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  grid <span class="op">=</span> <span class="cn">NA</span>,</span>
-<span>  xlim <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  ylim <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  na.rm <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  main <span class="op">=</span> <span class="st">""</span>,</span>
-<span>  xlab <span class="op">=</span> <span class="st">""</span>,</span>
-<span>  ylab <span class="op">=</span> <span class="st">""</span></span>
+<span>  stamp <span class="op">=</span> <span class="va">.useTheme</span>,</span>
+<span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for class 'formula'</span></span>
@@ -81,17 +82,17 @@ and the size of each bubble is proportional to <code>area</code>.</p>
 <span>  data <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  <span class="va">subset</span>,</span>
 <span>  na.action <span class="op">=</span> <span class="va">na.omit</span>,</span>
-<span>  <span class="va">...</span>,</span>
+<span>  main <span class="op">=</span> <span class="st">""</span>,</span>
+<span>  xlab <span class="op">=</span> <span class="st">""</span>,</span>
+<span>  ylab <span class="op">=</span> <span class="st">""</span>,</span>
+<span>  xlim <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  ylim <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  add <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  col <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  border <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  cex <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  grid <span class="op">=</span> <span class="cn">NA</span>,</span>
-<span>  xlim <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  ylim <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  main <span class="op">=</span> <span class="st">""</span>,</span>
-<span>  xlab <span class="op">=</span> <span class="st">""</span>,</span>
-<span>  ylab <span class="op">=</span> <span class="st">""</span></span>
+<span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -111,8 +112,12 @@ and the size of each bubble is proportional to <code>area</code>.</p>
 <dd><p>numeric vector controlling bubble sizes (interpreted as area).</p></dd>
 
 
-<dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>additional graphical parameters passed to <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par()</a></code>.</p></dd>
+<dt id="arg-main-xlab-ylab">main, xlab, ylab<a class="anchor" aria-label="anchor" href="#arg-main-xlab-ylab"></a></dt>
+<dd><p>plot labels.</p></dd>
+
+
+<dt id="arg-xlim-ylim">xlim, ylim<a class="anchor" aria-label="anchor" href="#arg-xlim-ylim"></a></dt>
+<dd><p>axis limits.</p></dd>
 
 
 <dt id="arg-add">add<a class="anchor" aria-label="anchor" href="#arg-add"></a></dt>
@@ -135,16 +140,18 @@ and the size of each bubble is proportional to <code>area</code>.</p>
 <dd><p>logical, <code>NA</code>, or list controlling background grid.</p></dd>
 
 
-<dt id="arg-xlim-ylim">xlim, ylim<a class="anchor" aria-label="anchor" href="#arg-xlim-ylim"></a></dt>
-<dd><p>axis limits.</p></dd>
-
-
 <dt id="arg-na-rm">na.rm<a class="anchor" aria-label="anchor" href="#arg-na-rm"></a></dt>
 <dd><p>logical; remove missing values.</p></dd>
 
 
-<dt id="arg-main-xlab-ylab">main, xlab, ylab<a class="anchor" aria-label="anchor" href="#arg-main-xlab-ylab"></a></dt>
-<dd><p>plot labels.</p></dd>
+<dt id="arg-stamp">stamp<a class="anchor" aria-label="anchor" href="#arg-stamp"></a></dt>
+<dd><p>controls the corner stamp. <code>.useTheme</code> (default)
+resolves to <code>getTheme()$stamp</code>. <code>TRUE</code>/<code>FALSE</code>/
+<code>NULL</code>, a string, or a named list for <code><a href="stamp.html">stamp()</a></code>.</p></dd>
+
+
+<dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
+<dd><p>additional graphical parameters passed to <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par()</a></code>.</p></dd>
 
 
 <dt id="arg-formula">formula<a class="anchor" aria-label="anchor" href="#arg-formula"></a></dt>

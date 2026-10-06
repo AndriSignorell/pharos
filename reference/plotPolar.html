@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.956</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.958</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,11 +57,12 @@
 <span>  <span class="va">r</span>,</span>
 <span>  theta <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  main <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  type <span class="op">=</span> <span class="st">"p"</span>,</span>
 <span>  rlim <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"p"</span>,</span>
+<span>  add <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  col <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  border <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  add <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  stamp <span class="op">=</span> <span class="va">.useTheme</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -83,6 +84,10 @@ Must match the dimensions of <code>r</code>. If <code>NULL</code>, equally space
 <dd><p>optional plot title.</p></dd>
 
 
+<dt id="arg-rlim">rlim<a class="anchor" aria-label="anchor" href="#arg-rlim"></a></dt>
+<dd><p>numeric limit for radial axis. If <code>NULL</code>, determined automatically.</p></dd>
+
+
 <dt id="arg-type">type<a class="anchor" aria-label="anchor" href="#arg-type"></a></dt>
 <dd><p>character vector specifying plot type for each series:</p><dl><dt>"p"</dt>
 <dd><p>points</p></dd>
@@ -97,8 +102,8 @@ Must match the dimensions of <code>r</code>. If <code>NULL</code>, equally space
 </dl></dd>
 
 
-<dt id="arg-rlim">rlim<a class="anchor" aria-label="anchor" href="#arg-rlim"></a></dt>
-<dd><p>numeric limit for radial axis. If <code>NULL</code>, determined automatically.</p></dd>
+<dt id="arg-add">add<a class="anchor" aria-label="anchor" href="#arg-add"></a></dt>
+<dd><p>logical; if <code>TRUE</code>, adds to an existing plot.</p></dd>
 
 
 <dt id="arg-col">col<a class="anchor" aria-label="anchor" href="#arg-col"></a></dt>
@@ -109,8 +114,10 @@ Must match the dimensions of <code>r</code>. If <code>NULL</code>, equally space
 <dd><p>color for border in case of type <code>polygon</code>.</p></dd>
 
 
-<dt id="arg-add">add<a class="anchor" aria-label="anchor" href="#arg-add"></a></dt>
-<dd><p>logical; if <code>TRUE</code>, adds to an existing plot.</p></dd>
+<dt id="arg-stamp">stamp<a class="anchor" aria-label="anchor" href="#arg-stamp"></a></dt>
+<dd><p>controls the corner stamp. <code>.useTheme</code> (default)
+resolves to <code>getTheme()$stamp</code>. <code>TRUE</code>/<code>FALSE</code>/
+<code>NULL</code>, a string, or a named list for <code><a href="stamp.html">stamp()</a></code>.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>

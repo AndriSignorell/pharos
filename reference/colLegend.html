@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.956</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.958</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,6 +58,7 @@
 <span>  y <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html" class="external-link">rev</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">heat.colors</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  labels <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  title <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  width <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  height <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  horiz <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -67,11 +68,8 @@
 <span>  region <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"plot"</span>, <span class="st">"figure"</span>, <span class="st">"device"</span><span class="op">)</span>,</span>
 <span>  border <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  box <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  labelAdj <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"edge"</span>, <span class="st">"center"</span><span class="op">)</span>,</span>
 <span>  adj <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  cex <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  title <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  titleAdj <span class="op">=</span> <span class="fl">0.5</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -97,7 +95,23 @@ automatic placement:
 
 
 <dt id="arg-labels">labels<a class="anchor" aria-label="anchor" href="#arg-labels"></a></dt>
-<dd><p>optional vector of labels.</p></dd>
+<dd><p>optional vector of labels, or a list holding the labels
+(element <code>text</code>, or the one unnamed element) and their placement
+relative to the color blocks in the element <code>adj</code>:</p><dl><dt><code>"edge"</code></dt>
+<dd><p>(default) Labels are aligned with the strip edges.</p></dd>
+
+<dt><code>"center"</code></dt>
+<dd><p>Labels are centered within color blocks.</p></dd>
+
+
+</dl><p>E.g. <code>labels = list(1:5, adj = "center")</code>.</p></dd>
+
+
+<dt id="arg-title">title<a class="anchor" aria-label="anchor" href="#arg-title"></a></dt>
+<dd><p>optional title, or a list holding the title (element
+<code>text</code>, or the one unnamed element) and its horizontal adjustment
+in the element <code>adj</code> (default 0.5, centered), e.g.
+<code>title = list("From black to red", adj = 0)</code>.</p></dd>
 
 
 <dt id="arg-width">width<a class="anchor" aria-label="anchor" href="#arg-width"></a></dt>
@@ -142,31 +156,12 @@ whole legend. Can be:</p><ul><li><p><code>FALSE</code>, <code>NULL</code>, or <c
 </ul></dd>
 
 
-<dt id="arg-labeladj">labelAdj<a class="anchor" aria-label="anchor" href="#arg-labeladj"></a></dt>
-<dd><p>placement of labels relative to the color blocks:</p><dl><dt><code>"edge"</code></dt>
-<dd><p>Labels are aligned with the strip edges.</p></dd>
-
-<dt><code>"center"</code></dt>
-<dd><p>Labels are centered within color blocks.</p></dd>
-
-
-</dl></dd>
-
-
 <dt id="arg-adj">adj<a class="anchor" aria-label="anchor" href="#arg-adj"></a></dt>
 <dd><p>text alignment passed to <code><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text()</a></code>.</p></dd>
 
 
 <dt id="arg-cex">cex<a class="anchor" aria-label="anchor" href="#arg-cex"></a></dt>
 <dd><p>character expansion for labels.</p></dd>
-
-
-<dt id="arg-title">title<a class="anchor" aria-label="anchor" href="#arg-title"></a></dt>
-<dd><p>optional title.</p></dd>
-
-
-<dt id="arg-titleadj">titleAdj<a class="anchor" aria-label="anchor" href="#arg-titleadj"></a></dt>
-<dd><p>horizontal title adjustment.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
@@ -213,7 +208,7 @@ centered within the color blocks.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># B: Center the labels</span></span></span>
 <span class="r-in"><span><span class="fu">colLegend</span><span class="op">(</span>x<span class="op">=</span><span class="fl">1</span>, y<span class="op">=</span><span class="fl">9</span>, height<span class="op">=</span><span class="fl">6</span>, col<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/grDevices/colorRamp.html" class="external-link">colorRampPalette</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"blue"</span>, <span class="st">"white"</span>, <span class="st">"red"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  space <span class="op">=</span> <span class="st">"rgb"</span><span class="op">)</span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>, labels<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, labelAdj <span class="op">=</span> <span class="st">"center"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  space <span class="op">=</span> <span class="st">"rgb"</span><span class="op">)</span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>, labels<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, adj <span class="op">=</span> <span class="st">"center"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># C: Outer frame</span></span></span>
 <span class="r-in"><span><span class="fu">colLegend</span><span class="op">(</span>x<span class="op">=</span><span class="fl">3</span>, y<span class="op">=</span><span class="fl">9</span>, height<span class="op">=</span><span class="fl">6</span>, col<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/grDevices/colorRamp.html" class="external-link">colorRampPalette</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"blue"</span>, <span class="st">"white"</span>, <span class="st">"red"</span><span class="op">)</span>,</span></span>
@@ -234,7 +229,7 @@ centered within the color blocks.</p>
 <span class="r-in"><span><span class="co"># G</span></span></span>
 <span class="r-in"><span><span class="fu">colLegend</span><span class="op">(</span>x<span class="op">=</span><span class="fl">1</span>, y<span class="op">=</span><span class="fl">12</span>, width<span class="op">=</span><span class="fl">6</span>, height<span class="op">=</span><span class="fl">1</span>, col<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/grDevices/colorRamp.html" class="external-link">colorRampPalette</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"black"</span>,<span class="st">"blue"</span>,</span></span>
 <span class="r-in"><span>            <span class="st">"green"</span>,<span class="st">"yellow"</span>,<span class="st">"red"</span><span class="op">)</span>, space <span class="op">=</span> <span class="st">"rgb"</span><span class="op">)</span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>, horiz<span class="op">=</span><span class="cn">TRUE</span>, </span></span>
-<span class="r-in"><span>            border<span class="op">=</span><span class="st">"black"</span>, title<span class="op">=</span><span class="st">"From black to red"</span>, titleAdj<span class="op">=</span><span class="fl">0</span><span class="op">)</span></span></span>
+<span class="r-in"><span>            border<span class="op">=</span><span class="st">"black"</span>, title<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"From black to red"</span>, adj<span class="op">=</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">8</span>,<span class="fl">0.5</span>,<span class="fl">2.5</span>,<span class="fl">4.5</span>,<span class="fl">0.5</span>,<span class="fl">0.5</span>,<span class="fl">0.5</span><span class="op">)</span><span class="op">+</span><span class="fl">.2</span>, y<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">14</span>,<span class="fl">9</span>,<span class="fl">9</span>,<span class="fl">9</span>,<span class="fl">2</span>,<span class="fl">14</span>,<span class="fl">12</span><span class="op">)</span>, <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">7</span><span class="op">]</span>, cex<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="colLegend-1.png" alt="" width="700" height="433"></span>

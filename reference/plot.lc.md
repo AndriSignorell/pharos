@@ -26,13 +26,13 @@ plot(
   eqline = TRUE,
   grid = .useTheme,
   box = .useTheme,
-  cbandArgs = NA,
+  cband = NA,
   stamp = .useTheme,
   ...
 )
 
 # S3 method for class 'Lc'
-lines(x, general = FALSE, col = NULL, lwd = 2, lty = 1, cbandArgs = NA, ...)
+lines(x, general = FALSE, col = NULL, lwd = 2, lty = 1, cband = NA, ...)
 
 # S3 method for class 'Lc'
 points(x, general = FALSE, pch = 16, col = NULL, ...)
@@ -117,7 +117,7 @@ plot(x, col = NULL, general = FALSE, ylim = NULL, ...)
   [`graphics::grid()`](https://rdrr.io/r/graphics/grid.html) resp.
   [`graphics::box()`](https://rdrr.io/r/graphics/box.html).
 
-- cbandArgs:
+- cband:
 
   used by `plot.Lc()` and `lines.Lc()`. `NA` to suppress the confidence
   band (default), or a list of arguments passed to
@@ -172,11 +172,11 @@ of groups otherwise.
 The curve of `plot.Lc()` is drawn by `lines.Lc()` and the symbols by
 `points.Lc()`, so all three methods share one code path and one set of
 semantics - including the confidence band, which is controlled by
-`cbandArgs` in `plot.Lc()` exactly as it is in `lines.Lc()`. Pass a list
-of arguments to `DescToolsX::predict.Lc()` to control the bootstrap
-(e.g. `cbandArgs = list(conf.level = 0.90, n = 500)`). Set
-`cbandArgs = NA` (default) to suppress the band. Note that
-`line = FALSE` suppresses the band along with the curve.
+`cband` in `plot.Lc()` exactly as it is in `lines.Lc()`. Pass a list of
+arguments to `DescToolsX::predict.Lc()` to control the bootstrap (e.g.
+`cband = list(conf.level = 0.90, n = 500)`). Set `cband = NA` (default)
+to suppress the band. Note that `line = FALSE` suppresses the band along
+with the curve.
 
 With `general = TRUE` the generalized Lorenz curve is displayed. It ends
 at the mean rather than at 1, so the default `ylim` and the slope of the

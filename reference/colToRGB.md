@@ -5,7 +5,7 @@ Convert any valid R color specification to an RGB matrix.
 ## Usage
 
 ``` r
-colToRGB(col, useAlphaChannel = FALSE)
+colToRgb(col, useAlphaChannel = FALSE)
 ```
 
 ## Arguments
@@ -38,18 +38,18 @@ rgbToCol(matrix(c(162,42,42), nrow=3))
 rgbToLong(matrix(c(162,42,42), nrow=3))
 #> [1] 2763426
 
-colToRGB("peachpuff")
+colToRgb("peachpuff")
 #>       [,1]
 #> red    255
 #> green  218
 #> blue   185
-colToRGB(c(blu = "royalblue", reddish = "tomato")) # names kept
+colToRgb(c(blu = "royalblue", reddish = "tomato")) # names kept
 #>       blu reddish
 #> red    65     255
 #> green 105      99
 #> blue  225      71
 
-colToRGB(1:8)
+colToRgb(1:8)
 #>       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8]
 #> red      0  223   97   34   40  205  245  158
 #> green    0   83  208  151  226   11  199  158

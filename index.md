@@ -37,7 +37,7 @@ remotes::install_github("AndriSignorell/pharos")
 
 ### 🔹 Univariate and Distribution Plots
 
-- [`plotFdist()`](reference/plotFdist.md),
+- [`plotFreqDist()`](reference/plotFreqDist.md),
   [`plotDens()`](reference/plotDens.md),
   [`plotECDF()`](reference/plotECDF.md),
   [`plotProbDist()`](reference/plotProbDist.md)
@@ -106,21 +106,21 @@ remotes::install_github("AndriSignorell/pharos")
 ### 🔹 Colour
 
 - Conversions: [`colToHex()`](reference/colToHex.md),
-  [`colToRGB()`](reference/colToRGB.md),
-  [`colToHSV()`](reference/colToHSV.md),
-  [`hexToRGB()`](reference/hexToRGB.md),
+  [`colToRgb()`](reference/colToRGB.md),
+  [`colToHsv()`](reference/colToHSV.md),
+  [`hexToRgb()`](reference/hexToRGB.md),
   [`rgbToCmy()`](reference/RGBToCMY.md),
   [`cmykToRgb()`](reference/CMYKToRGB.md),
-  [`longToRGB()`](reference/longToRGB.md)
+  [`longToRgb()`](reference/longToRGB.md)
 - Manipulation: [`addOpacity()`](reference/addOpacity.md),
   [`fade()`](reference/fade.md), [`darken()`](reference/darken.md),
   [`lighten()`](reference/lighten.md), [`shade()`](reference/shade.md),
-  [`mixColors()`](reference/mixColors.md),
-  [`contrastColor()`](reference/contrastColor.md),
+  [`mixCol()`](reference/mixCol.md),
+  [`contrastCol()`](reference/contrastCol.md),
   [`grayScale()`](reference/grayscale.md)
 - Palettes: [`pal()`](reference/pal.md),
   [`palNames()`](reference/palNames.md), [`hcol()`](reference/hcol.md),
-  [`findColor()`](reference/findColor.md),
+  [`findCol()`](reference/findCol.md),
   [`setBackCol()`](reference/setBackCol.md)
 
 ### 🔹 Geometry
@@ -128,7 +128,7 @@ remotes::install_github("AndriSignorell/pharos")
 - [`arc()`](reference/arc.md), [`bezier()`](reference/bezier.md),
   [`circle()`](reference/circle.md),
   [`ellipse()`](reference/ellipse.md), [`ring()`](reference/ring.md),
-  [`polygon()`](reference/polygon.md),
+  [`polygonX()`](reference/polygonX.md),
   [`regPolygon()`](reference/regPolygon.md),
   [`polarGrid()`](reference/polarGrid.md)
 - [`rotate()`](reference/rotate.md),
@@ -153,13 +153,13 @@ remotes::install_github("AndriSignorell/pharos")
 
 ### 🔹 HTML Output
 
-- [`as.html()`](reference/as.html.md),
+- [`asHtml()`](reference/asHtml.md),
   [`toHtmlTable()`](reference/toHtmlTable.md),
   [`escapeHtml()`](reference/escapeHtml.md),
   [`htmlNotation()`](reference/htmlNotation.md),
   [`htmlSubscript()`](reference/htmlSubscript.md),
-  [`as.img()`](reference/as.img.md),
-  [`as.fileLink()`](reference/as.fileLink.md),
+  [`asImg()`](reference/asImg.md),
+  [`asFileLink()`](reference/asFileLink.md),
   [`embedFile()`](reference/embedFile.md),
   [`preview()`](reference/preview.md)
 
@@ -180,7 +180,7 @@ remotes::install_github("AndriSignorell/pharos")
 library(pharos)
 
 # distribution overview: histogram, density, boxplot, ecdf in one panel
-plotFdist(rnorm(500))
+plotFreqDist(rnorm(500))
 
 # named plot positions without arithmetic
 plot(rnorm(20), type = "n")
@@ -192,7 +192,7 @@ fade(pal("dark"), 0.4)
 
 # faceting with a panel function
 plotFacet(split(iris$Sepal.Length, iris$Species),
-          dim = c(1, 3), panelFun = plotDens)
+          dim = c(1, 3), FUN = plotDens)
 ```
 
 ## 🧱 The Suite

@@ -8,9 +8,10 @@ autocorrelation
 ``` r
 plotTimeSeries(
   x,
-  maxLag = 10 * log10(length(x)),
-  ylab = NULL,
   main = NULL,
+  ylab = NULL,
+  maxLag = 10 * log10(length(x)),
+  stamp = .useTheme,
   ...
 )
 ```
@@ -21,19 +22,25 @@ plotTimeSeries(
 
   univariate time series.
 
-- maxLag:
+- main:
 
-  integer. Defines the number of lags to be displayed. The default is 10
-  \* log10(length(series)).
+  an overall title for the plot
 
 - ylab:
 
   a title for the y axis: see
   [`title()`](https://rdrr.io/r/graphics/title.html).
 
-- main:
+- maxLag:
 
-  an overall title for the plot
+  integer. Defines the number of lags to be displayed. The default is 10
+  \* log10(length(series)).
+
+- stamp:
+
+  controls the corner stamp. `.useTheme` (default) resolves to
+  `getTheme()$stamp`. `TRUE`/`FALSE`/ `NULL`, a string, or a named list
+  for [`stamp()`](stamp.md).
 
 - ...:
 

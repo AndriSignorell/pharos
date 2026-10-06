@@ -19,7 +19,7 @@ overlap."><meta property="og:image" content="/logo.png"></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.956</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.958</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,7 +62,7 @@ overlap.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">spreadOut</span><span class="op">(</span><span class="va">x</span>, mindist <span class="op">=</span> <span class="cn">NULL</span>, cex <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">spreadOut</span><span class="op">(</span><span class="va">x</span>, minDist <span class="op">=</span> <span class="cn">NULL</span>, cex <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -73,7 +73,7 @@ overlap.</p>
 <dd><p>a numeric vector which may contain <code>NA</code>s.</p></dd>
 
 
-<dt id="arg-mindist">mindist<a class="anchor" aria-label="anchor" href="#arg-mindist"></a></dt>
+<dt id="arg-mindist">minDist<a class="anchor" aria-label="anchor" href="#arg-mindist"></a></dt>
 <dd><p>the minimum interval between any two values. If this is left
 to <code>NULL</code> (default) the function will check if a plot is open and then
 use 90%% of <code><a href="https://rdrr.io/r/graphics/strwidth.html" class="external-link">strheight()</a></code>.</p></dd>
@@ -95,7 +95,7 @@ values, the original vector is returned.</p>
     <p><code>spreadOut()</code> starts at or near the middle of the vector and increases
 the intervals between the ordered values. <code>NA</code>s are preserved.
 <code>spreadOut()</code> first tries to spread groups of values with intervals
-less than <code>mindist</code> out neatly away from the mean of the group. If this
+less than <code>minDist</code> out neatly away from the mean of the group. If this
 doesn't entirely succeed, a second pass that forces values away from the
 middle is performed.</p>
 <p><code>spreadOut()</code> can also be used to avoid overplotting of axis tick

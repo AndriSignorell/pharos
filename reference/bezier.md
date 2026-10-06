@@ -5,7 +5,7 @@ Create a Bézier curve from a set of control points.
 ## Usage
 
 ``` r
-bezier(x, y = NULL, numPoints = 100)
+bezier(x, y = NULL, nPoints = 100)
 ```
 
 ## Arguments
@@ -15,7 +15,7 @@ bezier(x, y = NULL, numPoints = 100)
   numeric vectors of control points. Alternatively, `x` may be a list
   with components `x` and `y`.
 
-- numPoints:
+- nPoints:
 
   number of points used to approximate the curve.
 
@@ -34,7 +34,7 @@ Design*. Academic Press.
 
 Other geometry.structures: [`arc()`](arc.md), [`band()`](band.md),
 [`circle()`](circle.md), [`ellipse()`](ellipse.md),
-[`polygon()`](polygon.md), [`regPolygon()`](regPolygon.md),
+[`polygonX()`](polygonX.md), [`regPolygon()`](regPolygon.md),
 [`ring()`](ring.md)
 
 ## Examples

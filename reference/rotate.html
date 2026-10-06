@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.956</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.958</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -88,7 +88,7 @@ rotated shape(s).</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="polygon.html">polygon()</a></code>, <code><a href="regPolygon.html">regPolygon()</a></code>,
+    <div class="dont-index"><p><code><a href="polygonX.html">polygonX()</a></code>, <code><a href="regPolygon.html">regPolygon()</a></code>,
 <code><a href="ellipse.html">ellipse()</a></code>, <code><a href="arc.html">arc()</a></code></p>
 <p>Other geometry.transformation:
 <code><a href="transformXY.html">transformXY()</a></code></p></div>
@@ -99,12 +99,12 @@ rotated shape(s).</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">op</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>no.readonly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># let's have a triangle</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="canvas.html">canvas</a></span><span class="op">(</span>main<span class="op">=</span><span class="st">"Rotation"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="regPolygon.html">regPolygon</a></span><span class="op">(</span>numVertices<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="regPolygon.html">regPolygon</a></span><span class="op">(</span>nVertices<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># and rotate</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span> <span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span> <span class="op">*</span> <span class="va">pi</span><span class="op">/</span><span class="fl">6</span>, <span class="kw">function</span><span class="op">(</span><span class="va">theta</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span>  <span class="va">xy</span> <span class="op">&lt;-</span> <span class="fu">rotate</span><span class="op">(</span> x<span class="op">=</span><span class="va">x</span>, theta<span class="op">=</span><span class="va">theta</span> <span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="polygon.html">polygon</a></span><span class="op">(</span><span class="va">xy</span>, col<span class="op">=</span><span class="fu"><a href="addOpacity.html">addOpacity</a></span><span class="op">(</span><span class="st">"blue"</span>, <span class="fl">0.2</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/polygon.html" class="external-link">polygon</a></span><span class="op">(</span><span class="va">xy</span>, col<span class="op">=</span><span class="fu"><a href="addOpacity.html">addOpacity</a></span><span class="op">(</span><span class="st">"blue"</span>, <span class="fl">0.2</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span> <span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>

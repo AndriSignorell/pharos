@@ -32,4 +32,4 @@ amount \cdot (255 - x) \$\$
 
 Other color.manipulation: [`addOpacity()`](addOpacity.md),
 [`colToOpaque()`](colToOpaque.md), [`darken()`](darken.md),
-[`fade()`](fade.md), [`mixColors()`](mixColors.md)
+[`fade()`](fade.md), [`mixCol()`](mixCol.md)

@@ -8,7 +8,7 @@ do not mutually overlap.
 ## Usage
 
 ``` r
-spreadOut(x, mindist = NULL, cex = 1)
+spreadOut(x, minDist = NULL, cex = 1)
 ```
 
 ## Arguments
@@ -17,7 +17,7 @@ spreadOut(x, mindist = NULL, cex = 1)
 
   a numeric vector which may contain `NA`s.
 
-- mindist:
+- minDist:
 
   the minimum interval between any two values. If this is left to `NULL`
   (default) the function will check if a plot is open and then use 90%%
@@ -39,7 +39,7 @@ values, the original vector is returned.
 `spreadOut()` starts at or near the middle of the vector and increases
 the intervals between the ordered values. `NA`s are preserved.
 `spreadOut()` first tries to spread groups of values with intervals less
-than `mindist` out neatly away from the mean of the group. If this
+than `minDist` out neatly away from the mean of the group. If this
 doesn't entirely succeed, a second pass that forces values away from the
 middle is performed.
 

@@ -15,7 +15,7 @@ can be clustered and be displayed together."><meta property="og:image" content="
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.956</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.958</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,10 +58,11 @@ can be clustered and be displayed together.</p>
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plotMiss</span><span class="op">(</span></span>
 <span>  <span class="va">x</span>,</span>
+<span>  main <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  cluster <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  col <span class="op">=</span> <span class="st">"deeppink4"</span>,</span>
 <span>  bg <span class="op">=</span> <span class="fu"><a href="fade.html">fade</a></span><span class="op">(</span><span class="st">"navajowhite3"</span>, <span class="fl">0.3</span><span class="op">)</span>,</span>
-<span>  clust <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  main <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  stamp <span class="op">=</span> <span class="va">.useTheme</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -74,6 +75,15 @@ can be clustered and be displayed together.</p>
 <dd><p>a data.frame to be analysed.</p></dd>
 
 
+<dt id="arg-main">main<a class="anchor" aria-label="anchor" href="#arg-main"></a></dt>
+<dd><p>the main title.</p></dd>
+
+
+<dt id="arg-cluster">cluster<a class="anchor" aria-label="anchor" href="#arg-cluster"></a></dt>
+<dd><p>logical, defining if the missings should be clustered. Default
+is <code>FALSE</code>.</p></dd>
+
+
 <dt id="arg-col">col<a class="anchor" aria-label="anchor" href="#arg-col"></a></dt>
 <dd><p>the colour of the missings.</p></dd>
 
@@ -82,13 +92,10 @@ can be clustered and be displayed together.</p>
 <dd><p>the background colour of the plot.</p></dd>
 
 
-<dt id="arg-clust">clust<a class="anchor" aria-label="anchor" href="#arg-clust"></a></dt>
-<dd><p>logical, defining if the missings should be clustered. Default
-is <code>FALSE</code>.</p></dd>
-
-
-<dt id="arg-main">main<a class="anchor" aria-label="anchor" href="#arg-main"></a></dt>
-<dd><p>the main title.</p></dd>
+<dt id="arg-stamp">stamp<a class="anchor" aria-label="anchor" href="#arg-stamp"></a></dt>
+<dd><p>controls the corner stamp. <code>.useTheme</code> (default)
+resolves to <code>getTheme()$stamp</code>. <code>TRUE</code>/<code>FALSE</code>/
+<code>NULL</code>, a string, or a named list for <code><a href="stamp.html">stamp()</a></code>.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
@@ -97,7 +104,7 @@ is <code>FALSE</code>.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>if clust is set to TRUE, the new order will be returned invisibly.</p>
+    <p>if <code>cluster</code> is set to TRUE, the new order will be returned invisibly.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -128,7 +135,7 @@ dependencies or patterns within the missings.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">plotMiss</span><span class="op">(</span><span class="va">airquality</span>, main<span class="op">=</span><span class="st">"Missing data (in orignal order)"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plotMiss-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span><span class="fu">plotMiss</span><span class="op">(</span><span class="va">airquality</span>, main<span class="op">=</span><span class="st">"Missing data (clustered)"</span>, clust<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">plotMiss</span><span class="op">(</span><span class="va">airquality</span>, main<span class="op">=</span><span class="st">"Missing data (clustered)"</span>, cluster<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plotMiss-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

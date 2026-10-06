@@ -9,7 +9,7 @@ Trimming with method `"left"` deletes only leading whitespaces,
 ## Usage
 
 ``` r
-strTrim(x, pattern = " \t\n", method = "both")
+strTrim(x, pattern = " \t\n", method = c("both", "left", "right"))
 ```
 
 ## Arguments

@@ -6,7 +6,7 @@ representations using either the NATO phonetic alphabet or Morse code.
 ## Usage
 
 ``` r
-strSpell(x, upr = "CAP", type = c("NATO", "Morse"))
+strSpell(x, upr = "CAP", type = c("nato", "morse"))
 ```
 
 ## Arguments
@@ -24,9 +24,9 @@ strSpell(x, upr = "CAP", type = c("NATO", "Morse"))
 
   character string specifying the encoding system:
 
-  - `"NATO"`: NATO phonetic alphabet (default)
+  - `"nato"`: NATO phonetic alphabet (default)
 
-  - `"Morse"`: Morse code
+  - `"morse"`: Morse code
 
 ## Value
 
@@ -38,7 +38,7 @@ representation.
 Letters (A–Z, a–z) and digits (0–9) are mapped to their corresponding
 phonetic representations. Other characters are returned unchanged.
 
-For `type = "NATO"`, uppercase letters can optionally be prefixed (e.g.,
+For `type = "nato"`, uppercase letters can optionally be prefixed (e.g.,
 `"CAP Alfa"`) to distinguish them from lowercase letters.
 
 The function uses Unicode-aware character splitting via
@@ -64,7 +64,7 @@ strSpell("A1B2")
 #> [1] "CAP Alfa"  "One"       "CAP Bravo" "Two"      
 
 # Morse code
-strSpell("SOS", type = "Morse")
+strSpell("SOS", type = "morse")
 #> [1] "..." "---" "..."
 
 # without uppercase prefix

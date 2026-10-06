@@ -15,8 +15,8 @@ lines(
   lty = "solid",
   type = "l",
   n = 100,
-  cbandArgs = list(conf.level = 0.95),
-  pbandArgs = NA,
+  cband = list(conf.level = 0.95),
+  pband = NA,
   xpred = NULL,
   ...
 )
@@ -29,8 +29,8 @@ lines(
   lty = "solid",
   type = "l",
   n = 100,
-  cbandArgs = list(conf.level = 0.95),
-  pbandArgs = NA,
+  cband = list(conf.level = 0.95),
+  pband = NA,
   xpred = NULL,
   ...
 )
@@ -64,16 +64,16 @@ lines(
 
   number of points used for plotting the fit.
 
-- cbandArgs:
+- cband:
 
   controls the confidence band. May be `TRUE`, `FALSE`, `NULL`, `NA`, or
   a named list. The confidence level is specified via `conf.level`, all
   other elements are graphical parameters of the band. Default is
   `list(conf.level=0.95)`.
 
-- pbandArgs:
+- pband:
 
-  controls the prediction band, as `cbandArgs`. Default is `NA`.
+  controls the prediction band, as `cband`. Default is `NA`.
 
 - xpred:
 
@@ -99,8 +99,8 @@ the model contains exactly one predictor variable. A polynomial,
 transformed term such as `y ~ log(x)` is drawn against the transformed
 values, matching `plot(y ~ log(x))`.
 
-Confidence and prediction bands are controlled via `cbandArgs` and
-`pbandArgs`. These arguments can be:
+Confidence and prediction bands are controlled via `cband` and `pband`.
+These arguments can be:
 
 - `FALSE`, `NULL` or `NA`: suppress the band
 

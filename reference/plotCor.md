@@ -15,8 +15,8 @@ plotCor(
   ylab = NULL,
   xax = TRUE,
   yax = TRUE,
+  minCor = 0,
   cluster = FALSE,
-  mincor = 0,
   triangle = c("full", "upper", "lower"),
   diag = TRUE,
   col = .useTheme,
@@ -24,6 +24,7 @@ plotCor(
   box = .useTheme,
   legend = TRUE,
   text = FALSE,
+  stamp = .useTheme,
   ...
 )
 ```
@@ -57,15 +58,15 @@ plotCor(
   :   custom axis parameters passed to
       [`graphics::axis()`](https://rdrr.io/r/graphics/axis.html)
 
+- minCor:
+
+  numeric threshold; correlations with absolute value smaller than this
+  are suppressed (set to `NA`).
+
 - cluster:
 
   logical; if `TRUE`, variables are reordered by hierarchical clustering
   to place similar correlations together.
-
-- mincor:
-
-  numeric threshold; correlations with absolute value smaller than this
-  are suppressed (set to `NA`).
 
 - triangle:
 
@@ -124,6 +125,12 @@ plotCor(
   `list(...)`
 
   :   custom parameters passed to the internal text drawing routine
+
+- stamp:
+
+  controls the corner stamp. `.useTheme` (default) resolves to
+  `getTheme()$stamp`. `TRUE`/`FALSE`/ `NULL`, a string, or a named list
+  for [`stamp()`](stamp.md).
 
 - ...:
 
@@ -210,18 +217,19 @@ plotCor(m,
 plotCor(m, grid = FALSE)
 
 
-plotCor(m, cols=colorRampPalette(c("red", "black", "green"), space = "rgb")(20))
+plotCor(m, col=colorRampPalette(c("red", "black", "green"), space = "rgb")(20))
 
-plotCor(m, cols=colorRampPalette(c("red", "black", "green"), space = "rgb")(20),
-         args.colLegend=NA)
+plotCor(m, col=colorRampPalette(c("red", "black", "green"), space = "rgb")(20),
+         legend=FALSE)
+
 
 m <- cor(mtcars)
 plotCor(m, col=pal("red-white-blue-1", 100), border="grey",
-         args.colLegend=list(labels=format(seq(-1,1,.25), digits=2), frame="grey"))
+         legend=list(labels=format(seq(-1,1,.25), digits=2), box=list(border="grey")))
 
 
 # display only correlation with a value > 0.7
-plotCor(m, mincor = 0.7)
+plotCor(m, minCor = 0.7)
 x <- matrix(rep(1:ncol(m),each=ncol(m)), ncol=ncol(m))
 y <- matrix(rep(ncol(m):1,ncol(m)), ncol=ncol(m))
 txt <- format(m, digits=3)
@@ -232,7 +240,7 @@ text(x=x[idx], y=y[idx], label=txt[idx], cex=0.8, xpd=TRUE)
 
 
 # put similiar correlations together
-plotCor(m, clust=TRUE)
+plotCor(m, cluster=TRUE)
 
 
 # same as
@@ -256,9 +264,9 @@ dimnames(p) <- list(vars, vars)
 m[p > 0.05] <- NA
 
 plotCor(m, mar=c(8,8,8,8), yaxt="n",
-         args.colLegend = list(x="bottom", inset=-.15, horiz=TRUE, 
-                                 height=abs(lineToUser(line = 2.5, side = 1)), 
-                                 width=ncol(m)))
+         legend = list(x="bottom", inset=-.15, horiz=TRUE, 
+                       height=abs(lineToUser(line = 2.5, side = 1)), 
+                       width=ncol(m)))
 mtext(text = rev(rownames(m)), side = 4, at=1:ncol(m), las=1, line = -5, cex=0.8)
 
 ```

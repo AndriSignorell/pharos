@@ -5,7 +5,7 @@ Decode long integers into RGB values.
 ## Usage
 
 ``` r
-longToRGB(col)
+longToRgb(col)
 ```
 
 ## Arguments

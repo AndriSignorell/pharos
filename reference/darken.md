@@ -32,4 +32,4 @@ Colors are mixed linearly with black in RGB space: \$\$ x\_{new} = x
 
 Other color.manipulation: [`addOpacity()`](addOpacity.md),
 [`colToOpaque()`](colToOpaque.md), [`fade()`](fade.md),
-[`lighten()`](lighten.md), [`mixColors()`](mixColors.md)
+[`lighten()`](lighten.md), [`mixCol()`](mixCol.md)

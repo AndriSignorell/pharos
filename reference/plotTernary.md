@@ -11,16 +11,17 @@ plotTernary(
   x,
   y = NULL,
   z = NULL,
-  ...,
+  main = "",
+  xlim = c(-1, 1),
+  ylim = c(-0.5, 1),
   add = FALSE,
   col = NULL,
   pch = 16,
   cex = 1,
   grid = NA,
-  lbl = NULL,
-  main = "",
-  xlim = c(-1, 1),
-  ylim = c(-0.5, 1)
+  labels = NULL,
+  stamp = .useTheme,
+  ...
 )
 ```
 
@@ -40,10 +41,13 @@ plotTernary(
 
   optional numeric vector for the third component.
 
-- ...:
+- main:
 
-  additional graphical parameters passed to
-  [`par()`](https://rdrr.io/r/graphics/par.html).
+  plot title.
+
+- xlim, ylim:
+
+  plot limits (usually left at defaults).
 
 - add:
 
@@ -65,17 +69,20 @@ plotTernary(
 
   logical, `NA`, or list controlling the ternary grid.
 
-- lbl:
+- labels:
 
   character vector of length 3 specifying axis labels.
 
-- main:
+- stamp:
 
-  plot title.
+  controls the corner stamp. `.useTheme` (default) resolves to
+  `getTheme()$stamp`. `TRUE`/`FALSE`/ `NULL`, a string, or a named list
+  for [`stamp()`](stamp.md).
 
-- xlim, ylim:
+- ...:
 
-  plot limits (usually left at defaults).
+  additional graphical parameters passed to
+  [`par()`](https://rdrr.io/r/graphics/par.html).
 
 ## Value
 
@@ -118,7 +125,7 @@ plotTernary(x, y, z)
 
 # matrix input
 M <- cbind(x, y, z)
-plotTernary(M, lbl = c("A", "B", "C"))
+plotTernary(M, labels = c("A", "B", "C"))
 #> Warning: rows are rescaled to sum to 1
 
 ```

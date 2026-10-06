@@ -17,7 +17,7 @@ number of observations falling into each cell."><meta property="og:image" conten
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.956</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.958</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,15 +62,16 @@ number of observations falling into each cell.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plotHexbin</span><span class="op">(</span></span>
 <span>  <span class="va">x</span>,</span>
 <span>  <span class="va">y</span>,</span>
-<span>  bins <span class="op">=</span> <span class="fl">30</span>,</span>
-<span>  col <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  border <span class="op">=</span> <span class="cn">NA</span>,</span>
-<span>  grid <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  xlim <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  ylim <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  main <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  xlab <span class="op">=</span> <span class="st">""</span>,</span>
 <span>  ylab <span class="op">=</span> <span class="st">""</span>,</span>
+<span>  xlim <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  ylim <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  nBins <span class="op">=</span> <span class="fl">30</span>,</span>
+<span>  col <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  border <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  grid <span class="op">=</span> <span class="va">.useTheme</span>,</span>
+<span>  stamp <span class="op">=</span> <span class="va">.useTheme</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -87,7 +88,27 @@ number of observations falling into each cell.</p>
 <dd><p>numeric vector of y-values.</p></dd>
 
 
-<dt id="arg-bins">bins<a class="anchor" aria-label="anchor" href="#arg-bins"></a></dt>
+<dt id="arg-main">main<a class="anchor" aria-label="anchor" href="#arg-main"></a></dt>
+<dd><p>main title.</p></dd>
+
+
+<dt id="arg-xlab">xlab<a class="anchor" aria-label="anchor" href="#arg-xlab"></a></dt>
+<dd><p>label for the x-axis.</p></dd>
+
+
+<dt id="arg-ylab">ylab<a class="anchor" aria-label="anchor" href="#arg-ylab"></a></dt>
+<dd><p>label for the y-axis.</p></dd>
+
+
+<dt id="arg-xlim">xlim<a class="anchor" aria-label="anchor" href="#arg-xlim"></a></dt>
+<dd><p>limits for the x-axis.</p></dd>
+
+
+<dt id="arg-ylim">ylim<a class="anchor" aria-label="anchor" href="#arg-ylim"></a></dt>
+<dd><p>limits for the y-axis.</p></dd>
+
+
+<dt id="arg-nbins">nBins<a class="anchor" aria-label="anchor" href="#arg-nbins"></a></dt>
 <dd><p>number of hexagons across the x-axis.</p></dd>
 
 
@@ -101,27 +122,15 @@ sequential palette is used.</p></dd>
 
 
 <dt id="arg-grid">grid<a class="anchor" aria-label="anchor" href="#arg-grid"></a></dt>
-<dd><p>logical or list controlling the background grid.</p></dd>
+<dd><p>controls the background grid. <code>.useTheme</code> (default) follows
+the active theme (<code>getTheme()$grid</code>), <code>TRUE</code> draws it, <code>FALSE</code>, <code>NULL</code>
+or <code>NA</code> suppress it, and a named list is passed to <code><a href="https://rdrr.io/r/graphics/grid.html" class="external-link">graphics::grid()</a></code>.</p></dd>
 
 
-<dt id="arg-xlim">xlim<a class="anchor" aria-label="anchor" href="#arg-xlim"></a></dt>
-<dd><p>limits for the x-axis.</p></dd>
-
-
-<dt id="arg-ylim">ylim<a class="anchor" aria-label="anchor" href="#arg-ylim"></a></dt>
-<dd><p>limits for the y-axis.</p></dd>
-
-
-<dt id="arg-main">main<a class="anchor" aria-label="anchor" href="#arg-main"></a></dt>
-<dd><p>main title.</p></dd>
-
-
-<dt id="arg-xlab">xlab<a class="anchor" aria-label="anchor" href="#arg-xlab"></a></dt>
-<dd><p>label for the x-axis.</p></dd>
-
-
-<dt id="arg-ylab">ylab<a class="anchor" aria-label="anchor" href="#arg-ylab"></a></dt>
-<dd><p>label for the y-axis.</p></dd>
+<dt id="arg-stamp">stamp<a class="anchor" aria-label="anchor" href="#arg-stamp"></a></dt>
+<dd><p>controls the corner stamp. <code>.useTheme</code> (default)
+resolves to <code>getTheme()$stamp</code>. <code>TRUE</code>/<code>FALSE</code>/
+<code>NULL</code>, a string, or a named list for <code><a href="stamp.html">stamp()</a></code>.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>

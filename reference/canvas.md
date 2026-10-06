@@ -6,7 +6,7 @@ for plotting geometric shapes.
 ## Usage
 
 ``` r
-canvas(xlim = NULL, ylim = xlim, main = NULL, asp = 1, usrbg = "white", ...)
+canvas(xlim = NULL, ylim = xlim, main = NULL, asp = 1, bg = "white", ...)
 ```
 
 ## Arguments
@@ -25,7 +25,7 @@ canvas(xlim = NULL, ylim = xlim, main = NULL, asp = 1, usrbg = "white", ...)
   [`plot.window()`](https://rdrr.io/r/graphics/plot.window.html) for
   details. Default is 1.
 
-- usrbg:
+- bg:
 
   the color of the user space of the plot, defaults to "white".
 

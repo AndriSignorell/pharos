@@ -15,7 +15,7 @@ organize a sorted numeric vector as a binary tree."><meta property="og:image" co
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.956</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.958</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,6 +62,7 @@ organize a sorted numeric vector as a binary tree.</p>
 <span>  horiz <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  text <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  line <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  stamp <span class="op">=</span> <span class="va">.useTheme</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -91,6 +92,12 @@ of <code><a href="boxedText.html">boxedText()</a></code> (besides geometry and l
 <dt id="arg-line">line<a class="anchor" aria-label="anchor" href="#arg-line"></a></dt>
 <dd><p>properties of the line segments (<code>col</code>,
 <code>lwd</code>, <code>lty</code>).</p></dd>
+
+
+<dt id="arg-stamp">stamp<a class="anchor" aria-label="anchor" href="#arg-stamp"></a></dt>
+<dd><p>controls the corner stamp. <code>.useTheme</code> (default)
+resolves to <code>getTheme()$stamp</code>. <code>TRUE</code>/<code>FALSE</code>/
+<code>NULL</code>, a string, or a named list for <code><a href="stamp.html">stamp()</a></code>.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>

@@ -19,7 +19,7 @@ palette, optional legend).'><meta property="og:image" content="/logo.png"></head
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.956</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.958</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,7 +64,7 @@ palette, optional legend).</p>
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plotMosaic</span><span class="op">(</span></span>
 <span>  <span class="va">x</span>,</span>
-<span>  main <span class="op">=</span> <span class="st">""</span>,</span>
+<span>  main <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  xlab <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  ylab <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  swap <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -74,8 +74,6 @@ palette, optional legend).</p>
 <span>  border <span class="op">=</span> <span class="st">"white"</span>,</span>
 <span>  legend <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"p"</span>, <span class="st">"n"</span>, <span class="st">"none"</span><span class="op">)</span>,</span>
-<span>  labCex <span class="op">=</span> <span class="fl">0.8</span>,</span>
-<span>  labDigits <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  stamp <span class="op">=</span> <span class="va">.useTheme</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -92,7 +90,8 @@ via <code>apply(x, c(1,2), sum)</code>.</p></dd>
 
 
 <dt id="arg-main">main<a class="anchor" aria-label="anchor" href="#arg-main"></a></dt>
-<dd><p>character. Plot title. Default <code>""</code> (no title).</p></dd>
+<dd><p>character. Plot title. <code>NULL</code> (default) takes the expression
+passed as <code>x</code>; <code>""</code>, <code>NA</code> or <code>FALSE</code> suppress the title.</p></dd>
 
 
 <dt id="arg-xlab-ylab">xlab, ylab<a class="anchor" aria-label="anchor" href="#arg-xlab-ylab"></a></dt>
@@ -142,17 +141,11 @@ Default <code>TRUE</code>.</p></dd>
 <dd><p>character, one of <code>"p"</code>, <code>"n"</code>, <code>"none"</code>. Cell labels
 showing the proportion of the table total (<code>"p"</code>), the absolute
 frequency (<code>"n"</code>), or no labels (<code>"none"</code>). Labels are only drawn for
-tiles large enough to hold them. Default <code>"p"</code>.</p></dd>
-
-
-<dt id="arg-labcex">labCex<a class="anchor" aria-label="anchor" href="#arg-labcex"></a></dt>
-<dd><p>numeric. Character expansion factor for cell labels.
-Default <code>0.8</code>.</p></dd>
-
-
-<dt id="arg-labdigits">labDigits<a class="anchor" aria-label="anchor" href="#arg-labdigits"></a></dt>
-<dd><p>integer. Number of decimal digits for percentage cell
-labels when <code>labels = "p"</code>. Default <code>1</code>.</p></dd>
+tiles large enough to hold them. Default <code>"p"</code>. A list sets the
+details: the type (element <code>type</code>, or the one unnamed element), the
+character expansion factor <code>cex</code> (default <code>0.8</code>) and the number of
+decimal digits <code>digits</code> for percentages (default <code>1</code>), e.g.
+<code>labels = list("p", cex = 0.7, digits = 0)</code>.</p></dd>
 
 
 <dt id="arg-stamp">stamp<a class="anchor" aria-label="anchor" href="#arg-stamp"></a></dt>

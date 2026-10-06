@@ -23,7 +23,7 @@ function. RGB is the hub between the two tables below."><meta property="og:image
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.956</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.958</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,16 +70,16 @@ function. RGB is the hub between the two tables below.</p>
     <div class="section level2">
     <h2 id="r-color-hex-hsv-and-rgb">R color, hex, HSV, and RGB<a class="anchor" aria-label="anchor" href="#r-color-hex-hsv-and-rgb"></a></h2>
 
-<table class="table table"><tr><td>From \ To</td><td>Col</td><td>Hex</td><td>HSV</td><td>RGB</td></tr><tr><td><strong>Col</strong></td><td>-</td><td><code><a href="colToHex.html">colToHex()</a></code></td><td><code><a href="colToHSV.html">colToHSV()</a></code></td><td><code><a href="colToRGB.html">colToRGB()</a></code></td></tr><tr><td><strong>Hex</strong></td><td><code><a href="hexToCol.html">hexToCol()</a></code></td><td>-</td><td>.</td><td><code><a href="hexToRGB.html">hexToRGB()</a></code></td></tr><tr><td><strong>HSV</strong></td><td>.</td><td>.</td><td>-</td><td>.</td></tr><tr><td><strong>RGB</strong></td><td><code><a href="RGBToCol.html">rgbToCol()</a></code></td><td><code><a href="RGBToHex.html">rgbToHex()</a></code></td><td>.</td><td>-</td></tr></table><p><em>"Col" is any valid R color specification (name, hex string, or
+<table class="table table"><tr><td>From \ To</td><td>Col</td><td>Hex</td><td>HSV</td><td>RGB</td></tr><tr><td><strong>Col</strong></td><td>-</td><td><code><a href="colToHex.html">colToHex()</a></code></td><td><code><a href="colToHSV.html">colToHsv()</a></code></td><td><code><a href="colToRGB.html">colToRgb()</a></code></td></tr><tr><td><strong>Hex</strong></td><td><code><a href="hexToCol.html">hexToCol()</a></code></td><td>-</td><td>.</td><td><code><a href="hexToRGB.html">hexToRgb()</a></code></td></tr><tr><td><strong>HSV</strong></td><td>.</td><td>.</td><td>-</td><td>.</td></tr><tr><td><strong>RGB</strong></td><td><code><a href="RGBToCol.html">rgbToCol()</a></code></td><td><code><a href="RGBToHex.html">rgbToHex()</a></code></td><td>.</td><td>-</td></tr></table><p><em>"Col" is any valid R color specification (name, hex string, or
 palette index) as accepted by</em> <code><a href="https://rdrr.io/r/grDevices/col2rgb.html" class="external-link">grDevices::col2rgb()</a></code>.
 No function starts from HSV: it is only ever a conversion target
-(via <code><a href="colToHSV.html">colToHSV()</a></code>), not a source – see the note below the
+(via <code><a href="colToHSV.html">colToHsv()</a></code>), not a source – see the note below the
 second table for the reason this gap is left open.</p>
     </div>
     <div class="section level2">
     <h2 id="rgb-cmy-cmyk-and-long-integer">RGB, CMY, CMYK, and long integer<a class="anchor" aria-label="anchor" href="#rgb-cmy-cmyk-and-long-integer"></a></h2>
 
-<table class="table table"><tr><td>From \ To</td><td>CMY</td><td>CMYK</td><td>Long</td><td>RGB</td></tr><tr><td><strong>CMY</strong></td><td>-</td><td><code><a href="CMYToCMYK.html">cmyToCmyk()</a></code></td><td>.</td><td>.</td></tr><tr><td><strong>CMYK</strong></td><td><code><a href="CMYKToCMY.html">cmykToCmy()</a></code></td><td>-</td><td>.</td><td><code><a href="CMYKToRGB.html">cmykToRgb()</a></code></td></tr><tr><td><strong>Long</strong></td><td>.</td><td>.</td><td>-</td><td><code><a href="longToRGB.html">longToRGB()</a></code></td></tr><tr><td><strong>RGB</strong></td><td><code><a href="RGBToCMY.html">rgbToCmy()</a></code></td><td>.</td><td><code><a href="RGBToLong.html">rgbToLong()</a></code></td><td>-</td></tr></table></div>
+<table class="table table"><tr><td>From \ To</td><td>CMY</td><td>CMYK</td><td>Long</td><td>RGB</td></tr><tr><td><strong>CMY</strong></td><td>-</td><td><code><a href="CMYToCMYK.html">cmyToCmyk()</a></code></td><td>.</td><td>.</td></tr><tr><td><strong>CMYK</strong></td><td><code><a href="CMYKToCMY.html">cmykToCmy()</a></code></td><td>-</td><td>.</td><td><code><a href="CMYKToRGB.html">cmykToRgb()</a></code></td></tr><tr><td><strong>Long</strong></td><td>.</td><td>.</td><td>-</td><td><code><a href="longToRGB.html">longToRgb()</a></code></td></tr><tr><td><strong>RGB</strong></td><td><code><a href="RGBToCMY.html">rgbToCmy()</a></code></td><td>.</td><td><code><a href="RGBToLong.html">rgbToLong()</a></code></td><td>-</td></tr></table></div>
     <div class="section level2">
     <h2 id="not-part-of-either-conversion-matrix">Not part of either conversion matrix<a class="anchor" aria-label="anchor" href="#not-part-of-either-conversion-matrix"></a></h2>
 
@@ -94,7 +94,7 @@ representation, so they don't fit a row/column slot above:</p><table class="tabl
 <code><a href="https://rdrr.io/r/grDevices/hsv.html" class="external-link">grDevices::hsv()</a></code>, which builds a hex color string
 directly from h/s/v values – the same role <code><a href="https://rdrr.io/r/grDevices/rgb.html" class="external-link">rgb()</a></code>
 plays for RGB triplets. pharos deliberately doesn't duplicate it;
-chain <code><a href="https://rdrr.io/r/grDevices/hsv.html" class="external-link">hsv()</a></code> into <code><a href="colToRGB.html">colToRGB()</a></code> or
+chain <code><a href="https://rdrr.io/r/grDevices/hsv.html" class="external-link">hsv()</a></code> into <code><a href="colToRGB.html">colToRgb()</a></code> or
 <code><a href="colToHex.html">colToHex()</a></code> instead (see examples).</p>
     </div>
     <div class="section level2">
@@ -113,11 +113,11 @@ chain <code><a href="https://rdrr.io/r/grDevices/hsv.html" class="external-link"
 <span class="r-out co"><span class="r-pr">#&gt;</span> C 0.8 0.4 0.1</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Long integer -&gt; R color name: Long -&gt; RGB -&gt; Col</span></span></span>
-<span class="r-in"><span><span class="fl">255</span> <span class="op">|&gt;</span> <span class="fu"><a href="longToRGB.html">longToRGB</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="RGBToCol.html">rgbToCol</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fl">255</span> <span class="op">|&gt;</span> <span class="fu"><a href="longToRGB.html">longToRgb</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="RGBToCol.html">rgbToCol</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "red"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># HSV -&gt; RGB: base R's hsv() bridges the gap noted above</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/grDevices/hsv.html" class="external-link">hsv</a></span><span class="op">(</span>h <span class="op">=</span> <span class="fl">0.6</span>, s <span class="op">=</span> <span class="fl">0.8</span>, v <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="colToRGB.html">colToRGB</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/grDevices/hsv.html" class="external-link">hsv</a></span><span class="op">(</span>h <span class="op">=</span> <span class="fl">0.6</span>, s <span class="op">=</span> <span class="fl">0.8</span>, v <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="colToRGB.html">colToRgb</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       [,1]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> red     46</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> green  119</span>

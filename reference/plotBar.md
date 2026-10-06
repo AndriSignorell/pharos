@@ -21,7 +21,7 @@ plotBar(
   grid = .useTheme,
   box = FALSE,
   text = NULL,
-  connlines = NULL,
+  connLines = NULL,
   stamp = .useTheme,
   ...
 )
@@ -105,7 +105,7 @@ plotBar(
   optional list of arguments passed to [`barText()`](barText.md) to draw
   value labels on bars.
 
-- connlines:
+- connLines:
 
   optional list of arguments controlling connecting lines between
   stacked bars. Only supported when `beside = FALSE`.
@@ -169,7 +169,7 @@ Other plot.univariate: [`plotArea()`](plotArea.md),
 [`plotBox()`](plotBox.md), [`plotCatDist()`](plotCatDist.md),
 [`plotDens()`](plotDens.md), [`plotDensBox()`](plotDensBox.md),
 [`plotDot()`](plotDot.md), [`plotECDF()`](plotECDF.md),
-[`plotFdist()`](plotFdist.md), [`plotLines()`](plotLines.md),
+[`plotFreqDist()`](plotFreqDist.md), [`plotLines()`](plotLines.md),
 [`plotQQ()`](plotQQ.md), [`plotViolin()`](plotViolin.md)
 
 ## Examples
@@ -187,7 +187,7 @@ plotBar(1:5, grid = TRUE)
 m <- matrix(c(3,2,4,1,5,2), nrow = 2)
 plotBar(m,
         text = list(pos = "mid"),
-        connlines = list(col = "black"))
+        connLines = list(col = "black"))
 
 
 # Grouped bars
@@ -218,7 +218,7 @@ plotBar(VADeaths, ylim=c(0,80),
         text = list(col="red", bg=addOpacity("white", 0.7), border=NA))
 
 
-plotBar(VADeaths, connlines = list(lwd=1, col="blue"), 
+plotBar(VADeaths, connLines = list(lwd=1, col="blue"), 
         box=FALSE, las=1, main="Connecting Lines")
 
 
@@ -229,7 +229,7 @@ plotBar(ptab,
         col=(cols <- gray.colors(nrow(VADeaths))),
         beside=FALSE, mar=c(right=5),
         text = list(labels=fm(ptab, fmt="%"), border=NA, 
-                    col=contrastColor(cols)))
+                    col=contrastCol(cols)))
 legend(x="right", fill=cols, legend=rownames(VADeaths))
 
 

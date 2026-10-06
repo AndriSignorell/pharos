@@ -15,7 +15,7 @@ Optionally includes labels for radii and angles."><meta property="og:image" cont
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.956</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.958</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,15 +57,15 @@ Optionally includes labels for radii and angles.</p>
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">polarGrid</span><span class="op">(</span></span>
-<span>  nr <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  ntheta <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  nRadial <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  nAngular <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  radialLabels <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  angleLabels <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  labelRadians <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  col <span class="op">=</span> <span class="st">"lightgray"</span>,</span>
 <span>  lty <span class="op">=</span> <span class="st">"dotted"</span>,</span>
 <span>  lwd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"lwd"</span><span class="op">)</span>,</span>
-<span>  rlabels <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  alabels <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  lblradians <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  cex.lab <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  cex <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  las <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  adj <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  dist <span class="op">=</span> <span class="cn">NULL</span></span>
@@ -76,7 +76,7 @@ Optionally includes labels for radii and angles.</p>
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
 
 
-<dl><dt id="arg-nr">nr<a class="anchor" aria-label="anchor" href="#arg-nr"></a></dt>
+<dl><dt id="arg-nradial">nRadial<a class="anchor" aria-label="anchor" href="#arg-nradial"></a></dt>
 <dd><p>numeric or vector controlling radial grid lines:</p><dl><dt><code>NULL</code></dt>
 <dd><p>Uses default "pretty" axis values.</p></dd>
 
@@ -93,7 +93,7 @@ Optionally includes labels for radii and angles.</p>
 </dl></dd>
 
 
-<dt id="arg-ntheta">ntheta<a class="anchor" aria-label="anchor" href="#arg-ntheta"></a></dt>
+<dt id="arg-nangular">nAngular<a class="anchor" aria-label="anchor" href="#arg-nangular"></a></dt>
 <dd><p>numeric or vector controlling angular grid lines:</p><dl><dt><code>NULL</code></dt>
 <dd><p>Uses 12 equally spaced angles.</p></dd>
 
@@ -110,6 +110,23 @@ Optionally includes labels for radii and angles.</p>
 </dl></dd>
 
 
+<dt id="arg-radiallabels">radialLabels<a class="anchor" aria-label="anchor" href="#arg-radiallabels"></a></dt>
+<dd><p>optional labels for radial grid lines (excluding zero).
+If <code>NULL</code>, labels are generated automatically.
+Use <code>NA</code> to suppress labels.</p></dd>
+
+
+<dt id="arg-anglelabels">angleLabels<a class="anchor" aria-label="anchor" href="#arg-anglelabels"></a></dt>
+<dd><p>optional labels for angular grid lines.
+If <code>NULL</code>, labels are generated automatically (degrees or radians).
+Use <code>NA</code> to suppress labels.</p></dd>
+
+
+<dt id="arg-labelradians">labelRadians<a class="anchor" aria-label="anchor" href="#arg-labelradians"></a></dt>
+<dd><p>logical; if <code>TRUE</code>, angle labels are shown in radians,
+otherwise in degrees.</p></dd>
+
+
 <dt id="arg-col">col<a class="anchor" aria-label="anchor" href="#arg-col"></a></dt>
 <dd><p>color of grid lines.</p></dd>
 
@@ -122,25 +139,8 @@ Optionally includes labels for radii and angles.</p>
 <dd><p>line width for grid lines.</p></dd>
 
 
-<dt id="arg-rlabels">rlabels<a class="anchor" aria-label="anchor" href="#arg-rlabels"></a></dt>
-<dd><p>optional labels for radial grid lines (excluding zero).
-If <code>NULL</code>, labels are generated automatically.
-Use <code>NA</code> to suppress labels.</p></dd>
-
-
-<dt id="arg-alabels">alabels<a class="anchor" aria-label="anchor" href="#arg-alabels"></a></dt>
-<dd><p>optional labels for angular grid lines.
-If <code>NULL</code>, labels are generated automatically (degrees or radians).
-Use <code>NA</code> to suppress labels.</p></dd>
-
-
-<dt id="arg-lblradians">lblradians<a class="anchor" aria-label="anchor" href="#arg-lblradians"></a></dt>
-<dd><p>logical; if <code>TRUE</code>, angle labels are shown in radians,
-otherwise in degrees.</p></dd>
-
-
-<dt id="arg-cex-lab">cex.lab<a class="anchor" aria-label="anchor" href="#arg-cex-lab"></a></dt>
-<dd><p>character expansion factor for labels.</p></dd>
+<dt id="arg-cex">cex<a class="anchor" aria-label="anchor" href="#arg-cex"></a></dt>
+<dd><p>character expansion factor for the labels.</p></dd>
 
 
 <dt id="arg-las">las<a class="anchor" aria-label="anchor" href="#arg-las"></a></dt>
@@ -184,10 +184,10 @@ and <code>dist</code>.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># custom grid</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, type <span class="op">=</span> <span class="st">"n"</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span>, asp <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">polarGrid</span><span class="op">(</span>nr <span class="op">=</span> <span class="fl">4</span>, ntheta <span class="op">=</span> <span class="fl">8</span>, col <span class="op">=</span> <span class="st">"gray"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">polarGrid</span><span class="op">(</span>nRadial <span class="op">=</span> <span class="fl">4</span>, nAngular <span class="op">=</span> <span class="fl">8</span>, col <span class="op">=</span> <span class="st">"gray"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># suppress labels</span></span></span>
-<span class="r-in"><span><span class="fu">polarGrid</span><span class="op">(</span>rlabels <span class="op">=</span> <span class="cn">NA</span>, alabels <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">polarGrid</span><span class="op">(</span>radialLabels <span class="op">=</span> <span class="cn">NA</span>, angleLabels <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="polarGrid-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>

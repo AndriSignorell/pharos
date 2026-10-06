@@ -5,12 +5,12 @@ Convert hexadecimal colors to the nearest named R colors.
 ## Usage
 
 ``` r
-hexToCol(hex, method = c("rgb", "hsv"), metric = c("euclidean", "manhattan"))
+hexToCol(col, method = c("rgb", "hsv"), metric = c("euclidean", "manhattan"))
 ```
 
 ## Arguments
 
-- hex:
+- col:
 
   character vector of hexadecimal colors.
 

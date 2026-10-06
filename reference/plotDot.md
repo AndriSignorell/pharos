@@ -9,16 +9,18 @@ Several series of estimates can be arranged in labelled groups.
 ``` r
 plotDot(
   x,
-  items = NULL,
-  groups = NULL,
   main = NULL,
   xlim = NULL,
-  gap = 1,
-  axes = TRUE,
   xax = NULL,
-  box = .useTheme,
-  grid = .useTheme,
+  axes = TRUE,
+  items = NULL,
+  groups = NULL,
+  gap = 1,
   pch = .useTheme,
+  cex = .useTheme,
+  grid = .useTheme,
+  box = .useTheme,
+  stamp = .useTheme,
   ...
 )
 ```
@@ -31,6 +33,24 @@ plotDot(
   numeric vector, a numeric matrix, a three-dimensional numeric array,
   or a `"CI"` object created with [`as.CI()`](as.CI.md)
 
+- main:
+
+  optional main title
+
+- xlim:
+
+  numeric vector containing the limits of the horizontal axis; by
+  default, the range of all estimates and confidence limits
+
+- xax:
+
+  optional specification for the horizontal axis, interpreted by the
+  internal axis renderer
+
+- axes:
+
+  logical; whether the horizontal and item axes are drawn
+
 - items:
 
   optional character vector containing the item labels; defaults to the
@@ -41,40 +61,10 @@ plotDot(
   optional character vector containing the group labels; defaults to the
   column names or third dimension names of `x`
 
-- main:
-
-  optional main title
-
-- xlim:
-
-  numeric vector containing the limits of the horizontal axis; by
-  default, the range of all estimates and confidence limits
-
 - gap:
 
   non-negative numeric value controlling the vertical space between
   groups
-
-- axes:
-
-  logical; whether the horizontal and item axes are drawn
-
-- xax:
-
-  optional specification for the horizontal axis, interpreted by the
-  internal axis renderer
-
-- box:
-
-  specification controlling the plot box. The default `.useTheme` uses
-  the active theme. A logical value, `NA`, or a named list of graphical
-  parameters can also be supplied
-
-- grid:
-
-  specification controlling the horizontal item and group grid lines.
-  The default `.useTheme` follows the active theme. A logical value,
-  `NA`, or a named list of graphical parameters can also be supplied
 
 - pch:
 
@@ -82,6 +72,29 @@ plotDot(
   the point settings of the active theme. A plotting symbol or a named
   list containing parameters such as `pch`, `col`, `bg`, and `cex` can
   also be supplied
+
+- cex:
+
+  character expansion factor for the points. `.useTheme` (default)
+  resolves to `getTheme()$points$cex`.
+
+- grid:
+
+  specification controlling the horizontal item and group grid lines.
+  The default `.useTheme` follows the active theme. A logical value,
+  `NA`, or a named list of graphical parameters can also be supplied
+
+- box:
+
+  specification controlling the plot box. The default `.useTheme` uses
+  the active theme. A logical value, `NA`, or a named list of graphical
+  parameters can also be supplied
+
+- stamp:
+
+  controls the corner stamp. `.useTheme` (default) resolves to
+  `getTheme()$stamp`. `TRUE`/`FALSE`/ `NULL`, a string, or a named list
+  for [`stamp()`](stamp.md).
 
 - ...:
 
@@ -136,14 +149,14 @@ corresponding settings of the active theme.
 
 ## See also
 
-[`as.CI()`](as.CI.md), [`is.CI()`](as.CI.md),
+[`as.CI()`](as.CI.md), [`isCI()`](as.CI.md),
 [`graphics::dotchart()`](https://rdrr.io/r/graphics/dotchart.html)
 
 Other plot.univariate: [`plotArea()`](plotArea.md),
 [`plotBar()`](plotBar.md), [`plotBox()`](plotBox.md),
 [`plotCatDist()`](plotCatDist.md), [`plotDens()`](plotDens.md),
 [`plotDensBox()`](plotDensBox.md), [`plotECDF()`](plotECDF.md),
-[`plotFdist()`](plotFdist.md), [`plotLines()`](plotLines.md),
+[`plotFreqDist()`](plotFreqDist.md), [`plotLines()`](plotLines.md),
 [`plotQQ()`](plotQQ.md), [`plotViolin()`](plotViolin.md)
 
 ## Examples

@@ -6,7 +6,7 @@ length.
 ## Usage
 
 ``` r
-strPad(x, width = NULL, pad = " ", adj = "left")
+strPad(x, width = NULL, pad = " ", align = c("left", "right", "center"))
 ```
 
 ## Arguments
@@ -25,7 +25,7 @@ strPad(x, width = NULL, pad = " ", adj = "left")
   string to pad with. Will be repeated as often as necessary. Default is
   " ".
 
-- adj:
+- align:
 
   adjustment of the old string, one of `"left"`, `"right"`, `"center"`.
   If set to `"left"` the old string will be adjusted on the left and the

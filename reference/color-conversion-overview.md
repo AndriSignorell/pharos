@@ -12,8 +12,8 @@ two tables below.
 |  |  |  |  |  |
 |----|----|----|----|----|
 | From \\ To | Col | Hex | HSV | RGB |
-| **Col** | \- | [`colToHex()`](colToHex.md) | [`colToHSV()`](colToHSV.md) | [`colToRGB()`](colToRGB.md) |
-| **Hex** | [`hexToCol()`](hexToCol.md) | \- | . | [`hexToRGB()`](hexToRGB.md) |
+| **Col** | \- | [`colToHex()`](colToHex.md) | [`colToHsv()`](colToHSV.md) | [`colToRgb()`](colToRGB.md) |
+| **Hex** | [`hexToCol()`](hexToCol.md) | \- | . | [`hexToRgb()`](hexToRGB.md) |
 | **HSV** | . | . | \- | . |
 | **RGB** | [`rgbToCol()`](RGBToCol.md) | [`rgbToHex()`](RGBToHex.md) | . | \- |
 
@@ -21,7 +21,7 @@ two tables below.
 index) as accepted by*
 [`grDevices::col2rgb()`](https://rdrr.io/r/grDevices/col2rgb.html). No
 function starts from HSV: it is only ever a conversion target (via
-[`colToHSV()`](colToHSV.md)), not a source – see the note below the
+[`colToHsv()`](colToHSV.md)), not a source – see the note below the
 second table for the reason this gap is left open.
 
 ## RGB, CMY, CMYK, and long integer
@@ -31,7 +31,7 @@ second table for the reason this gap is left open.
 | From \\ To | CMY | CMYK | Long | RGB |
 | **CMY** | \- | [`cmyToCmyk()`](CMYToCMYK.md) | . | . |
 | **CMYK** | [`cmykToCmy()`](CMYKToCMY.md) | \- | . | [`cmykToRgb()`](CMYKToRGB.md) |
-| **Long** | . | . | \- | [`longToRGB()`](longToRGB.md) |
+| **Long** | . | . | \- | [`longToRgb()`](longToRGB.md) |
 | **RGB** | [`rgbToCmy()`](RGBToCMY.md) | . | [`rgbToLong()`](RGBToLong.md) | \- |
 
 ## Not part of either conversion matrix
@@ -53,7 +53,7 @@ a hex color string directly from h/s/v values – the same role
 [`rgb()`](https://rdrr.io/r/grDevices/rgb.html) plays for RGB triplets.
 pharos deliberately doesn't duplicate it; chain
 [`hsv()`](https://rdrr.io/r/grDevices/hsv.html) into
-[`colToRGB()`](colToRGB.md) or [`colToHex()`](colToHex.md) instead (see
+[`colToRgb()`](colToRGB.md) or [`colToHex()`](colToHex.md) instead (see
 examples).
 
 ## See also
@@ -73,11 +73,11 @@ c(0.2, 0.6, 0.9) |> cmyToCmyk() |> cmykToRgb()
 #> C 0.8 0.4 0.1
 
 # Long integer -> R color name: Long -> RGB -> Col
-255 |> longToRGB() |> rgbToCol()
+255 |> longToRgb() |> rgbToCol()
 #> [1] "red"
 
 # HSV -> RGB: base R's hsv() bridges the gap noted above
-hsv(h = 0.6, s = 0.8, v = 0.9) |> colToRGB()
+hsv(h = 0.6, s = 0.8, v = 0.9) |> colToRgb()
 #>       [,1]
 #> red     46
 #> green  119

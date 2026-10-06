@@ -14,13 +14,13 @@ plotHeatmap(
   ylab = "",
   xlim = NULL,
   ylim = NULL,
+  zlim = NULL,
   scale = c("count", "prop", "row", "col"),
   col = .useTheme,
   border = NA,
   naCol = "gray90",
-  text = FALSE,
-  zlim = NULL,
   box = .useTheme,
+  text = FALSE,
   stamp = .useTheme,
   ...
 )
@@ -58,6 +58,11 @@ plotHeatmap(
 
   numeric vectors of length 2 specifying axis limits.
 
+- zlim:
+
+  numeric vector of length 2 specifying the range used for color
+  scaling. If `NULL`, the range of the data is used.
+
 - scale:
 
   character specifying how values are computed:
@@ -94,16 +99,6 @@ plotHeatmap(
 
   color used for missing values.
 
-- text:
-
-  logical; if `TRUE`, cell values are printed on top of the tiles using
-  [`fm()`](fm.md) formatting.
-
-- zlim:
-
-  numeric vector of length 2 specifying the range used for color
-  scaling. If `NULL`, the range of the data is used.
-
 - box:
 
   controls drawing of the outer frame around the tile grid, drawn via
@@ -116,6 +111,11 @@ plotHeatmap(
   a named list overriding
   [`rect()`](https://rdrr.io/r/graphics/rect.html) arguments for this
   call only.
+
+- text:
+
+  logical; if `TRUE`, cell values are printed on top of the tiles using
+  [`fm()`](fm.md) formatting.
 
 - stamp:
 
