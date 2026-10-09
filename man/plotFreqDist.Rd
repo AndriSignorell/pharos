@@ -89,6 +89,10 @@ via the internal framework. Note that \code{mar} given here sets the
 \emph{outer} margins (\code{oma}) of the multi-panel figure; the
 inner panel margins are managed internally and cannot be overridden.}
 }
+\value{
+No return value (invisible \code{NULL}), called for its side effect of
+drawing the plot.
+}
 \description{
 Creates a univariate graphical summary combining a histogram (or probability
 mass plot for discrete data), a kernel density curve, a boxplot, and an

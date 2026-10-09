@@ -56,6 +56,9 @@
 #' 
 #' @param \dots the dots are passed to the plot function. 
 #' 
+#' @return No return value (invisible `NULL`), called for its side effect of
+#' drawing the plot.
+#'
 #' @note The code is inspired by the tip 10.22 "Creating other
 #' Quantile-Quantile plots" from R Cookbook and based on R-Core code from the
 #' function `qqline`. The calculation of confidence bands are rewritten

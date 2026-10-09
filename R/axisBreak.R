@@ -24,6 +24,9 @@
 #' @note Based on code by Jim Lemon and Ben Bolker, adapted to conform to package
 #' standards
 #'  
+#' @return No return value, called for its side effect of drawing the break
+#' mark on the current plot.
+#'
 #' @examples
 #' 
 #' plot(3:10, main="Axis break test")
@@ -61,8 +64,10 @@ axisBreak <- function (axis = 1, breakpos = NULL, pos = NA, bgcol = "white",
                                                                                                               xw/2, figxy[4] - yw/2, breakpos + xw/2, figxy[4] + yw/2),
          br <- c(figxy[2] - xw/2, breakpos - yw/2, figxy[2] +
                    xw/2, breakpos + yw/2), stop("Improper axis specification."))
-  old.xpd <- par("xpd")
-  par(xpd = TRUE)
+  # the marker sits on the axis, outside the plot region; the caller's
+  # setting is restored on exit, also if drawing fails
+  op <- par(xpd = TRUE)
+  on.exit(par(op), add = TRUE)
   if (xaxl)
     br[c(1, 3)] <- 10^br[c(1, 3)]
   if (yaxl)
@@ -100,7 +105,6 @@ axisBreak <- function (axis = 1, breakpos = NULL, pos = NA, bgcol = "white",
         xend <- 10^xend
       }
     }
-    par(xpd = TRUE)
   }
   else {
     rect(br[1], br[2], br[3], br[4], col = bgcol, border = bgcol)
@@ -158,6 +162,7 @@ axisBreak <- function (axis = 1, breakpos = NULL, pos = NA, bgcol = "white",
     }
   }
   segments(xbegin, ybegin, xend, yend, col = breakcol, lty = 1)
-  par(xpd = FALSE)
+
+  invisible(NULL)
 }
 

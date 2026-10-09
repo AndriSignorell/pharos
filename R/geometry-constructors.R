@@ -12,6 +12,17 @@
 #' @return
 #' An object inheriting from class `"arcGeometry"`.
 #'
+#' @examples
+#' canvas(xlim = c(-2, 2))
+#'
+#' # a quarter of a circle
+#' lines(arc(radiusX = 1.5, startAngle = 0, endAngle = pi/2), lwd = 2)
+#'
+#' # elliptic arcs, vectors of radii yield a collection of arcs
+#' a <- arc(radiusX = c(0.5, 1), radiusY = c(1, 1.8),
+#'          startAngle = pi, endAngle = 3*pi/2)
+#' lines(a, col = "red")
+#'
 #' @family geometry.structures
 #' @concept geometry
 #' @concept numerical-methods
@@ -77,6 +88,15 @@ arc <- function(
 #' @return
 #' An object inheriting from class `"circleGeometry"`.
 #'
+#' @examples
+#' canvas(xlim = c(-2, 2))
+#'
+#' polygonX(circle(radius = 1.5), col = "lightblue")
+#'
+#' # several circles at once
+#' polygonX(circle(x = c(-0.6, 0.6), y = 0, radius = 0.4),
+#'          col = c("tomato", "royalblue"))
+#'
 #' @family geometry.structures
 #' @concept geometry
 #' @concept numerical-methods
@@ -122,6 +142,15 @@ circle <- function(
 #' @return
 #' An object inheriting from class `"ellipseGeometry"`.
 #'
+#' @examples
+#' canvas(xlim = c(-2, 2))
+#'
+#' e <- ellipse(radiusX = 1.8, radiusY = 0.8)
+#' polygonX(e, col = "lightblue")
+#'
+#' # the same ellipse, rotated by 45 degrees
+#' polygonX(rotate(e, theta = pi/4), border = "red")
+#'
 #' @family geometry.structures
 #' @concept geometry
 #' @concept numerical-methods
@@ -165,6 +194,20 @@ ellipse <- function(
 #'
 #' @return
 #' An object inheriting from class `"regPolygonGeometry"`.
+#'
+#' @examples
+#' canvas(xlim = c(-2, 2))
+#'
+#' # a hexagon is the default
+#' polygonX(regPolygon(radius = 1.8), col = "lightblue")
+#'
+#' # a square, once standing on a vertex and once on an edge
+#' polygonX(regPolygon(radius = 1.2, nVertices = 4), border = "red")
+#' polygonX(regPolygon(radius = 1.2, nVertices = 4, startAngle = pi/4))
+#'
+#' # a triangle pointing upwards
+#' polygonX(regPolygon(radius = 0.5, nVertices = 3, startAngle = pi/2),
+#'          col = "royalblue")
 #'
 #' @family geometry.structures
 #' @concept geometry
@@ -214,6 +257,17 @@ regPolygon <- function(
 #' @return
 #' An object inheriting from class `"ringGeometry"` or a
 #' `"geometryCollection"`.
+#'
+#' @examples
+#' canvas(xlim = c(-2, 2))
+#'
+#' # a full ring
+#' polygonX(ring(innerRadius = 1.4, outerRadius = 1.8), col = "lightblue")
+#'
+#' # two ring segments at once
+#' r <- ring(innerRadius = c(0.3, 0.8), outerRadius = c(0.7, 1.2),
+#'           startAngle = c(0, pi), endAngle = c(pi/2, 3*pi/2))
+#' polygonX(r, col = c("tomato", "royalblue"))
 #'
 #' @family geometry.structures
 #' @concept geometry

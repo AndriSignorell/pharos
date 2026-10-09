@@ -22,6 +22,16 @@ Create an elliptic geometry.
 \details{
 Use \code{\link[=rotate]{rotate()}} to rotate the resulting geometry.
 }
+\examples{
+canvas(xlim = c(-2, 2))
+
+e <- ellipse(radiusX = 1.8, radiusY = 0.8)
+polygonX(e, col = "lightblue")
+
+# the same ellipse, rotated by 45 degrees
+polygonX(rotate(e, theta = pi/4), border = "red")
+
+}
 \seealso{
 Other geometry.structures:
 \code{\link[=arc]{arc()}},

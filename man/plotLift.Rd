@@ -141,22 +141,39 @@ The number of groups is a property of the lift table, not of the plot -
 set it via the \code{nBins} argument of \code{alloy::lift()}.
 }
 \examples{
-\dontrun{
-fitLogit <- alloy::fitMod(admit ~ gre + gpa + rank, Admit, engine = "logit")
-lft <- alloy::lift(fitLogit)
+# A lift table is normally computed by alloy::lift(). To keep the example
+# self-contained, the columns used by the plot are built by hand here:
+# cases ranked by decreasing score and cut into equally sized groups.
+liftTable <- function(score, y, nBins = 10) {
+  y    <- y[order(score, decreasing = TRUE)]
+  bin  <- cut(seq_along(y), nBins, labels = FALSE)
+  nObs <- as.vector(table(bin))
+  nPos <- as.vector(tapply(y, bin, sum))
+  structure(
+    data.frame(bin     = seq_len(nBins),
+               lift    = (nPos / nObs) / mean(y),
+               depth   = cumsum(nObs) / length(y),
+               cumLift = (cumsum(nPos) / cumsum(nObs)) / mean(y),
+               gain    = cumsum(nPos) / sum(y)),
+    class    = c("Lift", "data.frame"),
+    baseRate = mean(y))
+}
+
+y   <- as.integer(iris$Species == "virginica")
+fit <- glm(y ~ Sepal.Length + Sepal.Width, data = iris, family = binomial)
+lft <- liftTable(fitted(fit), y)
 
 plotLift(lft)
 plotLift(lft, type = "gain")
 
 # Per-group bars, coarser grouping set at computation time
-plotLift(alloy::lift(fitLogit, nBins = 5), type = "decile")
+plotLift(liftTable(fitted(fit), y, nBins = 5), type = "decile")
 
 # Add the perfect-ranking reference, suppress the legend
 plotLift(lft, perfect = TRUE, legend = FALSE)
 
 # No title, compact top margin
 plotLift(lft, main = "")
-}
 
 }
 \seealso{

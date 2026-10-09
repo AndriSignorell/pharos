@@ -30,6 +30,11 @@
 #'   [stats::smooth.spline()]; for `lines()`, further graphical parameters
 #'   passed to [lines()].
 #'
+#' @return `splineX()` returns the fit of [stats::smooth.spline()] with the
+#' additional class `"SplineX"`. The `lines()` method returns no value
+#' (invisible `NULL`); it is called for its side effect of adding the smoother
+#' and its confidence band to the current plot.
+#'
 #' @examples
 #' op <- par(no.readonly = TRUE)
 #' par(mfrow = c(1, 2))

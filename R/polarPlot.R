@@ -103,8 +103,11 @@ plotPolar <- function(
     
     
     if (length(type) < k) type <- rep(type, length.out = k)
-    if (length(col) < k)  col <- rep(col, length.out = k)
-    if (length(border) < k) border <- rep(border, length.out = k)
+    # NULL stands for the defaults of the drawing functions; rep(NULL) warns
+    if (!is.null(col) && length(col) < k)
+      col <- rep(col, length.out = k)
+    if (!is.null(border) && length(border) < k)
+      border <- rep(border, length.out = k)
 
     # definition follows plot.default()
     if (is.null(rlim))
@@ -120,11 +123,12 @@ plotPolar <- function(
       xy <- xy.coords( x=cos(theta[i,]) * r[i,], 
                        y=sin(theta[i,])*r[i,])
       if(type[i] == "p"){
-        points( xy, col = col[i] )
+        # NULL stands for the current plotting color
+        points( xy, col = col[i] %||% par("col") )
       } else if( type[i]=="l") {
         polygon(xy, border = border[i], col = col[i])
       } else if( type[i]=="h") {
-        segments(x0=0, y0=0, x1=xy$x, y1=xy$y, col = col[i])
+        segments(x0=0, y0=0, x1=xy$x, y1=xy$y, col = col[i] %||% par("col"))
       }
     }
   

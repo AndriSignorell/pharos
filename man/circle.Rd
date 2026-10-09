@@ -19,6 +19,16 @@ An object inheriting from class \code{"circleGeometry"}.
 \description{
 Create a circular geometry.
 }
+\examples{
+canvas(xlim = c(-2, 2))
+
+polygonX(circle(radius = 1.5), col = "lightblue")
+
+# several circles at once
+polygonX(circle(x = c(-0.6, 0.6), y = 0, radius = 0.4),
+         col = c("tomato", "royalblue"))
+
+}
 \seealso{
 Other geometry.structures:
 \code{\link[=arc]{arc()}},

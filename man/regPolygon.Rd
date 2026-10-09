@@ -21,6 +21,21 @@ An object inheriting from class \code{"regPolygonGeometry"}.
 \description{
 Create a regular polygon.
 }
+\examples{
+canvas(xlim = c(-2, 2))
+
+# a hexagon is the default
+polygonX(regPolygon(radius = 1.8), col = "lightblue")
+
+# a square, once standing on a vertex and once on an edge
+polygonX(regPolygon(radius = 1.2, nVertices = 4), border = "red")
+polygonX(regPolygon(radius = 1.2, nVertices = 4, startAngle = pi/4))
+
+# a triangle pointing upwards
+polygonX(regPolygon(radius = 0.5, nVertices = 3, startAngle = pi/2),
+         col = "royalblue")
+
+}
 \seealso{
 Other geometry.structures:
 \code{\link[=arc]{arc()}},

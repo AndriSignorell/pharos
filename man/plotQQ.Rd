@@ -77,6 +77,10 @@ a string, or a named list of arguments for \code{stamp()} (e.g.
 
 \item{\dots}{the dots are passed to the plot function.}
 }
+\value{
+No return value (invisible \code{NULL}), called for its side effect of
+drawing the plot.
+}
 \description{
 Create a QQ-plot for a variable of any distribution. The assumed underlying
 distribution can be defined as a function of f(p), including all required

@@ -12,9 +12,19 @@
 #' @param x object to preview.
 #' @param ... further arguments passed to methods.
 #'
+#' @return `x`, invisibly. Called for its side effect of displaying the
+#' object.
+#'
 #' @details
 #' The default method simply calls `print()`, so `preview()` is
 #' always safe to call even for types with no dedicated method.
+#'
+#' @examples
+#' # without a dedicated method the object is simply printed
+#' preview(1:3)
+#'
+#' # HTML markup is rendered as text
+#' preview(asHtml("<b>Note:</b> R<sup>2</sup> = 0.87"))
 #'
 #' @seealso [asHtml()]
 #'
@@ -52,6 +62,16 @@ preview.default <- function(x, ...) {
 #'   consistency with [print()])
 #'
 #' @return `x`, invisibly
+#'
+#' @examples
+#' preview(asHtml(
+#'   "<b>Model:</b> y = &beta;<sub>0</sub> + &beta;<sub>1</sub>x + &varepsilon;"
+#' ))
+#'
+#' # tables are rendered as aligned text
+#' m <- matrix(c(12.3, 4.56, 7.8, 91.2), nrow = 2,
+#'             dimnames = list(c("a", "b"), c("mean", "sd")))
+#' preview(toHtmlTable(m))
 #'
 #' @export
 preview.html <- function(x, ...) {

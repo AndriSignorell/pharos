@@ -62,6 +62,22 @@ Displays a two-dimensional density estimate using hexagonal bins.
 Observations are aggregated into hexagons and coloured according to the
 number of observations falling into each cell.
 }
+\examples{
+if (requireNamespace("hexbin", quietly = TRUE)) {
+
+  set.seed(42)
+  x <- rnorm(5000)
+  y <- x + rnorm(5000)
+
+  plotHexbin(x, y)
+
+  # fewer and larger cells, user-defined colors
+  plotHexbin(x, y, nBins = 15,
+             col = hcl.colors(50, "YlOrRd", rev = TRUE), border = "white",
+             main = "Hexagonal binning")
+}
+
+}
 \seealso{
 Other plot.bivariate:
 \code{\link[=plotAssoc]{plotAssoc()}},

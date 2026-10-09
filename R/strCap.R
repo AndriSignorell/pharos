@@ -65,7 +65,8 @@ strCap <- function(x, method = c("first", "word", "title")) {
     words <- stringi::stri_split_boundaries(tolower(x), type = "word")
     
     res <- sapply(words, function(w) {
-      w[w %notin% low] <- stringi::stri_trans_totitle(w[w %notin% low])
+      up <- !w %in% low
+      w[up] <- stringi::stri_trans_totitle(w[up])
       paste(w, collapse = "")
     })
   }

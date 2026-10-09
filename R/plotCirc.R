@@ -14,6 +14,10 @@
 #'   \item or a list with elements `col` and `border`.
 #' }
 #' Colors are recycled to match the number of sectors (`nrow(x) + ncol(x)`).
+#' The sectors are filled in the order in which they are drawn: the columns
+#' of `x` first, then the rows, both in reverse order. `TRUE` (default)
+#' uses the qualitative palette of the active theme (see [theme]) and grey
+#' borders.
 #'
 #' @param ribbon ribbon styling. Can be:
 #' \itemize{
@@ -22,13 +26,18 @@
 #'   \item or a list with elements `col` and `border`.
 #' }
 #' Colors are recycled to match the number of row categories (`nrow(x)`).
+#' With `TRUE` (default) a ribbon takes the color of the row sector it
+#' starts from, made half transparent, and a grey border.
 #'
 #' @param labels label styling. Can be:
 #' \itemize{
 #'   \item a logical (`TRUE`/`FALSE`) to enable/disable labels,
-#'   \item a character vector of labels,
-#'   \item or a list with parameters passed to internal label drawing.
+#'   \item a character vector of labels, for the rows followed by the
+#'     columns of `x`,
+#'   \item or a list with parameters passed to internal label drawing
+#'     (`labels`, `cex`, `col`, `las`, `adj`).
 #' }
+#' `TRUE` (default) uses the row and column names of `x`.
 #'
 #' @param gap numeric. Gap between sectors in degrees.
 #'
@@ -121,6 +130,33 @@ plotCirc <- function(
   innerR <- .95
   outerR <- 1
   
+  # --- sector and ribbon styling -------------------------------
+
+  # TRUE stands for the defaults, FALSE or NULL switch the element off, a
+  # vector holds the fill colors, a list may set 'col' and 'border'.
+  secCol <- as.character(pal(getTheme()$palette, n = nr + nc))
+
+  sector <- .circStyle(sector, col = secCol, n = nr + nc, arg = "sector")
+
+  # The sectors are drawn with the columns first and both margins in
+  # reverse order, so row j is found at position nc + nr + 1 - j. By
+  # default a ribbon takes the color of the row it starts from.
+  rowCol <- (if (is.null(sector)) secCol else sector$col)[nc + nr + 1L - seq_len(nr)]
+
+  ribbon <- .circStyle(ribbon, col = addOpacity(rowCol, 0.5), n = nr,
+                       arg = "ribbon")
+
+  # --- labels --------------------------------------------------
+
+  # a character vector is the short form of list(labels = ...)
+  if (is.character(labels))
+    labels <- list(labels = labels)
+
+  defLabels <- if (is.null(rownames(x)) && is.null(colnames(x)))
+    LETTERS[seq_len(nr + nc)]
+  else
+    c(rownames(x) %||% rep("", nr), colnames(x) %||% rep("", nc))
+
   # --- plotting ------------------------------------------------
   
   .withGraphicsState({
@@ -158,35 +194,20 @@ plotCirc <- function(
     # --- sectors ----------------------------------------------
     
 
-    polygonX(ring(
-      innerRadius = innerR,
-      outerRadius = outerR,
-      startAngle = mpts[seq_along(mpts) %% 2 == 1],
-      endAngle = mpts[seq_along(mpts) %% 2 == 0]),
-      col = sector,
-      border = "grey"
-    )
+    if (!is.null(sector))
+      polygonX(ring(
+        innerRadius = innerR,
+        outerRadius = outerR,
+        startAngle = mpts[seq_along(mpts) %% 2 == 1],
+        endAngle = mpts[seq_along(mpts) %% 2 == 0]),
+        col = sector$col,
+        border = sector$border
+      )
 
     
     # --- ribbons ----------------------------------------------
   
     tab <- x
-    
-    if(is.vector(sector))
-      sector <- recycle(col=sector, border="grey", maxDim=nc+nr)
-    else
-      sector <- recycle(sector, maxDim=nc+nr)
-    
-    if(is.vector(ribbon))
-      ribbon <- recycle(col=ribbon, border="grey", maxDim=nc+nr)
-    else
-      ribbon <- recycle(ribbon, maxDim=nc+nr)
-    
-    
-    acol <- sector$col
-    aborder <- sector$border
-    rcol <- ribbon$col
-    rborder <- ribbon$border
     
     mpts.left <- c(0, cumsum(as.vector(rbind(rev(apply(tab, 2, sum))/ 
                                                n * (pi - nc * d), d))))
@@ -194,8 +215,7 @@ plotCirc <- function(
                                            n * (pi - nr * d), d)))
     mpts <- c(mpts.left, mpts.right + pi) + pi/2 + d/2
 
-        
-    if(is.null(labels)) labels <- rev(c(rownames(tab), colnames(tab)))
+
     
     ttab <- rbind(revX(tab, margin=2) / n * (pi - nc * d), d)
     pts.left <- (c(0, cumsum(as.vector(ttab))))
@@ -206,23 +226,21 @@ plotCirc <- function(
     pts <- c(pts.left, pts.right) + pi/2 + d/2
     dpt <- data.frame(from=pts[-length(pts)], to=pts[-1])
 
-    for( i in 1:nc) {
-      for( j in 1:nr) {
-        lang <- dpt[(i-1)*(nr+1)+j,]
-        rang <- revX(dpt[-nrow(dpt),], margin=1)[(j-1)*(nc+1) + i,]
-        
-        .drawRibbon( angle1.beg=rang[,2], angle1.end=lang[,1], 
-                     angle2.beg=rang[,1], angle2.end=lang[,2],
-                     radius1 = outerR, radius2 = innerR-0.05, 
-                     col = rcol[j], border = rborder[j])
-      }}
+    if (!is.null(ribbon))
+      for( i in 1:nc) {
+        for( j in 1:nr) {
+          lang <- dpt[(i-1)*(nr+1)+j,]
+          rang <- revX(dpt[-nrow(dpt),], margin=1)[(j-1)*(nc+1) + i,]
+          
+          .drawRibbon( angle1.beg=rang[,2], angle1.end=lang[,1], 
+                       angle2.beg=rang[,1], angle2.end=lang[,2],
+                       radius1 = outerR, radius2 = innerR-0.05, 
+                       col = ribbon$col[j], border = ribbon$border[j])
+        }}
 
 
     # --- labels -----------------------------------------------
 
-    if(!is.list(labels))
-      labels <- list(labels=labels)
-    
     # calculate position for labels
     mid <- filter(mpts, rep(1/2, 2))
     idx <- seq(1, (nr + nc)*2, by = 2)
@@ -231,7 +249,7 @@ plotCirc <- function(
     bedrock::callIf(
       .drawLabels, 
       labels, 
-      defaults=list(pos=pos, labels=rev(LETTERS[1:(nr + nc)]),
+      defaults=list(pos=pos, labels=defLabels,
                     cex = 1, col="black", las=1, adj=NULL, nr=nr, nc=nc))
     
   }, stamp = stamp)
@@ -247,8 +265,36 @@ plotCirc <- function(
 # == internal helper functions =============================================
 
 
+# Resolves the 'sector' and 'ribbon' arguments of plotCirc() to a list with
+# the recycled elements 'col' and 'border', or to NULL if the element is
+# not to be drawn.
+.circStyle <- function(x, col, n, arg, border = "grey") {
+
+  if (is.null(x) || isFALSE(x))
+    return(NULL)
+
+  sty <- list(col = col, border = border)
+
+  if (is.list(x)) {
+
+    if (is.null(names(x)) || !all(names(x) %in% names(sty)))
+      stop(gettextf(
+        "'%s' must be TRUE, FALSE, a vector of colors or a list with the elements 'col' and/or 'border'",
+        arg), call. = FALSE)
+
+    sty[names(x)] <- x
+
+  } else if (!isTRUE(x)) {
+    sty$col <- x
+  }
+
+  lapply(sty, rep, length.out = n)
+}
+
+
 .drawLabels <- function(pos, labels, cex, col, las, adj, nr, nc){  
   
+  # given for the rows followed by the columns, drawn in reverse order
   labels <- rev(labels)
   
   if(las == 2){
@@ -257,12 +303,12 @@ plotCirc <- function(
     if(is.null(adj)) 
       adj <- c(rep(1, nr), rep(0, nc))
     
-    adj <- rep(adj, length_out = length(labels))
+    adj <- rep(adj, length.out = length(labels))
     
-    sapply(seq_along(labels),
-           function(i) text(pos$x[i], pos$y[i], labels=labels[i], 
-                            cex=cex,
-                            srt=radToDeg(atan(pos$y[i]/pos$x[i])), adj=adj[i]))
+    for (i in seq_along(labels))
+      text(pos$x[i], pos$y[i], labels=labels[i], 
+           cex=cex, col=col,
+           srt=radToDeg(atan(pos$y[i]/pos$x[i])), adj=adj[i])
     
   } else {
     # vertical or horizontal alignment

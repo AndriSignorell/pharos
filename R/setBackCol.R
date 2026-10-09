@@ -12,6 +12,9 @@
 #' @param border color for rectangle border(s). Default is `NA` for no
 #' borders. 
 #' 
+#' @return No return value (invisible `NULL`), called for its side effect of
+#' painting the background of the current plot.
+#'
 #' @examples
 #' 
 #' # use two different colors for the figure region and the plot region
@@ -41,6 +44,8 @@ setBackCol <- function(col="grey", region=c("plot", "figure"), border=NA) {
     }
     
   }
+
+  invisible(NULL)
 
 }
 

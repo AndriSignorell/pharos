@@ -78,13 +78,18 @@
 #'   [theme]
 #'
 #' @examples
-#' \dontrun{
-#' tab <- table(UCBAdmissions)
+#' # applicants by department and gender
+#' tab <- margin.table(UCBAdmissions, c(3, 2))
 #'
 #' plotHeatmap(tab,
 #'             scale = "prop",
 #'             text = TRUE)
-#' }
+#'
+#' # share of the genders within the departments
+#' plotHeatmap(tab,
+#'             scale = "row",
+#'             text = TRUE,
+#'             main = "Applicants by department")
 #'
 
 

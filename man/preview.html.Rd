@@ -27,3 +27,14 @@ blocks are rendered as aligned text tables.
 If output does not support ANSI styling, bold/italic markup is
 rendered as plain text (handled automatically by \pkg{cli}).
 }
+\examples{
+preview(asHtml(
+  "<b>Model:</b> y = &beta;<sub>0</sub> + &beta;<sub>1</sub>x + &varepsilon;"
+))
+
+# tables are rendered as aligned text
+m <- matrix(c(12.3, 4.56, 7.8, 91.2), nrow = 2,
+            dimnames = list(c("a", "b"), c("mean", "sd")))
+preview(toHtmlTable(m))
+
+}

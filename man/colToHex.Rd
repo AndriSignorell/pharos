@@ -17,6 +17,14 @@ Character vector of hexadecimal colors.
 \description{
 Convert any valid R color specification to hexadecimal colors.
 }
+\examples{
+colToHex(c("tomato", "royalblue"))
+colToHex("tomato", opacity = 0.5)
+
+# color numbers refer to the current palette
+colToHex(1:3)
+
+}
 \seealso{
 \link{color-conversion-overview}
 }

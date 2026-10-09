@@ -15,6 +15,14 @@ Numeric CMY matrix.
 \description{
 Convert CMYK colors to CMY.
 }
+\examples{
+cmy <- rgbToCmy(c("#FF6347", "#4169E1"), maxColorValue = 255)
+cmyk <- cmyToCmyk(cmy)
+
+# the way back
+cmykToCmy(cmyk)
+
+}
 \seealso{
 \link{color-conversion-overview}
 }

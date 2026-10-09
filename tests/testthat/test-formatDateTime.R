@@ -49,10 +49,11 @@ test_that("weekday and month names match format() in the same locale", {
 
 test_that("Dates with integer storage are accepted", {
 
-  x <- seq(as.Date("2019-01-01"), as.Date("2019-01-24"), by = "days")
+  # built explicitly: seq.Date() returns integer storage only from R 4.5.0
+  x <- .Date(as.integer(as.Date("2019-01-01")) + 0:23)
   y <- as.Date("2019-01-01") + seq(0, 23)
 
-  expect_identical(typeof(x), "integer")   # seq.Date -> seq.int
+  expect_identical(typeof(x), "integer")
   expect_identical(typeof(y), "double")
 
   expect_equal(chr(fm(x, fmt = "ddd")), chr(fm(y, fmt = "ddd")))

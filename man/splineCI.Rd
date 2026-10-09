@@ -66,6 +66,12 @@ level is specified via \code{conf.level}, all other elements are
 graphical parameters of the band. Default is
 \code{list(conf.level = 0.95)}.}
 }
+\value{
+\code{splineX()} returns the fit of \code{\link[stats:smooth.spline]{stats::smooth.spline()}} with the
+additional class \code{"SplineX"}. The \code{lines()} method returns no value
+(invisible \code{NULL}); it is called for its side effect of adding the smoother
+and its confidence band to the current plot.
+}
 \description{
 Fit a smoothing spline and optionally add confidence bands.
 }

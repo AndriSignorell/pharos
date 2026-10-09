@@ -111,6 +111,10 @@ formula. By default the variables are taken from
 \item{subset}{an optional vector specifying a subset of observations
 to be used in the analysis.}
 }
+\value{
+No return value, called for its side effect of adding the boxed
+labels to the current plot.
+}
 \description{
 boxedText draws the strings given in the vector labels at the coordinates
 given by x and y, surrounded by a rectangle.

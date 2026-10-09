@@ -15,6 +15,13 @@ RGB matrix.
 \description{
 Decode long integers into RGB values.
 }
+\examples{
+longToRgb(c(255, 65280, 16711680))
+
+# there and back again
+rgbToHex(longToRgb(rgbToLong(colToRgb("tomato"))))
+
+}
 \seealso{
 \link{color-conversion-overview}
 }

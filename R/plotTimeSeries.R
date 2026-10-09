@@ -19,6 +19,8 @@
 #'   resolves to `getTheme()$stamp`. `TRUE`/`FALSE`/
 #'   `NULL`, a string, or a named list for [stamp()].
 #' 
+#' @return `x`, invisibly. Called for its side effect of drawing the plot.
+#'
 #' @note Rewritten based on ideas of M.Huerzeler
 #' @seealso [ts()]
 #' 

@@ -19,6 +19,14 @@ Character vector of named R colors.
 \description{
 Match RGB colors to the nearest named R color.
 }
+\examples{
+rgbToCol(matrix(c(162, 42, 42), nrow = 3))
+rgbToCol(c("#A22A2A", "#4169E0"))
+
+# nearest color in HSV space
+rgbToCol(c("#A22A2A", "#4169E0"), method = "hsv", metric = "manhattan")
+
+}
 \seealso{
 \link{color-conversion-overview}
 }

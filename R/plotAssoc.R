@@ -56,6 +56,11 @@
 #' the negative color (strong negative residual) through white (no association)
 #' to the positive color (strong positive residual).
 #'
+#' @return A list with the components `x` and `y`, returned invisibly: the
+#' horizontal centres of the bars, one per column of the table, and the
+#' baselines of the residuals, one per row. Both are named by the levels and
+#' given in the order in which they are drawn.
+#'
 #' @references
 #'   Cohen, A. (1980). On the graphical display of the significant components
 #'   of a two-way contingency table. *Communications in Statistics —
@@ -83,17 +88,17 @@
 #' 
 #'  
 #' plotAssoc(tab,
-#'           main = "Association Hair ~ Eye",
+#'           main = "Association Driver ~ Area",
 #'           cutoff = 1,
-#'           xlab="Hair Color", ylab="Eye Color")
+#'           xlab="Driver", ylab="Area")
 #' 
 #' cols <- pal()[c(12, 8)]
 #' plotAssoc(tab,
-#'           main = "Association Hair ~ Eye",
+#'           main = "Association Driver ~ Area",
 #'           cutoff = 1, 
 #'           col = fade(cols, 0.7), border = cols,
 #'           reorder = TRUE, cex.axis = 0.9, 
-#'           xlab = list(labels = "Hair Color ", 
+#'           xlab = list(labels = "Driver ", 
 #'                     col = "#5B2A45", cex = 1.1), 
 #'           ylab = NA, labels = TRUE)
 #' 
@@ -234,6 +239,7 @@ plotAssoc <- function(x,
     
     x.r <- cumsum(x.w + x.delta)
     x.m <- (c(0, head(x.r, -1)) + x.r) / 2
+    names(x.m) <- names(x.r)
     
     y.u <- cumsum(y.h + y.delta)
     y.m <- y.u - apply(pmax(d, 0), 2L, max) - y.delta / 2

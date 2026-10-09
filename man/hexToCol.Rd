@@ -19,6 +19,11 @@ Character vector of named R colors.
 \description{
 Convert hexadecimal colors to the nearest named R colors.
 }
+\examples{
+hexToCol(c("#A22A2A", "#4169E0"))
+hexToCol("#4169E0", method = "hsv")
+
+}
 \seealso{
 \link{color-conversion-overview}
 }

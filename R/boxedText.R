@@ -69,6 +69,9 @@
 #'   to be used in the analysis.
 #'
 #' 
+#' @return No return value, called for its side effect of adding the boxed
+#' labels to the current plot.
+#'
 #' @examples
 #' 
 #' canvas(xpd=TRUE)

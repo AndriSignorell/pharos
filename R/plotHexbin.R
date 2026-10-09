@@ -35,6 +35,21 @@
 #'   `hexbin` object and the original `x` and `y`.
 #'
 
+#' @examples
+#' if (requireNamespace("hexbin", quietly = TRUE)) {
+#'
+#'   set.seed(42)
+#'   x <- rnorm(5000)
+#'   y <- x + rnorm(5000)
+#'
+#'   plotHexbin(x, y)
+#'
+#'   # fewer and larger cells, user-defined colors
+#'   plotHexbin(x, y, nBins = 15,
+#'              col = hcl.colors(50, "YlOrRd", rev = TRUE), border = "white",
+#'              main = "Hexagonal binning")
+#' }
+#'
 #' @family plot.bivariate  
 #' @concept scatterplot  
 #' @concept bivariate

@@ -7,13 +7,21 @@
 rgbToHex(col)
 }
 \arguments{
-\item{col}{RGB matrix.}
+\item{col}{RGB matrix with one color per column, as returned by
+\code{\link[=colToRgb]{colToRgb()}}, or a vector with the channel values of a single color.}
 }
 \value{
-Character vector of hexadecimal colors.
+Character vector of hexadecimal colors, one per color.
 }
 \description{
 Convert RGB values to hexadecimal color strings.
+}
+\examples{
+rgbToHex(c(162, 42, 42))
+
+# one color per column, as returned by colToRgb()
+rgbToHex(colToRgb(c("tomato", "royalblue")))
+
 }
 \seealso{
 \link{color-conversion-overview}

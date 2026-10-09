@@ -15,6 +15,10 @@ first is used for the plot region and the second for the figure region.}
 \item{border}{color for rectangle border(s). Default is \code{NA} for no
 borders.}
 }
+\value{
+No return value (invisible \code{NULL}), called for its side effect of
+painting the background of the current plot.
+}
 \description{
 Paints the background of the plot, using either the figure region, the plot
 region or both. It can sometimes be cumbersome to elaborate the coordinates

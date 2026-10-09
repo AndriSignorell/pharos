@@ -203,7 +203,8 @@ plotTernary <- function(
       pts <- regPolygon(nVertices = 3, startAngle = pi / 2,
                         radius = 1 + eps)
       
-      text(pts, labels = labels[c(1, 3, 2)])
+      # the corners lie outside the plot region
+      text(pts, labels = labels[c(1, 3, 2)], xpd = NA)
     }
     
     # --- points ------------------------------------------------

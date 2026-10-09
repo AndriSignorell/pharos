@@ -74,7 +74,6 @@
 #' [bedrock::callIf()]
 #'
 #' @examples
-#' \dontrun{
 #' set.seed(1)
 #' x <- rnorm(100)
 #' g <- sample(c("A", "B"), 100, TRUE)
@@ -87,7 +86,6 @@
 #' # data, subset and the cells of two grouping variables
 #' plotBox(len ~ supp, ToothGrowth, subset = dose > 0.5)
 #' plotBox(len ~ supp:dose, ToothGrowth)
-#' }
 #'
 
 #' @family plot.univariate  

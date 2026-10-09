@@ -62,6 +62,12 @@ resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
 
 \item{\dots}{further arguments passed to \code{\link[graphics:rect]{graphics::rect()}}.}
 }
+\value{
+A list with the components \code{x} and \code{y}, returned invisibly: the
+horizontal centres of the bars, one per column of the table, and the
+baselines of the residuals, one per row. Both are named by the levels and
+given in the order in which they are drawn.
+}
 \description{
 Plots an association plot (Cohen-Friendly plot) for a two-dimensional
 contingency table. Cells are drawn with widths proportional to the square
@@ -102,17 +108,17 @@ plotAssoc(tab, reorder = FALSE)
 
  
 plotAssoc(tab,
-          main = "Association Hair ~ Eye",
+          main = "Association Driver ~ Area",
           cutoff = 1,
-          xlab="Hair Color", ylab="Eye Color")
+          xlab="Driver", ylab="Area")
 
 cols <- pal()[c(12, 8)]
 plotAssoc(tab,
-          main = "Association Hair ~ Eye",
+          main = "Association Driver ~ Area",
           cutoff = 1, 
           col = fade(cols, 0.7), border = cols,
           reorder = TRUE, cex.axis = 0.9, 
-          xlab = list(labels = "Hair Color ", 
+          xlab = list(labels = "Driver ", 
                     col = "#5B2A45", cex = 1.1), 
           ylab = NA, labels = TRUE)
 

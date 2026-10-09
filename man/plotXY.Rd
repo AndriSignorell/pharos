@@ -169,7 +169,6 @@ color for every call to \code{plotXY()} (and any other function using
 the same theme section) that doesn't override \code{col} explicitly.
 }
 \examples{
-\dontrun{
 plotXY(temperature ~ delivery_min, bedrock::Pizza,
        main = "Temperature vs. Delivery Time")
 
@@ -184,7 +183,6 @@ plotXY(temperature ~ delivery_min, bedrock::Pizza, main = "")
 # subset, evaluated in data
 plotXY(temperature ~ delivery_min, bedrock::Pizza,
        subset = area == "Camden")
-}
 
 }
 \seealso{

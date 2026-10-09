@@ -28,7 +28,11 @@ plotCirc(
 \item a vector of colors,
 \item or a list with elements \code{col} and \code{border}.
 }
-Colors are recycled to match the number of sectors (\code{nrow(x) + ncol(x)}).}
+Colors are recycled to match the number of sectors (\code{nrow(x) + ncol(x)}).
+The sectors are filled in the order in which they are drawn: the columns
+of \code{x} first, then the rows, both in reverse order. \code{TRUE} (default)
+uses the qualitative palette of the active theme (see \link{theme}) and grey
+borders.}
 
 \item{ribbon}{ribbon styling. Can be:
 \itemize{
@@ -36,14 +40,19 @@ Colors are recycled to match the number of sectors (\code{nrow(x) + ncol(x)}).}
 \item a vector of colors,
 \item or a list with elements \code{col} and \code{border}.
 }
-Colors are recycled to match the number of row categories (\code{nrow(x)}).}
+Colors are recycled to match the number of row categories (\code{nrow(x)}).
+With \code{TRUE} (default) a ribbon takes the color of the row sector it
+starts from, made half transparent, and a grey border.}
 
 \item{labels}{label styling. Can be:
 \itemize{
 \item a logical (\code{TRUE}/\code{FALSE}) to enable/disable labels,
-\item a character vector of labels,
-\item or a list with parameters passed to internal label drawing.
-}}
+\item a character vector of labels, for the rows followed by the
+columns of \code{x},
+\item or a list with parameters passed to internal label drawing
+(\code{labels}, \code{cex}, \code{col}, \code{las}, \code{adj}).
+}
+\code{TRUE} (default) uses the row and column names of \code{x}.}
 
 \item{stamp}{controls the corner stamp. \code{.useTheme} (default)
 resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/

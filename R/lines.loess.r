@@ -27,6 +27,9 @@
 #' @param \dots further graphical parameters passed to [lines()] for the
 #'   smoother.
 #'
+#' @return No return value (invisible `NULL`), called for its side effect of
+#' adding the smoother and its confidence band to the current plot.
+#'
 #' @note Loess can result in substantial computational load for large datasets.
 #'
 #' @examples

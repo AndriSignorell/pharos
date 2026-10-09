@@ -45,6 +45,12 @@ colToRgb <- function(col, useAlphaChannel = FALSE)
 #' @return Integer matrix with RGB rows.
 #'
 
+#' @examples
+#' hexToRgb(c("#A52A2A", "#FFDAB9"))
+#'
+#' # an alpha channel is kept
+#' hexToRgb("#A52A2A80")
+#'
 #' @seealso [color-conversion-overview]
 #' @concept color
 #' @concept color-conversion
@@ -87,9 +93,16 @@ hexToRgb <- function(col) {
 #'
 #' Convert RGB values to hexadecimal color strings.
 #'
-#' @param col RGB matrix.
+#' @param col RGB matrix with one color per column, as returned by
+#'   [colToRgb()], or a vector with the channel values of a single color.
 #'
-#' @return Character vector of hexadecimal colors.
+#' @return Character vector of hexadecimal colors, one per color.
+#'
+#' @examples
+#' rgbToHex(c(162, 42, 42))
+#'
+#' # one color per column, as returned by colToRgb()
+#' rgbToHex(colToRgb(c("tomato", "royalblue")))
 #'
 #' @seealso [color-conversion-overview]
 #' @concept color
@@ -97,8 +110,18 @@ hexToRgb <- function(col) {
 #'
 #' @export
 rgbToHex <- function(col) {
+
+  toHex <- function(z)
+    paste0("#", paste0(sprintf("%02X", as.integer(z)), collapse = ""))
+
   col <- round(col)
-  paste0("#", paste0(sprintf("%02X", as.integer(col)), collapse = ""))
+
+  # one colour per column, as returned by colToRgb(); a plain vector is a
+  # single colour
+  if (is.matrix(col))
+    unname(apply(col, 2L, toHex))
+  else
+    toHex(col)
 }
 
 
@@ -110,6 +133,13 @@ rgbToHex <- function(col) {
 #' @param opacity opacity value between 0 and 1.
 #'
 #' @return Character vector of hexadecimal colors.
+#'
+#' @examples
+#' colToHex(c("tomato", "royalblue"))
+#' colToHex("tomato", opacity = 0.5)
+#'
+#' # color numbers refer to the current palette
+#' colToHex(1:3)
 #'
 #' @seealso [color-conversion-overview]
 #' @concept color
@@ -144,6 +174,13 @@ colToHex <- function(col, opacity = 1) {
 #'
 #' @return Character vector of named R colors.
 #'
+#' @examples
+#' rgbToCol(matrix(c(162, 42, 42), nrow = 3))
+#' rgbToCol(c("#A22A2A", "#4169E0"))
+#'
+#' # nearest color in HSV space
+#' rgbToCol(c("#A22A2A", "#4169E0"), method = "hsv", metric = "manhattan")
+#'
 #' @seealso [color-conversion-overview]
 #' @concept color
 #' @concept color-conversion
@@ -158,7 +195,8 @@ rgbToCol <- function(col,
   
   if (method == "hsv") {
     
-    col <- colToHsv(col)
+    # col2rgb() would read the cells of an RGB matrix as palette indices
+    col <- if (is.matrix(col)) rgb2hsv(col) else colToHsv(col)
     colTab <- colToHsv(colors())
     
   } else {
@@ -200,6 +238,10 @@ rgbToCol <- function(col,
 #'
 #' @return Character vector of named R colors.
 #'
+#' @examples
+#' hexToCol(c("#A22A2A", "#4169E0"))
+#' hexToCol("#4169E0", method = "hsv")
+#'
 #' @seealso [color-conversion-overview]
 #' @concept color
 #' @concept color-conversion
@@ -221,15 +263,34 @@ hexToCol <- function(col,
 #' @param useAlphaChannel logical indicating whether the alpha
 #'   channel should be included.
 #'
-#' @return Numeric HSV matrix.
+#' @return Numeric HSV matrix with one column per color. With
+#'   `useAlphaChannel = TRUE` the alpha channel is added as fourth row,
+#'   scaled to the range from 0 to 1 like the other rows.
+#'
+#' @examples
+#' colToHsv(c("tomato", "royalblue"))
+#'
+#' # the alpha channel is added as fourth row, on a scale from 0 to 1
+#' colToHsv("#FF634780", useAlphaChannel = TRUE)
 #'
 #' @seealso [color-conversion-overview]
 #' @concept color
 #' @concept color-conversion
 #'
 #' @export
-colToHsv <- function(col, useAlphaChannel = FALSE)
-  rgb2hsv(colToRgb(col, useAlphaChannel = useAlphaChannel))
+colToHsv <- function(col, useAlphaChannel = FALSE) {
+
+  x <- colToRgb(col, useAlphaChannel = useAlphaChannel)
+
+  # rgb2hsv() takes exactly three rows; the alpha channel is carried along
+  # on the same [0, 1] scale as h, s and v
+  res <- rgb2hsv(x[1:3, , drop = FALSE])
+
+  if (useAlphaChannel)
+    res <- rbind(res, x["alpha", , drop = FALSE] / 255)
+
+  res
+}
 
 
 #' Convert RGB to Long Integers
@@ -239,6 +300,9 @@ colToHsv <- function(col, useAlphaChannel = FALSE)
 #' @param col RGB matrix.
 #'
 #' @return Integer vector.
+#'
+#' @examples
+#' rgbToLong(colToRgb(c("red", "green", "blue")))
 #'
 #' @seealso [color-conversion-overview]
 #' @concept color
@@ -256,6 +320,12 @@ rgbToLong <- function(col)
 #' @param col integer vector.
 #'
 #' @return RGB matrix.
+#'
+#' @examples
+#' longToRgb(c(255, 65280, 16711680))
+#'
+#' # there and back again
+#' rgbToHex(longToRgb(rgbToLong(colToRgb("tomato"))))
 #'
 #' @seealso [color-conversion-overview]
 #' @concept color
@@ -282,10 +352,19 @@ longToRgb <- function(col)
 #'
 #' Convert RGB colors to the CMY color space.
 #'
-#' @param col RGB matrix or hexadecimal colors.
-#' @param maxColorValue maximum channel value.
+#' @param col RGB matrix with one color per row (columns red, green and
+#'   blue), or a vector of hexadecimal colors.
+#' @param maxColorValue maximum channel value of `col`. Use 255 for
+#'   hexadecimal colors.
 #'
-#' @return Numeric CMY matrix.
+#' @return Numeric CMY matrix with one color per row.
+#'
+#' @examples
+#' # one color per row, channels on a scale from 0 to 1
+#' rgbToCmy(matrix(c(1, 0.39, 0.28), nrow = 1))
+#'
+#' # the channels of hexadecimal colors run from 0 to 255
+#' rgbToCmy(c("#FF6347", "#4169E1"), maxColorValue = 255)
 #'
 #' @seealso [color-conversion-overview]
 #' @concept color
@@ -304,7 +383,8 @@ rgbToCmy <- function(col, maxColorValue = 1) {
       )
     )
     
-    col <- do.call("cbind", col)
+    # one colour per row, as for a matrix
+    col <- do.call("rbind", col)
   }
   
   cbind(
@@ -322,6 +402,10 @@ rgbToCmy <- function(col, maxColorValue = 1) {
 #' @param col numeric CMY matrix.
 #'
 #' @return Numeric CMYK matrix.
+#'
+#' @examples
+#' cmy <- rgbToCmy(c("#FF6347", "#4169E1"), maxColorValue = 255)
+#' cmyToCmyk(cmy)
 #'
 #' @seealso [color-conversion-overview]
 #' @concept color
@@ -354,6 +438,13 @@ cmyToCmyk <- function(col) {
 #'
 #' @return Numeric CMY matrix.
 #'
+#' @examples
+#' cmy <- rgbToCmy(c("#FF6347", "#4169E1"), maxColorValue = 255)
+#' cmyk <- cmyToCmyk(cmy)
+#'
+#' # the way back
+#' cmykToCmy(cmyk)
+#'
 #' @seealso [color-conversion-overview]
 #' @concept color
 #' @concept color-conversion
@@ -380,6 +471,13 @@ cmykToCmy <- function(col) {
 #' @param maxColorValue maximum channel value.
 #'
 #' @return Numeric RGB matrix.
+#'
+#' @examples
+#' cmyk <- cmyToCmyk(rgbToCmy(c("#FF6347", "#4169E1"), maxColorValue = 255))
+#' cmykToRgb(cmyk)
+#'
+#' # back to hexadecimal colors
+#' rgbToHex(t(cmykToRgb(cmyk) * 255))
 #'
 #' @seealso [color-conversion-overview]
 #' @concept color

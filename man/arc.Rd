@@ -29,6 +29,18 @@ An object inheriting from class \code{"arcGeometry"}.
 \description{
 Create one or more circular or elliptic arcs.
 }
+\examples{
+canvas(xlim = c(-2, 2))
+
+# a quarter of a circle
+lines(arc(radiusX = 1.5, startAngle = 0, endAngle = pi/2), lwd = 2)
+
+# elliptic arcs, vectors of radii yield a collection of arcs
+a <- arc(radiusX = c(0.5, 1), radiusY = c(1, 1.8),
+         startAngle = pi, endAngle = 3*pi/2)
+lines(a, col = "red")
+
+}
 \seealso{
 Other geometry.structures:
 \code{\link[=band]{band()}},

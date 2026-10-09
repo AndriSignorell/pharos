@@ -34,6 +34,19 @@
 #'
 #' @return an object of class `c("html", "character")`
 #'
+#' @examples
+#' m <- matrix(c(12.3, 4.56, 7.8, 91.2), nrow = 2,
+#'             dimnames = list(c("a", "b"), c("mean", "sd")))
+#'
+#' # the HTML fragment ...
+#' (h <- toHtmlTable(m, caption = "Summary"))
+#'
+#' # ... and its rendering as text
+#' preview(h)
+#'
+#' # formatted cells, right aligned, without the row names
+#' preview(toHtmlTable(fm(m, digits = 1), rowNames = FALSE, bodyAlign = "right"))
+#'
 #' @seealso [bedrock::appendEnum]
 #'
 #'

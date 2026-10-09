@@ -81,6 +81,20 @@ Confidence and prediction bands are controlled via \code{cband} and
 \item a named list: customize the band appearance and confidence level
 }
 }
+\examples{
+plot(dist ~ speed, cars)
+lines(lm(dist ~ speed, cars))
+
+# polynomial model with a 99\% confidence band and a prediction band
+plot(dist ~ speed, cars)
+lines(lm(dist ~ poly(speed, 2), cars), col = "red",
+      cband = list(conf.level = 0.99), pband = TRUE)
+
+# transformed predictor, no bands
+plot(mpg ~ log(hp), mtcars)
+lines(lm(mpg ~ log(hp), mtcars), cband = FALSE)
+
+}
 \seealso{
 \code{\link[=lines]{lines()}}, \code{\link[=lm]{lm()}}
 

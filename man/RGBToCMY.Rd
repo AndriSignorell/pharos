@@ -7,15 +7,25 @@
 rgbToCmy(col, maxColorValue = 1)
 }
 \arguments{
-\item{col}{RGB matrix or hexadecimal colors.}
+\item{col}{RGB matrix with one color per row (columns red, green and
+blue), or a vector of hexadecimal colors.}
 
-\item{maxColorValue}{maximum channel value.}
+\item{maxColorValue}{maximum channel value of \code{col}. Use 255 for
+hexadecimal colors.}
 }
 \value{
-Numeric CMY matrix.
+Numeric CMY matrix with one color per row.
 }
 \description{
 Convert RGB colors to the CMY color space.
+}
+\examples{
+# one color per row, channels on a scale from 0 to 1
+rgbToCmy(matrix(c(1, 0.39, 0.28), nrow = 1))
+
+# the channels of hexadecimal colors run from 0 to 255
+rgbToCmy(c("#FF6347", "#4169E1"), maxColorValue = 255)
+
 }
 \seealso{
 \link{color-conversion-overview}

@@ -33,10 +33,13 @@
 #' on to `fm()` simply by their name. If a style of the same name exists in
 #' the global environment, that one is used.
 #' 
-#' Many report functions (e.g. `DescToolsX::tOne()`) in **DescToolsX** use
-#' default formats that the package stores as options when it is loaded:
-#' `"abs.sty"` for counts, `"num.sty"` for numeric values, `"per.sty"` for
-#' percentages and `"pval.sty"` for p-values.
+#' Four default styles are registered as options when **pharos** is loaded,
+#' unless options of these names already exist: `"abs.sty"` for counts,
+#' `"num.sty"` for numeric values, `"per.sty"` for percentages and
+#' `"pval.sty"` for p-values. They are used by several plot functions of this
+#' package (e.g. [plotHeatmap()]) and by the report functions in
+#' **DescToolsX** (e.g. `DescToolsX::tOne()`). Redefining them with
+#' `options()` changes these formats globally.
 #' 
 #' @name style
 #' @aliases style styles
@@ -84,6 +87,9 @@
 #' fm(314.1563, fmt=num.sty)
 #' 
 #' fm(Sys.Date(), fmt=dat.sty)
+#' 
+#' # remove the option again
+#' options(nob.sty=NULL)
 #' 
 
 #' @rdname style
@@ -173,7 +179,7 @@ style <- function( x, digits = NULL, leadDigits = NULL, sci = NULL
   a <- methods::formalArgs(style)
   
   # remove dots name from the list
-  a <- a[a %notin% c("x","label","...")]
+  a <- a[!a %in% c("x","label","...")]
   
   # get the values of all the arguments.
   # lapply, not sapply: with every single argument supplied and of length 1

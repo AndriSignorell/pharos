@@ -125,20 +125,24 @@ as.CI(
   upper = "upper"
 )
 
-# confidence intervals returned by tapply()
-\dontrun{
+# confidence intervals returned by tapply(): every cell holds the
+# estimate and its limits (as e.g. lumen::meanCI() returns them)
+meanCI <- function(z) {
+  ci <- t.test(z)$conf.int
+  c(est = mean(z), lci = ci[1], uci = ci[2])
+}
+
 xci <- with(
-  Pizza,
+  warpbreaks,
   tapply(
-    temperature,
-    driver,
-    lumen::meanCI,
-    na.rm = TRUE
+    breaks,
+    list(wool, tension),
+    meanCI
   )
 )
 
+as.CI(xci)
 plotDot(as.CI(xci))
-}
 
 }
 \seealso{

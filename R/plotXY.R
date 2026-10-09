@@ -121,7 +121,6 @@
 #' [bedrock::callIf()]
 #'
 #' @examples
-#' \dontrun{
 #' plotXY(temperature ~ delivery_min, bedrock::Pizza,
 #'        main = "Temperature vs. Delivery Time")
 #'
@@ -136,7 +135,6 @@
 #' # subset, evaluated in data
 #' plotXY(temperature ~ delivery_min, bedrock::Pizza,
 #'        subset = area == "Camden")
-#' }
 #'
 
 

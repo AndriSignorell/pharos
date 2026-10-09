@@ -133,10 +133,13 @@ we use the default \code{options()} approach: \code{options(num.sty = style(digi
 on to \code{fm()} simply by their name. If a style of the same name exists in
 the global environment, that one is used.
 
-Many report functions (e.g. \code{DescToolsX::tOne()}) in \strong{DescToolsX} use
-default formats that the package stores as options when it is loaded:
-\code{"abs.sty"} for counts, \code{"num.sty"} for numeric values, \code{"per.sty"} for
-percentages and \code{"pval.sty"} for p-values.
+Four default styles are registered as options when \strong{pharos} is loaded,
+unless options of these names already exist: \code{"abs.sty"} for counts,
+\code{"num.sty"} for numeric values, \code{"per.sty"} for percentages and
+\code{"pval.sty"} for p-values. They are used by several plot functions of this
+package (e.g. \code{\link[=plotHeatmap]{plotHeatmap()}}) and by the report functions in
+\strong{DescToolsX} (e.g. \code{DescToolsX::tOne()}). Redefining them with
+\code{options()} changes these formats globally.
 }
 \examples{
 
@@ -163,6 +166,9 @@ fm(314.1563, fmt=abs.sty)
 fm(314.1563, fmt=num.sty)
 
 fm(Sys.Date(), fmt=dat.sty)
+
+# remove the option again
+options(nob.sty=NULL)
 
 }
 \seealso{

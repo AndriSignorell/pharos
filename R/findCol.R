@@ -26,6 +26,10 @@
 #' `1, ..., N-1`, i.e., `0` is mapped to `1` and `N` to
 #' `N-1`.
 #' 
+#' @return A vector of the length of `x` with the colors assigned to the
+#' values, taken from `col` (names of `col` are kept). Values outside the
+#' range `minX` to `maxX` yield `NA`, unless `all.inside` is `TRUE`.
+#'
 #' @seealso [findInterval()]
 
 
@@ -59,7 +63,7 @@
 #' cols <- c(red="red", yellow="yellow", green="green", blue="blue")
 #' colLegend(x=0, y=1, width=1, col=rev(cols), horiz = TRUE,
 #'             labels=format(seq(0, 1, .25), digits=2, nsmall=2), 
-#'             frame="grey", cex=0.8 )
+#'             box=list(border="grey"), cex=0.8 )
 #' x <- c(-0.2, 0, 0.15, 0.55, .75, 1, 1.3)
 #' arrows(x0 = x, y0 = 0.6, y1 = 0.8, angle = 15, length = .2)
 #' text(x=x, y = 0.5, labels = x, adj = c(0.5,0.5))

@@ -78,6 +78,9 @@
 #'   *outer* margins (`oma`) of the multi-panel figure; the
 #'   inner panel margins are managed internally and cannot be overridden.
 #'
+#' @return No return value (invisible `NULL`), called for its side effect of
+#' drawing the plot.
+#'
 #' @seealso [hist()], [boxplot()], [plotECDF()],
 #'   [density()], [rug()], [layout()],
 #'   [theme]

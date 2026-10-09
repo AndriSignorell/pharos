@@ -11,8 +11,20 @@ strLen(x, ...)
 
 \item{...}{further arguments passed to \code{nchar}}
 }
+\value{
+An integer vector with the number of characters of the elements of
+\code{x}, see \code{\link[=nchar]{nchar()}}.
+}
 \description{
 Intuitive alias for \code{\link[=nchar]{nchar()}}.
+}
+\examples{
+strLen(c("pharos", "", NA))
+strLen(month.name)
+
+# a number is converted to a string first
+strLen(123456)
+
 }
 \seealso{
 \code{\link[base:nchar]{base::nchar()}}

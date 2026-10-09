@@ -10,10 +10,19 @@
 #'
 #' @return Character vector of hexadecimal colors.
 #'
+#' @examples
+#' darken("tomato")
+#' darken(c("tomato", "royalblue"), amount = 0.5)
+#'
+#' # increasing amounts
+#' amount <- seq(0, 1, 0.2)
+#' barplot(rep(1, 6), col = sapply(amount, darken, col = "tomato"),
+#'         names.arg = amount, yaxt = "n", xlab = "amount")
+#'
 #' @details
 #' Colors are mixed linearly with black in RGB space:
 #' \deqn{
-#'   x_{new} = x \\cdot (1 - amount)
+#'   x_{new} = x \cdot (1 - amount)
 #' }
 #'
 

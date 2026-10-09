@@ -15,6 +15,10 @@ Integer vector.
 \description{
 Encode RGB colors as long integers.
 }
+\examples{
+rgbToLong(colToRgb(c("red", "green", "blue")))
+
+}
 \seealso{
 \link{color-conversion-overview}
 }

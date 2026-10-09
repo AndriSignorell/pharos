@@ -29,6 +29,9 @@ resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
 
 \item{\dots}{the dots are passed to the plot command.}
 }
+\value{
+\code{x}, invisibly. Called for its side effect of drawing the plot.
+}
 \description{
 Combined plot of a time Series and its autocorrelation and partial
 autocorrelation

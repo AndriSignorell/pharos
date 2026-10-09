@@ -38,6 +38,10 @@ parameters of the band. Default is \code{list(conf.level = 0.95)}.}
 \item{\dots}{further graphical parameters passed to \code{\link[=lines]{lines()}} for the
 smoother.}
 }
+\value{
+No return value (invisible \code{NULL}), called for its side effect of
+adding the smoother and its confidence band to the current plot.
+}
 \description{
 Add a loess smoother to an existing plot. The function first calculates
 predictions from a \code{loess} object and then adds the fitted smoother

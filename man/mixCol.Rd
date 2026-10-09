@@ -29,6 +29,19 @@ Colors are mixed linearly in RGB space:
 
 All arguments are recycled as necessary.
 }
+\examples{
+mixCol("red", "blue")
+mixCol("red", "blue", weights = 0.2)
+
+# the shorter vector is recycled
+mixCol(c("red", "yellow"), "blue")
+
+# from red to blue
+w <- seq(0, 1, 0.1)
+barplot(rep(1, 11), col = sapply(w, mixCol, col1 = "red", col2 = "blue"),
+        names.arg = w, yaxt = "n", xlab = "weights")
+
+}
 \seealso{
 Other color.manipulation:
 \code{\link[=addOpacity]{addOpacity()}},

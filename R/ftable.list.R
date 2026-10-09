@@ -30,27 +30,31 @@
 #' An object of class `"ftable"`.
 #'
 #' @examples
-#' \dontrun{
+#' # a function returning a named vector, here the mean and its
+#' # confidence interval (as e.g. lumen::meanCI() returns them)
+#' meanCI <- function(z) {
+#'   ci <- t.test(z)$conf.int
+#'   c(est = mean(z), lci = ci[1], uci = ci[2])
+#' }
 #'
 #' x <- with(
-#'   Pizza,
+#'   warpbreaks,
 #'   tapply(
-#'     temperature,
-#'     list(area, driver),
-#'     lumen::meanCI,
-#'     na.rm = TRUE
+#'     breaks,
+#'     list(wool, tension),
+#'     meanCI
 #'   )
 #' )
 #'
+#' # the statistics form the columns
 #' ftable(x)
 #'
+#' # the second grouping variable in the columns as well
 #' ftable(
 #'   x,
-#'   row.vars = c(2, 3),
-#'   col.vars = 1
+#'   row.vars = 2,
+#'   col.vars = c(3, 1)
 #' )
-#'
-#' }
 #'
 #' @seealso
 #' [tapply()],

@@ -1,6 +1,6 @@
 Package: pharos
 Title: Descriptive Statistics Graphics and Utilities
-Version: 0.0.0.960
+Version: 0.0.0.961
 Authors@R: c(
   person(given="Andri", family="Signorell", 
          email = "andri@signorell.net", 
@@ -24,7 +24,7 @@ Authors@R: c(
   person("Hans Peter"   , "Wolf"          , role = c("ctb")),
   person("Ying"         , "Wu"            , role = c("ctb"))
  )
-Description: Draws the statistical graphics of the DescToolsX ecosystem
+Description: Draws the statistical graphics of the 'DescToolsX' ecosystem
     on top of base graphics: distribution and density displays,
     bivariate and categorical plots, diagnostic and model evaluation
     panels, and a faceting mechanism for arranging them. A theme system
@@ -34,12 +34,12 @@ Description: Draws the statistical graphics of the DescToolsX ecosystem
     helpers, the number and string formatting routines and the HTML
     output utilities that the plots are built from. It is self contained
     and usable without the rest of the suite.
-Depends: R (>= 4.2.0)
+Depends: R (>= 4.6.0)
 License: GPL (>= 2)
 Encoding: UTF-8
 LinkingTo: Rcpp
 Roxygen: list(markdown = TRUE)
-Imports: graphics, Rcpp, bedrock, MASS, cli, withr, stringi, methods, base64enc
+Imports: graphics, Rcpp, bedrock (>= 0.1.18), MASS, cli, withr, stringi, methods, base64enc
 Suggests:
     testthat (>= 3.0.0), R.rsp, hexbin, prettyunits
 Remotes:  

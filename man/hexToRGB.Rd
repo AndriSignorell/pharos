@@ -15,6 +15,13 @@ Integer matrix with RGB rows.
 \description{
 Convert hexadecimal color strings to an RGB matrix.
 }
+\examples{
+hexToRgb(c("#A52A2A", "#FFDAB9"))
+
+# an alpha channel is kept
+hexToRgb("#A52A2A80")
+
+}
 \seealso{
 \link{color-conversion-overview}
 }

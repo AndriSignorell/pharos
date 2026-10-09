@@ -17,6 +17,14 @@ Numeric RGB matrix.
 \description{
 Convert CMYK colors to RGB.
 }
+\examples{
+cmyk <- cmyToCmyk(rgbToCmy(c("#FF6347", "#4169E1"), maxColorValue = 255))
+cmykToRgb(cmyk)
+
+# back to hexadecimal colors
+rgbToHex(t(cmykToRgb(cmyk) * 255))
+
+}
 \seealso{
 \link{color-conversion-overview}
 }

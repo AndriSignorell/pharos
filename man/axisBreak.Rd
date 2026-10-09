@@ -29,6 +29,10 @@ axisBreak(
 
 \item{brw}{break width relative to plot width}
 }
+\value{
+No return value, called for its side effect of drawing the break
+mark on the current plot.
+}
 \description{
 Places a break mark on an axis on an existing plot.
 }

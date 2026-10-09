@@ -1,10 +1,34 @@
 
 
 
+# Default styles that the plots of this package (plotBox(), plotHeatmap(),
+# plot.Desc.qn()) and the report functions of the suite refer to by name.
+# They are plain options, so that a user can redefine them; only those not
+# yet defined are set, which also leaves the definitions of another package
+# of the suite alone, should that one have been loaded first.
+#' @noRd
+.styleDefaults <- function() {
+  list(
+    abs.sty  = style(digits = 0, bigMark = "",
+                     label = "Number format for counts"),
+    per.sty  = style(digits = 1, fmt = "%",
+                     label = "Percentage number format"),
+    num.sty  = style(digits = 3, bigMark = "",
+                     label = "Number format for numeric values"),
+    pval.sty = style(fmt = "p", pThreshold = 1e-3,
+                     label = "Number format for p-values")
+  )
+}
+
+
 .onLoad <- function(libname, pkgname) {
   
   current <- getOption("pharos.theme", list())
   options(pharos.theme = utils::modifyList(.themeDefaults, current))
+  
+  sty <- .styleDefaults()
+  toSet <- !names(sty) %in% names(options())
+  if (any(toSet)) options(sty[toSet])
   
 }
   

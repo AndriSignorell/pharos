@@ -13,10 +13,19 @@ colToHsv(col, useAlphaChannel = FALSE)
 channel should be included.}
 }
 \value{
-Numeric HSV matrix.
+Numeric HSV matrix with one column per color. With
+\code{useAlphaChannel = TRUE} the alpha channel is added as fourth row,
+scaled to the range from 0 to 1 like the other rows.
 }
 \description{
 Convert any valid R color specification to HSV.
+}
+\examples{
+colToHsv(c("tomato", "royalblue"))
+
+# the alpha channel is added as fourth row, on a scale from 0 to 1
+colToHsv("#FF634780", useAlphaChannel = TRUE)
+
 }
 \seealso{
 \link{color-conversion-overview}

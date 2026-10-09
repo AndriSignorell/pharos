@@ -68,6 +68,20 @@ The result has class \code{c("html", "character")} (see
 \code{\link[=asHtml]{asHtml()}}) and prints as a formatted text table via
 \code{\link[=preview.html]{preview.html()}}.
 }
+\examples{
+m <- matrix(c(12.3, 4.56, 7.8, 91.2), nrow = 2,
+            dimnames = list(c("a", "b"), c("mean", "sd")))
+
+# the HTML fragment ...
+(h <- toHtmlTable(m, caption = "Summary"))
+
+# ... and its rendering as text
+preview(h)
+
+# formatted cells, right aligned, without the row names
+preview(toHtmlTable(fm(m, digits = 1), rowNames = FALSE, bodyAlign = "right"))
+
+}
 \seealso{
 \link[bedrock:appendEnum]{bedrock::appendEnum}
 

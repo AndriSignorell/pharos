@@ -14,6 +14,10 @@ preview(x, ...)
 
 \item{...}{further arguments passed to methods.}
 }
+\value{
+\code{x}, invisibly. Called for its side effect of displaying the
+object.
+}
 \description{
 Generic function for an explicit, on-demand preview of an object, as
 distinct from \code{print()}. \code{preview()} exists for object types
@@ -26,6 +30,14 @@ overwritten by - the other package's behaviour.
 \details{
 The default method simply calls \code{print()}, so \code{preview()} is
 always safe to call even for types with no dedicated method.
+}
+\examples{
+# without a dedicated method the object is simply printed
+preview(1:3)
+
+# HTML markup is rendered as text
+preview(asHtml("<b>Note:</b> R<sup>2</sup> = 0.87"))
+
 }
 \seealso{
 \code{\link[=asHtml]{asHtml()}}

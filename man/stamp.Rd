@@ -20,15 +20,20 @@ horizontally along the bottom.}
 
 \item{cex, col}{size and color of the stamp text.}
 }
+\value{
+The text of the stamp as a character string, invisibly; an empty
+string if the stamp is suppressed.
+}
 \description{
 Stamp the current plot in the extreme lower right corner. A free text or
 expression can be defined as text to the stamp.
 }
 \details{
-The text can be freely defined as option. If user and date should be
-included by default, the following option using an expression will help:
-\preformatted{setDescToolsXOption(stamp=expression(gettextf('%s/%s',
-Sys.getenv('USERNAME'), Today() )))}
+The default text is taken from the active theme (see \link{theme}). If user
+and date should be included by default, an unevaluated expression, which
+is evaluated when the stamp is drawn, will help:
+\preformatted{setTheme(list(stamp = expression(gettextf("\%s / \%s",
+  Sys.getenv("USERNAME"), fm(Sys.Date(), fmt = "yyyy-MM-dd")))))}
 
 For \R results may not be satisfactory if \code{par(mfrow=)} is in effect.
 }
