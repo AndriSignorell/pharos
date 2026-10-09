@@ -61,6 +61,11 @@ lines(
   further graphical parameters passed to
   [`lines()`](https://rdrr.io/r/graphics/lines.html) for the smoother.
 
+## Value
+
+No return value (invisible `NULL`), called for its side effect of adding
+the smoother and its confidence band to the current plot.
+
 ## Details
 
 The confidence band is controlled via `band`. This argument may be:

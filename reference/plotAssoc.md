@@ -91,6 +91,13 @@ plotAssoc(
   further arguments passed to
   [`graphics::rect()`](https://rdrr.io/r/graphics/rect.html).
 
+## Value
+
+A list with the components `x` and `y`, returned invisibly: the
+horizontal centres of the bars, one per column of the table, and the
+baselines of the residuals, one per row. Both are named by the levels
+and given in the order in which they are drawn.
+
 ## Details
 
 The plot is based on the association plot described in Cohen (1980) and
@@ -152,18 +159,18 @@ plotAssoc(tab, reorder = FALSE)
 
  
 plotAssoc(tab,
-          main = "Association Hair ~ Eye",
+          main = "Association Driver ~ Area",
           cutoff = 1,
-          xlab="Hair Color", ylab="Eye Color")
+          xlab="Driver", ylab="Area")
 
 
 cols <- pal()[c(12, 8)]
 plotAssoc(tab,
-          main = "Association Hair ~ Eye",
+          main = "Association Driver ~ Area",
           cutoff = 1, 
           col = fade(cols, 0.7), border = cols,
           reorder = TRUE, cex.axis = 0.9, 
-          xlab = list(labels = "Hair Color ", 
+          xlab = list(labels = "Driver ", 
                     col = "#5B2A45", cex = 1.1), 
           ylab = NA, labels = TRUE)
 

@@ -36,3 +36,16 @@ Other geometry.structures: [`arc()`](arc.md), [`band()`](band.md),
 [`bezier()`](bezier.md), [`circle()`](circle.md),
 [`polygonX()`](polygonX.md), [`regPolygon()`](regPolygon.md),
 [`ring()`](ring.md)
+
+## Examples
+
+``` r
+canvas(xlim = c(-2, 2))
+
+e <- ellipse(radiusX = 1.8, radiusY = 0.8)
+polygonX(e, col = "lightblue")
+
+# the same ellipse, rotated by 45 degrees
+polygonX(rotate(e, theta = pi/4), border = "red")
+
+```

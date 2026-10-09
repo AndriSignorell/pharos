@@ -106,13 +106,10 @@ Other plot.special: [`plotBinaryTree()`](binaryTree.md),
 ``` r
 r <- matrix(runif(20), nrow = 2)
 plotPolar(r, type = c("l", "p"), col = c("blue", "red"))
-#> Warning: 'x' is NULL so the result will be NULL
 
 
 # with custom angles
 theta <- seq(0, 2*pi, length.out = 10)
 plotPolar(r[1,], theta = theta, type = "h")
-#> Warning: 'x' is NULL so the result will be NULL
-#> Warning: 'x' is NULL so the result will be NULL
 
 ```

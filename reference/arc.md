@@ -44,3 +44,18 @@ Other geometry.structures: [`band()`](band.md), [`bezier()`](bezier.md),
 [`circle()`](circle.md), [`ellipse()`](ellipse.md),
 [`polygonX()`](polygonX.md), [`regPolygon()`](regPolygon.md),
 [`ring()`](ring.md)
+
+## Examples
+
+``` r
+canvas(xlim = c(-2, 2))
+
+# a quarter of a circle
+lines(arc(radiusX = 1.5, startAngle = 0, endAngle = pi/2), lwd = 2)
+
+# elliptic arcs, vectors of radii yield a collection of arcs
+a <- arc(radiusX = c(0.5, 1), radiusY = c(1, 1.8),
+         startAngle = pi, endAngle = 3*pi/2)
+lines(a, col = "red")
+
+```

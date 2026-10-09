@@ -49,3 +49,18 @@ Other geometry.structures: [`arc()`](arc.md), [`band()`](band.md),
 [`bezier()`](bezier.md), [`circle()`](circle.md),
 [`ellipse()`](ellipse.md), [`polygonX()`](polygonX.md),
 [`regPolygon()`](regPolygon.md)
+
+## Examples
+
+``` r
+canvas(xlim = c(-2, 2))
+
+# a full ring
+polygonX(ring(innerRadius = 1.4, outerRadius = 1.8), col = "lightblue")
+
+# two ring segments at once
+r <- ring(innerRadius = c(0.3, 0.8), outerRadius = c(0.7, 1.2),
+          startAngle = c(0, pi), endAngle = c(pi/2, 3*pi/2))
+polygonX(r, col = c("tomato", "royalblue"))
+
+```

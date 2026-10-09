@@ -29,3 +29,12 @@ Character vector of named R colors.
 ## See also
 
 [color-conversion-overview](color-conversion-overview.md)
+
+## Examples
+
+``` r
+hexToCol(c("#A22A2A", "#4169E0"))
+#> [1] "brown"     "royalblue"
+hexToCol("#4169E0", method = "hsv")
+#> [1] "royalblue"
+```

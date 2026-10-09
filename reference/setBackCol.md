@@ -25,6 +25,11 @@ setBackCol(col = "grey", region = c("plot", "figure"), border = NA)
 
   color for rectangle border(s). Default is `NA` for no borders.
 
+## Value
+
+No return value (invisible `NULL`), called for its side effect of
+painting the background of the current plot.
+
 ## See also
 
 [`rect()`](https://rdrr.io/r/graphics/rect.html)

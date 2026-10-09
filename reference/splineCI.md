@@ -91,6 +91,15 @@ lines(
   other elements are graphical parameters of the band. Default is
   `list(conf.level = 0.95)`.
 
+## Value
+
+`splineX()` returns the fit of
+[`stats::smooth.spline()`](https://rdrr.io/r/stats/smooth.spline.html)
+with the additional class `"SplineX"`. The
+[`lines()`](https://rdrr.io/r/graphics/lines.html) method returns no
+value (invisible `NULL`); it is called for its side effect of adding the
+smoother and its confidence band to the current plot.
+
 ## Details
 
 Confidence bands are controlled via `band`. These arguments can be:

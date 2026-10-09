@@ -39,3 +39,22 @@ All arguments are recycled as necessary.
 Other color.manipulation: [`addOpacity()`](addOpacity.md),
 [`colToOpaque()`](colToOpaque.md), [`darken()`](darken.md),
 [`fade()`](fade.md), [`lighten()`](lighten.md)
+
+## Examples
+
+``` r
+mixCol("red", "blue")
+#> [1] "#7F007F"
+mixCol("red", "blue", weights = 0.2)
+#> [1] "#CC0033"
+
+# the shorter vector is recycled
+mixCol(c("red", "yellow"), "blue")
+#> [1] "#7F007F" "#7F7F7F"
+
+# from red to blue
+w <- seq(0, 1, 0.1)
+barplot(rep(1, 11), col = sapply(w, mixCol, col1 = "red", col2 = "blue"),
+        names.arg = w, yaxt = "n", xlab = "weights")
+
+```

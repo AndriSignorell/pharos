@@ -17,7 +17,7 @@ and easily change or modify them later."><meta property="og:image" content="/log
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.960</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.961</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -211,10 +211,13 @@ environment or in the options.</p>
 we use the default <code><a href="https://rdrr.io/r/base/options.html" class="external-link">options()</a></code> approach: <code>options(num.sty = style(digits=1, bigMark=" "))</code> Defined styles in the options can be passed
 on to <code><a href="fm.html">fm()</a></code> simply by their name. If a style of the same name exists in
 the global environment, that one is used.</p>
-<p>Many report functions (e.g. <code>DescToolsX::tOne()</code>) in <strong>DescToolsX</strong> use
-default formats that the package stores as options when it is loaded:
-<code>"abs.sty"</code> for counts, <code>"num.sty"</code> for numeric values, <code>"per.sty"</code> for
-percentages and <code>"pval.sty"</code> for p-values.</p>
+<p>Four default styles are registered as options when <strong>pharos</strong> is loaded,
+unless options of these names already exist: <code>"abs.sty"</code> for counts,
+<code>"num.sty"</code> for numeric values, <code>"per.sty"</code> for percentages and
+<code>"pval.sty"</code> for p-values. They are used by several plot functions of this
+package (e.g. <code><a href="plotHeatmap.html">plotHeatmap()</a></code>) and by the report functions in
+<strong>DescToolsX</strong> (e.g. <code>DescToolsX::tOne()</code>). Redefining them with
+<code><a href="https://rdrr.io/r/base/options.html" class="external-link">options()</a></code> changes these formats globally.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -242,33 +245,71 @@ percentages and <code>"pval.sty"</code> for p-values.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Example:       314 159.27</span>
 <span class="r-in"><span><span class="co"># editing styles</span></span></span>
 <span class="r-in"><span><span class="fu">style</span><span class="op">(</span><span class="st">"abs.sty"</span><span class="op">)</span>                    <span class="co"># looks for format "abs.sty"</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>style 'abs.sty' could not be found</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Format name:   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Description:   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Definition:    =</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Example:       314159.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Description:   Number format for counts</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Definition:    digits=0, bigMark=''</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Example:       314159</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">(Source:       options)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="co"># style("nexist")                     # return for nonexisting style</span></span></span>
 <span class="r-in"><span><span class="fu">style</span><span class="op">(</span><span class="st">"abs.sty"</span>, bigMark<span class="op">=</span><span class="st">""</span><span class="op">)</span>       <span class="co"># get Style("abs") and overwrite bigMark</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>style 'abs.sty' could not be found</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Format name:   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Description:   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Definition:    =</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Example:       314159.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Description:   Number format for counts</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Definition:    digits=0, bigMark=''</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Example:       314159</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">(Source:       options)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu">style</span><span class="op">(</span><span class="st">"abs.sty"</span>, naForm<span class="op">=</span><span class="st">"-"</span><span class="op">)</span>       <span class="co"># get Style("abs") and add user defined naForm</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>style 'abs.sty' could not be found</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Format name:   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Description:   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Definition:    =</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Example:       314159.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Description:   Number format for counts</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Definition:    digits=0, bigMark='', naForm='-'</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Example:       314159</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">(Source:       options)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">styles</span><span class="op">(</span><span class="op">)</span>                            <span class="co"># all defined formats</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> list()</span>
-<span class="r-in"><span><span class="fu">styles</span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"num.sty"</span>, <span class="st">"abs.sty"</span><span class="op">)</span><span class="op">]</span>   <span class="co"># numeric and integer styles</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $abs.sty</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Format name:   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Description:   Number format for counts</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Definition:    digits=0, bigMark=''</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Example:       314159</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">(Source:       options)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[2]]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $num.sty</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Format name:   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Description:   Number format for numeric values</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Definition:    digits=3, bigMark=''</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Example:       314159.265</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">(Source:       options)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $per.sty</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Format name:   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Description:   Percentage number format</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Definition:    digits=1, fmt='%'</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Example:       3.1e+07%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">(Source:       options)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $pval.sty</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Format name:   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Description:   Number format for p-values</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Definition:    fmt='p', pThreshold=0.001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Example:       NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">(Source:       options)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span><span class="fu">styles</span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"num.sty"</span>, <span class="st">"abs.sty"</span><span class="op">)</span><span class="op">]</span>   <span class="co"># numeric and integer styles</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $num.sty</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Format name:   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Description:   Number format for numeric values</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Definition:    digits=3, bigMark=''</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Example:       314159.265</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">(Source:       options)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $abs.sty</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Format name:   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Description:   Number format for counts</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Definition:    digits=0, bigMark=''</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Example:       314159</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">(Source:       options)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># define totally new format and store as option</span></span></span>
@@ -282,6 +323,9 @@ percentages and <code>"pval.sty"</code> for p-values.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="fm.html">fm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.Date</a></span><span class="op">(</span><span class="op">)</span>, fmt<span class="op">=</span><span class="va">dat.sty</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10, 09 2026</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># remove the option again</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>nob.sty<span class="op">=</span><span class="cn">NULL</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

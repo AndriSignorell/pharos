@@ -62,25 +62,42 @@ dimension is shown in the columns of the flat contingency table.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# a function returning a named vector, here the mean and its
+# confidence interval (as e.g. lumen::meanCI() returns them)
+meanCI <- function(z) {
+  ci <- t.test(z)$conf.int
+  c(est = mean(z), lci = ci[1], uci = ci[2])
+}
 
 x <- with(
-  Pizza,
+  warpbreaks,
   tapply(
-    temperature,
-    list(area, driver),
-    lumen::meanCI,
-    na.rm = TRUE
+    breaks,
+    list(wool, tension),
+    meanCI
   )
 )
 
+# the statistics form the columns
 ftable(x)
+#>           est      lci      uci
+#>                                
+#> A L  44.55556 30.64441 58.46670
+#>   M  24.00000 17.34314 30.65686
+#>   H  24.55556 16.65928 32.45183
+#> B L  28.22222 20.64414 35.80031
+#>   M  28.77778 21.52844 36.02711
+#>   H  18.77778 15.01645 22.53911
 
+# the second grouping variable in the columns as well
 ftable(
   x,
-  row.vars = c(2, 3),
-  col.vars = 1
+  row.vars = 2,
+  col.vars = c(3, 1)
 )
-
-} # }
+#>           L                          M                          H                  
+#>         est      lci      uci      est      lci      uci      est      lci      uci
+#>                                                                                    
+#> A  44.55556 30.64441 58.46670 24.00000 17.34314 30.65686 24.55556 16.65928 32.45183
+#> B  28.22222 20.64414 35.80031 28.77778 21.52844 36.02711 18.77778 15.01645 22.53911
 ```

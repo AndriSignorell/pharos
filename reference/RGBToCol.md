@@ -29,3 +29,16 @@ Character vector of named R colors.
 ## See also
 
 [color-conversion-overview](color-conversion-overview.md)
+
+## Examples
+
+``` r
+rgbToCol(matrix(c(162, 42, 42), nrow = 3))
+#> [1] "brown"
+rgbToCol(c("#A22A2A", "#4169E0"))
+#> [1] "brown"     "royalblue"
+
+# nearest color in HSV space
+rgbToCol(c("#A22A2A", "#4169E0"), method = "hsv", metric = "manhattan")
+#> [1] "brown"     "royalblue"
+```

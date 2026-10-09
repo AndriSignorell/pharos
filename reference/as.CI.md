@@ -157,18 +157,30 @@ as.CI(
 #> 1  10   8  12    A
 #> 2  20  18  22    B
 
-# confidence intervals returned by tapply()
-if (FALSE) { # \dontrun{
+# confidence intervals returned by tapply(): every cell holds the
+# estimate and its limits (as e.g. lumen::meanCI() returns them)
+meanCI <- function(z) {
+  ci <- t.test(z)$conf.int
+  c(est = mean(z), lci = ci[1], uci = ci[2])
+}
+
 xci <- with(
-  Pizza,
+  warpbreaks,
   tapply(
-    temperature,
-    driver,
-    lumen::meanCI,
-    na.rm = TRUE
+    breaks,
+    list(wool, tension),
+    meanCI
   )
 )
 
+as.CI(xci)
+#>        est      lci      uci group1 group2
+#> 1 44.55556 30.64441 58.46670      A      L
+#> 2 28.22222 20.64414 35.80031      B      L
+#> 3 24.00000 17.34314 30.65686      A      M
+#> 4 28.77778 21.52844 36.02711      B      M
+#> 5 24.55556 16.65928 32.45183      A      H
+#> 6 18.77778 15.01645 22.53911      B      H
 plotDot(as.CI(xci))
-} # }
+
 ```

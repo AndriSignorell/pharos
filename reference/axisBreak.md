@@ -47,6 +47,11 @@ axisBreak(
 
   break width relative to plot width
 
+## Value
+
+No return value, called for its side effect of drawing the break mark on
+the current plot.
+
 ## Details
 
 The `pos` argument is not needed unless the user has specified a

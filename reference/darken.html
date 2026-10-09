@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.960</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.961</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -78,7 +78,7 @@ while 1 returns black.</p></dd>
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Colors are mixed linearly with black in RGB space:
 $$
-  x_{new} = x \\cdot (1 - amount)
+  x_{new} = x \cdot (1 - amount)
 $$</p>
     </div>
     <div class="section level2">
@@ -91,6 +91,21 @@ $$</p>
 <code><a href="mixCol.html">mixCol()</a></code></p></div>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">darken</span><span class="op">(</span><span class="st">"tomato"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "#CC4F38"</span>
+<span class="r-in"><span><span class="fu">darken</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"tomato"</span>, <span class="st">"royalblue"</span><span class="op">)</span>, amount <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "#7F3123" "#203470"</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># increasing amounts</span></span></span>
+<span class="r-in"><span><span class="va">amount</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0.2</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/barplot.html" class="external-link">barplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">6</span><span class="op">)</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">amount</span>, <span class="va">darken</span>, col <span class="op">=</span> <span class="st">"tomato"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>        names.arg <span class="op">=</span> <span class="va">amount</span>, yaxt <span class="op">=</span> <span class="st">"n"</span>, xlab <span class="op">=</span> <span class="st">"amount"</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="darken-1.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

@@ -45,7 +45,10 @@ plotCirc(
   - or a list with elements `col` and `border`.
 
   Colors are recycled to match the number of sectors
-  (`nrow(x) + ncol(x)`).
+  (`nrow(x) + ncol(x)`). The sectors are filled in the order in which
+  they are drawn: the columns of `x` first, then the rows, both in
+  reverse order. `TRUE` (default) uses the qualitative palette of the
+  active theme (see [theme](theme.md)) and grey borders.
 
 - ribbon:
 
@@ -58,6 +61,8 @@ plotCirc(
   - or a list with elements `col` and `border`.
 
   Colors are recycled to match the number of row categories (`nrow(x)`).
+  With `TRUE` (default) a ribbon takes the color of the row sector it
+  starts from, made half transparent, and a grey border.
 
 - labels:
 
@@ -65,9 +70,13 @@ plotCirc(
 
   - a logical (`TRUE`/`FALSE`) to enable/disable labels,
 
-  - a character vector of labels,
+  - a character vector of labels, for the rows followed by the columns
+    of `x`,
 
-  - or a list with parameters passed to internal label drawing.
+  - or a list with parameters passed to internal label drawing
+    (`labels`, `cex`, `col`, `las`, `adj`).
+
+  `TRUE` (default) uses the row and column names of `x`.
 
 - stamp:
 
@@ -132,55 +141,6 @@ plotCirc(
   sector = list(col = rainbow(12), border = "grey50"),
   ribbon = list(col = rainbow(6), border = NA)
 )
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
-#> Warning: supplied color is neither numeric nor character
 
 
 # Custom labels

@@ -110,6 +110,11 @@ plotQQ(
 
   the dots are passed to the plot function.
 
+## Value
+
+No return value (invisible `NULL`), called for its side effect of
+drawing the plot.
+
 ## Details
 
 The function generates a sequence of points between 0 and 1 and

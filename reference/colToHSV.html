@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.960</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.961</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,13 +71,33 @@ channel should be included.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>Numeric HSV matrix.</p>
+    <p>Numeric HSV matrix with one column per color. With
+<code>useAlphaChannel = TRUE</code> the alpha channel is added as fourth row,
+scaled to the range from 0 to 1 like the other rows.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><a href="color-conversion-overview.html">color-conversion-overview</a></p></div>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">colToHsv</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"tomato"</span>, <span class="st">"royalblue"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         [,1]      [,2]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> h 0.02536232 0.6250000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> s 0.72156863 0.7111111</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> v 1.00000000 0.8823529</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># the alpha channel is added as fourth row, on a scale from 0 to 1</span></span></span>
+<span class="r-in"><span><span class="fu">colToHsv</span><span class="op">(</span><span class="st">"#FF634780"</span>, useAlphaChannel <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             [,1]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> h     0.02536232</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> s     0.72156863</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> v     1.00000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> alpha 0.50196078</span>
+<span class="r-in"><span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

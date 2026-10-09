@@ -21,7 +21,7 @@ preview.html().'><meta property="og:image" content="/logo.png"></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.960</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.961</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -166,6 +166,35 @@ Ignored when <code>m</code> has none</p></dd>
 <code><a href="htmlSubscript.html">htmlSubscript</a></code></p></div>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">12.3</span>, <span class="fl">4.56</span>, <span class="fl">7.8</span>, <span class="fl">91.2</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">2</span>,</span></span>
+<span class="r-in"><span>            dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mean"</span>, <span class="st">"sd"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># the HTML fragment ...</span></span></span>
+<span class="r-in"><span><span class="op">(</span><span class="va">h</span> <span class="op">&lt;-</span> <span class="fu">toHtmlTable</span><span class="op">(</span><span class="va">m</span>, caption <span class="op">=</span> <span class="st">"Summary"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;table border="0" cellpadding="3" data-mce-style="background-color: #e1e7e9;" frame="hsides" rules="groups"&gt;&lt;caption&gt;Summary&lt;/caption&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                  &lt;tbody&gt;&lt;thead&gt; &lt;tr&gt; &lt;td  style="text-align: center;"&gt;&lt;b&gt;&lt;/b&gt;&lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;td  style="text-align: center;"&gt;&lt;b&gt;mean&lt;/b&gt;&lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;td  style="text-align: center;"&gt;&lt;b&gt;sd&lt;/b&gt;&lt;/td&gt; &lt;/tr&gt; &lt;/thead&gt; &lt;tr&gt;&lt;td style="text-align: left;"&gt;&lt;b&gt;a&lt;/b&gt;&lt;/td&gt;&lt;td  style="text-align: center;" valign="top" &gt;12.3&lt;/td&gt;&lt;td  style="text-align: center;" valign="top" &gt;7.8&lt;/td&gt;&lt;/tr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;tr&gt;&lt;td style="text-align: left;"&gt;&lt;b&gt;b&lt;/b&gt;&lt;/td&gt;&lt;td  style="text-align: center;" valign="top" &gt;4.56&lt;/td&gt;&lt;td  style="text-align: center;" valign="top" &gt;91.2&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># ... and its rendering as text</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="preview.html">preview</a></span><span class="op">(</span><span class="va">h</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;"> | mean | sd</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --+------+-----</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">a</span> | 12.3 | 7.8 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">b</span> | 4.56 | 91.2 </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># formatted cells, right aligned, without the row names</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="preview.html">preview</a></span><span class="op">(</span><span class="fu">toHtmlTable</span><span class="op">(</span><span class="fu"><a href="fm.html">fm</a></span><span class="op">(</span><span class="va">m</span>, digits <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, rowNames <span class="op">=</span> <span class="cn">FALSE</span>, bodyAlign <span class="op">=</span> <span class="st">"right"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">mean | sd</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -----+-----</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12.3 | 7.8 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4.6  | 91.2 </span>
+<span class="r-in"><span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

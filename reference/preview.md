@@ -28,6 +28,10 @@ preview(x, ...)
 
   further arguments passed to methods.
 
+## Value
+
+`x`, invisibly. Called for its side effect of displaying the object.
+
 ## Details
 
 The default method simply calls
@@ -37,3 +41,15 @@ safe to call even for types with no dedicated method.
 ## See also
 
 [`asHtml()`](asHtml.md)
+
+## Examples
+
+``` r
+# without a dedicated method the object is simply printed
+preview(1:3)
+#> [1] 1 2 3
+
+# HTML markup is rendered as text
+preview(asHtml("<b>Note:</b> R<sup>2</sup> = 0.87"))
+#> Note: R^2 = 0.87 
+```

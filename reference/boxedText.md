@@ -153,6 +153,11 @@ boxedText(formula, data = parent.frame(), ..., subset)
   an optional vector specifying a subset of observations to be used in
   the analysis.
 
+## Value
+
+No return value, called for its side effect of adding the boxed labels
+to the current plot.
+
 ## See also
 
 similar function in package plotrix `plotrix::boxed.labels` (lacking

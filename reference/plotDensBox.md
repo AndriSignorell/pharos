@@ -185,13 +185,14 @@ Other plot.univariate: [`plotArea()`](plotArea.md),
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
 set.seed(1)
 x <- rnorm(100)
 g <- sample(c("A", "B"), 100, TRUE)
 
 plotDensBox(x)
+
 plotDensBox(x, g)
+
 
 plotDensBox(
   x,
@@ -199,14 +200,17 @@ plotDensBox(
   box  = list(notch = TRUE)
 )
 
+
 plotDensBox(
   x,
   box = FALSE
 )
 
+
 plotDensBox(x ~ g)
+
 
 # subset and the cells of two grouping variables
 plotDensBox(len ~ supp:dose, ToothGrowth, subset = dose > 0.5)
-} # }
+
 ```

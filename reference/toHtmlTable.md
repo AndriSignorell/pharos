@@ -101,3 +101,32 @@ Other html: [`asFileLink()`](asFileLink.md), [`asHtml()`](asHtml.md),
 [`asImg()`](asImg.md), [`embedFile()`](embedFile.md),
 [`escapeHtml()`](escapeHtml.md), [`htmlNotation`](htmlNotation.md),
 [`htmlSubscript`](htmlSubscript.md)
+
+## Examples
+
+``` r
+m <- matrix(c(12.3, 4.56, 7.8, 91.2), nrow = 2,
+            dimnames = list(c("a", "b"), c("mean", "sd")))
+
+# the HTML fragment ...
+(h <- toHtmlTable(m, caption = "Summary"))
+#> <table border="0" cellpadding="3" data-mce-style="background-color: #e1e7e9;" frame="hsides" rules="groups"><caption>Summary</caption>
+#>                  <tbody><thead> <tr> <td  style="text-align: center;"><b></b></td>
+#> <td  style="text-align: center;"><b>mean</b></td>
+#> <td  style="text-align: center;"><b>sd</b></td> </tr> </thead> <tr><td style="text-align: left;"><b>a</b></td><td  style="text-align: center;" valign="top" >12.3</td><td  style="text-align: center;" valign="top" >7.8</td></tr>
+#> <tr><td style="text-align: left;"><b>b</b></td><td  style="text-align: center;" valign="top" >4.56</td><td  style="text-align: center;" valign="top" >91.2</td></tr></tbody></table>
+
+# ... and its rendering as text
+preview(h)
+#>  | mean | sd
+#> --+------+-----
+#> a | 12.3 | 7.8 
+#> b | 4.56 | 91.2 
+
+# formatted cells, right aligned, without the row names
+preview(toHtmlTable(fm(m, digits = 1), rowNames = FALSE, bodyAlign = "right"))
+#> mean | sd
+#> -----+-----
+#> 12.3 | 7.8 
+#> 4.6  | 91.2 
+```

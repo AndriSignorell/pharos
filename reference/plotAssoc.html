@@ -21,7 +21,7 @@ diverging palette."><meta property="og:image" content="/logo.png"></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.960</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.961</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -150,6 +150,13 @@ resolves to <code>getTheme()$stamp</code>. <code>TRUE</code>/<code>FALSE</code>/
 
 </dl></div>
     <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    <p>A list with the components <code>x</code> and <code>y</code>, returned invisibly: the
+horizontal centres of the bars, one per column of the table, and the
+baselines of the residuals, one per row. Both are named by the levels and
+given in the order in which they are drawn.</p>
+    </div>
+    <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>The plot is based on the association plot described in Cohen (1980) and
 Friendly (1992). Each cell \((i,j)\) is represented by a rectangle:</p><ul><li><p><strong>width</strong> proportional to \(\sqrt{e_{ij}}\)
@@ -205,18 +212,18 @@ Theory and Methods</em>, 9, 1025–1041.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span> </span></span>
 <span class="r-in"><span><span class="fu">plotAssoc</span><span class="op">(</span><span class="va">tab</span>,</span></span>
-<span class="r-in"><span>          main <span class="op">=</span> <span class="st">"Association Hair ~ Eye"</span>,</span></span>
+<span class="r-in"><span>          main <span class="op">=</span> <span class="st">"Association Driver ~ Area"</span>,</span></span>
 <span class="r-in"><span>          cutoff <span class="op">=</span> <span class="fl">1</span>,</span></span>
-<span class="r-in"><span>          xlab<span class="op">=</span><span class="st">"Hair Color"</span>, ylab<span class="op">=</span><span class="st">"Eye Color"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>          xlab<span class="op">=</span><span class="st">"Driver"</span>, ylab<span class="op">=</span><span class="st">"Area"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plotAssoc-5.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="pal.html">pal</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">12</span>, <span class="fl">8</span><span class="op">)</span><span class="op">]</span></span></span>
 <span class="r-in"><span><span class="fu">plotAssoc</span><span class="op">(</span><span class="va">tab</span>,</span></span>
-<span class="r-in"><span>          main <span class="op">=</span> <span class="st">"Association Hair ~ Eye"</span>,</span></span>
+<span class="r-in"><span>          main <span class="op">=</span> <span class="st">"Association Driver ~ Area"</span>,</span></span>
 <span class="r-in"><span>          cutoff <span class="op">=</span> <span class="fl">1</span>, </span></span>
 <span class="r-in"><span>          col <span class="op">=</span> <span class="fu"><a href="fade.html">fade</a></span><span class="op">(</span><span class="va">cols</span>, <span class="fl">0.7</span><span class="op">)</span>, border <span class="op">=</span> <span class="va">cols</span>,</span></span>
 <span class="r-in"><span>          reorder <span class="op">=</span> <span class="cn">TRUE</span>, cex.axis <span class="op">=</span> <span class="fl">0.9</span>, </span></span>
-<span class="r-in"><span>          xlab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="st">"Hair Color "</span>, </span></span>
+<span class="r-in"><span>          xlab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="st">"Driver "</span>, </span></span>
 <span class="r-in"><span>                    col <span class="op">=</span> <span class="st">"#5B2A45"</span>, cex <span class="op">=</span> <span class="fl">1.1</span><span class="op">)</span>, </span></span>
 <span class="r-in"><span>          ylab <span class="op">=</span> <span class="cn">NA</span>, labels <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plotAssoc-6.png" alt="" width="700" height="433"></span>

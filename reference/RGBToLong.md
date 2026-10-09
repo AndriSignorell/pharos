@@ -21,3 +21,10 @@ Integer vector.
 ## See also
 
 [color-conversion-overview](color-conversion-overview.md)
+
+## Examples
+
+``` r
+rgbToLong(colToRgb(c("red", "green", "blue")))
+#> [1]      255    65280 16711680
+```

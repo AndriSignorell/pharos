@@ -46,6 +46,10 @@ plotTimeSeries(
 
   the dots are passed to the plot command.
 
+## Value
+
+`x`, invisibly. Called for its side effect of drawing the plot.
+
 ## Details
 
 plotTimeSeries plots a combination of the time series and its

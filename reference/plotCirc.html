@@ -17,7 +17,7 @@ flexible styling via object-based arguments."><meta property="og:image" content=
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.960</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.961</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -91,21 +91,29 @@ flexible styling via object-based arguments.</p>
 <dd><p>sector styling. Can be:</p><ul><li><p>a logical (<code>TRUE</code>/<code>FALSE</code>) to enable/disable sectors,</p></li>
 <li><p>a vector of colors,</p></li>
 <li><p>or a list with elements <code>col</code> and <code>border</code>.</p></li>
-</ul><p>Colors are recycled to match the number of sectors (<code>nrow(x) + ncol(x)</code>).</p></dd>
+</ul><p>Colors are recycled to match the number of sectors (<code>nrow(x) + ncol(x)</code>).
+The sectors are filled in the order in which they are drawn: the columns
+of <code>x</code> first, then the rows, both in reverse order. <code>TRUE</code> (default)
+uses the qualitative palette of the active theme (see <a href="theme.html">theme</a>) and grey
+borders.</p></dd>
 
 
 <dt id="arg-ribbon">ribbon<a class="anchor" aria-label="anchor" href="#arg-ribbon"></a></dt>
 <dd><p>ribbon styling. Can be:</p><ul><li><p>a logical (<code>TRUE</code>/<code>FALSE</code>) to enable/disable ribbons,</p></li>
 <li><p>a vector of colors,</p></li>
 <li><p>or a list with elements <code>col</code> and <code>border</code>.</p></li>
-</ul><p>Colors are recycled to match the number of row categories (<code>nrow(x)</code>).</p></dd>
+</ul><p>Colors are recycled to match the number of row categories (<code>nrow(x)</code>).
+With <code>TRUE</code> (default) a ribbon takes the color of the row sector it
+starts from, made half transparent, and a grey border.</p></dd>
 
 
 <dt id="arg-labels">labels<a class="anchor" aria-label="anchor" href="#arg-labels"></a></dt>
 <dd><p>label styling. Can be:</p><ul><li><p>a logical (<code>TRUE</code>/<code>FALSE</code>) to enable/disable labels,</p></li>
-<li><p>a character vector of labels,</p></li>
-<li><p>or a list with parameters passed to internal label drawing.</p></li>
-</ul></dd>
+<li><p>a character vector of labels, for the rows followed by the
+columns of <code>x</code>,</p></li>
+<li><p>or a list with parameters passed to internal label drawing
+(<code>labels</code>, <code>cex</code>, <code>col</code>, <code>las</code>, <code>adj</code>).</p></li>
+</ul><p><code>TRUE</code> (default) uses the row and column names of <code>x</code>.</p></dd>
 
 
 <dt id="arg-stamp">stamp<a class="anchor" aria-label="anchor" href="#arg-stamp"></a></dt>
@@ -166,55 +174,6 @@ resolves to <code>getTheme()$stamp</code>. <code>TRUE</code>/<code>FALSE</code>/
 <span class="r-in"><span>  sector <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">rainbow</a></span><span class="op">(</span><span class="fl">12</span><span class="op">)</span>, border <span class="op">=</span> <span class="st">"grey50"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  ribbon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">rainbow</a></span><span class="op">(</span><span class="fl">6</span><span class="op">)</span>, border <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>supplied color is neither numeric nor character</span>
 <span class="r-plt img"><img src="plotCirc-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Custom labels</span></span></span>

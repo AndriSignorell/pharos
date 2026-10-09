@@ -237,20 +237,22 @@ Other plot.bivariate: [`plotAssoc()`](plotAssoc.md),
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
 plotXY(temperature ~ delivery_min, bedrock::Pizza,
        main = "Temperature vs. Delivery Time")
+
 
 # Suppress loess, customize lm line
 plotXY(temperature ~ delivery_min, bedrock::Pizza,
        lm    = list(col = "darkred", lwd = 2),
        loess = FALSE)
 
+
 # No title, compact top margin
 plotXY(temperature ~ delivery_min, bedrock::Pizza, main = "")
+
 
 # subset, evaluated in data
 plotXY(temperature ~ delivery_min, bedrock::Pizza,
        subset = area == "Camden")
-} # }
+
 ```

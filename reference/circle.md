@@ -32,3 +32,16 @@ Other geometry.structures: [`arc()`](arc.md), [`band()`](band.md),
 [`bezier()`](bezier.md), [`ellipse()`](ellipse.md),
 [`polygonX()`](polygonX.md), [`regPolygon()`](regPolygon.md),
 [`ring()`](ring.md)
+
+## Examples
+
+``` r
+canvas(xlim = c(-2, 2))
+
+polygonX(circle(radius = 1.5), col = "lightblue")
+
+# several circles at once
+polygonX(circle(x = c(-0.6, 0.6), y = 0, radius = 0.4),
+         col = c("tomato", "royalblue"))
+
+```

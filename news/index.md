@@ -1,6 +1,6 @@
 # Changelog
 
-## pharos 0.0.0.954
+## pharos 0.0.0.960
 
 ### New features
 

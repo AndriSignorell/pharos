@@ -170,10 +170,14 @@ options can be passed on to [`fm()`](fm.md) simply by their name. If a
 style of the same name exists in the global environment, that one is
 used.
 
-Many report functions (e.g. `DescToolsX::tOne()`) in **DescToolsX** use
-default formats that the package stores as options when it is loaded:
-`"abs.sty"` for counts, `"num.sty"` for numeric values, `"per.sty"` for
-percentages and `"pval.sty"` for p-values.
+Four default styles are registered as options when **pharos** is loaded,
+unless options of these names already exist: `"abs.sty"` for counts,
+`"num.sty"` for numeric values, `"per.sty"` for percentages and
+`"pval.sty"` for p-values. They are used by several plot functions of
+this package (e.g. [`plotHeatmap()`](plotHeatmap.md)) and by the report
+functions in **DescToolsX** (e.g. `DescToolsX::tOne()`). Redefining them
+with [`options()`](https://rdrr.io/r/base/options.html) changes these
+formats globally.
 
 ## See also
 
@@ -199,33 +203,71 @@ num.sty                             # displays the details of the style
 #> Example:       314 159.27
 # editing styles
 style("abs.sty")                    # looks for format "abs.sty"
-#> Warning: style 'abs.sty' could not be found
 #> Format name:   
-#> Description:   
-#> Definition:    =
-#> Example:       314159.3
+#> Description:   Number format for counts
+#> Definition:    digits=0, bigMark=''
+#> Example:       314159
+#> (Source:       options)
+#> 
 # style("nexist")                     # return for nonexisting style
 style("abs.sty", bigMark="")       # get Style("abs") and overwrite bigMark
-#> Warning: style 'abs.sty' could not be found
 #> Format name:   
-#> Description:   
-#> Definition:    =
-#> Example:       314159.3
+#> Description:   Number format for counts
+#> Definition:    digits=0, bigMark=''
+#> Example:       314159
+#> (Source:       options)
+#> 
 style("abs.sty", naForm="-")       # get Style("abs") and add user defined naForm
-#> Warning: style 'abs.sty' could not be found
 #> Format name:   
-#> Description:   
-#> Definition:    =
-#> Example:       314159.3
+#> Description:   Number format for counts
+#> Definition:    digits=0, bigMark='', naForm='-'
+#> Example:       314159
+#> (Source:       options)
+#> 
 
 styles()                            # all defined formats
-#> list()
-styles()[c("num.sty", "abs.sty")]   # numeric and integer styles
-#> [[1]]
-#> NULL
+#> $abs.sty
+#> Format name:   
+#> Description:   Number format for counts
+#> Definition:    digits=0, bigMark=''
+#> Example:       314159
+#> (Source:       options)
 #> 
-#> [[2]]
-#> NULL
+#> $num.sty
+#> Format name:   
+#> Description:   Number format for numeric values
+#> Definition:    digits=3, bigMark=''
+#> Example:       314159.265
+#> (Source:       options)
+#> 
+#> $per.sty
+#> Format name:   
+#> Description:   Percentage number format
+#> Definition:    digits=1, fmt='%'
+#> Example:       3.1e+07%
+#> (Source:       options)
+#> 
+#> $pval.sty
+#> Format name:   
+#> Description:   Number format for p-values
+#> Definition:    fmt='p', pThreshold=0.001
+#> Example:       NA
+#> (Source:       options)
+#> 
+styles()[c("num.sty", "abs.sty")]   # numeric and integer styles
+#> $num.sty
+#> Format name:   
+#> Description:   Number format for numeric values
+#> Definition:    digits=3, bigMark=''
+#> Example:       314159.265
+#> (Source:       options)
+#> 
+#> $abs.sty
+#> Format name:   
+#> Description:   Number format for counts
+#> Definition:    digits=0, bigMark=''
+#> Example:       314159
+#> (Source:       options)
 #> 
 
 # define totally new format and store as option
@@ -239,4 +281,7 @@ fm(314.1563, fmt=num.sty)
 
 fm(Sys.Date(), fmt=dat.sty)
 #> [1] 10, 09 2026
+
+# remove the option again
+options(nob.sty=NULL)
 ```

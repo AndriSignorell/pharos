@@ -32,3 +32,21 @@ preview(x, ...)
 
 If output does not support ANSI styling, bold/italic markup is rendered
 as plain text (handled automatically by cli).
+
+## Examples
+
+``` r
+preview(asHtml(
+  "<b>Model:</b> y = &beta;<sub>0</sub> + &beta;<sub>1</sub>x + &varepsilon;"
+))
+#> Model: y = β_0 + β_1x + ε 
+
+# tables are rendered as aligned text
+m <- matrix(c(12.3, 4.56, 7.8, 91.2), nrow = 2,
+            dimnames = list(c("a", "b"), c("mean", "sd")))
+preview(toHtmlTable(m))
+#>  | mean | sd
+#> --+------+-----
+#> a | 12.3 | 7.8 
+#> b | 4.56 | 91.2 
+```

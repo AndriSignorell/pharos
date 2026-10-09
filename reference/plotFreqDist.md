@@ -125,6 +125,11 @@ plotFreqDist(
   of the multi-panel figure; the inner panel margins are managed
   internally and cannot be overridden.
 
+## Value
+
+No return value (invisible `NULL`), called for its side effect of
+drawing the plot.
+
 ## Details
 
 Each plot component is controlled via a single argument accepting

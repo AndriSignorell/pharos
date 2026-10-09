@@ -32,13 +32,19 @@ stamp(text = .useTheme, las = NULL, cex = 0.6, col = "grey40")
 
   size and color of the stamp text.
 
+## Value
+
+The text of the stamp as a character string, invisibly; an empty string
+if the stamp is suppressed.
+
 ## Details
 
-The text can be freely defined as option. If user and date should be
-included by default, the following option using an expression will help:
+The default text is taken from the active theme (see [theme](theme.md)).
+If user and date should be included by default, an unevaluated
+expression, which is evaluated when the stamp is drawn, will help:
 
-    setDescToolsXOption(stamp=expression(gettextf('
-    Sys.getenv('USERNAME'), Today() )))
+    setTheme(list(stamp = expression(gettextf("%s / %s",
+      Sys.getenv("USERNAME"), fm(Sys.Date(), fmt = "yyyy-MM-dd")))))
 
 For R results may not be satisfactory if `par(mfrow=)` is in effect.
 
