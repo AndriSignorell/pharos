@@ -116,8 +116,9 @@ fm(
 \code{POSIXt} vector, or a matrix, table, ftable, or data frame}
 
 \item{digits}{integer, the desired (fixed) number of digits after the
-decimal point. Unlike \code{\link[=formatC]{formatC()}} you will always get this number
-of digits even if the last digit is 0.  Negative numbers of digits round to
+decimal point. You will always get this number of digits, even if the last
+digit is 0. In scientific notation it is the number of decimals of the
+mantissa. Negative numbers of digits round to
 a power of ten (\code{digits=-2} would round to the nearest hundred) for
 standard numeric formats; engineering formats require nonnegative values}
 
@@ -128,13 +129,15 @@ results like \code{.452} for \code{0.452}. The default \code{NULL} will
 leave the numbers as they are (meaning at least one 0 digit).}
 
 \item{sci}{numeric scalar giving the absolute power-of-ten threshold for
-scientific notation. Its absolute value is used symmetrically: for
-\code{sci = 8}, nonzero values below \eqn{10^{-8}} and values at or above
-\eqn{10^8} are displayed scientifically. The default is based on
+scientific notation. It applies to the absolute value of \code{x} and is used
+symmetrically: for \code{sci = 8}, a value is displayed scientifically if
+\eqn{|x| \ge 10^8}{|x| >= 10^8} or
+\eqn{0 < |x| < 10^{-8}}{0 < |x| < 10^-8}. The default is based on
 \code{getOption("scipen")}; an option value of zero is replaced by 7}
 
 \item{bigMark}{character; if not empty used as mark between every 3
-decimals before the decimal point. Default is "" (none).}
+digits before the decimal point. If \code{NULL}, the option \code{bigMark} is used
+and, if that is not set, "" (none).}
 
 \item{decMark}{character specifying the decimal mark. If \code{NULL}, the
 current \code{OutDec} option is used}
@@ -156,7 +159,7 @@ as \code{"< threshold"}}
 \item{width}{nonnegative integer giving the minimum display width}
 
 \item{align}{the character on whose position the strings will be aligned.
-Left alignment can be requested by setting \code{sep = "\\\\l"}, right
+Left alignment can be requested by setting \code{align = "\\\\l"}, right
 alignment by \code{"\\\\r"} and center alignment by \code{"\\\\c"}. Mind the
 backslashes, as if they are omitted, strings would be aligned to the
 \strong{character} l, r or c respectively. The default is \code{NULL} which
@@ -165,7 +168,7 @@ to the function \code{\link[=strAlign]{strAlign()}} as argument \code{sep}.}
 
 \item{lang}{optional value setting the language for the months and daynames.
 Can be either \code{"local"} for current locale or \code{"en"} for english.
-If left to \code{NULL}, the package option \code{"lang"} is used, falling
+If left to \code{NULL}, the option \code{DescToolsX.lang} is used, falling
 back to \code{"en"}}
 
 \item{\dots}{additional arguments passed to methods or to a formatting
@@ -232,8 +235,8 @@ Even more variability is needed to display numeric values. For the most
 frequently used formats there are the following special codes available:
 \tabular{lll}{ \strong{Code} \tab \strong{Type} \tab \strong{Description} \cr
 \code{e} \tab scientific \tab forces scientific representation of x, e.g.
-3.141e-05. The number of digits,\cr \tab \tab alignment and zero values are
-further respected.\cr \tab\cr
+3.141e-05. \code{digits} gives the number of\cr \tab \tab decimals of the
+mantissa; alignment and zero values are further respected.\cr \tab\cr
 
 \code{eng} \tab engineering \tab forces scientific representation of
 \code{x}, but only with powers that are a multiple of 3. \cr
@@ -265,11 +268,11 @@ according to the used defaults e.g. in \code{lm} as \cr \tab \tab \verb{[0, 0.00
 list out of the arguments above (as created by \code{\link[=style]{style()}}). This
 allows to store and manage the full format in variables or as options and
 use it as format template subsequently. Arguments supplied directly to
-\code{fm()} override the corresponding Style settings, including an
-explicitly supplied \code{NULL}.
+\code{fm()} override the corresponding Style settings. \code{NULL} means
+"not specified" and therefore leaves the Style setting in place.
 
-For data frames, every formatting argument must have length one or the
-number of columns. Length-one arguments are recycled, allowing each column
+For data frames and ftables, every formatting argument must have length one
+or the number of columns. Length-one arguments are recycled, allowing each column
 to use its own formatting settings without ambiguous partial recycling.
 Functions and Style objects count as single settings; use a list to supply
 different functions or Styles by column.
@@ -279,8 +282,9 @@ Finally, \code{fmt} can be a function of \code{x}. Additional arguments in
 }
 \examples{
 
-fm(as.Date(c("2014-11-28", "2014-1-2")), fmt="ddd, d mmmm yyyy")
-fm(as.Date(c("2014-11-28", "2014-1-2")), fmt="ddd, d mmmm yyyy", lang="en")
+# mind the case: M is the month, m the minutes
+fm(as.Date(c("2014-11-28", "2014-1-2")), fmt="ddd, d MMMM yyyy")
+fm(as.Date(c("2014-11-28", "2014-1-2")), fmt="ddd, d MMMM yyyy", lang="local")
 
 # using english ordinal suffixes
 fm(as.Date("2026-01-21"), fmt="MMMM do yyyy", lang="en")

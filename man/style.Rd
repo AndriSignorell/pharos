@@ -29,13 +29,18 @@ style(
 \method{print}{Style}(x, ...)
 }
 \arguments{
-\item{x}{an object of class \code{Style} or a the name of a style, defined
-either in the global enviroment or in the options.}
+\item{x}{an object of class \code{Style} or the name of a style, defined
+either in the global environment or in the options. The format arguments
+supplied along with it overwrite its settings or are added to them. If no
+style with the given name is found, a warning is issued and an empty style
+is returned.}
 
 \item{digits}{integer, the desired (fixed) number of digits after the
-decimal point. Unlike \code{\link[=formatC]{formatC()}} you will always get this number
-of digits even if the last digit is 0.  Negative numbers of digits round to
-a power of ten (\code{digits=-2} would round to the nearest hundred).}
+decimal point. You will always get this number of digits, even if the last
+digit is 0. In scientific notation it is the number of decimals of the
+mantissa. Negative numbers of digits round to
+a power of ten (\code{digits=-2} would round to the nearest hundred) for
+standard numeric formats; engineering formats require nonnegative values}
 
 \item{leadDigits}{number of leading zeros. \code{leadDigits=3} would make sure
 that at least 3 digits on the left side will be printed, say \code{3.4} will
@@ -43,18 +48,19 @@ be printed as \code{003.4}. Setting \code{leadDigits} to \code{0} will yield
 results like \code{.452} for \code{0.452}. The default \code{NULL} will
 leave the numbers as they are (meaning at least one 0 digit).}
 
-\item{sci}{integer. The power of 10 to be set when deciding to print numeric
-values in exponential notation. Fixed notation will be preferred unless the
-number is larger than 10^scipen. If just one value is set it will be used
-for the left border 10^(-scipen) as well as for the right one (10^scipen). A
-negative and a positive value can also be set independently. Default is
-\code{getOption("scipen")}, whereas \code{scipen=0} is overridden.}
+\item{sci}{numeric scalar giving the absolute power-of-ten threshold for
+scientific notation. It applies to the absolute value of \code{x} and is used
+symmetrically: for \code{sci = 8}, a value is displayed scientifically if
+\eqn{|x| \ge 10^8}{|x| >= 10^8} or
+\eqn{0 < |x| < 10^{-8}}{0 < |x| < 10^-8}. The default is based on
+\code{getOption("scipen")}; an option value of zero is replaced by 7}
 
 \item{bigMark}{character; if not empty used as mark between every 3
-decimals before the decimal point. Default is "" (none).}
+digits before the decimal point. If \code{NULL}, the option \code{bigMark} is used
+and, if that is not set, "" (none).}
 
-\item{decMark}{character, specifying the decimal mark to be used. If not
-provided, the default set as \code{decMark} option is used.}
+\item{decMark}{character specifying the decimal mark. If \code{NULL}, the
+current \code{OutDec} option is used}
 
 \item{naForm}{character, string specifying how \code{NA}s should be
 specially formatted.  If set to \code{NULL} (default) no special action will
@@ -64,18 +70,16 @@ be taken.}
 formatted. Useful for pretty printing 'sparse' objects.  If set to
 \code{NULL} (default) no special action will be taken.}
 
-\item{fmt}{either a format string, allowing to flexibly define special
-formats or an object of class \code{style}, consisting of a list of
-\code{fdm} arguments. See Details.}
+\item{fmt}{a format code or date-time template, or a formatting function.
+See the Details of \code{\link[=fm]{fm()}}.}
 
-\item{pThreshold}{a numerical tolerance used mainly for formatting p values,
-those less than pThreshold are formatted as "\verb{`< [pThreshold]`}" (where '\verb{[pThreshold]}'
-stands for \verb{format(pThreshold, digits))}.  Default is \code{0.001}.}
+\item{pThreshold}{positive numeric threshold below which p-values are shown
+as \code{"< threshold"}}
 
-\item{width}{integer, the defined fixed width of the strings.}
+\item{width}{nonnegative integer giving the minimum display width}
 
 \item{align}{the character on whose position the strings will be aligned.
-Left alignment can be requested by setting \code{sep = "\\\\l"}, right
+Left alignment can be requested by setting \code{align = "\\\\l"}, right
 alignment by \code{"\\\\r"} and center alignment by \code{"\\\\c"}. Mind the
 backslashes, as if they are omitted, strings would be aligned to the
 \strong{character} l, r or c respectively. The default is \code{NULL} which
@@ -84,12 +88,14 @@ to the function \code{\link[=strAlign]{strAlign()}} as argument \code{sep}.}
 
 \item{lang}{optional value setting the language for the months and daynames.
 Can be either \code{"local"} for current locale or \code{"en"} for english.
-If left to \code{NULL}, the DescToolsOption \code{"lang"} will be searched
-for and if not found \code{"local"} will be taken as default.}
+If left to \code{NULL}, the option \code{DescToolsX.lang} is used, falling
+back to \code{"en"}}
 
 \item{label}{a description for the style}
 
-\item{\dots}{further arguments to be passed to or from methods.}
+\item{\dots}{for \code{style()}, further components of the style: only
+arguments of \code{\link[=fm]{fm()}} and the metadata \code{name} are accepted, anything else
+is an error. Not used by the print method.}
 }
 \value{
 \code{style()} returns an object of class \code{Style}\cr
@@ -101,11 +107,9 @@ format features in \code{fm()}.  This enables to define templates globally
 and easily change or modify them later.
 }
 \details{
-\code{style()} can either create new styles or edit existing ones.
-\code{style()} can be used to create new styles. It takes any of the
-arguments from \code{fm()} and combines them to an object of class
-\code{"Style"}, which then can be handed over to \code{fm()} as argument
-\code{fmt}. \cr
+\code{style()} takes any of the arguments of \code{fm()} and combines them to an
+object of class \code{"Style"}, which then can be handed over to \code{fm()} as
+argument \code{fmt}. \cr
 Following will define a new format template named
 "\code{num.sty}".  Passed to \code{fm()} this will result in a number
 displayed with 2 fixed digits and a comma as big mark:
@@ -114,22 +118,25 @@ fm(12222.89345, fmt=num.sty) = 12,222.89}
 This is the same result as if the arguments would have been supplied
 directly, but helps to avoid boilerplate code: \cr \code{fm(12222.89345, digits=2, bigMark=",")}.
 
-To edit a style we can provide \code{style()} with its name and overwrite,
-resp. add new format options.  \code{style("num.sty", digits=1, sci=10)}
-will use the current version of the numeric format and change the digits to
-1 and the threshold to switch to scientifc presentation to numbers > 1e10
-and < 1e-10.
+To derive a style from an existing one we can provide \code{style()} with the
+style, or with its name, and overwrite, resp. add new format options.
+\code{style("num.sty", digits=1, sci=10)} will use the current version of the
+numeric format and change the digits to 1 and the threshold to switch to
+scientific presentation to numbers >= 1e10 and < 1e-10. The stored style
+itself is not changed, so the result has to be assigned.
 
 \code{styles()} returns all found style definitions in the global
 environment or in the options.
 
 The styles can be stored as options for convenience.  To store a new format
 we use the default \code{options()} approach: \code{options(num.sty = style(digits=1, bigMark=" "))} Defined styles in the options can be passed
-on to \code{fm()} simply by their name.
+on to \code{fm()} simply by their name. If a style of the same name exists in
+the global environment, that one is used.
 
 Many report functions (e.g. \code{DescToolsX::tOne()}) in \strong{DescToolsX} use
-three default formats for counts (named \code{"abs.sty"}), numeric values
-(\code{"num.sty"}) and percentages (\code{"per.sty"}).
+default formats that the package stores as options when it is loaded:
+\code{"abs.sty"} for counts, \code{"num.sty"} for numeric values, \code{"per.sty"} for
+percentages and \code{"pval.sty"} for p-values.
 }
 \examples{
 

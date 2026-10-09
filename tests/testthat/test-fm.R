@@ -297,6 +297,21 @@ test_that("fm: fmt = 'p' formats p-values", {
   expect_match(res2, "^0\\.0[0-9]+") # "0.032"
 })
 
+test_that("fm: fmt = 'p' never rounds the threshold label to zero", {
+  # the label was formatted with 'digits', giving "< 0.00" for digits = 2
+  expect_equal(as.character(fm(0.0001, fmt = "p", digits = 2)), "< 0.001")
+  expect_equal(as.character(fm(0.0001, fmt = "p", digits = 1)), "< 0.001")
+  expect_equal(as.character(fm(0.01, fmt = "p", digits = 1, pThreshold = 0.05)),
+               "< 0.05")
+  expect_equal(as.character(fm(0.0001, fmt = "p", digits = 2, leadDigits = 0)),
+               "< .001")
+  # unchanged where 'digits' already covers the threshold
+  expect_equal(as.character(fm(0.0001, fmt = "p")), "< 0.001")
+  expect_equal(as.character(fm(0.0001, fmt = "p", digits = 4)), "< 0.0010")
+  expect_equal(as.character(fm(0.003, fmt = "p", digits = 2, pThreshold = 0.01)),
+               "< 0.01")
+})
+
 test_that("fm: fmt = 'p*' returns p-value and stars together", {
   res <- as.character(fm(0.03, fmt = "p*"))
   expect_match(res, "\\*")   # contains at least one star
@@ -448,6 +463,36 @@ test_that("fm.data.frame: per-column digits via recycling", {
   res <- fm(df, digits = c(1L, 2L))
   expect_equal(as.character(res$a), "1.1")
   expect_equal(as.character(res$b), "2.22")
+})
+
+test_that("fm.data.frame: one Style or one function applies to all columns", {
+  df <- data.frame(a = c(1234.567, 2.5), b = c(10.001, 20.009))
+
+  # a Style with one component, and one with as many components as columns:
+  # the latter used to be split up, one component per column
+  res1 <- fm(df, fmt = style(digits = 1))
+  expect_equal(as.character(res1$a), c("1234.6", "2.5"))
+  expect_equal(as.character(res1$b), c("10.0", "20.0"))
+
+  res2 <- fm(df, fmt = style(digits = 1, bigMark = "'"))
+  expect_equal(as.character(res2$a), c("1'234.6", "2.5"))
+  expect_equal(as.character(res2$b), c("10.0", "20.0"))
+
+  res3 <- fm(df, fmt = function(z) sprintf("%.0f!", z))
+  expect_equal(as.character(res3$a), c("1235!", "2!"))
+  expect_equal(as.character(res3$b), c("10!", "20!"))
+})
+
+test_that("fm.data.frame: a list supplies one Style or function per column", {
+  df <- data.frame(a = c(1234.567, 2.5), b = c(10.001, 20.009))
+
+  res <- fm(df, fmt = list(style(digits = 0), function(z) sprintf("%.1f!", z)))
+  expect_equal(as.character(res$a), c("1235", "3"))
+  expect_equal(as.character(res$b), c("10.0!", "20.0!"))
+
+  expect_error(fm(df, fmt = list(style(digits = 0), style(digits = 1),
+                                 style(digits = 2))),
+               "must be 1 or 2")
 })
 
 

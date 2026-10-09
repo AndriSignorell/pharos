@@ -79,8 +79,8 @@
 #' frequently used formats there are the following special codes available:
 #' \tabular{lll}{ **Code** \tab **Type** \tab **Description** \cr
 #' `e` \tab scientific \tab forces scientific representation of x, e.g.
-#' 3.141e-05. The number of digits,\cr \tab \tab alignment and zero values are
-#' further respected.\cr \tab\cr
+#' 3.141e-05. `digits` gives the number of\cr \tab \tab decimals of the
+#' mantissa; alignment and zero values are further respected.\cr \tab\cr
 #' 
 #' `eng` \tab engineering \tab forces scientific representation of
 #' `x`, but only with powers that are a multiple of 3. \cr
@@ -112,11 +112,11 @@
 #' list out of the arguments above (as created by [style()]). This
 #' allows to store and manage the full format in variables or as options and
 #' use it as format template subsequently. Arguments supplied directly to
-#' `fm()` override the corresponding Style settings, including an
-#' explicitly supplied `NULL`.
+#' `fm()` override the corresponding Style settings. `NULL` means
+#' "not specified" and therefore leaves the Style setting in place.
 #' 
-#' For data frames, every formatting argument must have length one or the
-#' number of columns. Length-one arguments are recycled, allowing each column
+#' For data frames and ftables, every formatting argument must have length one
+#' or the number of columns. Length-one arguments are recycled, allowing each column
 #' to use its own formatting settings without ambiguous partial recycling.
 #' Functions and Style objects count as single settings; use a list to supply
 #' different functions or Styles by column.
@@ -127,8 +127,9 @@
 #' @param x a numeric, logical, character, factor, `Date`, or
 #'   `POSIXt` vector, or a matrix, table, ftable, or data frame
 #' @param digits integer, the desired (fixed) number of digits after the
-#' decimal point. Unlike [formatC()] you will always get this number
-#' of digits even if the last digit is 0.  Negative numbers of digits round to
+#' decimal point. You will always get this number of digits, even if the last
+#' digit is 0. In scientific notation it is the number of decimals of the
+#' mantissa. Negative numbers of digits round to
 #' a power of ten (`digits=-2` would round to the nearest hundred) for
 #' standard numeric formats; engineering formats require nonnegative values
 #' @param leadDigits number of leading zeros. `leadDigits=3` would make sure
@@ -137,12 +138,14 @@
 #' results like `.452` for `0.452`. The default `NULL` will
 #' leave the numbers as they are (meaning at least one 0 digit).
 #' @param sci numeric scalar giving the absolute power-of-ten threshold for
-#'   scientific notation. Its absolute value is used symmetrically: for
-#'   `sci = 8`, nonzero values below \eqn{10^{-8}} and values at or above
-#'   \eqn{10^8} are displayed scientifically. The default is based on
+#'   scientific notation. It applies to the absolute value of `x` and is used
+#'   symmetrically: for `sci = 8`, a value is displayed scientifically if
+#'   \eqn{|x| \ge 10^8}{|x| >= 10^8} or
+#'   \eqn{0 < |x| < 10^{-8}}{0 < |x| < 10^-8}. The default is based on
 #'   `getOption("scipen")`; an option value of zero is replaced by 7
 #' @param bigMark character; if not empty used as mark between every 3
-#' decimals before the decimal point. Default is "" (none).
+#' digits before the decimal point. If `NULL`, the option `bigMark` is used
+#' and, if that is not set, "" (none).
 #' @param decMark character specifying the decimal mark. If `NULL`, the
 #'   current `OutDec` option is used
 #' @param naForm character, string specifying how `NA`s should be
@@ -157,7 +160,7 @@
 #'   as `"< threshold"`
 #' @param width nonnegative integer giving the minimum display width
 #' @param align the character on whose position the strings will be aligned.
-#' Left alignment can be requested by setting `sep = "\\l"`, right
+#' Left alignment can be requested by setting `align = "\\l"`, right
 #' alignment by `"\\r"` and center alignment by `"\\c"`. Mind the
 #' backslashes, as if they are omitted, strings would be aligned to the
 #' **character** l, r or c respectively. The default is `NULL` which
@@ -165,7 +168,7 @@
 #' to the function [pharos::strAlign()] as argument `sep`.
 #' @param lang optional value setting the language for the months and daynames.
 #' Can be either `"local"` for current locale or `"en"` for english.
-#' If left to `NULL`, the package option `"lang"` is used, falling
+#' If left to `NULL`, the option `DescToolsX.lang` is used, falling
 #' back to `"en"`
 #' @param \dots additional arguments passed to methods or to a formatting
 #'   function supplied through `fmt`
@@ -177,8 +180,9 @@
 #'   would otherwise shift every negative entry against the positive ones.
 #' @examples
 #' 
-#' fm(as.Date(c("2014-11-28", "2014-1-2")), fmt="ddd, d mmmm yyyy")
-#' fm(as.Date(c("2014-11-28", "2014-1-2")), fmt="ddd, d mmmm yyyy", lang="en")
+#' # mind the case: M is the month, m the minutes
+#' fm(as.Date(c("2014-11-28", "2014-1-2")), fmt="ddd, d MMMM yyyy")
+#' fm(as.Date(c("2014-11-28", "2014-1-2")), fmt="ddd, d MMMM yyyy", lang="local")
 #' 
 #' # using english ordinal suffixes
 #' fm(as.Date("2026-01-21"), fmt="MMMM do yyyy", lang="en")
@@ -527,7 +531,6 @@ fm.default <- function(x, digits = NULL, leadDigits = NULL, sci = NULL,
 
 #' @rdname fm
 #' @export
-#' @export
 fm.data.frame <- function(x,
                           digits = NULL, leadDigits = NULL, sci = NULL,
                           bigMark = NULL, decMark = NULL,
@@ -558,8 +561,11 @@ fm.data.frame <- function(x,
   args <- args[!vapply(args, is.null, logical(1))]
   
   ## recycle each argument to ncol(x)
+  # .asColumnArgument() first: a Style is a list and a function cannot be
+  # replicated, so without it one Style for all columns was taken apart into
+  # its components and one function failed in rep().
   args <- Map(
-    function(a, nm) .recycle_to_ncol(a, n, nm),
+    function(a, nm) .recycle_to_ncol(.asColumnArgument(a), n, nm),
     args,
     names(args)
   )
@@ -671,6 +677,10 @@ fm.ftable <- function(x, digits = NULL, leadDigits = NULL, sci = NULL,
 
 
 
+# Turns one formatting argument of fm.data.frame() into a list with one entry
+# per setting. A function or a Style is ONE setting, however long it is as an
+# R object; anything else contributes one setting per element.
+#' @noRd
 .asColumnArgument <- function(x) {
   if (is.function(x) || inherits(x, "Style")) return(list(x))
   as.list(x)
@@ -822,8 +832,11 @@ fm.ftable <- function(x, digits = NULL, leadDigits = NULL, sci = NULL,
   }
 
   if (any(below)) {
+    # The label needs at least the decimals of the threshold itself: with
+    # digits = 2 the default threshold was printed as "< 0.00".
     threshold <- if (log10(pThreshold) >= -3) {
-      fm(pThreshold, digits = digits, leadDigits = leadDigits)
+      fm(pThreshold, digits = max(digits, .countDecimals(pThreshold)),
+         leadDigits = leadDigits)
     } else {
       fm(pThreshold, digits = 1L, fmt = "e", leadDigits = leadDigits)
     }

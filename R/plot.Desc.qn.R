@@ -105,7 +105,7 @@
 #' @rawNamespace export(plot.Desc.qn)
 # Both tags above are required, not redundant - see plot.Desc.table for
 # the full explanation, or design_rules.md, "Exporting S3 Methods
-# Callable From Other Packages 
+# Callable From Other Packages".
 plot.Desc.qn <- function(x,
                          
                          # LABELS
@@ -263,7 +263,7 @@ plot.Desc.qn <- function(x,
              # ── 4: Boxplot ───────────────────────────────────────────────────
              "4" = {
                # plotBox() always draws its frame (box() is unconditional,
-               # no toggle exists) - boxHere has no effect here.
+               # no toggle exists) - 'box' has no effect here.
                pharos::plotBox(
                  x    = xOk,
                  groups    = yOk,
@@ -288,35 +288,58 @@ plot.Desc.qn <- function(x,
                colHere <- resolveCol(colPtDefault)
                
                pt <- x$res$prevTable
-               
+
+               # Fail loudly on a changed prevTable layout: a missing column
+               # accessed via '$' is silently NULL, and plot(x, NULL) then
+               # reinterprets x as y and draws an empty panel.
+               ptCols <- c("est", "lci", "uci")
+               if (!all(ptCols %in% colnames(pt)))
+                 stop("prevTable lacks column(s): ",
+                      toString(setdiff(ptCols, colnames(pt))), call. = FALSE)
+
+               # right = FALSE: left-closed bins [a, b), matching the bin
+               # labels of the prevalence table printed by desc().
                xCut <- cut(xOk,
-                           breaks         = c(-Inf, x$res$breaks, Inf),
-                           include.lowest = TRUE)
+                           breaks = c(-Inf, x$res$breaks, Inf),
+                           right  = FALSE)
                xPos <- as.numeric(tapply(xOk, xCut, median))
-               
+
+               if (length(xPos) != nrow(pt))
+                 stop(sprintf("%d bins from 'breaks' but %d rows in prevTable",
+                              length(xPos), nrow(pt)), call. = FALSE)
+
+               est <- pt[, "est"]
+               lci <- pt[, "lci"]
+               uci <- pt[, "uci"]
+
                prevTotal <- sum(yOk == lvls[2L]) / length(yOk)
-               
-               plot(xPos, pt$prev,
+
+               # empty canvas first, so the grid ends up behind the data
+               plot(xPos, est,
+                    type = "n",
                     ylim = c(0, 1),
-                    pch  = 19,
-                    col  = colHere,
                     xlab = xLab,
                     ylab = resolveYlab(5),
                     main = .main(.panelDefault("Prevalence by x-quantile")),
+                    frame.plot = FALSE,
                     ...)
-               
+
                .drawGrid(.useTheme)
-               
-               arrows(xPos, pt$lci, xPos, pt$uci,
+
+               abline(h   = prevTotal,
+                      lty = 2,
+                      col = "gray50")
+
+               arrows(xPos, lci, xPos, uci,
                       angle  = 90,
                       code   = 3,
                       length = 0.05,
                       col    = colHere)
-               
-               abline(h   = prevTotal,
-                      lty = 2,
-                      col = "gray50")
-               
+
+               points(xPos, est,
+                      pch = 19,
+                      col = colHere)
+
                text(x      = min(xPos),
                     y      = prevTotal,
                     labels = sprintf("overall: %s",
