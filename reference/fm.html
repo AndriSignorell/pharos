@@ -23,7 +23,7 @@ less technical, but still flexible interface."><meta property="og:image" content
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.959</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.960</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -187,8 +187,9 @@ less technical, but still flexible interface.</p>
 
 <dt id="arg-digits">digits<a class="anchor" aria-label="anchor" href="#arg-digits"></a></dt>
 <dd><p>integer, the desired (fixed) number of digits after the
-decimal point. Unlike <code><a href="https://rdrr.io/r/base/formatc.html" class="external-link">formatC()</a></code> you will always get this number
-of digits even if the last digit is 0.  Negative numbers of digits round to
+decimal point. You will always get this number of digits, even if the last
+digit is 0. In scientific notation it is the number of decimals of the
+mantissa. Negative numbers of digits round to
 a power of ten (<code>digits=-2</code> would round to the nearest hundred) for
 standard numeric formats; engineering formats require nonnegative values</p></dd>
 
@@ -203,15 +204,17 @@ leave the numbers as they are (meaning at least one 0 digit).</p></dd>
 
 <dt id="arg-sci">sci<a class="anchor" aria-label="anchor" href="#arg-sci"></a></dt>
 <dd><p>numeric scalar giving the absolute power-of-ten threshold for
-scientific notation. Its absolute value is used symmetrically: for
-<code>sci = 8</code>, nonzero values below \(10^{-8}\) and values at or above
-\(10^8\) are displayed scientifically. The default is based on
+scientific notation. It applies to the absolute value of <code>x</code> and is used
+symmetrically: for <code>sci = 8</code>, a value is displayed scientifically if
+\(|x| \ge 10^8\) or
+\(0 &lt; |x| &lt; 10^{-8}\). The default is based on
 <code>getOption("scipen")</code>; an option value of zero is replaced by 7</p></dd>
 
 
 <dt id="arg-bigmark">bigMark<a class="anchor" aria-label="anchor" href="#arg-bigmark"></a></dt>
 <dd><p>character; if not empty used as mark between every 3
-decimals before the decimal point. Default is "" (none).</p></dd>
+digits before the decimal point. If <code>NULL</code>, the option <code>bigMark</code> is used
+and, if that is not set, "" (none).</p></dd>
 
 
 <dt id="arg-decmark">decMark<a class="anchor" aria-label="anchor" href="#arg-decmark"></a></dt>
@@ -247,7 +250,7 @@ as <code>"&lt; threshold"</code></p></dd>
 
 <dt id="arg-align">align<a class="anchor" aria-label="anchor" href="#arg-align"></a></dt>
 <dd><p>the character on whose position the strings will be aligned.
-Left alignment can be requested by setting <code>sep = "\\l"</code>, right
+Left alignment can be requested by setting <code>align = "\\l"</code>, right
 alignment by <code>"\\r"</code> and center alignment by <code>"\\c"</code>. Mind the
 backslashes, as if they are omitted, strings would be aligned to the
 <strong>character</strong> l, r or c respectively. The default is <code>NULL</code> which
@@ -258,7 +261,7 @@ to the function <code><a href="strAlign.html">strAlign()</a></code> as argument 
 <dt id="arg-lang">lang<a class="anchor" aria-label="anchor" href="#arg-lang"></a></dt>
 <dd><p>optional value setting the language for the months and daynames.
 Can be either <code>"local"</code> for current locale or <code>"en"</code> for english.
-If left to <code>NULL</code>, the package option <code>"lang"</code> is used, falling
+If left to <code>NULL</code>, the option <code>DescToolsX.lang</code> is used, falling
 back to <code>"en"</code></p></dd>
 
 
@@ -309,8 +312,8 @@ characters)</td><td><code>m/mm </code></td></tr><tr><td>Minutes one digit / two 
 English. The language can be controlled by the argument "<code>lang</code>".<br></p>
 <p>Even more variability is needed to display numeric values. For the most
 frequently used formats there are the following special codes available:</p><table class="table table"><tr><td><strong>Code</strong></td><td><strong>Type</strong></td><td><strong>Description</strong></td></tr><tr><td><code>e</code></td><td>scientific</td><td>forces scientific representation of x, e.g.
-3.141e-05. The number of digits,</td></tr><tr><td></td><td></td><td>alignment and zero values are
-further respected.</td></tr><tr><td></td><td></td><td><code>eng</code></td></tr><tr><td>engineering</td><td>forces scientific representation of
+3.141e-05. <code>digits</code> gives the number of</td></tr><tr><td></td><td></td><td>decimals of the
+mantissa; alignment and zero values are further respected.</td></tr><tr><td></td><td></td><td><code>eng</code></td></tr><tr><td>engineering</td><td>forces scientific representation of
 <code>x</code>, but only with powers that are a multiple of 3.</td><td><code>engabb</code><code> </code></td></tr><tr><td>engineering abbr.<code> </code></td><td>same as
 <code>eng</code>, but replaces the exponential representation by codes,</td><td></td></tr><tr><td></td><td>e.g. <code>M</code> for mega (1e6).</td><td><code>\%</code></td></tr><tr><td>percent</td><td>multiplies the given number by 100 and appends
 the \<!-- %-sign (without a separator).\cr \tab\cr \code{p} \tab p-value \tab -->
@@ -326,10 +329,10 @@ according to the used defaults e.g. in <code>lm</code> as</td></tr><tr><td></td>
 list out of the arguments above (as created by <code><a href="style.html">style()</a></code>). This
 allows to store and manage the full format in variables or as options and
 use it as format template subsequently. Arguments supplied directly to
-<code>fm()</code> override the corresponding Style settings, including an
-explicitly supplied <code>NULL</code>.</p>
-<p>For data frames, every formatting argument must have length one or the
-number of columns. Length-one arguments are recycled, allowing each column
+<code>fm()</code> override the corresponding Style settings. <code>NULL</code> means
+"not specified" and therefore leaves the Style setting in place.</p>
+<p>For data frames and ftables, every formatting argument must have length one
+or the number of columns. Length-one arguments are recycled, allowing each column
 to use its own formatting settings without ambiguous partial recycling.
 Functions and Style objects count as single settings; use a list to supply
 different functions or Styles by column.</p>
@@ -353,10 +356,11 @@ different functions or Styles by column.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">fm</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2014-11-28"</span>, <span class="st">"2014-1-2"</span><span class="op">)</span><span class="op">)</span>, fmt<span class="op">=</span><span class="st">"ddd, d mmmm yyyy"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Fri, 28 0000 2014 Thu, 2 0000 2014 </span>
-<span class="r-in"><span><span class="fu">fm</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2014-11-28"</span>, <span class="st">"2014-1-2"</span><span class="op">)</span><span class="op">)</span>, fmt<span class="op">=</span><span class="st">"ddd, d mmmm yyyy"</span>, lang<span class="op">=</span><span class="st">"en"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Fri, 28 0000 2014 Thu, 2 0000 2014 </span>
+<span class="r-in"><span><span class="co"># mind the case: M is the month, m the minutes</span></span></span>
+<span class="r-in"><span><span class="fu">fm</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2014-11-28"</span>, <span class="st">"2014-1-2"</span><span class="op">)</span><span class="op">)</span>, fmt<span class="op">=</span><span class="st">"ddd, d MMMM yyyy"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Fri, 28 November 2014 Thu, 2 January 2014  </span>
+<span class="r-in"><span><span class="fu">fm</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2014-11-28"</span>, <span class="st">"2014-1-2"</span><span class="op">)</span><span class="op">)</span>, fmt<span class="op">=</span><span class="st">"ddd, d MMMM yyyy"</span>, lang<span class="op">=</span><span class="st">"local"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Fri, 28 November 2014 Thu, 2 January 2014  </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># using english ordinal suffixes</span></span></span>
 <span class="r-in"><span><span class="fu">fm</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2026-01-21"</span><span class="op">)</span>, fmt<span class="op">=</span><span class="st">"MMMM do yyyy"</span>, lang<span class="op">=</span><span class="st">"en"</span><span class="op">)</span></span></span>

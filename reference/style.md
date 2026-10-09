@@ -35,16 +35,20 @@ print(x, ...)
 
 - x:
 
-  an object of class `Style` or a the name of a style, defined either in
-  the global enviroment or in the options.
+  an object of class `Style` or the name of a style, defined either in
+  the global environment or in the options. The format arguments
+  supplied along with it overwrite its settings or are added to them. If
+  no style with the given name is found, a warning is issued and an
+  empty style is returned.
 
 - digits:
 
   integer, the desired (fixed) number of digits after the decimal point.
-  Unlike [`formatC()`](https://rdrr.io/r/base/formatc.html) you will
-  always get this number of digits even if the last digit is 0. Negative
-  numbers of digits round to a power of ten (`digits=-2` would round to
-  the nearest hundred).
+  You will always get this number of digits, even if the last digit
+  is 0. In scientific notation it is the number of decimals of the
+  mantissa. Negative numbers of digits round to a power of ten
+  (`digits=-2` would round to the nearest hundred) for standard numeric
+  formats; engineering formats require nonnegative values
 
 - leadDigits:
 
@@ -56,23 +60,23 @@ print(x, ...)
 
 - sci:
 
-  integer. The power of 10 to be set when deciding to print numeric
-  values in exponential notation. Fixed notation will be preferred
-  unless the number is larger than 10^scipen. If just one value is set
-  it will be used for the left border 10^(-scipen) as well as for the
-  right one (10^scipen). A negative and a positive value can also be set
-  independently. Default is `getOption("scipen")`, whereas `scipen=0` is
-  overridden.
+  numeric scalar giving the absolute power-of-ten threshold for
+  scientific notation. It applies to the absolute value of `x` and is
+  used symmetrically: for `sci = 8`, a value is displayed scientifically
+  if \\\|x\| \ge 10^8\\ or \\0 \< \|x\| \< 10^{-8}\\. The default is
+  based on `getOption("scipen")`; an option value of zero is replaced by
+  7
 
 - bigMark:
 
-  character; if not empty used as mark between every 3 decimals before
-  the decimal point. Default is "" (none).
+  character; if not empty used as mark between every 3 digits before the
+  decimal point. If `NULL`, the option `bigMark` is used and, if that is
+  not set, "" (none).
 
 - decMark:
 
-  character, specifying the decimal mark to be used. If not provided,
-  the default set as `decMark` option is used.
+  character specifying the decimal mark. If `NULL`, the current `OutDec`
+  option is used
 
 - naForm:
 
@@ -87,25 +91,22 @@ print(x, ...)
 
 - fmt:
 
-  either a format string, allowing to flexibly define special formats or
-  an object of class `style`, consisting of a list of `fdm` arguments.
-  See Details.
+  a format code or date-time template, or a formatting function. See the
+  Details of [`fm()`](fm.md).
 
 - pThreshold:
 
-  a numerical tolerance used mainly for formatting p values, those less
-  than pThreshold are formatted as "`` `< [pThreshold]` ``" (where
-  '`[pThreshold]`' stands for `format(pThreshold, digits))`. Default is
-  `0.001`.
+  positive numeric threshold below which p-values are shown as
+  `"< threshold"`
 
 - width:
 
-  integer, the defined fixed width of the strings.
+  nonnegative integer giving the minimum display width
 
 - align:
 
   the character on whose position the strings will be aligned. Left
-  alignment can be requested by setting `sep = "\\l"`, right alignment
+  alignment can be requested by setting `align = "\\l"`, right alignment
   by `"\\r"` and center alignment by `"\\c"`. Mind the backslashes, as
   if they are omitted, strings would be aligned to the **character** l,
   r or c respectively. The default is `NULL` which would just leave the
@@ -117,8 +118,8 @@ print(x, ...)
 
   optional value setting the language for the months and daynames. Can
   be either `"local"` for current locale or `"en"` for english. If left
-  to `NULL`, the DescToolsOption `"lang"` will be searched for and if
-  not found `"local"` will be taken as default.
+  to `NULL`, the option `DescToolsX.lang` is used, falling back to
+  `"en"`
 
 - label:
 
@@ -126,7 +127,9 @@ print(x, ...)
 
 - ...:
 
-  further arguments to be passed to or from methods.
+  for `style()`, further components of the style: only arguments of
+  [`fm()`](fm.md) and the metadata `name` are accepted, anything else is
+  an error. Not used by the print method.
 
 ## Value
 
@@ -135,10 +138,9 @@ print(x, ...)
 
 ## Details
 
-`style()` can either create new styles or edit existing ones. `style()`
-can be used to create new styles. It takes any of the arguments from
-[`fm()`](fm.md) and combines them to an object of class `"Style"`, which
-then can be handed over to [`fm()`](fm.md) as argument `fmt`.  
+`style()` takes any of the arguments of [`fm()`](fm.md) and combines
+them to an object of class `"Style"`, which then can be handed over to
+[`fm()`](fm.md) as argument `fmt`.  
 Following will define a new format template named "`num.sty`". Passed to
 [`fm()`](fm.md) this will result in a number displayed with 2 fixed
 digits and a comma as big mark:
@@ -150,11 +152,12 @@ This is the same result as if the arguments would have been supplied
 directly, but helps to avoid boilerplate code:  
 `fm(12222.89345, digits=2, bigMark=",")`.
 
-To edit a style we can provide `style()` with its name and overwrite,
-resp. add new format options. `style("num.sty", digits=1, sci=10)` will
-use the current version of the numeric format and change the digits to 1
-and the threshold to switch to scientifc presentation to numbers \> 1e10
-and \< 1e-10.
+To derive a style from an existing one we can provide `style()` with the
+style, or with its name, and overwrite, resp. add new format options.
+`style("num.sty", digits=1, sci=10)` will use the current version of the
+numeric format and change the digits to 1 and the threshold to switch to
+scientific presentation to numbers \>= 1e10 and \< 1e-10. The stored
+style itself is not changed, so the result has to be assigned.
 
 `styles()` returns all found style definitions in the global environment
 or in the options.
@@ -163,11 +166,14 @@ The styles can be stored as options for convenience. To store a new
 format we use the default
 [`options()`](https://rdrr.io/r/base/options.html) approach:
 `options(num.sty = style(digits=1, bigMark=" "))` Defined styles in the
-options can be passed on to [`fm()`](fm.md) simply by their name.
+options can be passed on to [`fm()`](fm.md) simply by their name. If a
+style of the same name exists in the global environment, that one is
+used.
 
 Many report functions (e.g. `DescToolsX::tOne()`) in **DescToolsX** use
-three default formats for counts (named `"abs.sty"`), numeric values
-(`"num.sty"`) and percentages (`"per.sty"`).
+default formats that the package stores as options when it is loaded:
+`"abs.sty"` for counts, `"num.sty"` for numeric values, `"per.sty"` for
+percentages and `"pval.sty"` for p-values.
 
 ## See also
 
@@ -232,5 +238,5 @@ fm(314.1563, fmt=num.sty)
 #> [1] 314.16
 
 fm(Sys.Date(), fmt=dat.sty)
-#> [1] 10, 06 2026
+#> [1] 10, 09 2026
 ```

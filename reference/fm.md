@@ -128,11 +128,11 @@ fm(
 - digits:
 
   integer, the desired (fixed) number of digits after the decimal point.
-  Unlike [`formatC()`](https://rdrr.io/r/base/formatc.html) you will
-  always get this number of digits even if the last digit is 0. Negative
-  numbers of digits round to a power of ten (`digits=-2` would round to
-  the nearest hundred) for standard numeric formats; engineering formats
-  require nonnegative values
+  You will always get this number of digits, even if the last digit
+  is 0. In scientific notation it is the number of decimals of the
+  mantissa. Negative numbers of digits round to a power of ten
+  (`digits=-2` would round to the nearest hundred) for standard numeric
+  formats; engineering formats require nonnegative values
 
 - leadDigits:
 
@@ -145,15 +145,17 @@ fm(
 - sci:
 
   numeric scalar giving the absolute power-of-ten threshold for
-  scientific notation. Its absolute value is used symmetrically: for
-  `sci = 8`, nonzero values below \\10^{-8}\\ and values at or above
-  \\10^8\\ are displayed scientifically. The default is based on
-  `getOption("scipen")`; an option value of zero is replaced by 7
+  scientific notation. It applies to the absolute value of `x` and is
+  used symmetrically: for `sci = 8`, a value is displayed scientifically
+  if \\\|x\| \ge 10^8\\ or \\0 \< \|x\| \< 10^{-8}\\. The default is
+  based on `getOption("scipen")`; an option value of zero is replaced by
+  7
 
 - bigMark:
 
-  character; if not empty used as mark between every 3 decimals before
-  the decimal point. Default is "" (none).
+  character; if not empty used as mark between every 3 digits before the
+  decimal point. If `NULL`, the option `bigMark` is used and, if that is
+  not set, "" (none).
 
 - decMark:
 
@@ -188,7 +190,7 @@ fm(
 - align:
 
   the character on whose position the strings will be aligned. Left
-  alignment can be requested by setting `sep = "\\l"`, right alignment
+  alignment can be requested by setting `align = "\\l"`, right alignment
   by `"\\r"` and center alignment by `"\\c"`. Mind the backslashes, as
   if they are omitted, strings would be aligned to the **character** l,
   r or c respectively. The default is `NULL` which would just leave the
@@ -200,7 +202,8 @@ fm(
 
   optional value setting the language for the months and daynames. Can
   be either `"local"` for current locale or `"en"` for english. If left
-  to `NULL`, the package option `"lang"` is used, falling back to `"en"`
+  to `NULL`, the option `DescToolsX.lang` is used, falling back to
+  `"en"`
 
 - ...:
 
@@ -265,8 +268,8 @@ frequently used formats there are the following special codes available:
 |  |  |  |
 |----|----|----|
 | **Code** | **Type** | **Description** |
-| `e` | scientific | forces scientific representation of x, e.g. 3.141e-05. The number of digits, |
-|  |  | alignment and zero values are further respected. |
+| `e` | scientific | forces scientific representation of x, e.g. 3.141e-05. `digits` gives the number of |
+|  |  | decimals of the mantissa; alignment and zero values are further respected. |
 |  |  | `eng` |
 | engineering | forces scientific representation of `x`, but only with powers that are a multiple of 3. | `engabb`` ` |
 | engineering abbr.` ` | same as `eng`, but replaces the exponential representation by codes, |  |
@@ -289,14 +292,14 @@ frequently used formats there are the following special codes available:
 out of the arguments above (as created by [`style()`](style.md)). This
 allows to store and manage the full format in variables or as options
 and use it as format template subsequently. Arguments supplied directly
-to `fm()` override the corresponding Style settings, including an
-explicitly supplied `NULL`.
+to `fm()` override the corresponding Style settings. `NULL` means "not
+specified" and therefore leaves the Style setting in place.
 
-For data frames, every formatting argument must have length one or the
-number of columns. Length-one arguments are recycled, allowing each
-column to use its own formatting settings without ambiguous partial
-recycling. Functions and Style objects count as single settings; use a
-list to supply different functions or Styles by column.
+For data frames and ftables, every formatting argument must have length
+one or the number of columns. Length-one arguments are recycled,
+allowing each column to use its own formatting settings without
+ambiguous partial recycling. Functions and Style objects count as single
+settings; use a list to supply different functions or Styles by column.
 
 Finally, `fmt` can be a function of `x`. Additional arguments in `\dots`
 are forwarded to that function.
@@ -319,10 +322,11 @@ Other format: [`convUnit()`](convUnit.md), [`fmCI()`](fmCI.md),
 
 ``` r
 
-fm(as.Date(c("2014-11-28", "2014-1-2")), fmt="ddd, d mmmm yyyy")
-#> [1] Fri, 28 0000 2014 Thu, 2 0000 2014 
-fm(as.Date(c("2014-11-28", "2014-1-2")), fmt="ddd, d mmmm yyyy", lang="en")
-#> [1] Fri, 28 0000 2014 Thu, 2 0000 2014 
+# mind the case: M is the month, m the minutes
+fm(as.Date(c("2014-11-28", "2014-1-2")), fmt="ddd, d MMMM yyyy")
+#> [1] Fri, 28 November 2014 Thu, 2 January 2014  
+fm(as.Date(c("2014-11-28", "2014-1-2")), fmt="ddd, d MMMM yyyy", lang="local")
+#> [1] Fri, 28 November 2014 Thu, 2 January 2014  
 
 # using english ordinal suffixes
 fm(as.Date("2026-01-21"), fmt="MMMM do yyyy", lang="en")

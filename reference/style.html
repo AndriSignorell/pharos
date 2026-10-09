@@ -17,7 +17,7 @@ and easily change or modify them later."><meta property="og:image" content="/log
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.959</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.960</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -88,15 +88,20 @@ and easily change or modify them later.</p>
 
 
 <dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
-<dd><p>an object of class <code>Style</code> or a the name of a style, defined
-either in the global enviroment or in the options.</p></dd>
+<dd><p>an object of class <code>Style</code> or the name of a style, defined
+either in the global environment or in the options. The format arguments
+supplied along with it overwrite its settings or are added to them. If no
+style with the given name is found, a warning is issued and an empty style
+is returned.</p></dd>
 
 
 <dt id="arg-digits">digits<a class="anchor" aria-label="anchor" href="#arg-digits"></a></dt>
 <dd><p>integer, the desired (fixed) number of digits after the
-decimal point. Unlike <code><a href="https://rdrr.io/r/base/formatc.html" class="external-link">formatC()</a></code> you will always get this number
-of digits even if the last digit is 0.  Negative numbers of digits round to
-a power of ten (<code>digits=-2</code> would round to the nearest hundred).</p></dd>
+decimal point. You will always get this number of digits, even if the last
+digit is 0. In scientific notation it is the number of decimals of the
+mantissa. Negative numbers of digits round to
+a power of ten (<code>digits=-2</code> would round to the nearest hundred) for
+standard numeric formats; engineering formats require nonnegative values</p></dd>
 
 
 <dt id="arg-leaddigits">leadDigits<a class="anchor" aria-label="anchor" href="#arg-leaddigits"></a></dt>
@@ -108,22 +113,23 @@ leave the numbers as they are (meaning at least one 0 digit).</p></dd>
 
 
 <dt id="arg-sci">sci<a class="anchor" aria-label="anchor" href="#arg-sci"></a></dt>
-<dd><p>integer. The power of 10 to be set when deciding to print numeric
-values in exponential notation. Fixed notation will be preferred unless the
-number is larger than 10^scipen. If just one value is set it will be used
-for the left border 10^(-scipen) as well as for the right one (10^scipen). A
-negative and a positive value can also be set independently. Default is
-<code>getOption("scipen")</code>, whereas <code>scipen=0</code> is overridden.</p></dd>
+<dd><p>numeric scalar giving the absolute power-of-ten threshold for
+scientific notation. It applies to the absolute value of <code>x</code> and is used
+symmetrically: for <code>sci = 8</code>, a value is displayed scientifically if
+\(|x| \ge 10^8\) or
+\(0 &lt; |x| &lt; 10^{-8}\). The default is based on
+<code>getOption("scipen")</code>; an option value of zero is replaced by 7</p></dd>
 
 
 <dt id="arg-bigmark">bigMark<a class="anchor" aria-label="anchor" href="#arg-bigmark"></a></dt>
 <dd><p>character; if not empty used as mark between every 3
-decimals before the decimal point. Default is "" (none).</p></dd>
+digits before the decimal point. If <code>NULL</code>, the option <code>bigMark</code> is used
+and, if that is not set, "" (none).</p></dd>
 
 
 <dt id="arg-decmark">decMark<a class="anchor" aria-label="anchor" href="#arg-decmark"></a></dt>
-<dd><p>character, specifying the decimal mark to be used. If not
-provided, the default set as <code>decMark</code> option is used.</p></dd>
+<dd><p>character specifying the decimal mark. If <code>NULL</code>, the
+current <code>OutDec</code> option is used</p></dd>
 
 
 <dt id="arg-naform">naForm<a class="anchor" aria-label="anchor" href="#arg-naform"></a></dt>
@@ -139,24 +145,22 @@ formatted. Useful for pretty printing 'sparse' objects.  If set to
 
 
 <dt id="arg-fmt">fmt<a class="anchor" aria-label="anchor" href="#arg-fmt"></a></dt>
-<dd><p>either a format string, allowing to flexibly define special
-formats or an object of class <code>style</code>, consisting of a list of
-<code>fdm</code> arguments. See Details.</p></dd>
+<dd><p>a format code or date-time template, or a formatting function.
+See the Details of <code><a href="fm.html">fm()</a></code>.</p></dd>
 
 
 <dt id="arg-pthreshold">pThreshold<a class="anchor" aria-label="anchor" href="#arg-pthreshold"></a></dt>
-<dd><p>a numerical tolerance used mainly for formatting p values,
-those less than pThreshold are formatted as "<code>`&lt; [pThreshold]`</code>" (where '<code>[pThreshold]</code>'
-stands for <code>format(pThreshold, digits))</code>.  Default is <code>0.001</code>.</p></dd>
+<dd><p>positive numeric threshold below which p-values are shown
+as <code>"&lt; threshold"</code></p></dd>
 
 
 <dt id="arg-width">width<a class="anchor" aria-label="anchor" href="#arg-width"></a></dt>
-<dd><p>integer, the defined fixed width of the strings.</p></dd>
+<dd><p>nonnegative integer giving the minimum display width</p></dd>
 
 
 <dt id="arg-align">align<a class="anchor" aria-label="anchor" href="#arg-align"></a></dt>
 <dd><p>the character on whose position the strings will be aligned.
-Left alignment can be requested by setting <code>sep = "\\l"</code>, right
+Left alignment can be requested by setting <code>align = "\\l"</code>, right
 alignment by <code>"\\r"</code> and center alignment by <code>"\\c"</code>. Mind the
 backslashes, as if they are omitted, strings would be aligned to the
 <strong>character</strong> l, r or c respectively. The default is <code>NULL</code> which
@@ -167,8 +171,8 @@ to the function <code><a href="strAlign.html">strAlign()</a></code> as argument 
 <dt id="arg-lang">lang<a class="anchor" aria-label="anchor" href="#arg-lang"></a></dt>
 <dd><p>optional value setting the language for the months and daynames.
 Can be either <code>"local"</code> for current locale or <code>"en"</code> for english.
-If left to <code>NULL</code>, the DescToolsOption <code>"lang"</code> will be searched
-for and if not found <code>"local"</code> will be taken as default.</p></dd>
+If left to <code>NULL</code>, the option <code>DescToolsX.lang</code> is used, falling
+back to <code>"en"</code></p></dd>
 
 
 <dt id="arg-label">label<a class="anchor" aria-label="anchor" href="#arg-label"></a></dt>
@@ -176,7 +180,9 @@ for and if not found <code>"local"</code> will be taken as default.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>further arguments to be passed to or from methods.</p></dd>
+<dd><p>for <code>style()</code>, further components of the style: only
+arguments of <code><a href="fm.html">fm()</a></code> and the metadata <code>name</code> are accepted, anything else
+is an error. Not used by the print method.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -185,29 +191,30 @@ for and if not found <code>"local"</code> will be taken as default.</p></dd>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p><code>style()</code> can either create new styles or edit existing ones.
-<code>style()</code> can be used to create new styles. It takes any of the
-arguments from <code><a href="fm.html">fm()</a></code> and combines them to an object of class
-<code>"Style"</code>, which then can be handed over to <code><a href="fm.html">fm()</a></code> as argument
-<code>fmt</code>. <br>
+    <p><code>style()</code> takes any of the arguments of <code><a href="fm.html">fm()</a></code> and combines them to an
+object of class <code>"Style"</code>, which then can be handed over to <code><a href="fm.html">fm()</a></code> as
+argument <code>fmt</code>. <br>
 Following will define a new format template named
 "<code>num.sty</code>".  Passed to <code><a href="fm.html">fm()</a></code> this will result in a number
 displayed with 2 fixed digits and a comma as big mark:</p><div class="sourceCode"><pre><code>num.sty &lt;- style(digits=2, bigMark=",")
 fm(12222.89345, fmt=num.sty) = 12,222.89</code></pre></div><p>This is the same result as if the arguments would have been supplied
 directly, but helps to avoid boilerplate code: <br><code>fm(12222.89345, digits=2, bigMark=",")</code>.</p>
-<p>To edit a style we can provide <code>style()</code> with its name and overwrite,
-resp. add new format options.  <code>style("num.sty", digits=1, sci=10)</code>
-will use the current version of the numeric format and change the digits to
-1 and the threshold to switch to scientifc presentation to numbers &gt; 1e10
-and &lt; 1e-10.</p>
+<p>To derive a style from an existing one we can provide <code>style()</code> with the
+style, or with its name, and overwrite, resp. add new format options.
+<code>style("num.sty", digits=1, sci=10)</code> will use the current version of the
+numeric format and change the digits to 1 and the threshold to switch to
+scientific presentation to numbers &gt;= 1e10 and &lt; 1e-10. The stored style
+itself is not changed, so the result has to be assigned.</p>
 <p><code>styles()</code> returns all found style definitions in the global
 environment or in the options.</p>
 <p>The styles can be stored as options for convenience.  To store a new format
 we use the default <code><a href="https://rdrr.io/r/base/options.html" class="external-link">options()</a></code> approach: <code>options(num.sty = style(digits=1, bigMark=" "))</code> Defined styles in the options can be passed
-on to <code><a href="fm.html">fm()</a></code> simply by their name.</p>
+on to <code><a href="fm.html">fm()</a></code> simply by their name. If a style of the same name exists in
+the global environment, that one is used.</p>
 <p>Many report functions (e.g. <code>DescToolsX::tOne()</code>) in <strong>DescToolsX</strong> use
-three default formats for counts (named <code>"abs.sty"</code>), numeric values
-(<code>"num.sty"</code>) and percentages (<code>"per.sty"</code>).</p>
+default formats that the package stores as options when it is loaded:
+<code>"abs.sty"</code> for counts, <code>"num.sty"</code> for numeric values, <code>"per.sty"</code> for
+percentages and <code>"pval.sty"</code> for p-values.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -274,7 +281,7 @@ three default formats for counts (named <code>"abs.sty"</code>), numeric values
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 314.16</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="fm.html">fm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.Date</a></span><span class="op">(</span><span class="op">)</span>, fmt<span class="op">=</span><span class="va">dat.sty</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10, 06 2026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10, 09 2026</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
