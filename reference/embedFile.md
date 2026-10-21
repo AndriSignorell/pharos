@@ -26,6 +26,7 @@ a single character string
 Other html: [`asFileLink()`](asFileLink.md), [`asHtml()`](asHtml.md),
 [`asImg()`](asImg.md), [`escapeHtml()`](escapeHtml.md),
 [`htmlNotation`](htmlNotation.md), [`htmlSubscript`](htmlSubscript.md),
+[`preview()`](preview.md), [`preview.html()`](preview.html.md),
 [`toHtmlTable()`](toHtmlTable.md)
 
 ## Examples

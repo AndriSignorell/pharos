@@ -57,9 +57,11 @@ plotDensBox(
 
 - main:
 
-  main title of the plot. `NULL` (default) derives the title from the
-  input: the formula, or `x` resp. `x ~ g` for the default method. `""`,
-  `NA`, or `FALSE` suppress the title and its outer margin.
+  main title. `NULL` (default) draws none, unless the theme sets
+  `autoTitle = TRUE` (see [theme](theme.md)); the title is then derived
+  from the input: the formula, or `x` resp. `x ~ g` for the default
+  method. `""`, `NA` or `FALSE` always suppress it and remove its outer
+  margin; any other string is used as given.
 
 - xlab:
 

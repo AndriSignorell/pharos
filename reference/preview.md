@@ -42,6 +42,12 @@ safe to call even for types with no dedicated method.
 
 [`asHtml()`](asHtml.md)
 
+Other html: [`asFileLink()`](asFileLink.md), [`asHtml()`](asHtml.md),
+[`asImg()`](asImg.md), [`embedFile()`](embedFile.md),
+[`escapeHtml()`](escapeHtml.md), [`htmlNotation`](htmlNotation.md),
+[`htmlSubscript`](htmlSubscript.md),
+[`preview.html()`](preview.html.md), [`toHtmlTable()`](toHtmlTable.md)
+
 ## Examples
 
 ``` r

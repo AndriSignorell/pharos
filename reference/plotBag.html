@@ -19,7 +19,7 @@ inflated by factor, not drawn) are flagged as outliers."><meta property="og:imag
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.961</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -138,9 +138,11 @@ requires complete pairs.</p></dd>
 
 
 <dt id="arg-main">main<a class="anchor" aria-label="anchor" href="#arg-main"></a></dt>
-<dd><p>main title. <code>NULL</code> (default) derives the title from the
-input: the formula, or the name of <code>x</code>. <code>""</code>, <code>NA</code>, or <code>FALSE</code>
-suppress the title and compact the top margin.</p></dd>
+<dd><p>main title. <code>NULL</code> (default) draws none, unless the
+theme sets <code>autoTitle = TRUE</code> (see <a href="theme.html">theme</a>); the title is then
+derived from the input: the formula, or the name of <code>x</code>. <code>""</code>, <code>NA</code> or <code>FALSE</code> always
+suppress it and compact the top margin; any other string is used
+as given.</p></dd>
 
 
 <dt id="arg-xlab-ylab">xlab, ylab<a class="anchor" aria-label="anchor" href="#arg-xlab-ylab"></a></dt>
@@ -222,6 +224,13 @@ run on standardized coordinates, so the result does not depend on the
 units of measurement.</p>
     </div>
     <div class="section level2">
+    <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
+    <p>The halfspace depth is computed by a C++ port of the Fortran routine
+TUKDEPTH (Algorithm AS 307, Rousseeuw &amp; Ruts 1996), taken from
+<code>src/depth.f</code> of the archived package 'depth' by M. Genest,
+J.-C. Massé and J.-F. Plante.</p>
+    </div>
+    <div class="section level2">
     <h2 id="element-control">Element Control<a class="anchor" aria-label="anchor" href="#element-control"></a></h2>
 
 
@@ -239,11 +248,12 @@ units of measurement.</p>
 </ul></div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
-    <p>P. J. Rousseeuw, I. Ruts, J. W. Tukey (1999):
-The bagplot: a bivariate boxplot, <em>The American
-Statistician</em>, vol. 53, no. 4, 382–387.</p>
-<p>P. J. Rousseeuw, I. Ruts (1996): Algorithm AS 307: Bivariate location
-depth, <em>Applied Statistics</em>, vol. 45, no. 4, 516–526.</p>
+    <p>Rousseeuw, P. J., Ruts, I., &amp; Tukey, J. W. (1999). The bagplot: A
+bivariate boxplot. <em>The American Statistician</em>, 53(4), 382–387.
+<a href="https://doi.org/10.1080/00031305.1999.10474494" class="external-link">doi:10.1080/00031305.1999.10474494</a></p>
+<p>Rousseeuw, P. J., &amp; Ruts, I. (1996). Algorithm AS 307: Bivariate
+location depth. <em>Journal of the Royal Statistical Society, Series C
+(Applied Statistics)</em>, 45(4), 516–526. <a href="https://doi.org/10.2307/2986073" class="external-link">doi:10.2307/2986073</a></p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>

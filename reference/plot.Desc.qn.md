@@ -12,6 +12,7 @@ numeric/categorical pair. Five panel types are available, selectable
 plot(
   x,
   main = NULL,
+  xlab = NULL,
   ylab = NULL,
   which = 2,
   verbose = NULL,
@@ -34,9 +35,17 @@ plot(
 
   main title. `NULL` (default) derives a title per panel from the
   variable names and the panel type (e.g.
-  `"area ~ delivery_min (Spineplot)"`). `""`, `NA`, or `FALSE` suppress
-  the title and compact the top margin. Any other string is used as-is,
-  identically for every selected panel.
+  `"area ~ delivery_min (Spineplot)"`), regardless of the theme's
+  `autoTitle`. `""`, `NA`, or `FALSE` suppress the title and compact the
+  top margin. Any other string is used as-is, identically for every
+  selected panel.
+
+- xlab:
+
+  x-axis label. `NULL` (default) derives a label specific to each panel:
+  the numeric variable for panels 1, 2, 3 and 5, the categorical
+  variable for panel 4 (boxplot, groups on the x-axis). Supplying a
+  value overrides this for every selected panel.
 
 - ylab:
 
@@ -176,3 +185,24 @@ clipped regardless of `which`.
 
 Other plot.s3: [`plot.BlandAltman()`](plot.BlandAltman.md),
 [`plot.Desc.table()`](plot.Desc.table.md), [`plot.Lc()`](plot.lc.md)
+
+## Examples
+
+``` r
+# the object is built by hand here; normally DescToolsX::desc(y ~ x)
+# returns it for a numeric-categorical pair
+d <- structure(list(
+  res  = list(xOk  = ToothGrowth$len,
+              yOk  = ToothGrowth$supp,
+              lvls = levels(ToothGrowth$supp),
+              k    = nlevels(ToothGrowth$supp)),
+  meta = list(xname = "len", yname = "supp")
+), class = "Desc.qn")
+
+plot(d)                 # spineplot
+
+plot(d, which = 3)      # density by group
+
+plot(d, which = 4)      # boxplot by group
+
+```

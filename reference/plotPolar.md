@@ -97,7 +97,7 @@ Graphical parameters such as `lwd`, `lty`, `pch`, `cex`, `fill`, and
 Other plot.special: [`plotBinaryTree()`](binaryTree.md),
 [`plotCirc()`](plotCirc.md), [`plotLift()`](plotLift.md),
 [`plotMiss()`](plotMiss.md), [`plotPropCI()`](plotPropCI.md),
-[`plotTernary()`](plotTernary.md),
+[`plotSankey()`](plotSankey.md), [`plotTernary()`](plotTernary.md),
 [`plotTimeSeries()`](plotTimeSeries.md),
 [`plotTreemap()`](plotTreemap.md), [`plotWeb()`](plotWeb.md)
 

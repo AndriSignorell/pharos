@@ -5,11 +5,13 @@
       fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
     }
   };
-</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Circular Chord Diagram — plotCirc"><meta name="description" content="Draws a circular chord diagram from a matrix, showing flows between rows and columns
-using sectors and ribbons. The plot is rendered using base graphics and supports
-flexible styling via object-based arguments."><meta property="og:description" content="Draws a circular chord diagram from a matrix, showing flows between rows and columns
-using sectors and ribbons. The plot is rendered using base graphics and supports
-flexible styling via object-based arguments."><meta property="og:image" content="/logo.png"></head><body>
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Circular Chord Diagram — plotCirc"><meta name="description" content="Draws a chord diagram of a two-way table: the categories of the rows
+lie as sectors on the right half of a circle, those of the columns on
+the left half, and every cell of the table is a ribbon between its row
+and its column sector whose width is proportional to its value."><meta property="og:description" content="Draws a chord diagram of a two-way table: the categories of the rows
+lie as sectors on the right half of a circle, those of the columns on
+the left half, and every cell of the table is a ribbon between its row
+and its column sector whose width is proportional to its value."><meta property="og:image" content="/logo.png"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -17,7 +19,7 @@ flexible styling via object-based arguments."><meta property="og:image" content=
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.961</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,9 +54,10 @@ flexible styling via object-based arguments."><meta property="og:image" content=
     </div>
 
     <div class="ref-description section level2">
-    <p>Draws a circular chord diagram from a matrix, showing flows between rows and columns
-using sectors and ribbons. The plot is rendered using base graphics and supports
-flexible styling via object-based arguments.</p>
+    <p>Draws a chord diagram of a two-way table: the categories of the rows
+lie as sectors on the right half of a circle, those of the columns on
+the left half, and every cell of the table is a ribbon between its row
+and its column sector whose width is proportional to its value.</p>
     </div>
 
     <div class="section level2">
@@ -62,7 +65,8 @@ flexible styling via object-based arguments.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plotCirc</span><span class="op">(</span></span>
 <span>  <span class="va">x</span>,</span>
 <span>  main <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  gap <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>  gap <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>  opacity <span class="op">=</span> <span class="fl">0.5</span>,</span>
 <span>  sector <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  ribbon <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  labels <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -76,44 +80,54 @@ flexible styling via object-based arguments.</p>
 
 
 <dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
-<dd><p>A numeric matrix. Rows and columns define the connections between sectors.</p></dd>
+<dd><p>a numeric matrix or two-way table with non-negative entries.
+Rows and columns are the two sets of categories; the dimnames give
+the labels.</p></dd>
 
 
 <dt id="arg-main">main<a class="anchor" aria-label="anchor" href="#arg-main"></a></dt>
-<dd><p>character. Main title of the plot.</p></dd>
+<dd><p>main title. <code>NULL</code> (default) draws none, unless the theme
+sets <code>autoTitle = TRUE</code> (see <a href="theme.html">theme</a>); the title is then the name of
+<code>x</code>. <code>""</code>, <code>NA</code> or <code>FALSE</code> always suppress it and compact the top
+margin; any other string is used as given.</p></dd>
 
 
 <dt id="arg-gap">gap<a class="anchor" aria-label="anchor" href="#arg-gap"></a></dt>
-<dd><p>numeric. Gap between sectors in degrees.</p></dd>
+<dd><p>gap between two sectors, in degrees.</p></dd>
+
+
+<dt id="arg-opacity">opacity<a class="anchor" aria-label="anchor" href="#arg-opacity"></a></dt>
+<dd><p>opacity of the default ribbon colors, between 0 and 1.</p></dd>
 
 
 <dt id="arg-sector">sector<a class="anchor" aria-label="anchor" href="#arg-sector"></a></dt>
-<dd><p>sector styling. Can be:</p><ul><li><p>a logical (<code>TRUE</code>/<code>FALSE</code>) to enable/disable sectors,</p></li>
+<dd><p>sector styling. Can be:</p><ul><li><p><code>TRUE</code> (default): the qualitative palette of the active theme
+(see <a href="theme.html">theme</a>), without border,</p></li>
+<li><p><code>FALSE</code> or <code>NULL</code>: no sectors,</p></li>
 <li><p>a vector of colors,</p></li>
-<li><p>or a list with elements <code>col</code> and <code>border</code>.</p></li>
-</ul><p>Colors are recycled to match the number of sectors (<code>nrow(x) + ncol(x)</code>).
-The sectors are filled in the order in which they are drawn: the columns
-of <code>x</code> first, then the rows, both in reverse order. <code>TRUE</code> (default)
-uses the qualitative palette of the active theme (see <a href="theme.html">theme</a>) and grey
-borders.</p></dd>
+<li><p>a list with the elements <code>col</code> and/or <code>border</code>.</p></li>
+</ul><p>Colors are given for the rows followed by the columns of <code>x</code> and are
+recycled to their number.</p></dd>
 
 
 <dt id="arg-ribbon">ribbon<a class="anchor" aria-label="anchor" href="#arg-ribbon"></a></dt>
-<dd><p>ribbon styling. Can be:</p><ul><li><p>a logical (<code>TRUE</code>/<code>FALSE</code>) to enable/disable ribbons,</p></li>
-<li><p>a vector of colors,</p></li>
-<li><p>or a list with elements <code>col</code> and <code>border</code>.</p></li>
-</ul><p>Colors are recycled to match the number of row categories (<code>nrow(x)</code>).
-With <code>TRUE</code> (default) a ribbon takes the color of the row sector it
-starts from, made half transparent, and a grey border.</p></dd>
+<dd><p>ribbon styling. Can be:</p><ul><li><p><code>TRUE</code> (default): the color of the row sector a ribbon starts
+from, with the opacity <code>opacity</code>, without border,</p></li>
+<li><p><code>FALSE</code> or <code>NULL</code>: no ribbons,</p></li>
+<li><p>a vector of colors, one per row of <code>x</code> (recycled),</p></li>
+<li><p>a list with the elements <code>col</code> and/or <code>border</code>.</p></li>
+</ul></dd>
 
 
 <dt id="arg-labels">labels<a class="anchor" aria-label="anchor" href="#arg-labels"></a></dt>
-<dd><p>label styling. Can be:</p><ul><li><p>a logical (<code>TRUE</code>/<code>FALSE</code>) to enable/disable labels,</p></li>
+<dd><p>label styling. Can be:</p><ul><li><p><code>TRUE</code> (default): the row and column names of <code>x</code>, written
+horizontally,</p></li>
+<li><p><code>FALSE</code> or <code>NULL</code>: no labels,</p></li>
 <li><p>a character vector of labels, for the rows followed by the
 columns of <code>x</code>,</p></li>
-<li><p>or a list with parameters passed to internal label drawing
-(<code>labels</code>, <code>cex</code>, <code>col</code>, <code>las</code>, <code>adj</code>).</p></li>
-</ul><p><code>TRUE</code> (default) uses the row and column names of <code>x</code>.</p></dd>
+<li><p>a list with the elements <code>labels</code>, <code>cex</code>, <code>col</code> and <code>las</code>;
+<code>las = 2</code> writes the labels radially, perpendicular to the circle.</p></li>
+</ul></dd>
 
 
 <dt id="arg-stamp">stamp<a class="anchor" aria-label="anchor" href="#arg-stamp"></a></dt>
@@ -123,26 +137,24 @@ resolves to <code>getTheme()$stamp</code>. <code>TRUE</code>/<code>FALSE</code>/
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>additional graphical parameters passed to internal plotting functions.</p></dd>
+<dd><p>further graphical parameters passed to <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par()</a></code> via the
+internal framework.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>Invisibly returns a list with label positions:</p><dl><dt>x</dt>
-<dd><p>x-coordinates of labels</p></dd>
-
-<dt>y</dt>
-<dd><p>y-coordinates of labels</p></dd>
-
-
-</dl></div>
+    <p>Invisibly, a list with the data frame <code>sectors</code> (category,
+margin (<code>"row"</code> or <code>"col"</code>), total, start and end angle in radians,
+color) and the label positions <code>x</code> and <code>y</code>.</p>
+    </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>The function constructs a circular layout where:</p><ul><li><p>Columns of <code>x</code> are placed on one half of the circle</p></li>
-<li><p>Rows of <code>x</code> are placed on the opposite half</p></li>
-<li><p>Ribbon widths are proportional to matrix entries</p></li>
-</ul><p>Sector sizes correspond to marginal sums of the matrix.</p>
-<p>Internally, angles are computed in radians and mapped to Cartesian coordinates.</p>
+    <p>The size of a sector is the margin total of its category. Within a row
+sector the ribbons are ordered like the column sectors they lead to,
+within a column sector like the row sectors, both from top to bottom;
+this keeps crossings few. Empty cells draw no ribbon.</p>
+<p>The plot region is enlarged as far as needed for the labels, so that
+long category names are not cut off.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -152,6 +164,7 @@ resolves to <code>getTheme()$stamp</code>. <code>TRUE</code>/<code>FALSE</code>/
 <code><a href="plotMiss.html">plotMiss()</a></code>,
 <code><a href="plotPolar.html">plotPolar()</a></code>,
 <code><a href="plotPropCI.html">plotPropCI()</a></code>,
+<code><a href="plotSankey.html">plotSankey()</a></code>,
 <code><a href="plotTernary.html">plotTernary()</a></code>,
 <code><a href="plotTimeSeries.html">plotTimeSeries()</a></code>,
 <code><a href="plotTreemap.html">plotTreemap()</a></code>,
@@ -161,26 +174,20 @@ resolves to <code>getTheme()$stamp</code>. <code>TRUE</code>/<code>FALSE</code>/
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">36</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">36</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">6</span>,</span></span>
+<span class="r-in"><span>            dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">plotCirc</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plotCirc-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Custom colors</span></span></span>
-<span class="r-in"><span><span class="fu">plotCirc</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  <span class="va">x</span>,</span></span>
-<span class="r-in"><span>  sector <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">rainbow</a></span><span class="op">(</span><span class="fl">12</span><span class="op">)</span>, border <span class="op">=</span> <span class="st">"grey50"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  ribbon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">rainbow</a></span><span class="op">(</span><span class="fl">6</span><span class="op">)</span>, border <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># a contingency table, radial labels</span></span></span>
+<span class="r-in"><span><span class="fu">plotCirc</span><span class="op">(</span><span class="va">HairEyeColor</span><span class="op">[</span>, , <span class="st">"Female"</span><span class="op">]</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>las <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plotCirc-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Custom labels</span></span></span>
-<span class="r-in"><span><span class="fu">plotCirc</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  <span class="va">x</span>,</span></span>
-<span class="r-in"><span>  labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>cex <span class="op">=</span> <span class="fl">0.8</span>, col <span class="op">=</span> <span class="st">"blue"</span>, las <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># own colors and white borders</span></span></span>
+<span class="r-in"><span><span class="fu">plotCirc</span><span class="op">(</span><span class="va">x</span>,</span></span>
+<span class="r-in"><span>         sector <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>col <span class="op">=</span> <span class="fu"><a href="hcol.html">hcol</a></span><span class="op">(</span><span class="op">)</span>, border <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>         ribbon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>border <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plotCirc-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

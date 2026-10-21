@@ -35,7 +35,8 @@ plotDot(
 
 - main:
 
-  optional main title
+  main title. `NULL` (default) draws none. `""`, `NA` or `FALSE` also
+  suppress it; the top margin is compacted whenever no title is drawn.
 
 - xlim:
 
@@ -63,8 +64,7 @@ plotDot(
 
 - gap:
 
-  non-negative numeric value controlling the vertical space between
-  groups
+  non-negative number, the vertical space between groups in item rows
 
 - pch:
 
@@ -99,7 +99,9 @@ plotDot(
 - ...:
 
   additional graphical parameters passed to
-  [`graphics::par()`](https://rdrr.io/r/graphics/par.html)
+  [`graphics::par()`](https://rdrr.io/r/graphics/par.html). A `mar` that
+  sets the left side switches off the automatic widening of the left
+  margin for the labels.
 
 ## Value
 
@@ -107,7 +109,8 @@ invisibly, a list containing:
 
 - `ypos`:
 
-  vertical positions of the items within each group
+  vertical positions of the items within each group, a list in the order
+  of the groups
 
 - `group_y`:
 
@@ -119,7 +122,10 @@ invisibly, a list containing:
 
 ## Details
 
-A numeric vector represents one estimate for each item.
+A numeric vector represents one estimate for each item; a
+one-dimensional table or array, such as the result of
+[`tapply()`](https://rdrr.io/r/base/tapply.html) with one grouping
+factor, is treated the same way.
 
 A numeric matrix represents estimates only: rows define the items and
 columns define the groups. Consequently, a matrix with three columns is
@@ -145,7 +151,9 @@ The second dimension must contain, in this order, the estimate, lower
 confidence limit, and upper confidence limit.
 
 Values supplied directly as arguments take precedence over the
-corresponding settings of the active theme.
+corresponding settings of the active theme. Vectors in `pch` (e.g.
+`pch = list(col = c("red", "blue"))`) are recycled over the groups, in
+the order in which the groups are drawn from top to bottom.
 
 ## See also
 

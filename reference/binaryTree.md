@@ -77,7 +77,7 @@ improvements by the package author.
 Other plot.special: [`plotCirc()`](plotCirc.md),
 [`plotLift()`](plotLift.md), [`plotMiss()`](plotMiss.md),
 [`plotPolar()`](plotPolar.md), [`plotPropCI()`](plotPropCI.md),
-[`plotTernary()`](plotTernary.md),
+[`plotSankey()`](plotSankey.md), [`plotTernary()`](plotTernary.md),
 [`plotTimeSeries()`](plotTimeSeries.md),
 [`plotTreemap()`](plotTreemap.md), [`plotWeb()`](plotWeb.md)
 

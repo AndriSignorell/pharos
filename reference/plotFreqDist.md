@@ -36,9 +36,11 @@ plotFreqDist(
 
 - main:
 
-  main title. `NULL` (default) derives the title from
-  `deparse(substitute(x))`. `""`, `NA`, or `FALSE` suppress the title
-  and compact the top margin.
+  main title. `NULL` (default) draws none, unless the theme sets
+  `autoTitle = TRUE` (see [theme](theme.md)); the title is then derived
+  from the expression passed as `x`. `""`, `NA` or `FALSE` always
+  suppress it and compact the top margin; any other string is used as
+  given.
 
 - xlab:
 
@@ -67,7 +69,9 @@ plotFreqDist(
   element `type` selects the plot style: `"hist"` (standard histogram,
   chosen automatically for continuous or high-cardinality data) or
   `"mass"` (vertical bars per unique value, for discrete/low-cardinality
-  data).
+  data). The element `panel.last` adds to the histogram after it is
+  drawn: a function without arguments or a quoted call, e.g.
+  `list(panel.last = quote(abline(v = 0, lty = 2)))`.
 
 - dens:
 
@@ -85,11 +89,11 @@ plotFreqDist(
 
   controls a fitted theoretical distribution curve on the histogram.
   `FALSE` (default), `NULL`, or `NA` suppress it; `TRUE` draws a normal
-  curve with `mean(x)`/`sd(x)`; a list may include `expr` as a character
-  string, expression, or function of `x` for any distribution (e.g.
-  `list(expr = "dt(x, df=2)", col = "darkgreen")`). A character `expr`
-  is evaluated in the caller's environment, so local variables may be
-  referenced (see the gamma example below).
+  curve with `mean(x)`/`sd(x)`; a list may include `expr` as a function
+  of `x` or a one-sided formula in `x` for any distribution (e.g.
+  `list(expr = ~ dt(x, df = 2), col = "darkgreen")`). The formula is
+  evaluated in the environment it was written in, so local variables may
+  be referenced (see the gamma example below).
 
 - boxplot:
 
@@ -192,7 +196,7 @@ plotFreqDist(x, curve = TRUE, boxplot = FALSE, ecdf = FALSE)
 
 # compare with a t-distribution curve
 plotFreqDist(x,
-  curve   = list(expr = "dt(x, df=2)", col = "darkgreen"),
+  curve   = list(expr = ~ dt(x, df = 2), col = "darkgreen"),
   boxplot = FALSE, ecdf = FALSE)
 
 
@@ -202,9 +206,9 @@ m <- mean(ozone, na.rm = TRUE)
 v <- var(ozone, na.rm = TRUE)
 plotFreqDist(ozone,
   hist       = list(breaks = 15),
-  curve      = list(expr = "dgamma(x, shape = m^2/v, scale = v/m)",
+  curve      = list(expr = ~ dgamma(x, shape = m^2/v, scale = v/m),
                     col = "navajowhite3"),
-  curveEcdf  = list(expr = "pgamma(x, shape = m^2/v, scale = v/m)",
+  curveEcdf  = list(expr = ~ pgamma(x, shape = m^2/v, scale = v/m),
                     col = "navajowhite3"),
   main = "Airquality - Ozone")
 

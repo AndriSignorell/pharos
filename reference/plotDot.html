@@ -17,7 +17,7 @@ Several series of estimates can be arranged in labelled groups."><meta property=
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.961</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -88,7 +88,9 @@ or a <code>"CI"</code> object created with <code><a href="as.CI.html">as.CI()</a
 
 
 <dt id="arg-main">main<a class="anchor" aria-label="anchor" href="#arg-main"></a></dt>
-<dd><p>optional main title</p></dd>
+<dd><p>main title. <code>NULL</code> (default) draws none. <code>""</code>, <code>NA</code> or
+<code>FALSE</code> also suppress it; the top margin is compacted whenever no
+title is drawn.</p></dd>
 
 
 <dt id="arg-xlim">xlim<a class="anchor" aria-label="anchor" href="#arg-xlim"></a></dt>
@@ -116,8 +118,8 @@ defaults to the column names or third dimension names of <code>x</code></p></dd>
 
 
 <dt id="arg-gap">gap<a class="anchor" aria-label="anchor" href="#arg-gap"></a></dt>
-<dd><p>non-negative numeric value controlling the vertical space
-between groups</p></dd>
+<dd><p>non-negative number, the vertical space between groups in
+item rows</p></dd>
 
 
 <dt id="arg-pch">pch<a class="anchor" aria-label="anchor" href="#arg-pch"></a></dt>
@@ -153,13 +155,15 @@ resolves to <code>getTheme()$stamp</code>. <code>TRUE</code>/<code>FALSE</code>/
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>additional graphical parameters passed to
-<code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">graphics::par()</a></code></p></dd>
+<code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">graphics::par()</a></code>. A <code>mar</code> that sets the left side switches off the
+automatic widening of the left margin for the labels.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>invisibly, a list containing:</p><dl><dt><code>ypos</code></dt>
-<dd><p>vertical positions of the items within each group</p></dd>
+<dd><p>vertical positions of the items within each group, a
+list in the order of the groups</p></dd>
 
 <dt><code>group_y</code></dt>
 <dd><p>vertical positions of the group labels</p></dd>
@@ -171,7 +175,9 @@ resolves to <code>getTheme()$stamp</code>. <code>TRUE</code>/<code>FALSE</code>/
 </dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>A numeric vector represents one estimate for each item.</p>
+    <p>A numeric vector represents one estimate for each item; a
+one-dimensional table or array, such as the result of <code><a href="https://rdrr.io/r/base/tapply.html" class="external-link">tapply()</a></code> with
+one grouping factor, is treated the same way.</p>
 <p>A numeric matrix represents estimates only: rows define the items and
 columns define the groups. Consequently, a matrix with three columns is
 interpreted as three groups and not automatically as estimates with lower
@@ -191,7 +197,9 @@ three-dimensional numeric array with dimensions
 <code>items × 3 × groups</code>. The second dimension must contain, in this
 order, the estimate, lower confidence limit, and upper confidence limit.</p>
 <p>Values supplied directly as arguments take precedence over the
-corresponding settings of the active theme.</p>
+corresponding settings of the active theme. Vectors in <code>pch</code> (e.g.
+<code>pch = list(col = c("red", "blue"))</code>) are recycled over the groups, in
+the order in which the groups are drawn from top to bottom.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>

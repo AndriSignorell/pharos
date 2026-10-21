@@ -39,9 +39,11 @@ plotProbDist(
 
 - main:
 
-  main title for the plot. `NULL` (default) takes the expression passed
-  as `FUN`; `""`, `NA` or `FALSE` suppress the title and reduce the top
-  margin.
+  main title. `NULL` (default) draws none, unless the theme sets
+  `autoTitle = TRUE` (see [theme](theme.md)); the title is then derived
+  from the expression passed as `FUN`. `""`, `NA` or `FALSE` always
+  suppress it and compact the top margin; any other string is used as
+  given.
 
 - ylab:
 

@@ -57,8 +57,11 @@ plotECDF(
 
 - main:
 
-  main title of the plot. `NULL` (default) derives a title from
-  `deparse(substitute(x))`. `""`, `NA`, or `FALSE` suppress the title.
+  main title. `NULL` (default) draws none, unless the theme sets
+  `autoTitle = TRUE` (see [theme](theme.md)); the title is then derived
+  from the expression passed as `x`. `""`, `NA` or `FALSE` always
+  suppress it and compact the top margin; any other string is used as
+  given.
 
 - xlab:
 

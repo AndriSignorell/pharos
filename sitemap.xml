@@ -18,7 +18,7 @@
 <url><loc>/reference/asFileLink.html</loc></url>
 <url><loc>/reference/asHtml.html</loc></url>
 <url><loc>/reference/asImg.html</loc></url>
-<url><loc>/reference/axTicks.html</loc></url>
+<url><loc>/reference/axTicksPosixct.html</loc></url>
 <url><loc>/reference/axisBreak.html</loc></url>
 <url><loc>/reference/axisFmt.html</loc></url>
 <url><loc>/reference/band.html</loc></url>
@@ -100,6 +100,7 @@
 <url><loc>/reference/plotPropCI.html</loc></url>
 <url><loc>/reference/plotQQ.html</loc></url>
 <url><loc>/reference/plotRidge.html</loc></url>
+<url><loc>/reference/plotSankey.html</loc></url>
 <url><loc>/reference/plotTernary.html</loc></url>
 <url><loc>/reference/plotTimeSeries.html</loc></url>
 <url><loc>/reference/plotTreemap.html</loc></url>

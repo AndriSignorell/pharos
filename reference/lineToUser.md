@@ -33,7 +33,7 @@ For the `lineToUser` function to work, there must be an open plot.
 [`mtext()`](https://rdrr.io/r/graphics/mtext.html)
 
 Other graphics.layout: [`abcCoords()`](abcCoords.md),
-[`axTicks`](axTicks.md), [`axisBreak()`](axisBreak.md),
+[`axTicksPosixct()`](axTicksPosixct.md), [`axisBreak()`](axisBreak.md),
 [`isValidPlotRegion()`](isValidPlotRegion.md), [`mar()`](mar.md),
 [`plotFacet()`](plotFacet.md), [`spreadOut()`](spreadOut.md)
 

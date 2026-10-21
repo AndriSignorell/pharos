@@ -100,7 +100,8 @@ an object of class `c("html", "character")`
 Other html: [`asFileLink()`](asFileLink.md), [`asHtml()`](asHtml.md),
 [`asImg()`](asImg.md), [`embedFile()`](embedFile.md),
 [`escapeHtml()`](escapeHtml.md), [`htmlNotation`](htmlNotation.md),
-[`htmlSubscript`](htmlSubscript.md)
+[`htmlSubscript`](htmlSubscript.md), [`preview()`](preview.md),
+[`preview.html()`](preview.html.md)
 
 ## Examples
 

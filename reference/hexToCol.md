@@ -5,7 +5,7 @@ Convert hexadecimal colors to the nearest named R colors.
 ## Usage
 
 ``` r
-hexToCol(col, method = c("rgb", "hsv"), metric = c("euclidean", "manhattan"))
+hexToCol(col, method = c("ciede2000", "cie76"))
 ```
 
 ## Arguments
@@ -16,11 +16,8 @@ hexToCol(col, method = c("rgb", "hsv"), metric = c("euclidean", "manhattan"))
 
 - method:
 
-  color space used for matching.
-
-- metric:
-
-  distance metric.
+  color difference formula, `"ciede2000"` (default) or `"cie76"`, see
+  Details.
 
 ## Value
 
@@ -35,6 +32,6 @@ Character vector of named R colors.
 ``` r
 hexToCol(c("#A22A2A", "#4169E0"))
 #> [1] "brown"     "royalblue"
-hexToCol("#4169E0", method = "hsv")
+hexToCol("#4169E0", method = "cie76")
 #> [1] "royalblue"
 ```

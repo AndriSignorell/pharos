@@ -78,6 +78,8 @@ specialized displays.
 
 - [`plotWeb()`](plotWeb.md) : Plot a Web of Connected Points
 
+- [`plotSankey()`](plotSankey.md) : Sankey Diagram (Flow Diagram)
+
 - [`plot(`*`<BlandAltman>`*`)`](plot.BlandAltman.md) : Bland-Altman Plot
 
 - [`plot(`*`<Desc.qn>`*`)`](plot.Desc.qn.md) :
@@ -103,8 +105,9 @@ Plot annotation, axes, smoothers, themes, and graphics-state helpers.
 - [`axisBreak()`](axisBreak.md) : Place a Break Mark on an Axis
 - [`axisFmt()`](axisFmt.md) : Draw an Axis With Formatted or Rotated
   Labels
-- [`axTicksPosixct()`](axTicks.md) [`axTicksDate()`](axTicks.md) :
-  Compute Axis Tickmark Locations (For POSIXct Axis)
+- [`axTicksPosixct()`](axTicksPosixct.md)
+  [`axTicksDate()`](axTicksPosixct.md) : Compute Axis Tickmark Locations
+  (For POSIXct Axis)
 - [`barText()`](barText.md) : Place Value Labels on a Barplot
 - [`boxedText()`](boxedText.md) : Add Text in a Box to a Plot
 - [`colLegend()`](colLegend.md) : Add a Color Legend to a Plot

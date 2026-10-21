@@ -58,7 +58,7 @@ Based on code by Jim Lemon <jim@bitwrit.com.au>
 [`strheight()`](https://rdrr.io/r/graphics/strwidth.html)
 
 Other graphics.layout: [`abcCoords()`](abcCoords.md),
-[`axTicks`](axTicks.md), [`axisBreak()`](axisBreak.md),
+[`axTicksPosixct()`](axTicksPosixct.md), [`axisBreak()`](axisBreak.md),
 [`isValidPlotRegion()`](isValidPlotRegion.md),
 [`lineToUser()`](lineToUser.md), [`mar()`](mar.md),
 [`plotFacet()`](plotFacet.md)

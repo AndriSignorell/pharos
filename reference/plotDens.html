@@ -15,7 +15,7 @@ classical density plots and conditional density plots."><meta property="og:image
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.961</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -106,9 +106,11 @@ graphical parameters passed to <code><a href="https://rdrr.io/r/graphics/par.htm
 
 
 <dt id="arg-main">main<a class="anchor" aria-label="anchor" href="#arg-main"></a></dt>
-<dd><p>main title. <code>NULL</code> (default) derives the title from the
-input: the names of the data arguments, or the formula. <code>""</code>, <code>NA</code>, or
-<code>FALSE</code> suppress the title and compact the top margin.</p></dd>
+<dd><p>main title. <code>NULL</code> (default) draws none, unless the
+theme sets <code>autoTitle = TRUE</code> (see <a href="theme.html">theme</a>); the title is then
+derived from the input: the names of the data arguments, or the formula. <code>""</code>, <code>NA</code> or <code>FALSE</code> always
+suppress it and compact the top margin; any other string is used
+as given.</p></dd>
 
 
 <dt id="arg-xlab-ylab">xlab, ylab<a class="anchor" aria-label="anchor" href="#arg-xlab-ylab"></a></dt>

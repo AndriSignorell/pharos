@@ -49,9 +49,12 @@ Returns the top margin in lines: compact (room for the axis only) when
 no title will be drawn, generous otherwise. Centralizes the two values
 as theme defaults instead of magic numbers at 40 call sites.
 
-Normalizes the user-facing `main` argument: `NULL` means "use the
-function's default title", while `FALSE`, `""` and `NA` all mean
-"suppress the title" and map to `""`.
+Normalizes the user-facing `main` argument: `FALSE`, `""` and `NA` mean
+"suppress the title" and map to `""`. `NULL` means "no title unless
+asked for": the function's derived `default` is used only when the theme
+sets `autoTitle = TRUE`, or when `always = TRUE` because the title
+carries information that is shown nowhere else (the palette name in
+[`plot.Palette()`](pal.md), the panel type in `plot.Desc.*()`).
 
 Like `.neededMargin()`, but takes the label orientation (`las`) into
 account: with perpendicular labels (`las` 2/3) the label *width* governs
@@ -73,7 +76,7 @@ to absorb rounding and font metric differences across devices.
 
 .marTop(main)
 
-.resolveTitle(main, default = "")
+.resolveTitle(main, default = "", always = FALSE)
 
 .marginLines(
   labels,
@@ -146,7 +149,13 @@ to absorb rounding and font metric differences across devices.
 
 - default:
 
-  the function's default title, returned when `main = NULL`.
+  the function's derived title, used for `main = NULL` as described
+  above.
+
+- always:
+
+  logical; use `default` for `main = NULL` regardless of the theme's
+  `autoTitle`.
 
 - labels:
 

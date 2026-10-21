@@ -23,7 +23,7 @@ function argument is left at its default value."><meta property="og:image" conte
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.961</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -183,6 +183,14 @@ right semantic fit for an ordered, continuous scale – see
 <dt><code>bar</code></dt>
 <dd><p><code>col="grey80", border=NA</code>. Default bar
 fill/border in <code><a href="plotBar.html">plotBar()</a></code>.</p></dd>
+
+<dt><code>autoTitle</code></dt>
+<dd><p><code>FALSE</code>. With <code>TRUE</code>, plots called with
+<code>main = NULL</code> (the default) get a title derived from the input,
+e.g. <code>"len ~ supp"</code> for <code>plotBox(len ~ supp, ToothGrowth)</code>; with
+<code>FALSE</code> they get none. An explicit <code>main</code> always wins. Handy for
+interactive exploration or teaching:
+<code>setTheme(list(autoTitle = TRUE))</code>.</p></dd>
 
 <dt><code>sty</code></dt>
 <dd><p><code>abs="abs.sty", perc="per.sty", num="num.sty", pval="pval.sty"</code>. Names of <code><a href="fm.html">fm()</a></code> format styles (see
@@ -360,6 +368,9 @@ high-contrast theme) can be added later without changing the
 <span class="r-out co"><span class="r-pr">#&gt;</span> $bar$border</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $autoTitle</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $legend</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $legend$bg</span>

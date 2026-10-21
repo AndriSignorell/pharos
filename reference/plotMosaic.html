@@ -19,7 +19,7 @@ palette, optional legend).'><meta property="og:image" content="/logo.png"></head
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.961</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -90,8 +90,11 @@ via <code>apply(x, c(1,2), sum)</code>.</p></dd>
 
 
 <dt id="arg-main">main<a class="anchor" aria-label="anchor" href="#arg-main"></a></dt>
-<dd><p>character. Plot title. <code>NULL</code> (default) takes the expression
-passed as <code>x</code>; <code>""</code>, <code>NA</code> or <code>FALSE</code> suppress the title.</p></dd>
+<dd><p>main title. <code>NULL</code> (default) draws none, unless the
+theme sets <code>autoTitle = TRUE</code> (see <a href="theme.html">theme</a>); the title is then
+derived from the expression passed as <code>x</code>. <code>""</code>, <code>NA</code> or <code>FALSE</code> always
+suppress it and compact the top margin; any other string is used
+as given.</p></dd>
 
 
 <dt id="arg-xlab-ylab">xlab, ylab<a class="anchor" aria-label="anchor" href="#arg-xlab-ylab"></a></dt>

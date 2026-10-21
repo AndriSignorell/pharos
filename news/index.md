@@ -1,13 +1,15 @@
 # Changelog
 
-## pharos 0.0.0.960
+## pharos 0.1.0
 
 ### New features
 
 - Graphics layer of the DescToolsX package suite, built on base
   graphics: distribution and density displays, bivariate and categorical
   plots, diagnostic and model evaluation panels.
-- A theme system ([`theme()`](../reference/theme.md),
+- A theme system ([`getTheme()`](../reference/theme.md),
+  [`setTheme()`](../reference/theme.md),
+  [`resetTheme()`](../reference/theme.md),
   [`style()`](../reference/style.md)) resolves colours, symbols and
   layout centrally, so the appearance of a whole analysis is set once
   rather than at every call.

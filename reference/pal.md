@@ -16,7 +16,7 @@ exactly `n` colors regardless of their base size:
 pal(name, n = NA, opacity = 1)
 
 # S3 method for class 'Palette'
-plot(x, cex = 2.5, border = "grey70", ...)
+plot(x, main = NULL, cex = 0.85, border = "grey70", stamp = .useTheme, ...)
 ```
 
 ## Arguments
@@ -43,17 +43,33 @@ plot(x, cex = 2.5, border = "grey70", ...)
 
   palette object to be plotted.
 
+- main:
+
+  main title. `NULL` (default) uses the name of the palette, regardless
+  of the theme's `autoTitle`; `""`, `NA` or `FALSE` suppress the title
+  and compact the top margin.
+
 - cex:
 
-  character extension.
+  character expansion of the labels (index, name, hex code). It is
+  reduced automatically when the rows get too narrow, and the labels are
+  left out for very long palettes.
 
 - border:
 
-  color for the border.
+  color for the border of the swatches.
+
+- stamp:
+
+  controls the corner stamp. `.useTheme` (default) resolves to
+  `getTheme()$stamp`. `TRUE`/`FALSE`/`NULL`, a string, or a named list
+  for [`stamp()`](stamp.md).
 
 - ...:
 
-  further params.
+  further graphical parameters, passed to
+  [`par()`](https://rdrr.io/r/graphics/par.html) via the internal
+  framework.
 
 ## Value
 

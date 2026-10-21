@@ -82,9 +82,11 @@ plotBag(
 
 - main:
 
-  main title. `NULL` (default) derives the title from the input: the
-  formula, or the name of `x`. `""`, `NA`, or `FALSE` suppress the title
-  and compact the top margin.
+  main title. `NULL` (default) draws none, unless the theme sets
+  `autoTitle = TRUE` (see [theme](theme.md)); the title is then derived
+  from the input: the formula, or the name of `x`. `""`, `NA` or `FALSE`
+  always suppress it and compact the top margin; any other string is
+  used as given.
 
 - xlab, ylab:
 
@@ -180,6 +182,13 @@ The depth computation handles exact ties and collinear configurations
 run on standardized coordinates, so the result does not depend on the
 units of measurement.
 
+## Note
+
+The halfspace depth is computed by a C++ port of the Fortran routine
+TUKDEPTH (Algorithm AS 307, Rousseeuw & Ruts 1996), taken from
+`src/depth.f` of the archived package 'depth' by M. Genest, J.-C. Massé
+and J.-F. Plante.
+
 ## Element Control
 
 Each of the following arguments accepts:
@@ -210,11 +219,14 @@ Supported elements (in drawing order):
 
 ## References
 
-P. J. Rousseeuw, I. Ruts, J. W. Tukey (1999): The bagplot: a bivariate
-boxplot, *The American Statistician*, vol. 53, no. 4, 382–387.
+Rousseeuw, P. J., Ruts, I., & Tukey, J. W. (1999). The bagplot: A
+bivariate boxplot. *The American Statistician*, 53(4), 382–387.
+[doi:10.1080/00031305.1999.10474494](https://doi.org/10.1080/00031305.1999.10474494)
 
-P. J. Rousseeuw, I. Ruts (1996): Algorithm AS 307: Bivariate location
-depth, *Applied Statistics*, vol. 45, no. 4, 516–526.
+Rousseeuw, P. J., & Ruts, I. (1996). Algorithm AS 307: Bivariate
+location depth. *Journal of the Royal Statistical Society, Series C
+(Applied Statistics)*, 45(4), 516–526.
+[doi:10.2307/2986073](https://doi.org/10.2307/2986073)
 
 ## See also
 

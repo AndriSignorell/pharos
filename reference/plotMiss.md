@@ -25,7 +25,11 @@ plotMiss(
 
 - main:
 
-  the main title.
+  main title. `NULL` (default) draws none, unless the theme sets
+  `autoTitle = TRUE` (see [theme](theme.md)); the title is then derived
+  from the expression passed as `x`. `""`, `NA` or `FALSE` always
+  suppress it and compact the top margin; any other string is used as
+  given.
 
 - cluster:
 
@@ -72,7 +76,7 @@ Following an idea of Henk Harmsen <henk@carbonmetrics.com>
 Other plot.special: [`plotBinaryTree()`](binaryTree.md),
 [`plotCirc()`](plotCirc.md), [`plotLift()`](plotLift.md),
 [`plotPolar()`](plotPolar.md), [`plotPropCI()`](plotPropCI.md),
-[`plotTernary()`](plotTernary.md),
+[`plotSankey()`](plotSankey.md), [`plotTernary()`](plotTernary.md),
 [`plotTimeSeries()`](plotTimeSeries.md),
 [`plotTreemap()`](plotTreemap.md), [`plotWeb()`](plotWeb.md)
 

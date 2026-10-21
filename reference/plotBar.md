@@ -21,6 +21,7 @@ plotBar(
   grid = .useTheme,
   box = FALSE,
   text = NULL,
+  legend = TRUE,
   connLines = NULL,
   stamp = .useTheme,
   ...
@@ -34,9 +35,14 @@ plotBar(
   A vector or matrix of bar heights passed directly to
   [`graphics::barplot()`](https://rdrr.io/r/graphics/barplot.html).
 
-- main, xlab, ylab:
+- main:
 
-  optional plot labels. Defaults follow base graphics behaviour.
+  main title. `NULL` (default) draws none. `""`, `NA` or `FALSE` also
+  suppress it; the top margin is compacted whenever no title is drawn.
+
+- xlab, ylab:
+
+  optional axis labels. Defaults follow base graphics behaviour.
 
 - yax:
 
@@ -72,7 +78,10 @@ plotBar(
 - col:
 
   bar fill colours. `.useTheme` (default) resolves to
-  `getTheme()$bar$col`.
+  `getTheme()$bar$col` for a vector. For a matrix with several rows,
+  whose rows are the segments (stacked) or the bars within a group
+  (`beside = TRUE`), it becomes a ramp from a dark to a light shade of
+  that color, one per row, so the rows can be told apart.
 
 - border:
 
@@ -104,6 +113,18 @@ plotBar(
 
   optional list of arguments passed to [`barText()`](barText.md) to draw
   value labels on bars.
+
+- legend:
+
+  controls the legend explaining the rows of a matrix. `TRUE` (default)
+  draws one whenever `height` is a matrix with several named rows; it is
+  placed in the right margin, which is widened for it unless `mar` in
+  `...` sets the right side. `FALSE`, `NULL` or `NA` suppress it. A
+  named list overrides arguments of
+  [`graphics::legend()`](https://rdrr.io/r/graphics/legend.html); giving
+  `x` there places the legend inside the plot instead (e.g.
+  `list(x = "topleft")`). Not drawn when `legend.text` is passed on to
+  [`graphics::barplot()`](https://rdrr.io/r/graphics/barplot.html).
 
 - connLines:
 
@@ -190,6 +211,10 @@ plotBar(m,
         connLines = list(col = "black"))
 
 
+# a matrix: one shade per row, with a legend
+plotBar(VADeaths)
+
+
 # Grouped bars
 plotBar(VADeaths,
         beside = TRUE,
@@ -227,10 +252,9 @@ plotBar(ptab,
         las=1, main="VADeaths in %",
         box=FALSE, horiz=TRUE, 
         col=(cols <- gray.colors(nrow(VADeaths))),
-        beside=FALSE, mar=c(right=5),
+        beside=FALSE,
         text = list(labels=fm(ptab, fmt="%"), border=NA, 
                     col=contrastCol(cols)))
-legend(x="right", fill=cols, legend=rownames(VADeaths))
 
 
 plotBar(VADeaths/1e3,  box=FALSE, bg="lightyellow", main="VADeaths",

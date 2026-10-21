@@ -28,6 +28,7 @@ a character vector: `x` followed by `<sub>i</sub>`
 Other html: [`asFileLink()`](asFileLink.md), [`asHtml()`](asHtml.md),
 [`asImg()`](asImg.md), [`embedFile()`](embedFile.md),
 [`escapeHtml()`](escapeHtml.md), [`htmlNotation`](htmlNotation.md),
+[`preview()`](preview.md), [`preview.html()`](preview.html.md),
 [`toHtmlTable()`](toHtmlTable.md)
 
 ## Examples

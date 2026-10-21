@@ -66,8 +66,9 @@ Rewritten based on ideas of M.Huerzeler
 Other plot.special: [`plotBinaryTree()`](binaryTree.md),
 [`plotCirc()`](plotCirc.md), [`plotLift()`](plotLift.md),
 [`plotMiss()`](plotMiss.md), [`plotPolar()`](plotPolar.md),
-[`plotPropCI()`](plotPropCI.md), [`plotTernary()`](plotTernary.md),
-[`plotTreemap()`](plotTreemap.md), [`plotWeb()`](plotWeb.md)
+[`plotPropCI()`](plotPropCI.md), [`plotSankey()`](plotSankey.md),
+[`plotTernary()`](plotTernary.md), [`plotTreemap()`](plotTreemap.md),
+[`plotWeb()`](plotWeb.md)
 
 ## Examples
 

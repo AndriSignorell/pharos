@@ -1,8 +1,9 @@
 # Circular Chord Diagram
 
-Draws a circular chord diagram from a matrix, showing flows between rows
-and columns using sectors and ribbons. The plot is rendered using base
-graphics and supports flexible styling via object-based arguments.
+Draws a chord diagram of a two-way table: the categories of the rows lie
+as sectors on the right half of a circle, those of the columns on the
+left half, and every cell of the table is a ribbon between its row and
+its column sector whose width is proportional to its value.
 
 ## Usage
 
@@ -10,7 +11,8 @@ graphics and supports flexible styling via object-based arguments.
 plotCirc(
   x,
   main = NULL,
-  gap = 5,
+  gap = 3,
+  opacity = 0.5,
   sector = TRUE,
   ribbon = TRUE,
   labels = TRUE,
@@ -23,60 +25,67 @@ plotCirc(
 
 - x:
 
-  A numeric matrix. Rows and columns define the connections between
-  sectors.
+  a numeric matrix or two-way table with non-negative entries. Rows and
+  columns are the two sets of categories; the dimnames give the labels.
 
 - main:
 
-  character. Main title of the plot.
+  main title. `NULL` (default) draws none, unless the theme sets
+  `autoTitle = TRUE` (see [theme](theme.md)); the title is then the name
+  of `x`. `""`, `NA` or `FALSE` always suppress it and compact the top
+  margin; any other string is used as given.
 
 - gap:
 
-  numeric. Gap between sectors in degrees.
+  gap between two sectors, in degrees.
+
+- opacity:
+
+  opacity of the default ribbon colors, between 0 and 1.
 
 - sector:
 
   sector styling. Can be:
 
-  - a logical (`TRUE`/`FALSE`) to enable/disable sectors,
+  - `TRUE` (default): the qualitative palette of the active theme (see
+    [theme](theme.md)), without border,
+
+  - `FALSE` or `NULL`: no sectors,
 
   - a vector of colors,
 
-  - or a list with elements `col` and `border`.
+  - a list with the elements `col` and/or `border`.
 
-  Colors are recycled to match the number of sectors
-  (`nrow(x) + ncol(x)`). The sectors are filled in the order in which
-  they are drawn: the columns of `x` first, then the rows, both in
-  reverse order. `TRUE` (default) uses the qualitative palette of the
-  active theme (see [theme](theme.md)) and grey borders.
+  Colors are given for the rows followed by the columns of `x` and are
+  recycled to their number.
 
 - ribbon:
 
   ribbon styling. Can be:
 
-  - a logical (`TRUE`/`FALSE`) to enable/disable ribbons,
+  - `TRUE` (default): the color of the row sector a ribbon starts from,
+    with the opacity `opacity`, without border,
 
-  - a vector of colors,
+  - `FALSE` or `NULL`: no ribbons,
 
-  - or a list with elements `col` and `border`.
+  - a vector of colors, one per row of `x` (recycled),
 
-  Colors are recycled to match the number of row categories (`nrow(x)`).
-  With `TRUE` (default) a ribbon takes the color of the row sector it
-  starts from, made half transparent, and a grey border.
+  - a list with the elements `col` and/or `border`.
 
 - labels:
 
   label styling. Can be:
 
-  - a logical (`TRUE`/`FALSE`) to enable/disable labels,
+  - `TRUE` (default): the row and column names of `x`, written
+    horizontally,
+
+  - `FALSE` or `NULL`: no labels,
 
   - a character vector of labels, for the rows followed by the columns
     of `x`,
 
-  - or a list with parameters passed to internal label drawing
-    (`labels`, `cex`, `col`, `las`, `adj`).
-
-  `TRUE` (default) uses the row and column names of `x`.
+  - a list with the elements `labels`, `cex`, `col` and `las`; `las = 2`
+    writes the labels radially, perpendicular to the circle.
 
 - stamp:
 
@@ -86,41 +95,32 @@ plotCirc(
 
 - ...:
 
-  additional graphical parameters passed to internal plotting functions.
+  further graphical parameters passed to
+  [`par()`](https://rdrr.io/r/graphics/par.html) via the internal
+  framework.
 
 ## Value
 
-Invisibly returns a list with label positions:
-
-- x:
-
-  x-coordinates of labels
-
-- y:
-
-  y-coordinates of labels
+Invisibly, a list with the data frame `sectors` (category, margin
+(`"row"` or `"col"`), total, start and end angle in radians, color) and
+the label positions `x` and `y`.
 
 ## Details
 
-The function constructs a circular layout where:
+The size of a sector is the margin total of its category. Within a row
+sector the ribbons are ordered like the column sectors they lead to,
+within a column sector like the row sectors, both from top to bottom;
+this keeps crossings few. Empty cells draw no ribbon.
 
-- Columns of `x` are placed on one half of the circle
-
-- Rows of `x` are placed on the opposite half
-
-- Ribbon widths are proportional to matrix entries
-
-Sector sizes correspond to marginal sums of the matrix.
-
-Internally, angles are computed in radians and mapped to Cartesian
-coordinates.
+The plot region is enlarged as far as needed for the labels, so that
+long category names are not cut off.
 
 ## See also
 
 Other plot.special: [`plotBinaryTree()`](binaryTree.md),
 [`plotLift()`](plotLift.md), [`plotMiss()`](plotMiss.md),
 [`plotPolar()`](plotPolar.md), [`plotPropCI()`](plotPropCI.md),
-[`plotTernary()`](plotTernary.md),
+[`plotSankey()`](plotSankey.md), [`plotTernary()`](plotTernary.md),
 [`plotTimeSeries()`](plotTimeSeries.md),
 [`plotTreemap()`](plotTreemap.md), [`plotWeb()`](plotWeb.md)
 
@@ -128,25 +128,19 @@ Other plot.special: [`plotBinaryTree()`](binaryTree.md),
 
 ``` r
 set.seed(1)
-x <- matrix(sample(1:10, 36, replace = TRUE), nrow = 6)
-rownames(x) <- LETTERS[1:6]
-colnames(x) <- LETTERS[1:6]
+x <- matrix(sample(1:10, 36, replace = TRUE), nrow = 6,
+            dimnames = list(LETTERS[1:6], letters[1:6]))
 
 plotCirc(x)
 
 
-# Custom colors
-plotCirc(
-  x,
-  sector = list(col = rainbow(12), border = "grey50"),
-  ribbon = list(col = rainbow(6), border = NA)
-)
+# a contingency table, radial labels
+plotCirc(HairEyeColor[, , "Female"], labels = list(las = 2))
 
 
-# Custom labels
-plotCirc(
-  x,
-  labels = list(cex = 0.8, col = "blue", las = 2)
-)
+# own colors and white borders
+plotCirc(x,
+         sector = list(col = hcol(), border = "white"),
+         ribbon = list(border = "white"))
 
 ```

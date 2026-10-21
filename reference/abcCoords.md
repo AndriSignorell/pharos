@@ -91,7 +91,7 @@ either way; only the clipping has to be turned off by the caller.
 [`text()`](https://rdrr.io/r/graphics/text.html),
 [`legend()`](https://rdrr.io/r/graphics/legend.html)
 
-Other graphics.layout: [`axTicks`](axTicks.md),
+Other graphics.layout: [`axTicksPosixct()`](axTicksPosixct.md),
 [`axisBreak()`](axisBreak.md),
 [`isValidPlotRegion()`](isValidPlotRegion.md),
 [`lineToUser()`](lineToUser.md), [`mar()`](mar.md),

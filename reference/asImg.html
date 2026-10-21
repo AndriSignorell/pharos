@@ -19,7 +19,7 @@ embedding directly in HTML text – a report, a question, an e-mail.'><meta prop
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.961</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,8 +71,8 @@ embedding directly in HTML text – a report, a question, an e-mail.</p>
 
 <dl><dt id="arg-expr">expr<a class="anchor" aria-label="anchor" href="#arg-expr"></a></dt>
 <dd><p>a plotting expression, evaluated once inside the device.
-Character input is evaluated via <code>eval(parse(text = expr))</code> for
-compatibility with the earlier form of this function.</p></dd>
+A character string is not accepted: pass the plotting code itself,
+e.g. <code>asImg(plot(1:10))</code> instead of <code>asImg("plot(1:10)")</code>.</p></dd>
 
 
 <dt id="arg-width-height">width, height<a class="anchor" aria-label="anchor" href="#arg-width-height"></a></dt>
@@ -108,6 +108,8 @@ Several statements are given in braces, as in the examples below.</p>
 <code><a href="escapeHtml.html">escapeHtml()</a></code>,
 <code><a href="htmlNotation.html">htmlNotation</a></code>,
 <code><a href="htmlSubscript.html">htmlSubscript</a></code>,
+<code><a href="preview.html">preview()</a></code>,
+<code><a href="preview.html.html">preview.html()</a></code>,
 <code><a href="toHtmlTable.html">toHtmlTable()</a></code></p></div>
     </div>
 

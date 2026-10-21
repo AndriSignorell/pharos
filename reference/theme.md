@@ -129,6 +129,14 @@ sub-list, e.g.
   `col="grey80", border=NA`. Default bar fill/border in
   [`plotBar()`](plotBar.md).
 
+- `autoTitle`:
+
+  `FALSE`. With `TRUE`, plots called with `main = NULL` (the default)
+  get a title derived from the input, e.g. `"len ~ supp"` for
+  `plotBox(len ~ supp, ToothGrowth)`; with `FALSE` they get none. An
+  explicit `main` always wins. Handy for interactive exploration or
+  teaching: `setTheme(list(autoTitle = TRUE))`.
+
 - `sty`:
 
   `abs="abs.sty", perc="per.sty", num="num.sty", pval="pval.sty"`. Names
@@ -305,6 +313,9 @@ getTheme()
 #> $bar$border
 #> [1] NA
 #> 
+#> 
+#> $autoTitle
+#> [1] FALSE
 #> 
 #> $legend
 #> $legend$bg

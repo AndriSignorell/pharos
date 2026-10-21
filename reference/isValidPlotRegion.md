@@ -51,7 +51,7 @@ guard for conditional plotting, e.g.
 `mar`), [`dev.cur()`](https://rdrr.io/r/grDevices/dev.html)
 
 Other graphics.layout: [`abcCoords()`](abcCoords.md),
-[`axTicks`](axTicks.md), [`axisBreak()`](axisBreak.md),
+[`axTicksPosixct()`](axTicksPosixct.md), [`axisBreak()`](axisBreak.md),
 [`lineToUser()`](lineToUser.md), [`mar()`](mar.md),
 [`plotFacet()`](plotFacet.md), [`spreadOut()`](spreadOut.md)
 

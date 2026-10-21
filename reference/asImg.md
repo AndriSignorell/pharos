@@ -15,9 +15,9 @@ asImg(expr, width = 520, height = 440, res = 96, ...)
 
 - expr:
 
-  a plotting expression, evaluated once inside the device. Character
-  input is evaluated via `eval(parse(text = expr))` for compatibility
-  with the earlier form of this function.
+  a plotting expression, evaluated once inside the device. A character
+  string is not accepted: pass the plotting code itself, e.g.
+  `asImg(plot(1:10))` instead of `asImg("plot(1:10)")`.
 
 - width, height:
 
@@ -49,6 +49,7 @@ Several statements are given in braces, as in the examples below.
 Other html: [`asFileLink()`](asFileLink.md), [`asHtml()`](asHtml.md),
 [`embedFile()`](embedFile.md), [`escapeHtml()`](escapeHtml.md),
 [`htmlNotation`](htmlNotation.md), [`htmlSubscript`](htmlSubscript.md),
+[`preview()`](preview.md), [`preview.html()`](preview.html.md),
 [`toHtmlTable()`](toHtmlTable.md)
 
 ## Examples

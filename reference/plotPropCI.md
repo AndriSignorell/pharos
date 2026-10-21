@@ -37,9 +37,11 @@ plotPropCI(
 
 - main:
 
-  main title of the plot. `NULL` (default) derives a title from
-  `deparse(substitute(x))`. `""`, `NA`, or `FALSE` suppress the title
-  and compact the top margin. Any other string is used as given.
+  main title. `NULL` (default) draws none, unless the theme sets
+  `autoTitle = TRUE` (see [theme](theme.md)); the title is then derived
+  from the expression passed as `x`. `""`, `NA` or `FALSE` always
+  suppress it and compact the top margin; any other string is used as
+  given.
 
 - xlab:
 
@@ -142,7 +144,7 @@ all bands overlap. A vertical segment marks the observed proportion.
 Other plot.special: [`plotBinaryTree()`](binaryTree.md),
 [`plotCirc()`](plotCirc.md), [`plotLift()`](plotLift.md),
 [`plotMiss()`](plotMiss.md), [`plotPolar()`](plotPolar.md),
-[`plotTernary()`](plotTernary.md),
+[`plotSankey()`](plotSankey.md), [`plotTernary()`](plotTernary.md),
 [`plotTimeSeries()`](plotTimeSeries.md),
 [`plotTreemap()`](plotTreemap.md), [`plotWeb()`](plotWeb.md)
 

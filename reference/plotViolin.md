@@ -61,9 +61,11 @@ plotViolin(
 
 - main:
 
-  main title. `NULL` (default) derives the title from the input: the
-  names of the data arguments, or the formula. `""`, `NA`, or `FALSE`
-  suppress the title and compact the top margin.
+  main title. `NULL` (default) draws none, unless the theme sets
+  `autoTitle = TRUE` (see [theme](theme.md)); the title is then derived
+  from the input: the names of the data arguments, or the formula. `""`,
+  `NA` or `FALSE` always suppress it and compact the top margin; any
+  other string is used as given.
 
 - xlab, ylab:
 

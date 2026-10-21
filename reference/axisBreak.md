@@ -73,7 +73,8 @@ standards
 ## See also
 
 Other graphics.layout: [`abcCoords()`](abcCoords.md),
-[`axTicks`](axTicks.md), [`isValidPlotRegion()`](isValidPlotRegion.md),
+[`axTicksPosixct()`](axTicksPosixct.md),
+[`isValidPlotRegion()`](isValidPlotRegion.md),
 [`lineToUser()`](lineToUser.md), [`mar()`](mar.md),
 [`plotFacet()`](plotFacet.md), [`spreadOut()`](spreadOut.md)
 

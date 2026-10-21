@@ -13,6 +13,7 @@ message is issued and the call returns invisibly.
 plot(
   x,
   main = NULL,
+  xlab = NULL,
   ylab = NULL,
   which = 1,
   verbose = NULL,
@@ -39,9 +40,16 @@ plot(
   `"table(Pizza$area, Pizza$driver) (Spineplot)"`). There is no `y ~ x`
   pair to draw on here - `x$meta` carries only a single `xname`, since a
   table built outside a two-sided formula has no separately named "x"
-  and "y" variable. `""`, `NA`, or `FALSE` suppress the title and
-  compact the top margin. Any other string is used as-is, identically
-  for every selected panel.
+  and "y" variable. Drawn regardless of the theme's `autoTitle`. `""`,
+  `NA`, or `FALSE` suppress the title and compact the top margin. Any
+  other string is used as-is, identically for every selected panel.
+
+- xlab:
+
+  x-axis label. `NULL` (default) leaves the panel's own default in place
+  (empty for the spineplot, the table name for the mosaic plots, the
+  column dimnames for the association plot). Supplying a value overrides
+  this for every selected panel.
 
 - ylab:
 
@@ -209,3 +217,19 @@ invisibly without drawing anything.
 
 Other plot.s3: [`plot.BlandAltman()`](plot.BlandAltman.md),
 [`plot.Desc.qn()`](plot.Desc.qn.md), [`plot.Lc()`](plot.lc.md)
+
+## Examples
+
+``` r
+# the object is built by hand here; normally DescToolsX::desc()
+# returns it for a pair of categorical variables
+d <- structure(list(
+  tab  = margin.table(HairEyeColor, c(1, 2)),
+  meta = list(xname = "Hair ~ Eye")
+), class = "Desc.table")
+
+plot(d)                 # spineplot
+
+plot(d, which = 2)      # mosaic plot
+
+```

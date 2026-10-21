@@ -40,7 +40,11 @@ plotQQ(
 
 - main:
 
-  the main title for the plot. This will be "Q-Q-Plot" by default
+  main title. `NULL` (default) draws none, unless the theme sets
+  `autoTitle = TRUE` (see [theme](theme.md)); the title is then derived
+  from the distribution, e.g. `"Q-Q-Plot (qnorm)"`. `""`, `NA` or
+  `FALSE` always suppress it and compact the top margin; any other
+  string is used as given.
 
 - xlab:
 

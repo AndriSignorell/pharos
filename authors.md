@@ -11,6 +11,9 @@
 
 - **Jeff Enos**. Contributor.
 
+- **Maxime Genest**. Contributor.  
+  Fortran code of package 'depth'
+
 - **Frank E. Harrell Jr**. Contributor.
 
 - **Henk Harmsen**. Contributor.
@@ -25,9 +28,21 @@
 
 - **Arni Magnusson**. Contributor.
 
+- **Jean-Claude Massé**. Contributor.  
+  Fortran code of package 'depth'
+
 - **Markus Naepflin**. Contributor.
 
+- **Jean-François Plante**. Contributor.  
+  Fortran code of package 'depth'
+
 - **B. D. Ripley**. Contributor.
+
+- **Peter J. Rousseeuw**. Contributor, copyright holder.  
+  Algorithm AS 307 (halfspace depth)
+
+- **Ida Ruts**. Contributor, copyright holder.  
+  Algorithm AS 307 (halfspace depth)
 
 - **Terry Therneau**. Contributor.
 
@@ -45,13 +60,13 @@ Source:
 [`DESCRIPTION`](https://github.com/AndriSignorell/pharos/blob/main/DESCRIPTION)
 
 Signorell A (2026). *pharos: Descriptive Statistics Graphics and
-Utilities*. R package version 0.0.0.961,
+Utilities*. R package version 0.1.1,
 <https://andrisignorell.github.io/pharos/>.
 
     @Manual{,
       title = {pharos: Descriptive Statistics Graphics and Utilities},
       author = {Andri Signorell},
       year = {2026},
-      note = {R package version 0.0.0.961},
+      note = {R package version 0.1.1},
       url = {https://andrisignorell.github.io/pharos/},
     }

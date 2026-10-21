@@ -86,7 +86,7 @@ remotes::install_github("AndriSignorell/pharos")
   [`plotArea()`](reference/plotArea.md), [`mar()`](reference/mar.md),
   [`abcCoords()`](reference/abcCoords.md),
   [`axisBreak()`](reference/axisBreak.md),
-  [`axTicks()`](reference/axTicks.md),
+  [`axTicks()`](https://rdrr.io/r/graphics/axTicks.html),
   [`axisFmt()`](reference/axisFmt.md)
 - [`spreadOut()`](reference/spreadOut.md),
   [`lineToUser()`](reference/lineToUser.md),
@@ -168,7 +168,9 @@ remotes::install_github("AndriSignorell/pharos")
 - **Consistent** — lowerCamelCase API and uniform argument conventions
   across the whole DescToolsX suite
 - **Themed** — colours, symbols and layout resolved centrally through
-  [`theme()`](reference/theme.md) and [`style()`](reference/style.md)
+  [`getTheme()`](reference/theme.md), [`setTheme()`](reference/theme.md)
+  / [`resetTheme()`](reference/theme.md) and
+  [`style()`](reference/style.md)
 - **Base graphics** — no grid, no extra graphics stack; plots compose
   with everything already in R
 - **Fast** — performance-critical routines implemented in Rcpp

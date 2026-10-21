@@ -28,7 +28,7 @@ Invisibly returns `x`.
 ## See also
 
 [base::attr](https://rdrr.io/r/base/attr.html),
-[bedrock::label](https://andrisignorell.github.io/bedrock/reference/Label.html)
+[bedrock::label](https://andrisignorell.github.io/bedrock/reference/label.html)
 
 Other format: [`convUnit()`](convUnit.md), [`fm()`](fm.md),
 [`fmCI()`](fmCI.md), [`style()`](style.md), [`unit()`](unit.md)

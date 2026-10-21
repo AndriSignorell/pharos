@@ -107,7 +107,7 @@ and `.theme()`.
 Other plot.special: [`plotBinaryTree()`](binaryTree.md),
 [`plotCirc()`](plotCirc.md), [`plotLift()`](plotLift.md),
 [`plotMiss()`](plotMiss.md), [`plotPolar()`](plotPolar.md),
-[`plotPropCI()`](plotPropCI.md),
+[`plotPropCI()`](plotPropCI.md), [`plotSankey()`](plotSankey.md),
 [`plotTimeSeries()`](plotTimeSeries.md),
 [`plotTreemap()`](plotTreemap.md), [`plotWeb()`](plotWeb.md)
 

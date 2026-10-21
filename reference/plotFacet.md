@@ -103,9 +103,9 @@ plotFacet(
   controls the grid lines, evaluated by
   [bedrock::callIf](https://andrisignorell.github.io/bedrock/reference/callIf.html):
   `TRUE` (default) draws grid lines at the positions of
-  [`axTicks()`](axTicks.md) with default settings
-  (`col = "grey85", lwd = 0.8`), `FALSE`/`NULL`/`NA` suppresses them, a
-  named list is passed as arguments to
+  [`graphics::axTicks()`](https://rdrr.io/r/graphics/axTicks.html) with
+  default settings (`col = "grey85", lwd = 0.8`), `FALSE`/`NULL`/`NA`
+  suppresses them, a named list is passed as arguments to
   [`abline()`](https://rdrr.io/r/graphics/abline.html), e.g.
   `list(col = "white", lty = "dotted")`. The default positions `v` and
   `h` can be overridden, e.g. `list(v = seq(0, 20, 5))`.
@@ -186,7 +186,7 @@ are exactly equal in size.
 [bedrock::callIf](https://andrisignorell.github.io/bedrock/reference/callIf.html)
 
 Other graphics.layout: [`abcCoords()`](abcCoords.md),
-[`axTicks`](axTicks.md), [`axisBreak()`](axisBreak.md),
+[`axTicksPosixct()`](axTicksPosixct.md), [`axisBreak()`](axisBreak.md),
 [`isValidPlotRegion()`](isValidPlotRegion.md),
 [`lineToUser()`](lineToUser.md), [`mar()`](mar.md),
 [`spreadOut()`](spreadOut.md)

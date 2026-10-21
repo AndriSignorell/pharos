@@ -42,9 +42,12 @@ parameters into par() calls, in strictly increasing precedence:
 Returns the top margin in lines: compact (room for the axis only) when
 no title will be drawn, generous otherwise. Centralizes the two values
 as theme defaults instead of magic numbers at 40 call sites.
-Normalizes the user-facing main argument: NULL means &quot;use the
-function's default title&quot;, while FALSE, &quot;&quot; and NA all mean
-&quot;suppress the title&quot; and map to &quot;&quot;.
+Normalizes the user-facing main argument: FALSE, &quot;&quot; and NA
+mean &quot;suppress the title&quot; and map to &quot;&quot;. NULL means &quot;no title
+unless asked for&quot;: the function's derived default is used only when
+the theme sets autoTitle = TRUE, or when always = TRUE because the
+title carries information that is shown nowhere else (the palette name
+in plot.Palette(), the panel type in plot.Desc.*()).
 Like .neededMargin(), but takes the label orientation (las) into
 account: with perpendicular labels (las 2/3) the label width
 governs the required space regardless of the axis side. Adds a 15%
@@ -86,9 +89,12 @@ parameters into par() calls, in strictly increasing precedence:
 Returns the top margin in lines: compact (room for the axis only) when
 no title will be drawn, generous otherwise. Centralizes the two values
 as theme defaults instead of magic numbers at 40 call sites.
-Normalizes the user-facing main argument: NULL means &quot;use the
-function's default title&quot;, while FALSE, &quot;&quot; and NA all mean
-&quot;suppress the title&quot; and map to &quot;&quot;.
+Normalizes the user-facing main argument: FALSE, &quot;&quot; and NA
+mean &quot;suppress the title&quot; and map to &quot;&quot;. NULL means &quot;no title
+unless asked for&quot;: the function's derived default is used only when
+the theme sets autoTitle = TRUE, or when always = TRUE because the
+title carries information that is shown nowhere else (the palette name
+in plot.Palette(), the panel type in plot.Desc.*()).
 Like .neededMargin(), but takes the label orientation (las) into
 account: with perpendicular labels (las 2/3) the label width
 governs the required space regardless of the axis side. Adds a 15%
@@ -101,7 +107,7 @@ devices."><meta property="og:image" content="/logo.png"></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.961</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -160,9 +166,12 @@ parameters into <code><a href="https://rdrr.io/r/graphics/par.html" class="exter
 <p>Returns the top margin in lines: compact (room for the axis only) when
 no title will be drawn, generous otherwise. Centralizes the two values
 as theme defaults instead of magic numbers at 40 call sites.</p>
-<p>Normalizes the user-facing <code>main</code> argument: <code>NULL</code> means "use the
-function's default title", while <code>FALSE</code>, <code>""</code> and <code>NA</code> all mean
-"suppress the title" and map to <code>""</code>.</p>
+<p>Normalizes the user-facing <code>main</code> argument: <code>FALSE</code>, <code>""</code> and <code>NA</code>
+mean "suppress the title" and map to <code>""</code>. <code>NULL</code> means "no title
+unless asked for": the function's derived <code>default</code> is used only when
+the theme sets <code>autoTitle = TRUE</code>, or when <code>always = TRUE</code> because the
+title carries information that is shown nowhere else (the palette name
+in <code><a href="pal.html">plot.Palette()</a></code>, the panel type in <code>plot.Desc.*()</code>).</p>
 <p>Like <code>.neededMargin()</code>, but takes the label orientation (<code>las</code>) into
 account: with perpendicular labels (<code>las</code> 2/3) the label <em>width</em>
 governs the required space regardless of the axis side. Adds a 15%
@@ -184,7 +193,7 @@ devices.</p>
 <span></span>
 <span><span class="fu">.marTop</span><span class="op">(</span><span class="va">main</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">.resolveTitle</span><span class="op">(</span><span class="va">main</span>, default <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
+<span><span class="fu">.resolveTitle</span><span class="op">(</span><span class="va">main</span>, default <span class="op">=</span> <span class="st">""</span>, always <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">.marginLines</span><span class="op">(</span></span>
 <span>  <span class="va">labels</span>,</span>
@@ -257,8 +266,13 @@ function-argument <code>cex</code> (symbol size).</p></dd>
 
 
 <dt id="arg-default">default<a class="anchor" aria-label="anchor" href="#arg-default"></a></dt>
-<dd><p>the function's default title, returned when
-<code>main = NULL</code>.</p></dd>
+<dd><p>the function's derived title, used for <code>main = NULL</code>
+as described above.</p></dd>
+
+
+<dt id="arg-always">always<a class="anchor" aria-label="anchor" href="#arg-always"></a></dt>
+<dd><p>logical; use <code>default</code> for <code>main = NULL</code> regardless of
+the theme's <code>autoTitle</code>.</p></dd>
 
 
 <dt id="arg-labels">labels<a class="anchor" aria-label="anchor" href="#arg-labels"></a></dt>

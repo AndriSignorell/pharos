@@ -21,7 +21,7 @@ centre, lighter at the edges."><meta property="og:image" content="/logo.png"></h
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.961</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -94,9 +94,10 @@ of length 2 is also accepted and will be coerced to a one-row matrix.</p></dd>
 
 
 <dt id="arg-main">main<a class="anchor" aria-label="anchor" href="#arg-main"></a></dt>
-<dd><p>main title of the plot. <code>NULL</code> (default) derives a title
-from <code>deparse(substitute(x))</code>. <code>""</code>, <code>NA</code>, or <code>FALSE</code>
-suppress the title and compact the top margin. Any other string is used
+<dd><p>main title. <code>NULL</code> (default) draws none, unless the
+theme sets <code>autoTitle = TRUE</code> (see <a href="theme.html">theme</a>); the title is then
+derived from the expression passed as <code>x</code>. <code>""</code>, <code>NA</code> or <code>FALSE</code> always
+suppress it and compact the top margin; any other string is used
 as given.</p></dd>
 
 
@@ -201,6 +202,7 @@ segment marks the observed proportion.</p>
 <code><a href="plotLift.html">plotLift()</a></code>,
 <code><a href="plotMiss.html">plotMiss()</a></code>,
 <code><a href="plotPolar.html">plotPolar()</a></code>,
+<code><a href="plotSankey.html">plotSankey()</a></code>,
 <code><a href="plotTernary.html">plotTernary()</a></code>,
 <code><a href="plotTimeSeries.html">plotTimeSeries()</a></code>,
 <code><a href="plotTreemap.html">plotTreemap()</a></code>,

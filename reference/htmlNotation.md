@@ -27,6 +27,7 @@ a character vector with the diacritic's HTML entity appended
 Other html: [`asFileLink()`](asFileLink.md), [`asHtml()`](asHtml.md),
 [`asImg()`](asImg.md), [`embedFile()`](embedFile.md),
 [`escapeHtml()`](escapeHtml.md), [`htmlSubscript`](htmlSubscript.md),
+[`preview()`](preview.md), [`preview.html()`](preview.html.md),
 [`toHtmlTable()`](toHtmlTable.md)
 
 ## Examples

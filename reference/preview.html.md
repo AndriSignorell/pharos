@@ -33,6 +33,14 @@ preview(x, ...)
 If output does not support ANSI styling, bold/italic markup is rendered
 as plain text (handled automatically by cli).
 
+## See also
+
+Other html: [`asFileLink()`](asFileLink.md), [`asHtml()`](asHtml.md),
+[`asImg()`](asImg.md), [`embedFile()`](embedFile.md),
+[`escapeHtml()`](escapeHtml.md), [`htmlNotation`](htmlNotation.md),
+[`htmlSubscript`](htmlSubscript.md), [`preview()`](preview.md),
+[`toHtmlTable()`](toHtmlTable.md)
+
 ## Examples
 
 ``` r

@@ -44,7 +44,7 @@ For restoring graphical parameters, the recommended base R approach is:
 ## See also
 
 Other graphics.layout: [`abcCoords()`](abcCoords.md),
-[`axTicks`](axTicks.md), [`axisBreak()`](axisBreak.md),
+[`axTicksPosixct()`](axTicksPosixct.md), [`axisBreak()`](axisBreak.md),
 [`isValidPlotRegion()`](isValidPlotRegion.md),
 [`lineToUser()`](lineToUser.md), [`plotFacet()`](plotFacet.md),
 [`spreadOut()`](spreadOut.md)
