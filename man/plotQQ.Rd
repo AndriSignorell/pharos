@@ -28,7 +28,11 @@ plotQQ(
 be given as simple function name or defined as own function using the
 required arguments. Default is \code{qnorm()}. See examples.}
 
-\item{main}{the main title for the plot. This will be "Q-Q-Plot" by default}
+\item{main}{main title. \code{NULL} (default) draws none, unless the
+theme sets \code{autoTitle = TRUE} (see \link{theme}); the title is then
+derived from the distribution, e.g. \code{"Q-Q-Plot (qnorm)"}. \code{""}, \code{NA} or \code{FALSE} always
+suppress it and compact the top margin; any other string is used
+as given.}
 
 \item{xlab}{the xlab for the plot}
 

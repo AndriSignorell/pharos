@@ -14,10 +14,11 @@
 #'   lift over depth, the default), `"gain"` (share of all positives
 #'   captured, over depth), or `"decile"` (per-group lift as bars).
 #'
-#' @param main main title of the plot. `NULL` (default) derives a title
-#'   from `deparse(substitute(x))`. `""`, `NA`, or
-#'   `FALSE` suppress the title entirely (and compact the top margin
-#'   accordingly); any other string is used as given.
+#' @param main main title. `NULL` (default) draws none, unless the
+#'   theme sets `autoTitle = TRUE` (see [theme]); the title is then
+#'   derived from the expression passed as `x`. `""`, `NA` or `FALSE` always
+#'   suppress it and compact the top margin; any other string is used
+#'   as given.
 #' @param xlab label for the x-axis. `NULL` (default) derives a label
 #'   from `type`.
 #' @param ylab label for the y-axis. `NULL` (default) derives a label

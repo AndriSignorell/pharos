@@ -49,7 +49,7 @@ mar(top = 1, outer = TRUE)
 \seealso{
 Other graphics.layout:
 \code{\link[=abcCoords]{abcCoords()}},
-\code{\link{axTicks}},
+\code{\link[=axTicksPosixct]{axTicksPosixct()}},
 \code{\link[=axisBreak]{axisBreak()}},
 \code{\link[=isValidPlotRegion]{isValidPlotRegion()}},
 \code{\link[=lineToUser]{lineToUser()}},

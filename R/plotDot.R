@@ -12,11 +12,13 @@
 #'   to the row names or first dimension names of `x`
 #' @param groups optional character vector containing the group labels;
 #'   defaults to the column names or third dimension names of `x`
-#' @param main optional main title
+#' @param main main title. `NULL` (default) draws none. `""`, `NA` or
+#'   `FALSE` also suppress it; the top margin is compacted whenever no
+#'   title is drawn.
 #' @param xlim numeric vector containing the limits of the horizontal axis;
 #'   by default, the range of all estimates and confidence limits
-#' @param gap non-negative numeric value controlling the vertical space
-#'   between groups
+#' @param gap non-negative number, the vertical space between groups in
+#'   item rows
 #' @param axes logical; whether the horizontal and item axes are drawn
 #' @param xax optional specification for the horizontal axis, interpreted by
 #'   the internal axis renderer
@@ -37,10 +39,13 @@
 #'   resolves to `getTheme()$stamp`. `TRUE`/`FALSE`/
 #'   `NULL`, a string, or a named list for [stamp()].
 #' @param ... additional graphical parameters passed to
-#'   [graphics::par()]
+#'   [graphics::par()]. A `mar` that sets the left side switches off the
+#'   automatic widening of the left margin for the labels.
 #'
 #' @details
-#' A numeric vector represents one estimate for each item.
+#' A numeric vector represents one estimate for each item; a
+#' one-dimensional table or array, such as the result of [tapply()] with
+#' one grouping factor, is treated the same way.
 #'
 #' A numeric matrix represents estimates only: rows define the items and
 #' columns define the groups. Consequently, a matrix with three columns is
@@ -66,11 +71,14 @@
 #' order, the estimate, lower confidence limit, and upper confidence limit.
 #'
 #' Values supplied directly as arguments take precedence over the
-#' corresponding settings of the active theme.
+#' corresponding settings of the active theme. Vectors in `pch` (e.g.
+#' `pch = list(col = c("red", "blue"))`) are recycled over the groups, in
+#' the order in which the groups are drawn from top to bottom.
 #'
 #' @return invisibly, a list containing:
 #' \describe{
-#'   \item{`ypos`}{vertical positions of the items within each group}
+#'   \item{`ypos`}{vertical positions of the items within each group, a
+#'     list in the order of the groups}
 #'   \item{`group_y`}{vertical positions of the group labels}
 #'   \item{`sep_y`}{vertical positions of the group separators}
 #' }
@@ -141,7 +149,6 @@
 #' @family plot.univariate  
 #' @concept dotchart
 #' @concept confidence-interval
-#' @concept dotchart
 #'
 #' @export
 plotDot <- function(
@@ -209,7 +216,11 @@ plotDot.default <- function(
   
   
   gridSpec <- .resolveToggle(grid, getTheme()$grid)
-  
+  main     <- .resolveTitle(main)
+
+  if (!is.numeric(gap) || length(gap) != 1L || is.na(gap) || gap < 0)
+    stop("'gap' must be a single non-negative number", call. = FALSE)
+
   if (identical(pch, .useTheme)) {
     pt  <- getTheme()$points
     pch <- list(pch = pt$pch, col = pt$col, bg = pt$bg, cex = pt$cex)
@@ -223,89 +234,89 @@ plotDot.default <- function(
     pch$cex <- cex
   else if (is.null(pch$cex))
     pch$cex <- getTheme()$points$cex
-  
-  
+
+
   x <- .normalizeDotData(x)
-  
-  nm <- .resolveNames(x, items, groups)
+
+  nm     <- .resolveNames(x, items, groups)
   items  <- nm$items
   groups <- nm$groups
-  
-  if (dim(x)[3] == 1 && missing(groups))
-    groups <- NULL
-  
+
+  nx <- dim(x)[1]
   ng <- dim(x)[3]
-  x <- x[,,rev(seq_len(ng)), drop = FALSE]
-  if (!is.null(groups))
-    groups <- rev(groups)
-  
-  
+
+  # a group header only makes sense for several groups
+  drawGroupHeader <- ng > 1
+  header <- if (drawGroupHeader) 1 else 0
+
+  if (is.null(xlim))
+    xlim <- range(x, na.rm = TRUE)
+
+  if (!all(is.finite(xlim)))
+    stop("'x' contains no finite values, so 'xlim' cannot be derived",
+         call. = FALSE)
+
+
+  # --------------------------------
+  # Y layout
+  # --------------------------------
+  # The first group is drawn on top, its first item first. The groups are
+  # laid out from the bottom up, so the loop runs backwards; x, groups and
+  # ypos keep the original group order, and so do per-group vectors in
+  # 'pch' and the returned positions.
+
+  ypos    <- vector("list", ng)
+  sep_y   <- numeric(ng)
+  group_y <- numeric(ng)
+
+  base <- 0
+
+  for (g in rev(seq_len(ng))) {
+
+    ypos[[g]]  <- base + rev(seq_len(nx))
+    sep_y[g]   <- base + nx + header
+    group_y[g] <- base + nx + header
+
+    base <- base + nx + gap + header
+  }
+
+  ymax <- base - gap - header
+
+
   .withGraphicsState({
-    
-    .applyParFromDots(...)
-    
-    if(length(dim(x)) != 3)
-      stop("x must be age x (est,low,high) x group")
-    
-    nx <- dim(x)[1]
-    ng   <- dim(x)[3]
-    
-    drawGroupHeader <- ng > 1 
-    header <- if (drawGroupHeader) 1 else 0
-    
-    if(is.null(items))
-      items <- seq_len(nx)
-    
-    if(is.null(groups))
-      groups <- paste("Group", seq_len(ng))
-    
-    if(is.null(xlim))
-      xlim <- range(x, na.rm = TRUE)
-    
+
+    .applyParFromDots(...,
+                      defaults = list(
+                        mar = c(top = .marTop(main))
+                      ))
+
     # --------------------------------
-    # adjust margin automatically 
+    # Left margin for the labels
     # --------------------------------
-    
-    .adjustMargin(c(groups, items), side=2, pad=1)
-    
-    # --------------------------------
-    # Y layout
-    # --------------------------------
-    
-    ypos    <- vector("list", ng)
-    sep_y   <- numeric(ng)
-    group_y <- numeric(ng)
-    
-    base <- 0
-    
-    for(g in seq_len(ng)) {
-      
-      ypos[[g]]    <- base + rev(seq_len(nx))
-      sep_y[g]     <- base + nx + header
-      group_y[g]   <- base + nx + header
-      
-      base <- base + nx + gap + header
-    }
-    
-    ymax <- base - gap - header
-    
-    
+    # Item labels and the (bold) group headers stand left of the plot;
+    # widened only, never narrowed, and not at all when the caller has
+    # set the left margin himself.
+
+    if (isTRUE(axes) && !"left" %in% .userMarSides(list(...)))
+      .adjustMargin(c(if (drawGroupHeader) groups, items), side = 2, pad = 1)
+
+
     # --------------------------------
     # Plot
     # --------------------------------
-    
+
     plot.new()
-    
+
     plot.window(
       xlim = xlim,
       ylim = c(0, ymax + 1 + header),
       xaxs = "r",
       yaxs = "i"
     )
-    
+
     usr <- par("usr")
-    
-    
+
+
     # --------------------------------
     # Grid
     # --------------------------------
@@ -313,7 +324,7 @@ plotDot.default <- function(
     # (orange/grey40, dotted/dashed) is plotDot's own distinctive default,
     # taken from .drawDotGrid()'s own formals unless overridden via a
     # named list passed as 'grid'.
-    
+
     bedrock::callIf(
       .drawDotGrid,
       gridSpec,
@@ -323,16 +334,16 @@ plotDot.default <- function(
         drawGroupHeader = drawGroupHeader
       )
     )
-    
-    
+
+
     # --------------------------------
     # Axes
     # --------------------------------
-    
-    if(isTRUE(axes)) {
-      
+
+    if (isTRUE(axes)) {
+
       .drawAxis(1, xax)
-      
+
       axis(
         2,
         at = unlist(ypos),
@@ -340,53 +351,50 @@ plotDot.default <- function(
         las = 1
       )
     }
-    
-    
+
+
     # --------------------------------
     # Group labels
     # --------------------------------
+
     if (drawGroupHeader) {
-      
+
       x_left <- usr[1] - diff(usr[1:2]) * 0.03
-      
-      for(g in seq_len(ng)) {
-        
-        text(
-          x_left,
-          group_y[g],
-          groups[g],
-          adj = c(1,0.5),
-          xpd = NA,
-          font = 2,
-          cex = par("cex.axis")
-        )
-      }
+
+      text(
+        x_left,
+        group_y,
+        groups,
+        adj = c(1, 0.5),
+        xpd = NA,
+        font = 2,
+        cex = par("cex.axis")
+      )
     }
-    
+
     # --- box ---
     .drawBox(box, defaults = list(which = "plot"))
-    
-    # place main title if main != FALSE || NA
-    if(!(is.null(main) %||% main=="" %||% isNA(main)))
-      title(main=main)
-    
-    
-    # add data
+
+    if (nzchar(main))
+      title(main = main)
+
+
+    # --- data ---
     .addDotCI(
       x,
       ypos,
       pch = pch
     )
-    
-    
+
+
   }, stamp = stamp)
-  
+
   invisible(list(
     ypos = ypos,
     group_y = group_y,
     sep_y = sep_y
   ))
-  
+
 }
 
 
@@ -548,51 +556,55 @@ plotDot.CI <- function(x, ...) {
 
 
 .addDotCI <- function(x, ypos, pch = list(pch = 16), lwd = 1) {
-  
+
   if (!is.list(ypos))
     stop("ypos must be list of y-vectors")
-  
+
   ng <- dim(x)[3]
-  
+
   # ensure pch is a list
   if (!is.list(pch))
     pch <- list(pch = pch)
-  
+
+  # pch, col, bg and cex are recycled over the groups, one value per group;
+  # any further element (e.g. lwd) goes to points() unchanged. Passing the
+  # list itself to points() would recycle a color vector over the items.
+  perGroup <- function(v, default) rep_len(v %||% default, ng)
+
+  sym  <- perGroup(pch$pch, 16)
+  col  <- perGroup(pch$col, par("fg"))
+  bg   <- perGroup(pch$bg,  NA)
+  size <- perGroup(pch$cex, 1)
+
+  extra <- pch[setdiff(names(pch), c("pch", "col", "bg", "cex"))]
+
   for (g in seq_len(ng)) {
-    
-    est  <- x[,1,g]
-    low  <- x[,2,g]
-    high <- x[,3,g]
-    
+
+    est  <- x[, 1, g]
+    low  <- x[, 2, g]
+    high <- x[, 3, g]
+
     y <- as.numeric(ypos[[g]])
-    
-    # CI lines
-    graphics::arrows(
-      low, y, high, y,
-      col   = pch$col %||% par("fg"),
-      lwd   = lwd,
-      code  = 3,
-      angle = 90,
-      length = 0.05
-    )
-    
-    # points
-    bedrock::callIf(
-      graphics::points,
-      pch,
-      defaults = list(
-        x   = est,
-        y   = y,
-        pch = rep_len(pch$pch %||% 16, ng)[g],
-        col = rep_len(pch$col %||% par("fg"), ng)[g],
-        bg  = rep_len(pch$bg  %||% NA, ng)[g],
-        cex = rep_len(pch$cex %||% 1, ng)[g]
-      ),
-      forbidden = c("x", "y")
-    )
-    
+
+    # CI lines, only where both limits exist (arrows() warns on NA and on
+    # zero length)
+    ok <- !is.na(low) & !is.na(high) & low != high
+    if (any(ok))
+      graphics::arrows(
+        low[ok], y[ok], high[ok], y[ok],
+        col    = col[g],
+        lwd    = lwd,
+        code   = 3,
+        angle  = 90,
+        length = 0.05
+      )
+
+    do.call(graphics::points,
+            c(list(x = est, y = y,
+                   pch = sym[g], col = col[g], bg = bg[g], cex = size[g]),
+              extra))
   }
-  
+
   invisible(NULL)
 }
 
@@ -618,6 +630,11 @@ plotDot.CI <- function(x, ...) {
   
   if (is.array(x) && length(dim(x)) == 3)
     return(x)
+
+  # a one-dimensional table or array, e.g. tapply(x, g, mean), carries its
+  # names in dimnames and is no vector for is.vector()
+  if (is.numeric(x) && length(dim(x)) == 1L)
+    x <- setNames(as.vector(x), dimnames(x)[[1]])
   
   # ----------------------------
   # vector -> estimate only
@@ -705,7 +722,8 @@ plotDot.CI <- function(x, ...) {
     return(out)
   }
   
-  stop("Unsupported data structure")
+  stop("'x' must be a numeric vector, matrix, three-dimensional array ",
+       "or a \"CI\" object, see ?plotDot", call. = FALSE)
 }
 
 

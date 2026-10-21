@@ -38,3 +38,17 @@ m <- matrix(c(12.3, 4.56, 7.8, 91.2), nrow = 2,
 preview(toHtmlTable(m))
 
 }
+\seealso{
+Other html:
+\code{\link[=asFileLink]{asFileLink()}},
+\code{\link[=asHtml]{asHtml()}},
+\code{\link[=asImg]{asImg()}},
+\code{\link[=embedFile]{embedFile()}},
+\code{\link[=escapeHtml]{escapeHtml()}},
+\code{\link{htmlNotation}},
+\code{\link{htmlSubscript}},
+\code{\link[=preview]{preview()}},
+\code{\link[=toHtmlTable]{toHtmlTable()}}
+}
+\concept{formatting}
+\concept{html}

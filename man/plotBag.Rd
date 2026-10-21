@@ -63,9 +63,11 @@ use, evaluated in \code{data} (\code{subset = Weight > 2500}), as in
 Defaults to \code{\link[stats:na.omit]{stats::na.omit()}}, as the depth computation
 requires complete pairs.}
 
-\item{main}{main title. \code{NULL} (default) derives the title from the
-input: the formula, or the name of \code{x}. \code{""}, \code{NA}, or \code{FALSE}
-suppress the title and compact the top margin.}
+\item{main}{main title. \code{NULL} (default) draws none, unless the
+theme sets \code{autoTitle = TRUE} (see \link{theme}); the title is then
+derived from the input: the formula, or the name of \code{x}. \code{""}, \code{NA} or \code{FALSE} always
+suppress it and compact the top margin; any other string is used
+as given.}
 
 \item{xlab, ylab}{axis labels. \code{NULL} (default) uses the variable names
 of the formula, resp. the column names of \code{x} (empty if it has none).}
@@ -144,6 +146,12 @@ The depth computation handles exact ties and collinear configurations
 run on standardized coordinates, so the result does not depend on the
 units of measurement.
 }
+\note{
+The halfspace depth is computed by a C++ port of the Fortran routine
+TUKDEPTH (Algorithm AS 307, Rousseeuw & Ruts 1996), taken from
+\code{src/depth.f} of the archived package 'depth' by M. Genest,
+J.-C. Massé and J.-F. Plante.
+}
 \section{Element Control}{
 
 Each of the following arguments accepts:
@@ -212,12 +220,13 @@ plotBag(cardata)
 
 }
 \references{
-P. J. Rousseeuw, I. Ruts, J. W. Tukey (1999):
-The bagplot: a bivariate boxplot, \emph{The American
-Statistician}, vol. 53, no. 4, 382--387.
+Rousseeuw, P. J., Ruts, I., & Tukey, J. W. (1999). The bagplot: A
+bivariate boxplot. \emph{The American Statistician}, 53(4), 382--387.
+\doi{10.1080/00031305.1999.10474494}
 
-P. J. Rousseeuw, I. Ruts (1996): Algorithm AS 307: Bivariate location
-depth, \emph{Applied Statistics}, vol. 45, no. 4, 516--526.
+Rousseeuw, P. J., & Ruts, I. (1996). Algorithm AS 307: Bivariate
+location depth. \emph{Journal of the Royal Statistical Society, Series C
+(Applied Statistics)}, 45(4), 516--526. \doi{10.2307/2986073}
 }
 \seealso{
 Other plot.bivariate:

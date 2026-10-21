@@ -120,6 +120,10 @@ plotWeb <- function(m,
     col <- getTheme()$twin
   col <- rep_len(col, 2L)
   
+  # NULL, "", NA and FALSE all mean "no title"; resolved first, because
+  # .marTop() reads NULL as a title present
+  main <- .resolveTitle(main)
+  
   .withGraphicsState({
     
     .applyParFromDots(

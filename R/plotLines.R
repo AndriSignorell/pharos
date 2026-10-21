@@ -12,9 +12,11 @@
 #' @param y optional numeric vector or matrix giving the y-values. If supplied,
 #'   `x` is interpreted as the x-coordinates.
 #'
-#' @param main main title of the plot. `NULL` (default) derives a title
-#'   from the input. `""`, `NA`, or `FALSE` suppress the title
-#'   and compact the top margin.
+#' @param main main title. `NULL` (default) draws none, unless the
+#'   theme sets `autoTitle = TRUE` (see [theme]); the title is then
+#'   derived from the input. `""`, `NA` or `FALSE` always
+#'   suppress it and compact the top margin; any other string is used
+#'   as given.
 #' @param xlab,ylab labels for the axes.
 #'
 #' @param xlim,ylim limits for the axes.

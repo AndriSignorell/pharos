@@ -26,7 +26,9 @@ plotDot(
 are a numeric vector, a numeric matrix, a three-dimensional numeric array,
 or a \code{"CI"} object created with \code{\link[=as.CI]{as.CI()}}}
 
-\item{main}{optional main title}
+\item{main}{main title. \code{NULL} (default) draws none. \code{""}, \code{NA} or
+\code{FALSE} also suppress it; the top margin is compacted whenever no
+title is drawn.}
 
 \item{xlim}{numeric vector containing the limits of the horizontal axis;
 by default, the range of all estimates and confidence limits}
@@ -42,8 +44,8 @@ to the row names or first dimension names of \code{x}}
 \item{groups}{optional character vector containing the group labels;
 defaults to the column names or third dimension names of \code{x}}
 
-\item{gap}{non-negative numeric value controlling the vertical space
-between groups}
+\item{gap}{non-negative number, the vertical space between groups in
+item rows}
 
 \item{pch}{specification for the estimate points. The default
 \code{.useTheme} uses the point settings of the active theme. A plotting
@@ -67,12 +69,14 @@ resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
 \code{NULL}, a string, or a named list for \code{\link[=stamp]{stamp()}}.}
 
 \item{...}{additional graphical parameters passed to
-\code{\link[graphics:par]{graphics::par()}}}
+\code{\link[graphics:par]{graphics::par()}}. A \code{mar} that sets the left side switches off the
+automatic widening of the left margin for the labels.}
 }
 \value{
 invisibly, a list containing:
 \describe{
-\item{\code{ypos}}{vertical positions of the items within each group}
+\item{\code{ypos}}{vertical positions of the items within each group, a
+list in the order of the groups}
 \item{\code{group_y}}{vertical positions of the group labels}
 \item{\code{sep_y}}{vertical positions of the group separators}
 }
@@ -83,7 +87,9 @@ confidence limits are shown as horizontal lines with capped endpoints.
 Several series of estimates can be arranged in labelled groups.
 }
 \details{
-A numeric vector represents one estimate for each item.
+A numeric vector represents one estimate for each item; a
+one-dimensional table or array, such as the result of \code{\link[=tapply]{tapply()}} with
+one grouping factor, is treated the same way.
 
 A numeric matrix represents estimates only: rows define the items and
 columns define the groups. Consequently, a matrix with three columns is
@@ -109,7 +115,9 @@ three-dimensional numeric array with dimensions
 order, the estimate, lower confidence limit, and upper confidence limit.
 
 Values supplied directly as arguments take precedence over the
-corresponding settings of the active theme.
+corresponding settings of the active theme. Vectors in \code{pch} (e.g.
+\code{pch = list(col = c("red", "blue"))}) are recycled over the groups, in
+the order in which the groups are drawn from top to bottom.
 }
 \examples{
 # estimates for a single series

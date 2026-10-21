@@ -7,6 +7,7 @@
 \method{plot}{Desc.qn}(
   x,
   main = NULL,
+  xlab = NULL,
   ylab = NULL,
   which = 2,
   verbose = NULL,
@@ -23,9 +24,15 @@
 
 \item{main}{main title. \code{NULL} (default) derives a title per panel
 from the variable names and the panel type (e.g.
-\code{"area ~ delivery_min (Spineplot)"}). \code{""}, \code{NA}, or
+\code{"area ~ delivery_min (Spineplot)"}), regardless of the theme's
+\code{autoTitle}. \code{""}, \code{NA}, or
 \code{FALSE} suppress the title and compact the top margin. Any other
 string is used as-is, identically for every selected panel.}
+
+\item{xlab}{x-axis label. \code{NULL} (default) derives a label specific
+to each panel: the numeric variable for panels 1, 2, 3 and 5, the
+categorical variable for panel 4 (boxplot, groups on the x-axis).
+Supplying a value overrides this for every selected panel.}
 
 \item{ylab}{y-axis label. \code{NULL} (default) derives a label specific
 to each panel (e.g. \code{"P(y)"} for the conditional density,
@@ -116,6 +123,22 @@ The left margin is sized automatically from the longest of: the
 (possibly panel-specific) y-axis labels, and - for panels 1/2 - the
 categorical level names drawn as axis tick labels, so neither is ever
 clipped regardless of \code{which}.
+}
+\examples{
+# the object is built by hand here; normally DescToolsX::desc(y ~ x)
+# returns it for a numeric-categorical pair
+d <- structure(list(
+  res  = list(xOk  = ToothGrowth$len,
+              yOk  = ToothGrowth$supp,
+              lvls = levels(ToothGrowth$supp),
+              k    = nlevels(ToothGrowth$supp)),
+  meta = list(xname = "len", yname = "supp")
+), class = "Desc.qn")
+
+plot(d)                 # spineplot
+plot(d, which = 3)      # density by group
+plot(d, which = 4)      # boxplot by group
+
 }
 \seealso{
 \code{DescToolsX::desc}, \code{\link[=plotDens]{plotDens()}}, \code{\link[=plotBox]{plotBox()}},

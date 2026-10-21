@@ -4,11 +4,11 @@
 #' Compute pretty tickmark locations, the same way as R does internally. By
 #' default, gives the at values which axis.POSIXct(side, x) would use. 
 #' 
-#' [axTicks] has no implementation for POSIXct axis. This function fills
+#' [graphics::axTicks()] has no implementation for POSIXct axis. This function fills
 #' the gap. 
 #' 
-#' @name axTicks
-#' @aliases axTicksPosixct axTicksDate
+#' @name axTicksPosixct
+#' @aliases axTicksDate
 #' @param side see [graphics::axis] 
 #' @param x,at date-time or date object.
 #' @param format see [base::strptime]
@@ -35,14 +35,14 @@
 #'          col="grey", lty="dotted")
 #' })
 #' 
-#' @seealso [axTicks()], [axis.POSIXct()] 
+#' @seealso [graphics::axTicks()], [graphics::axis.POSIXct()] 
 #' 
 #' @family graphics.layout
 #' @concept label
 #' @concept date-time
 #'
 #'
-#' @rdname axTicks
+#' @rdname axTicksPosixct
 #' @export
 axTicksPosixct <- function (side, x, at, format, labels = TRUE, ...) {
   
@@ -144,7 +144,7 @@ axTicksPosixct <- function (side, x, at, format, labels = TRUE, ...) {
 
 
 
-#' @rdname axTicks
+#' @rdname axTicksPosixct
 #' @export
 axTicksDate <- function(side = 1, x, ...) {
   ##  This functions is almost a copy of axis.Date

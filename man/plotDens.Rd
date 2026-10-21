@@ -45,9 +45,11 @@ plotDens(x, ...)
 \item{...}{additional data vectors (unnamed, default method) or
 graphical parameters passed to \code{par()}.}
 
-\item{main}{main title. \code{NULL} (default) derives the title from the
-input: the names of the data arguments, or the formula. \code{""}, \code{NA}, or
-\code{FALSE} suppress the title and compact the top margin.}
+\item{main}{main title. \code{NULL} (default) draws none, unless the
+theme sets \code{autoTitle = TRUE} (see \link{theme}); the title is then
+derived from the input: the names of the data arguments, or the formula. \code{""}, \code{NA} or \code{FALSE} always
+suppress it and compact the top margin; any other string is used
+as given.}
 
 \item{xlab, ylab}{axis labels.}
 

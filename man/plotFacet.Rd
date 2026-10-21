@@ -73,7 +73,7 @@ overridden.}
 
 \item{grid}{controls the grid lines, evaluated by \link[bedrock:callIf]{bedrock::callIf}:
 \code{TRUE} (default) draws grid lines at the positions of
-\code{\link[=axTicks]{axTicks()}} with default settings
+\code{\link[graphics:axTicks]{graphics::axTicks()}} with default settings
 (\verb{col = "grey85", lwd = 0.8}), \code{FALSE}/\code{NULL}/\code{NA}
 suppresses them, a named list is passed as arguments to
 \code{\link[=abline]{abline()}}, e.g. \code{list(col = "white", lty = "dotted")}.
@@ -192,7 +192,7 @@ plotFacet(setNames(samples, vars), dim = c(2, 2), FUN = panelBand,
 
 Other graphics.layout:
 \code{\link[=abcCoords]{abcCoords()}},
-\code{\link{axTicks}},
+\code{\link[=axTicksPosixct]{axTicksPosixct()}},
 \code{\link[=axisBreak]{axisBreak()}},
 \code{\link[=isValidPlotRegion]{isValidPlotRegion()}},
 \code{\link[=lineToUser]{lineToUser()}},

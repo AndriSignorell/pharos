@@ -11,9 +11,10 @@
 #'   the two columns contain counts for the two categories. A numeric vector
 #'   of length 2 is also accepted and will be coerced to a one-row matrix.
 #'
-#' @param main main title of the plot. `NULL` (default) derives a title
-#'   from `deparse(substitute(x))`. `""`, `NA`, or `FALSE`
-#'   suppress the title and compact the top margin. Any other string is used
+#' @param main main title. `NULL` (default) draws none, unless the
+#'   theme sets `autoTitle = TRUE` (see [theme]); the title is then
+#'   derived from the expression passed as `x`. `""`, `NA` or `FALSE` always
+#'   suppress it and compact the top margin; any other string is used
 #'   as given.
 #' @param labels character vector of length 2 with labels for the two
 #'   categories, displayed at the top of the plot. Default `c("", "")`.

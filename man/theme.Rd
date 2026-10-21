@@ -111,6 +111,12 @@ right semantic fit for an ordered, continuous scale -- see
 \code{\link[=pal]{pal()}} for the registry of named continuous palettes.}
 \item{\code{bar}}{\verb{col="grey80", border=NA}. Default bar
 fill/border in \code{plotBar()}.}
+\item{\code{autoTitle}}{\code{FALSE}. With \code{TRUE}, plots called with
+\code{main = NULL} (the default) get a title derived from the input,
+e.g. \code{"len ~ supp"} for \code{plotBox(len ~ supp, ToothGrowth)}; with
+\code{FALSE} they get none. An explicit \code{main} always wins. Handy for
+interactive exploration or teaching:
+\code{setTheme(list(autoTitle = TRUE))}.}
 \item{\code{sty}}{\verb{abs="abs.sty", perc="per.sty", num="num.sty", pval="pval.sty"}. Names of \code{\link[=fm]{fm()}} format styles (see
 \code{\link[=styles]{styles()}}) used for absolute counts, percentages,
 plain numbers, and p-values respectively.}

@@ -13,7 +13,11 @@
 #' be given as simple function name or defined as own function using the
 #' required arguments. Default is `qnorm()`. See examples.
 #' 
-#' @param main the main title for the plot. This will be "Q-Q-Plot" by default
+#' @param main main title. `NULL` (default) draws none, unless the
+#'   theme sets `autoTitle = TRUE` (see [theme]); the title is then
+#'   derived from the distribution, e.g. `"Q-Q-Plot (qnorm)"`. `""`, `NA` or `FALSE` always
+#'   suppress it and compact the top margin; any other string is used
+#'   as given.
 #' @param xlab the xlab for the plot 
 #' @param ylab the ylab for the plot 
 #' 
@@ -143,8 +147,8 @@ plotQQ <- function(
     
     # resolve main BEFORE applying par defaults, the top margin 
     # depends on it
-    main <- main %||% gettextf("Q-Q-Plot (%s)", 
-                               deparse(substitute(qFun))[1L])
+    main <- .resolveTitle(main, default = gettextf("Q-Q-Plot (%s)",
+                                         deparse(substitute(qFun))[1L]))
     
     .applyParFromDots(..., 
                       defaults=list(

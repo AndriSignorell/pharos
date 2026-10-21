@@ -29,8 +29,9 @@
 #' @seealso [asHtml()]
 #'
 
-#' @family graphics.utils  
-#' @concept annotation
+#' @family html
+#' @concept html
+#' @concept formatting
 #'
 #'
 #' @export
@@ -72,6 +73,10 @@ preview.default <- function(x, ...) {
 #' m <- matrix(c(12.3, 4.56, 7.8, 91.2), nrow = 2,
 #'             dimnames = list(c("a", "b"), c("mean", "sd")))
 #' preview(toHtmlTable(m))
+#'
+#' @family html
+#' @concept html
+#' @concept formatting
 #'
 #' @export
 preview.html <- function(x, ...) {

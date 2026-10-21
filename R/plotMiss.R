@@ -12,7 +12,11 @@
 #' @param bg the background colour of the plot. 
 #' @param cluster logical, defining if the missings should be clustered. Default
 #' is `FALSE`. 
-#' @param main the main title. 
+#' @param main main title. `NULL` (default) draws none, unless the
+#'   theme sets `autoTitle = TRUE` (see [theme]); the title is then
+#'   derived from the expression passed as `x`. `""`, `NA` or `FALSE` always
+#'   suppress it and compact the top margin; any other string is used
+#'   as given.
 #' @param \dots the dots are passed to [plot()]. 
 #' @param stamp controls the corner stamp. `.useTheme` (default)
 #'   resolves to `getTheme()$stamp`. `TRUE`/`FALSE`/
@@ -62,8 +66,7 @@ plotMiss <- function(
     cex <- bedrock::getDotsArg(list(...), "cex", par("cex"))
     
     
-    if(is.null(main)) 
-      main <- deparse(substitute(x))
+    main <- .resolveTitle(main, default = deparse1(substitute(x)))
     
     x <- as.data.frame(x)
     if(ncol(x) > 1)

@@ -62,6 +62,11 @@
     border = NA
   ),
   
+  # Derived default titles ("len ~ supp", the name of x, ...) for main =
+  # NULL. Off by default, as in base graphics: the axes already name the
+  # variables, and in reports the figure caption takes the title's place.
+  autoTitle = FALSE,
+  
   legend = list(
     bg      = addOpacity("white"),
     box.col = "grey50"
@@ -189,6 +194,12 @@
 #'     [pal()] for the registry of named continuous palettes.}
 #'   \item{`bar`}{`col="grey80", border=NA`. Default bar
 #'     fill/border in `plotBar()`.}
+#'   \item{`autoTitle`}{`FALSE`. With `TRUE`, plots called with
+#'     `main = NULL` (the default) get a title derived from the input,
+#'     e.g. `"len ~ supp"` for `plotBox(len ~ supp, ToothGrowth)`; with
+#'     `FALSE` they get none. An explicit `main` always wins. Handy for
+#'     interactive exploration or teaching:
+#'     `setTheme(list(autoTitle = TRUE))`.}
 #'   \item{`sty`}{`abs="abs.sty", perc="per.sty", num="num.sty",
 #'     pval="pval.sty"`. Names of [fm()] format styles (see
 #'     [styles()]) used for absolute counts, percentages,

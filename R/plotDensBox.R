@@ -19,10 +19,11 @@
 #' @param na.action a function specifying how missing values are handled,
 #'   defaults to [na.omit()].
 #'
-#' @param main main title of the plot. `NULL` (default) derives the title
-#'   from the input: the formula, or `x` resp. `x ~ g` for the default
-#'   method. `""`, `NA`, or `FALSE` suppress the title and its outer
-#'   margin.
+#' @param main main title. `NULL` (default) draws none, unless the
+#'   theme sets `autoTitle = TRUE` (see [theme]); the title is then
+#'   derived from the input: the formula, or `x` resp. `x ~ g` for the default method. `""`, `NA` or `FALSE` always
+#'   suppress it and remove its outer margin; any other string is used
+#'   as given.
 #' @param xlab label for the x-axis, drawn below the boxplot. For the
 #'   formula method, an empty label defaults to the response.
 #' @param ylab label for the y-axis of the density panel.

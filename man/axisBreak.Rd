@@ -64,7 +64,7 @@ axisBreak(2, 2.9, style="zigzag")
 \seealso{
 Other graphics.layout:
 \code{\link[=abcCoords]{abcCoords()}},
-\code{\link{axTicks}},
+\code{\link[=axTicksPosixct]{axTicksPosixct()}},
 \code{\link[=isValidPlotRegion]{isValidPlotRegion()}},
 \code{\link[=lineToUser]{lineToUser()}},
 \code{\link[=mar]{mar()}},

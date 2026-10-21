@@ -25,7 +25,7 @@
 
 .marTop(main)
 
-.resolveTitle(main, default = "")
+.resolveTitle(main, default = "", always = FALSE)
 
 .marginLines(
   labels,
@@ -75,8 +75,11 @@ function-argument \code{cex} (symbol size).}
 
 \item{main}{the \code{main} argument as passed by the user.}
 
-\item{default}{the function's default title, returned when
-\code{main = NULL}.}
+\item{default}{the function's derived title, used for \code{main = NULL}
+as described above.}
+
+\item{always}{logical; use \code{default} for \code{main = NULL} regardless of
+the theme's \code{autoTitle}.}
 
 \item{labels}{character vector of labels to accommodate; \code{NULL} or
 empty yields \code{0}.}
@@ -153,9 +156,12 @@ Returns the top margin in lines: compact (room for the axis only) when
 no title will be drawn, generous otherwise. Centralizes the two values
 as theme defaults instead of magic numbers at 40 call sites.
 
-Normalizes the user-facing \code{main} argument: \code{NULL} means "use the
-function's default title", while \code{FALSE}, \code{""} and \code{NA} all mean
-"suppress the title" and map to \code{""}.
+Normalizes the user-facing \code{main} argument: \code{FALSE}, \code{""} and \code{NA}
+mean "suppress the title" and map to \code{""}. \code{NULL} means "no title
+unless asked for": the function's derived \code{default} is used only when
+the theme sets \code{autoTitle = TRUE}, or when \code{always = TRUE} because the
+title carries information that is shown nowhere else (the palette name
+in \code{plot.Palette()}, the panel type in \verb{plot.Desc.*()}).
 
 Like \code{.neededMargin()}, but takes the label orientation (\code{las}) into
 account: with perpendicular labels (\code{las} 2/3) the label \emph{width}

@@ -151,6 +151,29 @@ It ends at the mean rather than at 1, so the default \code{ylim} and the
 slope of the equality line follow the data; for \code{"LcList"} objects
 the panel is sized to accommodate \emph{all} groups, not just the first.
 }
+\examples{
+# Lorenz curve objects are built by hand here; normally
+# DescToolsX::lc() returns them
+lorenz <- function(v) {
+  v <- sort(v)
+  L <- c(0, cumsum(v)) / sum(v)
+  structure(list(p = c(0, seq_along(v)) / length(v),
+                 L = L, L.general = L * mean(v)),
+            class = "Lc")
+}
+
+set.seed(4)
+even   <- lorenz(rgamma(50, shape = 8))
+skewed <- lorenz(rlnorm(50, sdlog = 1.2))
+
+plot(skewed, main = "Lorenz curves")
+lines(even, col = "steelblue")
+
+# several groups at once, generalized curves
+grp <- structure(list(even = even, skewed = skewed), class = "LcList")
+plot(grp, general = TRUE, col = c("steelblue", "darkred"))
+
+}
 \seealso{
 \code{DescToolsX::lc()} for computing the Lorenz curve,
 \code{DescToolsX::predict.Lc()} for bootstrap confidence

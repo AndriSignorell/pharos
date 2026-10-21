@@ -33,6 +33,8 @@ Other html:
 \code{\link[=escapeHtml]{escapeHtml()}},
 \code{\link{htmlNotation}},
 \code{\link{htmlSubscript}},
+\code{\link[=preview]{preview()}},
+\code{\link[=preview.html]{preview.html()}},
 \code{\link[=toHtmlTable]{toHtmlTable()}}
 }
 \concept{html}

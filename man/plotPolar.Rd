@@ -78,6 +78,7 @@ Other plot.special:
 \code{\link[=plotLift]{plotLift()}},
 \code{\link[=plotMiss]{plotMiss()}},
 \code{\link[=plotPropCI]{plotPropCI()}},
+\code{\link[=plotSankey]{plotSankey()}},
 \code{\link[=plotTernary]{plotTernary()}},
 \code{\link[=plotTimeSeries]{plotTimeSeries()}},
 \code{\link[=plotTreemap]{plotTreemap()}},

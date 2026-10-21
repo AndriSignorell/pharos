@@ -94,7 +94,7 @@ text(x = xy$xy$x, y = xy$xy$y, labels = "source: ...",
 \code{\link[=text]{text()}}, \code{\link[=legend]{legend()}}
 
 Other graphics.layout:
-\code{\link{axTicks}},
+\code{\link[=axTicksPosixct]{axTicksPosixct()}},
 \code{\link[=axisBreak]{axisBreak()}},
 \code{\link[=isValidPlotRegion]{isValidPlotRegion()}},
 \code{\link[=lineToUser]{lineToUser()}},

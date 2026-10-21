@@ -24,7 +24,7 @@
 )
 }
 \arguments{
-\item{x}{an object of class \code{"blandAltman"}.}
+\item{x}{an object of class \code{"BlandAltman"}.}
 
 \item{main}{plot title.}
 
@@ -64,8 +64,40 @@ Invisibly returns \code{x}.
 Plots a Bland-Altman agreement analysis.
 }
 \details{
-Objects of class \code{"blandAltman"} are typically created with
-\code{DescToolsX::blandAltmanData()}.
+Objects of class \code{"BlandAltman"} are typically created with
+\code{DescToolsX::blandAltmanData()}. The method uses the elements \code{mean}
+and \code{diff} (one value per pair), \code{bias}, \code{loaLower} and \code{loaUpper}, and
+for the confidence bands \code{biasCI}, \code{loaLowerCI} and \code{loaUpperCI} (each
+a vector of length 2).
+}
+\examples{
+# two measurement methods applied to the same 40 subjects; the object is
+# built by hand here, normally DescToolsX::blandAltmanData() returns it
+set.seed(1)
+a <- rnorm(40, mean = 100, sd = 15)
+b <- a + rnorm(40, mean = 2, sd = 5)
+
+d   <- a - b
+n   <- length(d)
+s   <- sd(d)
+tq  <- qt(0.975, df = n - 1)
+loa <- mean(d) + c(-1, 1) * 1.96 * s
+seLoa <- sqrt(3 * s^2 / n)
+
+ba <- structure(list(
+  mean       = (a + b) / 2,
+  diff       = d,
+  bias       = mean(d),
+  biasCI     = mean(d) + c(-1, 1) * tq * s / sqrt(n),
+  loaLower   = loa[1],
+  loaUpper   = loa[2],
+  loaLowerCI = loa[1] + c(-1, 1) * tq * seLoa,
+  loaUpperCI = loa[2] + c(-1, 1) * tq * seLoa
+), class = "BlandAltman")
+
+plot(ba, main = "Method A vs. method B")
+plot(ba, cband = TRUE, trend = TRUE)
+
 }
 \seealso{
 Other plot.s3:

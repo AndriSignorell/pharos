@@ -37,6 +37,8 @@ Other html:
 \code{\link[=embedFile]{embedFile()}},
 \code{\link{htmlNotation}},
 \code{\link{htmlSubscript}},
+\code{\link[=preview]{preview()}},
+\code{\link[=preview.html]{preview.html()}},
 \code{\link[=toHtmlTable]{toHtmlTable()}}
 }
 \concept{html}

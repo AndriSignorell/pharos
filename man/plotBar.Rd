@@ -17,6 +17,7 @@ plotBar(
   grid = .useTheme,
   box = FALSE,
   text = NULL,
+  legend = TRUE,
   connLines = NULL,
   stamp = .useTheme,
   ...
@@ -26,8 +27,12 @@ plotBar(
 \item{height}{A vector or matrix of bar heights passed directly to
 \code{\link[graphics:barplot]{graphics::barplot()}}.}
 
-\item{main, xlab, ylab}{optional plot labels. Defaults follow
-base graphics behaviour.}
+\item{main}{main title. \code{NULL} (default) draws none. \code{""}, \code{NA} or
+\code{FALSE} also suppress it; the top margin is compacted whenever no
+title is drawn.}
+
+\item{xlab, ylab}{optional axis labels. Defaults follow base graphics
+behaviour.}
 
 \item{yax}{controls drawing of the numeric axis.
 
@@ -46,7 +51,10 @@ If \code{FALSE} (default), bars are stacked.}
 Defaults to \code{FALSE}.}
 
 \item{col}{bar fill colours. \code{.useTheme} (default) resolves to
-\code{getTheme()$bar$col}.}
+\code{getTheme()$bar$col} for a vector. For a matrix with several rows,
+whose rows are the segments (stacked) or the bars within a group
+(\code{beside = TRUE}), it becomes a ramp from a dark to a light shade of
+that color, one per row, so the rows can be told apart.}
 
 \item{border}{bar border colour. \code{.useTheme} (default) resolves to
 \code{getTheme()$bar$border}.}
@@ -69,6 +77,15 @@ or a named list, as for \code{grid}.}
 
 \item{text}{optional list of arguments passed to \code{\link[=barText]{barText()}}
 to draw value labels on bars.}
+
+\item{legend}{controls the legend explaining the rows of a matrix.
+\code{TRUE} (default) draws one whenever \code{height} is a matrix with several
+named rows; it is placed in the right margin, which is widened for it
+unless \code{mar} in \code{...} sets the right side. \code{FALSE}, \code{NULL} or \code{NA}
+suppress it. A named list overrides arguments of
+\code{\link[graphics:legend]{graphics::legend()}}; giving \code{x} there places the legend inside the
+plot instead (e.g. \code{list(x = "topleft")}). Not drawn when
+\code{legend.text} is passed on to \code{\link[graphics:barplot]{graphics::barplot()}}.}
 
 \item{connLines}{optional list of arguments controlling connecting
 lines between stacked bars. Only supported when
@@ -130,6 +147,9 @@ plotBar(m,
         text = list(pos = "mid"),
         connLines = list(col = "black"))
 
+# a matrix: one shade per row, with a legend
+plotBar(VADeaths)
+
 # Grouped bars
 plotBar(VADeaths,
         beside = TRUE,
@@ -162,10 +182,9 @@ plotBar(ptab,
         las=1, main="VADeaths in \%",
         box=FALSE, horiz=TRUE, 
         col=(cols <- gray.colors(nrow(VADeaths))),
-        beside=FALSE, mar=c(right=5),
+        beside=FALSE,
         text = list(labels=fm(ptab, fmt="\%"), border=NA, 
                     col=contrastCol(cols)))
-legend(x="right", fill=cols, legend=rownames(VADeaths))
 
 plotBar(VADeaths/1e3,  box=FALSE, bg="lightyellow", main="VADeaths",
         horiz=TRUE, 

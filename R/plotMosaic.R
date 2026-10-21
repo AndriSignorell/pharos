@@ -114,8 +114,11 @@
 #' @param x a 2-way contingency table, matrix, or array coercible via
 #'   `as.table()`. Higher-dimensional arrays must be collapsed first, e.g.
 #'   via `apply(x, c(1,2), sum)`.
-#' @param main character. Plot title. `NULL` (default) takes the expression
-#'   passed as `x`; `""`, `NA` or `FALSE` suppress the title.
+#' @param main main title. `NULL` (default) draws none, unless the
+#'   theme sets `autoTitle = TRUE` (see [theme]); the title is then
+#'   derived from the expression passed as `x`. `""`, `NA` or `FALSE` always
+#'   suppress it and compact the top margin; any other string is used
+#'   as given.
 #' @param xlab,ylab character or `NULL`. Axis labels. Default `NULL`
 #'   (no labels), since the category levels together with `main` and the
 #'   legend title are usually self-explanatory.

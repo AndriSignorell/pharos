@@ -28,9 +28,11 @@
 #' @param ... additional data vectors (unnamed) or graphical parameters
 #'   passed to `par()`.
 #'
-#' @param main main title. `NULL` (default) derives the title from the
-#'   input: the names of the data arguments, or the formula. `""`, `NA`, or
-#'   `FALSE` suppress the title and compact the top margin.
+#' @param main main title. `NULL` (default) draws none, unless the
+#'   theme sets `autoTitle = TRUE` (see [theme]); the title is then
+#'   derived from the input: the names of the data arguments, or the formula. `""`, `NA` or `FALSE` always
+#'   suppress it and compact the top margin; any other string is used
+#'   as given.
 #' @param xlab,ylab axis labels. For the formula method, empty labels
 #'   default to the grouping variable and the response.
 #' @param xlim,ylim axis limits. `NULL` (default) uses the range of the

@@ -10,9 +10,11 @@
 #'   [shade()]; interior values are the actual boundaries.
 #' @param FUN the distribution density function to plot, typically of the form
 #'   `function(x) dnorm(x, mean=0, sd=1)`.
-#' @param main main title for the plot. `NULL` (default) takes the
-#'   expression passed as `FUN`; `""`, `NA` or `FALSE` suppress the title and
-#'   reduce the top margin.
+#' @param main main title. `NULL` (default) draws none, unless the
+#'   theme sets `autoTitle = TRUE` (see [theme]); the title is then
+#'   derived from the expression passed as `FUN`. `""`, `NA` or `FALSE` always
+#'   suppress it and compact the top margin; any other string is used
+#'   as given.
 #' @param xlim numeric vector of length 2. x-axis limits passed to
 #'   [curve()].
 #' @param col color(s) for the shaded areas. Recycled if shorter than the
@@ -125,9 +127,12 @@ plotProbDist <- function(
                         )
                       ))
     
-    fct <- FUN
-    FUN <- eval(parse(text = "fct"))
-    
+    # curve() and shade() take the *name* FUN and look it up in this frame,
+    # where it is the function object; no string evaluation is needed
+    if (!is.function(FUN))
+      stop("'FUN' must be a function, e.g. function(x) dnorm(x)",
+           call. = FALSE)
+
     if (is.null(col))
       col <- pal("helsana")[1:length(breaks)]
     

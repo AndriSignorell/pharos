@@ -166,66 +166,81 @@ colToHex <- function(col, opacity = 1) {
 
 #' Convert RGB Colors to the Nearest Named R Color
 #'
-#' Match RGB colors to the nearest named R color.
+#' Finds, for each color, the perceptually closest of the named R colors
+#' ([grDevices::colors()]).
 #'
-#' @param col RGB matrix or hexadecimal colors.
-#' @param method color space used for matching.
-#' @param metric distance metric.
+#' The colors are converted from sRGB to the CIELAB color space with
+#' [grDevices::convertColor()] (reference white D65), where distances
+#' approximate perceived differences far better than in RGB or HSV. Two
+#' color difference formulas are available:
+#' \describe{
+#'   \item{`"ciede2000"`}{CIEDE2000, the current CIE recommendation. It
+#'     corrects the shortcomings of CIE76 in the blue region and for
+#'     saturated and near-neutral colors.}
+#'   \item{`"cie76"`}{CIE76, the Euclidean distance in CIELAB. Simpler,
+#'     slightly less accurate.}
+#' }
 #'
-#' @return Character vector of named R colors.
+#' @param col colors: an RGB matrix with one color per column and
+#'   channels on a scale from 0 to 255, as returned by [colToRgb()], or a
+#'   vector of R colors (hexadecimal or named). An alpha channel is
+#'   ignored.
+#' @param method color difference formula, `"ciede2000"` (default) or
+#'   `"cie76"`, see Details.
+#'
+#' @return Character vector of named R colors, one per color in `col`;
+#'   `NA` for a missing color.
+#'
+#' @references
+#' Sharma, G., Wu, W., & Dalal, E. N. (2005). The CIEDE2000
+#' color-difference formula: Implementation notes, supplementary test data,
+#' and mathematical observations. *Color Research & Application*, 30(1),
+#' 21--30. \doi{10.1002/col.20070}
 #'
 #' @examples
 #' rgbToCol(matrix(c(162, 42, 42), nrow = 3))
 #' rgbToCol(c("#A22A2A", "#4169E0"))
 #'
-#' # nearest color in HSV space
-#' rgbToCol(c("#A22A2A", "#4169E0"), method = "hsv", metric = "manhattan")
+#' # CIE76 instead of CIEDE2000
+#' rgbToCol(c("#A22A2A", "#4169E0"), method = "cie76")
 #'
 #' @seealso [color-conversion-overview]
 #' @concept color
 #' @concept color-conversion
 #'
 #' @export
-rgbToCol <- function(col,
-                     method = c("rgb", "hsv"),
-                     metric = c("euclidean", "manhattan")) {
-  
+rgbToCol <- function(col, method = c("ciede2000", "cie76")) {
+
   method <- match.arg(method)
-  metric <- match.arg(metric)
-  
-  if (method == "hsv") {
-    
-    # col2rgb() would read the cells of an RGB matrix as palette indices
-    col <- if (is.matrix(col)) rgb2hsv(col) else colToHsv(col)
-    colTab <- colToHsv(colors())
-    
+
+  # one color per column; col2rgb() would read the cells of an RGB matrix
+  # as palette indices, so a matrix is taken as it is
+  if (is.matrix(col)) {
+    rgb <- col[1:3, , drop = FALSE]
+    na  <- colSums(is.na(rgb)) > 0
   } else {
-    
-    if (!is.matrix(col)) {
-      col <- lapply(col, function(x)
-        c(
-          strtoi(substr(x, 2, 3), 16L),
-          strtoi(substr(x, 4, 5), 16L),
-          strtoi(substr(x, 6, 7), 16L)
-        )
-      )
-      
-      col <- do.call("cbind", col)
-    }
-    
-    colTab <- col2rgb(colors())
+    # col2rgb() turns NA into white, so missing colors are set aside first
+    na  <- is.na(col)
+    rgb <- col2rgb(replace(col, na, "black"))
   }
-  
-  FUN <- switch(
-    metric,
-    euclidean = function(x)
-      which.min(apply(apply(colTab, 2, "-", x)^2, 2, sum)),
-    
-    manhattan = function(x)
-      which.min(apply(abs(apply(colTab, 2, "-", x)), 2, sum))
-  )
-  
-  colors()[apply(col, 2, FUN)]
+
+  res <- rep(NA_character_, length(na))
+  if (all(na))
+    return(res)
+
+  lab <- .rgbToLab(rgb[, !na, drop = FALSE])
+  tab <- .namedColorsLab()
+
+  nearest <- function(i) {
+    one <- lab[rep(i, nrow(tab)), , drop = FALSE]
+    d <- switch(method,
+                ciede2000 = .deltaE2000(one, tab),
+                cie76     = sqrt(rowSums((one - tab)^2)))
+    which.min(d)
+  }
+
+  res[!na] <- colors()[vapply(seq_len(nrow(lab)), nearest, integer(1L))]
+  res
 }
 
 
@@ -240,18 +255,84 @@ rgbToCol <- function(col,
 #'
 #' @examples
 #' hexToCol(c("#A22A2A", "#4169E0"))
-#' hexToCol("#4169E0", method = "hsv")
+#' hexToCol("#4169E0", method = "cie76")
 #'
 #' @seealso [color-conversion-overview]
 #' @concept color
 #' @concept color-conversion
 #'
 #' @export
-hexToCol <- function(col,
-                     method = c("rgb", "hsv"),
-                     metric = c("euclidean", "manhattan")) {
-  
-  rgbToCol(col, method = method, metric = metric)
+hexToCol <- function(col, method = c("ciede2000", "cie76")) {
+
+  rgbToCol(col, method = method)
+}
+
+
+# sRGB channels (rows, 0-255) to CIELAB (one color per row, D65)
+.rgbToLab <- function(rgb)
+  convertColor(t(rgb) / 255, from = "sRGB", to = "Lab")
+
+
+# CIELAB values of the named R colors, computed once per session
+.namedColorsLab <- local({
+  tab <- NULL
+  function() {
+    if (is.null(tab))
+      tab <<- .rgbToLab(col2rgb(colors()))
+    tab
+  }
+})
+
+
+# CIEDE2000 colour difference (Sharma, Wu & Dalal 2005), vectorised over
+# the rows of two Lab matrices of equal size.
+.deltaE2000 <- function(lab1, lab2) {
+
+  rad <- pi / 180
+
+  L1 <- lab1[, 1]; a1 <- lab1[, 2]; b1 <- lab1[, 3]
+  L2 <- lab2[, 1]; a2 <- lab2[, 2]; b2 <- lab2[, 3]
+
+  # a' with the chroma-dependent correction G
+  Cb  <- (sqrt(a1^2 + b1^2) + sqrt(a2^2 + b2^2)) / 2
+  G   <- 0.5 * (1 - sqrt(Cb^7 / (Cb^7 + 25^7)))
+  a1p <- (1 + G) * a1
+  a2p <- (1 + G) * a2
+
+  C1p <- sqrt(a1p^2 + b1^2)
+  C2p <- sqrt(a2p^2 + b2^2)
+  h1p <- (atan2(b1, a1p) / rad) %% 360
+  h2p <- (atan2(b2, a2p) / rad) %% 360
+
+  achrom <- C1p * C2p == 0
+
+  # differences
+  dLp <- L2 - L1
+  dCp <- C2p - C1p
+  dhp <- h2p - h1p
+  dhp <- ifelse(dhp > 180, dhp - 360, ifelse(dhp < -180, dhp + 360, dhp))
+  dhp[achrom] <- 0
+  dHp <- 2 * sqrt(C1p * C2p) * sin(dhp / 2 * rad)
+
+  # means
+  Lbp <- (L1 + L2) / 2
+  Cbp <- (C1p + C2p) / 2
+  hsum <- h1p + h2p
+  hbp <- ifelse(abs(h1p - h2p) <= 180, hsum / 2,
+                ifelse(hsum < 360, (hsum + 360) / 2, (hsum - 360) / 2))
+  hbp[achrom] <- hsum[achrom]
+
+  # weighting functions
+  Tt <- 1 - 0.17 * cos((hbp - 30) * rad) + 0.24 * cos(2 * hbp * rad) +
+    0.32 * cos((3 * hbp + 6) * rad) - 0.20 * cos((4 * hbp - 63) * rad)
+  SL <- 1 + 0.015 * (Lbp - 50)^2 / sqrt(20 + (Lbp - 50)^2)
+  SC <- 1 + 0.045 * Cbp
+  SH <- 1 + 0.015 * Cbp * Tt
+  RT <- -sin(2 * 30 * exp(-((hbp - 275) / 25)^2) * rad) *
+    2 * sqrt(Cbp^7 / (Cbp^7 + 25^7))
+
+  sqrt((dLp / SL)^2 + (dCp / SC)^2 + (dHp / SH)^2 +
+         RT * (dCp / SC) * (dHp / SH))
 }
 
 

@@ -359,22 +359,27 @@ fcol <- .pal_data$discrete$helsana
 
 #' Resolve a Main Title Specification
 #'
-#' Normalizes the user-facing `main` argument: `NULL` means "use the
-#' function's default title", while `FALSE`, `""` and `NA` all mean
-#' "suppress the title" and map to `""`.
+#' Normalizes the user-facing `main` argument: `FALSE`, `""` and `NA`
+#' mean "suppress the title" and map to `""`. `NULL` means "no title
+#' unless asked for": the function's derived `default` is used only when
+#' the theme sets `autoTitle = TRUE`, or when `always = TRUE` because the
+#' title carries information that is shown nowhere else (the palette name
+#' in `plot.Palette()`, the panel type in `plot.Desc.*()`).
 #'
 #' @param main the `main` argument as passed by the user.
-#' @param default the function's default title, returned when
-#'   `main = NULL`.
+#' @param default the function's derived title, used for `main = NULL`
+#'   as described above.
+#' @param always logical; use `default` for `main = NULL` regardless of
+#'   the theme's `autoTitle`.
 #'
 #' @return A character string: `default`, `""`, or `main` itself.
 #'
 #' @rdname graphics-framework
 #' @export
-.resolveTitle <- function(main, default = "") {
+.resolveTitle <- function(main, default = "", always = FALSE) {
 
   if (is.null(main))
-    return(default)
+    return(if (always || isTRUE(getTheme()$autoTitle)) default else "")
 
   noTitle <- isFALSE(main) || identical(main, "") || isNA(main)
 

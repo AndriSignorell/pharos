@@ -33,9 +33,11 @@
 #' @param na.action a function specifying how missing values are handled.
 #'   Defaults to `na.omit`.
 #'   
-#' @param main main title of the plot. `NULL` (default) derives a
-#'   title from `deparse(substitute(x))`. `""`, `NA`, or
-#'   `FALSE` suppress the title.
+#' @param main main title. `NULL` (default) draws none, unless the
+#'   theme sets `autoTitle = TRUE` (see [theme]); the title is then
+#'   derived from the expression passed as `x`. `""`, `NA` or `FALSE` always
+#'   suppress it and compact the top margin; any other string is used
+#'   as given.
 #' @param xlab label for the x-axis. `NULL` (default) derives a label
 #'   the same way as `main`.
 #' @param ylab label for the y-axis. The y-axis itself always shows fixed

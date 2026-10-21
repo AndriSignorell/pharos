@@ -250,97 +250,164 @@ pal <- function(name, n = NA, opacity = 1) {
 
 
 #' @param x palette object to be plotted.
-#' @param cex character extension.
-#' @param border color for the border.
-#' @param ... further params.
+#' @param main main title. `NULL` (default) uses the name of the palette,
+#'   regardless of the theme's `autoTitle`;
+#'   `""`, `NA` or `FALSE` suppress the title and compact the top margin.
+#' @param cex character expansion of the labels (index, name, hex code).
+#'   It is reduced automatically when the rows get too narrow, and the
+#'   labels are left out for very long palettes.
+#' @param border color for the border of the swatches.
+#' @param stamp controls the corner stamp. `.useTheme` (default)
+#'   resolves to `getTheme()$stamp`. `TRUE`/`FALSE`/`NULL`, a string, or
+#'   a named list for [stamp()].
+#' @param ... further graphical parameters, passed to [par()] via the
+#'   internal framework.
 
 #' @rdname pal
 #' @method plot Palette
 #' @export
 plot.Palette <- function(
-    
+
   x,
-  
+
+  # LABELS
+  main = NULL,
+
   # STYLE
-  cex = 2.5,
+  cex = 0.85,
   border = "grey70",
+
+  # FRAMEWORK
+  stamp = .useTheme,
+
   ...
 ) {
-  
+
+  # --- Meta ---------------------------------------------------------------
+  palname <- attr(x, "name")
+  if (is.null(palname) || is.na(palname))
+    palname <- "palette"
+
+  # the palette name is shown nowhere else, so this title is always on
+  main <- .resolveTitle(main, default = sprintf('"%s" palette', palname),
+                        always = TRUE)
+
+  cols <- as.vector(unclass(x))
+  nms  <- names(x)
+  n    <- length(cols)
+
+  if (n == 0L)
+    stop("the palette contains no colors", call. = FALSE)
+
+  # 6-digit hex code for every color, whatever form it is stored in
+  # ("red", "#8296C4", "#8296C480")
+  hex    <- grDevices::rgb(t(grDevices::col2rgb(cols)), maxColorValue = 255)
+  alphas <- c(1, 0.8, 0.6, 0.4, 0.2)
+
+  # the header (opacity values and their caption) sits in the top margin,
+  # so its distance to the swatches does not depend on the number of rows
+  marTop <- 2.6 + if (nzchar(main)) 1.8 else 0
+
   .withGraphicsState({
-    
-    .applyParFromDots(..., 
-                      defaults=list(
-                        mar=c(1, 6, 3, 2)
+
+    .applyParFromDots(...,
+                      defaults = list(
+                        mar = c(bottom = 1, left = 1, top = marTop, right = 1)
                       ))
 
-    # --- Meta -------------------------------------------------------------
-    palname <- attr(x, "name")
-    if (is.null(palname) || is.na(palname))
-      palname <- "palette"
-    
-    n <- length(x)
-    x <- rev(x)
-    
-    # --- Layout coords ----------------------------------------------------
-    xpos_main  <- 1
-    xpos_alpha <- 2 + seq(0, by = 0.8, length.out = 4)
-    alphas     <- c(0.8, 0.6, 0.4, 0.2)
-    
-    ymax <- n + 2
-    
-    # --- Empty plot -------------------------------------------------------
-    plot(NA,
-         xlim = c(0.5, max(xpos_alpha) + 0.5),
-         ylim = c(0.5, ymax),
-         axes = FALSE,
-         xlab = "",
-         ylab = "",
-         main = "")
-    
+    # --- Coordinate system ------------------------------------------------
+    # x in inches (so text widths measured with strwidth(units = "inches")
+    # can be used directly), y in rows: the first color on top. A row is
+    # at most 0.38 in high; a short palette then stays below the header
+    # instead of being spread over the whole device.
+    plot.new()
+    pin   <- par("pin")
+    rowIn <- min(pin[2] / n, 0.38)
+    plot.window(xlim = c(0, pin[1]), ylim = c(n + 0.5 - pin[2] / rowIn, n + 0.5),
+                xaxs = "i", yaxs = "i")
 
-    # --- Main palette -----------------------------------------------------
-    points(rep(xpos_main, n), seq_len(n),
-           pch = 22,
-           cex = cex,
-           col = border,
-           bg  = x)
-    
-    # --- Alpha variants ---------------------------------------------------
+    # text no taller than 3/4 of a row, left out when it would be unreadable
+    cexT     <- min(cex, 0.75 * rowIn / par("csi"))
+    showText <- cexT >= 0.45
+
+    .textWidth <- function(s, family = "")
+      if (showText) max(strwidth(s, units = "inches", cex = cexT,
+                                 family = family)) else 0
+
+    # --- Column layout (inches) -------------------------------------------
+    gap <- 0.18                       # between text columns
+    sp  <- 0.10                       # between swatches
+    sw  <- 0.42                       # swatch width
+
+    wIdx  <- .textWidth(as.character(n))
+    wName <- if (is.null(nms)) 0 else .textWidth(nms)
+    wHex  <- .textWidth(hex, family = "mono")
+
+    textW <- if (showText)
+      wIdx + gap + (if (wName > 0) wName + gap else 0) + wHex + 2 * gap
+    else 0
+
+    # the opaque column is set apart from the transparent ones by an extra
+    # gap; swatches narrow down when the device is too small
+    swatchW <- function(sw) 5 * sw + 5 * sp
+    if (textW + swatchW(sw) > pin[1])
+      sw <- max(0.12, (pin[1] - textW - 5 * sp) / 5)
+
+    total <- textW + swatchW(sw)
+    x0    <- max(0, (pin[1] - total) / 2)
+
+    xIdx  <- x0 + wIdx                               # right aligned
+    xName <- xIdx + gap
+    xHex  <- xName + if (wName > 0) wName + gap else 0
+    xSw   <- x0 + textW + c(0, sw + 2 * sp + (0:3) * (sw + sp))
+
+    # --- Swatches ---------------------------------------------------------
+    # Separate framed swatches while there is room for them; a long
+    # (typically interpolated) palette is drawn as a continuous band
+    # instead, where gaps and frames would only add noise.
+    y      <- n - seq_len(n) + 1
+    banded <- rowIn < 0.12
+    hU     <- if (banded) 1 else 0.72
+
     for (j in seq_along(alphas)) {
-      points(rep(xpos_alpha[j], n), seq_len(n),
-             pch = 22,
-             cex = cex,
-             col = border,
-             bg  = grDevices::adjustcolor(x, alpha.f = alphas[j]))
+      rect(xSw[j], y - hU / 2, xSw[j] + sw, y + hU / 2,
+           col    = grDevices::adjustcolor(cols, alpha.f = alphas[j]),
+           border = if (banded) NA else border)
+      if (banded)
+        rect(xSw[j], 0.5, xSw[j] + sw, n + 0.5, border = border)
     }
-    
-    # --- Labels -----------------------------------------------------------
-    lab <- if (!is.null(names(x))) paste0(seq_len(n), ": ", names(x)) else seq_len(n)
-    
-    text(x = xpos_main + 0.4,
-         y = seq_len(n),
-         labels = lab,
-         adj = c(0, 0.5),
-         cex = 0.8)
-    
-    # --- Header -----------------------------------------------------------
-    title(main = sprintf('"%s" palette', palname))
-    
-    text(x = xpos_alpha,
-         y = n + 1,
-         labels = alphas,
-         cex = 0.8)
-    
-    text(x = mean(xpos_alpha),
-         y = n + 1.5,
-         labels = "alpha",
-         cex = 0.9)
-    
-    abline(h = n + 0.7, col = "grey80")
-    
-  })
-  
-  invisible(NULL)
-}
 
+    # --- Labels -----------------------------------------------------------
+    if (showText) {
+
+      text(xIdx, y, seq_len(n), adj = c(1, 0.5), cex = cexT, col = "grey50")
+
+      if (!is.null(nms))
+        text(xName, y, nms, adj = c(0, 0.5), cex = cexT)
+
+      text(xHex, y, hex, adj = c(0, 0.5), cex = cexT,
+           family = "mono", col = "grey40")
+    }
+
+    # --- Header -----------------------------------------------------------
+    mid <- xSw + sw / 2
+
+    mtext(format(alphas), side = 3, line = 0.3, at = mid,
+          cex = 0.75, col = "grey40")
+    mtext("opacity", side = 3, line = 1.3, at = mean(range(mid)), cex = 0.8)
+
+    if (showText) {
+      if (!is.null(nms))
+        mtext("name", side = 3, line = 0.3, at = xName, adj = 0,
+              cex = 0.75, col = "grey40")
+      mtext("hex", side = 3, line = 0.3, at = xHex, adj = 0,
+            cex = 0.75, col = "grey40")
+    }
+
+    if (nzchar(main))
+      title(main = main, line = 2.8)
+
+  }, stamp = stamp)
+
+  invisible(x)
+}

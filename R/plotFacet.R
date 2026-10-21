@@ -84,7 +84,7 @@
 #'   overridden.
 #' @param grid controls the grid lines, evaluated by [bedrock::callIf]:
 #'   `TRUE` (default) draws grid lines at the positions of
-#'   [axTicks()] with default settings
+#'   [graphics::axTicks()] with default settings
 #'   (`col = "grey85", lwd = 0.8`), `FALSE`/`NULL`/`NA`
 #'   suppresses them, a named list is passed as arguments to
 #'   [abline()], e.g. `list(col = "white", lty = "dotted")`.

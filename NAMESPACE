@@ -159,6 +159,7 @@ export(plotProbDist)
 export(plotPropCI)
 export(plotQQ)
 export(plotRidge)
+export(plotSankey)
 export(plotTernary)
 export(plotTimeSeries)
 export(plotTreemap)
@@ -250,6 +251,7 @@ importFrom(grDevices,
   col2rgb,
   colorRampPalette,
   colors,
+  convertColor,
   dev.cur,
   dev.off,
   dev.size,
@@ -328,6 +330,7 @@ importFrom(stats,
   order.dendrogram,
   pacf,
   plot.ts,
+  pnorm,
   predict,
   prop.test,
   qnorm,

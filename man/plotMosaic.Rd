@@ -25,8 +25,11 @@ plotMosaic(
 \code{as.table()}. Higher-dimensional arrays must be collapsed first, e.g.
 via \code{apply(x, c(1,2), sum)}.}
 
-\item{main}{character. Plot title. \code{NULL} (default) takes the expression
-passed as \code{x}; \code{""}, \code{NA} or \code{FALSE} suppress the title.}
+\item{main}{main title. \code{NULL} (default) draws none, unless the
+theme sets \code{autoTitle = TRUE} (see \link{theme}); the title is then
+derived from the expression passed as \code{x}. \code{""}, \code{NA} or \code{FALSE} always
+suppress it and compact the top margin; any other string is used
+as given.}
 
 \item{xlab, ylab}{character or \code{NULL}. Axis labels. Default \code{NULL}
 (no labels), since the category levels together with \code{main} and the

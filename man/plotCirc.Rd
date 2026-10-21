@@ -7,7 +7,8 @@
 plotCirc(
   x,
   main = NULL,
-  gap = 5,
+  gap = 3,
+  opacity = 0.5,
   sector = TRUE,
   ribbon = TRUE,
   labels = TRUE,
@@ -16,94 +17,91 @@ plotCirc(
 )
 }
 \arguments{
-\item{x}{A numeric matrix. Rows and columns define the connections between sectors.}
+\item{x}{a numeric matrix or two-way table with non-negative entries.
+Rows and columns are the two sets of categories; the dimnames give
+the labels.}
 
-\item{main}{character. Main title of the plot.}
+\item{main}{main title. \code{NULL} (default) draws none, unless the theme
+sets \code{autoTitle = TRUE} (see \link{theme}); the title is then the name of
+\code{x}. \code{""}, \code{NA} or \code{FALSE} always suppress it and compact the top
+margin; any other string is used as given.}
 
-\item{gap}{numeric. Gap between sectors in degrees.}
+\item{gap}{gap between two sectors, in degrees.}
+
+\item{opacity}{opacity of the default ribbon colors, between 0 and 1.}
 
 \item{sector}{sector styling. Can be:
 \itemize{
-\item a logical (\code{TRUE}/\code{FALSE}) to enable/disable sectors,
+\item \code{TRUE} (default): the qualitative palette of the active theme
+(see \link{theme}), without border,
+\item \code{FALSE} or \code{NULL}: no sectors,
 \item a vector of colors,
-\item or a list with elements \code{col} and \code{border}.
+\item a list with the elements \code{col} and/or \code{border}.
 }
-Colors are recycled to match the number of sectors (\code{nrow(x) + ncol(x)}).
-The sectors are filled in the order in which they are drawn: the columns
-of \code{x} first, then the rows, both in reverse order. \code{TRUE} (default)
-uses the qualitative palette of the active theme (see \link{theme}) and grey
-borders.}
+Colors are given for the rows followed by the columns of \code{x} and are
+recycled to their number.}
 
 \item{ribbon}{ribbon styling. Can be:
 \itemize{
-\item a logical (\code{TRUE}/\code{FALSE}) to enable/disable ribbons,
-\item a vector of colors,
-\item or a list with elements \code{col} and \code{border}.
-}
-Colors are recycled to match the number of row categories (\code{nrow(x)}).
-With \code{TRUE} (default) a ribbon takes the color of the row sector it
-starts from, made half transparent, and a grey border.}
+\item \code{TRUE} (default): the color of the row sector a ribbon starts
+from, with the opacity \code{opacity}, without border,
+\item \code{FALSE} or \code{NULL}: no ribbons,
+\item a vector of colors, one per row of \code{x} (recycled),
+\item a list with the elements \code{col} and/or \code{border}.
+}}
 
 \item{labels}{label styling. Can be:
 \itemize{
-\item a logical (\code{TRUE}/\code{FALSE}) to enable/disable labels,
+\item \code{TRUE} (default): the row and column names of \code{x}, written
+horizontally,
+\item \code{FALSE} or \code{NULL}: no labels,
 \item a character vector of labels, for the rows followed by the
 columns of \code{x},
-\item or a list with parameters passed to internal label drawing
-(\code{labels}, \code{cex}, \code{col}, \code{las}, \code{adj}).
-}
-\code{TRUE} (default) uses the row and column names of \code{x}.}
+\item a list with the elements \code{labels}, \code{cex}, \code{col} and \code{las};
+\code{las = 2} writes the labels radially, perpendicular to the circle.
+}}
 
 \item{stamp}{controls the corner stamp. \code{.useTheme} (default)
 resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
 \code{NULL}, a string, or a named list for \code{\link[=stamp]{stamp()}}.}
 
-\item{...}{additional graphical parameters passed to internal plotting functions.}
+\item{...}{further graphical parameters passed to \code{\link[=par]{par()}} via the
+internal framework.}
 }
 \value{
-Invisibly returns a list with label positions:
-\describe{
-\item{x}{x-coordinates of labels}
-\item{y}{y-coordinates of labels}
-}
+Invisibly, a list with the data frame \code{sectors} (category,
+margin (\code{"row"} or \code{"col"}), total, start and end angle in radians,
+color) and the label positions \code{x} and \code{y}.
 }
 \description{
-Draws a circular chord diagram from a matrix, showing flows between rows and columns
-using sectors and ribbons. The plot is rendered using base graphics and supports
-flexible styling via object-based arguments.
+Draws a chord diagram of a two-way table: the categories of the rows
+lie as sectors on the right half of a circle, those of the columns on
+the left half, and every cell of the table is a ribbon between its row
+and its column sector whose width is proportional to its value.
 }
 \details{
-The function constructs a circular layout where:
-\itemize{
-\item Columns of \code{x} are placed on one half of the circle
-\item Rows of \code{x} are placed on the opposite half
-\item Ribbon widths are proportional to matrix entries
-}
+The size of a sector is the margin total of its category. Within a row
+sector the ribbons are ordered like the column sectors they lead to,
+within a column sector like the row sectors, both from top to bottom;
+this keeps crossings few. Empty cells draw no ribbon.
 
-Sector sizes correspond to marginal sums of the matrix.
-
-Internally, angles are computed in radians and mapped to Cartesian coordinates.
+The plot region is enlarged as far as needed for the labels, so that
+long category names are not cut off.
 }
 \examples{
 set.seed(1)
-x <- matrix(sample(1:10, 36, replace = TRUE), nrow = 6)
-rownames(x) <- LETTERS[1:6]
-colnames(x) <- LETTERS[1:6]
+x <- matrix(sample(1:10, 36, replace = TRUE), nrow = 6,
+            dimnames = list(LETTERS[1:6], letters[1:6]))
 
 plotCirc(x)
 
-# Custom colors
-plotCirc(
-  x,
-  sector = list(col = rainbow(12), border = "grey50"),
-  ribbon = list(col = rainbow(6), border = NA)
-)
+# a contingency table, radial labels
+plotCirc(HairEyeColor[, , "Female"], labels = list(las = 2))
 
-# Custom labels
-plotCirc(
-  x,
-  labels = list(cex = 0.8, col = "blue", las = 2)
-)
+# own colors and white borders
+plotCirc(x,
+         sector = list(col = hcol(), border = "white"),
+         ribbon = list(border = "white"))
 
 }
 \seealso{
@@ -113,10 +111,12 @@ Other plot.special:
 \code{\link[=plotMiss]{plotMiss()}},
 \code{\link[=plotPolar]{plotPolar()}},
 \code{\link[=plotPropCI]{plotPropCI()}},
+\code{\link[=plotSankey]{plotSankey()}},
 \code{\link[=plotTernary]{plotTernary()}},
 \code{\link[=plotTimeSeries]{plotTimeSeries()}},
 \code{\link[=plotTreemap]{plotTreemap()}},
 \code{\link[=plotWeb]{plotWeb()}}
 }
-\concept{bar-chart}
+\concept{flow-diagram}
+\concept{frequency-table}
 \concept{plot.special}

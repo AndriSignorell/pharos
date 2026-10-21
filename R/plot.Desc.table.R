@@ -18,9 +18,14 @@
 #'   (e.g. `"table(Pizza$area, Pizza$driver) (Spineplot)"`). There is
 #'   no `y ~ x` pair to draw on here - `x$meta` carries only a
 #'   single `xname`, since a table built outside a two-sided formula
-#'   has no separately named "x" and "y" variable. `""`, `NA`,
+#'   has no separately named "x" and "y" variable. Drawn regardless of
+#'   the theme's `autoTitle`. `""`, `NA`,
 #'   or `FALSE` suppress the title and compact the top margin. Any
 #'   other string is used as-is, identically for every selected panel.
+#' @param xlab x-axis label. `NULL` (default) leaves the panel's own
+#'   default in place (empty for the spineplot, the table name for the
+#'   mosaic plots, the column dimnames for the association plot).
+#'   Supplying a value overrides this for every selected panel.
 #' @param ylab y-axis label. `NULL` (default) leaves the panel's own
 #'   default in place (typically empty/unlabeled, since the row dimension
 #'   of a table built via e.g. `table(a, b)` usually has no name
@@ -118,6 +123,17 @@
 #'
 #' @return Invisibly returns `x`.
 #'
+#' @examples
+#' # the object is built by hand here; normally DescToolsX::desc()
+#' # returns it for a pair of categorical variables
+#' d <- structure(list(
+#'   tab  = margin.table(HairEyeColor, c(1, 2)),
+#'   meta = list(xname = "Hair ~ Eye")
+#' ), class = "Desc.table")
+#'
+#' plot(d)                 # spineplot
+#' plot(d, which = 2)      # mosaic plot
+#'
 #' @seealso `DescToolsX::desc`, [plotAssoc()],
 #'   [plotHeatmap()], [plotMosaic()],
 #'   [graphics::spineplot()]
@@ -140,6 +156,7 @@ plot.Desc.table <- function(x,
                             
                             # LABELS
                             main = NULL,
+                            xlab = NULL,
                             ylab = NULL,
                             
                             # STRUCTURE
@@ -196,7 +213,9 @@ plot.Desc.table <- function(x,
       )
     )
     
-    .main <- function(default) .resolveTitle(main, default = default)
+    # the panel type is shown nowhere else, so these titles are always on
+    .main <- function(default) .resolveTitle(main, default = default,
+                                             always = TRUE)
     
     # Colors resolved per panel type, not forced through one shared 'col':
     # panels 1-3 use a grey ramp (unordered category fill kept neutral,
@@ -230,7 +249,7 @@ plot.Desc.table <- function(x,
                # by design - see @param box).
                spineplot(t(tab),
                          col  = resolveCol(colRowDefault),
-                         xlab = "",
+                         xlab = xlab %||% "",
                          ylab = ylab %||% "",
                          main = .main(.panelDefault("Spineplot")),
                          ...)
@@ -243,7 +262,7 @@ plot.Desc.table <- function(x,
              "2" = {
                plotMosaic(tab,
                           col  = resolveCol(colColDefault),
-                          xlab = xName,
+                          xlab = xlab %||% xName,
                           ylab = ylab %||% "",
                           main = .main(.panelDefault("Mosaic plot")),
                           horiz = TRUE,
@@ -255,7 +274,7 @@ plot.Desc.table <- function(x,
              "3" = {
                plotMosaic(tab,
                           col  = resolveCol(colRowDefault),
-                          xlab = xName,
+                          xlab = xlab %||% xName,
                           ylab = ylab %||% "",
                           main = .main(.panelDefault("Mosaic plot")),
                           horiz = FALSE, 
@@ -281,6 +300,7 @@ plot.Desc.table <- function(x,
                plotAssoc(tab,
                          col  = if (identical(col, .useTheme)) pal("red-white-blue-3", n = 100L) else col,
                          main = .main(.panelDefault("Association plot")),
+                         xlab = xlab %||% TRUE,
                          reorder = FALSE,
                          stamp = NA,
                          ...)
@@ -291,6 +311,7 @@ plot.Desc.table <- function(x,
                plotHeatmap(tab,
                            scale = "prop",
                            col   = col,
+                           xlab  = xlab %||% "",
                            ylab  = ylab %||% "",
                            main  = .main(.panelDefault("Heatmap")),
                            box   = box,

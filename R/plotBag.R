@@ -76,9 +76,11 @@
 #' @param na.action a function specifying how missing values are handled.
 #'   Defaults to [stats::na.omit()], as the depth computation
 #'   requires complete pairs.
-#' @param main main title. `NULL` (default) derives the title from the
-#'   input: the formula, or the name of `x`. `""`, `NA`, or `FALSE`
-#'   suppress the title and compact the top margin.
+#' @param main main title. `NULL` (default) draws none, unless the
+#'   theme sets `autoTitle = TRUE` (see [theme]); the title is then
+#'   derived from the input: the formula, or the name of `x`. `""`, `NA` or `FALSE` always
+#'   suppress it and compact the top margin; any other string is used
+#'   as given.
 #' @param xlab,ylab axis labels. `NULL` (default) uses the variable names
 #'   of the formula, resp. the column names of `x` (empty if it has none).
 #' @param xlim,ylim numeric vectors of length 2 specifying axis limits.
@@ -109,12 +111,20 @@
 #'   \item `depths`   - halfspace depth of all observations.
 #' }
 #'
-#' @references P. J. Rousseeuw, I. Ruts, J. W. Tukey (1999):
-#'     The bagplot: a bivariate boxplot, *The American
-#'     Statistician*, vol. 53, no. 4, 382--387.
+#' @references
+#' Rousseeuw, P. J., Ruts, I., & Tukey, J. W. (1999). The bagplot: A
+#' bivariate boxplot. *The American Statistician*, 53(4), 382--387.
+#' \doi{10.1080/00031305.1999.10474494}
 #'
-#' P. J. Rousseeuw, I. Ruts (1996): Algorithm AS 307: Bivariate location
-#'     depth, *Applied Statistics*, vol. 45, no. 4, 516--526.
+#' Rousseeuw, P. J., & Ruts, I. (1996). Algorithm AS 307: Bivariate
+#' location depth. *Journal of the Royal Statistical Society, Series C
+#' (Applied Statistics)*, 45(4), 516--526. \doi{10.2307/2986073}
+#'
+#' @note
+#' The halfspace depth is computed by a C++ port of the Fortran routine
+#' TUKDEPTH (Algorithm AS 307, Rousseeuw & Ruts 1996), taken from
+#' `src/depth.f` of the archived package 'depth' by M. Genest,
+#' J.-C. Massé and J.-F. Plante.
 #'
 #' @examples
 #' set.seed(1)

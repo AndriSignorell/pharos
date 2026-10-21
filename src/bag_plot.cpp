@@ -6,8 +6,10 @@
 //
 // Algorithm (Rousseeuw, Ruts & Tukey 1999):
 //   1. Compute halfspace (Tukey) depth for every point.
-//      Direct port of Fortran TUKDEPTH from the archived 'depth' package
-//      (Rousseeuw & Ruts 1996, Applied Statistics 45, 516-526).
+//      Port of the Fortran subroutine TUKDEPTH (Algorithm AS 307,
+//      Rousseeuw & Ruts 1996, Applied Statistics 45(4), 516-526) as
+//      contained in src/depth.f of the archived CRAN package 'depth'
+//      2.1-1.1 by M. Genest, J.-C. Masse and J.-F. Plante (GPL-2).
 //   2. Tukey median = mean of all points with maximal depth (approximation
 //      of the depth median; HALFMED would compute the exact one).
 //   3. Bag: radial interpolation between the convex hulls of the depth

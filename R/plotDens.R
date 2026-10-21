@@ -37,9 +37,11 @@
 #' @param na.action a function specifying how missing values are handled,
 #'   defaults to [na.omit()].
 #'
-#' @param main main title. `NULL` (default) derives the title from the
-#'   input: the names of the data arguments, or the formula. `""`, `NA`, or
-#'   `FALSE` suppress the title and compact the top margin.
+#' @param main main title. `NULL` (default) draws none, unless the
+#'   theme sets `autoTitle = TRUE` (see [theme]); the title is then
+#'   derived from the input: the names of the data arguments, or the formula. `""`, `NA` or `FALSE` always
+#'   suppress it and compact the top margin; any other string is used
+#'   as given.
 #' @param xlab,ylab axis labels.
 #' @param xlim,ylim axis limits. `NULL` (default) uses the range of the
 #'   densities, the y-axis starting at 0 (`c(0, 1)` for a conditional

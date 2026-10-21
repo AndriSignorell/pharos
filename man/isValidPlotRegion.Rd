@@ -59,7 +59,7 @@ isValidPlotRegion(minPin = c(4, 3))
 
 Other graphics.layout:
 \code{\link[=abcCoords]{abcCoords()}},
-\code{\link{axTicks}},
+\code{\link[=axTicksPosixct]{axTicksPosixct()}},
 \code{\link[=axisBreak]{axisBreak()}},
 \code{\link[=lineToUser]{lineToUser()}},
 \code{\link[=mar]{mar()}},

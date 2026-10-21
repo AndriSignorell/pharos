@@ -21,16 +21,11 @@ plotAssoc(
 \arguments{
 \item{x}{a two-dimensional contingency table (\code{table} or \code{matrix}).}
 
-\item{main}{main title of the plot. \code{NULL} (default) derives a
-title from the expression passed as \code{x} (via
-\code{deparse(match.call()$x)}), the same "substitute magic"
-convention used by \code{\link[=plotXY]{plotXY()}}/\code{\link[=plotBox]{plotBox()}} for
-their \code{y ~ x} default - there's no formula pair here, just the
-single table argument, so the default is simply that expression's
-text (e.g. \code{plotAssoc(tab)} titles itself \code{"tab"}).
-\code{""}, \code{NA}, or \code{FALSE} suppress the title entirely
-and compact the top margin; any other string is used as given
-(resolved internally via \code{.resolveTitle()}).}
+\item{main}{main title. \code{NULL} (default) draws none, unless the
+theme sets \code{autoTitle = TRUE} (see \link{theme}); the title is then
+derived from the expression passed as \code{x} (e.g. \code{"tab"}). \code{""}, \code{NA} or \code{FALSE} always
+suppress it and compact the top margin; any other string is used
+as given.}
 
 \item{xlab}{character, x-axis label. Defaults to the first dimension name.}
 

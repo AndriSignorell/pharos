@@ -4,7 +4,7 @@
 \alias{hcol}
 \title{Helsana Colors}
 \usage{
-hcol(...)
+hcol(..., fade = NULL)
 }
 \arguments{
 \item{...}{character strings naming the colors to retrieve. Valid names are:
@@ -12,16 +12,27 @@ hcol(...)
 \code{"ecru"}, \code{"green"}, \code{"pink"}, \code{"moss"},
 \code{"slate"}, \code{"sand"}, \code{"brown"}, \code{"plum"}.
 If none are provided, the full palette is returned.}
+
+\item{fade}{\code{NULL} (default) returns the colors unchanged. A number in
+\eqn{[0, 1]} returns the opaque tint the color has at this opacity on
+a white background, see \code{\link[=fade]{fade()}}: \code{1} is the color itself, smaller
+values are lighter. Recycled over the colors, so
+\code{hcol("blue", fade = c(1, 0.6, 0.3))} gives three tints of one color.}
 }
 \value{
 A named character vector of hex color codes.
 }
 \description{
-Retrieve one or more colors from the helsana palette.
+Retrieve one or more colors from the helsana palette, optionally faded.
 }
 \examples{
 hcol("blue", "green")
 hcol()
+
+# lighter tints, still opaque
+hcol("blue", "red", fade = 0.4)
+hcol("blue", fade = c(1, 0.6, 0.3))
+
 }
 \seealso{
 Other color.palettes:

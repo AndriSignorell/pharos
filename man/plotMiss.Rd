@@ -17,7 +17,11 @@ plotMiss(
 \arguments{
 \item{x}{a data.frame to be analysed.}
 
-\item{main}{the main title.}
+\item{main}{main title. \code{NULL} (default) draws none, unless the
+theme sets \code{autoTitle = TRUE} (see \link{theme}); the title is then
+derived from the expression passed as \code{x}. \code{""}, \code{NA} or \code{FALSE} always
+suppress it and compact the top margin; any other string is used
+as given.}
 
 \item{cluster}{logical, defining if the missings should be clustered. Default
 is \code{FALSE}.}
@@ -61,6 +65,7 @@ Other plot.special:
 \code{\link[=plotLift]{plotLift()}},
 \code{\link[=plotPolar]{plotPolar()}},
 \code{\link[=plotPropCI]{plotPropCI()}},
+\code{\link[=plotSankey]{plotSankey()}},
 \code{\link[=plotTernary]{plotTernary()}},
 \code{\link[=plotTimeSeries]{plotTimeSeries()}},
 \code{\link[=plotTreemap]{plotTreemap()}},

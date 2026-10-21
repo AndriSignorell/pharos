@@ -116,6 +116,10 @@ plotArea <- function(
   if (is.null(col))
     col <- pal("helsana")
   
+  # NULL, "", NA and FALSE all mean "no title"; resolved first, because
+  # .marTop() reads NULL as a title present
+  main <- .resolveTitle(main)
+  
   .withGraphicsState({
     
     if (y.missing) {

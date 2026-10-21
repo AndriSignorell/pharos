@@ -1,6 +1,6 @@
 Package: pharos
 Title: Descriptive Statistics Graphics and Utilities
-Version: 0.0.0.961
+Version: 0.1.1
 Authors@R: c(
   person(given="Andri", family="Signorell", 
          email = "andri@signorell.net", 
@@ -9,6 +9,8 @@ Authors@R: c(
   person("R Core Team"                    , role = c("ctb")),
   person("Ben"          , "Bolker"        , role = c("ctb")),
   person("Jeff"         , "Enos"          , role = c("ctb")),
+  person("Maxime"       , "Genest"        , role = "ctb",
+         comment = "Fortran code of package 'depth'"),
   person("Frank E."     , "Harrell Jr"    , role = c("ctb")),
   person("Henk"         , "Harmsen"       , role = c("ctb")),
   person("Christian W." , "Hoffmann"      , role = c("ctb")),
@@ -16,8 +18,16 @@ Authors@R: c(
   person("Matthias"     , "Kohl"          , role = c("ctb")),
   person("Jim"          , "Lemon"         , role = c("ctb")),
   person("Arni"         , "Magnusson"     , role = c("ctb")),
+  person("Jean-Claude"  , "Massé"         , role = "ctb",
+         comment = "Fortran code of package 'depth'"),
   person("Markus"       , "Naepflin"      , role = c("ctb")),
+  person("Jean-François", "Plante"        , role = "ctb",
+         comment = "Fortran code of package 'depth'"),
   person("B. D."        , "Ripley"        , role = c("ctb")),
+  person("Peter J."     , "Rousseeuw"     , role = c("ctb", "cph"),
+       comment = "Algorithm AS 307 (halfspace depth)"),
+  person("Ida"          , "Ruts"          , role = c("ctb", "cph"),
+         comment = "Algorithm AS 307 (halfspace depth)"),
   person("Terry"        , "Therneau"      , role = c("ctb")),
   person("John"         , "Verzani"       , role = c("ctb")),
   person("W. N."        , "Venables"      , role = c("ctb")),
@@ -39,11 +49,9 @@ License: GPL (>= 2)
 Encoding: UTF-8
 LinkingTo: Rcpp
 Roxygen: list(markdown = TRUE)
-Imports: graphics, Rcpp, bedrock (>= 0.1.18), MASS, cli, withr, stringi, methods, base64enc
+Imports: Rcpp, bedrock (>= 0.1.18), MASS, cli, withr, stringi, methods, base64enc
 Suggests:
     testthat (>= 3.0.0), R.rsp, hexbin, prettyunits
-Remotes:  
-    AndriSignorell/bedrock
 Config/testthat/edition: 3
 VignetteBuilder: R.rsp
 URL: https://andrisignorell.github.io/pharos/,

@@ -41,6 +41,17 @@ preview(asHtml("<b>Note:</b> R<sup>2</sup> = 0.87"))
 }
 \seealso{
 \code{\link[=asHtml]{asHtml()}}
+
+Other html:
+\code{\link[=asFileLink]{asFileLink()}},
+\code{\link[=asHtml]{asHtml()}},
+\code{\link[=asImg]{asImg()}},
+\code{\link[=embedFile]{embedFile()}},
+\code{\link[=escapeHtml]{escapeHtml()}},
+\code{\link{htmlNotation}},
+\code{\link{htmlSubscript}},
+\code{\link[=preview.html]{preview.html()}},
+\code{\link[=toHtmlTable]{toHtmlTable()}}
 }
-\concept{annotation}
-\concept{graphics.utils}
+\concept{formatting}
+\concept{html}

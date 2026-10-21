@@ -11,8 +11,8 @@
 #' Several statements are given in braces, as in the examples below.
 #'
 #' @param expr a plotting expression, evaluated once inside the device.
-#'   Character input is evaluated via `eval(parse(text = expr))` for
-#'   compatibility with the earlier form of this function.
+#'   A character string is not accepted: pass the plotting code itself,
+#'   e.g. `asImg(plot(1:10))` instead of `asImg("plot(1:10)")`.
 #' @param width,height size of the device in pixels
 #' @param res nominal resolution in dpi, which also scales the text: raise
 #'   it for a larger picture with the same relative proportions
@@ -46,13 +46,17 @@ asImg <- function(expr, width = 520, height = 440, res = 96, ...) {
 
   grDevices::png(fn, width = width, height = height, res = res, ...)
 
+  # The expression carries its own environment and is evaluated here, once;
   # the device is closed even when the plot fails, so that a broken
-  # expression does not leave the session drawing into a dead file
+  # expression does not leave the session drawing into a dead file.
+  # Code given as a string would have to be parsed and evaluated, which the
+  # design rules exclude (§2.3); a string evaluates to itself and draws
+  # nothing, so it is rejected instead of returning an empty image.
   tryCatch({
     if (is.character(expr))
-      eval(parse(text = expr), envir = parent.frame())
-    else
-      expr
+      stop("'expr' must be plotting code, not a character string: ",
+           "use asImg(plot(1:10)) instead of asImg(\"plot(1:10)\")",
+           call. = FALSE)
   }, finally = grDevices::dev.off())
 
   asHtml(gettextf('<img src="data:image/png;base64,%s">', embedFile(fn)))

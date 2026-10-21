@@ -13,8 +13,11 @@
 #' @param height A vector or matrix of bar heights passed directly to
 #'   [graphics::barplot()].
 #'
-#' @param main,xlab,ylab optional plot labels. Defaults follow
-#'   base graphics behaviour.
+#' @param main main title. `NULL` (default) draws none. `""`, `NA` or
+#'   `FALSE` also suppress it; the top margin is compacted whenever no
+#'   title is drawn.
+#' @param xlab,ylab optional axis labels. Defaults follow base graphics
+#'   behaviour.
 #'
 #' @param yax controls drawing of the numeric axis.
 #'
@@ -33,7 +36,10 @@
 #'   Defaults to `FALSE`.
 #'
 #' @param col bar fill colours. `.useTheme` (default) resolves to
-#'   `getTheme()$bar$col`.
+#'   `getTheme()$bar$col` for a vector. For a matrix with several rows,
+#'   whose rows are the segments (stacked) or the bars within a group
+#'   (`beside = TRUE`), it becomes a ramp from a dark to a light shade of
+#'   that color, one per row, so the rows can be told apart.
 #' @param border bar border colour. `.useTheme` (default) resolves to
 #'   `getTheme()$bar$border`.
 #'
@@ -55,6 +61,15 @@
 #'
 #' @param text optional list of arguments passed to [barText()]
 #'   to draw value labels on bars.
+#'
+#' @param legend controls the legend explaining the rows of a matrix.
+#'   `TRUE` (default) draws one whenever `height` is a matrix with several
+#'   named rows; it is placed in the right margin, which is widened for it
+#'   unless `mar` in `...` sets the right side. `FALSE`, `NULL` or `NA`
+#'   suppress it. A named list overrides arguments of
+#'   [graphics::legend()]; giving `x` there places the legend inside the
+#'   plot instead (e.g. `list(x = "topleft")`). Not drawn when
+#'   `legend.text` is passed on to [graphics::barplot()].
 #'
 #' @param connLines optional list of arguments controlling connecting
 #'   lines between stacked bars. Only supported when
@@ -107,6 +122,9 @@
 #'         text = list(pos = "mid"),
 #'         connLines = list(col = "black"))
 #'
+#' # a matrix: one shade per row, with a legend
+#' plotBar(VADeaths)
+#'
 #' # Grouped bars
 #' plotBar(VADeaths,
 #'         beside = TRUE,
@@ -139,10 +157,9 @@
 #'         las=1, main="VADeaths in %",
 #'         box=FALSE, horiz=TRUE, 
 #'         col=(cols <- gray.colors(nrow(VADeaths))),
-#'         beside=FALSE, mar=c(right=5),
+#'         beside=FALSE,
 #'         text = list(labels=fm(ptab, fmt="%"), border=NA, 
 #'                     col=contrastCol(cols)))
-#' legend(x="right", fill=cols, legend=rownames(VADeaths))
 #' 
 #' plotBar(VADeaths/1e3,  box=FALSE, bg="lightyellow", main="VADeaths",
 #'         horiz=TRUE, 
@@ -181,16 +198,38 @@ plotBar <- function(height,
                     
                     # FEATURES
                     text = NULL,
+                    legend = TRUE,
                     connLines = NULL,
                     
                     # FRAMEWORK
                     stamp = .useTheme,
                     ...) {
   
-  col    <- .useThemeValue(col,    "bar", "col")
+  dots  <- list(...)
+  
+  # NULL, "", NA and FALSE all mean "no title", resolved to "" so that
+  # .marTop() compacts the top margin (it reads NULL as a title present)
+  main <- .resolveTitle(main)
+  
+  # A matrix with several rows has segments (stacked) or several bars per
+  # group (beside) that must be told apart: the theme's single bar color
+  # then becomes a dark-to-light ramp around it, one shade per row.
+  byRow <- is.matrix(height) && nrow(height) > 1L
+  
+  col <- if (identical(col, .useTheme) && byRow)
+    .barRamp(.useThemeValue(.useTheme, "bar", "col"), nrow(height))
+  else
+    .useThemeValue(col, "bar", "col")
+  
   border <- .useThemeValue(border, "bar", "border")
   
-  dots  <- list(...)
+  # the legend explains the rows; barplot()'s own legend.text replaces it
+  legendLabels <- if (byRow) rownames(height)
+  if (is.null(legendLabels) || "legend.text" %in% names(dots))
+    legend <- FALSE
+  
+  # placed in the right margin unless the caller gives a position
+  legendInMargin <- !(is.list(legend) && !is.null(legend$x))
   
   .withGraphicsState({
     
@@ -208,26 +247,26 @@ plotBar <- function(height,
     labels <- .getBarplotAxisLabels(height, dots)
     
     # --- margin-corrections ---
-    # A user-supplied 'mar' only blocks the auto-adjustment for the sides
-    # it actually names: a partial spec like mar=c(right=5) must not
-    # disable the label-side widening on the left (side 2). An unnamed
-    # (full) mar vector puts the caller in charge of all four sides.
-    .marSides <- c("bottom", "left", "top", "right")
-    .userMarSides <- if (!"mar" %in% names(dots)) {
-      character(0)
-    } else {
-      nm <- names(dots$mar)
-      if (is.null(nm) || any(!nzchar(nm)) || anyNA(pmatch(nm, .marSides)))
-        .marSides                      # full or unrecognized spec: block all
-      else
-        .marSides[pmatch(nm, .marSides)]
-    }
-    
-    if (horiz && !"left" %in% .userMarSides && par("yaxt") != "n") {
+    # only the sides not set by a 'mar' in ... are widened automatically
+    userMar <- .userMarSides(dots)
+
+    if (horiz && !"left" %in% userMar && par("yaxt") != "n") {
       .adjustMargin(labels, side = 2)
     }
-    if (!horiz && !"bottom" %in% .userMarSides && las == 2 && par("xaxt") != "n") {
+    if (!horiz && !"bottom" %in% userMar && las == 2 && par("xaxt") != "n") {
       .adjustMargin(labels, side = 1, las = 2)
+    }
+    
+    # room for the legend in the right margin: the widest label plus fill
+    # box, spacing and the gap to the plot (about 3 lines together)
+    drawLegend <- !(isFALSE(legend) || is.null(legend) || isNA(legend))
+    if (drawLegend && legendInMargin && !"right" %in% userMar) {
+      textLines <- max(strwidth(legendLabels, units = "inches")) /
+        (par("csi") * par("mex"))
+      mar <- par("mar")
+      mar[4L] <- max(mar[4L], textLines + 3)
+      par(mar = mar)
+      .checkMargins()
     }
     
     # --- Setup (invisible) ---
@@ -319,6 +358,32 @@ plotBar <- function(height,
       }
     }    
     
+    
+    # --- legend ---
+    # Listed in the order the rows appear: top-down for stacked vertical
+    # bars, where the last row lies on top, otherwise in row order.
+    if (drawLegend) {
+      
+      ord <- seq_along(legendLabels)
+      if (!beside && !horiz)
+        ord <- rev(ord)
+      
+      fill <- rep_len(col, length(legendLabels))
+      usr  <- par("usr")
+      
+      bedrock::callIf(
+        graphics::legend,
+        legend,
+        defaults = .legendDefaults(c(
+          if (legendInMargin)
+            list(x = usr[2] + 0.02 * diff(usr[1:2]), y = usr[4],
+                 xjust = 0, yjust = 1, xpd = NA, bty = "n"),
+          list(legend = legendLabels[ord],
+               fill   = fill[ord],
+               border = if (all(is.na(border))) "grey50" else border)
+        ))
+      )
+    }
     
     # --- box ---
     .drawBox(box, defaults = list(which = "plot"))
@@ -478,6 +543,37 @@ plotBar <- function(height,
   }
   
   invisible()
+}
+
+
+
+# Sides of the margin set explicitly by the caller via 'mar' in '...'.
+# A partial, named spec like mar = c(right = 5) only blocks the sides it
+# names; an unnamed (full) or unrecognized spec puts the caller in charge
+# of all four sides. Used by the plot functions (plotBar, plotBox) to
+# decide whether a margin may still be widened by .adjustMargin().
+.userMarSides <- function(dots) {
+
+  sides <- c("bottom", "left", "top", "right")
+
+  if (!"mar" %in% names(dots))
+    return(character(0))
+
+  nm <- names(dots$mar)
+  if (is.null(nm) || any(!nzchar(nm)) || anyNA(pmatch(nm, sides)))
+    return(sides)
+
+  sides[pmatch(nm, sides)]
+}
+
+
+
+# Dark-to-light ramp around one base color, one shade per row of a
+# matrix: from base darkened by 60 % to base lightened by 60 % (for the
+# default grey80 roughly grey32 to grey92, the neutral ramp the suite uses
+# for unordered category fills elsewhere).
+.barRamp <- function(base, n) {
+  grDevices::colorRampPalette(c(darken(base, 0.6), lighten(base, 0.6)))(n)
 }
 
 

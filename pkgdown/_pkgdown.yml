@@ -84,6 +84,7 @@ reference:
   - plotTimeSeries
   - plotTreemap
   - plotWeb
+  - plotSankey
   # plot.s3 -- Plot methods for analytical objects
   - plot.BlandAltman
   - plot.Desc.qn
@@ -98,7 +99,7 @@ reference:
   - abcCoords
   - axisBreak
   - axisFmt
-  - axTicks
+  - axTicksPosixct
   - barText
   - boxedText
   - colLegend

@@ -18,9 +18,11 @@
 #'   (`y ~ f(x)`), a polar formula (\code{r ~ f(phi)}), or a list
 #'   of two formulas for parametric plots.
 #'
-#' @param main main title of the plot. `NULL` (default) derives a
-#'   title from `expr`. `""`, `NA`, or `FALSE`
-#'   suppress the title and compact the top margin.
+#' @param main main title. `NULL` (default) draws none, unless the
+#'   theme sets `autoTitle = TRUE` (see [theme]); the title is then
+#'   derived from `expr`. `""`, `NA` or `FALSE` always
+#'   suppress it and compact the top margin; any other string is used
+#'   as given.
 #' @param xlab,ylab labels for the axes.
 #'
 #' @param xlim,ylim numeric vectors of length 2 defining axis limits.

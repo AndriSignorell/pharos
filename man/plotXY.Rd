@@ -48,12 +48,11 @@ internal framework.}
 
 \item{y}{numeric vector of y-values (ignored if a formula is used).}
 
-\item{main}{main title of the plot. \code{NULL} (default) derives a
-title from the input - \code{deparse(y) ~ deparse(x)} for the default
-method, or the formula's \code{dataName} for the formula method.
-\code{""}, \code{NA}, or \code{FALSE} suppress the title entirely
-(and compact the top margin accordingly); any other string is used
-as given (resolved internally via \code{.resolveTitle()}).}
+\item{main}{main title. \code{NULL} (default) draws none, unless the
+theme sets \code{autoTitle = TRUE} (see \link{theme}); the title is then
+derived from the input: \code{y ~ x} for the default method, or the formula. \code{""}, \code{NA} or \code{FALSE} always
+suppress it and compact the top margin; any other string is used
+as given.}
 
 \item{xlab}{label for the x-axis.}
 

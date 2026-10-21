@@ -8,17 +8,11 @@
 #' @param x a contingency table, matrix, or a pair of categorical vectors
 #'   coercible via [table()].
 #'
-#' @param main main title of the plot. `NULL` (default) derives a
-#'   title from the expression passed as `x` (via
-#'   `deparse(match.call()$x)`), the same "substitute magic"
-#'   convention used by [plotXY()]/[plotBox()]/
-#'   [plotAssoc()] for their default titles - there's no
-#'   formula pair here, just the single table argument, so the default
-#'   is simply that expression's text (e.g. `plotHeatmap(tab)`
-#'   titles itself `"tab"`). `""`, `NA`, or `FALSE`
-#'   suppress the title entirely and compact the top margin; any other
-#'   string is used as given (resolved internally via
-#'   `.resolveTitle()`).
+#' @param main main title. `NULL` (default) draws none, unless the
+#'   theme sets `autoTitle = TRUE` (see [theme]); the title is then
+#'   derived from the expression passed as `x` (e.g. `"tab"`). `""`, `NA` or `FALSE` always
+#'   suppress it and compact the top margin; any other string is used
+#'   as given.
 #' @param xlab label for the x-axis.
 #' @param ylab label for the y-axis.
 #'

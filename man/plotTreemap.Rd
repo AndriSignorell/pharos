@@ -110,6 +110,7 @@ Other plot.special:
 \code{\link[=plotMiss]{plotMiss()}},
 \code{\link[=plotPolar]{plotPolar()}},
 \code{\link[=plotPropCI]{plotPropCI()}},
+\code{\link[=plotSankey]{plotSankey()}},
 \code{\link[=plotTernary]{plotTernary()}},
 \code{\link[=plotTimeSeries]{plotTimeSeries()}},
 \code{\link[=plotWeb]{plotWeb()}}

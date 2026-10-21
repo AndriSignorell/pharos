@@ -4,28 +4,51 @@
 \alias{rgbToCol}
 \title{Convert RGB Colors to the Nearest Named R Color}
 \usage{
-rgbToCol(col, method = c("rgb", "hsv"), metric = c("euclidean", "manhattan"))
+rgbToCol(col, method = c("ciede2000", "cie76"))
 }
 \arguments{
-\item{col}{RGB matrix or hexadecimal colors.}
+\item{col}{colors: an RGB matrix with one color per column and
+channels on a scale from 0 to 255, as returned by \code{\link[=colToRgb]{colToRgb()}}, or a
+vector of R colors (hexadecimal or named). An alpha channel is
+ignored.}
 
-\item{method}{color space used for matching.}
-
-\item{metric}{distance metric.}
+\item{method}{color difference formula, \code{"ciede2000"} (default) or
+\code{"cie76"}, see Details.}
 }
 \value{
-Character vector of named R colors.
+Character vector of named R colors, one per color in \code{col};
+\code{NA} for a missing color.
 }
 \description{
-Match RGB colors to the nearest named R color.
+Finds, for each color, the perceptually closest of the named R colors
+(\code{\link[grDevices:colors]{grDevices::colors()}}).
+}
+\details{
+The colors are converted from sRGB to the CIELAB color space with
+\code{\link[grDevices:convertColor]{grDevices::convertColor()}} (reference white D65), where distances
+approximate perceived differences far better than in RGB or HSV. Two
+color difference formulas are available:
+\describe{
+\item{\code{"ciede2000"}}{CIEDE2000, the current CIE recommendation. It
+corrects the shortcomings of CIE76 in the blue region and for
+saturated and near-neutral colors.}
+\item{\code{"cie76"}}{CIE76, the Euclidean distance in CIELAB. Simpler,
+slightly less accurate.}
+}
 }
 \examples{
 rgbToCol(matrix(c(162, 42, 42), nrow = 3))
 rgbToCol(c("#A22A2A", "#4169E0"))
 
-# nearest color in HSV space
-rgbToCol(c("#A22A2A", "#4169E0"), method = "hsv", metric = "manhattan")
+# CIE76 instead of CIEDE2000
+rgbToCol(c("#A22A2A", "#4169E0"), method = "cie76")
 
+}
+\references{
+Sharma, G., Wu, W., & Dalal, E. N. (2005). The CIEDE2000
+color-difference formula: Implementation notes, supplementary test data,
+and mathematical observations. \emph{Color Research & Application}, 30(1),
+21--30. \doi{10.1002/col.20070}
 }
 \seealso{
 \link{color-conversion-overview}

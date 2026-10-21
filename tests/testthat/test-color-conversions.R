@@ -19,18 +19,31 @@ test_that("rgbToHex and longToRgb/rgbToLong round-trip", {
   expect_equal(rgbToHex(longToRgb(rgbToLong(colToRgb(cols)))), colToHex(cols))
 })
 
-test_that("rgbToCol finds named colors in both color spaces", {
+test_that("rgbToCol finds named colors with both difference formulas", {
   m <- colToRgb(c("brown", "royalblue"))
 
   expect_equal(rgbToCol(m), c("brown", "royalblue"))
   expect_equal(rgbToCol(c("#A52A2A", "#4169E1")), c("brown", "royalblue"))
+  expect_equal(rgbToCol(m, method = "cie76"), c("brown", "royalblue"))
 
-  # an RGB matrix with method = "hsv" used to be read as palette indices
-  expect_equal(rgbToCol(m, method = "hsv"), c("brown", "royalblue"))
-  expect_equal(rgbToCol(c("#A52A2A", "#4169E1"), method = "hsv"),
-               c("brown", "royalblue"))
-  expect_equal(hexToCol("#4169E1", method = "hsv", metric = "manhattan"),
-               "royalblue")
+  # slightly off colors still land on their neighbour
+  expect_equal(rgbToCol(c("#A22A2A", "#4169E0")), c("brown", "royalblue"))
+  expect_equal(hexToCol("#4169E0", method = "cie76"), "royalblue")
+
+  # missing colors stay missing instead of turning white
+  expect_equal(rgbToCol(c("#A52A2A", NA)), c("brown", NA))
+})
+
+test_that("CIEDE2000 reproduces the test data of Sharma et al. (2005)", {
+  lab1 <- rbind(c(50, 2.6772, -79.7751), c(50, 0, 0), c(50, 2.5, 0),
+                c(50, -0.001, 2.49), c(60.2574, -34.0099, 36.2677),
+                c(2.0776, 0.0795, -1.1350))
+  lab2 <- rbind(c(50, 0, -82.7485), c(50, -1, 2), c(73, 25, -18),
+                c(50, 0.0009, -2.49), c(60.4626, -34.1751, 39.4387),
+                c(0.9033, -0.0636, -0.5514))
+  expect_equal(.deltaE2000(lab1, lab2),
+               c(2.0425, 2.3669, 27.1492, 4.8045, 1.2644, 0.9082),
+               tolerance = 1e-4)
 })
 
 test_that("colToHsv handles the alpha channel", {

@@ -104,6 +104,28 @@
 #'   `DescToolsX::predict.Lc()` for bootstrap confidence
 #'   intervals, `DescToolsX::gini()` for the Gini coefficient.
 #'
+#' @examples
+#' # Lorenz curve objects are built by hand here; normally
+#' # DescToolsX::lc() returns them
+#' lorenz <- function(v) {
+#'   v <- sort(v)
+#'   L <- c(0, cumsum(v)) / sum(v)
+#'   structure(list(p = c(0, seq_along(v)) / length(v),
+#'                  L = L, L.general = L * mean(v)),
+#'             class = "Lc")
+#' }
+#'
+#' set.seed(4)
+#' even   <- lorenz(rgamma(50, shape = 8))
+#' skewed <- lorenz(rlnorm(50, sdlog = 1.2))
+#'
+#' plot(skewed, main = "Lorenz curves")
+#' lines(even, col = "steelblue")
+#'
+#' # several groups at once, generalized curves
+#' grp <- structure(list(even = even, skewed = skewed), class = "LcList")
+#' plot(grp, general = TRUE, col = c("steelblue", "darkred"))
+#'
 #' @family plot.s3
 #' @concept inequality
 #' @concept graphics

@@ -8,8 +8,8 @@ asImg(expr, width = 520, height = 440, res = 96, ...)
 }
 \arguments{
 \item{expr}{a plotting expression, evaluated once inside the device.
-Character input is evaluated via \code{eval(parse(text = expr))} for
-compatibility with the earlier form of this function.}
+A character string is not accepted: pass the plotting code itself,
+e.g. \code{asImg(plot(1:10))} instead of \code{asImg("plot(1:10)")}.}
 
 \item{width, height}{size of the device in pixels}
 
@@ -55,6 +55,8 @@ Other html:
 \code{\link[=escapeHtml]{escapeHtml()}},
 \code{\link{htmlNotation}},
 \code{\link{htmlSubscript}},
+\code{\link[=preview]{preview()}},
+\code{\link[=preview.html]{preview.html()}},
 \code{\link[=toHtmlTable]{toHtmlTable()}}
 }
 \concept{formatting}

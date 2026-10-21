@@ -24,9 +24,11 @@ plotFreqDist(
 \arguments{
 \item{x}{numeric vector whose distribution is to be plotted.}
 
-\item{main}{main title. \code{NULL} (default) derives the title from
-\code{deparse(substitute(x))}. \code{""}, \code{NA}, or \code{FALSE}
-suppress the title and compact the top margin.}
+\item{main}{main title. \code{NULL} (default) draws none, unless the
+theme sets \code{autoTitle = TRUE} (see \link{theme}); the title is then
+derived from the expression passed as \code{x}. \code{""}, \code{NA} or \code{FALSE} always
+suppress it and compact the top margin; any other string is used
+as given.}
 
 \item{xlab}{label for the x-axis. The variable name is typically placed
 in \code{main}, so this defaults to \code{""}.}
@@ -46,7 +48,10 @@ a list overrides specific arguments forwarded to
 \code{\link[graphics:hist]{graphics::hist()}}. The element \code{type} selects the
 plot style: \code{"hist"} (standard histogram, chosen automatically
 for continuous or high-cardinality data) or \code{"mass"} (vertical
-bars per unique value, for discrete/low-cardinality data).}
+bars per unique value, for discrete/low-cardinality data).
+The element \code{panel.last} adds to the histogram after it is drawn:
+a function without arguments or a quoted call, e.g.
+\code{list(panel.last = quote(abline(v = 0, lty = 2)))}.}
 
 \item{dens}{controls the kernel density curve. \code{TRUE} (default)
 draws a curve via \code{\link[stats:density]{stats::density()}}; a list overrides
@@ -58,12 +63,11 @@ specific arguments (e.g. \code{list(bw = 0.1, col = "red")}).}
 \item{curve}{controls a fitted theoretical distribution curve on the
 histogram. \code{FALSE} (default), \code{NULL}, or \code{NA}
 suppress it; \code{TRUE} draws a normal curve with
-\code{mean(x)}/\code{sd(x)}; a list may include \code{expr} as a
-character string, expression, or function of \code{x} for any
-distribution (e.g.
-\code{list(expr = "dt(x, df=2)", col = "darkgreen")}). A character
-\code{expr} is evaluated in the caller's environment, so local
-variables may be referenced (see the gamma example below).}
+\code{mean(x)}/\code{sd(x)}; a list may include \code{expr} as a function of \code{x}
+or a one-sided formula in \code{x} for any distribution (e.g.
+\code{list(expr = ~ dt(x, df = 2), col = "darkgreen")}). The formula is
+evaluated in the environment it was written in, so local variables
+may be referenced (see the gamma example below).}
 
 \item{boxplot}{controls the boxplot panel. \code{TRUE} (default) draws
 a horizontal boxplot with a mean marker and CI band; \code{FALSE}/
@@ -137,7 +141,7 @@ plotFreqDist(x, curve = TRUE, boxplot = FALSE, ecdf = FALSE)
 
 # compare with a t-distribution curve
 plotFreqDist(x,
-  curve   = list(expr = "dt(x, df=2)", col = "darkgreen"),
+  curve   = list(expr = ~ dt(x, df = 2), col = "darkgreen"),
   boxplot = FALSE, ecdf = FALSE)
 
 # overlay gamma distribution on both histogram and ECDF
@@ -146,9 +150,9 @@ m <- mean(ozone, na.rm = TRUE)
 v <- var(ozone, na.rm = TRUE)
 plotFreqDist(ozone,
   hist       = list(breaks = 15),
-  curve      = list(expr = "dgamma(x, shape = m^2/v, scale = v/m)",
+  curve      = list(expr = ~ dgamma(x, shape = m^2/v, scale = v/m),
                     col = "navajowhite3"),
-  curveEcdf  = list(expr = "pgamma(x, shape = m^2/v, scale = v/m)",
+  curveEcdf  = list(expr = ~ pgamma(x, shape = m^2/v, scale = v/m),
                     col = "navajowhite3"),
   main = "Airquality - Ozone")
 

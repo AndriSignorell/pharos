@@ -29,9 +29,11 @@ plotFun(
 (\code{y ~ f(x)}), a polar formula (\code{r ~ f(phi)}), or a list
 of two formulas for parametric plots.}
 
-\item{main}{main title of the plot. \code{NULL} (default) derives a
-title from \code{expr}. \code{""}, \code{NA}, or \code{FALSE}
-suppress the title and compact the top margin.}
+\item{main}{main title. \code{NULL} (default) draws none, unless the
+theme sets \code{autoTitle = TRUE} (see \link{theme}); the title is then
+derived from \code{expr}. \code{""}, \code{NA} or \code{FALSE} always
+suppress it and compact the top margin; any other string is used
+as given.}
 
 \item{xlab, ylab}{labels for the axes.}
 

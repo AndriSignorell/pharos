@@ -28,9 +28,11 @@ shaded areas. The first and last value define the plot range passed to
 \item{FUN}{the distribution density function to plot, typically of the form
 \code{function(x) dnorm(x, mean=0, sd=1)}.}
 
-\item{main}{main title for the plot. \code{NULL} (default) takes the
-expression passed as \code{FUN}; \code{""}, \code{NA} or \code{FALSE} suppress the title and
-reduce the top margin.}
+\item{main}{main title. \code{NULL} (default) draws none, unless the
+theme sets \code{autoTitle = TRUE} (see \link{theme}); the title is then
+derived from the expression passed as \code{FUN}. \code{""}, \code{NA} or \code{FALSE} always
+suppress it and compact the top margin; any other string is used
+as given.}
 
 \item{ylab}{label for the y-axis. Default is \code{"density"}.}
 

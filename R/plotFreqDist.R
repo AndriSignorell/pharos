@@ -22,9 +22,11 @@
 #'
 #' @param x numeric vector whose distribution is to be plotted.
 #'
-#' @param main main title. `NULL` (default) derives the title from
-#'   `deparse(substitute(x))`. `""`, `NA`, or `FALSE`
-#'   suppress the title and compact the top margin.
+#' @param main main title. `NULL` (default) draws none, unless the
+#'   theme sets `autoTitle = TRUE` (see [theme]); the title is then
+#'   derived from the expression passed as `x`. `""`, `NA` or `FALSE` always
+#'   suppress it and compact the top margin; any other string is used
+#'   as given.
 #' @param xlab label for the x-axis. The variable name is typically placed
 #'   in `main`, so this defaults to `""`.
 #' @param xlim range of the x-axis. `NULL` (default) uses a pretty
@@ -43,6 +45,9 @@
 #'   plot style: `"hist"` (standard histogram, chosen automatically
 #'   for continuous or high-cardinality data) or `"mass"` (vertical
 #'   bars per unique value, for discrete/low-cardinality data).
+#'   The element `panel.last` adds to the histogram after it is drawn:
+#'   a function without arguments or a quoted call, e.g.
+#'   `list(panel.last = quote(abline(v = 0, lty = 2)))`.
 #' @param dens controls the kernel density curve. `TRUE` (default)
 #'   draws a curve via [stats::density()]; a list overrides
 #'   specific arguments (e.g. `list(bw = 0.1, col = "red")`).
@@ -51,12 +56,11 @@
 #' @param curve controls a fitted theoretical distribution curve on the
 #'   histogram. `FALSE` (default), `NULL`, or `NA`
 #'   suppress it; `TRUE` draws a normal curve with
-#'   `mean(x)`/`sd(x)`; a list may include `expr` as a
-#'   character string, expression, or function of `x` for any
-#'   distribution (e.g.
-#'   `list(expr = "dt(x, df=2)", col = "darkgreen")`). A character
-#'   `expr` is evaluated in the caller's environment, so local
-#'   variables may be referenced (see the gamma example below).
+#'   `mean(x)`/`sd(x)`; a list may include `expr` as a function of `x`
+#'   or a one-sided formula in `x` for any distribution (e.g.
+#'   `list(expr = ~ dt(x, df = 2), col = "darkgreen")`). The formula is
+#'   evaluated in the environment it was written in, so local variables
+#'   may be referenced (see the gamma example below).
 #' @param boxplot controls the boxplot panel. `TRUE` (default) draws
 #'   a horizontal boxplot with a mean marker and CI band; `FALSE`/
 #'   `NA` suppresses the panel. A list overrides arguments forwarded
@@ -108,7 +112,7 @@
 #'
 #' # compare with a t-distribution curve
 #' plotFreqDist(x,
-#'   curve   = list(expr = "dt(x, df=2)", col = "darkgreen"),
+#'   curve   = list(expr = ~ dt(x, df = 2), col = "darkgreen"),
 #'   boxplot = FALSE, ecdf = FALSE)
 #'
 #' # overlay gamma distribution on both histogram and ECDF
@@ -117,9 +121,9 @@
 #' v <- var(ozone, na.rm = TRUE)
 #' plotFreqDist(ozone,
 #'   hist       = list(breaks = 15),
-#'   curve      = list(expr = "dgamma(x, shape = m^2/v, scale = v/m)",
+#'   curve      = list(expr = ~ dgamma(x, shape = m^2/v, scale = v/m),
 #'                     col = "navajowhite3"),
-#'   curveEcdf  = list(expr = "pgamma(x, shape = m^2/v, scale = v/m)",
+#'   curveEcdf  = list(expr = ~ pgamma(x, shape = m^2/v, scale = v/m),
 #'                     col = "navajowhite3"),
 #'   main = "Airquality - Ozone")
 #'
@@ -197,16 +201,12 @@ plotFreqDist <- function(x,
   # --- Internal helper: fitted distribution curve --------------------------
   # Draws the curve by direct evaluation on an x-grid plus lines() instead
   # of calling curve(): curve()'s NSE only accepts function *names*, not
-  # function objects passed through do.call(). A character 'expr' is
-  # parsed and evaluated in the caller's environment (penv), so that
-  # local variables referenced in the string resolve correctly even when
-  # plotFreqDist() is called inside another function.
-  .drawCurve <- function(args, penv) {
-    e <- args$expr
-    if (is.character(e))
-      e <- parse(text = e)
-    f <- if (is.function(e)) e
-         else function(x) eval(e[[1]], list(x = x), penv)
+  # function objects passed through do.call(). 'expr' is a function of x
+  # or a one-sided formula in x; the formula is evaluated in its own
+  # environment, so local variables of the calling function resolve
+  # without any string evaluation (design rules §2.3).
+  .drawCurve <- function(args) {
+    f <- .curveFun(args$expr)
     xx <- seq.int(args$from %||% par("usr")[1],
                   args$to   %||% par("usr")[2],
                   length.out = args$n %||% 101)
@@ -265,8 +265,11 @@ plotFreqDist <- function(x,
     
     rug_args <- .resolveSpec(rug, list(x = x, col = "grey"))
     
+    xMean <- mean(x)
+    xSd   <- sd(x)
+
     curve_args <- .resolveSpec(curve, list(
-      expr = sprintf("dnorm(x, %s, %s)", mean(x), sd(x)),
+      expr = function(x) dnorm(x, xMean, xSd),
       add  = TRUE, n = 500,
       col  = twin[2], lwd = 2, lty = "solid"
     ))
@@ -290,7 +293,7 @@ plotFreqDist <- function(x,
     ))
     
     curveEcdf_args <- .resolveSpec(curveEcdf, list(
-      expr = sprintf("pnorm(x, %s, %s)", mean(x), sd(x)),
+      expr = function(x) pnorm(x, xMean, xSd),
       add  = TRUE, n = 500,
       col  = twin[2], lwd = 2, lty = "solid"
     ))
@@ -426,14 +429,14 @@ plotFreqDist <- function(x,
           }
           
           if (!is.null(panel.last))
-            eval(parse(text = panel.last))
+            .runPanelLast(panel.last, penv)
           
           if (add.dens)
             lines(x.dens, col = dens_args$col, lwd = dens_args$lwd,
                   lty = dens_args$lty)
           
           if (add.dcurve)
-            .drawCurve(curve_args, penv)
+            .drawCurve(curve_args)
           
           if (add.rug)
             do.call("rug", rug_args)
@@ -539,7 +542,7 @@ plotFreqDist <- function(x,
         do.call("plotECDF", ecdf_args)
         
         if (add.pcurve)
-          .drawCurve(curveEcdf_args, penv)
+          .drawCurve(curveEcdf_args)
       }
       
       if (nzchar(main))              title(main = main, outer = TRUE)
@@ -548,4 +551,49 @@ plotFreqDist <- function(x,
     
   }, stamp = stamp, resetLayout = TRUE)
   
+}
+
+
+# == internal helper functions ==============================================
+
+# Turns the 'expr' of a 'curve'/'curveEcdf' specification into a function
+# of x. A one-sided formula (~ dt(x, df = 2)) is evaluated in the
+# environment it was written in, so local variables of the caller resolve.
+# Character strings are rejected: they would need eval(parse()), which the
+# design rules exclude (§2.3).
+.curveFun <- function(expr) {
+  
+  if (is.function(expr))
+    return(expr)
+  
+  if (inherits(expr, "formula") && length(expr) == 2L) {
+    rhs <- expr[[2L]]
+    env <- environment(expr)
+    return(function(x) eval(rhs, list(x = x), env))
+  }
+  
+  if (is.character(expr))
+    stop("'expr' must be a function or a one-sided formula, not a ",
+         "character string: use expr = ~ dt(x, df = 2) or ",
+         "expr = function(x) dt(x, df = 2)", call. = FALSE)
+  
+  stop("'expr' must be a function of x or a one-sided formula in x",
+       call. = FALSE)
+}
+
+
+# Runs the 'panel.last' element of the 'hist' specification after the
+# histogram panel is drawn: a function without arguments, or a quoted call
+# (quote(abline(v = 0))) evaluated in the caller's environment.
+.runPanelLast <- function(panel.last, env) {
+  
+  if (is.function(panel.last))
+    return(invisible(panel.last()))
+  
+  if (is.call(panel.last) || is.expression(panel.last) || is.name(panel.last))
+    return(invisible(eval(panel.last, env)))
+  
+  stop("'panel.last' must be a function or a quoted call, ",
+       "e.g. quote(abline(v = 0)); character strings are not accepted",
+       call. = FALSE)
 }

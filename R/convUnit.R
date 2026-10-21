@@ -160,7 +160,7 @@ convUnit <- local({
     list(unit=base, pow=pow)
   }
   
-  parse <- function(u) {
+  parseUnit <- function(u) {
     parts <- strsplit(u, "/", fixed=TRUE)[[1]]
     num <- strsplit(parts[1], "\\*")[[1]]
     den <- if (length(parts) > 1)
@@ -175,7 +175,7 @@ convUnit <- local({
   # -----------------------------
   distribute_pow <- function(expr, pow) {
     if (pow == 1) return(expr)
-    p <- parse(expr)
+    p <- parseUnit(expr)
     apply_pow <- function(tok) {
       sp <- split_power(tok)
       new_pow <- sp$pow * pow
@@ -207,12 +207,12 @@ convUnit <- local({
       }
       expanded <- expand_unit(expr, depth+1)
       dist     <- distribute_pow(expanded, pow)
-      p2       <- parse(dist)
+      p2       <- parseUnit(dist)
       list(num=p2$num, den=p2$den)
     }
   
     if (depth > 10) stop("Expansion too deep")
-    p   <- parse(u)
+    p   <- parseUnit(u)
     out_num <- character(0)
     out_den <- character(0)
     
@@ -283,7 +283,7 @@ convUnit <- local({
     eval_unit <- function(u) {
       
       u   <- expand_unit(u) 
-      p   <- parse(u)
+      p   <- parseUnit(u)
       total_dim  <- zero_dim()
       total_mult <- 1
       

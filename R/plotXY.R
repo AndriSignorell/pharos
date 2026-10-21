@@ -14,12 +14,11 @@
 #' @param na.action a function specifying how missing values are handled.
 #'   Defaults to `na.omit`.
 #'
-#' @param main main title of the plot. `NULL` (default) derives a
-#'   title from the input - `deparse(y) ~ deparse(x)` for the default
-#'   method, or the formula's `dataName` for the formula method.
-#'   `""`, `NA`, or `FALSE` suppress the title entirely
-#'   (and compact the top margin accordingly); any other string is used
-#'   as given (resolved internally via `.resolveTitle()`).
+#' @param main main title. `NULL` (default) draws none, unless the
+#'   theme sets `autoTitle = TRUE` (see [theme]); the title is then
+#'   derived from the input: `y ~ x` for the default method, or the formula. `""`, `NA` or `FALSE` always
+#'   suppress it and compact the top margin; any other string is used
+#'   as given.
 #' @param xlab label for the x-axis.
 #' @param ylab label for the y-axis.
 #'

@@ -3,6 +3,7 @@
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/pharos)](https://CRAN.R-project.org/package=pharos)
 [![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
+[![R-CMD-check](https://github.com/AndriSignorell/pharos/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/AndriSignorell/pharos/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 **Title:** Descriptive Statistics Graphics and Utilities\
@@ -102,7 +103,7 @@ remotes::install_github("AndriSignorell/pharos")
 -   **Consistent** — lowerCamelCase API and uniform argument
     conventions across the whole DescToolsX suite
 -   **Themed** — colours, symbols and layout resolved centrally through
-    `theme()` and `style()`
+    `getTheme()`, `setTheme()` / `resetTheme()` and `style()`
 -   **Base graphics** — no grid, no extra graphics stack; plots compose
     with everything already in R
 -   **Fast** — performance-critical routines implemented in Rcpp

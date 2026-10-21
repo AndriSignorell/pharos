@@ -11,9 +11,14 @@
 #'
 #' @param main main title. `NULL` (default) derives a title per panel
 #'   from the variable names and the panel type (e.g.
-#'   `"area ~ delivery_min (Spineplot)"`). `""`, `NA`, or
+#'   `"area ~ delivery_min (Spineplot)"`), regardless of the theme's
+#'   `autoTitle`. `""`, `NA`, or
 #'   `FALSE` suppress the title and compact the top margin. Any other
 #'   string is used as-is, identically for every selected panel.
+#' @param xlab x-axis label. `NULL` (default) derives a label specific
+#'   to each panel: the numeric variable for panels 1, 2, 3 and 5, the
+#'   categorical variable for panel 4 (boxplot, groups on the x-axis).
+#'   Supplying a value overrides this for every selected panel.
 #' @param ylab y-axis label. `NULL` (default) derives a label specific
 #'   to each panel (e.g. `"P(y)"` for the conditional density,
 #'   `"Density"` for the grouped density plot). Supplying a value
@@ -94,6 +99,21 @@
 #'
 #' @return Invisibly returns `x`.
 #'
+#' @examples
+#' # the object is built by hand here; normally DescToolsX::desc(y ~ x)
+#' # returns it for a numeric-categorical pair
+#' d <- structure(list(
+#'   res  = list(xOk  = ToothGrowth$len,
+#'               yOk  = ToothGrowth$supp,
+#'               lvls = levels(ToothGrowth$supp),
+#'               k    = nlevels(ToothGrowth$supp)),
+#'   meta = list(xname = "len", yname = "supp")
+#' ), class = "Desc.qn")
+#'
+#' plot(d)                 # spineplot
+#' plot(d, which = 3)      # density by group
+#' plot(d, which = 4)      # boxplot by group
+#'
 #' @seealso `DescToolsX::desc`, [plotDens()], [plotBox()],
 #'   [graphics::cdplot()], [graphics::spineplot()]
 #'
@@ -110,6 +130,7 @@ plot.Desc.qn <- function(x,
                          
                          # LABELS
                          main = NULL,
+                         xlab = NULL,
                          ylab = NULL,
                          
                          # STRUCTURE
@@ -157,6 +178,11 @@ plot.Desc.qn <- function(x,
   # otherwise each panel derives its own label via .ylabFor().
   resolveYlab <- function(w) ylab %||% .ylabFor(w)
   
+  # x-axis likewise. xlab must be a formal: passed through ... it collided
+  # with the panel default ("formal argument 'xlab' matched by multiple
+  # actual arguments"). Panel 4 has the groups on its x-axis.
+  resolveXlab <- function(w) xlab %||% if (w == 4) yLab else xLab
+  
   ylabs <- vapply(which, resolveYlab, character(1))
   
   # cases 1/2 (cdplot/spineplot) additionally draw the y-level names
@@ -177,7 +203,9 @@ plot.Desc.qn <- function(x,
       defaults = list(mar = c(bottom = 5, left = lmar, top = .marTop(main), right = 3.1))
     )
     
-    .main <- function(default) .resolveTitle(main, default = default)
+    # the panel type is shown nowhere else, so these titles are always on
+    .main <- function(default) .resolveTitle(main, default = default,
+                                             always = TRUE)
     
     # Colors resolved per panel type, not forced through one shared 'col':
     # a fill ramp (1/2), a categorical set (3/4), and a single accent (5)
@@ -200,7 +228,7 @@ plot.Desc.qn <- function(x,
              "1" = {
                cdplot(yOk ~ xOk,
                       col  = resolveCol(colSpineDefault),
-                      xlab = xLab,
+                      xlab = resolveXlab(1),
                       ylab = resolveYlab(1),
                       main = .main(.panelDefault("Conditional density")),
                       ...)
@@ -213,7 +241,7 @@ plot.Desc.qn <- function(x,
              "2" = {
                spineplot(yOk ~ xOk,
                          col  = resolveCol(colSpineDefault),
-                         xlab = xLab,
+                         xlab = resolveXlab(2),
                          ylab = resolveYlab(2),
                          main = .main(.panelDefault("Spineplot")),
                          ...)
@@ -239,7 +267,7 @@ plot.Desc.qn <- function(x,
                pharos::plotDens(
                  split_x,
                  main = .main(.panelDefault("Density by group")),
-                 xlab = xLab,
+                 xlab = resolveXlab(3),
                  ylab = resolveYlab(3),
                  col  = colHere,
                  grid = TRUE,
@@ -268,7 +296,7 @@ plot.Desc.qn <- function(x,
                  x    = xOk,
                  groups    = yOk,
                  main = .main(.panelDefault("Boxplot")),
-                 xlab = yLab,
+                 xlab = resolveXlab(4),
                  ylab = resolveYlab(4),
                  col  = resolveCol(colCatDefault),
                  grid = TRUE,
@@ -318,7 +346,7 @@ plot.Desc.qn <- function(x,
                plot(xPos, est,
                     type = "n",
                     ylim = c(0, 1),
-                    xlab = xLab,
+                    xlab = resolveXlab(5),
                     ylab = resolveYlab(5),
                     main = .main(.panelDefault("Prevalence by x-quantile")),
                     frame.plot = FALSE,

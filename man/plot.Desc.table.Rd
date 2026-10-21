@@ -7,6 +7,7 @@
 \method{plot}{Desc.table}(
   x,
   main = NULL,
+  xlab = NULL,
   ylab = NULL,
   which = 1,
   verbose = NULL,
@@ -27,9 +28,15 @@ with a panel-type label for context when multiple panels are shown
 (e.g. \code{"table(Pizza$area, Pizza$driver) (Spineplot)"}). There is
 no \code{y ~ x} pair to draw on here - \code{x$meta} carries only a
 single \code{xname}, since a table built outside a two-sided formula
-has no separately named "x" and "y" variable. \code{""}, \code{NA},
+has no separately named "x" and "y" variable. Drawn regardless of
+the theme's \code{autoTitle}. \code{""}, \code{NA},
 or \code{FALSE} suppress the title and compact the top margin. Any
 other string is used as-is, identically for every selected panel.}
+
+\item{xlab}{x-axis label. \code{NULL} (default) leaves the panel's own
+default in place (empty for the spineplot, the table name for the
+mosaic plots, the column dimnames for the association plot).
+Supplying a value overrides this for every selected panel.}
 
 \item{ylab}{y-axis label. \code{NULL} (default) leaves the panel's own
 default in place (typically empty/unlabeled, since the row dimension
@@ -137,6 +144,18 @@ axis tick labels, so neither is ever clipped regardless of \code{which}.
 Only two-dimensional tables are supported. If \code{x} carries a table
 with more than two margins, a message is issued and the function returns
 invisibly without drawing anything.
+}
+\examples{
+# the object is built by hand here; normally DescToolsX::desc()
+# returns it for a pair of categorical variables
+d <- structure(list(
+  tab  = margin.table(HairEyeColor, c(1, 2)),
+  meta = list(xname = "Hair ~ Eye")
+), class = "Desc.table")
+
+plot(d)                 # spineplot
+plot(d, which = 2)      # mosaic plot
+
 }
 \seealso{
 \code{DescToolsX::desc}, \code{\link[=plotAssoc]{plotAssoc()}},

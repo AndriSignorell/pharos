@@ -31,7 +31,18 @@ CharacterVector formatNum_cpp(NumericVector x,
   IntegerVector dig(n);
   if (digits.isNotNull()) {
     IntegerVector dvec(digits);
-    for (int i = 0; i < n; ++i) dig[i] = dvec[i % dvec.size()];
+    // i % 0 is undefined behaviour: an empty 'digits' (integer(0)) must be
+    // caught here, before the recycling loop. The check on nd further down
+    // only sees 'dig', which always has length n.
+    const R_xlen_t ndv = dvec.size();
+    if (n > 0 && ndv == 0)
+      stop("'digits' must not be empty");
+    // NA_integer_ is INT_MIN and would reach std::pow(10, d) below; an NA
+    // as the number of digits is an invalid argument, not a missing value
+    for (R_xlen_t j = 0; j < ndv; ++j)
+      if (dvec[j] == NA_INTEGER)
+        stop("'digits' must not contain NA");
+    for (int i = 0; i < n; ++i) dig[i] = dvec[i % ndv];
   } else {
     for (int i = 0; i < n; ++i) {
       if (NumericVector::is_na(x[i]) || !R_FINITE(x[i])) {
@@ -50,6 +61,9 @@ CharacterVector formatNum_cpp(NumericVector x,
   
   // leadDigits: default = 0
   IntegerVector ldig = leadDigits.isNotNull() ? IntegerVector(leadDigits) : IntegerVector::create(0);
+  for (R_xlen_t j = 0; j < ldig.size(); ++j)
+    if (ldig[j] == NA_INTEGER)
+      stop("'leadDigits' must not contain NA");
   
   // bigMark: default = ""
   CharacterVector bmark = bigMark.isNotNull() ? CharacterVector(bigMark) : CharacterVector::create("");
@@ -70,9 +84,10 @@ CharacterVector formatNum_cpp(NumericVector x,
   int ndm = dmark.size();
   
   // i % 0 is undefined behaviour, and a zero-length argument is easy to
-  // produce from R (leadDigits = integer(0))
-  if (n > 0 && (nd == 0 || nl == 0 || nb == 0 || ndm == 0))
-    stop("'digits', 'leadDigits', 'bigMark' and 'decimalMark' must not be empty");
+  // produce from R (leadDigits = integer(0)). 'digits' is checked above,
+  // before it is recycled into 'dig' (nd == n here).
+  if (n > 0 && (nl == 0 || nb == 0 || ndm == 0))
+    stop("'leadDigits', 'bigMark' and 'decimalMark' must not be empty");
   
   CharacterVector result(n);
   

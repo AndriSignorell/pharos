@@ -26,9 +26,10 @@ plotPropCI(
 the two columns contain counts for the two categories. A numeric vector
 of length 2 is also accepted and will be coerced to a one-row matrix.}
 
-\item{main}{main title of the plot. \code{NULL} (default) derives a title
-from \code{deparse(substitute(x))}. \code{""}, \code{NA}, or \code{FALSE}
-suppress the title and compact the top margin. Any other string is used
+\item{main}{main title. \code{NULL} (default) draws none, unless the
+theme sets \code{autoTitle = TRUE} (see \link{theme}); the title is then
+derived from the expression passed as \code{x}. \code{""}, \code{NA} or \code{FALSE} always
+suppress it and compact the top margin; any other string is used
 as given.}
 
 \item{xlab}{label for the x-axis. Default \code{""}.}
@@ -121,6 +122,7 @@ Other plot.special:
 \code{\link[=plotLift]{plotLift()}},
 \code{\link[=plotMiss]{plotMiss()}},
 \code{\link[=plotPolar]{plotPolar()}},
+\code{\link[=plotSankey]{plotSankey()}},
 \code{\link[=plotTernary]{plotTernary()}},
 \code{\link[=plotTimeSeries]{plotTimeSeries()}},
 \code{\link[=plotTreemap]{plotTreemap()}},

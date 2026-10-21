@@ -4,14 +4,13 @@
 \alias{hexToCol}
 \title{Convert Hex Colors to Named R Colors}
 \usage{
-hexToCol(col, method = c("rgb", "hsv"), metric = c("euclidean", "manhattan"))
+hexToCol(col, method = c("ciede2000", "cie76"))
 }
 \arguments{
 \item{col}{character vector of hexadecimal colors.}
 
-\item{method}{color space used for matching.}
-
-\item{metric}{distance metric.}
+\item{method}{color difference formula, \code{"ciede2000"} (default) or
+\code{"cie76"}, see Details.}
 }
 \value{
 Character vector of named R colors.
@@ -21,7 +20,7 @@ Convert hexadecimal colors to the nearest named R colors.
 }
 \examples{
 hexToCol(c("#A22A2A", "#4169E0"))
-hexToCol("#4169E0", method = "hsv")
+hexToCol("#4169E0", method = "cie76")
 
 }
 \seealso{

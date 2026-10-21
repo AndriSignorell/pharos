@@ -46,9 +46,11 @@ are removed.}
 \item{\dots}{further graphical parameters passed to \code{\link[=par]{par()}} via
 the internal framework.}
 
-\item{main}{main title of the plot. \code{NULL} (default) derives a
-title from \code{deparse(substitute(x))}. \code{""}, \code{NA}, or
-\code{FALSE} suppress the title.}
+\item{main}{main title. \code{NULL} (default) draws none, unless the
+theme sets \code{autoTitle = TRUE} (see \link{theme}); the title is then
+derived from the expression passed as \code{x}. \code{""}, \code{NA} or \code{FALSE} always
+suppress it and compact the top margin; any other string is used
+as given.}
 
 \item{xlab}{label for the x-axis. \code{NULL} (default) derives a label
 the same way as \code{main}.}

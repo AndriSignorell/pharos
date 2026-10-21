@@ -59,7 +59,7 @@ toHtmlTable <- function(m, sepCol = FALSE, caption = "", bodyAlign = "center",
                         captionAlign = "center", frame = TRUE,
                         rowNames = TRUE, colNames = TRUE) {
   
-  # a vector is a one-column table; without this, .Dim below is NULL and
+  # a vector is a one-column table; without this, dim below is NULL and
   # the row assembly fails
   if (!is.matrix(m))
     m <- as.matrix(m)
@@ -97,7 +97,7 @@ toHtmlTable <- function(m, sepCol = FALSE, caption = "", bodyAlign = "center",
                              t(replicate(expr = (width), n = nrow(m)))[, -1]
                            else
                              t(replicate(expr = (width), n = nrow(m))),
-                           bodyAlign, vAlign, unname(m)), .Dim = dim(m))
+                           bodyAlign, vAlign, unname(m)), dim = dim(m))
   
   col_x <- NA_character_
   

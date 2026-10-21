@@ -42,10 +42,11 @@ plotDensBox(x, ...)
 
 \item{groups}{optional grouping variable (ignored if a formula is used).}
 
-\item{main}{main title of the plot. \code{NULL} (default) derives the title
-from the input: the formula, or \code{x} resp. \code{x ~ g} for the default
-method. \code{""}, \code{NA}, or \code{FALSE} suppress the title and its outer
-margin.}
+\item{main}{main title. \code{NULL} (default) draws none, unless the
+theme sets \code{autoTitle = TRUE} (see \link{theme}); the title is then
+derived from the input: the formula, or \code{x} resp. \code{x ~ g} for the default method. \code{""}, \code{NA} or \code{FALSE} always
+suppress it and remove its outer margin; any other string is used
+as given.}
 
 \item{xlab}{label for the x-axis, drawn below the boxplot. For the
 formula method, an empty label defaults to the response.}

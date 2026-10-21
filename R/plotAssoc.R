@@ -8,16 +8,11 @@
 #' diverging palette.
 #'
 #' @param x a two-dimensional contingency table (`table` or `matrix`).
-#' @param main main title of the plot. `NULL` (default) derives a
-#'   title from the expression passed as `x` (via
-#'   `deparse(match.call()$x)`), the same "substitute magic"
-#'   convention used by [plotXY()]/[plotBox()] for
-#'   their `y ~ x` default - there's no formula pair here, just the
-#'   single table argument, so the default is simply that expression's
-#'   text (e.g. `plotAssoc(tab)` titles itself `"tab"`).
-#'   `""`, `NA`, or `FALSE` suppress the title entirely
-#'   and compact the top margin; any other string is used as given
-#'   (resolved internally via `.resolveTitle()`).
+#' @param main main title. `NULL` (default) draws none, unless the
+#'   theme sets `autoTitle = TRUE` (see [theme]); the title is then
+#'   derived from the expression passed as `x` (e.g. `"tab"`). `""`, `NA` or `FALSE` always
+#'   suppress it and compact the top margin; any other string is used
+#'   as given.
 #' @param xlab character, x-axis label. Defaults to the first dimension name.
 #' @param ylab character, y-axis label. Defaults to the second dimension name.
 #' @param space numeric, fraction of average cell width/height used as gap

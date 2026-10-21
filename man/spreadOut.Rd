@@ -60,7 +60,7 @@ spreadOut(rnorm(10), 0.5)
 
 Other graphics.layout:
 \code{\link[=abcCoords]{abcCoords()}},
-\code{\link{axTicks}},
+\code{\link[=axTicksPosixct]{axTicksPosixct()}},
 \code{\link[=axisBreak]{axisBreak()}},
 \code{\link[=isValidPlotRegion]{isValidPlotRegion()}},
 \code{\link[=lineToUser]{lineToUser()}},
