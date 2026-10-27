@@ -127,9 +127,10 @@ Group International Conference Proceedings*, 17, 190–200.
 `DescToolsX::confusion`
 
 Other plot.bivariate: [`plotBag()`](plotBag.md),
-[`plotCor()`](plotCor.md), [`plotDens2D()`](plotDens2D.md),
-[`plotHeatmap()`](plotHeatmap.md), [`plotHexbin()`](plotHexbin.md),
-[`plotMosaic()`](plotMosaic.md), [`plotXY()`](plotXY.md)
+[`plotBubble()`](plotBubble.md), [`plotCor()`](plotCor.md),
+[`plotDens2D()`](plotDens2D.md), [`plotHeatmap()`](plotHeatmap.md),
+[`plotHexbin()`](plotHexbin.md), [`plotMosaic()`](plotMosaic.md),
+[`plotXY()`](plotXY.md)
 
 ## Examples
 

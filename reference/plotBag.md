@@ -231,9 +231,10 @@ location depth. *Journal of the Royal Statistical Society, Series C
 ## See also
 
 Other plot.bivariate: [`plotAssoc()`](plotAssoc.md),
-[`plotCor()`](plotCor.md), [`plotDens2D()`](plotDens2D.md),
-[`plotHeatmap()`](plotHeatmap.md), [`plotHexbin()`](plotHexbin.md),
-[`plotMosaic()`](plotMosaic.md), [`plotXY()`](plotXY.md)
+[`plotBubble()`](plotBubble.md), [`plotCor()`](plotCor.md),
+[`plotDens2D()`](plotDens2D.md), [`plotHeatmap()`](plotHeatmap.md),
+[`plotHexbin()`](plotHexbin.md), [`plotMosaic()`](plotMosaic.md),
+[`plotXY()`](plotXY.md)
 
 ## Examples
 

@@ -229,9 +229,10 @@ theme section) that doesn't override `col` explicitly.
 [`bedrock::callIf()`](https://andrisignorell.github.io/bedrock/reference/callIf.html)
 
 Other plot.bivariate: [`plotAssoc()`](plotAssoc.md),
-[`plotBag()`](plotBag.md), [`plotCor()`](plotCor.md),
-[`plotDens2D()`](plotDens2D.md), [`plotHeatmap()`](plotHeatmap.md),
-[`plotHexbin()`](plotHexbin.md), [`plotMosaic()`](plotMosaic.md)
+[`plotBag()`](plotBag.md), [`plotBubble()`](plotBubble.md),
+[`plotCor()`](plotCor.md), [`plotDens2D()`](plotDens2D.md),
+[`plotHeatmap()`](plotHeatmap.md), [`plotHexbin()`](plotHexbin.md),
+[`plotMosaic()`](plotMosaic.md)
 
 ## Examples
 

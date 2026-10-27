@@ -99,7 +99,8 @@ Other plot.univariate: [`plotArea()`](plotArea.md),
 [`plotDens()`](plotDens.md), [`plotDensBox()`](plotDensBox.md),
 [`plotDot()`](plotDot.md), [`plotECDF()`](plotECDF.md),
 [`plotFreqDist()`](plotFreqDist.md), [`plotLines()`](plotLines.md),
-[`plotQQ()`](plotQQ.md), [`plotViolin()`](plotViolin.md)
+[`plotQQ()`](plotQQ.md), [`plotRidge()`](plotRidge.md),
+[`plotViolin()`](plotViolin.md)
 
 ## Examples
 

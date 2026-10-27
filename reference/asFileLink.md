@@ -49,6 +49,6 @@ Other html: [`asHtml()`](asHtml.md), [`asImg()`](asImg.md),
 fn <- tempfile(fileext = ".csv")
 write.csv(head(iris), fn, row.names = FALSE)
 asFileLink(fn, label = "iris")
-#> <a href="data:text/csv;base64,IlNlcGFsLkxlbmd0aCIsIlNlcGFsLldpZHRoIiwiUGV0YWwuTGVuZ3RoIiwiUGV0YWwuV2lkdGgiLCJTcGVjaWVzIgo1LjEsMy41LDEuNCwwLjIsInNldG9zYSIKNC45LDMsMS40LDAuMiwic2V0b3NhIgo0LjcsMy4yLDEuMywwLjIsInNldG9zYSIKNC42LDMuMSwxLjUsMC4yLCJzZXRvc2EiCjUsMy42LDEuNCwwLjIsInNldG9zYSIKNS40LDMuOSwxLjcsMC40LCJzZXRvc2EiCg==" download="file1b842e290bc0.csv">iris</a>
+#> <a href="data:text/csv;base64,IlNlcGFsLkxlbmd0aCIsIlNlcGFsLldpZHRoIiwiUGV0YWwuTGVuZ3RoIiwiUGV0YWwuV2lkdGgiLCJTcGVjaWVzIgo1LjEsMy41LDEuNCwwLjIsInNldG9zYSIKNC45LDMsMS40LDAuMiwic2V0b3NhIgo0LjcsMy4yLDEuMywwLjIsInNldG9zYSIKNC42LDMuMSwxLjUsMC4yLCJzZXRvc2EiCjUsMy42LDEuNCwwLjIsInNldG9zYSIKNS40LDMuOSwxLjcsMC40LCJzZXRvc2EiCg==" download="file19f5500bebde.csv">iris</a>
 unlink(fn)
 ```

@@ -6,6 +6,8 @@ Each group is displayed as a density curve shifted along the y-axis.
 ## Usage
 
 ``` r
+plotRidge(x, ...)
+
 # Default S3 method
 plotRidge(
   x,
@@ -51,7 +53,8 @@ plotRidge(
 - ...:
 
   further numeric vectors (unnamed), each forming a group, or graphical
-  parameters passed to [`par()`](https://rdrr.io/r/graphics/par.html).
+  parameters passed to [`par()`](https://rdrr.io/r/graphics/par.html)
+  (named). Unnamed vectors are only allowed when `x` is a single vector.
 
 - main:
 
@@ -162,6 +165,14 @@ readability compared to overlaid density plots.
 ## See also
 
 [`plotDens()`](plotDens.md)
+
+Other plot.univariate: [`plotArea()`](plotArea.md),
+[`plotBar()`](plotBar.md), [`plotBox()`](plotBox.md),
+[`plotCatDist()`](plotCatDist.md), [`plotDens()`](plotDens.md),
+[`plotDensBox()`](plotDensBox.md), [`plotDot()`](plotDot.md),
+[`plotECDF()`](plotECDF.md), [`plotFreqDist()`](plotFreqDist.md),
+[`plotLines()`](plotLines.md), [`plotQQ()`](plotQQ.md),
+[`plotViolin()`](plotViolin.md)
 
 ## Examples
 

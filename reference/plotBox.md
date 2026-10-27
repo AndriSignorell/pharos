@@ -124,7 +124,8 @@ plotBox(
 - means:
 
   controls drawing of group means and an overall mean reference line.
-  Can be:
+  The reference line is drawn only for more than one group; with a
+  single box it would merely repeat its mean. Can be:
 
   - `TRUE`: draw with default settings
 
@@ -186,7 +187,8 @@ Other plot.univariate: [`plotArea()`](plotArea.md),
 [`plotDens()`](plotDens.md), [`plotDensBox()`](plotDensBox.md),
 [`plotDot()`](plotDot.md), [`plotECDF()`](plotECDF.md),
 [`plotFreqDist()`](plotFreqDist.md), [`plotLines()`](plotLines.md),
-[`plotQQ()`](plotQQ.md), [`plotViolin()`](plotViolin.md)
+[`plotQQ()`](plotQQ.md), [`plotRidge()`](plotRidge.md),
+[`plotViolin()`](plotViolin.md)
 
 ## Examples
 

@@ -19,9 +19,7 @@ Plots for distributions, grouped data, functions, and time series.
 - [`plotFreqDist()`](plotFreqDist.md) : Frequency Distribution Plot
 - [`plotLines()`](plotLines.md) : Line Plot for Multiple Series
 - [`plotQQ()`](plotQQ.md) : QQ-Plot for Any Distribution
-- [`plotRidge(`*`<default>`*`)`](plotRidge.md)
-  [`plotRidge(`*`<formula>`*`)`](plotRidge.md) : Ridge Plot (Stacked
-  Density Plot)
+- [`plotRidge()`](plotRidge.md) : Ridge Plot (Stacked Density Plot)
 - [`plotViolin()`](plotViolin.md) : Violin Plot
 - [`plotFun()`](plotFun.md) : Plot Mathematical Functions
 - [`plotProbDist()`](plotProbDist.md) : Plot Probability Distribution
@@ -37,8 +35,7 @@ specialized displays.
 
 - [`plotBag()`](plotBag.md) : Create a Bagplot (Bivariate Boxplot)
 
-- [`plotBubble(`*`<default>`*`)`](plotBubble.md)
-  [`plotBubble(`*`<formula>`*`)`](plotBubble.md) : Bubble Plot
+- [`plotBubble()`](plotBubble.md) : Bubble Plot
 
 - [`plotCor()`](plotCor.md) : Correlation Matrix Plot with Theming and
   Optional Labels
@@ -221,6 +218,7 @@ Formatting of values and confidence intervals, units, and table helpers.
 - [`ftable(`*`<list>`*`)`](ftable.list.md) : Flat Contingency Table for
   tapply-Like Lists
 - [`Prefix`](constants.md) : DescToolsX Constants
+- [`exportPlot()`](exportPlot.md) : Export a Plot to Graphics Files
 
 ## Strings
 

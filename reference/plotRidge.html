@@ -15,7 +15,7 @@ Each group is displayed as a density curve shifted along the y-axis."><meta prop
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,7 +56,9 @@ Each group is displayed as a density curve shifted along the y-axis.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># Default S3 method</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plotRidge</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Default S3 method</span></span>
 <span><span class="fu">plotRidge</span><span class="op">(</span></span>
 <span>  <span class="va">x</span>,</span>
 <span>  <span class="va">...</span>,</span>
@@ -103,15 +105,16 @@ groups.</p></dd>
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>further numeric vectors (unnamed), each forming a group, or
-graphical parameters passed to <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par()</a></code>.</p></dd>
+graphical parameters passed to <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par()</a></code> (named). Unnamed vectors are
+only allowed when <code>x</code> is a single vector.</p></dd>
 
 
 <dt id="arg-main">main<a class="anchor" aria-label="anchor" href="#arg-main"></a></dt>
 <dd><p>main title. <code>NULL</code> (default) draws none, unless the
 theme sets <code>autoTitle = TRUE</code> (see <a href="theme.html">theme</a>); the title is then
-derived from the input: the names of the data arguments, or the formula. <code>""</code>, <code>NA</code> or <code>FALSE</code> always
-suppress it and compact the top margin; any other string is used
-as given.</p></dd>
+derived from the input: the names of the data arguments, or the
+formula. <code>""</code>, <code>NA</code> or <code>FALSE</code> always suppress it and compact the top
+margin; any other string is used as given.</p></dd>
 
 
 <dt id="arg-xlab-ylab">xlab, ylab<a class="anchor" aria-label="anchor" href="#arg-xlab-ylab"></a></dt>
@@ -213,7 +216,20 @@ compared to overlaid density plots.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="plotDens.html">plotDens()</a></code></p></div>
+    <div class="dont-index"><p><code><a href="plotDens.html">plotDens()</a></code></p>
+<p>Other plot.univariate:
+<code><a href="plotArea.html">plotArea()</a></code>,
+<code><a href="plotBar.html">plotBar()</a></code>,
+<code><a href="plotBox.html">plotBox()</a></code>,
+<code><a href="plotCatDist.html">plotCatDist()</a></code>,
+<code><a href="plotDens.html">plotDens()</a></code>,
+<code><a href="plotDensBox.html">plotDensBox()</a></code>,
+<code><a href="plotDot.html">plotDot()</a></code>,
+<code><a href="plotECDF.html">plotECDF()</a></code>,
+<code><a href="plotFreqDist.html">plotFreqDist()</a></code>,
+<code><a href="plotLines.html">plotLines()</a></code>,
+<code><a href="plotQQ.html">plotQQ()</a></code>,
+<code><a href="plotViolin.html">plotViolin()</a></code></p></div>
     </div>
 
     <div class="section level2">

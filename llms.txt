@@ -48,6 +48,9 @@ remotes::install_github("AndriSignorell/pharos")
 - [`plotDot()`](reference/plotDot.md),
   [`plotBar()`](reference/plotBar.md),
   [`plotBag()`](reference/plotBag.md), [`plotQQ()`](reference/plotQQ.md)
+- [`plotLines()`](reference/plotLines.md),
+  [`plotTimeSeries()`](reference/plotTimeSeries.md),
+  [`plotFun()`](reference/plotFun.md)
 
 ### 🔹 Bivariate and Multivariate Plots
 
@@ -62,6 +65,7 @@ remotes::install_github("AndriSignorell/pharos")
 - [`plotTernary()`](reference/plotTernary.md),
   [`plotPolar()`](reference/plotPolar.md),
   [`plotCirc()`](reference/plotCirc.md),
+  [`plotSankey()`](reference/plotSankey.md),
   [`plotWeb()`](reference/plotWeb.md),
   [`plotTreemap()`](reference/plotTreemap.md)
 
@@ -71,12 +75,11 @@ remotes::install_github("AndriSignorell/pharos")
   [`plotPropCI()`](reference/plotPropCI.md),
   [`plotMiss()`](reference/plotMiss.md),
   [`plotCatDist()`](reference/plotCatDist.md)
-- [`plot.BlandAltman()`](reference/plot.BlandAltman.md),
-  [`plot.Lc()`](reference/plot.lc.md),
+- [`plot()`](https://rdrr.io/r/graphics/plot.default.html) methods for
+  Bland-Altman and Lorenz curve objects,
   [`plotBinaryTree()`](reference/binaryTree.md)
-- [`lines.lm()`](reference/linesLm.md),
-  [`lines.loess()`](reference/lines.loess.md),
-  [`splineCI()`](reference/splineCI.md)
+- [`lines()`](https://rdrr.io/r/graphics/lines.html) methods for `lm`
+  and `loess` fits
 
 ### 🔹 Layout and Faceting
 
@@ -86,7 +89,7 @@ remotes::install_github("AndriSignorell/pharos")
   [`plotArea()`](reference/plotArea.md), [`mar()`](reference/mar.md),
   [`abcCoords()`](reference/abcCoords.md),
   [`axisBreak()`](reference/axisBreak.md),
-  [`axTicks()`](https://rdrr.io/r/graphics/axTicks.html),
+  [`axTicksPosixct()`](reference/axTicksPosixct.md),
   [`axisFmt()`](reference/axisFmt.md)
 - [`spreadOut()`](reference/spreadOut.md),
   [`lineToUser()`](reference/lineToUser.md),
@@ -139,7 +142,7 @@ remotes::install_github("AndriSignorell/pharos")
 
 - [`fm()`](reference/fm.md), [`fmCI()`](reference/fmCI.md),
   [`unit()`](reference/unit.md),
-  [`ftable.list()`](reference/ftable.list.md)
+  [`ftable()`](https://rdrr.io/r/stats/ftable.html) method for lists
 - [`strAbbr()`](reference/strAbbr.md),
   [`strAlign()`](reference/strAlign.md),
   [`strCap()`](reference/strCap.md),
@@ -156,8 +159,8 @@ remotes::install_github("AndriSignorell/pharos")
 - [`asHtml()`](reference/asHtml.md),
   [`toHtmlTable()`](reference/toHtmlTable.md),
   [`escapeHtml()`](reference/escapeHtml.md),
-  [`htmlNotation()`](reference/htmlNotation.md),
-  [`htmlSubscript()`](reference/htmlSubscript.md),
+  [`htmlHat()`](reference/htmlNotation.md),
+  [`htmlBar()`](reference/htmlNotation.md), `%_%`,
   [`asImg()`](reference/asImg.md),
   [`asFileLink()`](reference/asFileLink.md),
   [`embedFile()`](reference/embedFile.md),
@@ -192,9 +195,18 @@ text(xy$xy$x, xy$xy$y, "annotation", adj = xy$adj)
 # colour manipulation
 fade(pal("dark"), 0.4)
 
-# faceting with a panel function
-plotFacet(split(iris$Sepal.Length, iris$Species),
-          dim = c(1, 3), FUN = plotDens)
+# faceting: one panel per sample, drawn by a panel function
+samples <- lapply(split(iris, iris$Species),
+                  function(d) list(x = d$Sepal.Length, y = d$Petal.Length))
+
+plotFacet(samples, dim = c(1, 3),
+          FUN  = function(x, y, col, pch, ...) points(x, y, col = col, pch = pch),
+          xlab = "Sepal length", ylab = "Petal length")
+
+# flows between stages: one row per flow
+plotSankey(data.frame(from  = c("A", "A", "B", "C", "D"),
+                      to    = c("C", "D", "D", "E", "F"),
+                      value = c(5, 3, 4, 5, 7)))
 ```
 
 ## 🧱 The Suite
@@ -235,9 +247,7 @@ Plots for distributions, grouped data, functions, and time series.
 - [`plotFreqDist()`](plotFreqDist.md) : Frequency Distribution Plot
 - [`plotLines()`](plotLines.md) : Line Plot for Multiple Series
 - [`plotQQ()`](plotQQ.md) : QQ-Plot for Any Distribution
-- [`plotRidge(`*`<default>`*`)`](plotRidge.md)
-  [`plotRidge(`*`<formula>`*`)`](plotRidge.md) : Ridge Plot (Stacked
-  Density Plot)
+- [`plotRidge()`](plotRidge.md) : Ridge Plot (Stacked Density Plot)
 - [`plotViolin()`](plotViolin.md) : Violin Plot
 - [`plotFun()`](plotFun.md) : Plot Mathematical Functions
 - [`plotProbDist()`](plotProbDist.md) : Plot Probability Distribution
@@ -253,8 +263,7 @@ specialized displays.
 
 - [`plotBag()`](plotBag.md) : Create a Bagplot (Bivariate Boxplot)
 
-- [`plotBubble(`*`<default>`*`)`](plotBubble.md)
-  [`plotBubble(`*`<formula>`*`)`](plotBubble.md) : Bubble Plot
+- [`plotBubble()`](plotBubble.md) : Bubble Plot
 
 - [`plotCor()`](plotCor.md) : Correlation Matrix Plot with Theming and
   Optional Labels
@@ -437,6 +446,7 @@ Formatting of values and confidence intervals, units, and table helpers.
 - [`ftable(`*`<list>`*`)`](ftable.list.md) : Flat Contingency Table for
   tapply-Like Lists
 - [`Prefix`](constants.md) : DescToolsX Constants
+- [`exportPlot()`](exportPlot.md) : Export a Plot to Graphics Files
 
 ## Strings
 

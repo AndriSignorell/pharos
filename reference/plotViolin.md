@@ -200,7 +200,8 @@ Other plot.univariate: [`plotArea()`](plotArea.md),
 [`plotCatDist()`](plotCatDist.md), [`plotDens()`](plotDens.md),
 [`plotDensBox()`](plotDensBox.md), [`plotDot()`](plotDot.md),
 [`plotECDF()`](plotECDF.md), [`plotFreqDist()`](plotFreqDist.md),
-[`plotLines()`](plotLines.md), [`plotQQ()`](plotQQ.md)
+[`plotLines()`](plotLines.md), [`plotQQ()`](plotQQ.md),
+[`plotRidge()`](plotRidge.md)
 
 ## Examples
 

@@ -6,8 +6,8 @@
     }
   };
 </script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Bubble Plot — plotBubble"><meta name="description" content="Draws a bubble plot where the position is given by x and y,
-and the size of each bubble is proportional to area."><meta property="og:description" content="Draws a bubble plot where the position is given by x and y,
-and the size of each bubble is proportional to area."><meta property="og:image" content="/logo.png"></head><body>
+and the size of each bubble increases with area."><meta property="og:description" content="Draws a bubble plot where the position is given by x and y,
+and the size of each bubble increases with area."><meta property="og:image" content="/logo.png"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -15,7 +15,7 @@ and the size of each bubble is proportional to area."><meta property="og:image" 
 
     <a class="navbar-brand me-2" href="../index.html">pharos</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,12 +51,14 @@ and the size of each bubble is proportional to area."><meta property="og:image" 
 
     <div class="ref-description section level2">
     <p>Draws a bubble plot where the position is given by <code>x</code> and <code>y</code>,
-and the size of each bubble is proportional to <code>area</code>.</p>
+and the size of each bubble increases with <code>area</code>.</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># Default S3 method</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plotBubble</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Default S3 method</span></span>
 <span><span class="fu">plotBubble</span><span class="op">(</span></span>
 <span>  <span class="va">x</span>,</span>
 <span>  <span class="va">y</span>,</span>
@@ -104,12 +106,16 @@ and the size of each bubble is proportional to <code>area</code>.</p>
 <dd><p>numeric vector of x positions.</p></dd>
 
 
+<dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
+<dd><p>additional graphical parameters passed to <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par()</a></code>.</p></dd>
+
+
 <dt id="arg-y">y<a class="anchor" aria-label="anchor" href="#arg-y"></a></dt>
 <dd><p>numeric vector of y positions.</p></dd>
 
 
 <dt id="arg-area">area<a class="anchor" aria-label="anchor" href="#arg-area"></a></dt>
-<dd><p>numeric vector controlling bubble sizes (interpreted as area).</p></dd>
+<dd><p>non-negative numeric vector controlling the bubble sizes.</p></dd>
 
 
 <dt id="arg-main-xlab-ylab">main, xlab, ylab<a class="anchor" aria-label="anchor" href="#arg-main-xlab-ylab"></a></dt>
@@ -133,7 +139,7 @@ and the size of each bubble is proportional to <code>area</code>.</p>
 
 
 <dt id="arg-cex">cex<a class="anchor" aria-label="anchor" href="#arg-cex"></a></dt>
-<dd><p>scaling factor applied to bubble areas.</p></dd>
+<dd><p>scaling factor applied to the bubble radii.</p></dd>
 
 
 <dt id="arg-grid">grid<a class="anchor" aria-label="anchor" href="#arg-grid"></a></dt>
@@ -141,17 +147,16 @@ and the size of each bubble is proportional to <code>area</code>.</p>
 
 
 <dt id="arg-na-rm">na.rm<a class="anchor" aria-label="anchor" href="#arg-na-rm"></a></dt>
-<dd><p>logical; remove missing values.</p></dd>
+<dd><p>logical. Observations with a missing <code>x</code>, <code>y</code> or <code>area</code>
+cannot be drawn and are always omitted; with <code>na.rm = FALSE</code> (default)
+a warning reports how many. Missing colors are not missing data, <code>NA</code>
+draws transparent.</p></dd>
 
 
 <dt id="arg-stamp">stamp<a class="anchor" aria-label="anchor" href="#arg-stamp"></a></dt>
 <dd><p>controls the corner stamp. <code>.useTheme</code> (default)
 resolves to <code>getTheme()$stamp</code>. <code>TRUE</code>/<code>FALSE</code>/
 <code>NULL</code>, a string, or a named list for <code><a href="stamp.html">stamp()</a></code>.</p></dd>
-
-
-<dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>additional graphical parameters passed to <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par()</a></code>.</p></dd>
 
 
 <dt id="arg-formula">formula<a class="anchor" aria-label="anchor" href="#arg-formula"></a></dt>
@@ -163,30 +168,48 @@ resolves to <code>getTheme()$stamp</code>. <code>TRUE</code>/<code>FALSE</code>/
 
 
 <dt id="arg-subset">subset<a class="anchor" aria-label="anchor" href="#arg-subset"></a></dt>
-<dd><p>optional subset expression.</p></dd>
+<dd><p>optional subset expression, evaluated in <code>data</code>.</p></dd>
 
 
 <dt id="arg-na-action">na.action<a class="anchor" aria-label="anchor" href="#arg-na-action"></a></dt>
-<dd><p>function to handle missing values.</p></dd>
+<dd><p>function to handle missing values, defaults to
+<code><a href="https://rdrr.io/r/stats/na.fail.html" class="external-link">na.omit()</a></code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>Invisibly returns <code>NULL</code>.</p>
+    <p>Invisibly, a data frame with one row per drawn bubble and the
+columns <code>x</code>, <code>y</code>, <code>area</code>, <code>col</code>, <code>border</code>, and the radii <code>rx</code>, <code>ry</code> in
+user coordinates, sorted by decreasing area.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>The function supports both a default interface and a formula interface
 of the form <code>y ~ x | area</code>.</p>
-<p>Bubble sizes are interpreted as areas and internally converted to radii
-via \(r = \sqrt{area / \pi}\). Aspect ratio is corrected to ensure
-visually accurate circles.</p>
+<p>The bubble radii are scaled relative to the largest area: the largest
+bubble gets a radius of <code>0.35 * cex</code> inches, the others
+\(r = 0.35 \cdot cex \cdot (area / \max(area))^{0.4}\). The exponent
+0.4 (instead of 0.5 for strictly area-proportional circles) dampens the
+size differences, so that small bubbles remain visible. Radii are
+converted to user coordinates separately for both axes, so the bubbles
+are drawn as circles regardless of the aspect ratio.</p>
+<p>Bubbles are drawn in order of decreasing area, so small bubbles are not
+hidden behind large ones.</p>
 <p>Graphical elements such as grids are controlled via the unified plot
 design system using <code><a href="https://andrisignorell.github.io/bedrock/reference/callIf.html" class="external-link">bedrock::callIf()</a></code> and <code>.theme()</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="https://rdrr.io/r/graphics/symbols.html" class="external-link">symbols()</a></code></p></div>
+    <div class="dont-index"><p><code><a href="https://rdrr.io/r/graphics/symbols.html" class="external-link">symbols()</a></code></p>
+<p>Other plot.bivariate:
+<code><a href="plotAssoc.html">plotAssoc()</a></code>,
+<code><a href="plotBag.html">plotBag()</a></code>,
+<code><a href="plotCor.html">plotCor()</a></code>,
+<code><a href="plotDens2D.html">plotDens2D()</a></code>,
+<code><a href="plotHeatmap.html">plotHeatmap()</a></code>,
+<code><a href="plotHexbin.html">plotHexbin()</a></code>,
+<code><a href="plotMosaic.html">plotMosaic()</a></code>,
+<code><a href="plotXY.html">plotXY()</a></code></p></div>
     </div>
 
     <div class="section level2">
@@ -203,15 +226,14 @@ design system using <code><a href="https://andrisignorell.github.io/bedrock/refe
 <span class="r-in"><span><span class="fu">plotBubble</span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x</span> <span class="op">|</span> <span class="va">a</span>, data <span class="op">=</span> <span class="va">df</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plotBubble-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">US</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">state.x77</span>, State<span class="op">=</span><span class="va">state.name</span>, </span></span>
+<span class="r-in"><span><span class="va">US</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">state.x77</span>, State<span class="op">=</span><span class="va">state.name</span>,</span></span>
 <span class="r-in"><span>                   Region<span class="op">=</span><span class="va">state.region</span>, Abb<span class="op">=</span><span class="va">state.abb</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">plotBubble</span><span class="op">(</span><span class="va">Income</span> <span class="op">~</span> <span class="va">Population</span> <span class="op">|</span> <span class="va">Area</span> , </span></span>
-<span class="r-in"><span>           data<span class="op">=</span><span class="va">US</span>, </span></span>
+<span class="r-in"><span><span class="fu">plotBubble</span><span class="op">(</span><span class="va">Income</span> <span class="op">~</span> <span class="va">Population</span> <span class="op">|</span> <span class="va">Area</span> ,</span></span>
+<span class="r-in"><span>           data<span class="op">=</span><span class="va">US</span>,</span></span>
 <span class="r-in"><span>           grid<span class="op">=</span><span class="cn">TRUE</span>, col<span class="op">=</span><span class="fu"><a href="addOpacity.html">addOpacity</a></span><span class="op">(</span><span class="fu"><a href="pal.html">pal</a></span><span class="op">(</span><span class="st">"helsana"</span><span class="op">)</span><span class="op">[</span><span class="va">US</span><span class="op">$</span><span class="va">Region</span><span class="op">]</span><span class="op">)</span>, cex<span class="op">=</span><span class="fl">1.2</span> <span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span><span class="va">Income</span> <span class="op">~</span> <span class="va">Population</span>, <span class="va">US</span>, labels<span class="op">=</span><span class="va">US</span><span class="op">$</span><span class="va">Abb</span>, cex<span class="op">=</span><span class="fl">0.8</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plotBubble-3.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
