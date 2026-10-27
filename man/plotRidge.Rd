@@ -6,6 +6,8 @@
 \alias{plotRidge.formula}
 \title{Ridge Plot (Stacked Density Plot)}
 \usage{
+plotRidge(x, ...)
+
 \method{plotRidge}{default}(
   x,
   ...,
@@ -44,13 +46,14 @@
 groups.}
 
 \item{...}{further numeric vectors (unnamed), each forming a group, or
-graphical parameters passed to \code{par()}.}
+graphical parameters passed to \code{par()} (named). Unnamed vectors are
+only allowed when \code{x} is a single vector.}
 
 \item{main}{main title. \code{NULL} (default) draws none, unless the
 theme sets \code{autoTitle = TRUE} (see \link{theme}); the title is then
-derived from the input: the names of the data arguments, or the formula. \code{""}, \code{NA} or \code{FALSE} always
-suppress it and compact the top margin; any other string is used
-as given.}
+derived from the input: the names of the data arguments, or the
+formula. \code{""}, \code{NA} or \code{FALSE} always suppress it and compact the top
+margin; any other string is used as given.}
 
 \item{xlab, ylab}{axis labels. For the formula method, empty labels
 default to the response and the grouping variable.}
@@ -135,6 +138,23 @@ plotRidge(len ~ supp:dose, ToothGrowth, subset = len > 8,
 }
 \seealso{
 \code{\link[=plotDens]{plotDens()}}
+
+Other plot.univariate:
+\code{\link[=plotArea]{plotArea()}},
+\code{\link[=plotBar]{plotBar()}},
+\code{\link[=plotBox]{plotBox()}},
+\code{\link[=plotCatDist]{plotCatDist()}},
+\code{\link[=plotDens]{plotDens()}},
+\code{\link[=plotDensBox]{plotDensBox()}},
+\code{\link[=plotDot]{plotDot()}},
+\code{\link[=plotECDF]{plotECDF()}},
+\code{\link[=plotFreqDist]{plotFreqDist()}},
+\code{\link[=plotLines]{plotLines()}},
+\code{\link[=plotQQ]{plotQQ()}},
+\code{\link[=plotViolin]{plotViolin()}}
 }
 \concept{base-graphics}
+\concept{density}
+\concept{distribution-summary}
+\concept{plot.univariate}
 \concept{plotting}

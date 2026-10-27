@@ -6,6 +6,8 @@
 \alias{plotBubble.formula}
 \title{Bubble Plot}
 \usage{
+plotBubble(x, ...)
+
 \method{plotBubble}{default}(
   x,
   y,
@@ -46,9 +48,11 @@
 \arguments{
 \item{x}{numeric vector of x positions.}
 
+\item{...}{additional graphical parameters passed to \code{par()}.}
+
 \item{y}{numeric vector of y positions.}
 
-\item{area}{numeric vector controlling bubble sizes (interpreted as area).}
+\item{area}{non-negative numeric vector controlling the bubble sizes.}
 
 \item{main, xlab, ylab}{plot labels.}
 
@@ -60,40 +64,51 @@
 
 \item{border}{border color(s) of the bubbles.}
 
-\item{cex}{scaling factor applied to bubble areas.}
+\item{cex}{scaling factor applied to the bubble radii.}
 
 \item{grid}{logical, \code{NA}, or list controlling background grid.}
 
-\item{na.rm}{logical; remove missing values.}
+\item{na.rm}{logical. Observations with a missing \code{x}, \code{y} or \code{area}
+cannot be drawn and are always omitted; with \code{na.rm = FALSE} (default)
+a warning reports how many. Missing colors are not missing data, \code{NA}
+draws transparent.}
 
 \item{stamp}{controls the corner stamp. \code{.useTheme} (default)
 resolves to \code{getTheme()$stamp}. \code{TRUE}/\code{FALSE}/
 \code{NULL}, a string, or a named list for \code{\link[=stamp]{stamp()}}.}
 
-\item{...}{additional graphical parameters passed to \code{par()}.}
-
 \item{formula}{A formula of the form \code{y ~ x | area}.}
 
 \item{data}{optional data frame.}
 
-\item{subset}{optional subset expression.}
+\item{subset}{optional subset expression, evaluated in \code{data}.}
 
-\item{na.action}{function to handle missing values.}
+\item{na.action}{function to handle missing values, defaults to
+\code{\link[=na.omit]{na.omit()}}.}
 }
 \value{
-Invisibly returns \code{NULL}.
+Invisibly, a data frame with one row per drawn bubble and the
+columns \code{x}, \code{y}, \code{area}, \code{col}, \code{border}, and the radii \code{rx}, \code{ry} in
+user coordinates, sorted by decreasing area.
 }
 \description{
 Draws a bubble plot where the position is given by \code{x} and \code{y},
-and the size of each bubble is proportional to \code{area}.
+and the size of each bubble increases with \code{area}.
 }
 \details{
 The function supports both a default interface and a formula interface
 of the form \code{y ~ x | area}.
 
-Bubble sizes are interpreted as areas and internally converted to radii
-via \eqn{r = \sqrt{area / \pi}}. Aspect ratio is corrected to ensure
-visually accurate circles.
+The bubble radii are scaled relative to the largest area: the largest
+bubble gets a radius of \code{0.35 * cex} inches, the others
+\eqn{r = 0.35 \cdot cex \cdot (area / \max(area))^{0.4}}. The exponent
+0.4 (instead of 0.5 for strictly area-proportional circles) dampens the
+size differences, so that small bubbles remain visible. Radii are
+converted to user coordinates separately for both axes, so the bubbles
+are drawn as circles regardless of the aspect ratio.
+
+Bubbles are drawn in order of decreasing area, so small bubbles are not
+hidden behind large ones.
 
 Graphical elements such as grids are controlled via the unified plot
 design system using \code{bedrock::callIf()} and \code{.theme()}.
@@ -109,18 +124,30 @@ plotBubble(x, y, a)
 df <- data.frame(x = x, y = y, a = a)
 plotBubble(y ~ x | a, data = df)
 
-US <- data.frame(state.x77, State=state.name, 
+US <- data.frame(state.x77, State=state.name,
                    Region=state.region, Abb=state.abb)
-plotBubble(Income ~ Population | Area , 
-           data=US, 
+plotBubble(Income ~ Population | Area ,
+           data=US,
            grid=TRUE, col=addOpacity(pal("helsana")[US$Region]), cex=1.2 )
 
 text(Income ~ Population, US, labels=US$Abb, cex=0.8)
 
-
 }
 \seealso{
 \code{\link[=symbols]{symbols()}}
+
+Other plot.bivariate:
+\code{\link[=plotAssoc]{plotAssoc()}},
+\code{\link[=plotBag]{plotBag()}},
+\code{\link[=plotCor]{plotCor()}},
+\code{\link[=plotDens2D]{plotDens2D()}},
+\code{\link[=plotHeatmap]{plotHeatmap()}},
+\code{\link[=plotHexbin]{plotHexbin()}},
+\code{\link[=plotMosaic]{plotMosaic()}},
+\code{\link[=plotXY]{plotXY()}}
 }
 \concept{base-graphics}
+\concept{bivariate}
+\concept{plot.bivariate}
 \concept{plotting}
+\concept{scatterplot}

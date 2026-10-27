@@ -149,15 +149,15 @@ test_that("result structure is complete and consistently typed", {
 
 test_that("degenerate inputs are handled gracefully", {
   expect_error(bagplot_compute_cpp(cbind(1, 1)), "at least 3")
-  # collinear and heavily tied data must not crash (dither breaks ties)
+  # collinear and heavily tied data must not crash (ties are handled exactly)
   expect_silent(r1 <- bagplot_compute_cpp(cbind(1:10, 2 * (1:10))))
   expect_silent(r2 <- bagplot_compute_cpp(cbind(rep(1:2, 5), rep(1:2, 5))))
   expect_silent(r3 <- bagplot_compute_cpp(cbind(c(0, 1, 0.5), c(0, 0, 1)),
                                           dither = FALSE))
-  # without dither, collinear data yields empty polygons instead of nonsense
+  # collinear data yields empty polygons instead of degenerate segments
   r4 <- bagplot_compute_cpp(cbind(1:10, 2 * (1:10)), dither = FALSE)
-  expect_identical(nrow(r4$bag), 0L)
-  expect_identical(nrow(r4$loop), 0L)
+  for (el in c("bag", "fence", "loop"))
+    expect_identical(nrow(r4[[el]]), 0L, info = el)
 })
 
 

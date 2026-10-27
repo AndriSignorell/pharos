@@ -58,7 +58,8 @@
 #'   }
 #'
 #' @param means controls drawing of group means and an overall mean reference
-#'   line. Can be:
+#'   line. The reference line is drawn only for more than one group; with
+#'   a single box it would merely repeat its mean. Can be:
 #'   \itemize{
 #'     \item `TRUE`: draw with default settings
 #'     \item `FALSE`, `NULL`, or `NA`: suppress
@@ -290,7 +291,9 @@ plotBox.default <- function(
                       x = seq(ng),
                       y = if (is.null(groups)) mean(x, na.rm = TRUE)
                       else tapply(x, groups, mean, na.rm = TRUE),
-                      ytot = mean(x, na.rm = TRUE),
+                      # a single box needs no reference line: it would
+                      # only repeat the box's own mean
+                      ytot = if (ng > 1L) mean(x, na.rm = TRUE),
                       horiz = horiz,
                       col = "darkblue",
                       pch = 4,
@@ -419,13 +422,17 @@ plotBox.formula <- function(
 }
 
 
-.meansBx <- function(x, y, ytot, horiz = FALSE, col, pch, cex, lcol, lty, lwd){
+.meansBx <- function(x, y, ytot = NULL, horiz = FALSE, col, pch, cex,
+                     lcol, lty, lwd){
   
+  # ytot = NULL: no reference line for the overall mean
   if (horiz) {
-    abline(v = ytot, col = lcol, lty = lty, lwd = lwd)
+    if (!is.null(ytot))
+      abline(v = ytot, col = lcol, lty = lty, lwd = lwd)
     points(x = y, y = x, pch = pch, col = col, cex = cex)
   } else {
-    abline(h = ytot, col = lcol, lty = lty, lwd = lwd)
+    if (!is.null(ytot))
+      abline(h = ytot, col = lcol, lty = lty, lwd = lwd)
     points(x = x, y = y, pch = pch, col = col, cex = cex)
   }
   

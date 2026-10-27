@@ -201,6 +201,7 @@ mtext(text = rev(rownames(m)), side = 4, at=1:ncol(m), las=1, line = -5, cex=0.8
 Other plot.bivariate:
 \code{\link[=plotAssoc]{plotAssoc()}},
 \code{\link[=plotBag]{plotBag()}},
+\code{\link[=plotBubble]{plotBubble()}},
 \code{\link[=plotDens2D]{plotDens2D()}},
 \code{\link[=plotHeatmap]{plotHeatmap()}},
 \code{\link[=plotHexbin]{plotHexbin()}},

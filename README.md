@@ -44,25 +44,27 @@ remotes::install_github("AndriSignorell/pharos")
 -   `plotFreqDist()`, `plotDens()`, `plotECDF()`, `plotProbDist()`
 -   `plotBox()`, `plotViolin()`, `plotRidge()`, `plotDensBox()`
 -   `plotDot()`, `plotBar()`, `plotBag()`, `plotQQ()`
+-   `plotLines()`, `plotTimeSeries()`, `plotFun()`
 
 ### 🔹 Bivariate and Multivariate Plots
 
 -   `plotXY()`, `plotBubble()`, `plotDens2D()`, `plotHexbin()`
 -   `plotCor()`, `plotAssoc()`, `plotMosaic()`, `plotHeatmap()`
--   `plotTernary()`, `plotPolar()`, `plotCirc()`, `plotWeb()`,
-    `plotTreemap()`
+-   `plotTernary()`, `plotPolar()`, `plotCirc()`, `plotSankey()`,
+    `plotWeb()`, `plotTreemap()`
 
 ### 🔹 Model and Diagnostic Displays
 
 -   `plotLift()`, `plotPropCI()`, `plotMiss()`, `plotCatDist()`
--   `plot.BlandAltman()`, `plot.Lc()`, `plotBinaryTree()`
--   `lines.lm()`, `lines.loess()`, `splineCI()`
+-   `plot()` methods for Bland-Altman and Lorenz curve objects,
+    `plotBinaryTree()`
+-   `lines()` methods for `lm` and `loess` fits
 
 ### 🔹 Layout and Faceting
 
 -   `plotFacet()` — panel layouts with a user-supplied panel function
 -   `canvas()`, `plotArea()`, `mar()`, `abcCoords()`, `axisBreak()`,
-    `axTicks()`, `axisFmt()`
+    `axTicksPosixct()`, `axisFmt()`
 -   `spreadOut()`, `lineToUser()`, `isValidPlotRegion()`
 
 ### 🔹 Annotation
@@ -88,14 +90,14 @@ remotes::install_github("AndriSignorell/pharos")
 
 ### 🔹 Formatting and Strings
 
--   `fm()`, `fmCI()`, `unit()`, `ftable.list()`
+-   `fm()`, `fmCI()`, `unit()`, `ftable()` method for lists
 -   `strAbbr()`, `strAlign()`, `strCap()`, `strChop()`, `strPad()`,
     `strTrunc()`, `strRev()`, `strDist()`, `strSpell()`, `strExtract()`
 
 ### 🔹 HTML Output
 
--   `asHtml()`, `toHtmlTable()`, `escapeHtml()`, `htmlNotation()`,
-    `htmlSubscript()`, `asImg()`, `asFileLink()`, `embedFile()`,
+-   `asHtml()`, `toHtmlTable()`, `escapeHtml()`, `htmlHat()`,
+    `htmlBar()`, `%_%`, `asImg()`, `asFileLink()`, `embedFile()`,
     `preview()`
 
 ## 🚀 Design Principles
@@ -124,9 +126,18 @@ text(xy$xy$x, xy$xy$y, "annotation", adj = xy$adj)
 # colour manipulation
 fade(pal("dark"), 0.4)
 
-# faceting with a panel function
-plotFacet(split(iris$Sepal.Length, iris$Species),
-          dim = c(1, 3), FUN = plotDens)
+# faceting: one panel per sample, drawn by a panel function
+samples <- lapply(split(iris, iris$Species),
+                  function(d) list(x = d$Sepal.Length, y = d$Petal.Length))
+
+plotFacet(samples, dim = c(1, 3),
+          FUN  = function(x, y, col, pch, ...) points(x, y, col = col, pch = pch),
+          xlab = "Sepal length", ylab = "Petal length")
+
+# flows between stages: one row per flow
+plotSankey(data.frame(from  = c("A", "A", "B", "C", "D"),
+                      to    = c("C", "D", "D", "E", "F"),
+                      value = c(5, 3, 4, 5, 7)))
 ```
 
 ## 🧱 The Suite

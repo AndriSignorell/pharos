@@ -146,6 +146,7 @@ Other plot.univariate:
 \code{\link[=plotECDF]{plotECDF()}},
 \code{\link[=plotFreqDist]{plotFreqDist()}},
 \code{\link[=plotLines]{plotLines()}},
+\code{\link[=plotRidge]{plotRidge()}},
 \code{\link[=plotViolin]{plotViolin()}}
 }
 \concept{distribution-summary}

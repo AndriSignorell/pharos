@@ -170,6 +170,7 @@ Other plot.univariate:
 \code{\link[=plotFreqDist]{plotFreqDist()}},
 \code{\link[=plotLines]{plotLines()}},
 \code{\link[=plotQQ]{plotQQ()}},
+\code{\link[=plotRidge]{plotRidge()}},
 \code{\link[=plotViolin]{plotViolin()}}
 }
 \concept{boxplot}

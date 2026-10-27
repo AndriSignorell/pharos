@@ -92,7 +92,8 @@ lines only
 }}
 
 \item{means}{controls drawing of group means and an overall mean reference
-line. Can be:
+line. The reference line is drawn only for more than one group; with
+a single box it would merely repeat its mean. Can be:
 \itemize{
 \item \code{TRUE}: draw with default settings
 \item \code{FALSE}, \code{NULL}, or \code{NA}: suppress
@@ -174,6 +175,7 @@ Other plot.univariate:
 \code{\link[=plotFreqDist]{plotFreqDist()}},
 \code{\link[=plotLines]{plotLines()}},
 \code{\link[=plotQQ]{plotQQ()}},
+\code{\link[=plotRidge]{plotRidge()}},
 \code{\link[=plotViolin]{plotViolin()}}
 }
 \concept{boxplot}

@@ -131,6 +131,7 @@ Friendly, M. (1992). Graphical methods for categorical data.
 
 Other plot.bivariate:
 \code{\link[=plotBag]{plotBag()}},
+\code{\link[=plotBubble]{plotBubble()}},
 \code{\link[=plotCor]{plotCor()}},
 \code{\link[=plotDens2D]{plotDens2D()}},
 \code{\link[=plotHeatmap]{plotHeatmap()}},

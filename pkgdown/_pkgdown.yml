@@ -196,6 +196,7 @@ reference:
   - ftable.list
   # constants -- Shared package constants
   - constants
+  - exportPlot
 
 - title: Strings
   desc: >

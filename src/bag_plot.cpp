@@ -1,5 +1,4 @@
 
-
 // bagplot.cpp
 //
 // Rcpp implementation of the bagplot (bivariate boxplot).
@@ -25,6 +24,15 @@
 // Halfspace depth is affine invariant, so this changes nothing but the
 // meaning of the absolute tolerance 'eps', which becomes relative to the
 // spread of the data.
+//
+// Floating-point robustness: all orientation tests use the tolerance 'eps'
+// instead of an exact comparison with 0. Compilers may contract a*b - c*d
+// into a fused multiply-add (clang does so by default on arm64), so the
+// cross product of exactly collinear points is not reliably 0 but may be
+// +-1 ulp. An exact test then kept collinear points as hull vertices and
+// produced degenerate "polygons" (a segment) on some platforms only.
+// Every polygon is finally checked for being degenerate (fewer than 3
+// vertices or zero area); degenerate polygons are returned empty.
 //
 // Entry point: bagplot_compute_cpp(xy, factor, eps, dither)
 
@@ -173,11 +181,14 @@ static std::vector<int> compute_all_depths(int n,
 
 // ------------------------------------------------------------------
 //  convex_hull: Andrew's monotone chain algorithm.
-//  Input:  pts = list of (x,y) pairs (indices into x/y arrays).
-//  Output: hull_idx = indices (into pts) of hull vertices, CCW order.
+//  Input:  px, py = point coordinates (standardized).
+//  Output: indices (into px/py) of hull vertices, CCW order.
+//  Points with |cross| <= tol (collinear up to rounding) are dropped,
+//  so collinear input reliably yields at most 2 vertices.
 // ------------------------------------------------------------------
 static std::vector<int> convex_hull(const std::vector<double>& px,
-                                    const std::vector<double>& py) {
+                                    const std::vector<double>& py,
+                                    double tol) {
   int n = (int)px.size();
   if (n == 0) return {};
   if (n == 1) return {0};
@@ -197,19 +208,34 @@ static std::vector<int> convex_hull(const std::vector<double>& px,
   std::vector<int> hull;
   // Lower hull
   for (int i = 0; i < n; ++i) {
-    while (hull.size() >= 2 && cross(hull[hull.size()-2], hull[hull.size()-1], idx[i]) <= 0)
+    while (hull.size() >= 2 && cross(hull[hull.size()-2], hull[hull.size()-1], idx[i]) <= tol)
       hull.pop_back();
     hull.push_back(idx[i]);
   }
   // Upper hull
   int lower_size = (int)hull.size() + 1;
   for (int i = n-2; i >= 0; --i) {
-    while ((int)hull.size() >= lower_size && cross(hull[hull.size()-2], hull[hull.size()-1], idx[i]) <= 0)
+    while ((int)hull.size() >= lower_size && cross(hull[hull.size()-2], hull[hull.size()-1], idx[i]) <= tol)
       hull.pop_back();
     hull.push_back(idx[i]);
   }
   hull.pop_back();  // last point == first
   return hull;
+}
+
+// ------------------------------------------------------------------
+//  is_degenerate: a polygon with fewer than 3 vertices or (near-)zero
+//  area (shoelace formula, standardized coordinates) is no polygon.
+// ------------------------------------------------------------------
+static bool is_degenerate(const std::vector<double>& vx,
+                          const std::vector<double>& vy,
+                          double tol) {
+  int m = (int)vx.size();
+  if (m < 3) return true;
+  double a = 0.0;
+  for (int i = 0, j = m - 1; i < m; j = i++)
+    a += vx[j] * vy[i] - vx[i] * vy[j];
+  return std::abs(0.5 * a) <= tol;
 }
 
 // ------------------------------------------------------------------
@@ -321,6 +347,9 @@ List bagplot_compute_cpp(NumericMatrix xy,
   std::vector<int> depths = compute_all_depths(n, x, y, eps);
   int max_d = *std::max_element(depths.begin(), depths.end());
 
+  NumericVector dep_r(n);
+  for (int i = 0; i < n; ++i) dep_r[i] = depths[i];
+
   // ---- 2. Tukey median: mean of all points with maximal depth ----
   // Approximation of the depth median (exact: HALFMED). The mean of the
   // deepest points lies inside every depth-region hull, so it is a valid
@@ -332,6 +361,32 @@ List bagplot_compute_cpp(NumericMatrix xy,
       if (depths[i] == max_d) { med_x += x[i]; med_y += y[i]; cnt++; }
     med_x /= cnt; med_y /= cnt;
   }
+
+  NumericVector center_r = NumericVector::create(mx + med_x * sdx,
+                                                 my + med_y * sdy);
+
+  // ---- Build result matrices ----
+  auto asMat = [](const std::vector<double>& ux, const std::vector<double>& uy) {
+    int m = (int)ux.size();
+    NumericMatrix out(m, 2);
+    for (int i = 0; i < m; ++i) { out(i,0) = ux[i]; out(i,1) = uy[i]; }
+    colnames(out) = CharacterVector::create("x", "y");
+    return out;
+  };
+
+  // Result for degenerate data (collinear): no regions, no outliers
+  auto emptyResult = [&](int depth) {
+    std::vector<double> none;
+    return List::create(
+      Named("center")   = center_r,
+      Named("depth")    = depth,
+      Named("bag")      = asMat(none, none),
+      Named("fence")    = asMat(none, none),
+      Named("loop")     = asMat(none, none),
+      Named("outliers") = asMat(none, none),
+      Named("depths")   = dep_r
+    );
+  };
 
   // ---- 3. Bag: interpolate depth-region hulls to floor(n/2) points ----
   // counts[k] = #D_k = number of points with depth >= k (decreasing in k)
@@ -357,10 +412,10 @@ List bagplot_compute_cpp(NumericMatrix xy,
     if (depths[i] >= k0) { out_x_.push_back(x[i]); out_y_.push_back(y[i]); }
   }
 
-  // hull polygons of the inner (D_{k1}) and outer (D_{k0}) regions
-  auto hullPoly = [](const std::vector<double>& hx, const std::vector<double>& hy,
-                     std::vector<double>& vx, std::vector<double>& vy) {
-    std::vector<int> h = convex_hull(hx, hy);
+  // hull polygon of a point set (standardized coordinates)
+  auto hullPoly = [eps](const std::vector<double>& hx, const std::vector<double>& hy,
+                        std::vector<double>& vx, std::vector<double>& vy) {
+    std::vector<int> h = convex_hull(hx, hy, eps);
     vx.clear(); vy.clear();
     for (int id : h) { vx.push_back(hx[id]); vy.push_back(hy[id]); }
   };
@@ -369,21 +424,7 @@ List bagplot_compute_cpp(NumericMatrix xy,
   hullPoly(out_x_, out_y_, ovx, ovy);
 
   // Degenerate data (collinear): outer hull not a polygon -> no regions
-  if ((int)ovx.size() < 3) {
-    NumericMatrix e(0, 2);
-    colnames(e) = CharacterVector::create("x", "y");
-    NumericVector dep_r(n);
-    for (int i = 0; i < n; ++i) dep_r[i] = depths[i];
-    return List::create(
-      Named("center")   = NumericVector::create(mx + med_x * sdx, my + med_y * sdy),
-      Named("depth")    = k1,
-      Named("bag")      = e,
-      Named("fence")    = clone(e),
-      Named("loop")     = clone(e),
-      Named("outliers") = clone(e),
-      Named("depths")   = dep_r
-    );
-  }
+  if (is_degenerate(ovx, ovy, eps)) return emptyResult(k1);
 
   // interpolation directions: all hull vertex angles around the Tukey median
   std::vector<double> angs;
@@ -400,7 +441,7 @@ List bagplot_compute_cpp(NumericMatrix xy,
 
   // radial distances to both hull boundaries per direction
   int na = (int)angs.size();
-  bool inner_poly = (int)ivx.size() >= 3;
+  bool inner_poly = !is_degenerate(ivx, ivy, eps);
   std::vector<double> ca(na), sa(na), r0(na), r1(na);
   for (int i = 0; i < na; ++i) {
     ca[i] = std::cos(angs[i]); sa[i] = std::sin(angs[i]);
@@ -446,6 +487,9 @@ List bagplot_compute_cpp(NumericMatrix xy,
     if (tx.size() >= 3) { bag_x = tx; bag_y = ty; }
   }
 
+  // a degenerate bag defines no fence, hence no classification
+  if (is_degenerate(bag_x, bag_y, eps)) return emptyResult(k1);
+
   int nb = (int)bag_x.size();
 
   // ---- 4. Fence: inflate bag around the Tukey median (never drawn) ----
@@ -457,29 +501,22 @@ List bagplot_compute_cpp(NumericMatrix xy,
 
   // ---- 5. Outliers: points outside the fence ----
   // ---- 6. Loop: convex hull of the points inside the fence ----
+  // The loop is built on the standardized coordinates as well, so the hull
+  // tolerance has the same meaning as for the bag.
   std::vector<int> out_idx;
   std::vector<double> keep_x, keep_y;
   for (int i = 0; i < n; ++i) {
     if (point_in_polygon(x[i], y[i], fence_x, fence_y, eps)) {
-      keep_x.push_back(xy(i,0)); keep_y.push_back(xy(i,1));
+      keep_x.push_back(x[i]); keep_y.push_back(y[i]);
     } else {
       out_idx.push_back(i);
     }
   }
   std::vector<double> loop_x, loop_y;
   hullPoly(keep_x, keep_y, loop_x, loop_y);
+  if (is_degenerate(loop_x, loop_y, eps)) { loop_x.clear(); loop_y.clear(); }
 
-  // ---- Build result matrices ----
-  auto asMat = [](const std::vector<double>& ux, const std::vector<double>& uy) {
-    int m = (int)ux.size();
-    NumericMatrix out(m, 2);
-    for (int i = 0; i < m; ++i) { out(i,0) = ux[i]; out(i,1) = uy[i]; }
-    colnames(out) = CharacterVector::create("x", "y");
-    return out;
-  };
-
-  // back to the original scale (the loop and the outliers are built from
-  // the original values already)
+  // back to the original scale (the outliers are taken from xy directly)
   auto unscale = [&](std::vector<double>& ux, std::vector<double>& uy) {
     for (size_t i = 0; i < ux.size(); ++i) {
       ux[i] = mx + ux[i] * sdx;
@@ -488,6 +525,7 @@ List bagplot_compute_cpp(NumericMatrix xy,
   };
   unscale(bag_x, bag_y);
   unscale(fence_x, fence_y);
+  unscale(loop_x, loop_y);
 
   int no = (int)out_idx.size();
   NumericMatrix out_mat(no, 2);
@@ -497,11 +535,8 @@ List bagplot_compute_cpp(NumericMatrix xy,
   }
   colnames(out_mat) = CharacterVector::create("x", "y");
 
-  NumericVector dep_r(n);
-  for (int i = 0; i < n; ++i) dep_r[i] = depths[i];
-
   return List::create(
-    Named("center")   = NumericVector::create(mx + med_x * sdx, my + med_y * sdy),
+    Named("center")   = center_r,
     Named("depth")    = k1,
     Named("bag")      = asMat(bag_x, bag_y),
     Named("fence")    = asMat(fence_x, fence_y),

@@ -193,6 +193,7 @@ plotXY(temperature ~ delivery_min, bedrock::Pizza,
 Other plot.bivariate:
 \code{\link[=plotAssoc]{plotAssoc()}},
 \code{\link[=plotBag]{plotBag()}},
+\code{\link[=plotBubble]{plotBubble()}},
 \code{\link[=plotCor]{plotCor()}},
 \code{\link[=plotDens2D]{plotDens2D()}},
 \code{\link[=plotHeatmap]{plotHeatmap()}},

@@ -100,6 +100,7 @@ plotDens2D(x, y, type = "image")
 Other plot.bivariate:
 \code{\link[=plotAssoc]{plotAssoc()}},
 \code{\link[=plotBag]{plotBag()}},
+\code{\link[=plotBubble]{plotBubble()}},
 \code{\link[=plotCor]{plotCor()}},
 \code{\link[=plotHeatmap]{plotHeatmap()}},
 \code{\link[=plotHexbin]{plotHexbin()}},

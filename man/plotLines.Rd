@@ -119,6 +119,7 @@ Other plot.univariate:
 \code{\link[=plotECDF]{plotECDF()}},
 \code{\link[=plotFreqDist]{plotFreqDist()}},
 \code{\link[=plotQQ]{plotQQ()}},
+\code{\link[=plotRidge]{plotRidge()}},
 \code{\link[=plotViolin]{plotViolin()}}
 }
 \concept{line-chart}

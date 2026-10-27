@@ -1,6 +1,6 @@
 Package: pharos
 Title: Descriptive Statistics Graphics and Utilities
-Version: 0.1.1
+Version: 0.1.3
 Authors@R: c(
   person(given="Andri", family="Signorell", 
          email = "andri@signorell.net", 
@@ -49,12 +49,12 @@ License: GPL (>= 2)
 Encoding: UTF-8
 LinkingTo: Rcpp
 Roxygen: list(markdown = TRUE)
-Imports: Rcpp, bedrock (>= 0.1.18), MASS, cli, withr, stringi, methods, base64enc
+Imports: Rcpp, bedrock (>= 0.1.18), MASS, cli, withr, stringi, methods, base64enc, grid
 Suggests:
-    testthat (>= 3.0.0), R.rsp, hexbin, prettyunits
+    testthat (>= 3.0.0), R.rsp, hexbin, prettyunits, pdftools
 Config/testthat/edition: 3
 VignetteBuilder: R.rsp
 URL: https://andrisignorell.github.io/pharos/,
             https://github.com/AndriSignorell/pharos/
 BugReports: https://github.com/AndriSignorell/pharos/issues
-Config/roxygen2/version: 8.1.0
+Config/roxygen2/version: 8.1.1

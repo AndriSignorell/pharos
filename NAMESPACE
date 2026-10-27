@@ -107,6 +107,7 @@ export(ellipse)
 export(embedFile)
 export(errBars)
 export(escapeHtml)
+export(exportPlot)
 export(fade)
 export(findCol)
 export(fm)
@@ -223,6 +224,7 @@ importFrom(bedrock,
   appendX,
   binaryTree,
   callIf,
+  checkFlag,
   coalesceX,
   combPairs,
   decToHex,
@@ -253,14 +255,19 @@ importFrom(grDevices,
   colors,
   convertColor,
   dev.cur,
+  dev.list,
   dev.off,
+  dev.set,
   dev.size,
   gray.colors,
   heat.colors,
+  pdf,
   png,
   rainbow,
   rgb,
   rgb2hsv,
+  svg,
+  tiff,
   xy.coords
 )
 importFrom(graphics,
@@ -305,6 +312,10 @@ importFrom(graphics,
   strwidth,
   text,
   title
+)
+importFrom(grid,
+  grid.draw,
+  grid.newpage
 )
 importFrom(stats,
   acf,
