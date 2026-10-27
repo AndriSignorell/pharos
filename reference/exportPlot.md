@@ -149,7 +149,7 @@ f <- plot(1:10, main = "Demo") |>
   exportPlot(file.path(tempdir(), "demo"), type = c("png", "pdf"),
              width = 4, create = TRUE, screen = FALSE)
 f
-#> [1] "/tmp/RtmpUkLOXn/demo.png" "/tmp/RtmpUkLOXn/demo.pdf"
+#> [1] "/tmp/RtmppJmZid/demo.png" "/tmp/RtmppJmZid/demo.pdf"
 file.exists(f)
 #> [1] TRUE TRUE
 unlink(f)
