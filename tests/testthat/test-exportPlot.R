@@ -1,35 +1,19 @@
-# Close only devices opened by the current test and restore the initial one.
-.localExportDevices <- function(envir = parent.frame()) {
-  before <- dev.list()
-  current <- dev.cur()
-  withr::defer({
-    for (id in setdiff(dev.list(), before)) {
-      if (id %in% dev.list())
-        dev.off(id)
-    }
-    if (current > 1L && current %in% dev.list())
-      dev.set(current)
-  }, envir = envir)
-  invisible(before)
-}
-
 test_that("without create, nothing is written and the plot is drawn", {
-  .localExportDevices()
   pdf(NULL)
+  on.exit(dev.off())
 
-  base <- tempfile("xp-none-")
   n <- 0
   f <- exportPlot({ n <- n + 1; plot(1:3) },
-                  base, create = FALSE)
+                  file.path(tempdir(), "xp-none"), create = FALSE)
 
   expect_identical(f, character(0))
   expect_equal(n, 1)
-  expect_false(file.exists(paste0(base, ".png")))
+  expect_false(file.exists(file.path(tempdir(), "xp-none.png")))
 })
 
 test_that("files are written per type, extension is stripped", {
-  base <- tempfile("xp-types-")
-  withr::defer(unlink(paste0(base, c(".png", ".tif", ".pdf"))))
+  base <- file.path(tempdir(), "xp-types")
+  on.exit(unlink(paste0(base, c(".png", ".tif", ".pdf"))))
 
   f <- exportPlot(plot(1:3), paste0(base, ".png"),
                   type = c("png", "tif", "pdf"),
@@ -41,8 +25,8 @@ test_that("files are written per type, extension is stripped", {
 })
 
 test_that("the option switches file creation", {
-  base <- tempfile("xp-opt-")
-  withr::defer(unlink(paste0(base, ".png")))
+  base <- file.path(tempdir(), "xp-opt")
+  on.exit(unlink(paste0(base, ".png")))
 
   withr::local_options(pharos.exportPlot = TRUE)
   f <- exportPlot(plot(1:3), base, screen = FALSE)
@@ -51,8 +35,8 @@ test_that("the option switches file creation", {
 })
 
 test_that("works with the native pipe", {
-  base <- tempfile("xp-pipe-")
-  withr::defer(unlink(paste0(base, ".pdf")))
+  base <- file.path(tempdir(), "xp-pipe")
+  on.exit(unlink(paste0(base, ".pdf")))
 
   f <- plot(1:3) |>
     exportPlot(base, type = "pdf", create = TRUE, screen = FALSE)
@@ -61,12 +45,12 @@ test_that("works with the native pipe", {
 })
 
 test_that("every device sees the same random numbers", {
-  .localExportDevices()
   pdf(NULL)
-  base <- tempfile("xp-rng-")
-  withr::defer(unlink(paste0(base, c(".png", ".pdf"))))
+  on.exit(dev.off())
+  base <- file.path(tempdir(), "xp-rng")
+  on.exit(unlink(paste0(base, c(".png", ".pdf"))), add = TRUE)
 
-  withr::local_seed(1)
+  set.seed(1)
   vals <- numeric(0)
   exportPlot({ vals <- c(vals, runif(1)); plot(1) }, base,
              type = c("png", "pdf"), create = TRUE, screen = TRUE)
@@ -83,15 +67,15 @@ test_that("every device sees the same random numbers", {
 })
 
 test_that("the current device is restored, also on error", {
-  .localExportDevices()
   pdf(NULL)
   pdf(NULL)
+  on.exit(graphics.off())
   dev.set(dev.prev())
   cur  <- dev.cur()
   devs <- dev.list()
 
-  base <- tempfile("xp-dev-")
-  withr::defer(unlink(paste0(base, c(".png", ".pdf"))))
+  base <- file.path(tempdir(), "xp-dev")
+  on.exit(unlink(paste0(base, c(".png", ".pdf"))), add = TRUE)
 
   exportPlot(plot(1:3), base, type = c("png", "pdf"),
              create = TRUE, screen = FALSE)
@@ -107,12 +91,12 @@ test_that("the current device is restored, also on error", {
 })
 
 test_that("the export device is closed by number if expr opens another one", {
-  before <- .localExportDevices()
   pdf(NULL)
+  on.exit(graphics.off())
   cur <- dev.cur()
 
-  base <- tempfile("xp-newdev-")
-  withr::defer(unlink(paste0(base, ".png")))
+  base <- file.path(tempdir(), "xp-newdev")
+  on.exit(unlink(paste0(base, ".png")), add = TRUE)
 
   # expr opens a device and leaves it current
   f <- exportPlot({ plot(1:3); pdf(NULL) }, base, type = "png",
@@ -121,16 +105,16 @@ test_that("the export device is closed by number if expr opens another one", {
   expect_true(file.size(f) > 0)
   expect_identical(dev.cur(), cur)
   # the device opened by expr survives, the export device is gone
-  expect_length(setdiff(dev.list(), before), 2L)
+  expect_length(dev.list(), 2L)
 })
 
 test_that("a previous device closed by expr is not reactivated", {
-  .localExportDevices()
   pdf(NULL)
+  on.exit(graphics.off())
   p <- dev.cur()
 
-  base <- tempfile("xp-closed-")
-  withr::defer(unlink(paste0(base, ".png")))
+  base <- file.path(tempdir(), "xp-closed")
+  on.exit(unlink(paste0(base, ".png")), add = TRUE)
 
   expect_no_error(
     exportPlot({ plot(1:3); dev.off(p) }, base, type = "png",
@@ -140,25 +124,13 @@ test_that("a previous device closed by expr is not reactivated", {
 
 test_that("a grob is drawn, not printed", {
   drawn <- 0
-  # Restore the method table, including any pre-existing registration.
-  methods <- get(".__S3MethodsTable__.", envir = asNamespace("grid"))
-  key <- "drawDetails.xpRecGrob"
-  hadMethod <- exists(key, envir = methods, inherits = FALSE)
-  oldMethod <- if (hadMethod) get(key, envir = methods, inherits = FALSE)
-  withr::defer({
-    if (hadMethod) {
-      assign(key, oldMethod, envir = methods)
-    } else if (exists(key, envir = methods, inherits = FALSE)) {
-      rm(list = key, envir = methods)
-    }
-  })
   registerS3method("drawDetails", "xpRecGrob",
                    function(x, recording) drawn <<- drawn + 1,
                    envir = asNamespace("grid"))
   g <- grid::grob(cl = "xpRecGrob")
 
-  base <- tempfile("xp-grob-")
-  withr::defer(unlink(paste0(base, ".png")))
+  base <- file.path(tempdir(), "xp-grob")
+  on.exit(unlink(paste0(base, ".png")))
 
   f <- exportPlot(g, base, type = "png", create = TRUE, screen = FALSE)
 
@@ -178,9 +150,8 @@ test_that("a grob is drawn, not printed", {
 })
 
 test_that("an object drawn by the call yields one PDF page", {
-  skip_if_not_installed("pdftools")
-  base <- tempfile("xp-pages-")
-  withr::defer(unlink(paste0(base, ".pdf")))
+  base <- file.path(tempdir(), "xp-pages")
+  on.exit(unlink(paste0(base, ".pdf")))
 
   g <- grid::rectGrob()
   drawAndReturn <- function(g) {
@@ -191,13 +162,46 @@ test_that("an object drawn by the call yields one PDF page", {
   f <- exportPlot(drawAndReturn(g), base, type = "pdf",
                   create = TRUE, screen = FALSE)
 
-  expect_equal(pdftools::pdf_info(f)$pages, 1L)
+  # count page objects in the uncompressed PDF structure
+  txt <- readLines(f, warn = FALSE, encoding = "latin1")
+  expect_equal(sum(grepl("/Type /Page\\b", txt, useBytes = TRUE)), 1L)
 })
 
-test_that("svg is written where cairo is available", {
-  skip_if_not(capabilities("cairo"))
-  base <- tempfile("xp-svg-")
-  withr::defer(unlink(paste0(base, ".svg")))
+test_that("a device that fails to open is an error, the caller's is kept", {
+  pdf(NULL)
+  on.exit(graphics.off())
+  cur  <- dev.cur()
+  devs <- dev.list()
+
+  # the svg() failure on macOS: a warning, but no device
+  failing <- function() warning("unable to load the cairo module")
+  expect_error(.openDevice(failing, "svg device for 'x.svg'"),
+               "could not open a svg device.*cairo module")
+  expect_identical(dev.cur(), cur)
+  expect_identical(dev.list(), devs)
+
+  # a device that opens is returned by number, its warnings passed on
+  noisy <- function() { warning("just a note"); pdf(NULL) }
+  expect_warning(d <- .openDevice(noisy, "pdf device"), "just a note")
+  expect_identical(unname(d), unname(dev.cur()))
+  dev.off(d)
+})
+
+# capabilities("cairo") is TRUE on macOS without XQuartz, but svg() cannot
+# open a device there; probe the device itself
+svgUsable <- function() {
+  before <- dev.list()
+  suppressWarnings(try(svg(tempfile(fileext = ".svg")), silent = TRUE))
+  opened <- setdiff(dev.list(), before)
+  if (length(opened))
+    dev.off(opened)
+  length(opened) == 1L
+}
+
+test_that("svg is written where a cairo device can be opened", {
+  skip_if_not(svgUsable(), "no usable cairo svg device")
+  base <- file.path(tempdir(), "xp-svg")
+  on.exit(unlink(paste0(base, ".svg")))
 
   f <- exportPlot(plot(1:3), base, type = "svg",
                   create = TRUE, screen = FALSE)

@@ -63,7 +63,10 @@
 #' **Devices.** Each file device is closed by its own number after drawing,
 #' also if the plot call fails or opens or activates another device. The
 #' device that was current before the call is made current again, provided
-#' it is still open.
+#' it is still open. If a file device cannot be opened, `exportPlot()`
+#' stops before drawing, with the device's own message as the reason; the
+#' current device is left untouched, and files of earlier types in `type`
+#' remain written.
 #'
 #' @param expr a call that draws a plot, typically piped in with `|>`, or a
 #'   braced block of drawing calls. It is not evaluated before
@@ -73,8 +76,10 @@
 #'   trailing extension `.png`, `.tif`, `.tiff`, `.pdf` or `.svg` is
 #'   removed. Required if `create = TRUE`.
 #' @param type one or several of `"png"`, `"tif"`, `"pdf"` and `"svg"`.
-#'   Default is `"png"`. TIFF files are LZW-compressed; SVG needs cairo
-#'   support (`capabilities("cairo")`).
+#'   Default is `"png"`. TIFF files are LZW-compressed; SVG needs a working
+#'   cairo device. `capabilities("cairo")` is not enough to tell: on macOS
+#'   it can be `TRUE` while [svg()] cannot open a device (XQuartz missing).
+#'   A device that cannot be opened is an error.
 #' @param width,height the size of the plot in inches. The default width of
 #'   `16/3` inches gives 1600 pixels at 300 dpi; `height` defaults to
 #'   `width`.
@@ -202,10 +207,11 @@ exportPlot <- function(expr, file, type = "png",
 
     for (i in seq_along(type)) {
 
-      .openExportDevice(type[i], files[i], width, height, res)
-      # by number: expr may open or activate another device, and dev.off()
-      # without an argument would then close that one
-      devExp <- dev.cur()
+      # the number of the device actually opened, not dev.cur(): if opening
+      # fails, dev.cur() is still the caller's device, which the cleanup
+      # below would then close. By number also because expr may open or
+      # activate another device
+      devExp <- .openExportDevice(type[i], files[i], width, height, res)
 
       tryCatch(draw(), finally = {
         if (devExp %in% dev.list())
@@ -229,14 +235,45 @@ exportPlot <- function(expr, file, type = "png",
 # == internal helper functions =============================================
 
 .openExportDevice <- function(type, file, width, height, res) {
-  switch(type,
-    png = png(file, width = width, height = height, units = "in", res = res),
-    tif = tiff(file, width = width, height = height, units = "in", res = res,
-               compression = "lzw"),
-    pdf = pdf(file, width = width, height = height),
-    svg = svg(file, width = width, height = height)
+  open <- switch(type,
+    png = function() png(file, width = width, height = height,
+                         units = "in", res = res),
+    tif = function() tiff(file, width = width, height = height,
+                          units = "in", res = res, compression = "lzw"),
+    pdf = function() pdf(file, width = width, height = height),
+    svg = function() svg(file, width = width, height = height)
   )
-  invisible(file)
+  .openDevice(open, gettextf("%s device for '%s'", type, file))
+}
+
+
+# Calls a device-opening function and returns the number of the device it
+# opened. Some devices fail with a warning only and leave no device behind:
+# svg() on macOS reports capabilities("cairo") as TRUE but cannot load the
+# cairo module without XQuartz. That is turned into an error here, with the
+# device's own warnings as the reason; warnings of a device that did open
+# are passed on.
+.openDevice <- function(open, label) {
+  before <- dev.list()
+  msgs   <- character(0)
+
+  withCallingHandlers(open(), warning = function(w) {
+    msgs <<- c(msgs, conditionMessage(w))
+    invokeRestart("muffleWarning")
+  })
+
+  opened <- setdiff(dev.list(), before)
+
+  if (length(opened) != 1L)
+    stop(gettextf("could not open a %s%s", label,
+                  if (length(msgs)) paste0(": ", paste(msgs, collapse = "; "))
+                  else ""),
+         domain = NA, call. = FALSE)
+
+  for (m in msgs)
+    warning(m, call. = FALSE)
+
+  opened
 }
 
 
