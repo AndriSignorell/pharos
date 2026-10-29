@@ -280,7 +280,7 @@ fm(314.1563, fmt=num.sty)
 #> [1] 314.16
 
 fm(Sys.Date(), fmt=dat.sty)
-#> [1] 10, 27 2026
+#> [1] 10, 29 2026
 
 # remove the option again
 options(nob.sty=NULL)

@@ -60,13 +60,13 @@ Source:
 [`DESCRIPTION`](https://github.com/AndriSignorell/pharos/blob/main/DESCRIPTION)
 
 Signorell A (2026). *pharos: Descriptive Statistics Graphics and
-Utilities*. R package version 0.1.4,
+Utilities*. R package version 0.1.5,
 <https://andrisignorell.github.io/pharos/>.
 
     @Manual{,
       title = {pharos: Descriptive Statistics Graphics and Utilities},
       author = {Andri Signorell},
       year = {2026},
-      note = {R package version 0.1.4},
+      note = {R package version 0.1.5},
       url = {https://andrisignorell.github.io/pharos/},
     }

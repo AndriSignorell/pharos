@@ -46,8 +46,11 @@ exportPlot(
 - type:
 
   one or several of `"png"`, `"tif"`, `"pdf"` and `"svg"`. Default is
-  `"png"`. TIFF files are LZW-compressed; SVG needs cairo support
-  (`capabilities("cairo")`).
+  `"png"`. TIFF files are LZW-compressed; SVG needs a working cairo
+  device. `capabilities("cairo")` is not enough to tell: on macOS it can
+  be `TRUE` while [`svg()`](https://rdrr.io/r/grDevices/cairo.html)
+  cannot open a device (XQuartz missing). A device that cannot be opened
+  is an error.
 
 - width, height:
 
@@ -128,7 +131,10 @@ figures are written, while single calls can still override it.
 **Devices.** Each file device is closed by its own number after drawing,
 also if the plot call fails or opens or activates another device. The
 device that was current before the call is made current again, provided
-it is still open.
+it is still open. If a file device cannot be opened, `exportPlot()`
+stops before drawing, with the device's own message as the reason; the
+current device is left untouched, and files of earlier types in `type`
+remain written.
 
 ## See also
 
@@ -149,7 +155,7 @@ f <- plot(1:10, main = "Demo") |>
   exportPlot(file.path(tempdir(), "demo"), type = c("png", "pdf"),
              width = 4, create = TRUE, screen = FALSE)
 f
-#> [1] "/tmp/RtmppJmZid/demo.png" "/tmp/RtmppJmZid/demo.pdf"
+#> [1] "/tmp/Rtmp4kvcRO/demo.png" "/tmp/Rtmp4kvcRO/demo.pdf"
 file.exists(f)
 #> [1] TRUE TRUE
 unlink(f)

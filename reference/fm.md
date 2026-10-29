@@ -214,10 +214,12 @@ fm(
 
 formatted character values with the dimensions or tabular structure of
 `x` preserved where applicable, of class `noquote` so that they print
-without quotation marks. For a matrix or a table the entries are padded
-to one common width unless `width` is given, so that the decimal points
-line up: a character matrix prints left justified, which would otherwise
-shift every negative entry against the positive ones.
+without quotation marks. Every value is formatted on its own, whatever
+the shape of `x`: a matrix or a table is formatted exactly like the
+vector of its entries and is not padded to a common width. Padding is
+applied only on request, via `width` or `align`. To display a formatted
+matrix with its entries lined up, print it right justified, e.g.
+`print(fm(m), right = TRUE)`, or align it explicitly.
 
 ## Details
 
@@ -353,22 +355,47 @@ fm(x, digits=4, sci=4, leadDigits=0, width=9, align=".")
 #> [21]     3.1416e+10
 
 
-# format a matrix
-m <- matrix(runif(100), nrow=10,
+# format a matrix: every entry on its own, as for a vector ...
+m <- matrix(runif(100) - 0.5, nrow=10,
             dimnames=list(LETTERS[1:10], LETTERS[1:10]))
 
 fm(m, digits=1)
-#>   A   B   C   D   E   F   G   H   I   J  
-#> A 0.4 0.3 0.5 0.7 0.2 0.6 0.3 0.7 0.7 0.8
-#> B 0.2 0.7 0.3 0.7 0.0 0.7 0.0 0.4 1.0 0.7
-#> C 0.7 0.2 0.0 0.2 0.7 0.3 0.6 0.3 0.3 0.5
-#> D 0.6 0.3 0.3 0.7 0.4 0.2 0.9 0.2 0.6 0.1
-#> E 0.8 0.1 0.2 0.6 0.1 0.4 0.6 0.1 0.4 0.2
-#> F 0.3 0.8 0.4 0.2 0.7 0.2 0.9 0.8 1.0 0.8
-#> G 0.1 0.7 0.9 0.1 0.7 0.3 0.2 0.2 0.0 0.1
-#> H 0.6 1.0 0.9 0.0 1.0 0.8 0.1 0.5 0.3 0.7
-#> I 0.4 0.3 0.5 0.5 0.3 0.1 0.5 1.0 0.6 0.3
-#> J 0.7 0.2 0.7 0.1 0.5 0.2 0.3 0.6 0.1 0.6
+#>   A    B    C    D    E    F    G    H    I    J   
+#> A -0.1 -0.2 0.0  0.2  -0.3 0.1  -0.2 0.2  0.2  0.3 
+#> B -0.3 0.2  -0.2 0.2  -0.5 0.2  -0.5 -0.1 0.5  0.2 
+#> C 0.2  -0.3 -0.5 -0.3 0.2  -0.2 0.1  -0.2 -0.2 0.0 
+#> D 0.1  -0.2 -0.2 0.2  -0.1 -0.3 0.4  -0.3 0.1  -0.4
+#> E 0.3  -0.4 -0.3 0.1  -0.4 -0.1 0.1  -0.4 -0.1 -0.3
+#> F -0.2 0.3  -0.1 -0.3 0.2  -0.3 0.4  0.3  0.5  0.3 
+#> G -0.4 0.2  0.4  -0.4 0.2  -0.2 -0.3 -0.3 -0.5 -0.4
+#> H 0.1  0.5  0.4  -0.5 0.5  0.3  -0.4 0.0  -0.2 0.2 
+#> I -0.1 -0.2 0.0  0.0  -0.2 -0.4 0.0  0.5  0.1  -0.2
+#> J 0.2  -0.3 0.2  -0.4 0.0  -0.3 -0.2 0.1  -0.4 0.1 
+# ... lined up for display only when asked for
+print(fm(m, digits=1), right = TRUE)
+#>      A    B    C    D    E    F    G    H    I    J
+#> A -0.1 -0.2  0.0  0.2 -0.3  0.1 -0.2  0.2  0.2  0.3
+#> B -0.3  0.2 -0.2  0.2 -0.5  0.2 -0.5 -0.1  0.5  0.2
+#> C  0.2 -0.3 -0.5 -0.3  0.2 -0.2  0.1 -0.2 -0.2  0.0
+#> D  0.1 -0.2 -0.2  0.2 -0.1 -0.3  0.4 -0.3  0.1 -0.4
+#> E  0.3 -0.4 -0.3  0.1 -0.4 -0.1  0.1 -0.4 -0.1 -0.3
+#> F -0.2  0.3 -0.1 -0.3  0.2 -0.3  0.4  0.3  0.5  0.3
+#> G -0.4  0.2  0.4 -0.4  0.2 -0.2 -0.3 -0.3 -0.5 -0.4
+#> H  0.1  0.5  0.4 -0.5  0.5  0.3 -0.4  0.0 -0.2  0.2
+#> I -0.1 -0.2  0.0  0.0 -0.2 -0.4  0.0  0.5  0.1 -0.2
+#> J  0.2 -0.3  0.2 -0.4  0.0 -0.3 -0.2  0.1 -0.4  0.1
+fm(m, digits=1, align=".")
+#>   A    B    C    D    E    F    G    H    I    J   
+#> A -0.1 -0.2  0.0  0.2 -0.3  0.1 -0.2  0.2  0.2  0.3
+#> B -0.3  0.2 -0.2  0.2 -0.5  0.2 -0.5 -0.1  0.5  0.2
+#> C  0.2 -0.3 -0.5 -0.3  0.2 -0.2  0.1 -0.2 -0.2  0.0
+#> D  0.1 -0.2 -0.2  0.2 -0.1 -0.3  0.4 -0.3  0.1 -0.4
+#> E  0.3 -0.4 -0.3  0.1 -0.4 -0.1  0.1 -0.4 -0.1 -0.3
+#> F -0.2  0.3 -0.1 -0.3  0.2 -0.3  0.4  0.3  0.5  0.3
+#> G -0.4  0.2  0.4 -0.4  0.2 -0.2 -0.3 -0.3 -0.5 -0.4
+#> H  0.1  0.5  0.4 -0.5  0.5  0.3 -0.4  0.0 -0.2  0.2
+#> I -0.1 -0.2  0.0  0.0 -0.2 -0.4  0.0  0.5  0.1 -0.2
+#> J  0.2 -0.3  0.2 -0.4  0.0 -0.3 -0.2  0.1 -0.4  0.1
 
 # engineering format
 fm(x, fmt="eng",  digits=2)
