@@ -26,8 +26,10 @@ trailing extension \code{.png}, \code{.tif}, \code{.tiff}, \code{.pdf} or \code{
 removed. Required if \code{create = TRUE}.}
 
 \item{type}{one or several of \code{"png"}, \code{"tif"}, \code{"pdf"} and \code{"svg"}.
-Default is \code{"png"}. TIFF files are LZW-compressed; SVG needs cairo
-support (\code{capabilities("cairo")}).}
+Default is \code{"png"}. TIFF files are LZW-compressed; SVG needs a working
+cairo device. \code{capabilities("cairo")} is not enough to tell: on macOS
+it can be \code{TRUE} while \code{\link[=svg]{svg()}} cannot open a device (XQuartz missing).
+A device that cannot be opened is an error.}
 
 \item{width, height}{the size of the plot in inches. The default width of
 \code{16/3} inches gives 1600 pixels at 300 dpi; \code{height} defaults to
@@ -109,7 +111,10 @@ figures are written, while single calls can still override it.
 \strong{Devices.} Each file device is closed by its own number after drawing,
 also if the plot call fails or opens or activates another device. The
 device that was current before the call is made current again, provided
-it is still open.
+it is still open. If a file device cannot be opened, \code{exportPlot()}
+stops before drawing, with the device's own message as the reason; the
+current device is left untouched, and files of earlier types in \code{type}
+remain written.
 }
 \examples{
 # without the switch, the plot is only drawn

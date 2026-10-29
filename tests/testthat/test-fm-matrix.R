@@ -17,21 +17,23 @@ test_that("fm() on a matrix prints without quotes", {
 })
 
 
-test_that("the entries of a matrix are padded to one common width", {
+test_that("the entries of a matrix are not padded unless asked for", {
 
-  # a character matrix prints LEFT justified, so without padding every
-  # negative entry shifts one place against the positive ones
+  # REGRESSION: fm.matrix()/fm.table() padded every entry to the widest one
+  # of the whole object. That width ended up in the values: tOne() wrote
+  # "( 3.3%)" because a row it never showed held 96.7%. Lining up is a
+  # matter of display (print(..., right = TRUE)) or of an explicit request.
   res <- unclass(fm(cor(swiss), digits = 3))
 
-  w <- nchar(res)
-  expect_equal(length(unique(as.vector(w))), 1L)
+  expect_false(any(grepl("^ ", res)))
+  expect_gt(length(unique(as.vector(nchar(res)))), 1L)
 
-  # the padding is on the left, so the decimal points line up.
-  # unique() strips the attributes regexpr() carries (match.length,
-  # index.type, useBytes), so compare plain integers
-  expect_true(all(grepl("^ *-?[0-9]", as.vector(res))))
-  expect_equal(unique(as.integer(regexpr(".", as.vector(res), fixed = TRUE))),
-               as.integer(regexpr(".", res[1, 1], fixed = TRUE)))
+  # decimal points line up on request. unique() strips the attributes
+  # regexpr() carries (match.length, index.type, useBytes), so compare
+  # plain integers
+  dec <- unclass(fm(cor(swiss), digits = 3, align = "."))
+  expect_length(unique(as.integer(regexpr(".", as.vector(dec), fixed = TRUE))),
+                1L)
 })
 
 
@@ -61,7 +63,7 @@ test_that("a table keeps its class and prints unquoted", {
 })
 
 
-test_that("NA entries survive the padding", {
+test_that("NA entries survive, with and without padding", {
 
   m <- matrix(c(1.5, NA, -2.25, 3), nrow = 2)
   res <- unclass(fm(m, digits = 2))
@@ -70,11 +72,15 @@ test_that("NA entries survive the padding", {
   expect_true(is.na(res[2, 1]) || res[2, 1] == "NA")
   expect_equal(dim(res), c(2L, 2L))
 
-  # with an explicit naForm the placeholder is padded like the rest
+  # an explicit naForm replaces it, without padding
   res2 <- unclass(fm(m, digits = 2, naForm = "-"))
+  expect_identical(res2[2, 1], "-")
+
+  # with an explicit width the placeholder is padded like the rest.
   # nchar() of a matrix is a matrix, and unique() then works row-wise:
-  # as.vector() first, as in the padding test above
-  expect_equal(length(unique(as.vector(nchar(res2)))), 1L)
+  # as.vector() first
+  res3 <- unclass(fm(m, digits = 2, naForm = "-", width = 6))
+  expect_equal(unique(as.vector(nchar(res3))), 6L)
 })
 
 
@@ -85,8 +91,8 @@ test_that("the vector and matrix paths format identically", {
   v <- unclass(fm(as.vector(m), digits = 3))
   s <- unclass(fm(m, digits = 3))
 
-  # same content, up to the padding the matrix path adds
-  expect_equal(trimws(as.vector(s)), trimws(v))
+  # identical: the matrix path no longer adds any padding
+  expect_equal(as.vector(s), as.vector(v))
 })
 
 

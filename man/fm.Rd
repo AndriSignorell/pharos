@@ -177,10 +177,12 @@ function supplied through \code{fmt}}
 \value{
 formatted character values with the dimensions or tabular structure
 of \code{x} preserved where applicable, of class \code{noquote} so that
-they print without quotation marks. For a matrix or a table the entries
-are padded to one common width unless \code{width} is given, so that the
-decimal points line up: a character matrix prints left justified, which
-would otherwise shift every negative entry against the positive ones.
+they print without quotation marks. Every value is formatted on its own,
+whatever the shape of \code{x}: a matrix or a table is formatted exactly like
+the vector of its entries and is not padded to a common width. Padding
+is applied only on request, via \code{width} or \code{align}. To display a
+formatted matrix with its entries lined up, print it right justified,
+e.g. \code{print(fm(m), right = TRUE)}, or align it explicitly.
 }
 \description{
 Formatting numbers with base R tools often degenerates into a major
@@ -299,11 +301,14 @@ fm(x, digits=3, fmt="\%")
 fm(x, digits=4, sci=4, leadDigits=0, width=9, align=".")
 
 
-# format a matrix
-m <- matrix(runif(100), nrow=10,
+# format a matrix: every entry on its own, as for a vector ...
+m <- matrix(runif(100) - 0.5, nrow=10,
             dimnames=list(LETTERS[1:10], LETTERS[1:10]))
 
 fm(m, digits=1)
+# ... lined up for display only when asked for
+print(fm(m, digits=1), right = TRUE)
+fm(m, digits=1, align=".")
 
 # engineering format
 fm(x, fmt="eng",  digits=2)

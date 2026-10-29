@@ -174,10 +174,12 @@
 #'   function supplied through `fmt`
 #' @return formatted character values with the dimensions or tabular structure
 #'   of `x` preserved where applicable, of class `noquote` so that
-#'   they print without quotation marks. For a matrix or a table the entries
-#'   are padded to one common width unless `width` is given, so that the
-#'   decimal points line up: a character matrix prints left justified, which
-#'   would otherwise shift every negative entry against the positive ones.
+#'   they print without quotation marks. Every value is formatted on its own,
+#'   whatever the shape of `x`: a matrix or a table is formatted exactly like
+#'   the vector of its entries and is not padded to a common width. Padding
+#'   is applied only on request, via `width` or `align`. To display a
+#'   formatted matrix with its entries lined up, print it right justified,
+#'   e.g. `print(fm(m), right = TRUE)`, or align it explicitly.
 #' @examples
 #' 
 #' # mind the case: M is the month, m the minutes
@@ -197,11 +199,14 @@
 #' fm(x, digits=4, sci=4, leadDigits=0, width=9, align=".")
 #' 
 #' 
-#' # format a matrix
-#' m <- matrix(runif(100), nrow=10,
+#' # format a matrix: every entry on its own, as for a vector ...
+#' m <- matrix(runif(100) - 0.5, nrow=10,
 #'             dimnames=list(LETTERS[1:10], LETTERS[1:10]))
 #' 
 #' fm(m, digits=1)
+#' # ... lined up for display only when asked for
+#' print(fm(m, digits=1), right = TRUE)
+#' fm(m, digits=1, align=".")
 #' 
 #' # engineering format
 #' fm(x, fmt="eng",  digits=2)
@@ -600,12 +605,15 @@ fm.matrix <- function(x, digits = NULL, leadDigits = NULL, sci = NULL,
                        align = align, width = width, lang = lang, 
                        pThreshold = pThreshold, decMark = decMark, ...)
   
+  # No padding to a common width: a matrix is formatted exactly like the
+  # vector of its entries. Padding was once added here for the console, but
+  # it ended up in the values - tOne() builds cell strings from fm() on a
+  # table and kept only some of its rows, so the width came from cells that
+  # were never shown ("( 3.3%)"). Alignment is requested via 'align'/'width'.
+  #
   # noquote() is what fm.default() returns, and matrix() drops the class -
   # so fm() on a matrix printed with quotes while fm() on a vector did not.
   # unclass() first, because matrix() on a classed vector is what lost it.
-  if (is.null(width))
-    result <- .padMatrixWidth(result, align = align)
-
   result <- matrix(unclass(result), nrow = d[1], ncol = d[2], dimnames = dn)
 
   noquote(result)
@@ -628,11 +636,8 @@ fm.table <- function(x, digits = NULL, leadDigits = NULL, sci = NULL,
                        align = align, width = width, lang = lang,
                        pThreshold = pThreshold, decMark = decMark, ...)
   
-  # print.table() defaults to right = FALSE for character storage, so the
-  # same padding is needed here; it prints unquoted by itself.
-  if (is.null(width))
-    result <- .padMatrixWidth(result, align = align)
-
+  # cell by cell, without a common width - see fm.matrix(). A table prints
+  # unquoted by itself; print(..., right = TRUE) lines it up.
   result <- array(unclass(result), dim = d, dimnames = dn)
   class(result) <- c("table", class(result))
   result
@@ -694,35 +699,6 @@ fm.ftable <- function(x, digits = NULL, leadDigits = NULL, sci = NULL,
   position <- regexpr(decimalMark, formatted, fixed = TRUE)
 
   ifelse(position > 0L, nchar(formatted) - position, 0L)
-}
-
-
-# Pads the entries of a formatted matrix or table to one common width.
-#
-# A character matrix prints LEFT justified - print.default() and
-# print.table() both default to right = FALSE for character storage. Without
-# padding, every negative entry therefore shifts one place against the
-# positive ones and the decimal points do not line up, which is the whole
-# point of a formatted table. Numeric matrices do not have the problem
-# because format() has already padded them.
-#
-# NA entries are left alone: .finishFormat() pads only the non-missing ones,
-# and format() would turn NA into the string "NA".
-#' @noRd
-.padMatrixWidth <- function(x, align = NULL) {
-
-  chars <- nchar(as.character(x), type = "width")
-
-  if (!any(!is.na(chars)))
-    return(x)
-
-  # align is passed for the justification only - the alignment character
-  # itself has already been applied by .finishFormat() inside fm.default(),
-  # and running strAlign() a second time would pad twice
-  just <- if (identical(align, "\\l")) "\\l" else
-          if (identical(align, "\\c")) "\\c" else NULL
-
-  .finishFormat(x, width = max(chars, na.rm = TRUE), align = just)
 }
 
 

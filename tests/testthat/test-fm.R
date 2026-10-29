@@ -432,6 +432,30 @@ test_that("fm.matrix: values are formatted", {
   expect_equal(as.character(res[1, 2]), "2.5")
 })
 
+test_that("fm.matrix and fm.table format cell by cell, without padding", {
+  # REGRESSION: both padded every entry to the widest one of the whole
+  # object. tOne() then wrote "( 3.3%)", the width coming from the 96.7% of
+  # a row it never showed.
+  p <- cbind(c(0.033, 0.967), c(0.607, 0.393))
+  expected <- c("3.3%", "96.7%", "60.7%", "39.3%")
+
+  expect_identical(as.character(fm(p, fmt = "%", digits = 1)), expected)
+  expect_identical(as.character(fm(as.table(p), fmt = "%", digits = 1)), expected)
+  expect_identical(as.character(fm(p, fmt = "%", digits = 1)),
+                   as.character(fm(c(p), fmt = "%", digits = 1)))
+
+  # the structure is kept
+  expect_identical(dim(fm(p, fmt = "%", digits = 1)), dim(p))
+  expect_s3_class(fm(as.table(p), fmt = "%", digits = 1), "table")
+
+  # padding only on request
+  expect_identical(as.character(fm(p, fmt = "%", digits = 1, width = 6))[1],
+                   "  3.3%")
+  expect_identical(
+    nchar(as.character(fm(p, fmt = "%", digits = 1, align = "\\r"))),
+    rep(5L, 4))
+})
+
 test_that("fm.matrix: dimnames are preserved", {
   m <- matrix(1:4, nrow = 2,
               dimnames = list(c("r1","r2"), c("c1","c2")))
