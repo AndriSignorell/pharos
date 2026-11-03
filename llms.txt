@@ -445,7 +445,7 @@ Formatting of values and confidence intervals, units, and table helpers.
 - [`Formulas`](Formulas.md) : Formula Interface – Common Arguments
 - [`ftable(`*`<list>`*`)`](ftable.list.md) : Flat Contingency Table for
   tapply-Like Lists
-- [`Prefix`](constants.md) : DescToolsX Constants
+- [`Prefix`](Prefix.md) : Metric Prefixes
 - [`exportPlot()`](exportPlot.md) : Export a Plot to Graphics Files
 
 ## Strings

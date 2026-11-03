@@ -7,6 +7,7 @@
 <url><loc>/reference/CMYKToRGB.html</loc></url>
 <url><loc>/reference/CMYToCMYK.html</loc></url>
 <url><loc>/reference/Formulas.html</loc></url>
+<url><loc>/reference/Prefix.html</loc></url>
 <url><loc>/reference/RGBToCMY.html</loc></url>
 <url><loc>/reference/RGBToCol.html</loc></url>
 <url><loc>/reference/RGBToHex.html</loc></url>
@@ -34,7 +35,6 @@
 <url><loc>/reference/colToOpaque.html</loc></url>
 <url><loc>/reference/colToRGB.html</loc></url>
 <url><loc>/reference/color-conversion-overview.html</loc></url>
-<url><loc>/reference/constants.html</loc></url>
 <url><loc>/reference/contrastCol.html</loc></url>
 <url><loc>/reference/convUnit.html</loc></url>
 <url><loc>/reference/coordinate-conversions.html</loc></url>
