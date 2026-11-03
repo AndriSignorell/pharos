@@ -27,7 +27,7 @@ plotBag(x, ...)
   xlim = NULL,
   ylim = NULL,
   factor = 3,
-  eps = 0.00000001,
+  eps = 1e-08,
   dither = FALSE,
   points = TRUE,
   bag = TRUE,

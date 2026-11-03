@@ -273,7 +273,7 @@ plotBox.default <- function(
            medcol = if (hasBorder) dots$border else "grey50"),
       dots)
 
-    do.call(boxplot,
+    z <- do.call(boxplot,
             c(list(if (is.null(groups)) x else x ~ groups,
                    add = TRUE, col = col, horizontal = horiz, axes = FALSE),
               bxArgs))
@@ -330,7 +330,7 @@ plotBox.default <- function(
   # its own, so resetting it would destroy a user's mfrow/layout()
   }, stamp = stamp)
   
-  invisible(NULL)
+  invisible(z)
 }
 
 
