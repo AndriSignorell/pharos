@@ -31,7 +31,7 @@ plotBag(
   xlim = NULL,
   ylim = NULL,
   factor = 3,
-  eps = 1e-08,
+  eps = 0.00000001,
   dither = FALSE,
   points = TRUE,
   bag = TRUE,
@@ -234,7 +234,7 @@ Other plot.bivariate: [`plotAssoc()`](plotAssoc.md),
 [`plotBubble()`](plotBubble.md), [`plotCor()`](plotCor.md),
 [`plotDens2D()`](plotDens2D.md), [`plotHeatmap()`](plotHeatmap.md),
 [`plotHexbin()`](plotHexbin.md), [`plotMosaic()`](plotMosaic.md),
-[`plotXY()`](plotXY.md)
+[`plotPyramid()`](plotPyramid.md), [`plotXY()`](plotXY.md)
 
 ## Examples
 

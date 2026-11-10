@@ -148,7 +148,7 @@ Other plot.bivariate: [`plotAssoc()`](plotAssoc.md),
 [`plotBag()`](plotBag.md), [`plotBubble()`](plotBubble.md),
 [`plotCor()`](plotCor.md), [`plotDens2D()`](plotDens2D.md),
 [`plotHexbin()`](plotHexbin.md), [`plotMosaic()`](plotMosaic.md),
-[`plotXY()`](plotXY.md)
+[`plotPyramid()`](plotPyramid.md), [`plotXY()`](plotXY.md)
 
 ## Examples
 

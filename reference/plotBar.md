@@ -184,7 +184,7 @@ The precedence of theme-aware settings (`col`, `border`, `grid`, `box`,
 ## See also
 
 [graphics::barplot](https://rdrr.io/r/graphics/barplot.html),
-[barText](barText.md), [theme](theme.md)
+[plotPyramid](plotPyramid.md), [barText](barText.md), [theme](theme.md)
 
 Other plot.univariate: [`plotArea()`](plotArea.md),
 [`plotBox()`](plotBox.md), [`plotCatDist()`](plotCatDist.md),

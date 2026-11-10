@@ -235,6 +235,8 @@ Plots for distributions, grouped data, functions, and time series.
 - [`plotArea()`](plotArea.md) : Stacked Area Plot
 - [`plotBar()`](plotBar.md) : Themed Barplot with Grid, Labels and
   Optional Connecting Lines
+- [`plotPyramid()`](plotPyramid.md) : Pyramid Plot (Back-to-Back
+  Barplot)
 - [`plotBox()`](plotBox.md) : Grouped Boxplot
 - [`plotCatDist()`](plotCatDist.md) : Categorical Distribution Plot
 - [`plotDens()`](plotDens.md) : Grouped Density Plot

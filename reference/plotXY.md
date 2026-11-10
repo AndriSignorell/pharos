@@ -232,7 +232,7 @@ Other plot.bivariate: [`plotAssoc()`](plotAssoc.md),
 [`plotBag()`](plotBag.md), [`plotBubble()`](plotBubble.md),
 [`plotCor()`](plotCor.md), [`plotDens2D()`](plotDens2D.md),
 [`plotHeatmap()`](plotHeatmap.md), [`plotHexbin()`](plotHexbin.md),
-[`plotMosaic()`](plotMosaic.md)
+[`plotMosaic()`](plotMosaic.md), [`plotPyramid()`](plotPyramid.md)
 
 ## Examples
 
