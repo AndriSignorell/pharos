@@ -107,7 +107,7 @@
 #' @return Invisibly returns the midpoints of the bars as returned by
 #'   [graphics::barplot()].
 #'
-#' @seealso [graphics::barplot], [barText], [theme]
+#' @seealso [graphics::barplot], [plotPyramid], [barText], [theme]
 #' 
 #' @examples
 #' # Simple barplot
@@ -475,21 +475,49 @@ plotBar <- function(height,
 
 
 
-.drawAxis <- function(side, ax) {
+# Tick labels for the numeric axis: 'values' formatted with the fm()
+# arguments found in the axis spec 'ax', or as they are if there are none.
+.axisLabels <- function(ax, values) {
   
-  at <- axTicks(side)
+  fmt <- .splitAxisArgs(ax)$fmt
+  
+  if (length(fmt)) {
+    do.call(fm, modifyList(list(x=values), fmt))
+  } else {
+    values
+  }
+}
+
+
+
+# 'at' are the tick positions in user coordinates. 'labels' need only be
+# given where they are not the formatted positions themselves, as on the
+# shifted and mirrored halves of plotPyramid().
+.drawAxis <- function(side, ax, at = axTicks(side),
+                      labels = .axisLabels(ax, at)) {
   
   sp <- .splitAxisArgs(ax)
   
-  labs <- if (length(sp$fmt)) {
-    do.call(fm, modifyList(list(x=at), sp$fmt))
-  } else {
-    at
+  # An empty label still counts as drawn in axis() and so crowds out its
+  # neighbours: ticks whose label is left out get the tick mark only.
+  skip <- !nzchar(as.character(labels))
+  
+  if (any(skip)) {
+    do.call(
+      graphics::axis,
+      c(list(side=side, at=at, labels=FALSE), sp$axis)
+    )
+    do.call(
+      graphics::axis,
+      c(list(side=side, at=at[!skip], labels=labels[!skip], tick=FALSE),
+        sp$axis)
+    )
+    return(invisible())
   }
   
   do.call(
     graphics::axis,
-    c(list(side=side, at=at, labels=labs), sp$axis)
+    c(list(side=side, at=at, labels=labels), sp$axis)
   )
 }
 

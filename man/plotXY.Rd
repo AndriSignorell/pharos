@@ -198,7 +198,8 @@ Other plot.bivariate:
 \code{\link[=plotDens2D]{plotDens2D()}},
 \code{\link[=plotHeatmap]{plotHeatmap()}},
 \code{\link[=plotHexbin]{plotHexbin()}},
-\code{\link[=plotMosaic]{plotMosaic()}}
+\code{\link[=plotMosaic]{plotMosaic()}},
+\code{\link[=plotPyramid]{plotPyramid()}}
 }
 \concept{bivariate}
 \concept{plot.bivariate}

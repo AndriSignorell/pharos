@@ -206,6 +206,7 @@ Other plot.bivariate:
 \code{\link[=plotHeatmap]{plotHeatmap()}},
 \code{\link[=plotHexbin]{plotHexbin()}},
 \code{\link[=plotMosaic]{plotMosaic()}},
+\code{\link[=plotPyramid]{plotPyramid()}},
 \code{\link[=plotXY]{plotXY()}}
 }
 \concept{agreement}

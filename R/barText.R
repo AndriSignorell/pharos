@@ -129,12 +129,14 @@ barText <- function(height, mids, labels = height, beside = FALSE, horiz = FALSE
                   "bottom-out" = offset - shift
       )
       
+      # the label starts (adj 0) or ends (adj 1) at x, depending on the
+      # side of the bar end it lies on; x already holds the distance
       adjx <- switch(pos,
-                     "top-out"    = -sign(height),
-                     "top-in"     =  sign(height),
+                     "top-out"    = (1 - sign(height)) / 2,
+                     "top-in"     = (1 + sign(height)) / 2,
                      mid          =  0.5,
-                     "bottom-in"  = -sign(height),
-                     "bottom-out" =  sign(height)
+                     "bottom-in"  = (1 - sign(height)) / 2,
+                     "bottom-out" = (1 + sign(height)) / 2
       )
       
       pp <- recycle(b = mids, x = x, labels = labels,

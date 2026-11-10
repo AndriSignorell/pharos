@@ -195,7 +195,7 @@ plotBar(VADeaths/1e3,  box=FALSE, bg="lightyellow", main="VADeaths",
 
 }
 \seealso{
-\link[graphics:barplot]{graphics::barplot}, \link{barText}, \link{theme}
+\link[graphics:barplot]{graphics::barplot}, \link{plotPyramid}, \link{barText}, \link{theme}
 
 Other plot.univariate:
 \code{\link[=plotArea]{plotArea()}},

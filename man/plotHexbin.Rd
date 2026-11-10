@@ -87,6 +87,7 @@ Other plot.bivariate:
 \code{\link[=plotDens2D]{plotDens2D()}},
 \code{\link[=plotHeatmap]{plotHeatmap()}},
 \code{\link[=plotMosaic]{plotMosaic()}},
+\code{\link[=plotPyramid]{plotPyramid()}},
 \code{\link[=plotXY]{plotXY()}}
 }
 \concept{bivariate}

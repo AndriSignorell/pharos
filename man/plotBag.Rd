@@ -27,7 +27,7 @@ plotBag(x, ...)
   xlim = NULL,
   ylim = NULL,
   factor = 3,
-  eps = 1e-08,
+  eps = 0.00000001,
   dither = FALSE,
   points = TRUE,
   bag = TRUE,
@@ -237,6 +237,7 @@ Other plot.bivariate:
 \code{\link[=plotHeatmap]{plotHeatmap()}},
 \code{\link[=plotHexbin]{plotHexbin()}},
 \code{\link[=plotMosaic]{plotMosaic()}},
+\code{\link[=plotPyramid]{plotPyramid()}},
 \code{\link[=plotXY]{plotXY()}}
 }
 \concept{bivariate}

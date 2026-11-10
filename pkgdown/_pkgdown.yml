@@ -42,6 +42,7 @@ reference:
   # plot.univariate -- One-dimensional distributions and summaries
   - plotArea
   - plotBar
+  - plotPyramid
   - plotBox
   - plotCatDist
   - plotDens
