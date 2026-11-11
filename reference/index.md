@@ -101,6 +101,7 @@ specialized displays.
 Plot annotation, axes, smoothers, themes, and graphics-state helpers.
 
 - [`abcCoords()`](abcCoords.md) : Coordinates for Named Plot Positions
+- [`animate()`](animate.md) : Animate a Plot
 - [`axisBreak()`](axisBreak.md) : Place a Break Mark on an Axis
 - [`axisFmt()`](axisFmt.md) : Draw an Axis With Formatted or Rotated
   Labels
