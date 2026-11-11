@@ -98,6 +98,7 @@ reference:
   contents:
   # graphics.annotation -- Labels, legends, and annotations
   - abcCoords
+  - animate
   - axisBreak
   - axisFmt
   - axTicksPosixct
