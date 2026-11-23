@@ -77,7 +77,14 @@ plotFreqDist(
 
   controls the kernel density curve. `TRUE` (default) draws a curve via
   [`stats::density()`](https://rdrr.io/r/stats/density.html); a list
-  overrides specific arguments (e.g. `list(bw = 0.1, col = "red")`).
+  overrides specific arguments (e.g. `list(bw = 0.1, col = "red")`). The
+  extra element `bounds` gives the support of `x` as `c(lower, upper)`,
+  default `c(-Inf, Inf)`. A finite bound is handled by reflection: the
+  data are mirrored at the bound, the density is estimated with the
+  bandwidth of the original data and folded back. The curve then neither
+  leaks past the bound nor drops towards it. Use e.g.
+  `list(bounds = c(0, Inf))` for non-negative data or `c(0, 1)` for
+  proportions.
 
 - rug:
 
@@ -188,6 +195,12 @@ plotFreqDist(faithful$eruptions,
   rug  = TRUE,
   heights = c(3, 2.5), 
   main = "Eruption time")
+
+
+# non-negative data: reflect the density at 0 instead of letting it
+# leak into negative values
+set.seed(1)
+plotFreqDist(rexp(500), dens = list(bounds = c(0, Inf)))
 
 
 # overlay a normal density curve
