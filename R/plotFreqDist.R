@@ -51,6 +51,13 @@
 #' @param dens controls the kernel density curve. `TRUE` (default)
 #'   draws a curve via [stats::density()]; a list overrides
 #'   specific arguments (e.g. `list(bw = 0.1, col = "red")`).
+#'   The extra element `bounds` gives the support of `x` as
+#'   `c(lower, upper)`, default `c(-Inf, Inf)`. A finite bound is handled
+#'   by reflection: the data are mirrored at the bound, the density is
+#'   estimated with the bandwidth of the original data and folded back.
+#'   The curve then neither leaks past the bound nor drops towards it.
+#'   Use e.g. `list(bounds = c(0, Inf))` for non-negative data or
+#'   `c(0, 1)` for proportions.
 #' @param rug controls a rug plot. `FALSE` (default) suppresses it;
 #'   `TRUE` or a list draw a rug via [graphics::rug()].
 #' @param curve controls a fitted theoretical distribution curve on the
@@ -105,6 +112,11 @@
 #'   rug  = TRUE,
 #'   heights = c(3, 2.5), 
 #'   main = "Eruption time")
+#'
+#' # non-negative data: reflect the density at 0 instead of letting it
+#' # leak into negative values
+#' set.seed(1)
+#' plotFreqDist(rexp(500), dens = list(bounds = c(0, Inf)))
 #'
 #' # overlay a normal density curve
 #' x <- rnorm(1000)
@@ -395,8 +407,8 @@ plotFreqDist <- function(x,
           
           if (add.dens) {
             x.dens <- tryCatch(
-              do.call("density",
-                      dens_args[!names(dens_args) %in% c("col", "lwd", "lty")]),
+              .densityBounded(
+                dens_args[!names(dens_args) %in% c("col", "lwd", "lty")]),
               error = function(e) {
                 warning(gettextf("density curve could not be added\n%s",
                                  conditionMessage(e)))
@@ -555,6 +567,65 @@ plotFreqDist <- function(x,
 
 
 # == internal helper functions ==============================================
+
+# Kernel density with optional reflection at finite bounds. 'args' are the
+# arguments for density() plus 'bounds' = c(lower, upper).
+#
+# The bandwidth is taken from a plain density() call on the original data,
+# so bw rules such as "SJ" and 'adjust' work as usual: estimated on the
+# mirrored sample they would see a different, artificially wider spread.
+# The mirrored sample has k = 2 or 3 times as many points, hence the
+# factor k on the folded density. With two finite bounds only the first
+# reflection on each side is used, which is exact unless the kernel
+# reaches across the whole support.
+#' @noRd
+.densityBounded <- function(args) {
+
+  bounds <- args$bounds %||% c(-Inf, Inf)
+  args$bounds <- NULL
+
+  if (!is.numeric(bounds) || length(bounds) != 2L || anyNA(bounds) ||
+      bounds[1L] >= bounds[2L])
+    stop("'bounds' must be c(lower, upper) with lower < upper",
+         call. = FALSE)
+
+  if (all(is.infinite(bounds)))
+    return(do.call(stats::density, args))
+
+  x <- args$x
+  if (any(x < bounds[1L] | x > bounds[2L]))
+    stop(gettextf("'x' has values outside the bounds [%s, %s]",
+                  bounds[1L], bounds[2L]), call. = FALSE)
+
+  # effective bandwidth, 'adjust' included
+  bw <- do.call(stats::density, args)$bw
+
+  lo <- if (is.finite(bounds[1L])) bounds[1L] else NULL
+  hi <- if (is.finite(bounds[2L])) bounds[2L] else NULL
+
+  xx <- c(x,
+          if (!is.null(lo)) 2 * lo - x,
+          if (!is.null(hi)) 2 * hi - x)
+  k  <- length(xx) / length(x)
+
+  cut  <- args$cut %||% 3
+  from <- max(args$from %||% (min(x) - cut * bw), bounds[1L])
+  to   <- min(args$to   %||% (max(x) + cut * bw), bounds[2L])
+
+  w <- args$weights
+  if (!is.null(w)) w <- rep(w, k) / k
+
+  args[c("x", "bw", "adjust", "from", "to", "cut", "weights")] <- NULL
+
+  d <- do.call(stats::density,
+               c(list(x = xx, bw = bw, from = from, to = to, weights = w),
+                 args))
+
+  d$y <- d$y * k
+  d$n <- length(x)
+  d
+}
+
 
 # Turns the 'expr' of a 'curve'/'curveEcdf' specification into a function
 # of x. A one-sided formula (~ dt(x, df = 2)) is evaluated in the

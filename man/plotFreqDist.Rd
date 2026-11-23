@@ -55,7 +55,14 @@ a function without arguments or a quoted call, e.g.
 
 \item{dens}{controls the kernel density curve. \code{TRUE} (default)
 draws a curve via \code{\link[stats:density]{stats::density()}}; a list overrides
-specific arguments (e.g. \code{list(bw = 0.1, col = "red")}).}
+specific arguments (e.g. \code{list(bw = 0.1, col = "red")}).
+The extra element \code{bounds} gives the support of \code{x} as
+\code{c(lower, upper)}, default \code{c(-Inf, Inf)}. A finite bound is handled
+by reflection: the data are mirrored at the bound, the density is
+estimated with the bandwidth of the original data and folded back.
+The curve then neither leaks past the bound nor drops towards it.
+Use e.g. \code{list(bounds = c(0, Inf))} for non-negative data or
+\code{c(0, 1)} for proportions.}
 
 \item{rug}{controls a rug plot. \code{FALSE} (default) suppresses it;
 \code{TRUE} or a list draw a rug via \code{\link[graphics:rug]{graphics::rug()}}.}
@@ -134,6 +141,11 @@ plotFreqDist(faithful$eruptions,
   rug  = TRUE,
   heights = c(3, 2.5), 
   main = "Eruption time")
+
+# non-negative data: reflect the density at 0 instead of letting it
+# leak into negative values
+set.seed(1)
+plotFreqDist(rexp(500), dens = list(bounds = c(0, Inf)))
 
 # overlay a normal density curve
 x <- rnorm(1000)

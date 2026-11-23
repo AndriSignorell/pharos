@@ -227,18 +227,33 @@ plotPropCI <- function(
     .drawBox(box)
     
     # --- legend --------------------------------------------------------
+    # Placed in the bottom margin on the line of xlab, flush with x = 0 -
+    # xlab is centred, so the two do not meet. The former inset of
+    # c(-0.045, -0.24) was a fraction of the plot region, so where it landed
+    # depended on the device size - typically right on the tick labels.
+    #
+    # The key shows the colour of the full overlap of all bands. A single
+    # band's colour (alpha 0.12) was practically invisible on white.
+    usr     <- par("usr")
+    lineH   <- abs(diff(grconvertY(c(0, par("csi")), "inches", "user")))
+    legLine <- par("mgp")[1L] - 0.3
+
     bedrock::callIf(
       graphics::legend,
       legend,
       defaults = .legendDefaults(list(
-        x      = "bottomleft",
-        legend = sprintf("%s%% \u2013 %s%% CI",
-                         round(min(ciLevels) * 100),
-                         round(max(ciLevels) * 100)),
-        fill   = ciCol,
-        bty    = "n",
-        inset  = c(-0.045, -0.24),
-        xpd    = NA
+        x        = usr[1L],
+        y        = usr[3L] - legLine * lineH,
+        xjust    = 0,
+        yjust    = 1,
+        legend   = sprintf("%s%% \u2013 %s%% CI",
+                           round(min(ciLevels) * 100),
+                           round(max(ciLevels) * 100)),
+        fill     = .stackOpacity(ciCol, length(ciLevels)),
+        border   = NA,
+        bty      = "n",
+        x.intersp = 0.6,
+        xpd      = NA
       ))
     )
     
@@ -254,4 +269,12 @@ plotPropCI <- function(
 .binomCI_raw <- function(x, n, conf.level = 0.95) {
   setNamesX(c(est = x/n, prop.test(x, n, conf.level = conf.level, correct = FALSE)$conf.int),
             names = c("est", "lci", "uci"))
+}
+
+
+# Colour of k overlapping layers of one translucent colour: the opacities
+# combine as 1 - (1 - a)^k, the hue stays.
+.stackOpacity <- function(col, k) {
+  v <- grDevices::col2rgb(col, alpha = TRUE) / 255
+  grDevices::rgb(v[1L], v[2L], v[3L], 1 - (1 - v[4L])^k)
 }
