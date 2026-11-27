@@ -78,7 +78,12 @@ Can be:
 \item \code{FALSE}, \code{NULL}, \code{NA}: suppress densities
 \item a named list: additional arguments passed to
 \code{\link[stats:density]{stats::density()}}
-}}
+}
+The extra element \code{bounds} gives the support of \code{x} as
+\code{c(lower, upper)}, default \code{c(-Inf, Inf)}. A finite bound is handled
+by reflection, as in \code{\link[=plotFreqDist]{plotFreqDist()}}: the curve neither leaks past
+the bound nor drops towards it, e.g. \code{list(bounds = c(0, Inf))} for
+non-negative data.}
 
 \item{box}{controls drawing of boxplots via
 \code{\link[graphics:boxplot]{graphics::boxplot()}}.
@@ -149,6 +154,9 @@ plotDensBox(
 )
 
 plotDensBox(x ~ g)
+
+# non-negative data: reflect the densities at 0
+plotDensBox(len ~ supp, ToothGrowth, dens = list(bounds = c(0, Inf)))
 
 # subset and the cells of two grouping variables
 plotDensBox(len ~ supp:dose, ToothGrowth, subset = dose > 0.5)

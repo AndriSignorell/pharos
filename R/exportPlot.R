@@ -58,7 +58,9 @@
 #'
 #' **Switch.** `create` defaults to the option `pharos.exportPlot`, which
 #' is `FALSE` unless set. A script thus decides in one place whether its
-#' figures are written, while single calls can still override it.
+#' figures are written, while single calls can still override it. If no
+#' file is written only because the option is off (`create` not given,
+#' `file` given), a short message says so, once per session.
 #'
 #' **Devices.** Each file device is closed by its own number after drawing,
 #' also if the plot call fails or opens or activates another device. The
@@ -227,12 +229,23 @@ exportPlot <- function(expr, file, type = "png",
   if (!create || screen)
     draw()
 
+  # a quiet hint, once per session, when the switch alone suppressed the files
+  if (!create && missing(create) && !missing(file) &&
+      !isTRUE(.exportPlotState$noted)) {
+    .exportPlotState$noted <- TRUE
+    message("exportPlot(): no file written, option 'pharos.exportPlot' ",
+            "is not TRUE (this note is shown once per session)")
+  }
+
   invisible(files)
 }
 
 
 
 # == internal helper functions =============================================
+
+# session state: whether the switch note has been shown
+.exportPlotState <- new.env(parent = emptyenv())
 
 .openExportDevice <- function(type, file, width, height, res) {
   open <- switch(type,

@@ -106,7 +106,9 @@ automatically.
 
 \strong{Switch.} \code{create} defaults to the option \code{pharos.exportPlot}, which
 is \code{FALSE} unless set. A script thus decides in one place whether its
-figures are written, while single calls can still override it.
+figures are written, while single calls can still override it. If no
+file is written only because the option is off (\code{create} not given,
+\code{file} given), a short message says so, once per session.
 
 \strong{Devices.} Each file device is closed by its own number after drawing,
 also if the plot call fails or opens or activates another device. The

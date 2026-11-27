@@ -54,6 +54,11 @@
 #'     \item a named list: additional arguments passed to
 #'       [stats::density()]
 #'   }
+#'   The extra element `bounds` gives the support of `x` as
+#'   `c(lower, upper)`, default `c(-Inf, Inf)`. A finite bound is handled
+#'   by reflection, as in [plotFreqDist()]: the curve neither leaks past
+#'   the bound nor drops towards it, e.g. `list(bounds = c(0, Inf))` for
+#'   non-negative data.
 #'
 #' @param box controls drawing of boxplots via
 #'   [graphics::boxplot()].
@@ -112,6 +117,9 @@
 #' )
 #'
 #' plotDensBox(x ~ g)
+#'
+#' # non-negative data: reflect the densities at 0
+#' plotDensBox(len ~ supp, ToothGrowth, dens = list(bounds = c(0, Inf)))
 #'
 #' # subset and the cells of two grouping variables
 #' plotDensBox(len ~ supp:dose, ToothGrowth, subset = dose > 0.5)
@@ -207,15 +215,16 @@ plotDensBox.default <- function(
       split_x,
       
       function(v) {
-        if (sum(!is.na(v)) < 2L)
+        v <- v[!is.na(v)]
+        if (length(v) < 2L)
           return(NULL)
+        # .densityBounded() takes the density() arguments plus 'bounds' as
+        # one list; NAs are removed beforehand, as the bounds check fails
+        # on them
         bedrock::callIf(
-          stats::density,
+          function(...) .densityBounded(list(...)),
           dens,
-          defaults = list(
-            x = v,
-            na.rm = TRUE
-          )
+          defaults = list(x = v)
         )
       }
     )

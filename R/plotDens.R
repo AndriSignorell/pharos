@@ -49,6 +49,11 @@
 #'
 #' @param add logical; if `TRUE`, adds to an existing plot.
 #' @param bw bandwidth passed to [stats::density()] or `cdplot`.
+#' @param bounds for `type = "density"`: the support of the data as
+#'   `c(lower, upper)`, default `c(-Inf, Inf)`. A finite bound is handled by
+#'   reflection, as in [plotFreqDist()]: the curve neither leaks past the
+#'   bound nor drops towards it. Use e.g. `c(0, Inf)` for non-negative data
+#'   or `c(0, 1)` for proportions. Not used for a conditional density.
 #' @param type character string specifying the plot type. One of
 #'   `"density"`, `"conditional"`, or `NULL` (default,
 #'   determined by `resolveFormula()`'s design classification).
@@ -83,6 +88,9 @@
 #'
 #' # standard density (k = 2 groups)
 #' plotDens(x ~ g)
+#'
+#' # non-negative data: reflect the densities at 0
+#' plotDens(len ~ supp, ToothGrowth, bounds = c(0, Inf))
 #'
 #' # conditional density, single curve - auto-detected, no type= needed
 #' y <- rbinom(100, 1, plogis(x))
@@ -138,7 +146,8 @@ plotDens.default <- function(
     ylim = NULL,
 
     # STATISTICS
-    bw = "nrd0",
+    bw     = "nrd0",
+    bounds = c(-Inf, Inf),
 
     # STRUCTURE
     add = FALSE,
@@ -185,7 +194,7 @@ plotDens.default <- function(
   dens_list <- lapply(groups, function(xi) {
     xi <- xi[!is.na(xi)]
     if (length(xi) < 2) return(NULL)
-    density(xi, bw = bw)
+    .densityBounded(list(x = xi, bw = bw, bounds = bounds))
   })
   
   valid <- !sapply(dens_list, is.null)
@@ -292,6 +301,8 @@ plotDens.default <- function(
 #' @param main,xlab,ylab plot labels.
 #' @param xlim,ylim axis limits.
 #' @param add,bw,col,lwd,lty,grid,legend,stamp see [plotDens()].
+#' @param bounds must be `NULL`; only accepted to give a clear error
+#'   instead of passing it on to `par()`.
 #' @param fill `FALSE` (default, no fill), `TRUE` (cdplot-style
 #'   grey shading), or a vector of 2 colors for the regions below/above the
 #'   boundary curve, representing `P(y = levels(y)[1] | x)` and
@@ -320,7 +331,8 @@ plotDens.default <- function(
     ylim = NULL,
 
     # STATISTICS
-    bw = "nrd0",
+    bw     = "nrd0",
+    bounds = NULL,
 
     # STRUCTURE
     add = FALSE,
@@ -341,6 +353,10 @@ plotDens.default <- function(
     ...
 ) {
   
+  # caught here, as it would otherwise end up in par() through ...
+  if (!is.null(bounds))
+    stop("'bounds' applies to type = \"density\" only", call. = FALSE)
+
   if (!is.factor(y)) y <- factor(y)
   g <- factor(g)
   
@@ -534,7 +550,7 @@ plotDens.formula <- function(
     if (is.null(ylab))
       ylab <- "density"
     
-    # the remaining arguments (xlim, bw, col, fill, legend, stamp, ...)
+    # the remaining arguments (xlim, bw, bounds, col, fill, legend, stamp, ...)
     # reach the default method through ...
     plotDens.default(
       split_data,

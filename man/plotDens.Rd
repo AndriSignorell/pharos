@@ -17,6 +17,7 @@ plotDens(x, ...)
   xlim = NULL,
   ylim = NULL,
   bw = "nrd0",
+  bounds = c(-Inf, Inf),
   add = FALSE,
   col = NULL,
   lwd = 2,
@@ -58,6 +59,12 @@ densities, the y-axis starting at 0 (\code{c(0, 1)} for a conditional
 density).}
 
 \item{bw}{bandwidth passed to \code{\link[stats:density]{stats::density()}} or \code{cdplot}.}
+
+\item{bounds}{for \code{type = "density"}: the support of the data as
+\code{c(lower, upper)}, default \code{c(-Inf, Inf)}. A finite bound is handled by
+reflection, as in \code{\link[=plotFreqDist]{plotFreqDist()}}: the curve neither leaks past the
+bound nor drops towards it. Use e.g. \code{c(0, Inf)} for non-negative data
+or \code{c(0, 1)} for proportions. Not used for a conditional density.}
 
 \item{add}{logical; if \code{TRUE}, adds to an existing plot.}
 
@@ -138,6 +145,9 @@ g <- rep(c("A", "B"), each = 50)
 
 # standard density (k = 2 groups)
 plotDens(x ~ g)
+
+# non-negative data: reflect the densities at 0
+plotDens(len ~ supp, ToothGrowth, bounds = c(0, Inf))
 
 # conditional density, single curve - auto-detected, no type= needed
 y <- rbinom(100, 1, plogis(x))
