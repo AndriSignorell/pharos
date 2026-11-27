@@ -126,7 +126,9 @@ invisibly. An object returned invisibly is never drawn automatically.
 
 **Switch.** `create` defaults to the option `pharos.exportPlot`, which
 is `FALSE` unless set. A script thus decides in one place whether its
-figures are written, while single calls can still override it.
+figures are written, while single calls can still override it. If no
+file is written only because the option is off (`create` not given,
+`file` given), a short message says so, once per session.
 
 **Devices.** Each file device is closed by its own number after drawing,
 also if the plot call fails or opens or activates another device. The
@@ -149,13 +151,14 @@ in figures for publication.
 plot(1:10) |>
   exportPlot(file.path(tempdir(), "demo"))
 
+#> exportPlot(): no file written, option 'pharos.exportPlot' is not TRUE (this note is shown once per session)
 
 # write a PNG and a PDF, nothing on the screen
 f <- plot(1:10, main = "Demo") |>
   exportPlot(file.path(tempdir(), "demo"), type = c("png", "pdf"),
              width = 4, create = TRUE, screen = FALSE)
 f
-#> [1] "/tmp/Rtmp6VNUkK/demo.png" "/tmp/Rtmp6VNUkK/demo.pdf"
+#> [1] "/tmp/RtmpIehyhB/demo.png" "/tmp/RtmpIehyhB/demo.pdf"
 file.exists(f)
 #> [1] TRUE TRUE
 unlink(f)

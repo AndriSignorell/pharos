@@ -110,6 +110,12 @@ plotDensBox(
   - a named list: additional arguments passed to
     [`stats::density()`](https://rdrr.io/r/stats/density.html)
 
+  The extra element `bounds` gives the support of `x` as
+  `c(lower, upper)`, default `c(-Inf, Inf)`. A finite bound is handled
+  by reflection, as in [`plotFreqDist()`](plotFreqDist.md): the curve
+  neither leaks past the bound nor drops towards it, e.g.
+  `list(bounds = c(0, Inf))` for non-negative data.
+
 - box:
 
   controls drawing of boxplots via
@@ -211,6 +217,10 @@ plotDensBox(
 
 
 plotDensBox(x ~ g)
+
+
+# non-negative data: reflect the densities at 0
+plotDensBox(len ~ supp, ToothGrowth, dens = list(bounds = c(0, Inf)))
 
 
 # subset and the cells of two grouping variables

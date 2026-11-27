@@ -203,6 +203,11 @@ set.seed(1)
 plotFreqDist(rexp(500), dens = list(bounds = c(0, Inf)))
 
 
+# the same for real data: tips cannot be negative
+plotFreqDist(bedrock::Pizza$tip, dens = list(bounds = c(0, Inf)),
+             main = "Pizza - tip")
+
+
 # overlay a normal density curve
 x <- rnorm(1000)
 plotFreqDist(x, curve = TRUE, boxplot = FALSE, ecdf = FALSE)

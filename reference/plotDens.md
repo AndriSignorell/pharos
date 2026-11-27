@@ -18,6 +18,7 @@ plotDens(
   xlim = NULL,
   ylim = NULL,
   bw = "nrd0",
+  bounds = c(-Inf, Inf),
   add = FALSE,
   col = NULL,
   lwd = 2,
@@ -75,6 +76,14 @@ plotDens(
   bandwidth passed to
   [`stats::density()`](https://rdrr.io/r/stats/density.html) or
   `cdplot`.
+
+- bounds:
+
+  for `type = "density"`: the support of the data as `c(lower, upper)`,
+  default `c(-Inf, Inf)`. A finite bound is handled by reflection, as in
+  [`plotFreqDist()`](plotFreqDist.md): the curve neither leaks past the
+  bound nor drops towards it. Use e.g. `c(0, Inf)` for non-negative data
+  or `c(0, 1)` for proportions. Not used for a conditional density.
 
 - add:
 
@@ -197,6 +206,10 @@ g <- rep(c("A", "B"), each = 50)
 
 # standard density (k = 2 groups)
 plotDens(x ~ g)
+
+
+# non-negative data: reflect the densities at 0
+plotDens(len ~ supp, ToothGrowth, bounds = c(0, Inf))
 
 
 # conditional density, single curve - auto-detected, no type= needed
